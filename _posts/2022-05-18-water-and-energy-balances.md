@@ -1,0 +1,70 @@
+---
+title: Water and Energy Balances
+author: agrotech
+date: 2022-05-18
+category: code
+layout: post
+---
+
+![]({{ site.url }}/archive/figures/greenhouse1.png)
+
+Figure from [Rodriguez *et al*. (2010)]({{ site.url }}/archive/teaching-material/rodriguez-2010-Dynamic-modeling-and-simulation-of-greenhouse-environments-under-several-scenarios--A-web-based-application.pdf).
+
+## Water balance
+
+A useful source is Nadia Christina Sabeh's [PhD thesis](https://www.proquest.com/docview/304894665), 2007.
+
+![]({{ site.url }}/archive/figures/greenhouse-Sabeh1.png)
+
+$$
+E_V + E_C + E_S + E_T = 0
+$$
+
+## Energy balance
+
+![]({{ site.url }}/archive/figures/greenhouse-Sabeh2.png)
+
+$$
+Q_R + Q_G + Q_V + Q_S + Q_P + Q_L + Q_H = 0
+$$
+
+
+## Evaporative Cooling
+
+![]({{ site.url }}/archive/figures/evaporative-cooling.png)
+
+![](https://yairmau.github.io/website/archive/hydrology/hydrology_figures/evaporation_2.png)
+
+## Potential Evapotranspiration
+
+### Penman (1948)
+
+This equation accounts for two main terms:
+* the first is the available energy flux density,
+* the second term is the drying power of the air.
+
+$$
+PE = \frac{\Delta(R_n-G) + \gamma\cdot 2.6 (1+0.536 u_2)\text{VPD}}{\lambda(\Delta+\gamma)}
+$$
+
+More about this [here](https://yairmau.github.io/website/markdown/2020/02/03/evapotranspiration-lecture.html).
+
+### PyET
+
+Luckily, we don't have to work very hard to estimate the potential evapotranspiration.
+We will use the Python library `pyet`:
+* [documentation](https://pyet.readthedocs.io/en/latest/index.html)
+* [github](https://github.com/phydrus/pyet)
+
+Using PyET is quite straightforward:
+
+```python
+pyet.pm_fao56(tmean,               # mean temperature
+              wind,                # wind speed
+              rn=rn,               # net radiation
+              tmax=tmax,           # max temperature
+              tmin=tmin,           # max temperature
+              rh=rh,               # relative humidity
+              elevation=elevation) # elevation above sea level
+```
+

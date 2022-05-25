@@ -1,0 +1,37 @@
+{% capture file_path %}archive/code-intro/{{ filename }}.ino{% endcapture %}
+{% capture var_code %}{{ filename }}_code{% endcapture %}
+{% capture var_icon %}{{ filename }}_icon{% endcapture %}
+{% capture var_code_content %}{{ filename }}_code_content{% endcapture %}
+
+<!-- flexible_include
+https://github.com/mslinn/jekyll-flexible-include-plugin
+github pages doesn't support it, sadly :(
+
+instead, we use the usual "include liquid"
+have all the code in the folder "archive", then just copy the whole "archive"
+folder into _includes, because "include" can only access files in there...
+It's ugly but it works...
+-->
+
+{% capture {{ var_code_content }} %}
+```cpp
+{% include {{ file_path }} do_not_escape='true' %}
+```
+{% endcapture %}
+
+<a href="javascript:void(0);"
+   onClick="toggle_icon_show_content('{{ var_code }}',
+                                     '{{ var_icon }}')">
+   Toggle Code <i class="fas fa-plus-square"
+             id='{{ var_icon }}'></i>
+</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[Download code <span class="iconify" data-icon="el:download-alt"></span>]({{ file_path2 }})
+
+<div id='{{ var_code }}' style="display:none;" >
+{{ var_code_content | markdownify }}
+</div>
+
+
+
+
+
