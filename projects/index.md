@@ -4,6 +4,10 @@ title: Projects
 permalink: /projects/
 ---
 
+## Final project
+
+[click here](/code/2022/05/30/final-project)
+
 ## Passover 2022 mini project
 
 [click here](/code/2022/04/12/passover-2022-mini-project)
