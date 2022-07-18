@@ -14,6 +14,7 @@ permalink: /projects/
 <span class="iconify" data-icon="akar-icons:github-fill"></span> &nbsp; [Zeev Rozman -- Imri Zadak -- Alex Evenko-Greenapple](https://github.com/Alevegreen/Agtechcourse_finproject)  
 <span class="iconify" data-icon="akar-icons:github-fill"></span> &nbsp; [Yuval Chemke -- Reem Har Levi](https://github.com/yuvalchemke/-Hydrophonics---Monitoring-and-Balance-by-detection)  
 <span class="iconify" data-icon="akar-icons:github-fill"></span> &nbsp; [Peleg Atir -- Aviad Mendelovich -- Ruth Yitzhaki](https://github.com/Ruthyitzhaki/Agrotech-lab-2022)  
+<span class="iconify" data-icon="akar-icons:github-fill"></span> &nbsp; [Amir Sheffer -- Yitzchak Kanovsky -- Aviv Saadia](https://github.com/amirsheffer/Agro-tech-project)  
 
 ## Passover 2022 mini project
 
