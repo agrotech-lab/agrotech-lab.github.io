@@ -1,0 +1,82 @@
+---
+title: "Install FireBeetle (ESP32)"
+# author: "Erez Feuer, Yair Mau"
+# date: "2022-05-18"
+categories: [arduino]
+echo: false
+jupyter: python3
+# image: "image.jpg"
+# format:
+#   html:
+    # include-before-body: insert_ino_code.txt
+#     code-overflow: wrap
+#     code-block-border-left: true
+---
+
+# How to connect the Firebeetle 2 MCU
+
+In our class we will be using the [FireBeetle 2 ESP32-E IoT Microcontroller](https://www.dfrobot.com/product-2195.html) as our main MCU. In this guid you will learn how to install needed software on your computer.  
+
+Full documentation of this MCU can be found on the [product wiki](https://wiki.dfrobot.com/FireBeetle_Board_ESP32_E_SKU_DFR0654) by DFRobot.
+For a quick pinout reference, take a look at [this page](/posts/tutorials/firebeetle_documentation.html).
+
+---
+
+Follow these simple steps to install FireBeetle 2 MCU on the Arduino IDE on your computer:
+
+1. Add the json link in IDE
+2. Download the core of the maincontroller
+3. Select development board and serial port
+
+
+## 1. Add URL to Ardudino IDE
+
+Open Arduino IDE, click `File->Preferences`, as shown below:
+
+![Arduino IDE](/archive/figures/IDE-file-pref.png)
+
+Click the icon marked with red below.
+
+![Arduino Setup](/archive/figures/IDE-pref.png)
+
+Copy the address to the newly popped up box: `http://download.dfrobot.top/FireBeetle/package_DFRobot_index.json`
+
+![Arduino Setup 1](/archive/figures/IDE-url.png)
+
+Click OK.
+
+## 2. Update board. 
+Open `Tools->Board->Boards Manager`.
+
+![Update Board](/archive/figures/IDE-boards-manager.png)
+
+The board manager will be automatically updated.
+
+![Board Updated](/archive/figures/IDE-boards-manager2.png)
+
+Wait for a while, then type in the search bar `DFRobot ESP32` in the list. Click "Install" (in the image its gayed out because it's already installed...):
+
+![Install Board](/archive/figures/DFRobot.png)
+
+Once you see "INSTALLED" in Blue you are Done! You can find the installed `FireBeetle-ESP32` board in the list now.
+
+
+## 3. Select board and port
+
+Once the board is installed, select it: 
+Open `Tools->Board->DFRobot ESP32 Arduino->FireBeelte ESP32-E`
+![choose board](/archive/figures/dfrobott.png)
+
+Then select the Port  
+Open `Tools->Port->COMxx` (for windows the port wil be `COM` with some number, for Mac/linux it will be `/dev/cu.` and then something).  
+How do you know what port to choose?  
+Check the ports without the MCU pluged into the computer. Then plug the MCU and check the ports again. If you see a new port, thats the port of the MCU. 
+
+## Troubleshooting
+
+Troubleshooting if there is no port for the MCU:
+
+ 1. Missing driver. Could be you need to install a specific driver.  
+ [Windows driver](https://dfimg.dfrobot.com/nobody/wiki/0e0d6b3864f7163833ec5d7ad4af7632.EXE)  
+ [MacOS driver](https://dfimg.dfrobot.com/nobody/wiki/c195a13df2a1989d5dc04e76e6bcb701.ZIP)
+ 2. Bad USB cable. Some cables are bad and some are only for charging and cannot sync data. Try using a different USB cable that worked for a freind.

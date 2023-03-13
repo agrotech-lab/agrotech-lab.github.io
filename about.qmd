@@ -1,0 +1,32 @@
+---
+title: "{{< iconify bi exclamation-diamond-fill >}} About"
+# image: profile.jpg
+---
+
+
+Welcome to the Agrotech-lab course, where you will have the opportunity to learn about the integration of microcontrollers in agriculture technology. In this course, you will explore the use of microcontrollers such as the ESP32 and how they can be utilized to automate processes, collect data, and improve overall efficiency in agricultural practices.
+
+Throughout the course, you will gain practical knowledge on how to design, develop, and implement microcontroller-based solutions for different applications in agriculture. You will learn how to use sensors to collect data such as temperature, humidity, and soil moisture, and how to integrate this data with the ESP32 to automate irrigation systems, monitor plant growth, and more.
+
+This course is designed for students who are interested in the application of technology in agriculture and want to gain hands-on experience in designing and implementing microcontroller-based solutions. By the end of this course, you will have a solid understanding of how to apply microcontrollers in agricultural practices, which will equip you with valuable skills for future research or professional opportunities.
+
+## {{< iconify mdi head-lightbulb >}} Learning experience
+
+We want students to creatively engage with their projects, finding by themselves solutions to the challenges they encounter. The role of the teaching staff will be to consult and advise, not spoon-feed solutions.
+
+The main values we would like to promote: **curiosity, independence, creativity, and a can-do attitude.**
+
+## {{< iconify mdi scroll-text-outline >}} Course policy and grading
+
+* `10%`: **Presence.** 100% presence is required.
+* `10%`: **Equipment:** borrowing and returning. All equipment must be accounted for and taken care with respect. Together we will keep record of all borrowed equipment. Everything will be neatly return to storage by 10 July.
+* `10%`: **Passover project.**
+* `70%`: **Final project.**
+  * `30%`: Experimental setup.
+  * `30%`: Report.
+  * `10%`: Presentation.
+
+## {{< iconify eva email-outline >}} Contact
+
+Erez Feuer: `erez.feuer@mail.huji.ac.il`  
+Yair Mau: `yair.mau@mail.huji.ac.il`

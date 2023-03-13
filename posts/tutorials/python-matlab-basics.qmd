@@ -1,0 +1,75 @@
+---
+title: "Basic Data Analysis with Python and Matlab"
+# author: "Erez Feuer, Yair Mau"
+date: "2022-05-09"
+categories: [arduino]
+echo: false
+jupyter: python3
+# image: "image.jpg"
+# format:
+#   html:
+    # include-before-body: insert_ino_code.txt
+#     code-overflow: wrap
+#     code-block-border-left: true
+---
+
+Python and Matlab are very similar, but there are many syntax differences between them.
+This tutorial should help you start making graphs and the most basic data analysis, but it is very far from being a comprehensive guide.
+Google and Stack Overflow are your best friends :)
+
+## Matlab
+
+Matlab is a proprietary (paid) software, but all HUJI students can install it and use it for free as long as they are connected to the university's internet, either directly or through a VPN.
+In any case, we will be using Matlab to plot graphs on Thingspeak, which is owned by the same parent company, MathWorks.
+
+Here are a few very useful tutorials provided by MathWorks:
+
+* [Apps](https://thingspeak.com/apps)
+* [Analyze Your Data](https://www.mathworks.com/help/thingspeak/analyze-your-data.html)
+* [Prepare and Analyze Data — Examples](https://www.mathworks.com/help/thingspeak/examples.html?category=matlab-analysis-and-visualization&exampleproduct=all&s_tid=CRUX_lftnav)
+* [Visualize Data — Examples](https://www.mathworks.com/help/thingspeak/examples.html?category=visualize-data&exampleproduct=all)
+* [Act on Data — Examples](https://www.mathworks.com/help/thingspeak/examples.html?category=thingspeak-apps&exampleproduct=all&s_tid=CRUX_lftnav)
+
+As a first example that we will run together, please follow the steps below:
+
+1. **Log into Thingspeak**, open your channel, and then go to either `Private View` or `Public View`.
+1. Press on `MATLAB Visualization` box, on the top right.
+1. From `Templates`, choose `Create a 2-D line plot`, then press `Create`.
+1. In case the template doesn't load, you can create a custom visualization and paste the code below
+
+```{.matlab code-line-numbers="1"}
+% Template MATLAB code for visualizing data from a channel as a 2D line
+% plot using PLOT function.
+
+% Prior to running this MATLAB code template, assign the channel variables.
+% Set 'readChannelID' to the channel ID of the channel to read from. 
+% Also, assign the read field ID to 'fieldID1'. 
+
+% TODO - Replace the [] with channel ID to read data from:
+readChannelID = [];
+% TODO - Replace the [] with the Field ID to read data from:
+fieldID1 = [];
+
+% Channel Read API Key 
+% If your channel is private, then enter the read API
+% Key between the '' below: 
+readAPIKey = '';
+
+%% Read Data %%
+
+[data, time] = thingSpeakRead(readChannelID, 'Field', fieldID1, 'NumPoints', 30, 'ReadKey', readAPIKey);
+
+%% Visualize Data %%
+
+plot(time, data);
+```
+
+[Read here more about arguments that function `thingSpeakRead` can receive](https://www.mathworks.com/help/thingspeak/thingspeakread.html?searchHighlight=thingSpeakRead&s_tid=srchtitle_thingSpeakRead_1)
+
+
+## Python
+
+We will be using Jupyter Notebook as our python interface.
+There are many ways of running python, we chose Jupyter because it allows for easy prototyping, and the Markdown cells are great for documentation.
+
+[Jupyter Notebook](https://yairmau.github.io/website/jupyter/2020/03/01/basic-tsa.html){: .button}

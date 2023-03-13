@@ -1,0 +1,68 @@
+---
+title: "{{< iconify fluent brain-circuit-20-regular >}} Resources"
+---
+
+#### {{< iconify mdi led-on >}} Equipment
+
+Click for a [list of the main components](/content/equipment) used in this course.
+
+#### {{< iconify akar-icons github-fill >}} Github 
+
+Make an account on [Github](https://github.com).
+Create a repository called "agrotech" or whatever you else want to call it.
+You can upload to this repository your code, data, diagrams, pictures, markdown, etc.
+In the end of the semester you will upload your project report as a Jupyter Notebook file.
+
+From now on, your main Github page can be your "geek face" on the internet. Make a clean and simple `readme.md`, telling the world who you are and what you do.
+
+#### {{< iconify simple-icons jupyter >}} Jupyter Notebook 
+
+The easiest way to install Python (+ Jupyter Notebook, Spyder, PyCharm, JupyterLab, etc) on any OS is to download [Anaconda](https://www.anaconda.com/products/individual).
+Jupyter Notebook is a versatile environment that allows you to write code and documentation in one single file, taking advantage of Markdown.
+Click for a [short](https://devhints.io/markdown) and a [long](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) markdown cheat sheet.
+
+#### {{< iconify eos-icons hardware-circuit >}} Fritzing
+
+[Fritzing](https://fritzing.org/download/) is a nice software that lets you easily draw your own circuits and diagrams.
+
+![](http://troybaverstock.com/wp-content/uploads/2019/04/arduino-servo-button-red-green-RGB-LED-wiring-diagram.png)
+
+
+### {{< iconify akar-icons link-chain >}} Very useful links
+
+* Oregon State's OPEnS Lab. [Github](https://github.com/OPEnSLab-OSU/OPEnS-Lab-Home/wiki)
+
+## Useful links
+
+The world of MCUs has great support online. You actually don't need this course to learn it... We are only here to guide you and help with the first steps. SO below are some usful links to websites/Youtube channels that provide excellent information:  
+  
+  
+**Arduino syntax and coding:**  
+
+* [Arduino --- Language Reference](https://www.arduino.cc/reference/en/)
+  
+**Tutorials by sensor manufacturers:**  
+
+* [Sparkfun](https://learn.sparkfun.com)  
+* [Adafruit](https://learn.adafruit.com)
+
+**Project ideas:**  
+
+* [Arduino Project Hub](https://create.arduino.cc/projecthub)  
+* [Instructables --- Arduino](https://www.instructables.com/circuits/arduino/projects/)
+
+**Arduino beginners course:**  
+
+* [Paul McWhorter - New Arduino Tutorials](https://www.youtube.com/playlist?list=PLGs0VKk2DiYw-L-RibttcvK-WBZm8WLEP)
+
+**Examples of good Youtube channels:**  
+
+* [Andreas Spiess](https://www.youtube.com/c/AndreasSpiess)  
+* [G6EJD - David](https://www.youtube.com/c/G6EJD/videos)  
+* [GreatScott!](https://www.youtube.com/c/greatscottlab)    
+* [educ8s.tv](https://www.youtube.com/c/Educ8s/videos)
+
+
+
+
+

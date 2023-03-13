@@ -1,0 +1,59 @@
+---
+title: "RGB LED"
+# author: "Erez Feuer, Yair Mau"
+# date: "2022-05-18"
+categories: [arduino]
+echo: false
+jupyter: python3
+# image: "image.jpg"
+# format:
+#   html:
+    # include-before-body: insert_ino_code.txt
+#     code-overflow: wrap
+#     code-block-border-left: true
+---
+
+The ESP32 board we are using has an built in RGB LED on pin `D8`. The following code is an example of how to use it. Please note that it requires the installation of the `"Freenove_WS2812_Lib_for_ESP32.h"` library. It can be found in the Arduino IDE library manager or downloaded from [the github repository](https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32). If you are not sure how to install a library follow our [guide](/posts/tutorials/libraries.html).
+
+```cpp
+// Include the library for controlling WS2812 LEDs using ESP32
+#include "Freenove_WS2812_Lib_for_ESP32.h" // https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32
+
+// Define the number of LEDs and the pin they are connected to
+#define LEDS_COUNT 1
+#define LEDS_PIN D8
+#define CHANNEL 0
+
+// Create an instance of the WS2812 LED strip with the specified number of LEDs, pin number, and color type
+Freenove_ESP32_WS2812 strip = Freenove_ESP32_WS2812(LEDS_COUNT, LEDS_PIN, CHANNEL, TYPE_GRB);
+
+// Define an array of colors to cycle through
+u8 m_color[5][3] = {{255, 0, 0}, {0, 255, 0}, {0, 0, 255}, {255, 255, 255}, {0, 0, 0}};
+
+// Setup function - runs once when the microcontroller starts up
+void setup() {
+  // Initialize the LED strip
+  strip.begin();
+  // Set the brightness of the LEDs to 50%
+  strip.setBrightness(50);
+}
+
+// Loop function - runs repeatedly while the microcontroller is powered on
+void loop() {
+  // Cycle through the array of colors
+  for (int j = 0; j < 5; j++) {
+    // Set LED to the current color and display the result
+    for (int i = 0; i < LEDS_COUNT; i++) {
+      strip.setLedColorData(i, m_color[j][0], m_color[j][1], m_color[j][2]);
+      strip.show();
+      delay(500);
+    }
+  }
+  // Cycle through a range of colors using the Wheel function
+  for (int j = 0; j < 255; j++) {
+    strip.setLedColorData(0, strip.Wheel(j));
+    strip.show();
+    delay(10);
+  }
+}
+```

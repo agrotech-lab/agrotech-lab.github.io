@@ -1,0 +1,96 @@
+---
+title: "Intro to Sensor Modules and Thingspeak"
+# author: "Erez Feuer, Yair Mau"
+date: "2022-04-05"
+categories: [arduino]
+echo: false
+jupyter: python3
+execute:
+  freeze: auto  # re-render only when source changes
+# image: "image.jpg"
+# format:
+#   html:
+    # include-before-body: insert_ino_code.txt
+#     code-overflow: wrap
+#     code-block-border-left: true
+---
+
+{{< include ../../_insert_ino_code.qmd >}}
+
+![](/archive/figures/thingspeak-screenshot-graphs.png)
+
+
+## Sensors
+
+### DS18B20 Temperature Sensor
+
+Pretty accurate temperature sensor.
+Each sensor has its own unique address, enabling the connection of numerous sensors to only on pin on the Arduino/ESP32.
+
+In [this tutorial](https://randomnerdtutorials.com/esp32-multiple-ds18b20-temperature-sensors/) you can find a lot more information.
+
+Code for finding the sensor's address:
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("Agrotech_2022_find_DS18B20")
+```
+
+### SHT31 Temperature & Humidity Sensor Using I2C communication
+
+In [this tutorial](http://www.esp32learning.com/code/esp32-and-sht31-sensor-example.php) you can find a lot more information.
+
+
+Code for reading the sensor:
+```{python}
+#| echo: false
+#| output: asis
+code_source("Agrotech_2022_SHT31")
+```
+
+### VL53L0X Time-of-Flight Distance Sensor Using I2C communication
+
+In [this tutorial](http://www.esp32learning.com/code/vl53l0x-time-of-flight-sensor-and-esp32.php) you can find a lot more information.
+
+Code for reading the sensor:
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("Agrotech_2022_VL53L0X")
+```
+
+## Thingspeak
+
+[Thingspeak webpage](https://thingspeak.com/).
+
+### Basic Code for Uploading Data to Thingspeak
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("Agrotech_2022_Thingspeak")
+```
+
+### Example: Sending Data from Sensors Above to Thingspeak
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("Agrotech_2022_sensors_to_Thingspeak")
+```
+
+
+----
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+function toggle_icon_show_content(Show_Hide_Id,Icon_Id) {
+    $("#"+Icon_Id).toggleClass('fa-plus-square fa-minus-square')
+    $("#"+Show_Hide_Id).slideToggle('slow');
+}
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

@@ -1,0 +1,84 @@
+---
+title: "Introduction"
+# author: "Erez Feuer, Yair Mau"
+date: "2022-09-22"
+categories: [arduino]
+echo: false
+jupyter: python3
+execute:
+  freeze: auto  # re-render only when source changes
+# image: "image.jpg"
+# format:
+#   html:
+#     code-overflow: wrap
+#     code-block-border-left: true
+---
+
+
+{{< include ../../_insert_ino_code.qmd >}}
+
+
+### Blink
+
+It's time to run a first example.
+
+1. Go to `File > Examples > 01.Basics`, click on `Blink`.
+1. Press the <span class="iconify" data-icon="emojione-monotone:right-arrow"></span> "right arrow" button on the top left to upload the code onto the ESP32.
+1. When you see "Connecting" on the bottom of the screen, press the right button on the ESP32.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("blink")
+```
+
+----
+
+### Printing increasing numbers
+
+Upload the following code to your ESP32, then click on the <span class="iconify" data-icon="foundation:magnifying-glass"></span> on the top right corner. This is called "Serial Monitor".
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("print-increasing-numbers")
+```
+
+
+----
+
+### Printing random numbers, then plotting!
+
+1. Upload the following code to your ESP32.
+1. Open the Serial Monitor (<span class="iconify" data-icon="foundation:magnifying-glass"></span>). Now close it, and
+3. Go to `Tools > Serial Plotter`.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("print-random-numbers")
+```
+
+----
+
+### Floats, functions, conditionals
+
+We will now learn how to deal with floats, how to define our own functions, and how to write conditionals (if/else).
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("sin-cos-square")
+```
+
+----
+
+### WiFi, read time
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("wifi-time")
+```
+
+----

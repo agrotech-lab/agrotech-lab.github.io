@@ -1,0 +1,92 @@
+---
+title: "ESP32 and SHT31 Sensor Tutorial"
+# author: "Erez Feuer, Yair Mau"
+# date: "2022-05-18"
+categories: [arduino]
+echo: false
+jupyter: python3
+# image: "image.jpg"
+# format:
+#   html:
+    # include-before-body: insert_ino_code.txt
+#     code-overflow: wrap
+#     code-block-border-left: true
+---
+
+## Introduction
+
+In this tutorial, we will learn how to use the ESP32 microcontroller with the SHT31 temperature and humidity sensor. We will cover the basics of the sensor, including how it works and how to connect it to an ESP32. We will also learn how to use the Adafruit_SHT31 library to read temperature and humidity values from the sensor. By the end of this tutorial, you will be able to build your own ESP32 and SHT31-based projects.
+
+## SHT31 Sensor
+
+The SHT31 is a high-precision temperature and humidity sensor that can be used in a wide range of applications. It measures temperature and humidity using a capacitive humidity sensor and a band-gap temperature sensor. It has a wide measurement range of -40°C to 125°C for temperature and 0-100% for relative humidity. The SHT31 is a digital sensor, which means it communicates with the microcontroller over a digital interface. See more details on the [Adafruit's github page for the SHT31](https://github.com/adafruit/Adafruit_SHT31
+) and full specs on the [SHT31 datasheet](https://www.mouser.com/datasheet/2/682/Sensirion_Humidity_Sensors_SHT3x_Datasheet_digital-971521.pdf).
+
+
+## Libraries
+
+To use the SHT31 sensor with an ESP32 microcontroller, we will need to use the Adafruit_SHT31 library. This library is specifically designed to work with the SHT31 sensor and makes it easy to read temperature and humidity values from the sensor.
+
+To install the library, follow these steps:
+
+1. Open the Arduino IDE
+2. Go to **Sketch > Include Library > Manage Libraries**
+3. Search for "Adafruit_SHT31" and click the **Install** button
+4. Wait for the library to install
+
+## Wiring
+
+To connect the SHT31 sensor to the ESP32 microcontroller, we will need to use four wires: VCC, GND, SDA, and SCL. Here is a table that shows how to connect the wires:
+
+| SHT31 Pin | ESP32 Pin |
+|-----------|-----------|
+| VCC       | 3V3       |
+| GND       | GND       |
+| SDA       | GPIO21    |
+| SCL       | GPIO22    |
+
+**Note:** The ESP32's 3V3 pin provides 3.3 volts of power, which is the correct voltage for the SHT31 sensor. Do not use the 5V pin, as it will damage the sensor.
+
+## Code
+
+Here is the code for reading temperature and humidity values from the SHT31 sensor:
+
+```c++
+#include <Arduino.h>   // Include the Arduino library
+#include <Wire.h>      // Include the Wire library for I2C communication
+#include "Adafruit_SHT31.h" // Include the SHT31 library from Adafruit
+
+Adafruit_SHT31 sht31 = Adafruit_SHT31(); // Create an instance of the SHT31 object
+
+void setup() {
+  Serial.begin(112500);   // Initialize the serial communication with a baud rate of 112500
+  if (! sht31.begin(0x44)) {  // Check if SHT31 is connected and start it with address 0x44
+    Serial.println("Couldn't find SHT31"); // Print an error message if SHT31 is not found
+    while (1) delay(1);  // Wait indefinitely
+  }
+}
+
+void loop() {
+  float t = sht31.readTemperature(); // Read temperature from SHT31 and store it in t variable
+  float h = sht31.readHumidity();    // Read humidity from SHT31 and store it in h variable
+
+  if (! isnan(t)) {             // Check if t is not NaN (not a number)
+    Serial.print("Temp *C = "); // Print temperature label
+    Serial.println(t);          // Print temperature value
+  } 
+  else {
+    Serial.println("Failed to read temperature"); // Print an error message if temperature reading fails
+  }
+
+  if (! isnan(h)) {              // Check if h is not NaN (not a number)
+    Serial.print("Hum. % = ");  // Print humidity label
+    Serial.println(h);           // Print humidity value
+  } 
+  else {
+    Serial.println("Failed to read humidity");  // Print an error message if humidity reading fails
+  }
+
+  Serial.println();    // Print a blank line
+  delay(1000);         // Delay for 1 second
+}
+```

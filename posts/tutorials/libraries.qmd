@@ -1,0 +1,45 @@
+---
+title: "Libraries"
+# author: "Erez Feuer, Yair Mau"
+# date: "2022-05-18"
+categories: [arduino]
+echo: false
+jupyter: python3
+# image: "image.jpg"
+# format:
+#   html:
+    # include-before-body: insert_ino_code.txt
+#     code-overflow: wrap
+#     code-block-border-left: true
+---
+
+# Guide: Installing Libraries in the Arduino IDE
+
+Libraries are a crucial part of working with Arduino boards. They provide pre-written code that can be easily integrated into your own projects, saving time and effort. This guide will walk you through the two main ways of installing libraries in the Arduino IDE: using the Library Manager and manually installing a library downloaded from GitHub.
+
+## Using the Library Manager
+
+The Library Manager is the easiest and most straightforward way of installing libraries in the Arduino IDE. Follow these steps:
+
+1. Open the Arduino IDE and navigate to `Sketch > Include Library > Manage Libraries...`
+2. In the Library Manager window, type the name of the library you want to install in the search bar. You can also browse through the available libraries by clicking on any of the categories on the left-hand side.
+3. Once you have found the library you want to install, click on it and then click the `Install` button.
+4. Wait for the installation process to complete. You can check the progress in the progress bar at the bottom of the window.
+5. Once the installation is complete, close the Library Manager window.
+6. To include the library in your sketch, navigate to `Sketch > Include Library` and select the library you just installed.
+
+## Manually Installing a Library from GitHub
+
+Sometimes, the library you need is not available in the Library Manager, or you may want to install a specific version of a library that is not the latest. In such cases, you can manually download the library from GitHub and install it in the Arduino IDE. Follow these steps:
+
+1. Open the GitHub repository of the library you want to install and click on the green `Code` button.
+2. Select `Download ZIP` and save the zip file to your computer.
+3. Open the Arduino IDE and navigate to `Sketch > Include Library > Add .ZIP Library...`
+4. Select the zip file you just downloaded and click the `Open` button.
+5. Wait for the installation process to complete. You can check the progress in the progress bar at the bottom of the window.
+6. Once the installation is complete, close the Library Manager window.
+7. To include the library in your sketch, navigate to `Sketch > Include Library` and select the library you just installed.
+
+## Conclusion
+
+Installing libraries in the Arduino IDE is a straightforward process that can save you a lot of time and effort in your projects. Whether you prefer using the Library Manager or manually downloading libraries from GitHub, there is a solution for everyone.

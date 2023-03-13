@@ -1,0 +1,30 @@
+---
+title: "{{< iconify fa6-solid user-graduate >}} Tutorials"
+---
+
+[What is a microcontroller?](/posts/tutorials/arduino-intro-and-links.html)
+
+## Unit 1: first steps
+
+1. [Arduino IDE](/posts/tutorials/arduino_IDE.html)
+1. [Install FireBeetle (ESP32)](/posts/tutorials/install_firebeetle.html)
+1. [FireBeetle pinout](/posts/tutorials/firebeetle_documentation.html)
+1. [Breadboard](/posts/tutorials/breadboard.html)
+
+## Unit 2
+
+1. [Intro to Arduino code](/posts/tutorials/intro.html)
+1. [Libraries](/posts/tutorials/libraries.html)
+1. [Thingspeak](/posts/tutorials/thingspeak.html)
+1. [Merging](/posts/tutorials/merging.html)
+1. [SHT31](/posts/tutorials/SHT31.html)
+
+## Unit 3
+
+1. [Basic Electronics Concepts](/posts/tutorials/basic-electronics-concepts.html)
+1. [Electronics Class](/posts/tutorials/electronics-class.html)
+1. [Sensor Modules and Thingspeak](/posts/tutorials/intro-to-sensor-modules-and-thingspeak.html)
+1. [Basic Data Analysis with Python and Matlab](/posts/tutorials/python-matlab-basics.html)
+1. [Water and Energy Balances](/posts/tutorials/water-and-energy-balances.html)
+1. [Psychrometric Chart and Evaporative cooling](/posts/tutorials/psychrometric-chart-and-evaporative-cooling.html)
+1. [Soldering and Wires](/posts/tutorials/soldering-and-wires)

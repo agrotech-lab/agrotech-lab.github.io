@@ -1,0 +1,23 @@
+---
+title: "agrotech lab"
+# listing:
+#   contents: posts
+#   sort: "date desc"
+#   type: default
+#   categories: true
+#   sort-ui: false
+#   filter-ui: false
+page-layout: article
+title-block-banner: true
+---
+
+<img src="/archive/logo/faculty-logo.png" width="35" style='vertical-align:sub;' align="left">&nbsp; **Faculty of Agriculture, Food and Environment**  
+
+<img src="/archive/logo/huji-gray.png" width="30" style='vertical-align:top;' align="left">&nbsp; &nbsp;**Hebrew University of Jerusalem** --- [Rehovot Campus](https://goo.gl/maps/3SSsJPW3sCqpdPqCA)
+
+<br>
+
+## {{< iconify fa-solid user-ninja >}} Mission
+
+We are here to have some fun!
+

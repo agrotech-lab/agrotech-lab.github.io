@@ -1,0 +1,16 @@
+/* css styles */
+
+#quarto-document-content {
+    width: 600px;
+  }
+
+#quarto-margin-sidebar {
+    /* margin-right: -600px; */
+    margin-left: 800px;
+  }
+
+a {
+    text-decoration: none;
+  }
+
+

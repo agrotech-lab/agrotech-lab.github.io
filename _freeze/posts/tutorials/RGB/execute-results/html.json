@@ -1,0 +1,11 @@
+{
+  "hash": "ab0d1afb987d20f3486844dfb7603d30",
+  "result": {
+    "markdown": "---\ntitle: RGB LED\ncategories:\n  - arduino\necho: false\n---\n\nThe ESP32 board we are using has an built in RGB LED on pin `D8`. The following code is an example of how to use it. Please note that it requires the installation of the `\"Freenove_WS2812_Lib_for_ESP32.h\"` library. It can be found in the Arduino IDE library manager or downloaded from [the github repository](https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32). If you are not sure how to install a library follow our [guide](/posts/tutorials/libraries.html).\n\n```cpp\n// Include the library for controlling WS2812 LEDs using ESP32\n#include \"Freenove_WS2812_Lib_for_ESP32.h\" // https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32\n\n// Define the number of LEDs and the pin they are connected to\n#define LEDS_COUNT 1\n#define LEDS_PIN D8\n#define CHANNEL 0\n\n// Create an instance of the WS2812 LED strip with the specified number of LEDs, pin number, and color type\nFreenove_ESP32_WS2812 strip = Freenove_ESP32_WS2812(LEDS_COUNT, LEDS_PIN, CHANNEL, TYPE_GRB);\n\n// Define an array of colors to cycle through\nu8 m_color[5][3] = {{255, 0, 0}, {0, 255, 0}, {0, 0, 255}, {255, 255, 255}, {0, 0, 0}};\n\n// Setup function - runs once when the microcontroller starts up\nvoid setup() {\n  // Initialize the LED strip\n  strip.begin();\n  // Set the brightness of the LEDs to 50%\n  strip.setBrightness(50);\n}\n\n// Loop function - runs repeatedly while the microcontroller is powered on\nvoid loop() {\n  // Cycle through the array of colors\n  for (int j = 0; j < 5; j++) {\n    // Set LED to the current color and display the result\n    for (int i = 0; i < LEDS_COUNT; i++) {\n      strip.setLedColorData(i, m_color[j][0], m_color[j][1], m_color[j][2]);\n      strip.show();\n      delay(500);\n    }\n  }\n  // Cycle through a range of colors using the Wheel function\n  for (int j = 0; j < 255; j++) {\n    strip.setLedColorData(0, strip.Wheel(j));\n    strip.show();\n    delay(10);\n  }\n}\n```\n\n",
+    "supporting": [
+      "RGB_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

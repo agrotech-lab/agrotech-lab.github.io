@@ -1,0 +1,99 @@
+---
+title: "Electronics Class"
+# author: "Erez Feuer, Yair Mau"
+date: "2022-03-15"
+categories: [arduino]
+echo: false
+jupyter: python3
+execute:
+  freeze: auto  # re-render only when source changes
+# image: "image.jpg"
+# format:
+#   html:
+#     code-overflow: wrap
+#     code-block-border-left: true
+---
+
+
+![](https://cdn.sparkfun.com/assets/6/e/8/3/c/51f93d85757b7f2049270817.png)
+
+### Presentation
+
+[Download .pptx <span class="iconify" data-icon="el:download-alt"></span>](/archive/teaching-material/electronics-class.pptx)
+
+<object data="/archive/teaching-material/electronics-class.pdf" width="800" height="500" type='application/pdf'></object>
+
+[Pin information for ESP32](https://randomnerdtutorials.com/esp32-pinout-reference-gpios/)
+
+----
+
+{{< include ../../_insert_ino_code.qmd >}}
+
+
+### Digital Write
+
+Use the following code to activate LED pin.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("digital-write")
+```
+
+
+### PWM with ESP32
+
+Use the following code to activate LED pin with PWM.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("PWM-basic")
+```
+
+
+### Reading an Analog Pin
+
+Use the following code to read an analog pin.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("analog-read")
+```
+
+
+### ADC to voltage
+
+Use the following code to convert ADC reading to voltage.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("ADC-to-voltage")
+```
+
+
+### Potentiometer and PWM
+
+Use the following code to control PWM with potentiometer and dim the LED.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("potentiometer-PWM")
+```
+
+### Thermistor
+
+[Download Data Sheet](/archive/teaching-material/thermistor-datasheet-NTCM-10K-B4150.pdf)
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("thermistor_b_val")
+```
+
+![](/archive/figures/thermistor-agrotech-schematic.png)
+
+![](/archive/figures/thermistor-agrotech-breadboard.png)

@@ -1,0 +1,33 @@
+---
+title: "{{< iconify material-symbols rocket-launch >}} Projects"
+# image: profile.jpg
+---
+
+material-symbols:rocket-launch
+
+## {{< iconify icons8 finish-flag >}} Final Project
+
+[Read carefully the instructions. Click here.](/posts/projects/final-project.html)
+
+<details><summary>2022 Final projects</summary>
+<i class="bi bi-github"></i> &nbsp; [Ronna Melamed Bat -- May Nir](https://github.com/mayniragqueen/agrotech-project)  
+<i class="bi bi-github"></i> &nbsp; [Avital Akerman --  Elad Greenfeld](https://github.com/vitoska26/agrotech_project)  
+<i class="bi bi-github"></i> &nbsp; [Nadav Hen -- Guy Donagi -- David Zingerman](https://github.com/puginarug/GreenTemp)  
+<i class="bi bi-github"></i> &nbsp; [Zeev Rozman -- Imri Zadak -- Alex Evenko-Greenapple](https://github.com/Alevegreen/Agtechcourse_finproject)  
+<i class="bi bi-github"></i> &nbsp; [Yuval Chemke -- Reem Har Levi](https://github.com/yuvalchemke/-Hydrophonics---Monitoring-and-Balance-by-detection)  
+<i class="bi bi-github"></i> &nbsp; [Peleg Atir -- Aviad Mendelovich -- Ruth Yitzhaki](https://github.com/Ruthyitzhaki/Agrotech-lab-2022)  
+<i class="bi bi-github"></i> &nbsp; [Amir Sheffer -- Yitzchak Kanovsky -- Aviv Saadia](https://github.com/amirsheffer/Agro-tech-project)  
+
+</details>
+
+## {{< iconify icon-park-solid pyramid-one >}} Passover 2022 mini project
+
+[click here](/posts/projects/passover-2022-mini-project.html)
+
+## {{< iconify mingcute transfer-3-line >}} Borrowing equipment
+
+[click here](/posts/projects/borrowing-equipment.html)
+
+## {{< iconify file-icons arduino >}} Arduino Nano
+
+[click here](/posts/projects/arduino-nano.html)

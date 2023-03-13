@@ -1,0 +1,11 @@
+{
+  "hash": "b38c7f3187da2b2f58f6fe3ac5ca8bcc",
+  "result": {
+    "markdown": "---\ntitle: Borrowing equipment\nauthor: agrotech\"\ndate: '2022-04-12'\ncategories:\n  - project\necho: false\n---\n\nWe want to give you the freedom to try out all the equipment, but we need help in tracking what equipment you took. For that reson we started a colaborative spreadsheet in which you can list the equipment you took home / are using in your project. (Only HUJI accounts can edit that sheet).  \n[<i class=\"bi bi-file-earmark-spreadsheet-fill\"></i> Link to sheet](https://docs.google.com/spreadsheets/d/13QnEzeFD3zJkL6Tm_SBLfyFS0dUWazhqZs1YpUDvdco/edit?usp=sharing)\n\n### About the sheet & some guidelines:\n* Each unique component has its own column, including its name, brief description and link to a picture of it.\n* One row per student (please add yourself).\n* Insert the amount you took of each component in numbers only.\n* In the _Graveyard_ section write in text (example: 2 x ESP32) all the equipment that you burnt, found malfunctioning, lost, etc... Whatever we can't use anymore... **IMPORTANT:** there is no shame in having a big list, honesty is what we are looking for. We are just trying to keep track of all the equipment.\n* Please make sure to immediately update the sheet as you take/return the equipment.\n* No need to list super-fundamental equipment like resistors and cables.\n\n### We need your help:\nThe sheet is not complete and will be expanded during the semester. If there is missing information, please add/fix it. \nIt can be:  \n\n* Missing component column  \n* No description  \n* No image link  \n\n",
+    "supporting": [
+      "borrowing-equipment_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

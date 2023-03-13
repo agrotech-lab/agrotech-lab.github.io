@@ -1,0 +1,14 @@
+
+# Breadboard
+
+![](https://cdn.sparkfun.com/assets/learn_tutorials/4/7/12615-02_Full_Size_Breadboard_Split_Power_Rails.jpg)
+
+A breadboard is a device used to prototype electronic circuits without the need for soldering. It consists of a plastic board with rows of holes, each of which is connected to others in the same row. In addition, there are two vertical columns on the sides of the board, which are known as the `+` and `-` rails. The `+` rail is typically used to connect positive voltage sources, while the `-` rail is used to connect negative voltage sources or the ground. When a component, such as a resistor, capacitor, or LED, is inserted into a hole on the breadboard, it makes contact with the metal strip that runs underneath the holes, which provides electrical connectivity between the components. This allows multiple components to be connected together to form a circuit. Breadboards are commonly used by hobbyists, students, and engineers to quickly prototype and test electronic circuits before they are soldered onto a printed circuit board.
+
+
+Very good tutorials on how to use a breadboard:
+
+* [wiring.org](https://wiring.org.co/learning/tutorials/breadboard/)
+* [sparkfun](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard/all)
+
+![breadboard wiring diagram](https://energia.nu/guide/foundations/basic_electronics_components/Sidekick_Breadboard_Internal_Connections.jpg)

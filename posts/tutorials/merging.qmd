@@ -1,0 +1,90 @@
+---
+title: "Code Merging"
+# author: "Erez Feuer, Yair Mau"
+# date: "2022-05-18"
+categories: [arduino]
+echo: false
+jupyter: python3
+# image: "image.jpg"
+# format:
+#   html:
+    # include-before-body: insert_ino_code.txt
+#     code-overflow: wrap
+#     code-block-border-left: true
+---
+
+
+Merging two separate Arduino codes can be a daunting task for beginners, but it's a common requirement when developing more complex Arduino projects. The process involves combining the code from two or more sketches into a single sketch that can be uploaded to an Arduino board. The goal is to create a new sketch that contains all the necessary functions, variables, and libraries required to perform the desired functionality.
+
+In this example, we will demonstrate how to merge two simple Arduino sketches that blink two LEDs with random delay times. We will use the Random library to generate random delay times and declare a variable outside of the void functions to ensure it's accessible to all functions in the merged sketch. The example will show you how to identify potential conflicts between the two sketches, update pin assignments and variables, merge the setup() and loop() functions, and test and debug the merged code.
+
+## Code 1
+
+```cpp
+#include <Random.h>
+
+Random random;
+
+void setup() {
+  pinMode(2, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(2, HIGH);
+  delay(random.nextInt(500));
+  digitalWrite(2, LOW);
+  delay(random.nextInt(500));
+}
+```
+
+## Code 2
+
+```cpp
+#include <Random.h>
+
+Random random;
+
+void setup() {
+  pinMode(3, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(3, HIGH);
+  delay(random.nextInt(1000));
+  digitalWrite(3, LOW);
+  delay(random.nextInt(1000));
+}
+```
+
+## Merged Code
+
+```cpp
+#include <Random.h>
+
+int led1 = 2;
+int led2 = 3;
+Random random;
+
+void setup() {
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(led1, HIGH);
+  delay(random.nextInt(500));
+  digitalWrite(led1, LOW);
+  delay(random.nextInt(500));
+  
+  digitalWrite(led2, HIGH);
+  delay(random.nextInt(1000));
+  digitalWrite(led2, LOW);
+  delay(random.nextInt(1000));
+}
+```
+
+In this example, we start by merging the code from both sketches into a single sketch. We declare the `Random` library and a new variable `random` of type `Random` outside of the void functions to ensure that it's available to all functions within the sketch.
+
+We also declare two new variables `led1` and `led2` to store the pin numbers of the two LEDs. The `setup()` function is modified to set both LED pins as outputs. The `loop()` function is modified to use the `digitalWrite()` and `delay()` functions to blink each LED in turn with a random delay time.
+
+Once you have created the merged code, you can upload it to your Arduino board and test it out. This process can become more complicated as the codes you are merging become more complex, but the basic principles remain the same: identify conflicting libraries, update pin assignments and variables, merge the `setup()` and `loop()` functions, and test and debug thoroughly.

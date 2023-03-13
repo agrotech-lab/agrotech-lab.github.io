@@ -1,0 +1,11 @@
+{
+  "hash": "4f6dd4520b3fa57f5832d03b350acab7",
+  "result": {
+    "markdown": "---\ntitle: Basic Electronics Concepts\ndate: '2022-03-09'\ncategories:\n  - arduino\necho: false\n---\n\n![](https://cdn.sparkfun.com/assets/4/0/3/a/e/511948ffce395f7f47000000.png)\n\n## Very Basic Concepts\n\nYou should be familiar with the very basics of how electricity works.\nThere are a million books and websites to learn from.\nWe suggest the following webpages, written by Sparkfun, a big vendor of electronics.\n\n\n1. [What is Electricity?](https://learn.sparkfun.com/tutorials/what-is-electricity)\n1. [Electric Power](https://learn.sparkfun.com/tutorials/electric-power)\n1. [Voltage, Current, Resistance, and Ohm's Law](https://learn.sparkfun.com/tutorials/voltage-current-resistance-and-ohms-law)\n1. [What is a Circuit?](https://learn.sparkfun.com/tutorials/what-is-a-circuit)\n1. [How to Use a Multimeter](https://learn.sparkfun.com/tutorials/how-to-use-a-multimeter)\n1. [Voltage Dividers](https://learn.sparkfun.com/tutorials/voltage-dividers/all)\n1. [How to Use a Breadboard](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard)\n\nThere is no end to learning about these topics!\nThe good news is that you can accomplish *a lot* of stuff with the very basic notions of electric circuits. If you want to learn even more, navigate your way on the \"Suggested Reading\" section in the tutorials above.\n\n## Other Links\n\n#### What is an LED?\n\n* [From electronics-tutorials.ws](https://www.electronics-tutorials.ws/diode/diode_8.html)\n* [From Sparkfun](https://learn.sparkfun.com/tutorials/light-emitting-diodes-leds/all)\n\n#### Thermistor Tutorial\n\n* [From Adafruit](https://learn.adafruit.com/thermistor/using-a-thermistor)\n* [Model equations and calculator of constants for thermistors](https://www.thinksrs.com/downloads/programs/therm%20calc/ntccalibrator/ntccalculator.html)\n\n",
+    "supporting": [
+      "basic-electronics-concepts_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

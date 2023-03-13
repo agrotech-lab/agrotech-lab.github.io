@@ -1,0 +1,95 @@
+{
+  "posts/tutorials/merging.qmd": {
+    "merging.html": "e0ae6fd0"
+  },
+  "posts/projects/passover-2022-mini-project.qmd": {
+    "passover-2022-mini-project.html": "5402d249"
+  },
+  "posts/projects/arduino-nano.qmd": {
+    "arduino-nano.html": "873941a3"
+  },
+  "posts/projects/final-project.qmd": {
+    "final-project.html": "a799745d"
+  },
+  "posts/projects/borrowing-equipment.qmd": {
+    "borrowing-equipment.html": "ca47ee69"
+  },
+  "posts/tutorials/python-matlab-basics.qmd": {
+    "python-matlab-basics.html": "3adb5427"
+  },
+  "posts/tutorials/psychrometric-chart-and-evaporative-cooling.qmd": {
+    "psychrometric-chart-and-evaporative-cooling.html": "9e40364a"
+  },
+  "posts/tutorials/libraries.qmd": {
+    "libraries.html": "60f2a5d7"
+  },
+  "posts/tutorials/arduino-intro-and-links.qmd": {
+    "arduino-intro-and-links.html": "f38e50c1"
+  },
+  "posts/tutorials/MCU_intro.md": {
+    "MCU_intro.html": "b6d69612"
+  },
+  "posts/tutorials/intro.qmd": {
+    "intro.html": "23377c7c"
+  },
+  "posts/tutorials/RGB.qmd": {
+    "RGB.html": "586f1ee9"
+  },
+  "posts/tutorials/electronics-class.qmd": {
+    "electronics-class.html": "cf244ac6"
+  },
+  "posts/tutorials/thingspeak.qmd": {
+    "thingspeak.html": "cdeca45f"
+  },
+  "posts/tutorials/soldering-and-wires.qmd": {
+    "soldering-and-wires.html": "3a9b02b9"
+  },
+  "posts/tutorials/basic-electronics-concepts.qmd": {
+    "basic-electronics-concepts.html": "5341b562"
+  },
+  "posts/tutorials/intro-to-sensor-modules-and-thingspeak.qmd": {
+    "intro-to-sensor-modules-and-thingspeak.html": "3bc32dff"
+  },
+  "posts/tutorials/install_firebeetle.qmd": {
+    "install_firebeetle.html": "5ab7325b"
+  },
+  "posts/tutorials/firebeetle_documentation.qmd": {
+    "firebeetle_documentation.html": "48fe01d5"
+  },
+  "posts/tutorials/breadboard.qmd": {
+    "breadboard.html": "8901323d"
+  },
+  "posts/tutorials/SHT31.qmd": {
+    "SHT31.html": "3bfa080a"
+  },
+  "posts/tutorials/arduino_IDE.qmd": {
+    "arduino_IDE.html": "fba980df"
+  },
+  "posts/tutorials/water-and-energy-balances.qmd": {
+    "water-and-energy-balances.html": "8b9d9487"
+  },
+  "archive/code/basic_python_thingspeak.ipynb": {
+    "basic_python_thingspeak.html": "039081cb"
+  },
+  "content/equipment/index.qmd": {
+    "index.html": "1a6a2e2f"
+  },
+  "projects.qmd": {
+    "projects.html": "7cdbcce9"
+  },
+  "about.qmd": {
+    "about.html": "47efc5bc"
+  },
+  "resources.qmd": {
+    "resources.html": "c3a8fee1"
+  },
+  "schedule.qmd": {
+    "schedule.html": "80bfcbd6"
+  },
+  "index.qmd": {
+    "index.html": "cf9b2e1b"
+  },
+  "tutorials.qmd": {
+    "tutorials.html": "ef23c7e9"
+  }
+}

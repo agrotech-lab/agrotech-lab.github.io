@@ -1,0 +1,23 @@
+---
+title: "Soldering and Wires"
+# author: "Erez Feuer, Yair Mau"
+date: "2022-05-18"
+categories: [arduino]
+echo: false
+jupyter: python3
+# image: "image.jpg"
+# format:
+#   html:
+    # include-before-body: insert_ino_code.txt
+#     code-overflow: wrap
+#     code-block-border-left: true
+---
+
+![soldering](https://cdn-learn.adafruit.com/assets/assets/000/001/978/original/tools_Header_Joints.jpg?1396777967)
+
+Breadbord is fun and easy but sooner or later everyone working with Arduino will need to know how to solder and work with wires. 
+There are amazing tutorials that allready exist. Even though we will learn many of the topics in class, we strongly recomend to take a look at these tutorials.  
+
+* [Soldering - by Sparkfun](https://learn.sparkfun.com/tutorials/how-to-solder-through-hole-soldering/all)
+* [Soldering - by Adafruit](https://learn.adafruit.com/adafruit-guide-excellent-soldering) (note that this is a multi page guide)
+* [Working with wire - by Sparkfun](https://learn.sparkfun.com/tutorials/working-with-wire)

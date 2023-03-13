@@ -1,0 +1,93 @@
+---
+title: "{{< iconify material-symbols calendar-month-sharp >}} Schedule"
+jupyter: python3
+execute:
+  freeze: auto  # re-render only when source changes
+# image: profile.jpg
+---
+
+<i class="bi bi-clock-fill"></i> Wednesdays, from 17:00 to 20:00  
+<i class="bi bi-geo-alt-fill"></i> In the lab next to the "Ground Water" seminar room, 1st floor  
+<i class="bi bi-map-fill"></i> [Map](https://goo.gl/maps/uFYttRLVckTKAB357)
+
+
+```{python}
+#| echo: false
+
+plus= '<i class="bi bi-plus-square-fill"></i>'
+
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [
+  ["`2023-03-15`",
+   "Course overview, what is agrotech, microcontrollers, examples, AI. Arduino IDE.",
+  ],
+  ["`2023-03-22`",
+   "Basic projects, circuits on breadboard, sensors, Thingspeak. Passover project rundown."
+  ],
+  ["`2023-03-29`",
+   "Troubleshooting",
+  ],
+  ["`2023-04-05`",
+   '<span style="color:red">NO CLASS --- Passover break</span>'
+  ],
+  ["`2023-04-12`",
+   '<span style="color:red">NO CLASS --- Passover break</span>'
+  ],
+  ["`2023-04-19`",
+   "Basic electronics: multimeter, Ohm's law, and circuitry."
+  ],
+  ["`2023-04-26`",
+   '<span style="color:red">NO CLASS --- Independence Day</span>'
+  ],
+  ["`2023-05-03`",
+   'sensors and data logging'
+  ],
+  ["`2023-05-10`",
+   'control, feedback'
+  ],
+  ["`2023-05-17`",
+   f'guest speakers'
+  ],
+  ["`2023-05-24`",
+   f'soldering and assembly'
+  ],
+  ["`2023-05-31`",
+   f'project development'
+  ],
+  ["`2023-06-07`",
+   f'project development'
+  ],
+  ["`2023-06-14`",
+   f'project development'
+  ],
+  ["`2023-06-21`",
+   'project development'
+  ],
+  ["`2023-06-28`",
+   f'presentation of projects'
+  ],
+]
+
+Markdown(tabulate(
+  table, 
+  headers=["date", "topic"]
+))
+```
+
+
+<!-- <button class="btn btn-outline-dark btn-lg rounded" type="button" data-bs-toggle="collapse" data-bs-target="#schedule_table" aria-expanded="false" aria-controls="schedule_table">
+    <i class="bi bi-calendar3"></i>&nbsp; 2023 Schedule
+    </button>
+
+<div class="collapse" id="schedule_table">
+<div class="card card-body border-0">
+something here -->
+  <!-- ["2022-05-24",
+   f'[{plus}](/code/2022/05/18/water-and-energy-balances) [{plus}](/code/2022/05/18/psychrometric-chart-and-evaporative-cooling) data analysis <br/> \
+   [{plus}](/code/2022/05/18/soldering-and-wires) system building'
+  ], -->
+
+<!-- </div>
+</div> -->
+

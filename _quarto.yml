@@ -1,0 +1,27 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "agrotech lab"
+  #favicon: /archive/images/favicon.png
+  navbar:
+    #logo: /archive/images/site-logo.png
+    right:
+      - about.qmd
+      - schedule.qmd
+      - tutorials.qmd
+      - resources.qmd
+      - projects.qmd
+
+format:
+  html:
+    include-before-body: _custom_header.html
+    theme:
+      - flatly
+      - custom.scss
+    css: custom.scss
+    highlight-style: breezedark
+
+
+

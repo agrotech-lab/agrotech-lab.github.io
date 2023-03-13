@@ -1,0 +1,11 @@
+{
+  "hash": "65b151fea64d015613376a78c2705364",
+  "result": {
+    "markdown": "---\ntitle: Soldering and Wires\ndate: '2022-05-18'\ncategories:\n  - arduino\necho: false\n---\n\n![soldering](https://cdn-learn.adafruit.com/assets/assets/000/001/978/original/tools_Header_Joints.jpg?1396777967)\n\nBreadbord is fun and easy but sooner or later everyone working with Arduino will need to know how to solder and work with wires. \nThere are amazing tutorials that allready exist. Even though we will learn many of the topics in class, we strongly recomend to take a look at these tutorials.  \n\n* [Soldering - by Sparkfun](https://learn.sparkfun.com/tutorials/how-to-solder-through-hole-soldering/all)\n* [Soldering - by Adafruit](https://learn.adafruit.com/adafruit-guide-excellent-soldering) (note that this is a multi page guide)\n* [Working with wire - by Sparkfun](https://learn.sparkfun.com/tutorials/working-with-wire)\n\n",
+    "supporting": [
+      "soldering-and-wires_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
