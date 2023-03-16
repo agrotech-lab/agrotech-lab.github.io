@@ -150,25 +150,57 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <section id="add-url-to-ardudino-ide" class="level2">
 <h2 class="anchored" data-anchor-id="add-url-to-ardudino-ide">1. Add URL to Ardudino IDE</h2>
-<p>To install the ESP32 board in your Arduino IDE, follow these next instructions:</p>
-<p>In your Arduino IDE, go to <code>File&gt; Preferences</code></p>
-<p><img src="../../archive/figures/arduino-ide-open-preferences.png" class="img-fluid"></p>
-<p>Enter the following into the “Additional Board Manager URLs” field:</p>
-<pre><code>https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json</code></pre>
-<p>Then, click the “OK” button:</p>
-<p><img src="../../archive/figures/ESP32-URL-Arduino-IDE.png" class="img-fluid"></p>
-<p><strong>Note: if you already have a different URL, you can separate the URLs with a comma as follows:</strong></p>
-<pre><code>http://download.dfrobot.top/FireBeetle/package_DFRobot_index.json, https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json</code></pre>
-<p>Open the Boards Manager. Go to <code>Tools &gt; Board &gt; Boards Manager</code></p>
-<p><img src="../../archive/figures/boardsManager.png" class="img-fluid"></p>
-<p>Search for ESP32 and press install button for the “ESP32 by Espressif Systems”. Make sure the version is 2.0.7 or later.</p>
-<p><img src="../../archive/figures/installing.png" class="img-fluid"></p>
-<p>That’s it. The installation can take a few minutes. Take a break.</p>
-<p><img src="../../archive/figures/ESP32-Board-add-on-in-Arduino-IDE-installed.png" class="img-fluid"></p>
+<p>Open Arduino IDE, click <code>File-&gt;Preferences</code>, as shown below:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../archive/figures/IDE-file-pref.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Arduino IDE</figcaption><p></p>
+</figure>
+</div>
+<p>Click the icon marked with red below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../archive/figures/IDE-pref.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Arduino Setup</figcaption><p></p>
+</figure>
+</div>
+<p>Copy the address to the newly popped up box: <code>http://download.dfrobot.top/FireBeetle/package_DFRobot_index.json</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../archive/figures/IDE-url.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Arduino Setup 1</figcaption><p></p>
+</figure>
+</div>
+<p>Click OK.</p>
+</section>
+<section id="update-board." class="level2">
+<h2 class="anchored" data-anchor-id="update-board.">2. Update board.</h2>
+<p>Open <code>Tools-&gt;Board-&gt;Boards Manager</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../archive/figures/IDE-boards-manager.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Update Board</figcaption><p></p>
+</figure>
+</div>
+<p>The board manager will be automatically updated.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../archive/figures/IDE-boards-manager2.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Board Updated</figcaption><p></p>
+</figure>
+</div>
+<p>Wait for a while, then type in the search bar <code>DFRobot ESP32</code> in the list. Click “Install” (in the image its gayed out because it’s already installed…):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../archive/figures/DFRobot.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Install Board</figcaption><p></p>
+</figure>
+</div>
+<p>Once you see “INSTALLED” in Blue you are Done! You can find the installed <code>FireBeetle-ESP32</code> board in the list now.</p>
 </section>
 <section id="select-board-and-port" class="level2">
 <h2 class="anchored" data-anchor-id="select-board-and-port">3. Select board and port</h2>
-<p>Once the board is installed, select it: Open <code>Tools-&gt;Board-&gt;ESP32 Arduino-&gt;FireBeetle 2 ESP32-E</code> <img src="../../archive/figures/choose_board.png" class="img-fluid" alt="choose board"></p>
+<p>Once the board is installed, select it: Open <code>Tools-&gt;Board-&gt;DFRobot ESP32 Arduino-&gt;FireBeelte ESP32-E</code> <img src="../../archive/figures/dfrobott.png" class="img-fluid" alt="choose board"></p>
 <p>Then select the Port<br>
 Open <code>Tools-&gt;Port-&gt;COMxx</code> (for windows the port wil be <code>COM</code> with some number, for Mac/linux it will be <code>/dev/cu.</code> and then something).<br>
 How do you know what port to choose?<br>

@@ -18,6 +18,7 @@ title: "{{< iconify fa6-solid user-graduate >}} Tutorials"
 1. [Thingspeak](/posts/tutorials/thingspeak.html)
 1. [Merging](/posts/tutorials/merging.html)
 1. [SHT31](/posts/tutorials/SHT31.html)
+1. [RGB LED](/posts/tutorials/RGB.html)
 
 ## Unit 3
 

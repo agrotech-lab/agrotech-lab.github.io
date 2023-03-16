@@ -31,45 +31,41 @@ Follow these simple steps to install FireBeetle 2 MCU on the Arduino IDE on your
 
 ## 1. Add URL to Ardudino IDE
 
-To install the ESP32 board in your Arduino IDE, follow these next instructions:
+Open Arduino IDE, click `File->Preferences`, as shown below:
 
-In your Arduino IDE, go to `File> Preferences`
+![Arduino IDE](/archive/figures/IDE-file-pref.png)
 
-![](/archive/figures/arduino-ide-open-preferences.png)
+Click the icon marked with red below.
 
-Enter the following into the “Additional Board Manager URLs” field:
+![Arduino Setup](/archive/figures/IDE-pref.png)
 
-```
-https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
-```
+Copy the address to the newly popped up box: `http://download.dfrobot.top/FireBeetle/package_DFRobot_index.json`
 
-Then, click the “OK” button:
+![Arduino Setup 1](/archive/figures/IDE-url.png)
 
-![](/archive/figures/ESP32-URL-Arduino-IDE.png)
+Click OK.
 
-**Note: if you already have a different URL, you can separate the URLs with a comma as follows:**
+## 2. Update board. 
+Open `Tools->Board->Boards Manager`.
 
-```
-http://download.dfrobot.top/FireBeetle/package_DFRobot_index.json, https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
-```
+![Update Board](/archive/figures/IDE-boards-manager.png)
 
-Open the Boards Manager. Go to `Tools > Board > Boards Manager`
+The board manager will be automatically updated.
 
-![](/archive/figures/boardsManager.png)
+![Board Updated](/archive/figures/IDE-boards-manager2.png)
 
-Search for ESP32 and press install button for the "ESP32 by Espressif Systems". Make sure the version is 2.0.7 or later.
+Wait for a while, then type in the search bar `DFRobot ESP32` in the list. Click "Install" (in the image its gayed out because it's already installed...):
 
-![](/archive/figures/installing.png)
+![Install Board](/archive/figures/DFRobot.png)
 
-That’s it. The installation can take a few minutes. Take a break.
+Once you see "INSTALLED" in Blue you are Done! You can find the installed `FireBeetle-ESP32` board in the list now.
 
-![](/archive/figures/ESP32-Board-add-on-in-Arduino-IDE-installed.png)
 
 ## 3. Select board and port
 
 Once the board is installed, select it: 
-Open `Tools->Board->ESP32 Arduino->FireBeetle 2 ESP32-E`
-![choose board](/archive/figures/choose_board.png)
+Open `Tools->Board->DFRobot ESP32 Arduino->FireBeelte ESP32-E`
+![choose board](/archive/figures/dfrobott.png)
 
 Then select the Port  
 Open `Tools->Port->COMxx` (for windows the port wil be `COM` with some number, for Mac/linux it will be `/dev/cu.` and then something).  

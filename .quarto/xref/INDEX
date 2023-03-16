@@ -91,5 +91,8 @@
   },
   "tutorials.qmd": {
     "tutorials.html": "ef23c7e9"
+  },
+  "posts/tutorials/install_firebeetle_old.qmd": {
+    "install_firebeetle_old.html": "c18d277b"
   }
 }
