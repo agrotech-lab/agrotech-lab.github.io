@@ -82,3 +82,26 @@ code_source("wifi-time")
 ```
 
 ----
+
+### Home assignment
+
+You will write Arduino code that incorporates all the following elements. Upload your `.ino` file on the course's Moodle page.
+
+* variable declaration (e.g., `float my_var=1.23;`)
+* function declaration
+* Built in LED control
+* Conditionals (if, else)
+* Random numbers
+* Serial plotting, numbers and text
+* Comments explaining every step of what you did
+* **Bonus**: connect to WiFi and make use of time from the internet
+* **Obligatory**: at the very top of your code, write in many lines an explanation (in English) of what your code does
+```cpp
+/*
+Author: Harry Potter
+Class: Agrotech Lab
+Date: 2023-03-14
+This code does bla bla bla.
+More explanations here.
+*/
+```

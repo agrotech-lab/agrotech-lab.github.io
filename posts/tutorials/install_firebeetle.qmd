@@ -39,9 +39,8 @@ In your Arduino IDE, go to `File> Preferences`
 
 Enter the following into the “Additional Board Manager URLs” field:
 
-```
-https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
-```
+`https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+`
 
 Then, click the “OK” button:
 
@@ -49,9 +48,7 @@ Then, click the “OK” button:
 
 **Note: if you already have a different URL, you can separate the URLs with a comma as follows:**
 
-```
-http://download.dfrobot.top/FireBeetle/package_DFRobot_index.json, https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
-```
+`http://download.dfrobot.top/FireBeetle/package_DFRobot_index.json, https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json`
 
 Open the Boards Manager. Go to `Tools > Board > Boards Manager`
 
