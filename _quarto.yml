@@ -4,7 +4,7 @@ project:
 
 website:
   title: "agrotech lab"
-  #favicon: /archive/images/favicon.png
+  favicon: /archive/images/favicon.png
   navbar:
     #logo: /archive/images/site-logo.png
     right:
