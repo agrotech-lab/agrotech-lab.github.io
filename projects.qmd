@@ -10,13 +10,15 @@ material-symbols:rocket-launch
 [Read carefully the instructions. Click here.](/posts/projects/final-project.html)
 
 <details><summary>2022 Final projects</summary>
-<i class="bi bi-github"></i> &nbsp; [Ronna Melamed Bat -- May Nir](https://github.com/mayniragqueen/agrotech-project)  
-<i class="bi bi-github"></i> &nbsp; [Avital Akerman --  Elad Greenfeld](https://github.com/vitoska26/agrotech_project)  
-<i class="bi bi-github"></i> &nbsp; [Nadav Hen -- Guy Donagi -- David Zingerman](https://github.com/puginarug/GreenTemp)  
-<i class="bi bi-github"></i> &nbsp; [Zeev Rozman -- Imri Zadak -- Alex Evenko-Greenapple](https://github.com/Alevegreen/Agtechcourse_finproject)  
-<i class="bi bi-github"></i> &nbsp; [Yuval Chemke -- Reem Har Levi](https://github.com/yuvalchemke/-Hydrophonics---Monitoring-and-Balance-by-detection)  
-<i class="bi bi-github"></i> &nbsp; [Peleg Atir -- Aviad Mendelovich -- Ruth Yitzhaki](https://github.com/Ruthyitzhaki/Agrotech-lab-2022)  
-<i class="bi bi-github"></i> &nbsp; [Amir Sheffer -- Yitzchak Kanovsky -- Aviv Saadia](https://github.com/amirsheffer/Agro-tech-project)  
+| Team | Project                                                      |
+|------|--------------------------------------------------------------|
+| <i class="bi bi-github"></i> &nbsp; [Ronna Melamed Bat -- May Nir](https://github.com/mayniragqueen/agrotech-project) | Measuring PAR outside and inside the greenhouse              |
+| <i class="bi bi-github"></i> &nbsp; [Avital Akerman --  Elad Greenfeld](https://github.com/vitoska26/agrotech_project) | Automated Irrigation System                                  |
+| <i class="bi bi-github"></i> &nbsp; [Nadav Hen -- Guy Donagi -- David Zingerman](https://github.com/puginarug/GreenTemp) | Temporal and spatial temperature measurement in a greenhouse |
+| <i class="bi bi-github"></i> &nbsp; [Zeev Rozman -- Imri Zadak -- Alex Evenko-Greenapple](https://github.com/Alevegreen/Agtechcourse_finproject) | weather station                                              |
+| <i class="bi bi-github"></i> &nbsp; [Yuval Chemke -- Reem Har Levi](https://github.com/yuvalchemke/-Hydrophonics---Monitoring-and-Balance-by-detection) | Hydroponics Monitoring and Balance                           |
+| <i class="bi bi-github"></i> &nbsp; [Peleg Atir -- Aviad Mendelovich -- Ruth Yitzhaki](https://github.com/Ruthyitzhaki/Agrotech-lab-2022) | VPD control using automatic sprinklers                       |
+| <i class="bi bi-github"></i> &nbsp; [Amir Sheffer -- Yitzchak Kanovsky -- Aviv Saadia](https://github.com/amirsheffer/Agro-tech-project) | 3D heatmap model of a greenhouse                             |
 
 </details>
 

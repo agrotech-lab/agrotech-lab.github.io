@@ -6,7 +6,7 @@ website:
   title: "agrotech lab"
   favicon: /archive/images/favicon.ico
   navbar:
-    #logo: /archive/images/site-logo.png
+    logo: /archive/images/site-logo-white.png
     right:
       - about.qmd
       - schedule.qmd
