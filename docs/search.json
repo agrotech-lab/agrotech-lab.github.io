@@ -501,14 +501,35 @@
     "href": "resources.html",
     "title": " Resources",
     "section": "",
-    "text": "Click for a list of the main components used in this course."
+    "text": "Click for a list of the main components used in this course.\n\n\nPlease fill out this form to confirm that you have received each of your assigned sensors/equipment. You will need to provide your 9-digit ID number and indicate which sensor(s) you have received. Every time you receive a new sensor or equipment, plese fill it out again.\nAdditionally, make sure your name and phone number are written on the box containing the equipment.\nBy filling out this form, you agree to receive the item(s) and are obligated to return them at the end of the course."
   },
   {
-    "objectID": "resources.html#useful-links",
-    "href": "resources.html#useful-links",
+    "objectID": "resources.html#iconify-akar-icons-github-fill-github",
+    "href": "resources.html#iconify-akar-icons-github-fill-github",
     "title": " Resources",
-    "section": "Useful links",
-    "text": "Useful links\nThe world of MCUs has great support online. You actually don’t need this course to learn it… We are only here to guide you and help with the first steps. SO below are some usful links to websites/Youtube channels that provide excellent information:\nArduino syntax and coding:\n\nArduino — Language Reference\n\nTutorials by sensor manufacturers:\n\nSparkfun\n\nAdafruit\n\nProject ideas:\n\nArduino Project Hub\n\nInstructables — Arduino\n\nArduino beginners course:\n\nPaul McWhorter - New Arduino Tutorials\n\nExamples of good Youtube channels:\n\nAndreas Spiess\n\nG6EJD - David\n\nGreatScott!\n\neduc8s.tv"
+    "section": " Github",
+    "text": "Github\nMake an account on Github. Create a repository called “agrotech” or whatever you else want to call it. You can upload to this repository your code, data, diagrams, pictures, markdown, etc. In the end of the semester you will upload your project report as a Jupyter Notebook file.\nFrom now on, your main Github page can be your “geek face” on the internet. Make a clean and simple readme.md, telling the world who you are and what you do."
+  },
+  {
+    "objectID": "resources.html#iconify-simple-icons-jupyter-jupyter-notebook",
+    "href": "resources.html#iconify-simple-icons-jupyter-jupyter-notebook",
+    "title": " Resources",
+    "section": " Jupyter Notebook",
+    "text": "Jupyter Notebook\nThe easiest way to install Python (+ Jupyter Notebook, Spyder, PyCharm, JupyterLab, etc) on any OS is to download Anaconda. Jupyter Notebook is a versatile environment that allows you to write code and documentation in one single file, taking advantage of Markdown. Click for a short and a long markdown cheat sheet."
+  },
+  {
+    "objectID": "resources.html#iconify-eos-icons-hardware-circuit-fritzing",
+    "href": "resources.html#iconify-eos-icons-hardware-circuit-fritzing",
+    "title": " Resources",
+    "section": " Fritzing",
+    "text": "Fritzing\nFritzing is a nice software that lets you easily draw your own circuits and diagrams."
+  },
+  {
+    "objectID": "resources.html#iconify-akar-icons-link-chain-useful-links",
+    "href": "resources.html#iconify-akar-icons-link-chain-useful-links",
+    "title": " Resources",
+    "section": " Useful links",
+    "text": "Useful links\nThe world of MCUs has great support online. You actually don’t need this course to learn it… We are only here to guide you and help with the first steps. SO below are some usful links to websites/Youtube channels that provide excellent information:\nArduino syntax and coding:\n\nArduino — Language Reference\n\nTutorials by sensor manufacturers:\n\nSparkfun\n\nAdafruit\n\nProject ideas:\n\nArduino Project Hub\n\nInstructables — Arduino\n\nArduino beginners course:\n\nPaul McWhorter - New Arduino Tutorials\n\nExamples of good Youtube channels:\n\nAndreas Spiess\n\nG6EJD - David\n\nGreatScott!\n\neduc8s.tv\n\nOregon State’s OPEnS Lab\n\nGithub"
   },
   {
     "objectID": "schedule.html",

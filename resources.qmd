@@ -2,11 +2,20 @@
 title: "{{< iconify fluent brain-circuit-20-regular >}} Resources"
 ---
 
-#### {{< iconify mdi led-on >}} Equipment
+## {{< iconify mdi led-on >}} Equipment
 
 Click for a [list of the main components](/content/equipment) used in this course.
 
-#### {{< iconify akar-icons github-fill >}} Github 
+#### Equipment Pickup Form
+
+Please [fill out this form](https://tinyurl.com/agtech-pickup) to confirm that you have received each of your assigned sensors/equipment. You will need to provide your 9-digit ID number and indicate which sensor(s) you have received. 
+Every time you receive a new sensor or equipment, plese **fill it out again**.
+
+Additionally, make sure your name and phone number are written on the box containing the equipment. 
+
+By filling out this form, you agree to receive the item(s) and are obligated to return them at the end of the course. 
+
+## {{< iconify akar-icons github-fill >}} Github 
 
 Make an account on [Github](https://github.com).
 Create a repository called "agrotech" or whatever you else want to call it.
@@ -15,28 +24,22 @@ In the end of the semester you will upload your project report as a Jupyter Note
 
 From now on, your main Github page can be your "geek face" on the internet. Make a clean and simple `readme.md`, telling the world who you are and what you do.
 
-#### {{< iconify simple-icons jupyter >}} Jupyter Notebook 
+## {{< iconify simple-icons jupyter >}} Jupyter Notebook 
 
 The easiest way to install Python (+ Jupyter Notebook, Spyder, PyCharm, JupyterLab, etc) on any OS is to download [Anaconda](https://www.anaconda.com/products/individual).
 Jupyter Notebook is a versatile environment that allows you to write code and documentation in one single file, taking advantage of Markdown.
 Click for a [short](https://devhints.io/markdown) and a [long](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) markdown cheat sheet.
 
-#### {{< iconify eos-icons hardware-circuit >}} Fritzing
+## {{< iconify eos-icons hardware-circuit >}} Fritzing
 
 [Fritzing](https://fritzing.org/download/) is a nice software that lets you easily draw your own circuits and diagrams.
 
 ![](http://troybaverstock.com/wp-content/uploads/2019/04/arduino-servo-button-red-green-RGB-LED-wiring-diagram.png)
 
-
-### {{< iconify akar-icons link-chain >}} Very useful links
-
-* Oregon State's OPEnS Lab. [Github](https://github.com/OPEnSLab-OSU/OPEnS-Lab-Home/wiki)
-
-## Useful links
+## {{< iconify akar-icons link-chain >}} Useful links
 
 The world of MCUs has great support online. You actually don't need this course to learn it... We are only here to guide you and help with the first steps. SO below are some usful links to websites/Youtube channels that provide excellent information:  
-  
-  
+    
 **Arduino syntax and coding:**  
 
 * [Arduino --- Language Reference](https://www.arduino.cc/reference/en/)
@@ -62,6 +65,9 @@ The world of MCUs has great support online. You actually don't need this course 
 * [GreatScott!](https://www.youtube.com/c/greatscottlab)    
 * [educ8s.tv](https://www.youtube.com/c/Educ8s/videos)
 
+**Oregon State's OPEnS Lab**
+
+* [Github](https://github.com/OPEnSLab-OSU/OPEnS-Lab-Home/wiki)
 
 
 
