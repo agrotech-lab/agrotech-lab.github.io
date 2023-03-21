@@ -364,6 +364,13 @@
     "text": "Potential Evapotranspiration\n\nPenman (1948)\nThis equation accounts for two main terms: * the first is the available energy flux density, * the second term is the drying power of the air.\n\\[\nPE = \\frac{\\Delta(R_n-G) + \\gamma\\cdot 2.6 (1+0.536 u_2)\\text{VPD}}{\\lambda(\\Delta+\\gamma)}\n\\]\nMore about this here.\n\n\nPyET\nLuckily, we don’t have to work very hard to estimate the potential evapotranspiration. We will use the Python library pyet: * documentation * github\nUsing PyET is quite straightforward:\npyet.pm_fao56(tmean,               # mean temperature\n              wind,                # wind speed\n              rn=rn,               # net radiation\n              tmax=tmax,           # max temperature\n              tmin=tmin,           # max temperature\n              rh=rh,               # relative humidity\n              elevation=elevation) # elevation above sea level"
   },
   {
+    "objectID": "uten/index.html",
+    "href": "uten/index.html",
+    "title": "UTEN: The Box",
+    "section": "",
+    "text": "the box"
+  },
+  {
     "objectID": "archive/code/basic_python_thingspeak.html",
     "href": "archive/code/basic_python_thingspeak.html",
     "title": "agrotech lab",
@@ -537,19 +544,5 @@
     "title": " Schedule",
     "section": "",
     "text": "Wednesdays, from 17:00 to 20:00\n In the lab next to the “Ground Water” seminar room, 1st floor\n Map\n\n\n\n\n\ndate\ntopic\n\n\n\n\n2023-03-15\nCourse overview, what is agrotech, microcontrollers, examples, AI. Arduino IDE.\n\n\n2023-03-22\nBasic projects, circuits on breadboard, sensors, Thingspeak. Passover project rundown.\n\n\n2023-03-29\nTroubleshooting\n\n\n2023-04-05\nNO CLASS — Passover break\n\n\n2023-04-12\nNO CLASS — Passover break\n\n\n2023-04-19\nBasic electronics: multimeter, Ohm’s law, and circuitry.\n\n\n2023-04-26\nNO CLASS — Independence Day\n\n\n2023-05-03\nsensors and data logging\n\n\n2023-05-10\ncontrol, feedback\n\n\n2023-05-17\nguest speakers\n\n\n2023-05-24\nsoldering and assembly\n\n\n2023-05-31\nproject development\n\n\n2023-06-07\nproject development\n\n\n2023-06-14\nproject development\n\n\n2023-06-21\nproject development\n\n\n2023-06-28\npresentation of projects"
-  },
-  {
-    "objectID": "uten.html",
-    "href": "uten.html",
-    "title": "UTEN: The Box",
-    "section": "",
-    "text": "the box"
-  },
-  {
-    "objectID": "uten/index.html",
-    "href": "uten/index.html",
-    "title": "UTEN: The Box",
-    "section": "",
-    "text": "the box"
   }
 ]
