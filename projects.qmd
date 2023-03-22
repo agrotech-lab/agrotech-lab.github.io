@@ -3,8 +3,6 @@ title: "{{< iconify material-symbols rocket-launch >}} Projects"
 # image: profile.jpg
 ---
 
-material-symbols:rocket-launch
-
 ## {{< iconify icons8 finish-flag >}} Final Project
 
 [Read carefully the instructions. Click here.](/posts/projects/final-project.html)
