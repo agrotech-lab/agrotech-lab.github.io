@@ -4,16 +4,16 @@ title: "{{< iconify fluent brain-circuit-20-regular >}} Resources"
 
 ## {{< iconify mdi led-on >}} Equipment
 
+##### **Equipment Pickup Form**
+
+1. Please [fill out this form](https://tinyurl.com/agtech-pickup) **every time** you receive a new sensor or equipment. You will need to provide your 9-digit ID number and indicate which sensor(s) you have received. 
+1. Make sure your name and phone number are written on the box containing the equipment. 
+1. By filling out this form, you agree to receive the item(s) and are obligated to return them at the end of the course.
+1. If you're not sure, [**click here**](https://agtech71252.streamlit.app/) to check which equipment you borrowed from the course.
+
+##### **Do you want to order equipment for yourself?**
+
 Click for a [list of the main components](/content/equipment) used in this course.
-
-#### Equipment Pickup Form
-
-Please [fill out this form](https://tinyurl.com/agtech-pickup) to confirm that you have received each of your assigned sensors/equipment. You will need to provide your 9-digit ID number and indicate which sensor(s) you have received. 
-Every time you receive a new sensor or equipment, plese **fill it out again**.
-
-Additionally, make sure your name and phone number are written on the box containing the equipment. 
-
-By filling out this form, you agree to receive the item(s) and are obligated to return them at the end of the course. 
 
 ## {{< iconify akar-icons github-fill >}} Github 
 
