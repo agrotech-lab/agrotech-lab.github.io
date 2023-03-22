@@ -26,10 +26,10 @@ material-symbols:rocket-launch
 
 [click here](/posts/projects/passover-2022-mini-project.html)
 
-## {{< iconify mingcute transfer-3-line >}} Borrowing equipment
+<!-- ## {{< iconify mingcute transfer-3-line >}} Borrowing equipment
 
 [click here](/posts/projects/borrowing-equipment.html)
 
 ## {{< iconify file-icons arduino >}} Arduino Nano
 
-[click here](/posts/projects/arduino-nano.html)
+[click here](/posts/projects/arduino-nano.html) -->
