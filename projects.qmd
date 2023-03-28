@@ -22,7 +22,7 @@ title: "{{< iconify material-symbols rocket-launch >}} Projects"
 
 ## {{< iconify icon-park-solid pyramid-one >}} Passover 2022 mini project
 
-[click here](/posts/projects/passover-2022-mini-project.html)
+[click here](/posts/projects/passover-2023.html)
 
 <!-- ## {{< iconify mingcute transfer-3-line >}} Borrowing equipment
 
