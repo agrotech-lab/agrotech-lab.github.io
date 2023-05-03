@@ -189,6 +189,13 @@
     "text": "In our class we will be using the FireBeetle 2 ESP32-E IoT Microcontroller as our main MCU. In this guid you will learn how to install needed software on your computer.\nFull documentation of this MCU can be found on the product wiki by DFRobot. For a quick pinout reference, take a look at this page.\n\nFollow these simple steps to install FireBeetle 2 MCU on the Arduino IDE on your computer:\n\nAdd the json link in IDE\nDownload the core of the maincontroller\nSelect development board and serial port\n\n\n\nOpen Arduino IDE, click File->Preferences, as shown below:\n\n\n\nArduino IDE\n\n\nClick the icon marked with red below.\n\n\n\nArduino Setup\n\n\nCopy the address to the newly popped up box: http://download.dfrobot.top/FireBeetle/package_DFRobot_index.json\n\n\n\nArduino Setup 1\n\n\nClick OK.\n\n\n\nOpen Tools->Board->Boards Manager.\n\n\n\nUpdate Board\n\n\nThe board manager will be automatically updated.\n\n\n\nBoard Updated\n\n\nWait for a while, then type in the search bar DFRobot ESP32 in the list. Click “Install” (in the image its gayed out because it’s already installed…):\n\n\n\nInstall Board\n\n\nOnce you see “INSTALLED” in Blue you are Done! You can find the installed FireBeetle-ESP32 board in the list now.\n\n\n\nOnce the board is installed, select it: Open Tools->Board->DFRobot ESP32 Arduino->FireBeelte ESP32-E \nThen select the Port\nOpen Tools->Port->COMxx (for windows the port wil be COM with some number, for Mac/linux it will be /dev/cu. and then something).\nHow do you know what port to choose?\nCheck the ports without the MCU pluged into the computer. Then plug the MCU and check the ports again. If you see a new port, thats the port of the MCU.\n\n\n\nTroubleshooting if there is no port for the MCU:\n\nMissing driver. Could be you need to install a specific driver.\nWindows driver\nMacOS driver\nBad USB cable. Some cables are bad and some are only for charging and cannot sync data. Try using a different USB cable that worked for a freind."
   },
   {
+    "objectID": "posts/tutorials/pulse-sensors.html",
+    "href": "posts/tutorials/pulse-sensors.html",
+    "title": "Pulse sensors",
+    "section": "",
+    "text": "Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nint sensorPin = A4;\nvolatile long pulse_count;\n\nfloat volume;\n\nvoid setup() {\n  pinMode(sensorPin, INPUT);\n  Serial.begin(115200);\n  attachInterrupt(digitalPinToInterrupt(sensorPin), increase, RISING);\n}\n\nvoid loop() {\n  Serial.print(pulse_count);\n  Serial.println(\" counts\");\n  delay(50);\n}\n\nICACHE_RAM_ATTR void increase() {\n  pulse_count++;\n}\n\n            \n            \n            \n\n\n\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nint sensorPin = A4;\nvolatile long pulse_count;\nunsigned long last_print_time;\nlong total_pulse_count = 0;\nfloat volume;\n\nvoid setup() {\n  pinMode(sensorPin, INPUT);\n  Serial.begin(115200);\n  attachInterrupt(digitalPinToInterrupt(sensorPin), increase, RISING);\n  last_print_time = millis();\n}\n\nvoid loop() {\n  unsigned long current_time = millis();\n  if (current_time - last_print_time >= 1000) { // print every second\n    float frequency = (float)pulse_count / ((current_time - last_print_time) / 1000.0);\n    total_pulse_count += pulse_count; // update total pulse count\n    Serial.print(total_pulse_count);\n    Serial.print(\" total counts, \");\n    Serial.print(frequency);\n    Serial.println(\" counts per second\");\n    pulse_count = 0; // reset pulse count\n    last_print_time = current_time;\n  }\n}\n\nICACHE_RAM_ATTR void increase() {\n  pulse_count++;\n}"
+  },
+  {
     "objectID": "posts/tutorials/merging.html",
     "href": "posts/tutorials/merging.html",
     "title": "Code Merging",
@@ -487,7 +494,7 @@
     "href": "tutorials.html#unit-3",
     "title": " Tutorials",
     "section": "Unit 3",
-    "text": "Unit 3\n\nBasic Electronics Concepts\nElectronics Class\nSensor Modules and Thingspeak\nBasic Data Analysis with Python and Matlab\nWater and Energy Balances\nPsychrometric Chart and Evaporative cooling\nSoldering and Wires"
+    "text": "Unit 3\n\nBasic Electronics Concepts\nElectronics Class\nSensor Modules and Thingspeak\nPulse sensors\nBasic Data Analysis with Python and Matlab\nWater and Energy Balances\nPsychrometric Chart and Evaporative cooling\nSoldering and Wires"
   },
   {
     "objectID": "resources.html",

@@ -100,5 +100,11 @@
   },
   "uten/index.qmd": {
     "index.html": "781289be"
+  },
+  "posts/projects/passover-2023.qmd": {
+    "passover-2023.html": "e9471fd4"
+  },
+  "posts/tutorials/pulse-sensors.qmd": {
+    "pulse-sensors.html": "aadcbf2e"
   }
 }
