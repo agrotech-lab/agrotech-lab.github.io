@@ -26,6 +26,7 @@ title: "{{< iconify fa6-solid user-graduate >}} Tutorials"
 1. [Electronics Class](/posts/tutorials/electronics-class.html)
 1. [Sensor Modules and Thingspeak](/posts/tutorials/intro-to-sensor-modules-and-thingspeak.html)
 1. [Pulse sensors](/posts/tutorials/pulse-sensors.html)
+1. [Digital read and write](/posts/tutorials/digital-read-write.html)
 1. [Basic Data Analysis with Python and Matlab](/posts/tutorials/python-matlab-basics.html)
 1. [Water and Energy Balances](/posts/tutorials/water-and-energy-balances.html)
 1. [Psychrometric Chart and Evaporative cooling](/posts/tutorials/psychrometric-chart-and-evaporative-cooling.html)

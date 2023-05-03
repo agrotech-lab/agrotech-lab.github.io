@@ -106,5 +106,8 @@
   },
   "posts/tutorials/pulse-sensors.qmd": {
     "pulse-sensors.html": "aadcbf2e"
+  },
+  "posts/tutorials/digital-read-write.qmd": {
+    "digital-read-write.html": "654fcd26"
   }
 }
