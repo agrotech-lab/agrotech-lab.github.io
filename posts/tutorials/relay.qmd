@@ -1,0 +1,45 @@
+---
+title: "Relay"
+date: "2022-05-03"
+categories: [arduino]
+echo: false
+jupyter: python3
+execute:
+  freeze: auto  # re-render only when source changes
+# image: "image.jpg"
+# format:
+#   html:
+    # include-before-body: insert_ino_code.txt
+#     code-overflow: wrap
+#     code-block-border-left: true
+---
+
+{{< include ../../_insert_ino_code.qmd >}}
+
+# Relay
+
+![](https://www.circuitbasics.com/wp-content/uploads/2020/07/image-25.png)
+
+A relay is an electromagnetic switch that opens and closes circuits electromechanically or electronically. A relatively small electric current that can turn on or off a much larger electric current operates a relay. Relays work like some electrical products since they receive an electrical signal and send the signal to other equipment by turning the switch on and off. Even if the relay contact is normally closed or normally open, they are not energized. Its state will change only if you apply an electrical current to the contacts.
+
+| pin name             | function                                                                                                                                                       |
+|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Normally Closed (NC) | Connect to this terminal if you want your device to be off when the relay is powered and normally on when the relay is not powered.                            |
+| Common               | Common terminal to connect the load.                                                                                                                           |
+| Normally Open (NO)   | Connect your device (e.g., LED or any load) to this terminal if you want the device to be off when the relay is not powered, and on when the relay is powered. |
+| Ground               | Connect with ground pin.                                                                                                                                       |
+| Vcc pin              | Connects to 5V pin                                                                                                                                             |
+| Signal pin           | Control pin for relay                                                                                                                                          |
+
+----
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+function toggle_icon_show_content(Show_Hide_Id,Icon_Id) {
+    $("#"+Icon_Id).toggleClass('fa-plus-square fa-minus-square')
+    $("#"+Show_Hide_Id).slideToggle('slow');
+}
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

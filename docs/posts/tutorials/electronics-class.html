@@ -181,7 +181,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">insert ino code</h1>
+      <h1 class="title">Electronics Class</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">arduino</div>
               </div>
@@ -222,6 +222,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </object>
 <p><a href="https://randomnerdtutorials.com/esp32-pinout-reference-gpios/">Pin information for ESP32</a></p>
 <hr>
+<!-- ---
+title: ""
+echo: false
+jupyter: python3
+section-divs: false
+--- -->
 </section>
 <section id="digital-write" class="level3">
 <h3 class="anchored" data-anchor-id="digital-write">Digital Write</h3>
@@ -258,6 +264,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="pwm-with-esp32" class="level3">
 <h3 class="anchored" data-anchor-id="pwm-with-esp32">PWM with ESP32</h3>
+<p>Pulse-width modulation (PWM) is a method of controlling the average power delivered by an electrical signal. The average value of voltage (and current) fed to the load is controlled by switching the supply between 0 and 100% at a rate faster than it takes the load to change significantly. <strong>PWM is a technique for getting analog results with digital means.</strong> Digital control is used to create a square wave, a signal switched between on and off. This on-off pattern can simulate voltages in between the full Vcc of the board and off by changing the portion of time the signal spends on versus the time that the signal spends off. PWM is used in many applications such as controlling motor speed, heat output of heaters and variable speed fan controllers.</p>
+<p><img src="https://cdn.sparkfun.com/assets/f/9/c/8/a/512e869bce395fbc64000002.JPG" class="img-fluid"></p>
 <p>Use the following code to activate LED pin with PWM.</p>
 <button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#PWM-basic" aria-expanded="false" aria-controls="PWM-basic">
     <i class="bi bi-toggles"></i> Toggle code

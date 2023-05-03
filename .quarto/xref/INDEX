@@ -109,5 +109,8 @@
   },
   "posts/tutorials/digital-read-write.qmd": {
     "digital-read-write.html": "654fcd26"
+  },
+  "posts/tutorials/relay.qmd": {
+    "relay.html": "06cf98ab"
   }
 }
