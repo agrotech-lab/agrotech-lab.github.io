@@ -314,7 +314,11 @@ void callback(char* topic, byte* message, unsigned int length) {
 }
 ```
 
+## Python + MQTT
 
+## Publish
+
+```python
 import paho.mqtt.client as mqtt
 import random
 import time
@@ -338,11 +342,11 @@ while True:
 
 # Disconnect from the MQTT broker (not reached in this example)
 client.disconnect()
+```
 
+## Subscribe
 
-
-
-
+```python
 import paho.mqtt.client as mqtt
 
 # MQTT broker details
@@ -371,3 +375,4 @@ client.connect(broker_address, broker_port, 60)
 
 # Loop to maintain the connection and process network traffic
 client.loop_forever()
+```
