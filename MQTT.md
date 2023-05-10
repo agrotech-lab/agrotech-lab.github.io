@@ -1,5 +1,7 @@
 # MQTT
 
+![](https://mqtt.org/assets/downloads/mqtt-logo.png)
+
 ## Intro
 In today's session, we will be diving into the fascinating world of MQTT and its relevance in the field of agriculture. MQTT, which stands for Message Queuing Telemetry Transport, is a lightweight and efficient messaging protocol designed for constrained devices and low-bandwidth networks.
 
@@ -13,7 +15,7 @@ Furthermore, MQTT follows a publish-subscribe messaging pattern, enabling a scal
 
 In this AgroTech class, we will explore the implementation of MQTT on the ESP32 microcontroller, enabling you to build innovative and efficient solutions for the agricultural sector. So, let's dive in and discover how MQTT can revolutionize the way we approach farming, enhance productivity, and contribute to sustainable agriculture practices.
 
-## Fundumental Concepts
+## Fundamental Concepts
 
 1. **MQTT Broker:** At the core of MQTT is the broker, which acts as a central hub for message exchange. The broker receives messages published by clients and distributes them to the interested subscribers. It is responsible for routing messages based on topics and maintaining the overall communication flow.
 **For our calss today we will use the [Hivemq free public broker](https://www.hivemq.com/public-mqtt-broker/)**
