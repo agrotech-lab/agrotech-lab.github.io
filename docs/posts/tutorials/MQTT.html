@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2022-05-10">
+
+<title>agrotech lab - MQTT</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../..//archive/images/favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/iconify-1.0.0-beta.2/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../custom.scss">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../archive/images/site-logo-white.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">agrotech lab</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text"><iconify-icon inline="" icon="bi:exclamation-diamond-fill"></iconify-icon> About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../schedule.html">
+ <span class="menu-text"><iconify-icon inline="" icon="material-symbols:calendar-month-sharp"></iconify-icon> Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../tutorials.html">
+ <span class="menu-text"><iconify-icon inline="" icon="fa6-solid:user-graduate"></iconify-icon> Tutorials</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resources.html">
+ <span class="menu-text"><iconify-icon inline="" icon="fluent:brain-circuit-20-regular"></iconify-icon> Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html">
+ <span class="menu-text"><iconify-icon inline="" icon="material-symbols:rocket-launch"></iconify-icon> Projects</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">MQTT</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">arduino</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 10, 2022</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+<script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+
+
+
+
+<!-- ---
+title: ""
+echo: false
+jupyter: python3
+section-divs: false
+--- -->
+<p><img src="https://mqtt.org/assets/downloads/mqtt-logo.png" class="img-fluid"></p>
+<section id="intro" class="level2">
+<h2 class="anchored" data-anchor-id="intro">Intro</h2>
+<p>In today’s session, we will be diving into the fascinating world of MQTT and its relevance in the field of agriculture. MQTT, which stands for Message Queuing Telemetry Transport, is a lightweight and efficient messaging protocol designed for constrained devices and low-bandwidth networks.</p>
+<p>In the realm of AgroTech, where the Internet of Things (IoT) plays a crucial role, MQTT offers a powerful solution for connecting sensors, actuators, and other devices in agricultural systems. It provides a reliable and scalable means of communication, enabling seamless data exchange between devices, networks, and applications.</p>
+<p>One of the primary advantages of MQTT is its lightweight nature, making it ideal for resource-constrained devices such as the ESP32 microcontroller. With its small code footprint and minimal network overhead, MQTT facilitates efficient data transmission even in remote or challenging agricultural environments.</p>
+<p>Through the use of MQTT, farmers and agriculturalists can gather real-time information about various aspects of their operations, including temperature, humidity, soil moisture, and crop health. This data can then be transmitted to centralized servers or cloud platforms, allowing for intelligent analysis, decision-making, and automation in the agricultural domain.</p>
+<p>Furthermore, MQTT follows a publish-subscribe messaging pattern, enabling a scalable and flexible communication model. Devices can publish data to specific topics, and other devices or applications can subscribe to these topics to receive relevant information. This decoupled architecture ensures that data is delivered only to those who need it, minimizing network congestion and optimizing system performance.</p>
+<p>In this AgroTech class, we will explore the implementation of MQTT on the ESP32 microcontroller, enabling you to build innovative and efficient solutions for the agricultural sector. So, let’s dive in and discover how MQTT can revolutionize the way we approach farming, enhance productivity, and contribute to sustainable agriculture practices.</p>
+</section>
+<section id="fundamental-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="fundamental-concepts">Fundamental Concepts</h2>
+<ol type="1">
+<li><p><strong>MQTT Broker:</strong><br>
+At the core of MQTT is the broker, which acts as a central hub for message exchange. The broker receives messages published by clients and distributes them to the interested subscribers. It is responsible for routing messages based on topics and maintaining the overall communication flow. <strong>For our calss today we will use the <a href="https://www.hivemq.com/public-mqtt-broker/">Hivemq free public broker</a></strong></p></li>
+<li><p><strong>MQTT Client:</strong><br>
+Clients are devices or applications that connect to the MQTT broker. They can be sensors, actuators, microcontrollers, or any device capable of sending or receiving messages. MQTT clients can function as both publishers and subscribers, allowing them to send data and receive updates from the broker. <strong>For our class we can utilize the <a href="https://www.hivemq.com/demos/websocket-client/">Hivemq online client</a> for testing</strong></p></li>
+<li><p><strong>Topic:</strong><br>
+Topics are hierarchical strings that act as labels for messages. They serve as a way to categorize and organize information. When publishing a message, clients assign it to a specific topic. Subscribers can then choose to receive messages from specific topics of interest. For example, in agriculture, topics could represent sensor data such as “temperature,” “humidity,” or “soil moisture.”</p></li>
+<li><p><strong>Publish:</strong><br>
+Publishing refers to the action of sending a message from an MQTT client to the broker. When a client publishes a message, it specifies the topic to which the message belongs. The broker then distributes the message to all the interested subscribers that have subscribed to that particular topic.</p></li>
+<li><p><strong>Subscribe:</strong><br>
+Subscribing allows clients to express their interest in receiving messages from specific topics. By subscribing to a topic, a client informs the broker that it wants to receive messages published to that topic. Subscriptions can be specific to a particular topic (e.g., “temperature”) or can use wildcard characters to subscribe to multiple topics (e.g., “agriculture/+/moisture” to subscribe to all moisture data in different areas of agriculture).</p></li>
+</ol>
+</section>
+<section id="a-bit-more-about-topics" class="level2">
+<h2 class="anchored" data-anchor-id="a-bit-more-about-topics">A bit more about topics</h2>
+<p>Topics in MQTT are written as hierarchical strings, consisting of one or more levels separated by forward slashes (“/”). Each level within a topic provides a level of categorization and organization for the messages.</p>
+<p>For example, consider the topic structure in agriculture:</p>
+<ul>
+<li><p><code>agriculture/temperature</code>: This topic represents the temperature data in the agricultural context. It consists of a single level, <code>agriculture</code> followed by another level, <code>temperature</code>.</p></li>
+<li><p><code>agriculture/field1/humidity</code>: This topic represents the humidity data in a specific field. It consists of three levels: <code>agriculture</code>, <code>field1</code>, and <code>humidity</code>.</p></li>
+<li><p><code>agriculture/+/soil moisture</code>: This topic uses a wildcard character, <code>+</code>, which can match any single level. Subscribing to this topic would allow receiving messages related to soil moisture from various areas within agriculture.</p></li>
+<li><p><code>agriculture/#</code>: This topic uses the wildcard character <code>#</code>, which can match multiple levels or no level at all. Subscribing to this topic would enable receiving messages from any sub-topic under <code>agriculture</code>.</p></li>
+</ul>
+<p>The use of forward slashes and levels in topic design allows for a structured approach to organizing data in MQTT. It enables subscribers to select specific levels or use wildcard characters to filter and receive messages of interest.</p>
+<p>When publishing a message, the client specifies the topic to which the message belongs, ensuring that it is appropriately categorized and can be received by subscribers who are interested in that specific topic.</p>
+<p>Understanding how topics are written and structured is crucial for effective message routing and data organization within MQTT-based AgroTech applications.</p>
+<section id="led-subscribe" class="level3">
+<h3 class="anchored" data-anchor-id="led-subscribe">LED subscribe</h3>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#MQTT_led_subscribe" aria-expanded="false" aria-controls="MQTT_led_subscribe">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../../archive/code/MQTT_led_subscribe.ino" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="MQTT_led_subscribe">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">//addapted from:</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co">//https://microcontrollerslab.com/esp32-mqtt-client-publish-subscribe-bme280-readings-hivemq/</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="pp">#include </span><span class="im">&lt;WiFi.h&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="pp">#include </span><span class="im">&lt;PubSubClient.h&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a>WiFiClient wifiClient<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>PubSubClient mqttClient<span class="op">(</span>wifiClient<span class="op">);</span> </span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> ssid <span class="op">=</span> <span class="st">"TP-Link_905D"</span><span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> password <span class="op">=</span> <span class="st">"33072036"</span><span class="op">;</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="dt">char</span> <span class="op">*</span>mqttServer <span class="op">=</span> <span class="st">"broker.hivemq.com"</span><span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="dt">int</span> mqttPort <span class="op">=</span> <span class="dv">1883</span><span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="dt">int</span> LED_pin <span class="op">=</span> A4<span class="op">;</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a>String msgString<span class="op">;</span> <span class="co">// Declare msgString variable in the global scope</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="dt">void</span> setupMQTT<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a>  mqttClient<span class="op">.</span>setServer<span class="op">(</span>mqttServer<span class="op">,</span> mqttPort<span class="op">);</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a>  mqttClient<span class="op">.</span>setCallback<span class="op">(</span>callback<span class="op">);</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a><span class="op">}</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a></span>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="dt">void</span> reconnect<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Connecting to MQTT Broker..."</span><span class="op">);</span></span>
+<span id="cb1-27"><a href="#cb1-27"></a>  <span class="cf">while</span> <span class="op">(!</span>mqttClient<span class="op">.</span>connected<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a>      Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Reconnecting to MQTT Broker.."</span><span class="op">);</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a>      String clientId <span class="op">=</span> <span class="st">"ESP32Client-"</span><span class="op">;</span></span>
+<span id="cb1-30"><a href="#cb1-30"></a>      clientId <span class="op">+=</span> String<span class="op">(</span>random<span class="op">(</span><span class="bn">0xffff</span><span class="op">),</span> HEX<span class="op">);</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a>      </span>
+<span id="cb1-32"><a href="#cb1-32"></a>      <span class="cf">if</span> <span class="op">(</span>mqttClient<span class="op">.</span>connect<span class="op">(</span>clientId<span class="op">.</span>c_str<span class="op">()))</span> <span class="op">{</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Connected."</span><span class="op">);</span></span>
+<span id="cb1-34"><a href="#cb1-34"></a>        <span class="co">// subscribe to topic</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a>        mqttClient<span class="op">.</span>subscribe<span class="op">(</span><span class="st">"agrotech/2023/LED"</span><span class="op">);</span></span>
+<span id="cb1-36"><a href="#cb1-36"></a>      <span class="op">}</span>      </span>
+<span id="cb1-37"><a href="#cb1-37"></a>  <span class="op">}</span></span>
+<span id="cb1-38"><a href="#cb1-38"></a><span class="op">}</span></span>
+<span id="cb1-39"><a href="#cb1-39"></a></span>
+<span id="cb1-40"><a href="#cb1-40"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-41"><a href="#cb1-41"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb1-42"><a href="#cb1-42"></a>  WiFi<span class="op">.</span>begin<span class="op">(</span>ssid<span class="op">,</span> password<span class="op">);</span></span>
+<span id="cb1-43"><a href="#cb1-43"></a>    <span class="cf">while</span> <span class="op">(</span>WiFi<span class="op">.</span>status<span class="op">()</span> <span class="op">!=</span> WL_CONNECTED<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-44"><a href="#cb1-44"></a>      delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb1-45"><a href="#cb1-45"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"."</span><span class="op">);</span></span>
+<span id="cb1-46"><a href="#cb1-46"></a>    <span class="op">}</span> </span>
+<span id="cb1-47"><a href="#cb1-47"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
+<span id="cb1-48"><a href="#cb1-48"></a>     Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Connected to Wi-Fi"</span><span class="op">);</span></span>
+<span id="cb1-49"><a href="#cb1-49"></a></span>
+<span id="cb1-50"><a href="#cb1-50"></a>  setupMQTT<span class="op">();</span></span>
+<span id="cb1-51"><a href="#cb1-51"></a></span>
+<span id="cb1-52"><a href="#cb1-52"></a>  pinMode<span class="op">(</span>LED_pin<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb1-53"><a href="#cb1-53"></a>  digitalWrite<span class="op">(</span>LED_pin<span class="op">,</span> LOW<span class="op">);</span> </span>
+<span id="cb1-54"><a href="#cb1-54"></a>  </span>
+<span id="cb1-55"><a href="#cb1-55"></a><span class="op">}</span></span>
+<span id="cb1-56"><a href="#cb1-56"></a></span>
+<span id="cb1-57"><a href="#cb1-57"></a></span>
+<span id="cb1-58"><a href="#cb1-58"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-59"><a href="#cb1-59"></a>  <span class="cf">if</span> <span class="op">(!</span>mqttClient<span class="op">.</span>connected<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb1-60"><a href="#cb1-60"></a>      reconnect<span class="op">();</span></span>
+<span id="cb1-61"><a href="#cb1-61"></a>  <span class="op">}</span></span>
+<span id="cb1-62"><a href="#cb1-62"></a>    </span>
+<span id="cb1-63"><a href="#cb1-63"></a>  mqttClient<span class="op">.</span>loop<span class="op">();</span></span>
+<span id="cb1-64"><a href="#cb1-64"></a>  <span class="dt">long</span> now <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb1-65"><a href="#cb1-65"></a><span class="op">}</span></span>
+<span id="cb1-66"><a href="#cb1-66"></a></span>
+<span id="cb1-67"><a href="#cb1-67"></a></span>
+<span id="cb1-68"><a href="#cb1-68"></a></span>
+<span id="cb1-69"><a href="#cb1-69"></a><span class="dt">void</span> callback<span class="op">(</span><span class="dt">char</span><span class="op">*</span> topic<span class="op">,</span> byte<span class="op">*</span> message<span class="op">,</span> <span class="dt">unsigned</span> <span class="dt">int</span> length<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-70"><a href="#cb1-70"></a>  <span class="co">// Convert byte array to string</span></span>
+<span id="cb1-71"><a href="#cb1-71"></a>  msgString <span class="op">=</span> String<span class="op">((</span><span class="dt">char</span><span class="op">*)</span>message<span class="op">,</span> length<span class="op">);</span></span>
+<span id="cb1-72"><a href="#cb1-72"></a></span>
+<span id="cb1-73"><a href="#cb1-73"></a>  <span class="co">// Convert string to integer</span></span>
+<span id="cb1-74"><a href="#cb1-74"></a>  <span class="dt">int</span> ledState <span class="op">=</span> msgString<span class="op">.</span>toInt<span class="op">();</span></span>
+<span id="cb1-75"><a href="#cb1-75"></a></span>
+<span id="cb1-76"><a href="#cb1-76"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Message: "</span><span class="op">);</span></span>
+<span id="cb1-77"><a href="#cb1-77"></a>  Serial<span class="op">.</span>println<span class="op">(</span>msgString<span class="op">);</span></span>
+<span id="cb1-78"><a href="#cb1-78"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"LED State: "</span><span class="op">);</span></span>
+<span id="cb1-79"><a href="#cb1-79"></a>  Serial<span class="op">.</span>println<span class="op">(</span>ledState<span class="op">);</span></span>
+<span id="cb1-80"><a href="#cb1-80"></a></span>
+<span id="cb1-81"><a href="#cb1-81"></a>  <span class="cf">if</span> <span class="op">(</span>ledState <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-82"><a href="#cb1-82"></a>    digitalWrite<span class="op">(</span>LED_pin<span class="op">,</span> HIGH<span class="op">);</span>  <span class="co">// Set pin A4 high</span></span>
+<span id="cb1-83"><a href="#cb1-83"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>ledState <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-84"><a href="#cb1-84"></a>    digitalWrite<span class="op">(</span>LED_pin<span class="op">,</span> LOW<span class="op">);</span>   <span class="co">// Set pin A4 low</span></span>
+<span id="cb1-85"><a href="#cb1-85"></a>  <span class="op">}</span></span>
+<span id="cb1-86"><a href="#cb1-86"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
+</section>
+<section id="sensor-subscribe" class="level3">
+<h3 class="anchored" data-anchor-id="sensor-subscribe">Sensor subscribe</h3>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#MQTT_sensor_subscribe" aria-expanded="false" aria-controls="MQTT_sensor_subscribe">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../../archive/code/MQTT_sensor_subscribe.ino" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="MQTT_sensor_subscribe">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">//addapted from:</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">//https://microcontrollerslab.com/esp32-mqtt-client-publish-subscribe-bme280-readings-hivemq/</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="pp">#include </span><span class="im">&lt;WiFi.h&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="pp">#include </span><span class="im">&lt;PubSubClient.h&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a></span>
+<span id="cb2-8"><a href="#cb2-8"></a>WiFiClient wifiClient<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>PubSubClient mqttClient<span class="op">(</span>wifiClient<span class="op">);</span> </span>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> ssid <span class="op">=</span> <span class="st">"TP-Link_905D"</span><span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> password <span class="op">=</span> <span class="st">"33072036"</span><span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="dt">char</span> <span class="op">*</span>mqttServer <span class="op">=</span> <span class="st">"broker.hivemq.com"</span><span class="op">;</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="dt">int</span> mqttPort <span class="op">=</span> <span class="dv">1883</span><span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="dt">float</span> value <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>String msgString<span class="op">;</span> <span class="co">// Declare msgString variable in the global scope</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a></span>
+<span id="cb2-20"><a href="#cb2-20"></a><span class="dt">void</span> setupMQTT<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>  mqttClient<span class="op">.</span>setServer<span class="op">(</span>mqttServer<span class="op">,</span> mqttPort<span class="op">);</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>  mqttClient<span class="op">.</span>setCallback<span class="op">(</span>callback<span class="op">);</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a><span class="op">}</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a></span>
+<span id="cb2-25"><a href="#cb2-25"></a><span class="dt">void</span> reconnect<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Connecting to MQTT Broker..."</span><span class="op">);</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a>  <span class="cf">while</span> <span class="op">(!</span>mqttClient<span class="op">.</span>connected<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a>      Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Reconnecting to MQTT Broker.."</span><span class="op">);</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a>      String clientId <span class="op">=</span> <span class="st">"ESP32Client-"</span><span class="op">;</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a>      clientId <span class="op">+=</span> String<span class="op">(</span>random<span class="op">(</span><span class="bn">0xffff</span><span class="op">),</span> HEX<span class="op">);</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a>      </span>
+<span id="cb2-32"><a href="#cb2-32"></a>      <span class="cf">if</span> <span class="op">(</span>mqttClient<span class="op">.</span>connect<span class="op">(</span>clientId<span class="op">.</span>c_str<span class="op">()))</span> <span class="op">{</span></span>
+<span id="cb2-33"><a href="#cb2-33"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Connected."</span><span class="op">);</span></span>
+<span id="cb2-34"><a href="#cb2-34"></a>        <span class="co">// subscribe to topic</span></span>
+<span id="cb2-35"><a href="#cb2-35"></a>        mqttClient<span class="op">.</span>subscribe<span class="op">(</span><span class="st">"agrotech/2023/sensor"</span><span class="op">);</span></span>
+<span id="cb2-36"><a href="#cb2-36"></a>      <span class="op">}</span>      </span>
+<span id="cb2-37"><a href="#cb2-37"></a>  <span class="op">}</span></span>
+<span id="cb2-38"><a href="#cb2-38"></a><span class="op">}</span></span>
+<span id="cb2-39"><a href="#cb2-39"></a></span>
+<span id="cb2-40"><a href="#cb2-40"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-41"><a href="#cb2-41"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb2-42"><a href="#cb2-42"></a>  WiFi<span class="op">.</span>begin<span class="op">(</span>ssid<span class="op">,</span> password<span class="op">);</span></span>
+<span id="cb2-43"><a href="#cb2-43"></a>    <span class="cf">while</span> <span class="op">(</span>WiFi<span class="op">.</span>status<span class="op">()</span> <span class="op">!=</span> WL_CONNECTED<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-44"><a href="#cb2-44"></a>      delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb2-45"><a href="#cb2-45"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"."</span><span class="op">);</span></span>
+<span id="cb2-46"><a href="#cb2-46"></a>    <span class="op">}</span> </span>
+<span id="cb2-47"><a href="#cb2-47"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
+<span id="cb2-48"><a href="#cb2-48"></a>     Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Connected to Wi-Fi"</span><span class="op">);</span></span>
+<span id="cb2-49"><a href="#cb2-49"></a></span>
+<span id="cb2-50"><a href="#cb2-50"></a>  setupMQTT<span class="op">();</span></span>
+<span id="cb2-51"><a href="#cb2-51"></a></span>
+<span id="cb2-52"><a href="#cb2-52"></a><span class="op">}</span></span>
+<span id="cb2-53"><a href="#cb2-53"></a></span>
+<span id="cb2-54"><a href="#cb2-54"></a></span>
+<span id="cb2-55"><a href="#cb2-55"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-56"><a href="#cb2-56"></a>  <span class="cf">if</span> <span class="op">(!</span>mqttClient<span class="op">.</span>connected<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb2-57"><a href="#cb2-57"></a>      reconnect<span class="op">();</span></span>
+<span id="cb2-58"><a href="#cb2-58"></a>  <span class="op">}</span></span>
+<span id="cb2-59"><a href="#cb2-59"></a>    </span>
+<span id="cb2-60"><a href="#cb2-60"></a>  mqttClient<span class="op">.</span>loop<span class="op">();</span></span>
+<span id="cb2-61"><a href="#cb2-61"></a>  <span class="dt">long</span> now <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb2-62"><a href="#cb2-62"></a><span class="op">}</span></span>
+<span id="cb2-63"><a href="#cb2-63"></a></span>
+<span id="cb2-64"><a href="#cb2-64"></a></span>
+<span id="cb2-65"><a href="#cb2-65"></a></span>
+<span id="cb2-66"><a href="#cb2-66"></a><span class="dt">void</span> callback<span class="op">(</span><span class="dt">char</span><span class="op">*</span> topic<span class="op">,</span> byte<span class="op">*</span> message<span class="op">,</span> <span class="dt">unsigned</span> <span class="dt">int</span> length<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-67"><a href="#cb2-67"></a>  <span class="co">// Convert byte array to string</span></span>
+<span id="cb2-68"><a href="#cb2-68"></a>  msgString <span class="op">=</span> String<span class="op">((</span><span class="dt">char</span><span class="op">*)</span>message<span class="op">,</span> length<span class="op">);</span></span>
+<span id="cb2-69"><a href="#cb2-69"></a></span>
+<span id="cb2-70"><a href="#cb2-70"></a>  <span class="co">// Convert string to float</span></span>
+<span id="cb2-71"><a href="#cb2-71"></a>  value <span class="op">=</span> msgString<span class="op">.</span>toFloat<span class="op">();</span></span>
+<span id="cb2-72"><a href="#cb2-72"></a></span>
+<span id="cb2-73"><a href="#cb2-73"></a>  Serial<span class="op">.</span>println<span class="op">(</span>value<span class="op">);</span></span>
+<span id="cb2-74"><a href="#cb2-74"></a></span>
+<span id="cb2-75"><a href="#cb2-75"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
+</section>
+<section id="publish-and-subscribe" class="level3">
+<h3 class="anchored" data-anchor-id="publish-and-subscribe">Publish and subscribe</h3>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#MQTT_publish_and_subscribe" aria-expanded="false" aria-controls="MQTT_publish_and_subscribe">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../../archive/code/MQTT_publish_and_subscribe.ino" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="MQTT_publish_and_subscribe">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">//addapted from:</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co">//https://microcontrollerslab.com/esp32-mqtt-client-publish-subscribe-bme280-readings-hivemq/</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="pp">#include </span><span class="im">&lt;WiFi.h&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="pp">#include </span><span class="im">&lt;PubSubClient.h&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a>WiFiClient wifiClient<span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>PubSubClient mqttClient<span class="op">(</span>wifiClient<span class="op">);</span> </span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> ssid <span class="op">=</span> <span class="st">"TP-Link_905D"</span><span class="op">;</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> password <span class="op">=</span> <span class="st">"33072036"</span><span class="op">;</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="dt">char</span> <span class="op">*</span>mqttServer <span class="op">=</span> <span class="st">"broker.hivemq.com"</span><span class="op">;</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="dt">int</span> mqttPort <span class="op">=</span> <span class="dv">1883</span><span class="op">;</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="dt">long</span> previous_time <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a>String msgString<span class="op">;</span> <span class="co">// Declare msgString variable in the global scope</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="dt">void</span> setupMQTT<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a>  mqttClient<span class="op">.</span>setServer<span class="op">(</span>mqttServer<span class="op">,</span> mqttPort<span class="op">);</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a>  mqttClient<span class="op">.</span>setCallback<span class="op">(</span>callback<span class="op">);</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="op">}</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="dt">void</span> reconnect<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Connecting to MQTT Broker..."</span><span class="op">);</span></span>
+<span id="cb3-27"><a href="#cb3-27"></a>  <span class="cf">while</span> <span class="op">(!</span>mqttClient<span class="op">.</span>connected<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a>      Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Reconnecting to MQTT Broker.."</span><span class="op">);</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a>      String clientId <span class="op">=</span> <span class="st">"ESP32Client-"</span><span class="op">;</span></span>
+<span id="cb3-30"><a href="#cb3-30"></a>      clientId <span class="op">+=</span> String<span class="op">(</span>random<span class="op">(</span><span class="bn">0xffff</span><span class="op">),</span> HEX<span class="op">);</span></span>
+<span id="cb3-31"><a href="#cb3-31"></a>      </span>
+<span id="cb3-32"><a href="#cb3-32"></a>      <span class="cf">if</span> <span class="op">(</span>mqttClient<span class="op">.</span>connect<span class="op">(</span>clientId<span class="op">.</span>c_str<span class="op">()))</span> <span class="op">{</span></span>
+<span id="cb3-33"><a href="#cb3-33"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Connected."</span><span class="op">);</span></span>
+<span id="cb3-34"><a href="#cb3-34"></a>        <span class="co">// subscribe to topic</span></span>
+<span id="cb3-35"><a href="#cb3-35"></a>        mqttClient<span class="op">.</span>subscribe<span class="op">(</span><span class="st">"agrotech/2023/message"</span><span class="op">);</span></span>
+<span id="cb3-36"><a href="#cb3-36"></a>      <span class="op">}</span>      </span>
+<span id="cb3-37"><a href="#cb3-37"></a>  <span class="op">}</span></span>
+<span id="cb3-38"><a href="#cb3-38"></a><span class="op">}</span></span>
+<span id="cb3-39"><a href="#cb3-39"></a></span>
+<span id="cb3-40"><a href="#cb3-40"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-41"><a href="#cb3-41"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb3-42"><a href="#cb3-42"></a>  WiFi<span class="op">.</span>begin<span class="op">(</span>ssid<span class="op">,</span> password<span class="op">);</span></span>
+<span id="cb3-43"><a href="#cb3-43"></a>    <span class="cf">while</span> <span class="op">(</span>WiFi<span class="op">.</span>status<span class="op">()</span> <span class="op">!=</span> WL_CONNECTED<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-44"><a href="#cb3-44"></a>      delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb3-45"><a href="#cb3-45"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"."</span><span class="op">);</span></span>
+<span id="cb3-46"><a href="#cb3-46"></a>    <span class="op">}</span> </span>
+<span id="cb3-47"><a href="#cb3-47"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
+<span id="cb3-48"><a href="#cb3-48"></a>     Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Connected to Wi-Fi"</span><span class="op">);</span></span>
+<span id="cb3-49"><a href="#cb3-49"></a></span>
+<span id="cb3-50"><a href="#cb3-50"></a>  setupMQTT<span class="op">();</span></span>
+<span id="cb3-51"><a href="#cb3-51"></a><span class="op">}</span></span>
+<span id="cb3-52"><a href="#cb3-52"></a></span>
+<span id="cb3-53"><a href="#cb3-53"></a></span>
+<span id="cb3-54"><a href="#cb3-54"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-55"><a href="#cb3-55"></a>  <span class="cf">if</span> <span class="op">(!</span>mqttClient<span class="op">.</span>connected<span class="op">())</span></span>
+<span id="cb3-56"><a href="#cb3-56"></a>    reconnect<span class="op">();</span></span>
+<span id="cb3-57"><a href="#cb3-57"></a>  mqttClient<span class="op">.</span>loop<span class="op">();</span></span>
+<span id="cb3-58"><a href="#cb3-58"></a>  <span class="dt">long</span> now <span class="op">=</span> millis<span class="op">();</span></span>
+<span id="cb3-59"><a href="#cb3-59"></a></span>
+<span id="cb3-60"><a href="#cb3-60"></a>  <span class="cf">if</span> <span class="op">(</span>now <span class="op">-</span> previous_time <span class="op">&gt;</span> <span class="dv">1000</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-61"><a href="#cb3-61"></a>    previous_time <span class="op">=</span> now<span class="op">;</span></span>
+<span id="cb3-62"><a href="#cb3-62"></a></span>
+<span id="cb3-63"><a href="#cb3-63"></a>    <span class="dt">float</span> temperature <span class="op">=</span> random<span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">101</span><span class="op">);</span></span>
+<span id="cb3-64"><a href="#cb3-64"></a>    <span class="dt">char</span> tempString<span class="op">[</span><span class="dv">8</span><span class="op">];</span></span>
+<span id="cb3-65"><a href="#cb3-65"></a>    dtostrf<span class="op">(</span>temperature<span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> tempString<span class="op">);</span></span>
+<span id="cb3-66"><a href="#cb3-66"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Temperature: "</span><span class="op">);</span></span>
+<span id="cb3-67"><a href="#cb3-67"></a>    Serial<span class="op">.</span>println<span class="op">(</span>tempString<span class="op">);</span></span>
+<span id="cb3-68"><a href="#cb3-68"></a>    mqttClient<span class="op">.</span>publish<span class="op">(</span><span class="st">"agrotech/2023/temperature"</span><span class="op">,</span> tempString<span class="op">);</span></span>
+<span id="cb3-69"><a href="#cb3-69"></a></span>
+<span id="cb3-70"><a href="#cb3-70"></a>    mqttClient<span class="op">.</span>publish<span class="op">(</span><span class="st">"agrotech/2023/string"</span><span class="op">,</span> <span class="st">"Hi :)"</span><span class="op">);</span></span>
+<span id="cb3-71"><a href="#cb3-71"></a></span>
+<span id="cb3-72"><a href="#cb3-72"></a><span class="co">//    Serial.print("Subscribed Message: ");</span></span>
+<span id="cb3-73"><a href="#cb3-73"></a><span class="co">//    Serial.println(msgString);</span></span>
+<span id="cb3-74"><a href="#cb3-74"></a>  <span class="op">}</span></span>
+<span id="cb3-75"><a href="#cb3-75"></a><span class="op">}</span></span>
+<span id="cb3-76"><a href="#cb3-76"></a></span>
+<span id="cb3-77"><a href="#cb3-77"></a></span>
+<span id="cb3-78"><a href="#cb3-78"></a><span class="dt">void</span> callback<span class="op">(</span><span class="dt">char</span><span class="op">*</span> topic<span class="op">,</span> byte<span class="op">*</span> message<span class="op">,</span> <span class="dt">unsigned</span> <span class="dt">int</span> length<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-79"><a href="#cb3-79"></a>  <span class="co">// Convert byte array to string</span></span>
+<span id="cb3-80"><a href="#cb3-80"></a> <span class="co">//  String msgString((char*)message, length);</span></span>
+<span id="cb3-81"><a href="#cb3-81"></a></span>
+<span id="cb3-82"><a href="#cb3-82"></a>  msgString <span class="op">=</span> String<span class="op">((</span><span class="dt">char</span><span class="op">*)</span>message<span class="op">,</span> length<span class="op">);</span></span>
+<span id="cb3-83"><a href="#cb3-83"></a>  </span>
+<span id="cb3-84"><a href="#cb3-84"></a>  <span class="co">// Convert string to float</span></span>
+<span id="cb3-85"><a href="#cb3-85"></a>  <span class="dt">float</span> msgFloat <span class="op">=</span> msgString<span class="op">.</span>toFloat<span class="op">();</span></span>
+<span id="cb3-86"><a href="#cb3-86"></a></span>
+<span id="cb3-87"><a href="#cb3-87"></a>  <span class="co">// Convert string to integer</span></span>
+<span id="cb3-88"><a href="#cb3-88"></a>  <span class="dt">int</span> msgInt <span class="op">=</span> msgString<span class="op">.</span>toInt<span class="op">();</span></span>
+<span id="cb3-89"><a href="#cb3-89"></a>  </span>
+<span id="cb3-90"><a href="#cb3-90"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Message: "</span><span class="op">);</span></span>
+<span id="cb3-91"><a href="#cb3-91"></a>  Serial<span class="op">.</span>println<span class="op">(</span>msgString<span class="op">);</span></span>
+<span id="cb3-92"><a href="#cb3-92"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Float: "</span><span class="op">);</span></span>
+<span id="cb3-93"><a href="#cb3-93"></a>  Serial<span class="op">.</span>println<span class="op">(</span>msgFloat<span class="op">);</span></span>
+<span id="cb3-94"><a href="#cb3-94"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Integer: "</span><span class="op">);</span></span>
+<span id="cb3-95"><a href="#cb3-95"></a>  Serial<span class="op">.</span>println<span class="op">(</span>msgInt<span class="op">);</span></span>
+<span id="cb3-96"><a href="#cb3-96"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
+</section>
+</section>
+<section id="mqtt-python" class="level2">
+<h2 class="anchored" data-anchor-id="mqtt-python">MQTT + Python</h2>
+<section id="publish" class="level3">
+<h3 class="anchored" data-anchor-id="publish">Publish</h3>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#MQTT_python_publish" aria-expanded="false" aria-controls="MQTT_python_publish">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../../archive/code/MQTT_python_publish.py" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="MQTT_python_publish">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> paho.mqtt.client <span class="im">as</span> mqtt</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co"># MQTT broker details</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>broker_address <span class="op">=</span> <span class="st">"broker.hivemq.com"</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>broker_port <span class="op">=</span> <span class="dv">1883</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co"># Callback function when a connection is established with the MQTT broker</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="kw">def</span> on_connect(client, userdata, flags, rc):</span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="bu">print</span>(<span class="st">"Connected to MQTT broker with result code: "</span> <span class="op">+</span> <span class="bu">str</span>(rc))</span>
+<span id="cb4-10"><a href="#cb4-10"></a>    <span class="co"># Subscribe to the topic upon successful connection</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>    client.subscribe(<span class="st">"agrotech/2023/temperature"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co"># Callback function when a message is received</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="kw">def</span> on_message(client, userdata, msg):</span>
+<span id="cb4-15"><a href="#cb4-15"></a>    <span class="bu">print</span>(<span class="st">"Received temperature: "</span> <span class="op">+</span> <span class="bu">str</span>(msg.payload.decode()))</span>
+<span id="cb4-16"><a href="#cb4-16"></a></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="co"># Create a MQTT client instance</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a>client <span class="op">=</span> mqtt.Client()</span>
+<span id="cb4-19"><a href="#cb4-19"></a></span>
+<span id="cb4-20"><a href="#cb4-20"></a><span class="co"># Assign callback functions</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a>client.on_connect <span class="op">=</span> on_connect</span>
+<span id="cb4-22"><a href="#cb4-22"></a>client.on_message <span class="op">=</span> on_message</span>
+<span id="cb4-23"><a href="#cb4-23"></a></span>
+<span id="cb4-24"><a href="#cb4-24"></a><span class="co"># Connect to the MQTT broker</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a>client.<span class="ex">connect</span>(broker_address, broker_port, <span class="dv">60</span>)</span>
+<span id="cb4-26"><a href="#cb4-26"></a></span>
+<span id="cb4-27"><a href="#cb4-27"></a><span class="co"># Loop to maintain the connection and process network traffic</span></span>
+<span id="cb4-28"><a href="#cb4-28"></a>client.loop_forever()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
+</section>
+<section id="subscribe" class="level3">
+<h3 class="anchored" data-anchor-id="subscribe">Subscribe</h3>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#MQTT_python_subscribe" aria-expanded="false" aria-controls="MQTT_python_subscribe">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../../archive/code/MQTT_python_subscribe.py" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="MQTT_python_subscribe">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> paho.mqtt.client <span class="im">as</span> mqtt</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="im">import</span> random</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="im">import</span> time</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co"># MQTT broker details</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>broker_address <span class="op">=</span> <span class="st">"broker.hivemq.com"</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>broker_port <span class="op">=</span> <span class="dv">1883</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co"># Create a MQTT client instance</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>client <span class="op">=</span> mqtt.Client()</span>
+<span id="cb5-11"><a href="#cb5-11"></a></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co"># Connect to the MQTT broker</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a>client.<span class="ex">connect</span>(broker_address, broker_port, <span class="dv">60</span>)</span>
+<span id="cb5-14"><a href="#cb5-14"></a></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co"># Loop to publish random temperature readings</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb5-17"><a href="#cb5-17"></a>    temperature <span class="op">=</span> random.uniform(<span class="fl">20.0</span>, <span class="fl">30.0</span>)  <span class="co"># Generate a random temperature value between 20.0 and 30.0</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a>    client.publish(<span class="st">"agrotech/2023/temperature"</span>, <span class="bu">str</span>(temperature))  <span class="co"># Publish the temperature value to the topic</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a>    <span class="bu">print</span>(<span class="st">"Published temperature: "</span> <span class="op">+</span> <span class="bu">str</span>(temperature))</span>
+<span id="cb5-20"><a href="#cb5-20"></a>    time.sleep(<span class="dv">1</span>)  <span class="co"># Wait for 5 seconds before publishing the next temperature reading</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a></span>
+<span id="cb5-22"><a href="#cb5-22"></a><span class="co"># Disconnect from the MQTT broker (not reached in this example)</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a>client.disconnect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

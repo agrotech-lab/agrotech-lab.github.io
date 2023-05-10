@@ -112,5 +112,8 @@
   },
   "posts/tutorials/relay.qmd": {
     "relay.html": "06cf98ab"
+  },
+  "posts/tutorials/MQTT.qmd": {
+    "MQTT.html": "9111bf3d"
   }
 }
