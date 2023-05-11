@@ -15,33 +15,34 @@ from IPython.display import display, Markdown, HTML
 
 ticks3 = """```"""
 
-def download_button(filename, extension):
+def download_button(filename):
     path = "/archive/code/"
     # icon_base = icon[:2]
-    return f"""<a class="btn btn-outline-dark rounded", href="{path}{filename}.{extension}" target="_blank" rel="noopener noreferrer">
+    return f"""<a class="btn btn-outline-dark rounded", href="{path}{filename}" target="_blank" rel="noopener noreferrer">
         <i class="bi bi-download"></i> Download code
     </a>"""
 
 
 def toggle_code_button(filename):
-    return (f"""<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#{filename}" aria-expanded="false" aria-controls="{filename}">
+    filename_nodot = filename.replace('.', '')
+    return (f"""<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#{filename_nodot}" aria-expanded="false" aria-controls="{filename_nodot}">
     <i class="bi bi-toggles"></i> Toggle code
     </button>
     """
     )
 
-def toggle_code(filename, extension):
+def toggle_code(filename):
     # print(os.getcwd())
     path = "../../archive/code/"
-    if extension == 'ino':
+    if filename.endswith('ino'):
         highlight = 'c'
-    if extension == 'py':
+    if filename.endswith('py'):
         highlight = 'python'
-    with open(path+filename+'.'+extension, 'r') as f:
+    with open(path+filename, 'r') as f:
         contents = f.read()
-
+    filename_nodot = filename.replace('.', '')
     display(HTML(f"""
-            <div class="collapse" id="{filename}">
+            <div class="collapse" id="{filename_nodot}">
             <div class="card card-body border-0">
         """))
     display(Markdown(ticks3 + f'{{.{highlight} code-line-numbers="1"}}\n' + 
@@ -53,10 +54,10 @@ def toggle_code(filename, extension):
             """
         ))
 
-def code_source(filename, extension):
+def code_source(filename):
     buttons = []
     buttons.append(toggle_code_button(filename))
-    buttons.append(download_button(filename, extension))
+    buttons.append(download_button(filename))
     display(HTML(" ".join(buttons)))
-    toggle_code(filename, extension)
+    toggle_code(filename)
 ```

@@ -37,7 +37,7 @@ Use the following code to activate LED pin.
 ```{python}
 #| echo: false
 #| output: asis
-code_source("digital-write")
+code_source("digital-write.ino")
 ```
 
 
@@ -52,7 +52,7 @@ Use the following code to activate LED pin with PWM.
 ```{python}
 #| echo: false
 #| output: asis
-code_source("PWM-basic")
+code_source("PWM-basic.ino")
 ```
 
 
@@ -63,7 +63,7 @@ Use the following code to read an analog pin.
 ```{python}
 #| echo: false
 #| output: asis
-code_source("analog-read")
+code_source("analog-read.ino")
 ```
 
 
@@ -74,7 +74,7 @@ Use the following code to convert ADC reading to voltage.
 ```{python}
 #| echo: false
 #| output: asis
-code_source("ADC-to-voltage")
+code_source("ADC-to-voltage.ino")
 ```
 
 
@@ -85,7 +85,7 @@ Use the following code to control PWM with potentiometer and dim the LED.
 ```{python}
 #| echo: false
 #| output: asis
-code_source("potentiometer-PWM")
+code_source("potentiometer-PWM.ino")
 ```
 
 ### Thermistor
@@ -95,7 +95,7 @@ code_source("potentiometer-PWM")
 ```{python}
 #| echo: false
 #| output: asis
-code_source("thermistor_b_val")
+code_source("thermistor_b_val.ino")
 ```
 
 ![](/archive/figures/thermistor-agrotech-schematic.png)

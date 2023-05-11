@@ -234,20 +234,20 @@ section-divs: false
 <h2 class="anchored" data-anchor-id="fundamental-concepts">Fundamental Concepts</h2>
 <ol type="1">
 <li><p><strong>MQTT Broker:</strong><br>
-At the core of MQTT is the broker, which acts as a central hub for message exchange. The broker receives messages published by clients and distributes them to the interested subscribers. It is responsible for routing messages based on topics and maintaining the overall communication flow. <strong>For our calss today we will use the <a href="https://www.hivemq.com/public-mqtt-broker/">Hivemq free public broker</a></strong></p></li>
+At the core of MQTT is the broker, which acts as a central hub for message exchange. The broker receives messages published by clients and distributes them to the interested subscribers. It is responsible for routing messages based on topics and maintaining the overall communication flow. <strong>For our calss today we will use the <a href="https://www.hivemq.com/public-mqtt-broker/">Hivemq free public broker</a></strong>.</p></li>
 <li><p><strong>MQTT Client:</strong><br>
-Clients are devices or applications that connect to the MQTT broker. They can be sensors, actuators, microcontrollers, or any device capable of sending or receiving messages. MQTT clients can function as both publishers and subscribers, allowing them to send data and receive updates from the broker. <strong>For our class we can utilize the <a href="https://www.hivemq.com/demos/websocket-client/">Hivemq online client</a> for testing</strong></p></li>
+Clients are devices or applications that connect to the MQTT broker. They can be sensors, actuators, microcontrollers, or any device capable of sending or receiving messages. MQTT clients can function as both publishers and subscribers, allowing them to send data and receive updates from the broker. <strong>For our class we can utilize the <a href="https://www.hivemq.com/demos/websocket-client/">Hivemq online client</a> for testing</strong>.</p></li>
 <li><p><strong>Topic:</strong><br>
 Topics are hierarchical strings that act as labels for messages. They serve as a way to categorize and organize information. When publishing a message, clients assign it to a specific topic. Subscribers can then choose to receive messages from specific topics of interest. For example, in agriculture, topics could represent sensor data such as “temperature,” “humidity,” or “soil moisture.”</p></li>
 <li><p><strong>Publish:</strong><br>
 Publishing refers to the action of sending a message from an MQTT client to the broker. When a client publishes a message, it specifies the topic to which the message belongs. The broker then distributes the message to all the interested subscribers that have subscribed to that particular topic.</p></li>
 <li><p><strong>Subscribe:</strong><br>
-Subscribing allows clients to express their interest in receiving messages from specific topics. By subscribing to a topic, a client informs the broker that it wants to receive messages published to that topic. Subscriptions can be specific to a particular topic (e.g., “temperature”) or can use wildcard characters to subscribe to multiple topics (e.g., “agriculture/+/moisture” to subscribe to all moisture data in different areas of agriculture).</p></li>
+Subscribing allows clients to express their interest in receiving messages from specific topics. By subscribing to a topic, a client informs the broker that it wants to receive messages published to that topic. Subscriptions can be specific to a particular topic (e.g., <code>temperature</code>) or can use wildcard characters to subscribe to multiple topics (e.g., <code>agriculture/+/moisture</code> to subscribe to all moisture data in different areas of agriculture).</p></li>
 </ol>
 </section>
 <section id="a-bit-more-about-topics" class="level2">
 <h2 class="anchored" data-anchor-id="a-bit-more-about-topics">A bit more about topics</h2>
-<p>Topics in MQTT are written as hierarchical strings, consisting of one or more levels separated by forward slashes (“/”). Each level within a topic provides a level of categorization and organization for the messages.</p>
+<p>Topics in MQTT are written as hierarchical strings, consisting of one or more levels separated by forward slashes (<code>/</code>). Each level within a topic provides a level of categorization and organization for the messages.</p>
 <p>For example, consider the topic structure in agriculture:</p>
 <ul>
 <li><p><code>agriculture/temperature</code>: This topic represents the temperature data in the agricultural context. It consists of a single level, <code>agriculture</code> followed by another level, <code>temperature</code>.</p></li>
@@ -260,14 +260,14 @@ Subscribing allows clients to express their interest in receiving messages from 
 <p>Understanding how topics are written and structured is crucial for effective message routing and data organization within MQTT-based AgroTech applications.</p>
 <section id="led-subscribe" class="level3">
 <h3 class="anchored" data-anchor-id="led-subscribe">LED subscribe</h3>
-<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#MQTT_led_subscribe" aria-expanded="false" aria-controls="MQTT_led_subscribe">
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#MQTT_led_subscribeino" aria-expanded="false" aria-controls="MQTT_led_subscribeino">
     <i class="bi bi-toggles"></i> Toggle code
     </button>
      <a class="btn btn-outline-dark rounded" ,="" href="../../archive/code/MQTT_led_subscribe.ino" target="_blank" rel="noopener noreferrer">
         <i class="bi bi-download"></i> Download code
     </a>
 
-            <div class="collapse" id="MQTT_led_subscribe">
+            <div class="collapse" id="MQTT_led_subscribeino">
             <div class="card card-body border-0">
         
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">//addapted from:</span></span>
@@ -363,14 +363,14 @@ Subscribing allows clients to express their interest in receiving messages from 
 </section>
 <section id="sensor-subscribe" class="level3">
 <h3 class="anchored" data-anchor-id="sensor-subscribe">Sensor subscribe</h3>
-<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#MQTT_sensor_subscribe" aria-expanded="false" aria-controls="MQTT_sensor_subscribe">
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#MQTT_sensor_subscribeino" aria-expanded="false" aria-controls="MQTT_sensor_subscribeino">
     <i class="bi bi-toggles"></i> Toggle code
     </button>
      <a class="btn btn-outline-dark rounded" ,="" href="../../archive/code/MQTT_sensor_subscribe.ino" target="_blank" rel="noopener noreferrer">
         <i class="bi bi-download"></i> Download code
     </a>
 
-            <div class="collapse" id="MQTT_sensor_subscribe">
+            <div class="collapse" id="MQTT_sensor_subscribeino">
             <div class="card card-body border-0">
         
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">//addapted from:</span></span>
@@ -455,14 +455,14 @@ Subscribing allows clients to express their interest in receiving messages from 
 </section>
 <section id="publish-and-subscribe" class="level3">
 <h3 class="anchored" data-anchor-id="publish-and-subscribe">Publish and subscribe</h3>
-<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#MQTT_publish_and_subscribe" aria-expanded="false" aria-controls="MQTT_publish_and_subscribe">
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#MQTT_publish_and_subscribeino" aria-expanded="false" aria-controls="MQTT_publish_and_subscribeino">
     <i class="bi bi-toggles"></i> Toggle code
     </button>
      <a class="btn btn-outline-dark rounded" ,="" href="../../archive/code/MQTT_publish_and_subscribe.ino" target="_blank" rel="noopener noreferrer">
         <i class="bi bi-download"></i> Download code
     </a>
 
-            <div class="collapse" id="MQTT_publish_and_subscribe">
+            <div class="collapse" id="MQTT_publish_and_subscribeino">
             <div class="card card-body border-0">
         
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">//addapted from:</span></span>
@@ -571,44 +571,39 @@ Subscribing allows clients to express their interest in receiving messages from 
 <h2 class="anchored" data-anchor-id="mqtt-python">MQTT + Python</h2>
 <section id="publish" class="level3">
 <h3 class="anchored" data-anchor-id="publish">Publish</h3>
-<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#MQTT_python_publish" aria-expanded="false" aria-controls="MQTT_python_publish">
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#MQTT_python_subscribepy" aria-expanded="false" aria-controls="MQTT_python_subscribepy">
     <i class="bi bi-toggles"></i> Toggle code
     </button>
-     <a class="btn btn-outline-dark rounded" ,="" href="../../archive/code/MQTT_python_publish.py" target="_blank" rel="noopener noreferrer">
+     <a class="btn btn-outline-dark rounded" ,="" href="../../archive/code/MQTT_python_subscribe.py" target="_blank" rel="noopener noreferrer">
         <i class="bi bi-download"></i> Download code
     </a>
 
-            <div class="collapse" id="MQTT_python_publish">
+            <div class="collapse" id="MQTT_python_subscribepy">
             <div class="card card-body border-0">
         
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> paho.mqtt.client <span class="im">as</span> mqtt</span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="co"># MQTT broker details</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>broker_address <span class="op">=</span> <span class="st">"broker.hivemq.com"</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>broker_port <span class="op">=</span> <span class="dv">1883</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co"># Callback function when a connection is established with the MQTT broker</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="kw">def</span> on_connect(client, userdata, flags, rc):</span>
-<span id="cb4-9"><a href="#cb4-9"></a>    <span class="bu">print</span>(<span class="st">"Connected to MQTT broker with result code: "</span> <span class="op">+</span> <span class="bu">str</span>(rc))</span>
-<span id="cb4-10"><a href="#cb4-10"></a>    <span class="co"># Subscribe to the topic upon successful connection</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>    client.subscribe(<span class="st">"agrotech/2023/temperature"</span>)</span>
-<span id="cb4-12"><a href="#cb4-12"></a></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="co"># Callback function when a message is received</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="kw">def</span> on_message(client, userdata, msg):</span>
-<span id="cb4-15"><a href="#cb4-15"></a>    <span class="bu">print</span>(<span class="st">"Received temperature: "</span> <span class="op">+</span> <span class="bu">str</span>(msg.payload.decode()))</span>
-<span id="cb4-16"><a href="#cb4-16"></a></span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="co"># Create a MQTT client instance</span></span>
-<span id="cb4-18"><a href="#cb4-18"></a>client <span class="op">=</span> mqtt.Client()</span>
-<span id="cb4-19"><a href="#cb4-19"></a></span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="co"># Assign callback functions</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a>client.on_connect <span class="op">=</span> on_connect</span>
-<span id="cb4-22"><a href="#cb4-22"></a>client.on_message <span class="op">=</span> on_message</span>
-<span id="cb4-23"><a href="#cb4-23"></a></span>
-<span id="cb4-24"><a href="#cb4-24"></a><span class="co"># Connect to the MQTT broker</span></span>
-<span id="cb4-25"><a href="#cb4-25"></a>client.<span class="ex">connect</span>(broker_address, broker_port, <span class="dv">60</span>)</span>
-<span id="cb4-26"><a href="#cb4-26"></a></span>
-<span id="cb4-27"><a href="#cb4-27"></a><span class="co"># Loop to maintain the connection and process network traffic</span></span>
-<span id="cb4-28"><a href="#cb4-28"></a>client.loop_forever()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="im">import</span> random</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="im">import</span> time</span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co"># MQTT broker details</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>broker_address <span class="op">=</span> <span class="st">"broker.hivemq.com"</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>broker_port <span class="op">=</span> <span class="dv">1883</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co"># Create a MQTT client instance</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a>client <span class="op">=</span> mqtt.Client()</span>
+<span id="cb4-11"><a href="#cb4-11"></a></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="co"># Connect to the MQTT broker</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>client.<span class="ex">connect</span>(broker_address, broker_port, <span class="dv">60</span>)</span>
+<span id="cb4-14"><a href="#cb4-14"></a></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="co"># Loop to publish random temperature readings</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb4-17"><a href="#cb4-17"></a>    temperature <span class="op">=</span> random.uniform(<span class="fl">20.0</span>, <span class="fl">30.0</span>)  <span class="co"># Generate a random temperature value between 20.0 and 30.0</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a>    client.publish(<span class="st">"agrotech/2023/temperature"</span>, <span class="bu">str</span>(temperature))  <span class="co"># Publish the temperature value to the topic</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a>    <span class="bu">print</span>(<span class="st">"Published temperature: "</span> <span class="op">+</span> <span class="bu">str</span>(temperature))</span>
+<span id="cb4-20"><a href="#cb4-20"></a>    time.sleep(<span class="dv">1</span>)  <span class="co"># Wait for 5 seconds before publishing the next temperature reading</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a></span>
+<span id="cb4-22"><a href="#cb4-22"></a><span class="co"># Disconnect from the MQTT broker (not reached in this example)</span></span>
+<span id="cb4-23"><a href="#cb4-23"></a>client.disconnect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
             </div>
             </div>
@@ -616,39 +611,44 @@ Subscribing allows clients to express their interest in receiving messages from 
 </section>
 <section id="subscribe" class="level3">
 <h3 class="anchored" data-anchor-id="subscribe">Subscribe</h3>
-<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#MQTT_python_subscribe" aria-expanded="false" aria-controls="MQTT_python_subscribe">
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#MQTT_python_publishpy" aria-expanded="false" aria-controls="MQTT_python_publishpy">
     <i class="bi bi-toggles"></i> Toggle code
     </button>
-     <a class="btn btn-outline-dark rounded" ,="" href="../../archive/code/MQTT_python_subscribe.py" target="_blank" rel="noopener noreferrer">
+     <a class="btn btn-outline-dark rounded" ,="" href="../../archive/code/MQTT_python_publish.py" target="_blank" rel="noopener noreferrer">
         <i class="bi bi-download"></i> Download code
     </a>
 
-            <div class="collapse" id="MQTT_python_subscribe">
+            <div class="collapse" id="MQTT_python_publishpy">
             <div class="card card-body border-0">
         
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> paho.mqtt.client <span class="im">as</span> mqtt</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="im">import</span> random</span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="im">import</span> time</span>
-<span id="cb5-4"><a href="#cb5-4"></a></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="co"># MQTT broker details</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a>broker_address <span class="op">=</span> <span class="st">"broker.hivemq.com"</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a>broker_port <span class="op">=</span> <span class="dv">1883</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="co"># Create a MQTT client instance</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a>client <span class="op">=</span> mqtt.Client()</span>
-<span id="cb5-11"><a href="#cb5-11"></a></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="co"># Connect to the MQTT broker</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a>client.<span class="ex">connect</span>(broker_address, broker_port, <span class="dv">60</span>)</span>
-<span id="cb5-14"><a href="#cb5-14"></a></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="co"># Loop to publish random temperature readings</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb5-17"><a href="#cb5-17"></a>    temperature <span class="op">=</span> random.uniform(<span class="fl">20.0</span>, <span class="fl">30.0</span>)  <span class="co"># Generate a random temperature value between 20.0 and 30.0</span></span>
-<span id="cb5-18"><a href="#cb5-18"></a>    client.publish(<span class="st">"agrotech/2023/temperature"</span>, <span class="bu">str</span>(temperature))  <span class="co"># Publish the temperature value to the topic</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a>    <span class="bu">print</span>(<span class="st">"Published temperature: "</span> <span class="op">+</span> <span class="bu">str</span>(temperature))</span>
-<span id="cb5-20"><a href="#cb5-20"></a>    time.sleep(<span class="dv">1</span>)  <span class="co"># Wait for 5 seconds before publishing the next temperature reading</span></span>
-<span id="cb5-21"><a href="#cb5-21"></a></span>
-<span id="cb5-22"><a href="#cb5-22"></a><span class="co"># Disconnect from the MQTT broker (not reached in this example)</span></span>
-<span id="cb5-23"><a href="#cb5-23"></a>client.disconnect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="co"># MQTT broker details</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>broker_address <span class="op">=</span> <span class="st">"broker.hivemq.com"</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>broker_port <span class="op">=</span> <span class="dv">1883</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co"># Callback function when a connection is established with the MQTT broker</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="kw">def</span> on_connect(client, userdata, flags, rc):</span>
+<span id="cb5-9"><a href="#cb5-9"></a>    <span class="bu">print</span>(<span class="st">"Connected to MQTT broker with result code: "</span> <span class="op">+</span> <span class="bu">str</span>(rc))</span>
+<span id="cb5-10"><a href="#cb5-10"></a>    <span class="co"># Subscribe to the topic upon successful connection</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>    client.subscribe(<span class="st">"agrotech/2023/temperature"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12"></a></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co"># Callback function when a message is received</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="kw">def</span> on_message(client, userdata, msg):</span>
+<span id="cb5-15"><a href="#cb5-15"></a>    <span class="bu">print</span>(<span class="st">"Received temperature: "</span> <span class="op">+</span> <span class="bu">str</span>(msg.payload.decode()))</span>
+<span id="cb5-16"><a href="#cb5-16"></a></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="co"># Create a MQTT client instance</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a>client <span class="op">=</span> mqtt.Client()</span>
+<span id="cb5-19"><a href="#cb5-19"></a></span>
+<span id="cb5-20"><a href="#cb5-20"></a><span class="co"># Assign callback functions</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a>client.on_connect <span class="op">=</span> on_connect</span>
+<span id="cb5-22"><a href="#cb5-22"></a>client.on_message <span class="op">=</span> on_message</span>
+<span id="cb5-23"><a href="#cb5-23"></a></span>
+<span id="cb5-24"><a href="#cb5-24"></a><span class="co"># Connect to the MQTT broker</span></span>
+<span id="cb5-25"><a href="#cb5-25"></a>client.<span class="ex">connect</span>(broker_address, broker_port, <span class="dv">60</span>)</span>
+<span id="cb5-26"><a href="#cb5-26"></a></span>
+<span id="cb5-27"><a href="#cb5-27"></a><span class="co"># Loop to maintain the connection and process network traffic</span></span>
+<span id="cb5-28"><a href="#cb5-28"></a>client.loop_forever()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
             </div>
             </div>

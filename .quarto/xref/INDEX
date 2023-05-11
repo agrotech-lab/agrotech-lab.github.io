@@ -115,5 +115,8 @@
   },
   "posts/tutorials/MQTT.qmd": {
     "MQTT.html": "9111bf3d"
+  },
+  "MQTT.md": {
+    "MQTT.html": "666a191b"
   }
 }

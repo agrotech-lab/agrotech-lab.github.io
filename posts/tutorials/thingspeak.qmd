@@ -40,5 +40,5 @@ This code is an example of how to send data from an ESP32 microcontroller to the
 ```{python}
 #| echo: false
 #| output: asis
-code_source("thingspeak")
+code_source("thingspeak.ino")
 ```

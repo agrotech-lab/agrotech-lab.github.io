@@ -34,7 +34,7 @@ Code for finding the sensor's address:
 ```{python}
 #| echo: false
 #| output: asis
-code_source("Agrotech_2022_find_DS18B20")
+code_source("Agrotech_2022_find_DS18B20.ino")
 ```
 
 ### SHT31 Temperature & Humidity Sensor Using I2C communication
@@ -46,7 +46,7 @@ Code for reading the sensor:
 ```{python}
 #| echo: false
 #| output: asis
-code_source("Agrotech_2022_SHT31")
+code_source("Agrotech_2022_SHT31.ino")
 ```
 
 ### VL53L0X Time-of-Flight Distance Sensor Using I2C communication
@@ -58,7 +58,7 @@ Code for reading the sensor:
 ```{python}
 #| echo: false
 #| output: asis
-code_source("Agrotech_2022_VL53L0X")
+code_source("Agrotech_2022_VL53L0X.ino")
 ```
 
 ## Thingspeak
@@ -70,7 +70,7 @@ code_source("Agrotech_2022_VL53L0X")
 ```{python}
 #| echo: false
 #| output: asis
-code_source("Agrotech_2022_Thingspeak")
+code_source("Agrotech_2022_Thingspeak.ino")
 ```
 
 ### Example: Sending Data from Sensors Above to Thingspeak
@@ -78,7 +78,7 @@ code_source("Agrotech_2022_Thingspeak")
 ```{python}
 #| echo: false
 #| output: asis
-code_source("Agrotech_2022_sensors_to_Thingspeak")
+code_source("Agrotech_2022_sensors_to_Thingspeak.ino")
 ```
 
 

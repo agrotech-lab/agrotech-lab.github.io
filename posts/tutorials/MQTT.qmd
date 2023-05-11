@@ -35,10 +35,10 @@ In this AgroTech class, we will explore the implementation of MQTT on the ESP32 
 
 1. **MQTT Broker:**  
 At the core of MQTT is the broker, which acts as a central hub for message exchange. The broker receives messages published by clients and distributes them to the interested subscribers. It is responsible for routing messages based on topics and maintaining the overall communication flow.
-**For our calss today we will use the [Hivemq free public broker](https://www.hivemq.com/public-mqtt-broker/)**
+**For our calss today we will use the [Hivemq free public broker](https://www.hivemq.com/public-mqtt-broker/)**.
 
 1. **MQTT Client:**  
-Clients are devices or applications that connect to the MQTT broker. They can be sensors, actuators, microcontrollers, or any device capable of sending or receiving messages. MQTT clients can function as both publishers and subscribers, allowing them to send data and receive updates from the broker. **For our class we can utilize the [Hivemq online client](https://www.hivemq.com/demos/websocket-client/) for testing**
+Clients are devices or applications that connect to the MQTT broker. They can be sensors, actuators, microcontrollers, or any device capable of sending or receiving messages. MQTT clients can function as both publishers and subscribers, allowing them to send data and receive updates from the broker. **For our class we can utilize the [Hivemq online client](https://www.hivemq.com/demos/websocket-client/) for testing**.
 
 1. **Topic:**  
 Topics are hierarchical strings that act as labels for messages. They serve as a way to categorize and organize information. When publishing a message, clients assign it to a specific topic. Subscribers can then choose to receive messages from specific topics of interest. For example, in agriculture, topics could represent sensor data such as "temperature," "humidity," or "soil moisture."
@@ -47,10 +47,10 @@ Topics are hierarchical strings that act as labels for messages. They serve as a
 Publishing refers to the action of sending a message from an MQTT client to the broker. When a client publishes a message, it specifies the topic to which the message belongs. The broker then distributes the message to all the interested subscribers that have subscribed to that particular topic.
 
 1. **Subscribe:**  
-Subscribing allows clients to express their interest in receiving messages from specific topics. By subscribing to a topic, a client informs the broker that it wants to receive messages published to that topic. Subscriptions can be specific to a particular topic (e.g., "temperature") or can use wildcard characters to subscribe to multiple topics (e.g., "agriculture/+/moisture" to subscribe to all moisture data in different areas of agriculture).
+Subscribing allows clients to express their interest in receiving messages from specific topics. By subscribing to a topic, a client informs the broker that it wants to receive messages published to that topic. Subscriptions can be specific to a particular topic (e.g., `temperature`) or can use wildcard characters to subscribe to multiple topics (e.g., `agriculture/+/moisture` to subscribe to all moisture data in different areas of agriculture).
 
 ## A bit more about topics
-Topics in MQTT are written as hierarchical strings, consisting of one or more levels separated by forward slashes ("/"). Each level within a topic provides a level of categorization and organization for the messages.
+Topics in MQTT are written as hierarchical strings, consisting of one or more levels separated by forward slashes (`/`). Each level within a topic provides a level of categorization and organization for the messages.
 
 For example, consider the topic structure in agriculture:
 
@@ -72,7 +72,7 @@ Understanding how topics are written and structured is crucial for effective mes
 ```{python}
 #| echo: false
 #| output: asis
-code_source("MQTT_led_subscribe", "ino")
+code_source("MQTT_led_subscribe.ino")
 ```
 
 
@@ -80,7 +80,7 @@ code_source("MQTT_led_subscribe", "ino")
 ```{python}
 #| echo: false
 #| output: asis
-code_source("MQTT_sensor_subscribe", "ino")
+code_source("MQTT_sensor_subscribe.ino")
 ```
 
 
@@ -89,7 +89,7 @@ code_source("MQTT_sensor_subscribe", "ino")
 ```{python}
 #| echo: false
 #| output: asis
-code_source("MQTT_publish_and_subscribe", "ino")
+code_source("MQTT_publish_and_subscribe.ino")
 ```
 
 ## MQTT + Python
@@ -98,12 +98,12 @@ code_source("MQTT_publish_and_subscribe", "ino")
 ```{python}
 #| echo: false
 #| output: asis
-code_source("MQTT_python_publish", "py")
+code_source("MQTT_python_subscribe.py")
 ```
 
 ### Subscribe
 ```{python}
 #| echo: false
 #| output: asis
-code_source("MQTT_python_subscribe", "py")
+code_source("MQTT_python_publish.py")
 ```

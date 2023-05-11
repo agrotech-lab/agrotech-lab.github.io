@@ -24,14 +24,14 @@ execute:
 ```{python}
 #| echo: false
 #| output: asis
-code_source("pulse_counter")
+code_source("pulse_counter.ino")
 ```
 
 ### Calculate frequency from counts
 ```{python}
 #| echo: false
 #| output: asis
-code_source("pulse_frequency")
+code_source("pulse_frequency.ino")
 ```
 
 

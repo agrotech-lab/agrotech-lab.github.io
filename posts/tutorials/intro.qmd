@@ -29,7 +29,7 @@ It's time to run a first example.
 ```{python}
 #| echo: false
 #| output: asis
-code_source("blink")
+code_source("blink.ino")
 ```
 
 ----
@@ -41,7 +41,7 @@ Upload the following code to your ESP32, then click on the <span class="iconify"
 ```{python}
 #| echo: false
 #| output: asis
-code_source("print-increasing-numbers")
+code_source("print-increasing-numbers.ino")
 ```
 
 
@@ -56,7 +56,7 @@ code_source("print-increasing-numbers")
 ```{python}
 #| echo: false
 #| output: asis
-code_source("print-random-numbers")
+code_source("print-random-numbers.ino")
 ```
 
 ----
@@ -68,7 +68,7 @@ We will now learn how to deal with floats, how to define our own functions, and 
 ```{python}
 #| echo: false
 #| output: asis
-code_source("sin-cos-square")
+code_source("sin-cos-square.ino")
 ```
 
 ----
@@ -78,7 +78,7 @@ code_source("sin-cos-square")
 ```{python}
 #| echo: false
 #| output: asis
-code_source("wifi-time")
+code_source("wifi-time.ino")
 ```
 
 ----

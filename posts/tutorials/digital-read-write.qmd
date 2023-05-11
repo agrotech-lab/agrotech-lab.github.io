@@ -20,7 +20,7 @@ execute:
 ```{python}
 #| echo: false
 #| output: asis
-code_source("led_button")
+code_source("led_button.ino")
 ```
 
 
@@ -28,7 +28,7 @@ code_source("led_button")
 ```{python}
 #| echo: false
 #| output: asis
-code_source("button_led_toggle")
+code_source("button_led_toggle.ino")
 ```
 
 
