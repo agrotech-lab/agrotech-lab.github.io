@@ -118,5 +118,8 @@
   },
   "MQTT.md": {
     "MQTT.html": "666a191b"
+  },
+  "posts/tutorials/API-thingspeak-python.qmd": {
+    "API-thingspeak-python.html": "bb01ec57"
   }
 }
