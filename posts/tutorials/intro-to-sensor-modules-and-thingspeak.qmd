@@ -5,8 +5,8 @@ date: "2022-04-05"
 categories: [arduino]
 echo: false
 jupyter: python3
-execute:
-  freeze: auto  # re-render only when source changes
+# execute:
+#   freeze: auto  # re-render only when source changes
 # image: "image.jpg"
 # format:
 #   html:
