@@ -10,14 +10,14 @@ book:
   chapters:
     - index.qmd
     - schedule.qmd
-    - arduino-intro-and-links.qmd
-    - part: "Unit 1: first steps"
+    - part: "**First steps**"
       chapters:
+      - arduino-intro-and-links.qmd
       - tutorials/arduino_IDE.qmd
       - tutorials/install_firebeetle.qmd
       - tutorials/firebeetle_documentation.qmd
       - tutorials/breadboard.qmd
-    - part: "Unit 2: running simple programs"
+    - part: "**Running simple programs**"
       chapters:
       - tutorials/first-programs.qmd
       - tutorials/libraries.qmd
@@ -25,37 +25,34 @@ book:
       - tutorials/merging.qmd
       - tutorials/SHT31.qmd
       - tutorials/RGB.qmd
-    - part: "Unit 3: electronics and advanced stuff"
+    - part: "**Electronics**"
       chapters:
       - tutorials/basic-electronics-concepts.qmd
       - tutorials/electronics-class.qmd
+      - tutorials/soldering-and-wires.qmd
+      - tutorials/relay.qmd
+    - part: "**Sensors and comm**"
+      chapters:
       - tutorials/intro-to-sensor-modules-and-thingspeak.qmd
       - tutorials/pulse-sensors.qmd
       - tutorials/digital-read-write.qmd
-      - tutorials/relay.qmd
       - tutorials/MQTT.qmd
       - tutorials/python-matlab-basics.qmd
+      - tutorials/API-thingspeak-python.qmd
+    - part: "**Agro stuff**"
+      chapters:
       - tutorials/water-and-energy-balances.qmd
       - tutorials/psychrometric-chart-and-evaporative-cooling.qmd
-      - tutorials/soldering-and-wires.qmd
-      - tutorials/API-thingspeak-python.qmd
-    - part: "Resources"
+    - part: "**Resources**"
       chapters:
       - resources.qmd
-    - part: "Projects"
+    - part: "**Projects**"
       chapters:
       - projects.qmd
+      - projects/borrowing-equipment.qmd
       - projects/passover-2023.qmd
       - projects/final-project.qmd
-      - projects/borrowing-equipment.qmd
-  # navbar:
-  # logo: /archive/images/site-logo-white.png
-    # right:
-    #   - about.qmd
-    #   - schedule.qmd
-    #   - tutorials.qmd
-    #   - resources.qmd
-    #   - projects.qmd
+
   sidebar:
     collapse-level: 2
     tools:

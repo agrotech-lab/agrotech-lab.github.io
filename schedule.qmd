@@ -1,10 +1,12 @@
 ---
-title: "{{< iconify material-symbols calendar-month-sharp >}} Schedule"
+# title: "Schedule {.unnumbered}"
 jupyter: python3
 execute:
   freeze: auto  # re-render only when source changes
 # image: profile.jpg
 ---
+
+# Schedule {.unnumbered}
 
 <i class="bi bi-clock-fill"></i> Wednesdays, from 17:00 to 20:00  
 <i class="bi bi-geo-alt-fill"></i> In the lab next to the "Ground Water" seminar room, 1st floor  
