@@ -1,11 +1,10 @@
 ---
 title: "{{< iconify material-symbols rocket-launch >}} Projects"
-# image: profile.jpg
 ---
 
 ## {{< iconify icons8 finish-flag >}} Final Project
 
-[Read carefully the instructions. Click here.](/posts/projects/final-project.html)
+[Read carefully the instructions. Click here.](projects/final-project.html)
 
 <details><summary>2022 Final projects</summary>
 | Team | Project                                                      |

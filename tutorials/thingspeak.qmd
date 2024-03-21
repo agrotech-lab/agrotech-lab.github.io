@@ -1,0 +1,34 @@
+---
+title: "ThingSpeak"
+subtitle: "Using ThingSpeak with ESP32"
+echo: false
+jupyter: python3
+---
+
+{{< include ../_insert_ino_code.qmd >}}
+
+## Introduction
+
+ThingSpeak is an open-source Internet of Things (IoT) platform that allows users to collect, analyze, and act on data from sensors or devices. It is a useful tool for monitoring and controlling devices in real-time, and it is commonly used in research projects, industrial automation, and smart homes. In this tutorial, we will introduce the basic concepts of ThingSpeak and demonstrate how to use it for data collection and visualization. In this tutorial, we will learn how to create a channel and upload data to it using an ESP32.
+
+## Creating a ThingSpeak Channel
+
+1. Sign in or create an account on the [ThingSpeak website](https://thingspeak.com/).
+2. Click on "Channels" and then click "New Channel".
+3. Fill in the required fields, such as the name and description of the channel, as well as the fields for the data you want to collect. You can have up to 8 fields in a channel.
+4. Click "Save Channel".
+5. Once you have created your channel, you will be taken to the Channel page.
+6. On this page, you will see your Channel ID listed under the channel name.
+7. To get your Write API Key, click on the "API Keys" tab at the top of the screen.
+8. Under the "Write API Key" section, you will see your unique Write API Key.
+
+Make sure to keep your Write API Key private as it is used to allow your device to upload data to your ThingSpeak channel.
+
+## Uploading Data to ThingSpeak with ESP32
+This code is an example of how to send data from an ESP32 microcontroller to the ThingSpeak platform using WiFi. The ESP32 reads sensor data (in this example, arbitrary values are set as fields) and sends them to the ThingSpeak server periodically. The code includes the necessary network credentials and ThingSpeak channel and API key information. The code is well-commented to explain what each part of the program does.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("thingspeak.ino")
+```

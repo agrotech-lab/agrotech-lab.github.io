@@ -1,18 +1,72 @@
 project:
-  type: website
+  type: book
   output-dir: docs
 
-website:
+book:
   title: "agrotech lab"
+  author: "Yair Mau & Erez Feuer"
   favicon: /archive/images/favicon.ico
-  navbar:
-    logo: /archive/images/site-logo-white.png
-    right:
-      - about.qmd
-      - schedule.qmd
-      - tutorials.qmd
+  # repo-url: https://github.com/yairmau/time-series/
+  chapters:
+    - index.qmd
+    - schedule.qmd
+    - arduino-intro-and-links.qmd
+    - part: "Unit 1: first steps"
+      chapters:
+      - tutorials/arduino_IDE.qmd
+      - tutorials/install_firebeetle.qmd
+      - tutorials/firebeetle_documentation.qmd
+      - tutorials/breadboard.qmd
+    - part: "Unit 2: running simple programs"
+      chapters:
+      - tutorials/first-programs.qmd
+      - tutorials/libraries.qmd
+      - tutorials/thingspeak.qmd
+      - tutorials/merging.qmd
+      - tutorials/SHT31.qmd
+      - tutorials/RGB.qmd
+    - part: "Unit 3: electronics and advanced stuff"
+      chapters:
+      - tutorials/basic-electronics-concepts.qmd
+      - tutorials/electronics-class.qmd
+      - tutorials/intro-to-sensor-modules-and-thingspeak.qmd
+      - tutorials/pulse-sensors.qmd
+      - tutorials/digital-read-write.qmd
+      - tutorials/relay.qmd
+      - tutorials/MQTT.qmd
+      - tutorials/python-matlab-basics.qmd
+      - tutorials/water-and-energy-balances.qmd
+      - tutorials/psychrometric-chart-and-evaporative-cooling.qmd
+      - tutorials/soldering-and-wires.qmd
+      - tutorials/API-thingspeak-python.qmd
+    - part: "Resources"
+      chapters:
       - resources.qmd
+    - part: "Projects"
+      chapters:
       - projects.qmd
+      - projects/passover-2023.qmd
+      - projects/final-project.qmd
+      - projects/borrowing-equipment.qmd
+  # navbar:
+  # logo: /archive/images/site-logo-white.png
+    # right:
+    #   - about.qmd
+    #   - schedule.qmd
+    #   - tutorials.qmd
+    #   - resources.qmd
+    #   - projects.qmd
+  sidebar:
+    collapse-level: 2
+    tools:
+      - icon: house-fill
+        href: https://yairmau.com/
+      - icon: bookmark-fill
+        href: /sources.html
+      - icon: asterisk
+        href: /things-to-remember.html
+    logo: archive/images/site-logo.png
+  search: true
 
 format:
   html:
@@ -22,6 +76,8 @@ format:
       - custom.scss
     css: custom.scss
     highlight-style: breezedark
+    fontsize: 1.2em
+    code-line-numbers: true
 
 
 

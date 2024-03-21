@@ -4,7 +4,7 @@ title: "{{< iconify fa6-solid user-graduate >}} Tutorials"
 
 [What is a microcontroller?](/posts/tutorials/arduino-intro-and-links.html)
 
-## Unit 1: first steps
+## Unit 1: first steps  
 
 1. [Arduino IDE](/posts/tutorials/arduino_IDE.html)
 1. [Install FireBeetle (ESP32)](/posts/tutorials/install_firebeetle.html)

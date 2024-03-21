@@ -121,5 +121,86 @@
   },
   "posts/tutorials/API-thingspeak-python.qmd": {
     "API-thingspeak-python.html": "bb01ec57"
+  },
+  "arduino-intro-and-links.qmd": {
+    "arduino-intro-and-links.html": "e06af9e5"
+  },
+  "tutorials/arduino_IDE.qmd": {
+    "arduino_IDE.html": "15c3c2c6"
+  },
+  "tutorials/install_firebeetle.qmd": {
+    "install_firebeetle.html": "70d4f80b"
+  },
+  "tutorials/firebeetle_documentation.qmd": {
+    "firebeetle_documentation.html": "b597d3ba"
+  },
+  "tutorials/breadboard.qmd": {
+    "breadboard.html": "aee55857"
+  },
+  "tutorials/intro.qmd": {
+    "intro.html": "03ff8505"
+  },
+  "tutorials/first-programs.qmd": {
+    "first-programs.html": "09ef9013"
+  },
+  "tutorials/libraries.qmd": {
+    "libraries.html": "142bc393"
+  },
+  "tutorials/thingspeak.qmd": {
+    "thingspeak.html": "2fe49f86"
+  },
+  "tutorials/merging.qmd": {
+    "merging.html": "2d4eaf00"
+  },
+  "tutorials/SHT31.qmd": {
+    "SHT31.html": "0d08aae0"
+  },
+  "tutorials/RGB.qmd": {
+    "RGB.html": "73a5e714"
+  },
+  "tutorials/basic-electronics-concepts.qmd": {
+    "basic-electronics-concepts.html": "46543388"
+  },
+  "tutorials/electronics-class.qmd": {
+    "electronics-class.html": "b1c88545"
+  },
+  "tutorials/intro-to-sensor-modules-and-thingspeak.qmd": {
+    "intro-to-sensor-modules-and-thingspeak.html": "63591efc"
+  },
+  "tutorials/pulse-sensors.qmd": {
+    "pulse-sensors.html": "7871b094"
+  },
+  "tutorials/digital-read-write.qmd": {
+    "digital-read-write.html": "7d7e5ee0"
+  },
+  "tutorials/relay.qmd": {
+    "relay.html": "75f7dd36"
+  },
+  "tutorials/MQTT.qmd": {
+    "MQTT.html": "f3cc8425"
+  },
+  "tutorials/python-matlab-basics.qmd": {
+    "python-matlab-basics.html": "43ed7200"
+  },
+  "tutorials/water-and-energy-balances.qmd": {
+    "water-and-energy-balances.html": "c3a5a8e6"
+  },
+  "tutorials/psychrometric-chart-and-evaporative-cooling.qmd": {
+    "psychrometric-chart-and-evaporative-cooling.html": "bc887e69"
+  },
+  "tutorials/soldering-and-wires.qmd": {
+    "soldering-and-wires.html": "f6d4a9c2"
+  },
+  "tutorials/API-thingspeak-python.qmd": {
+    "API-thingspeak-python.html": "89a34cd7"
+  },
+  "projects/final-project.qmd": {
+    "final-project.html": "2c2a0d47"
+  },
+  "projects/borrowing-equipment.qmd": {
+    "borrowing-equipment.html": "95ef0b99"
+  },
+  "projects/passover-2023.qmd": {
+    "passover-2023.html": "6f2bb4ed"
   }
 }

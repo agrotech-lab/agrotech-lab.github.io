@@ -4,7 +4,7 @@ title: "{{< iconify fluent brain-circuit-20-regular >}} Resources"
 
 ## {{< iconify mdi led-on >}} Equipment
 
-##### **Equipment Pickup Form**
+### **Equipment Pickup Form**
 
 1. Please [fill out this form](https://tinyurl.com/agtech-pickup) **every time** you receive a new sensor or equipment. You will need to provide your 9-digit ID number and indicate which sensor(s) you have received. 
 1. Make sure your name and phone number are written on the box containing the equipment. 

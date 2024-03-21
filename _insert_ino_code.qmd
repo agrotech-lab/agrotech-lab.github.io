@@ -18,7 +18,7 @@ ticks3 = """```"""
 def download_button(filename):
     path = "/archive/code/"
     # icon_base = icon[:2]
-    return f"""<a class="btn btn-outline-dark rounded", href="{path}{filename}" target="_blank" rel="noopener noreferrer">
+    return f"""<a class="btn btn-outline-dark rounded", href="{path}{filename}" download target="_blank" rel="noopener noreferrer">
         <i class="bi bi-download"></i> Download code
     </a>"""
 
@@ -32,8 +32,8 @@ def toggle_code_button(filename):
     )
 
 def toggle_code(filename):
-    # print(os.getcwd())
-    path = "../../archive/code/"
+    home_dir = os.environ['QUARTO_PROJECT_DIR']
+    path = home_dir + "/archive/code/"
     if filename.endswith('ino'):
         highlight = 'c'
     if filename.endswith('py'):
