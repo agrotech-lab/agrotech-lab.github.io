@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -104,6 +104,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../custom.scss">
@@ -449,6 +452,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<!-- ---
+title: ""
+echo: false
+jupyter: python3
+section-divs: false
+--- -->
 <section id="introduction" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">10.1</span> Introduction</h2>
 <p>In this tutorial, we will learn how to use the ESP32 microcontroller with the SHT31 temperature and humidity sensor. We will cover the basics of the sensor, including how it works and how to connect it to an ESP32. We will also learn how to use the Adafruit_SHT31 library to read temperature and humidity values from the sensor. By the end of this tutorial, you will be able to build your own ESP32 and SHT31-based projects.</p>
@@ -501,44 +510,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="code" class="level2" data-number="10.5">
 <h2 data-number="10.5" class="anchored" data-anchor-id="code"><span class="header-section-number">10.5</span> Code</h2>
-<p>Here is the code for reading temperature and humidity values from the SHT31 sensor:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span><span class="pp">   </span><span class="co">// Include the Arduino library</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="pp">#include </span><span class="im">&lt;Wire.h&gt;</span><span class="pp">      </span><span class="co">// Include the Wire library for I2C communication</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="pp">#include </span><span class="im">"Adafruit_SHT31.h"</span><span class="pp"> </span><span class="co">// Include the SHT31 library from Adafruit</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a>Adafruit_SHT31 sht31 <span class="op">=</span> Adafruit_SHT31<span class="op">();</span> <span class="co">// Create an instance of the SHT31 object</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">112500</span><span class="op">);</span>   <span class="co">// Initialize the serial communication with a baud rate of 112500</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>  <span class="cf">if</span> <span class="op">(!</span> sht31<span class="op">.</span>begin<span class="op">(</span><span class="bn">0x44</span><span class="op">))</span> <span class="op">{</span>  <span class="co">// Check if SHT31 is connected and start it with address 0x44</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Couldn't find SHT31"</span><span class="op">);</span> <span class="co">// Print an error message if SHT31 is not found</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a>    <span class="cf">while</span> <span class="op">(</span><span class="dv">1</span><span class="op">)</span> delay<span class="op">(</span><span class="dv">1</span><span class="op">);</span>  <span class="co">// Wait indefinitely</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a>  <span class="op">}</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="op">}</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a></span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>  <span class="dt">float</span> t <span class="op">=</span> sht31<span class="op">.</span>readTemperature<span class="op">();</span> <span class="co">// Read temperature from SHT31 and store it in t variable</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a>  <span class="dt">float</span> h <span class="op">=</span> sht31<span class="op">.</span>readHumidity<span class="op">();</span>    <span class="co">// Read humidity from SHT31 and store it in h variable</span></span>
-<span id="cb1-18"><a href="#cb1-18"></a></span>
-<span id="cb1-19"><a href="#cb1-19"></a>  <span class="cf">if</span> <span class="op">(!</span> isnan<span class="op">(</span>t<span class="op">))</span> <span class="op">{</span>             <span class="co">// Check if t is not NaN (not a number)</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Temp *C = "</span><span class="op">);</span> <span class="co">// Print temperature label</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a>    Serial<span class="op">.</span>println<span class="op">(</span>t<span class="op">);</span>          <span class="co">// Print temperature value</span></span>
-<span id="cb1-22"><a href="#cb1-22"></a>  <span class="op">}</span> </span>
-<span id="cb1-23"><a href="#cb1-23"></a>  <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb1-24"><a href="#cb1-24"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Failed to read temperature"</span><span class="op">);</span> <span class="co">// Print an error message if temperature reading fails</span></span>
-<span id="cb1-25"><a href="#cb1-25"></a>  <span class="op">}</span></span>
-<span id="cb1-26"><a href="#cb1-26"></a></span>
-<span id="cb1-27"><a href="#cb1-27"></a>  <span class="cf">if</span> <span class="op">(!</span> isnan<span class="op">(</span>h<span class="op">))</span> <span class="op">{</span>              <span class="co">// Check if h is not NaN (not a number)</span></span>
-<span id="cb1-28"><a href="#cb1-28"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Hum. % = "</span><span class="op">);</span>  <span class="co">// Print humidity label</span></span>
-<span id="cb1-29"><a href="#cb1-29"></a>    Serial<span class="op">.</span>println<span class="op">(</span>h<span class="op">);</span>           <span class="co">// Print humidity value</span></span>
+<p>Here is the code for reading temperature and humidity values from the SHT31 sensor.</p>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#sht31ino" aria-expanded="false" aria-controls="sht31ino">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/sht31.ino" download="" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="sht31ino">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">/*</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co"> * This program is a modification of</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co"> * http://www.esp32learning.com/code/esp32-and-sht31-sensor-example.php</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co"> */</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span><span class="pp">   </span><span class="co">// Include the Arduino library</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="pp">#include </span><span class="im">&lt;Wire.h&gt;</span><span class="pp">      </span><span class="co">// Include the Wire library for I2C communication</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="pp">#include </span><span class="im">"Adafruit_SHT31.h"</span><span class="pp"> </span><span class="co">// Include the SHT31 library from Adafruit</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a>Adafruit_SHT31 sht31 <span class="op">=</span> Adafruit_SHT31<span class="op">();</span> <span class="co">// Create an instance of the SHT31 object</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span>        <span class="co">// Initialize the serial communication with a baud rate of 112500</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>  <span class="cf">if</span> <span class="op">(!</span> sht31<span class="op">.</span>begin<span class="op">(</span><span class="bn">0x44</span><span class="op">))</span> <span class="op">{</span>   <span class="co">// Check if SHT31 is connected and start it with address 0x44</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>    <span class="co">// Print an error message if SHT31 is not found</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Couldn't find SHT31"</span><span class="op">);</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>    <span class="cf">while</span> <span class="op">(</span><span class="dv">1</span><span class="op">)</span> delay<span class="op">(</span><span class="dv">1</span><span class="op">);</span>  <span class="co">// Wait indefinitely</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>  <span class="op">}</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="op">}</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a>  <span class="co">// Read temperature from SHT31 and assign it to "temperature"</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a>  <span class="dt">float</span> temperature <span class="op">=</span> sht31<span class="op">.</span>readTemperature<span class="op">();</span> </span>
+<span id="cb1-23"><a href="#cb1-23"></a>  <span class="co">// Read relative humidity from SHT31 and assign it to "humidity"</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a>  <span class="dt">float</span> humidity <span class="op">=</span> sht31<span class="op">.</span>readHumidity<span class="op">();</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a></span>
+<span id="cb1-26"><a href="#cb1-26"></a>  <span class="cf">if</span> <span class="op">(!</span> isnan<span class="op">(</span>temperature<span class="op">))</span> <span class="op">{</span>     <span class="co">// Check if t is not NaN (not a number)</span></span>
+<span id="cb1-27"><a href="#cb1-27"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"temp_deg_C:"</span><span class="op">);</span>  <span class="co">// Print temperature label</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a>    Serial<span class="op">.</span>print<span class="op">(</span>temperature<span class="op">);</span>    <span class="co">// Print temperature value</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span><span class="op">);</span>           <span class="co">// Write a tab space</span></span>
 <span id="cb1-30"><a href="#cb1-30"></a>  <span class="op">}</span> </span>
 <span id="cb1-31"><a href="#cb1-31"></a>  <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb1-32"><a href="#cb1-32"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Failed to read humidity"</span><span class="op">);</span>  <span class="co">// Print an error message if humidity reading fails</span></span>
-<span id="cb1-33"><a href="#cb1-33"></a>  <span class="op">}</span></span>
-<span id="cb1-34"><a href="#cb1-34"></a></span>
-<span id="cb1-35"><a href="#cb1-35"></a>  Serial<span class="op">.</span>println<span class="op">();</span>    <span class="co">// Print a blank line</span></span>
-<span id="cb1-36"><a href="#cb1-36"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span>         <span class="co">// Delay for 1 second</span></span>
-<span id="cb1-37"><a href="#cb1-37"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-32"><a href="#cb1-32"></a>    <span class="co">// Print an error message if temperature reading fails</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Failed to read temperature"</span><span class="op">);</span></span>
+<span id="cb1-34"><a href="#cb1-34"></a>  <span class="op">}</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a></span>
+<span id="cb1-36"><a href="#cb1-36"></a>  <span class="cf">if</span> <span class="op">(!</span> isnan<span class="op">(</span>humidity<span class="op">))</span> <span class="op">{</span>        <span class="co">// Check if h is not NaN (not a number)</span></span>
+<span id="cb1-37"><a href="#cb1-37"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"rel_hum_%:"</span><span class="op">);</span>   <span class="co">// Print humidity label</span></span>
+<span id="cb1-38"><a href="#cb1-38"></a>    Serial<span class="op">.</span>print<span class="op">(</span>humidity<span class="op">);</span>       <span class="co">// Print humidity value</span></span>
+<span id="cb1-39"><a href="#cb1-39"></a>  <span class="op">}</span> </span>
+<span id="cb1-40"><a href="#cb1-40"></a>  <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb1-41"><a href="#cb1-41"></a>    <span class="co">// Print an error message if humidity reading fails</span></span>
+<span id="cb1-42"><a href="#cb1-42"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Failed to read humidity"</span><span class="op">);</span></span>
+<span id="cb1-43"><a href="#cb1-43"></a>  <span class="op">}</span></span>
+<span id="cb1-44"><a href="#cb1-44"></a></span>
+<span id="cb1-45"><a href="#cb1-45"></a>  Serial<span class="op">.</span>println<span class="op">();</span>    <span class="co">// Break line</span></span>
+<span id="cb1-46"><a href="#cb1-46"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span>         <span class="co">// Wait 1 second</span></span>
+<span id="cb1-47"><a href="#cb1-47"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
 
 
 </section>

@@ -36,7 +36,7 @@ Code for reading the sensor:
 ```{python}
 #| echo: false
 #| output: asis
-code_source("Agrotech_2022_SHT31.ino")
+code_source("sht31.ino")
 ```
 
 <br>

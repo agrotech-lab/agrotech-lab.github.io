@@ -6,7 +6,7 @@
 const char* ssid = "HUJI-guest"; // your wifi SSID name
 const char* password = "" ;// wifi pasword
 String formattedTime;
-float r = 0, m = 0;
+float rand_int = 0, cumulative = 0;
 
 WiFiClient client;
 
@@ -64,18 +64,18 @@ void loop() {
     Serial.println(formattedTime);
   }
   
-  Serial.print("s = ");
+  Serial.print("second = ");
   Serial.print(time_s);
-  r = random(10, 20);
-  m += r;
+  rand_int = random(10, 20);
+  cumulative += rand_int;
   Serial.print("\trand = ");
-  Serial.print(r);
+  Serial.print(rand_int);
   Serial.print("\trunning sum = ");
-  Serial.println(m);
+  Serial.println(cumulative);
   if (time_s%10==9) {
     Serial.print("Average  = ");
-    Serial.println(m / 10);
-    m = 0;
+    Serial.println(cumulative / 10);
+    cumulative = 0;
   }
   
   delay(1000);

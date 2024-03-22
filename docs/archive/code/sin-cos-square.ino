@@ -1,3 +1,5 @@
+// initialize 4 floats (decimals)
+// time and 3 more variables to be plotted
 float t = 0, x1 = 0, x2 = 0, x3 = 0;
 
 void setup() {
@@ -5,6 +7,10 @@ void setup() {
   Serial.begin(9600);
 }
 
+/*
+ * This is how you define a function.
+ * In this case, the function returns a float (decimal)
+ */
 float my_sine(float time) {
   return sin(time);
 }
@@ -18,6 +24,7 @@ float my_cosine(float time) {
 void loop() {
   x1 = my_sine(t);
   x2 = my_cosine(t);
+  // now let's make a square wave
   if (x1 > 0) {
     x3 = -1.0;
   } else {
