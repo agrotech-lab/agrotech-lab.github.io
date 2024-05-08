@@ -69,7 +69,7 @@ format:
   html:
     include-before-body: _custom_header.html
     theme:
-      - flatly
+      - lumen #simplex #spacelab # litera #flatly
       - custom.scss
     css: custom.scss
     highlight-style: breezedark

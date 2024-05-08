@@ -262,7 +262,7 @@
     "href": "tutorials/first-programs.html",
     "title": "6  First programs",
     "section": "",
-    "text": "6.1 Blink\nIt’s time to run a first example.",
+    "text": "6.1 Blink\nIt’s time to run a first example.\nThe following is a slight variation of the code above. It requires you to:",
     "crumbs": [
       "**Running simple programs**",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>First programs</span>"
@@ -273,7 +273,7 @@
     "href": "tutorials/first-programs.html#blink",
     "title": "6  First programs",
     "section": "",
-    "text": "Go to File &gt; Examples &gt; 01.Basics, click on Blink.\nPress the  “right arrow” button on the top left to upload the code onto the ESP32.\nWhen you see “Connecting” on the bottom of the screen, press the right button on the ESP32.\n\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// the setup function runs once when you press reset or power the board\nvoid setup() {\n  // initialize digital pin LED_BUILTIN as an output.\n  pinMode(LED_BUILTIN, OUTPUT);\n}\n\n// the loop function runs over and over again forever\nvoid loop() {\n  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)\n  delay(1000);                       // wait for a second\n  digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW\n  delay(100);                       // wait for a second\n}",
+    "text": "Go to File &gt; Examples &gt; 01.Basics, click on Blink.\nPress the  “right arrow” button on the top left to upload the code onto the ESP32.\nWhen you see “Connecting” on the bottom of the screen, press the right button on the ESP32.\n\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// the setup function runs once when you press reset or power the board\nvoid setup() {\n  // initialize digital pin LED_BUILTIN as an output.\n  pinMode(LED_BUILTIN, OUTPUT);\n}\n\n// the loop function runs over and over again forever\nvoid loop() {\n  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)\n  delay(1000);                       // wait for a second\n  digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW\n  delay(500);                       // wait for 500 milliseconds\n}\n\n            \n            \n            \n\n\n\nconnect the ESP32 to a breadboard\nconnect the long leg of an LED to the A4 pin\nconnect a 330-ohm resistor between the short LED leg and ground\n\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nconst int LED_pin = A4;\n\n// the setup function runs once when you press reset or power the board\nvoid setup() {\n  // initialize digital pin LED_BUILTIN as an output.\n  pinMode(LED_pin, OUTPUT);\n}\n\n// the loop function runs over and over again forever\nvoid loop() {\n  digitalWrite(LED_pin, HIGH);   // turn the LED on (HIGH is the voltage level)\n  delay(1000);                       // wait for a second\n  digitalWrite(LED_pin, LOW);    // turn the LED off by making the voltage LOW\n  delay(1000);                       // wait for a second\n}",
     "crumbs": [
       "**Running simple programs**",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>First programs</span>"
@@ -328,7 +328,7 @@
     "href": "tutorials/first-programs.html#home-assignment",
     "title": "6  First programs",
     "section": "6.6 Home assignment",
-    "text": "6.6 Home assignment\nYou will write Arduino code that incorporates all the following elements. Upload your .ino file on the course’s Moodle page.\n\nvariable declaration (e.g., float my_var=1.23;)\nfunction declaration\nBuilt in LED control\nConditionals (if, else)\nRandom numbers\nSerial plotting, numbers and text\nComments explaining every step of what you did\nBonus: connect to WiFi and make use of time from the internet\nObligatory: at the very top of your code, write in many lines an explanation (in English) of what your code does\n\n/*\nAuthor: Harry Potter\nClass: Agrotech Lab\nDate: 2023-03-14\nThis code does bla bla bla.\nMore explanations here.\n*/",
+    "text": "6.6 Home assignment\nYou will write Arduino code that incorporates all the following elements. Upload your .ino file on the course’s Moodle page. You’ll have two weeks until deadline.\n\nvariable declaration (e.g., float my_var=1.23;)\nfunction declaration\nBuilt-in and external LED control\nConditionals (if, else)\nRandom numbers\nSerial plotting, numbers and text\nComments explaining every step of what you did\nBonus: connect to WiFi and make use of time from the internet\nObligatory: at the very top of your code, write in many lines an explanation (in English) of what your code does\n\n/*\nAuthor: Harry Potter\nClass: Agrotech Lab\nDate: 2023-03-14\nThis code does bla bla bla.\nMore explanations here.\n*/",
     "crumbs": [
       "**Running simple programs**",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>First programs</span>"

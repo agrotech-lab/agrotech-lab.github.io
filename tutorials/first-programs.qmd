@@ -22,6 +22,21 @@ It's time to run a first example.
 code_source("blink.ino")
 ```
 
+<br>
+
+The following is a slight variation of the code above. It requires you to:
+
+- connect the ESP32 to a breadboard
+- connect the long leg of an LED to the A4 pin
+- connect a 330-ohm resistor between the short LED leg and ground
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("blink_external_LED.ino")
+```
+
+
 ----
 
 ## Printing increasing numbers
@@ -75,11 +90,11 @@ code_source("wifi-time.ino")
 
 ## Home assignment
 
-You will write Arduino code that incorporates all the following elements. Upload your `.ino` file on the course's Moodle page.
+You will write Arduino code that incorporates all the following elements. Upload your `.ino` file on the course's Moodle page. You'll have two weeks until deadline.
 
 * variable declaration (e.g., `float my_var=1.23;`)
 * function declaration
-* Built in LED control
+* Built-in and external LED control
 * Conditionals (if, else)
 * Random numbers
 * Serial plotting, numbers and text
