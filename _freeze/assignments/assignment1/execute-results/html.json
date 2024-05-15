@@ -1,0 +1,12 @@
+{
+  "hash": "1ebd2ae994f034c71a00686a0e70fd36",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: Assignment 1\necho: false\nexecute:\n  freeze: auto\n---\n\nYou will write Arduino code that incorporates all the following elements learned in [First programs](/tutorials/first-programs.html). Upload your `.ino` file on the course's Moodle page. You'll have two weeks until deadline.\n\n* variable declaration, e.g.\n  ```cpp\n  float my_var=1.23;\n  int i, j;\n  ```\n* function declaration, e.g.\n  ```cpp\n  int my_sum(int x, int y) {\n    return x + y;\n  }\n  ```\n* Built-in and external LED control\n* Conditionals, e.g.\n  ```cpp\n  if (temperature > 30.0) {\n    fan = 1;\n  } else {\n    fan = 0;\n  }\n  ```\n* Random numbers, e.g.\n  ```cpp\n  // random number from -5 (inclusive) to +5 (exclusive)\n  rand1 = random(-5, 5);\n  ```\n* Serial plotting, numbers and text\n* Comments explaining every step of what you did\n* **Bonus**: connect to WiFi and make use of time from the internet\n* **Obligatory**: at the very top of your code, write in many lines an explanation (in English) of what your code does\n```cpp\n/*\nAuthor: Harry Potter\nClass: Agrotech Lab\nDate: 2023-03-14\nThis code does bla bla bla.\nMore explanations here.\n*/\n```\n\n",
+    "supporting": [
+      "assignment1_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

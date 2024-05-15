@@ -10,9 +10,9 @@ execute:
 
 ## Presentation
 
-[Download .pptx <span class="iconify" data-icon="el:download-alt"></span>](/archive/teaching-material/electronics-class.pptx)
+<a href="/archive/teaching-material/electronics-class.pdf" download>Download presentation pdf </a>
 
-<object data="/archive/teaching-material/electronics-class.pdf" width="800" height="500" type='application/pdf'></object>
+<!-- <object data="/archive/teaching-material/electronics-class.pdf" width="800" height="500" type='application/pdf'></object> -->
 
 [Pin information for ESP32](https://randomnerdtutorials.com/esp32-pinout-reference-gpios/)
 

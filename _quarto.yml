@@ -43,6 +43,9 @@ book:
       chapters:
       - tutorials/water-and-energy-balances.qmd
       - tutorials/psychrometric-chart-and-evaporative-cooling.qmd
+    - part: "**Assignments**"
+      chapters:
+      - assignments/assignment1.qmd
     - part: "**Resources**"
       chapters:
       - resources.qmd

@@ -26,11 +26,11 @@ The main values we would like to promote: **curiosity, independence, creativity,
 
 * `10%`: **Presence.** 100% presence is required.
 * `10%`: **Equipment:** borrowing and returning. All equipment must be accounted for and taken care with respect. Together we will keep record of all borrowed equipment. Everything will be neatly return to storage by 10 July.
-* `10%`: **Passover project.**
-* `70%`: **Final project.**
-  * `30%`: Experimental setup.
-  * `30%`: Report.
-  * `10%`: Presentation.
+* `30%`: **Homework.** Each homework assignment equals 10%.
+* `50%`: **Final project.**
+  * `25%`: Experimental setup.
+  * `20%`: Report.
+  * `5%`: Presentation.
 
 ## {{< iconify eva email-outline >}} Contact the staff
 
@@ -39,4 +39,4 @@ Erez Feuer: `erez.feuer@mail.huji.ac.il`
 Yair Mau: `yair.mau@mail.huji.ac.il`
 
 **TA**  
-Yedidya Harris: `yedidya.harris@mail.huji.ac.il`  
+Guy Brauner: `guy.brauner@mail.huji.ac.il`  

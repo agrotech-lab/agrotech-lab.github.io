@@ -1,0 +1,48 @@
+---
+title: "Assignment 1"
+echo: false
+jupyter: python3
+execute:
+  freeze: auto  # re-render only when source changes
+---
+
+You will write Arduino code that incorporates all the following elements learned in [First programs](/tutorials/first-programs.html). Upload your `.ino` file on the course's Moodle page. You'll have two weeks until deadline.
+
+* variable declaration, e.g.
+  ```cpp
+  float my_var=1.23;
+  int i, j;
+  ```
+* function declaration, e.g.
+  ```cpp
+  int my_sum(int x, int y) {
+    return x + y;
+  }
+  ```
+* Built-in and external LED control
+* Conditionals, e.g.
+  ```cpp
+  if (temperature > 30.0) {
+    fan = 1;
+  } else {
+    fan = 0;
+  }
+  ```
+* Random numbers, e.g.
+  ```cpp
+  // random number from -5 (inclusive) to +5 (exclusive)
+  rand1 = random(-5, 5);
+  ```
+* Serial plotting, numbers and text
+* Comments explaining every step of what you did
+* **Bonus**: connect to WiFi and make use of time from the internet
+* **Obligatory**: at the very top of your code, write in many lines an explanation (in English) of what your code does
+```cpp
+/*
+Author: Harry Potter
+Class: Agrotech Lab
+Date: 2023-03-14
+This code does bla bla bla.
+More explanations here.
+*/
+```

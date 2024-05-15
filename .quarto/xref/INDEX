@@ -202,5 +202,8 @@
   },
   "projects/passover-2023.qmd": {
     "passover-2023.html": "6f2bb4ed"
+  },
+  "assignments/assignment1.qmd": {
+    "assignment1.html": "bf98e670"
   }
 }
