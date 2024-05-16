@@ -16,6 +16,8 @@ execute:
 
 [Pin information for ESP32](https://randomnerdtutorials.com/esp32-pinout-reference-gpios/)
 
+![](/archive/figures/ohm-resistance.jpg)
+
 ----
 
 {{< include ../_insert_ino_code.qmd >}}
