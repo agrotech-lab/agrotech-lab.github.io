@@ -53,6 +53,31 @@ Code for reading the sensor:
 code_source("Agrotech_2022_VL53L0X.ino")
 ```
 
+## Serial read and blink
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("serial_read_and_blink.ino")
+```
+
+## Touch sensor
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("touch_sensor.ino")
+```
+
+## Control LED with touch sensor
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("touch_control_LED.ino")
+```
+
+
 ## Thingspeak
 
 [Thingspeak webpage](https://thingspeak.com/).
