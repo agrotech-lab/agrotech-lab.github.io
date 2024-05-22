@@ -1,7 +1,7 @@
 // Thermistor 
 // reading the temperature via the ESP32's ADC
 
-int analog_pin = 32; // Pin into which we connect the input voltage
+const int analog_pin = A4; // Pin into which we connect the input voltage
 int val ;  // variable to store the value read
 float v2; // variable to store the voltage of v2
 int r1 = 10000; // R1 value (in the voltage divider)
@@ -20,7 +20,7 @@ float resistance_to_temperature(int b, float r, float r_25) {
 }
 
 void setup() {
-  Serial.begin(9600); //
+  Serial.begin(115200); //
 }
 
 void loop() {

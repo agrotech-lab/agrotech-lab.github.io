@@ -504,7 +504,7 @@
     "href": "tutorials/SHT31.html#code",
     "title": "10  SHT31 temperature & humidity sensor",
     "section": "10.5 Code",
-    "text": "10.5 Code\nHere is the code for reading temperature and humidity values from the SHT31 sensor.\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n/*\n * This program is a modification of\n * http://www.esp32learning.com/code/esp32-and-sht31-sensor-example.php\n */\n#include &lt;Arduino.h&gt;   // Include the Arduino library\n#include &lt;Wire.h&gt;      // Include the Wire library for I2C communication\n#include \"Adafruit_SHT31.h\" // Include the SHT31 library from Adafruit\n\nAdafruit_SHT31 sht31 = Adafruit_SHT31(); // Create an instance of the SHT31 object\n\nvoid setup() {\n  Serial.begin(9600);        // Initialize the serial communication with a baud rate of 112500\n  if (! sht31.begin(0x44)) {   // Check if SHT31 is connected and start it with address 0x44\n    // Print an error message if SHT31 is not found\n    Serial.println(\"Couldn't find SHT31\");\n    while (1) delay(1);  // Wait indefinitely\n  }\n}\n\nvoid loop() {\n  // Read temperature from SHT31 and assign it to \"temperature\"\n  float temperature = sht31.readTemperature(); \n  // Read relative humidity from SHT31 and assign it to \"humidity\"\n  float humidity = sht31.readHumidity();\n\n  if (! isnan(temperature)) {     // Check if t is not NaN (not a number)\n    Serial.print(\"temp_deg_C:\");  // Print temperature label\n    Serial.print(temperature);    // Print temperature value\n    Serial.print(\"\\t\");           // Write a tab space\n  } \n  else {\n    // Print an error message if temperature reading fails\n    Serial.println(\"Failed to read temperature\");\n  }\n\n  if (! isnan(humidity)) {        // Check if h is not NaN (not a number)\n    Serial.print(\"rel_hum_%:\");   // Print humidity label\n    Serial.print(humidity);       // Print humidity value\n  } \n  else {\n    // Print an error message if humidity reading fails\n    Serial.println(\"Failed to read humidity\");\n  }\n\n  Serial.println();    // Break line\n  delay(1000);         // Wait 1 second\n}",
+    "text": "10.5 Code\nHere is the code for reading temperature and humidity values from the SHT31 sensor.\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n/*\n * This program is a modification of\n * http://www.esp32learning.com/code/esp32-and-sht31-sensor-example.php\n */\n#include &lt;Arduino.h&gt;   // Include the Arduino library\n#include &lt;Wire.h&gt;      // Include the Wire library for I2C communication\n#include \"Adafruit_SHT31.h\" // Include the SHT31 library from Adafruit\n\nAdafruit_SHT31 sht31 = Adafruit_SHT31(); // Create an instance of the SHT31 object\n\nvoid setup() {\n  Serial.begin(115200);        // Initialize the serial communication with a baud rate of 112500\n  if (! sht31.begin(0x44)) {   // Check if SHT31 is connected and start it with address 0x44\n    // Print an error message if SHT31 is not found\n    Serial.println(\"Couldn't find SHT31\");\n    while (1) delay(1);  // Wait indefinitely\n  }\n}\n\nvoid loop() {\n  // Read temperature from SHT31 and assign it to \"temperature\"\n  float temperature = sht31.readTemperature(); \n  // Read relative humidity from SHT31 and assign it to \"humidity\"\n  float humidity = sht31.readHumidity();\n\n  if (! isnan(temperature)) {     // Check if t is not NaN (not a number)\n    Serial.print(\"temp_deg_C:\");  // Print temperature label\n    Serial.print(temperature);    // Print temperature value\n    Serial.print(\"\\t\");           // Write a tab space\n  } \n  else {\n    // Print an error message if temperature reading fails\n    Serial.println(\"Failed to read temperature\");\n  }\n\n  if (! isnan(humidity)) {        // Check if h is not NaN (not a number)\n    Serial.print(\"rel_hum_%:\");   // Print humidity label\n    Serial.print(humidity);       // Print humidity value\n  } \n  else {\n    // Print an error message if humidity reading fails\n    Serial.println(\"Failed to read humidity\");\n  }\n\n  Serial.println();    // Break line\n  delay(1000);         // Wait 1 second\n}",
     "crumbs": [
       "**Running simple programs**",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>SHT31 temperature & humidity sensor</span>"
@@ -559,7 +559,18 @@
     "href": "tutorials/electronics-class.html",
     "title": "13  Electronics Class",
     "section": "",
-    "text": "13.1 Presentation\nDownload presentation pdf\nPin information for ESP32",
+    "text": "13.1 Presentation\nDownload presentation pdf",
+    "crumbs": [
+      "**Electronics**",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
+    ]
+  },
+  {
+    "objectID": "tutorials/electronics-class.html#circuit-diagrams",
+    "href": "tutorials/electronics-class.html#circuit-diagrams",
+    "title": "13  Electronics Class",
+    "section": "13.2 Circuit diagrams",
+    "text": "13.2 Circuit diagrams\nMake your own circuit diagrams here: https://www.circuit-diagram.org/editor/",
     "crumbs": [
       "**Electronics**",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
@@ -569,8 +580,8 @@
     "objectID": "tutorials/electronics-class.html#digital-write",
     "href": "tutorials/electronics-class.html#digital-write",
     "title": "13  Electronics Class",
-    "section": "13.2 Digital Write",
-    "text": "13.2 Digital Write\nUse the following code to activate LED pin.\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nint LED_pin = 13;\n\n// the setup function runs once when you press reset or power the board\nvoid setup() {\n  // initialize digital pin LED_pin as an output.\n  pinMode(LED_pin, OUTPUT);\n}\n\n// the loop function runs over and over again forever\nvoid loop() {\n  digitalWrite(LED_pin, HIGH);   // turn the LED on (HIGH is the voltage level)\n  delay(1000);                       // wait for a second\n  digitalWrite(LED_pin, LOW);    // turn the LED off by making the voltage LOW\n  delay(1000);                       // wait for a second\n}",
+    "section": "13.3 Digital Write",
+    "text": "13.3 Digital Write\nUse the following code to activate LED pin.\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nint LED_pin = 13;\n\n// the setup function runs once when you press reset or power the board\nvoid setup() {\n  // initialize digital pin LED_pin as an output.\n  pinMode(LED_pin, OUTPUT);\n}\n\n// the loop function runs over and over again forever\nvoid loop() {\n  digitalWrite(LED_pin, HIGH);   // turn the LED on (HIGH is the voltage level)\n  delay(1000);                       // wait for a second\n  digitalWrite(LED_pin, LOW);    // turn the LED off by making the voltage LOW\n  delay(1000);                       // wait for a second\n}",
     "crumbs": [
       "**Electronics**",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
@@ -580,8 +591,8 @@
     "objectID": "tutorials/electronics-class.html#pwm-with-esp32",
     "href": "tutorials/electronics-class.html#pwm-with-esp32",
     "title": "13  Electronics Class",
-    "section": "13.3 PWM with ESP32",
-    "text": "13.3 PWM with ESP32\nPulse-width modulation (PWM) is a method of controlling the average power delivered by an electrical signal. The average value of voltage (and current) fed to the load is controlled by switching the supply between 0 and 100% at a rate faster than it takes the load to change significantly. PWM is a technique for getting analog results with digital means. Digital control is used to create a square wave, a signal switched between on and off. This on-off pattern can simulate voltages in between the full Vcc of the board and off by changing the portion of time the signal spends on versus the time that the signal spends off. PWM is used in many applications such as controlling motor speed, heat output of heaters and variable speed fan controllers.\n\nUse the following code to activate LED pin with PWM.\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// the number of the LED pin\nconst int ledPin = 13;  // 13 corresponds to GPIO13\n\n// setting PWM properties\nconst int freq = 5000;\nconst int ledChannel = 0;\nconst int resolution = 8;\n \nvoid setup(){\n  // configure LED PWM functionalitites\n  ledcSetup(ledChannel, freq, resolution);\n  \n  // attach the channel to the GPIO to be controlled\n  ledcAttachPin(ledPin, ledChannel);\n}\n \nvoid loop(){\n  // increase the LED brightness\n  for(int dutyCycle = 0; dutyCycle &lt;= 255; dutyCycle++){   \n    // changing the LED brightness with PWM\n    ledcWrite(ledChannel, dutyCycle);\n    delay(15);\n  }\n\n  // decrease the LED brightness\n  for(int dutyCycle = 255; dutyCycle &gt;= 0; dutyCycle--){\n    // changing the LED brightness with PWM\n    ledcWrite(ledChannel, dutyCycle);   \n    delay(15);\n  }\n}",
+    "section": "13.4 PWM with ESP32",
+    "text": "13.4 PWM with ESP32\nPulse-width modulation (PWM) is a method of controlling the average power delivered by an electrical signal. The average value of voltage (and current) fed to the load is controlled by switching the supply between 0 and 100% at a rate faster than it takes the load to change significantly. PWM is a technique for getting analog results with digital means. Digital control is used to create a square wave, a signal switched between on and off. This on-off pattern can simulate voltages in between the full Vcc of the board and off by changing the portion of time the signal spends on versus the time that the signal spends off. PWM is used in many applications such as controlling motor speed, heat output of heaters and variable speed fan controllers.\n\nUse the following code to activate LED pin with PWM.\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// the number of the LED pin\nconst int ledPin = 13;  // 13 corresponds to GPIO13\n\n// setting PWM properties\nconst int freq = 5000;\nconst int ledChannel = 0;\nconst int resolution = 8;\n \nvoid setup(){\n  // configure LED PWM functionalitites\n  ledcSetup(ledChannel, freq, resolution);\n  \n  // attach the channel to the GPIO to be controlled\n  ledcAttachPin(ledPin, ledChannel);\n}\n \nvoid loop(){\n  // increase the LED brightness\n  for(int dutyCycle = 0; dutyCycle &lt;= 255; dutyCycle++){   \n    // changing the LED brightness with PWM\n    ledcWrite(ledChannel, dutyCycle);\n    delay(15);\n  }\n\n  // decrease the LED brightness\n  for(int dutyCycle = 255; dutyCycle &gt;= 0; dutyCycle--){\n    // changing the LED brightness with PWM\n    ledcWrite(ledChannel, dutyCycle);   \n    delay(15);\n  }\n}",
     "crumbs": [
       "**Electronics**",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
@@ -591,8 +602,8 @@
     "objectID": "tutorials/electronics-class.html#reading-an-analog-pin",
     "href": "tutorials/electronics-class.html#reading-an-analog-pin",
     "title": "13  Electronics Class",
-    "section": "13.4 Reading an Analog Pin",
-    "text": "13.4 Reading an Analog Pin\nUse the following code to read an analog pin.\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nint analog_pin = 32; // Pin into which we connect the input voltage\nint val ;  // variable to store the value read\n\n\nvoid setup() {\n  Serial.begin(9600); //\n}\n\nvoid loop() {\n  val = analogRead(analog_pin);  // read the input pin\n  Serial.println(val);          // print value\n  delay(100);\n}",
+    "section": "13.5 Reading an Analog Pin",
+    "text": "13.5 Reading an Analog Pin\nUse the following code to read an analog pin.\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nconst int analog_pin = A4; // Pin into which we connect the input voltage\nint val ;  // variable to store the value read\n\n\nvoid setup() {\n  Serial.begin(115200); //\n}\n\nvoid loop() {\n  val = analogRead(analog_pin);  // read the input pin\n  Serial.println(val);          // print value\n  delay(100);\n}",
     "crumbs": [
       "**Electronics**",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
@@ -602,8 +613,8 @@
     "objectID": "tutorials/electronics-class.html#adc-to-voltage",
     "href": "tutorials/electronics-class.html#adc-to-voltage",
     "title": "13  Electronics Class",
-    "section": "13.5 ADC to voltage",
-    "text": "13.5 ADC to voltage\nUse the following code to convert ADC reading to voltage.\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nint analog_pin = 32; // Pin into which we connect the input voltage\nint val ;  // variable to store the value read\nfloat voltage;\n\nvoid setup() {\n  Serial.begin(9600); //\n}\n\nvoid loop() {\n  val = analogRead(analog_pin);  // read the input pin\n  voltage = (3.3/4095)*val;  // convert to voltage according to ADC\n  Serial.print(\"Voltage: \");\n  Serial.print(voltage);          // print value\n  Serial.println(\" V\");\n  delay(100);\n}",
+    "section": "13.6 ADC to voltage",
+    "text": "13.6 ADC to voltage\nUse the following code to convert ADC reading to voltage.\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nconst int analog_pin = A4; // Pin into which we connect the input voltage\nint val ;  // variable to store the value read\nfloat voltage;\n\nvoid setup() {\n  Serial.begin(115200); //\n}\n\nvoid loop() {\n  val = analogRead(analog_pin);  // read the input pin\n  voltage = (3.3/4095)*val;  // convert to voltage according to ADC\n  Serial.print(\"Voltage: \");\n  Serial.print(voltage);          // print value\n  Serial.println(\" V\");\n  delay(100);\n}",
     "crumbs": [
       "**Electronics**",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
@@ -613,8 +624,8 @@
     "objectID": "tutorials/electronics-class.html#potentiometer-and-pwm",
     "href": "tutorials/electronics-class.html#potentiometer-and-pwm",
     "title": "13  Electronics Class",
-    "section": "13.6 Potentiometer and PWM",
-    "text": "13.6 Potentiometer and PWM\nUse the following code to control PWM with potentiometer and dim the LED.\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// the number of the LED pin\nconst int ledPin = 13;  // 13 corresponds to GPIO13\n\nint analog_pin = 32; // Pin into which we connect the input voltage\nint val ;  // variable to store the value read\n\n// setting PWM properties\nconst int freq = 5000;\nconst int ledChannel = 0;\nconst int resolution = 12;\n \nvoid setup(){\n  Serial.begin(9600);\n    \n  // configure LED PWM functionalitites\n  ledcSetup(ledChannel, freq, resolution);\n  \n  // attach the channel to the GPIO to be controlled\n  ledcAttachPin(ledPin, ledChannel);\n}\n \nvoid loop(){\n    val = analogRead(analog_pin);  // read the input pin\n    Serial.println(val);          // print value\n    ledcWrite(ledChannel, val);\n    delay(15);\n  }",
+    "section": "13.7 Potentiometer and PWM",
+    "text": "13.7 Potentiometer and PWM\nUse the following code to control PWM with potentiometer and dim the LED.\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// the number of the LED pin\nconst int ledPin = 13;  // 13 corresponds to GPIO13\n\nint analog_pin = 32; // Pin into which we connect the input voltage\nint val ;  // variable to store the value read\n\n// setting PWM properties\nconst int freq = 5000;\nconst int ledChannel = 0;\nconst int resolution = 12;\n \nvoid setup(){\n  Serial.begin(9600);\n    \n  // configure LED PWM functionalitites\n  ledcSetup(ledChannel, freq, resolution);\n  \n  // attach the channel to the GPIO to be controlled\n  ledcAttachPin(ledPin, ledChannel);\n}\n \nvoid loop(){\n    val = analogRead(analog_pin);  // read the input pin\n    Serial.println(val);          // print value\n    ledcWrite(ledChannel, val);\n    delay(15);\n  }",
     "crumbs": [
       "**Electronics**",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
@@ -624,8 +635,8 @@
     "objectID": "tutorials/electronics-class.html#thermistor",
     "href": "tutorials/electronics-class.html#thermistor",
     "title": "13  Electronics Class",
-    "section": "13.7 Thermistor",
-    "text": "13.7 Thermistor\nDownload Data Sheet\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// Thermistor \n// reading the temperature via the ESP32's ADC\n\nint analog_pin = 32; // Pin into which we connect the input voltage\nint val ;  // variable to store the value read\nfloat v2; // variable to store the voltage of v2\nint r1 = 10000; // R1 value (in the voltage divider)\nfloat v1 = 3.3; // V1 value\nint b_val = 4150; // B value of the resistor (from the data sheet)\nfloat r2; // variable to store the resistance of r2 (thermistor resistance)\nfloat t; // variable to store the temperature\nint adc_steps = 4095; // the number of increments our ADC has (ESP32 = 12bit)\nfloat r_25 = 10000; // the thermistor resistance at 25C (from the data sheet)\n\n// function to convert resistance to temperature according to the b value\n// equation in this link:\n// https://www.thinksrs.com/downloads/programs/therm%20calc/ntccalibrator/ntccalculator.html\nfloat resistance_to_temperature(int b, float r, float r_25) {\n  return b/(log(r/r_25)+(b/298.15))-273.15;\n}\n\nvoid setup() {\n  Serial.begin(9600); //\n}\n\nvoid loop() {\n  val = analogRead(analog_pin);  // read the input pin (reading v2)\n  v2 = (v1/adc_steps)*val;  // convert to voltage of v2 according to ADC\n  r2 = (v2*r1)/(v1-v2);\n  t = resistance_to_temperature(b_val, r2, r_25);\n  Serial.print(\"Temperature: \");\n  Serial.print(t);          // print temperature\n  Serial.println(\" C\");\n  delay(100);\n}",
+    "section": "13.8 Thermistor",
+    "text": "13.8 Thermistor\nDownload Data Sheet\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// Thermistor \n// reading the temperature via the ESP32's ADC\n\nconst int analog_pin = A4; // Pin into which we connect the input voltage\nint val ;  // variable to store the value read\nfloat v2; // variable to store the voltage of v2\nint r1 = 10000; // R1 value (in the voltage divider)\nfloat v1 = 3.3; // V1 value\nint b_val = 4150; // B value of the resistor (from the data sheet)\nfloat r2; // variable to store the resistance of r2 (thermistor resistance)\nfloat t; // variable to store the temperature\nint adc_steps = 4095; // the number of increments our ADC has (ESP32 = 12bit)\nfloat r_25 = 10000; // the thermistor resistance at 25C (from the data sheet)\n\n// function to convert resistance to temperature according to the b value\n// equation in this link:\n// https://www.thinksrs.com/downloads/programs/therm%20calc/ntccalibrator/ntccalculator.html\nfloat resistance_to_temperature(int b, float r, float r_25) {\n  return b/(log(r/r_25)+(b/298.15))-273.15;\n}\n\nvoid setup() {\n  Serial.begin(115200); //\n}\n\nvoid loop() {\n  val = analogRead(analog_pin);  // read the input pin (reading v2)\n  v2 = (v1/adc_steps)*val;  // convert to voltage of v2 according to ADC\n  r2 = (v2*r1)/(v1-v2);\n  t = resistance_to_temperature(b_val, r2, r_25);\n  Serial.print(\"Temperature: \");\n  Serial.print(t);          // print temperature\n  Serial.println(\" C\");\n  delay(100);\n}",
     "crumbs": [
       "**Electronics**",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
@@ -746,18 +757,18 @@
     "href": "tutorials/intro-to-sensor-modules-and-thingspeak.html#basic-code-for-uploading-data-to-thingspeak",
     "title": "16  Intro to Sensor Modules and Thingspeak",
     "section": "16.8 Basic Code for Uploading Data to Thingspeak",
-    "text": "16.8 Basic Code for Uploading Data to Thingspeak\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// #include &lt;ESP8266WiFi.h&gt;\n#include &lt;WiFi.h&gt;\n\n#include \"ThingSpeak.h\"\nunsigned long myChannelNumber = 1358139;\nconst char * myWriteAPIKey = \"4HZXSWG1JXQCVHM2\";\n\nconst char* ssid = \"HUJI-guest\"; // your wifi SSID name\nconst char* password = \"\" ;// wifi pasword\n \nconst char* server = \"api.thingspeak.com\";\n\nWiFiClient client;\n\n\n \nvoid setup() {\n  Serial.begin(9600);\n  WiFi.disconnect();\n  delay(10);\n  WiFi.begin(ssid, password);\n\n  Serial.println();\n  Serial.println();\n  Serial.print(\"Connecting to \");\n  Serial.println(ssid);\n\n    ThingSpeak.begin(client);\n \n  WiFi.begin(ssid, password);\n  \n \n  while (WiFi.status() != WL_CONNECTED) {\n    delay(500);\n    Serial.print(\".\");\n  }\n  Serial.println(\"\");\n  Serial.print(\"NodeMcu connected to wifi...\");\n  Serial.println(ssid);\n  Serial.println();\n}\n \nvoid loop() {\n\n \n  ThingSpeak.setField(1,11);\n  ThingSpeak.setField(2,22);\n  ThingSpeak.setField(3,33);\n  ThingSpeak.setField(4,44);\n  ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);\n\n  Serial.println(\"uploaded to Thingspeak server....\");\n\n  client.stop();\n \n  Serial.println(\"Waiting to upload next reading...\");\n  Serial.println();\n  // thingspeak needs minimum 15 sec delay between updates\n\n \n  \n  delay(20000);\n}",
+    "text": "16.8 Basic Code for Uploading Data to Thingspeak\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// #include &lt;ESP8266WiFi.h&gt;\n#include &lt;WiFi.h&gt;\n\n#include \"ThingSpeak.h\"\nunsigned long myChannelNumber = write_here_the_relevant_number;\nconst char * myWriteAPIKey = \"write_here_the_correct_API_key\";\n\nconst char* ssid = \"wifi_name\"; // your wifi SSID name\nconst char* password = \"wifi_password\" ;// wifi pasword\n \nconst char* server = \"api.thingspeak.com\";\n\nWiFiClient client;\n\n\n \nvoid setup() {\n  Serial.begin(115200);\n  WiFi.disconnect();\n  delay(10);\n  WiFi.begin(ssid, password);\n\n  Serial.println();\n  Serial.println();\n  Serial.print(\"Connecting to \");\n  Serial.println(ssid);\n\n    ThingSpeak.begin(client);\n \n  WiFi.begin(ssid, password);\n  \n \n  while (WiFi.status() != WL_CONNECTED) {\n    delay(500);\n    Serial.print(\".\");\n  }\n  Serial.println(\"\");\n  Serial.print(\"NodeMcu connected to wifi...\");\n  Serial.println(ssid);\n  Serial.println();\n}\n \nvoid loop() {\n\n \n  ThingSpeak.setField(1,11);\n  ThingSpeak.setField(2,22);\n  ThingSpeak.setField(3,33);\n  ThingSpeak.setField(4,44);\n  ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);\n\n  Serial.println(\"uploaded to Thingspeak server....\");\n\n  client.stop();\n \n  Serial.println(\"Waiting to upload next reading...\");\n  Serial.println();\n  // thingspeak needs minimum 15 sec delay between updates\n\n \n  \n  delay(20000);\n}",
     "crumbs": [
       "**Sensors and comm**",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
     ]
   },
   {
-    "objectID": "tutorials/intro-to-sensor-modules-and-thingspeak.html#example-sending-data-from-sensors-above-to-thingspeak",
-    "href": "tutorials/intro-to-sensor-modules-and-thingspeak.html#example-sending-data-from-sensors-above-to-thingspeak",
+    "objectID": "tutorials/intro-to-sensor-modules-and-thingspeak.html#uploading-thermistor-data-to-thingspeak",
+    "href": "tutorials/intro-to-sensor-modules-and-thingspeak.html#uploading-thermistor-data-to-thingspeak",
     "title": "16  Intro to Sensor Modules and Thingspeak",
-    "section": "16.9 Example: Sending Data from Sensors Above to Thingspeak",
-    "text": "16.9 Example: Sending Data from Sensors Above to Thingspeak\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n//------------------------------------------------------------------\n//Thingspeak:\n// #include &lt;ESP8266WiFi.h&gt;\n#include &lt;WiFi.h&gt;\n\n#include \"ThingSpeak.h\"\nunsigned long myChannelNumber = 1689148;\nconst char * myWriteAPIKey = \"A58V29JE8UIGWI16\";\n\nconst char* ssid = \"HUJI-guest\"; // your wifi SSID name\nconst char* password = \"\" ;// wifi pasword\n \nconst char* server = \"api.thingspeak.com\";\n\nWiFiClient client;\n\n//------------------------------------------------------------------\n//DS18B20:\n#include &lt;OneWire.h&gt;\n#include &lt;DallasTemperature.h&gt;\n\n// Data wire is connected to GPIO4\n#define ONE_WIRE_BUS 4\n// Setup a oneWire instance to communicate with a OneWire device\nOneWire oneWire(ONE_WIRE_BUS);\n// Pass our oneWire reference to Dallas Temperature sensor \nDallasTemperature sensors(&oneWire);\n\n//Insert the right address for your sensors\nDeviceAddress sensor1 = { 0x28, 0xFF, 0x64, 0x02, 0xEF, 0x01, 0xA7, 0x31 };\nDeviceAddress sensor2 = { 0x28, 0x35, 0xD3, 0x11, 0x00, 0x00, 0x00, 0xBF };\n\n//------------------------------------------------------------------\n//SHT31:\n#include &lt;Arduino.h&gt;\n#include &lt;Wire.h&gt;\n#include \"Adafruit_SHT31.h\"\n\nAdafruit_SHT31 sht31 = Adafruit_SHT31();\n//------------------------------------------------------------------\n//VL53LOX:\n\n#include \"Adafruit_VL53L0X.h\"\nAdafruit_VL53L0X lox = Adafruit_VL53L0X();\n\n\nvoid setup() {\n  Serial.begin(9600);\n  //------------------------------------------------------------------\n  //Thingspeak and wifi:\n  WiFi.disconnect();\n  delay(10);\n  WiFi.begin(ssid, password);\n\n  Serial.println();\n  Serial.println();\n  Serial.print(\"Connecting to \");\n  Serial.println(ssid);\n\n    ThingSpeak.begin(client);\n \n  WiFi.begin(ssid, password);\n  \n \n  while (WiFi.status() != WL_CONNECTED) {\n    delay(500);\n    Serial.print(\".\");\n  }\n  Serial.println(\"\");\n  Serial.print(\"NodeMcu connected to wifi...\");\n  Serial.println(ssid);\n  Serial.println();\n  //------------------------------------------------------------------\n  //DS18B20:\n  sensors.begin();\n\n  //------------------------------------------------------------------\n  //SHT31:\n    if (! sht31.begin(0x44)) {\n    Serial.println(\"Couldn't find SHT31\");\n    while (1) delay(1);\n  }\n\n  //------------------------------------------------------------------\n  //VL53LOX:\n  // wait until serial port opens for native USB devices\n  while (! Serial) {\n    delay(1);\n  }\n  \n  Serial.println(\"Adafruit VL53L0X test\");\n  if (!lox.begin()) {\n    Serial.println(F(\"Failed to boot VL53L0X\"));\n    while(1);\n  }\n  // power \n  Serial.println(F(\"VL53L0X API Simple Ranging example\\n\\n\")); \n  \n}\n \nvoid loop() {\n  //------------------------------------------------------------------\n  //DS18B20:\n  Serial.print(\"Requesting temperatures...\");\n  sensors.requestTemperatures(); // Send the command to get temperatures\n  Serial.println(\"DONE\");\n  \n  Serial.print(\"Sensor 1(*C): \");\n  Serial.print(sensors.getTempC(sensor1)); \n  Serial.print(\" Sensor 1(*F): \");\n  Serial.println(sensors.getTempF(sensor1)); \n \n  Serial.print(\"Sensor 2(*C): \");\n  Serial.print(sensors.getTempC(sensor2)); \n  Serial.print(\" Sensor 2(*F): \");\n  Serial.println(sensors.getTempF(sensor2)); \n\n  //------------------------------------------------------------------\n  //SHT31:\n  float t = sht31.readTemperature();\n  float h = sht31.readHumidity();\n\n  if (! isnan(t))  {\n    Serial.print(\"Temp *C = \"); Serial.println(t);\n  }\n  else  {\n    Serial.println(\"Failed to read temperature\");\n  }\n  \n  if (! isnan(h))  {\n  Serial.print(\"Hum. % = \"); Serial.println(h);\n  }\n  else  {\n  Serial.println(\"Failed to read humidity\");\n  }\n  \n  Serial.println();\n  delay(1000);\n\n  //------------------------------------------------------------------\n  //VL53LOX:\n   VL53L0X_RangingMeasurementData_t measure;\n    \n  Serial.print(\"Reading a measurement... \");\n  lox.rangingTest(&measure, false); // pass in 'true' to get debug data printout!\n\n  if (measure.RangeStatus != 4) {  // phase failures have incorrect data\n    Serial.print(\"Distance (mm): \"); Serial.println(measure.RangeMilliMeter);\n  } else {\n    Serial.println(\" out of range \");\n  }\n    \n  delay(100);\n\n  //------------------------------------------------------------------\n  //Thingspeak:\n  ThingSpeak.setField(1,t); // SHT temp\n  ThingSpeak.setField(2,h); // SHT humidity\n  ThingSpeak.setField(3,sensors.getTempC(sensor1)); // DS18B20 in\n  ThingSpeak.setField(4,sensors.getTempC(sensor2)); // DS18B20 out\n  ThingSpeak.setField(5,measure.RangeMilliMeter); // distance\n  ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);\n\n  Serial.println(\"uploaded to Thingspeak server....\");\n\n  client.stop();\n \n  Serial.println(\"Waiting to upload next reading...\");\n  Serial.println();\n  \n  // thingspeak free needs minimum 15 sec delay between updates \n  // payed can do 1sec\n\n \n  \n  delay(1000);\n}",
+    "section": "16.9 Uploading Thermistor Data to Thingspeak",
+    "text": "16.9 Uploading Thermistor Data to Thingspeak\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n#include &lt;WiFi.h&gt;\n\n// Include the ThingSpeak library\n#include \"ThingSpeak.h\"\n\n// Set the ThingSpeak channel and API key information\nunsigned long myChannelNumber = 2557936;\nconst char* myWriteAPIKey = \"KUEIEB7R1B58O9KY\";\n\n// Set the WiFi network credentials\nconst char* ssid = \"borneo\"; // your wifi SSID name\nconst char* password = \"rainforest\"; // wifi password\n\n// Set the ThingSpeak server address\nconst char* server = \"api.thingspeak.com\";\n\n// Create a WiFiClient object to connect to the WiFi network\nWiFiClient client;\n\n// Set the time to wait between uploading data to ThingSpeak (in milliseconds)\nint wait_between_uploads = 10000; // 10 seconds\n\n// Thermistor setup------------------------------------------------------------------\nint analog_pin = 32; // Pin into which we connect the input voltage\nint val ;  // variable to store the value read\nfloat v2; // variable to store the voltage of v2\nint r1 = 10000; // R1 value (in the voltage divider)\nfloat v1 = 3.3; // V1 value\nint b_val = 4150; // B value of the resistor (from the data sheet)\nfloat r2; // variable to store the resistance of r2 (thermistor resistance)\nfloat t; // variable to store the temperature\nint adc_steps = 4095; // the number of increments our ADC has (ESP32 = 12bit)\nfloat r_25 = 10000; // the thermistor resistance at 25C (from the data sheet)\n\n// function to convert resistance to temperature according to the b value\n// equation in this link:\n// https://www.thinksrs.com/downloads/programs/therm%20calc/ntccalibrator/ntccalculator.html\nfloat resistance_to_temperature(int b, float r, float r_25) {\n  return b/(log(r/r_25)+(b/298.15))-273.15;\n}\n\n\nvoid setup() {\n  // Start the serial communication at 112500 baud\n  Serial.begin(112500);\n\n  // Disconnect any previous WiFi connection\n  WiFi.disconnect();\n  delay(10);\n\n  // Connect to the WiFi network\n  WiFi.begin(ssid, password);\n  Serial.print(\"Connecting to \");\n  Serial.println(ssid);\n  while (WiFi.status() != WL_CONNECTED) {\n    delay(500);\n    Serial.print(\".\");\n  }\n  Serial.println(\"\");\n  Serial.print(\"ESP32 connected to WiFi: \");\n  Serial.println(ssid);\n  Serial.println();\n\n  // Initialize the ThingSpeak library with the WiFi client\n  ThingSpeak.begin(client);\n}\n\nvoid loop() {\n\n  val = analogRead(analog_pin);  // read the input pin (reading v2)\n  v2 = (v1/adc_steps)*val;  // convert to voltage of v2 according to ADC\n  r2 = (v2*r1)/(v1-v2);\n  t = resistance_to_temperature(b_val, r2, r_25);\n  Serial.print(\"Temperature: \");\n  Serial.print(t);          // print temperature\n  Serial.println(\" C\");\n\n  // Set the values to be sent to ThingSpeak\n  ThingSpeak.setField(1, t);\n\n  // Send the data to ThingSpeak\n  ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);\n\n  // Print a message to the serial monitor indicating that the data has been uploaded\n  Serial.println(\"Uploaded to ThingSpeak server.\");\n\n  // Disconnect the WiFi client\n  client.stop();\n\n  // Wait for the specified amount of time before uploading the next set of data\n  // thingspeak needs minimum 15 sec delay between updates on a free acount,\n  // a paid acount can update every 1 sec\n  Serial.println(\"Waiting to upload next reading...\");\n  Serial.println();\n  \n  delay(wait_between_uploads);\n}",
     "crumbs": [
       "**Sensors and comm**",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
@@ -1072,179 +1083,190 @@
     ]
   },
   {
+    "objectID": "assignments/assignment2.html",
+    "href": "assignments/assignment2.html",
+    "title": "25  Assignment 2",
+    "section": "",
+    "text": "25.1  Some guidelines\nIn this project each one of you will individually create a Thingspeak channel and will upload to it data from an ESP32.\nMinimal requirements:",
+    "crumbs": [
+      "**Assignments**",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Assignment 2</span>"
+    ]
+  },
+  {
+    "objectID": "assignments/assignment2.html#some-guidelines",
+    "href": "assignments/assignment2.html#some-guidelines",
+    "title": "25  Assignment 2",
+    "section": "",
+    "text": "Measure temperature (using SHT31)\nMeasure humidity (using SHT31)\nCalculate VPD",
+    "crumbs": [
+      "**Assignments**",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Assignment 2</span>"
+    ]
+  },
+  {
+    "objectID": "assignments/assignment2.html#deadline",
+    "href": "assignments/assignment2.html#deadline",
+    "title": "25  Assignment 2",
+    "section": "25.2  Deadline",
+    "text": "25.2  Deadline\nAll Chanels must be live in two weeks from the day you hear about it in class.\nThe name of the channel MUST be spelled with the prefix “Assignment2_” and then your first and last name with separated by an underscore.\nFor example: Assignment2_Erez_Feuer\nYou MUST provide information regarding your channel in the “description” section which can be found under “channel settings”. This information should include:\n\nlocation (e.g.: balcony in Rechovot, kitchen in Gan-Yavne, 7th floor bedroom window, etc.),\nwhat the sensors are measuring, and\nany other information that you find relevant - the more the better.\n\nUpload interval should be every 5 minutes.",
+    "crumbs": [
+      "**Assignments**",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Assignment 2</span>"
+    ]
+  },
+  {
+    "objectID": "assignments/assignment2.html#public-view",
+    "href": "assignments/assignment2.html#public-view",
+    "title": "25  Assignment 2",
+    "section": "25.3  Public view",
+    "text": "25.3  Public view\nWe will be monitoring your Thingspeak channels via the “Public view” section. It is very simple to make your channel public, just check “Share channel view with everyone” under the Sharing tab as you can this in the following image:",
+    "crumbs": [
+      "**Assignments**",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Assignment 2</span>"
+    ]
+  },
+  {
+    "objectID": "assignments/assignment2.html#how-to-power-your-projects",
+    "href": "assignments/assignment2.html#how-to-power-your-projects",
+    "title": "25  Assignment 2",
+    "section": "25.4  How to power your projects",
+    "text": "25.4  How to power your projects\nOnce the code is uploaded to the ESP32 and every thing works fine, you don’t need your computer anymore, and can use a generic USB charger as a power supply. Don’t worry about the code, it will work as long as the ESP32 has power, because you already uploaded the code to memory.",
+    "crumbs": [
+      "**Assignments**",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Assignment 2</span>"
+    ]
+  },
+  {
+    "objectID": "assignments/assignment2.html#calculate-vpd",
+    "href": "assignments/assignment2.html#calculate-vpd",
+    "title": "25  Assignment 2",
+    "section": "25.5 Calculate VPD",
+    "text": "25.5 Calculate VPD\nThe Vapor Pressure Deficit (VPD, in kPa) is the difference between saturation vapor pressure \\(e_s\\) and actual vapor pressure \\(e_d\\):\n\\[\\text{VPD} = e_s - e_d.\\]\nFor temperatures ranging from 0 to 50 °C, the saturation vapor pressure can be calculated with\n\\[\ne_s = \\exp \\left[ \\frac{16.78\\, T -116.9}{T+237.3} \\right],\n\\]\nand the actual vapor pressure is given by\n\\[\ne_d = e_s \\frac{RH}{100},\n\\]\nwhere \\(RH\\) is the relative humidity (%), and the temperature \\(T\\) in the equations above is in degrees Celcius.",
+    "crumbs": [
+      "**Assignments**",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Assignment 2</span>"
+    ]
+  },
+  {
+    "objectID": "assignments/assignment2.html#circuit-diagram",
+    "href": "assignments/assignment2.html#circuit-diagram",
+    "title": "25  Assignment 2",
+    "section": "25.6 Circuit diagram",
+    "text": "25.6 Circuit diagram\nAs part of the project, you will draw the circuit diagram using the following website:\nhttps://www.circuit-diagram.org/editor/\nSave the diagram as a png and upload it to moodle.",
+    "crumbs": [
+      "**Assignments**",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Assignment 2</span>"
+    ]
+  },
+  {
     "objectID": "resources.html",
     "href": "resources.html",
-    "title": "25   Resources",
+    "title": "26   Resources",
     "section": "",
-    "text": "25.1  Equipment",
+    "text": "26.1  Equipment",
     "crumbs": [
       "**Resources**",
-      "<span class='chapter-number'>25</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
     ]
   },
   {
     "objectID": "resources.html#equipment",
     "href": "resources.html#equipment",
-    "title": "25   Resources",
+    "title": "26   Resources",
     "section": "",
-    "text": "25.1.1 Equipment Pickup Form\n\nPlease fill out this form every time you receive a new sensor or equipment. You will need to provide your 9-digit ID number and indicate which sensor(s) you have received.\nMake sure your name and phone number are written on the box containing the equipment.\nBy filling out this form, you agree to receive the item(s) and are obligated to return them at the end of the course.\nIf you’re not sure, click here to check which equipment you borrowed from the course.\n\n\n25.1.1.0.1 Do you want to order equipment for yourself?\nClick for a list of the main components used in this course.",
+    "text": "26.1.1 Equipment Pickup Form\n\nPlease fill out this form every time you receive a new sensor or equipment. You will need to provide your 9-digit ID number and indicate which sensor(s) you have received.\nMake sure your name and phone number are written on the box containing the equipment.\nBy filling out this form, you agree to receive the item(s) and are obligated to return them at the end of the course.\nIf you’re not sure, click here to check which equipment you borrowed from the course.\n\n\n26.1.1.0.1 Do you want to order equipment for yourself?\nClick for a list of the main components used in this course.",
     "crumbs": [
       "**Resources**",
-      "<span class='chapter-number'>25</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
     ]
   },
   {
     "objectID": "resources.html#github",
     "href": "resources.html#github",
-    "title": "25   Resources",
-    "section": "25.2  Github",
-    "text": "25.2  Github\nMake an account on Github. Create a repository called “agrotech” or whatever you else want to call it. You can upload to this repository your code, data, diagrams, pictures, markdown, etc. In the end of the semester you will upload your project report as a Jupyter Notebook file.\nFrom now on, your main Github page can be your “geek face” on the internet. Make a clean and simple readme.md, telling the world who you are and what you do.",
+    "title": "26   Resources",
+    "section": "26.2  Github",
+    "text": "26.2  Github\nMake an account on Github. Create a repository called “agrotech” or whatever you else want to call it. You can upload to this repository your code, data, diagrams, pictures, markdown, etc. In the end of the semester you will upload your project report as a Jupyter Notebook file.\nFrom now on, your main Github page can be your “geek face” on the internet. Make a clean and simple readme.md, telling the world who you are and what you do.",
     "crumbs": [
       "**Resources**",
-      "<span class='chapter-number'>25</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
     ]
   },
   {
     "objectID": "resources.html#jupyter-notebook",
     "href": "resources.html#jupyter-notebook",
-    "title": "25   Resources",
-    "section": "25.3  Jupyter Notebook",
-    "text": "25.3  Jupyter Notebook\nThe easiest way to install Python (+ Jupyter Notebook, Spyder, PyCharm, JupyterLab, etc) on any OS is to download Anaconda. Jupyter Notebook is a versatile environment that allows you to write code and documentation in one single file, taking advantage of Markdown. Click for a short and a long markdown cheat sheet.",
+    "title": "26   Resources",
+    "section": "26.3  Jupyter Notebook",
+    "text": "26.3  Jupyter Notebook\nThe easiest way to install Python (+ Jupyter Notebook, Spyder, PyCharm, JupyterLab, etc) on any OS is to download Anaconda. Jupyter Notebook is a versatile environment that allows you to write code and documentation in one single file, taking advantage of Markdown. Click for a short and a long markdown cheat sheet.",
     "crumbs": [
       "**Resources**",
-      "<span class='chapter-number'>25</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
     ]
   },
   {
     "objectID": "resources.html#fritzing",
     "href": "resources.html#fritzing",
-    "title": "25   Resources",
-    "section": "25.4  Fritzing",
-    "text": "25.4  Fritzing\nFritzing is a nice software that lets you easily draw your own circuits and diagrams.",
+    "title": "26   Resources",
+    "section": "26.4  Fritzing",
+    "text": "26.4  Fritzing\nFritzing is a nice software that lets you easily draw your own circuits and diagrams.",
     "crumbs": [
       "**Resources**",
-      "<span class='chapter-number'>25</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
     ]
   },
   {
     "objectID": "resources.html#useful-links",
     "href": "resources.html#useful-links",
-    "title": "25   Resources",
-    "section": "25.5  Useful links",
-    "text": "25.5  Useful links\nThe world of MCUs has great support online. You actually don’t need this course to learn it… We are only here to guide you and help with the first steps. SO below are some usful links to websites/Youtube channels that provide excellent information:\nArduino syntax and coding:\n\nArduino — Language Reference\n\nTutorials by sensor manufacturers:\n\nSparkfun\n\nAdafruit\n\nProject ideas:\n\nArduino Project Hub\n\nInstructables — Arduino\n\nArduino beginners course:\n\nPaul McWhorter - New Arduino Tutorials\n\nExamples of good Youtube channels:\n\nAndreas Spiess\n\nG6EJD - David\n\nGreatScott!\n\neduc8s.tv\n\nOregon State’s OPEnS Lab\n\nGithub",
+    "title": "26   Resources",
+    "section": "26.5  Useful links",
+    "text": "26.5  Useful links\nThe world of MCUs has great support online. You actually don’t need this course to learn it… We are only here to guide you and help with the first steps. SO below are some usful links to websites/Youtube channels that provide excellent information:\nArduino syntax and coding:\n\nArduino — Language Reference\n\nTutorials by sensor manufacturers:\n\nSparkfun\n\nAdafruit\n\nProject ideas:\n\nArduino Project Hub\n\nInstructables — Arduino\n\nArduino beginners course:\n\nPaul McWhorter - New Arduino Tutorials\n\nExamples of good Youtube channels:\n\nAndreas Spiess\n\nG6EJD - David\n\nGreatScott!\n\neduc8s.tv\n\nOregon State’s OPEnS Lab\n\nGithub",
     "crumbs": [
       "**Resources**",
-      "<span class='chapter-number'>25</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
     ]
   },
   {
     "objectID": "projects.html",
     "href": "projects.html",
-    "title": "26   Projects",
+    "title": "27   Projects",
     "section": "",
-    "text": "26.1  Final Project\nRead carefully the instructions. Click here.",
+    "text": "27.1  Final Project\nRead carefully the instructions. Click here.",
     "crumbs": [
       "**Projects**",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>{{< iconify material-symbols rocket-launch >}} Projects</span>"
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>{{< iconify material-symbols rocket-launch >}} Projects</span>"
     ]
   },
   {
     "objectID": "projects.html#final-project",
     "href": "projects.html#final-project",
-    "title": "26   Projects",
+    "title": "27   Projects",
     "section": "",
     "text": "2022 Final projects\n\n\n\n\nTeam\nProject\n\n\n\n\n   Ronna Melamed Bat – May Nir\nMeasuring PAR outside and inside the greenhouse\n\n\n   Avital Akerman – Elad Greenfeld\nAutomated Irrigation System\n\n\n   Nadav Hen – Guy Donagi – David Zingerman\nTemporal and spatial temperature measurement in a greenhouse\n\n\n   Zeev Rozman – Imri Zadak – Alex Evenko-Greenapple\nweather station\n\n\n   Yuval Chemke – Reem Har Levi\nHydroponics Monitoring and Balance\n\n\n   Peleg Atir – Aviad Mendelovich – Ruth Yitzhaki\nVPD control using automatic sprinklers\n\n\n   Amir Sheffer – Yitzchak Kanovsky – Aviv Saadia\n3D heatmap model of a greenhouse",
     "crumbs": [
       "**Projects**",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>{{< iconify material-symbols rocket-launch >}} Projects</span>"
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>{{< iconify material-symbols rocket-launch >}} Projects</span>"
     ]
   },
   {
     "objectID": "projects.html#passover-2022-mini-project",
     "href": "projects.html#passover-2022-mini-project",
-    "title": "26   Projects",
-    "section": "26.2  Passover 2022 mini project",
-    "text": "26.2  Passover 2022 mini project\nclick here",
+    "title": "27   Projects",
+    "section": "27.2  Passover 2022 mini project",
+    "text": "27.2  Passover 2022 mini project\nclick here",
     "crumbs": [
       "**Projects**",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>{{< iconify material-symbols rocket-launch >}} Projects</span>"
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>{{< iconify material-symbols rocket-launch >}} Projects</span>"
     ]
   },
   {
     "objectID": "projects/borrowing-equipment.html",
     "href": "projects/borrowing-equipment.html",
-    "title": "27  Borrowing equipment",
+    "title": "28  Borrowing equipment",
     "section": "",
-    "text": "We want to give you the freedom to try out all the equipment, but we need help in tracking what equipment you took. For that reson we started a colaborative spreadsheet in which you can list the equipment you took home / are using in your project. (Only HUJI accounts can edit that sheet).\n Link to sheet\n\n27.0.1 About the sheet & some guidelines:\n\nEach unique component has its own column, including its name, brief description and link to a picture of it.\nOne row per student (please add yourself).\nInsert the amount you took of each component in numbers only.\nIn the Graveyard section write in text (example: 2 x ESP32) all the equipment that you burnt, found malfunctioning, lost, etc… Whatever we can’t use anymore… IMPORTANT: there is no shame in having a big list, honesty is what we are looking for. We are just trying to keep track of all the equipment.\nPlease make sure to immediately update the sheet as you take/return the equipment.\nNo need to list super-fundamental equipment like resistors and cables.\n\n\n\n27.0.2 We need your help:\nThe sheet is not complete and will be expanded during the semester. If there is missing information, please add/fix it. It can be:\n\nMissing component column\n\nNo description\n\nNo image link",
+    "text": "We want to give you the freedom to try out all the equipment, but we need help in tracking what equipment you took. For that reson we started a colaborative spreadsheet in which you can list the equipment you took home / are using in your project. (Only HUJI accounts can edit that sheet).\n Link to sheet\n\n28.0.1 About the sheet & some guidelines:\n\nEach unique component has its own column, including its name, brief description and link to a picture of it.\nOne row per student (please add yourself).\nInsert the amount you took of each component in numbers only.\nIn the Graveyard section write in text (example: 2 x ESP32) all the equipment that you burnt, found malfunctioning, lost, etc… Whatever we can’t use anymore… IMPORTANT: there is no shame in having a big list, honesty is what we are looking for. We are just trying to keep track of all the equipment.\nPlease make sure to immediately update the sheet as you take/return the equipment.\nNo need to list super-fundamental equipment like resistors and cables.\n\n\n\n28.0.2 We need your help:\nThe sheet is not complete and will be expanded during the semester. If there is missing information, please add/fix it. It can be:\n\nMissing component column\n\nNo description\n\nNo image link",
     "crumbs": [
       "**Projects**",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Borrowing equipment</span>"
-    ]
-  },
-  {
-    "objectID": "projects/passover-2023.html",
-    "href": "projects/passover-2023.html",
-    "title": "28  Passover 2023 Mini Project",
-    "section": "",
-    "text": "28.1  Some guidelines\nIn this project each one of you will individually create a Thingspeak channel and will upload to it data from an ESP32.\nMinimal requirements:",
-    "crumbs": [
-      "**Projects**",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Passover 2023 Mini Project</span>"
-    ]
-  },
-  {
-    "objectID": "projects/passover-2023.html#some-guidelines",
-    "href": "projects/passover-2023.html#some-guidelines",
-    "title": "28  Passover 2023 Mini Project",
-    "section": "",
-    "text": "Measure temperature (using SHT31)\nMeasure humidity (using SHT31)\nCalculate VPD",
-    "crumbs": [
-      "**Projects**",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Passover 2023 Mini Project</span>"
-    ]
-  },
-  {
-    "objectID": "projects/passover-2023.html#deadline",
-    "href": "projects/passover-2023.html#deadline",
-    "title": "28  Passover 2023 Mini Project",
-    "section": "28.2  Deadline",
-    "text": "28.2  Deadline\nAll Chanels must be live between 12–16 April 2023.\nThe name of the channel MUST be spelled with the prefix “Passover_2023_” and then your first and last name with separated by an underscore.\nFor example: Passover_2023_Erez_Feuer\nYou MUST provide information regarding your channel in the “description” section which can be found under “channel settings”. This information should include:\n\nlocation (e.g.: balcony in Rechovot, kitchen in Gan-Yavne, 7th floor bedroom window, etc.),\nwhat the sensors are measuring, and\nany other information that you find relevant - the more the better.\n\nUpload interval should be every 5 minutes.",
-    "crumbs": [
-      "**Projects**",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Passover 2023 Mini Project</span>"
-    ]
-  },
-  {
-    "objectID": "projects/passover-2023.html#public-view",
-    "href": "projects/passover-2023.html#public-view",
-    "title": "28  Passover 2023 Mini Project",
-    "section": "28.3  Public view",
-    "text": "28.3  Public view\nWe will be monitoring your Thingspeak channels via the “Public view” section. It is very simple to make your channel public, just check “Share channel view with everyone” under the Sharing tab as you can this in the following image:",
-    "crumbs": [
-      "**Projects**",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Passover 2023 Mini Project</span>"
-    ]
-  },
-  {
-    "objectID": "projects/passover-2023.html#how-to-power-your-projects",
-    "href": "projects/passover-2023.html#how-to-power-your-projects",
-    "title": "28  Passover 2023 Mini Project",
-    "section": "28.4  How to power your projects",
-    "text": "28.4  How to power your projects\nOnce the code is uploaded to the ESP32 and every thing works fine, you don’t need your computer anymore, and can use a generic USB charger as a power supply. Don’t worry about the code, it will work as long as the ESP32 has power, because you already uploaded the code to memory.",
-    "crumbs": [
-      "**Projects**",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Passover 2023 Mini Project</span>"
-    ]
-  },
-  {
-    "objectID": "projects/passover-2023.html#calculate-vpd",
-    "href": "projects/passover-2023.html#calculate-vpd",
-    "title": "28  Passover 2023 Mini Project",
-    "section": "28.5 Calculate VPD",
-    "text": "28.5 Calculate VPD\nThe Vapor Pressure Deficit (VPD, in kPa) is the difference between saturation vapor pressure \\(e_s\\) and actual vapor pressure \\(e_d\\):\n\\[\\text{VPD} = e_s - e_d.\\]\nFor temperatures ranging from 0 to 50 °C, the saturation vapor pressure can be calculated with\n\\[\ne_s = \\exp \\left[ \\frac{16.78\\, T -116.9}{T+237.3} \\right],\n\\]\nand the actual vapor pressure is given by\n\\[\ne_d = e_s \\frac{RH}{100},\n\\]\nwhere \\(RH\\) is the relative humidity (%), and the temperature \\(T\\) in the equations above is in degrees Celcius.",
-    "crumbs": [
-      "**Projects**",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Passover 2023 Mini Project</span>"
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>Borrowing equipment</span>"
     ]
   },
   {

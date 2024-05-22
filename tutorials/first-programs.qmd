@@ -8,6 +8,10 @@ execute:
 
 {{< include ../_insert_ino_code.qmd >}}
 
+If for some reason you are having any difficulties with your ESP32, you can simulate any code using this simulator:  
+<https://wokwi.com/projects/new/esp32>
+
+
 ## Blink
 
 It's time to run a first example.

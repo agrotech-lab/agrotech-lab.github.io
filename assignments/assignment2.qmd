@@ -1,10 +1,9 @@
 ---
-title: "Passover 2023 Mini Project"
+title: "Assignment 2"
 echo: false
 jupyter: python3
 ---
 
-An oportunity to play and get started before the big final project.
 
 ![](/archive/figures/matzo_electronics.png)
 
@@ -21,10 +20,10 @@ Minimal requirements:
 
 ## <span class="iconify" data-icon="uil:schedule"></span> Deadline
 
-**All Chanels must be live between 12--16 April 2023.**
+**All Chanels must be live in two weeks from the day you hear about it in class.**
 
-The name of the channel **MUST** be spelled with the prefix "Passover_2023_" and then your first and last name with separated by an underscore.  
-For example: `Passover_2023_Erez_Feuer`
+The name of the channel **MUST** be spelled with the prefix "Assignment2_" and then your first and last name with separated by an underscore.  
+For example: `Assignment2_Erez_Feuer`
 
 You **MUST** provide information regarding your channel in the "description" section which can be found under "channel settings". This information should include:
 
@@ -63,3 +62,9 @@ e_d = e_s \frac{RH}{100},
 $$
 
 where $RH$ is the relative humidity (%), and the temperature $T$ in the equations above is in degrees Celcius.
+
+## Circuit diagram
+
+As part of the project, you will draw the circuit diagram using the following website:  
+<https://www.circuit-diagram.org/editor/>  
+Save the diagram as a `png` and upload it to moodle.

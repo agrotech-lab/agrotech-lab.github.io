@@ -2,11 +2,11 @@
 #include <WiFi.h>
 
 #include "ThingSpeak.h"
-unsigned long myChannelNumber = 1358139;
-const char * myWriteAPIKey = "4HZXSWG1JXQCVHM2";
+unsigned long myChannelNumber = write_here_the_relevant_number;
+const char * myWriteAPIKey = "write_here_the_correct_API_key";
 
-const char* ssid = "HUJI-guest"; // your wifi SSID name
-const char* password = "" ;// wifi pasword
+const char* ssid = "wifi_name"; // your wifi SSID name
+const char* password = "wifi_password" ;// wifi pasword
  
 const char* server = "api.thingspeak.com";
 
@@ -15,7 +15,7 @@ WiFiClient client;
 
  
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   WiFi.disconnect();
   delay(10);
   WiFi.begin(ssid, password);

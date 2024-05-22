@@ -90,14 +90,13 @@ code_source("touch_control_LED.ino")
 code_source("Agrotech_2022_Thingspeak.ino")
 ```
 
-## Example: Sending Data from Sensors Above to Thingspeak
+## Uploading Thermistor Data to Thingspeak
 
 ```{python}
 #| echo: false
 #| output: asis
-code_source("Agrotech_2022_sensors_to_Thingspeak.ino")
+code_source("thermistor_to_thingspeak.ino")
 ```
-
 
 ----
 

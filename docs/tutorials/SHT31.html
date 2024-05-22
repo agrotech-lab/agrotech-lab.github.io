@@ -374,6 +374,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Assignment 1</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Assignment 2</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -388,7 +394,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title"> Resources</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title"> Resources</span></span></a>
   </div>
 </li>
       </ul>
@@ -405,19 +411,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title"> Projects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title"> Projects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects/borrowing-equipment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Borrowing equipment</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../projects/passover-2023.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Passover 2023 Mini Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Borrowing equipment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -549,7 +549,7 @@ section-divs: false
 <span id="cb1-9"><a href="#cb1-9"></a>Adafruit_SHT31 sht31 <span class="op">=</span> Adafruit_SHT31<span class="op">();</span> <span class="co">// Create an instance of the SHT31 object</span></span>
 <span id="cb1-10"><a href="#cb1-10"></a></span>
 <span id="cb1-11"><a href="#cb1-11"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span>        <span class="co">// Initialize the serial communication with a baud rate of 112500</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span>        <span class="co">// Initialize the serial communication with a baud rate of 112500</span></span>
 <span id="cb1-13"><a href="#cb1-13"></a>  <span class="cf">if</span> <span class="op">(!</span> sht31<span class="op">.</span>begin<span class="op">(</span><span class="bn">0x44</span><span class="op">))</span> <span class="op">{</span>   <span class="co">// Check if SHT31 is connected and start it with address 0x44</span></span>
 <span id="cb1-14"><a href="#cb1-14"></a>    <span class="co">// Print an error message if SHT31 is not found</span></span>
 <span id="cb1-15"><a href="#cb1-15"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Couldn't find SHT31"</span><span class="op">);</span></span>

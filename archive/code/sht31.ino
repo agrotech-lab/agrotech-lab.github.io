@@ -9,7 +9,7 @@
 Adafruit_SHT31 sht31 = Adafruit_SHT31(); // Create an instance of the SHT31 object
 
 void setup() {
-  Serial.begin(9600);        // Initialize the serial communication with a baud rate of 112500
+  Serial.begin(115200);        // Initialize the serial communication with a baud rate of 112500
   if (! sht31.begin(0x44)) {   // Check if SHT31 is connected and start it with address 0x44
     // Print an error message if SHT31 is not found
     Serial.println("Couldn't find SHT31");

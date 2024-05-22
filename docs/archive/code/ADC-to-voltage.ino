@@ -1,9 +1,9 @@
-int analog_pin = 32; // Pin into which we connect the input voltage
+const int analog_pin = A4; // Pin into which we connect the input voltage
 int val ;  // variable to store the value read
 float voltage;
 
 void setup() {
-  Serial.begin(9600); //
+  Serial.begin(115200); //
 }
 
 void loop() {

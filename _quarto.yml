@@ -46,6 +46,7 @@ book:
     - part: "**Assignments**"
       chapters:
       - assignments/assignment1.qmd
+      - assignments/assignment2.qmd
     - part: "**Resources**"
       chapters:
       - resources.qmd
@@ -53,7 +54,6 @@ book:
       chapters:
       - projects.qmd
       - projects/borrowing-equipment.qmd
-      - projects/passover-2023.qmd
       - projects/final-project.qmd
 
   sidebar:

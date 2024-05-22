@@ -14,13 +14,15 @@ execute:
 
 <!-- <object data="/archive/teaching-material/electronics-class.pdf" width="800" height="500" type='application/pdf'></object> -->
 
-[Pin information for ESP32](https://randomnerdtutorials.com/esp32-pinout-reference-gpios/)
-
 ![](/archive/figures/ohm-resistance.jpg)
 
 ----
 
 {{< include ../_insert_ino_code.qmd >}}
+
+## Circuit diagrams
+
+Make your own circuit diagrams here: <https://www.circuit-diagram.org/editor/>
 
 
 ## Digital Write
@@ -88,7 +90,7 @@ code_source("potentiometer-PWM.ino")
 ```{python}
 #| echo: false
 #| output: asis
-code_source("thermistor_b_val.ino")
+code_source("thermistor.ino")
 ```
 
 ![](/archive/figures/thermistor-agrotech-schematic.png)

@@ -374,6 +374,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Assignment 1</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Assignment 2</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -388,7 +394,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title"> Resources</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title"> Resources</span></span></a>
   </div>
 </li>
       </ul>
@@ -405,19 +411,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title"> Projects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title"> Projects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects/borrowing-equipment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Borrowing equipment</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../projects/passover-2023.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Passover 2023 Mini Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Borrowing equipment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -446,7 +446,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#control-led-with-touch-sensor" id="toc-control-led-with-touch-sensor" class="nav-link" data-scroll-target="#control-led-with-touch-sensor"><span class="header-section-number">16.6</span> Control LED with touch sensor</a></li>
   <li><a href="#thingspeak" id="toc-thingspeak" class="nav-link" data-scroll-target="#thingspeak"><span class="header-section-number">16.7</span> Thingspeak</a></li>
   <li><a href="#basic-code-for-uploading-data-to-thingspeak" id="toc-basic-code-for-uploading-data-to-thingspeak" class="nav-link" data-scroll-target="#basic-code-for-uploading-data-to-thingspeak"><span class="header-section-number">16.8</span> Basic Code for Uploading Data to Thingspeak</a></li>
-  <li><a href="#example-sending-data-from-sensors-above-to-thingspeak" id="toc-example-sending-data-from-sensors-above-to-thingspeak" class="nav-link" data-scroll-target="#example-sending-data-from-sensors-above-to-thingspeak"><span class="header-section-number">16.9</span> Example: Sending Data from Sensors Above to Thingspeak</a></li>
+  <li><a href="#uploading-thermistor-data-to-thingspeak" id="toc-uploading-thermistor-data-to-thingspeak" class="nav-link" data-scroll-target="#uploading-thermistor-data-to-thingspeak"><span class="header-section-number">16.9</span> Uploading Thermistor Data to Thingspeak</a></li>
   </ul>
 </nav>
     </div>
@@ -843,11 +843,11 @@ section-divs: false
 <span id="cb7-2"><a href="#cb7-2"></a><span class="pp">#include </span><span class="im">&lt;WiFi.h&gt;</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a></span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="pp">#include </span><span class="im">"ThingSpeak.h"</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="dt">unsigned</span> <span class="dt">long</span> myChannelNumber <span class="op">=</span> <span class="dv">1358139</span><span class="op">;</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span> myWriteAPIKey <span class="op">=</span> <span class="st">"4HZXSWG1JXQCVHM2"</span><span class="op">;</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="dt">unsigned</span> <span class="dt">long</span> myChannelNumber <span class="op">=</span> write_here_the_relevant_number<span class="op">;</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span> myWriteAPIKey <span class="op">=</span> <span class="st">"write_here_the_correct_API_key"</span><span class="op">;</span></span>
 <span id="cb7-7"><a href="#cb7-7"></a></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> ssid <span class="op">=</span> <span class="st">"HUJI-guest"</span><span class="op">;</span> <span class="co">// your wifi SSID name</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> password <span class="op">=</span> <span class="st">""</span> <span class="op">;</span><span class="co">// wifi pasword</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> ssid <span class="op">=</span> <span class="st">"wifi_name"</span><span class="op">;</span> <span class="co">// your wifi SSID name</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> password <span class="op">=</span> <span class="st">"wifi_password"</span> <span class="op">;</span><span class="co">// wifi pasword</span></span>
 <span id="cb7-10"><a href="#cb7-10"></a> </span>
 <span id="cb7-11"><a href="#cb7-11"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> server <span class="op">=</span> <span class="st">"api.thingspeak.com"</span><span class="op">;</span></span>
 <span id="cb7-12"><a href="#cb7-12"></a></span>
@@ -856,7 +856,7 @@ section-divs: false
 <span id="cb7-15"><a href="#cb7-15"></a></span>
 <span id="cb7-16"><a href="#cb7-16"></a> </span>
 <span id="cb7-17"><a href="#cb7-17"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb7-18"><a href="#cb7-18"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
 <span id="cb7-19"><a href="#cb7-19"></a>  WiFi<span class="op">.</span>disconnect<span class="op">();</span></span>
 <span id="cb7-20"><a href="#cb7-20"></a>  delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
 <span id="cb7-21"><a href="#cb7-21"></a>  WiFi<span class="op">.</span>begin<span class="op">(</span>ssid<span class="op">,</span> password<span class="op">);</span></span>
@@ -907,195 +907,115 @@ section-divs: false
             </div>
             
 </section>
-<section id="example-sending-data-from-sensors-above-to-thingspeak" class="level2" data-number="16.9">
-<h2 data-number="16.9" class="anchored" data-anchor-id="example-sending-data-from-sensors-above-to-thingspeak"><span class="header-section-number">16.9</span> Example: Sending Data from Sensors Above to Thingspeak</h2>
-<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#Agrotech_2022_sensors_to_Thingspeakino" aria-expanded="false" aria-controls="Agrotech_2022_sensors_to_Thingspeakino">
+<section id="uploading-thermistor-data-to-thingspeak" class="level2" data-number="16.9">
+<h2 data-number="16.9" class="anchored" data-anchor-id="uploading-thermistor-data-to-thingspeak"><span class="header-section-number">16.9</span> Uploading Thermistor Data to Thingspeak</h2>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#thermistor_to_thingspeakino" aria-expanded="false" aria-controls="thermistor_to_thingspeakino">
     <i class="bi bi-toggles"></i> Toggle code
     </button>
-     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/Agrotech_2022_sensors_to_Thingspeak.ino" download="" target="_blank" rel="noopener noreferrer">
+     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/thermistor_to_thingspeak.ino" download="" target="_blank" rel="noopener noreferrer">
         <i class="bi bi-download"></i> Download code
     </a>
 
-            <div class="collapse" id="Agrotech_2022_sensors_to_Thingspeakino">
+            <div class="collapse" id="thermistor_to_thingspeakino">
             <div class="card card-body border-0">
         
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">//------------------------------------------------------------------</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="co">//Thingspeak:</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="co">// #include &lt;ESP8266WiFi.h&gt;</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="pp">#include </span><span class="im">&lt;WiFi.h&gt;</span></span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1"></a><span class="pp">#include </span><span class="im">&lt;WiFi.h&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="co">// Include the ThingSpeak library</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="pp">#include </span><span class="im">"ThingSpeak.h"</span></span>
 <span id="cb8-5"><a href="#cb8-5"></a></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="pp">#include </span><span class="im">"ThingSpeak.h"</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="dt">unsigned</span> <span class="dt">long</span> myChannelNumber <span class="op">=</span> <span class="dv">1689148</span><span class="op">;</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="dt">const</span> <span class="dt">char</span> <span class="op">*</span> myWriteAPIKey <span class="op">=</span> <span class="st">"A58V29JE8UIGWI16"</span><span class="op">;</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="co">// Set the ThingSpeak channel and API key information</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="dt">unsigned</span> <span class="dt">long</span> myChannelNumber <span class="op">=</span> <span class="dv">2557936</span><span class="op">;</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> myWriteAPIKey <span class="op">=</span> <span class="st">"KUEIEB7R1B58O9KY"</span><span class="op">;</span></span>
 <span id="cb8-9"><a href="#cb8-9"></a></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> ssid <span class="op">=</span> <span class="st">"HUJI-guest"</span><span class="op">;</span> <span class="co">// your wifi SSID name</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> password <span class="op">=</span> <span class="st">""</span> <span class="op">;</span><span class="co">// wifi pasword</span></span>
-<span id="cb8-12"><a href="#cb8-12"></a> </span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> server <span class="op">=</span> <span class="st">"api.thingspeak.com"</span><span class="op">;</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a></span>
-<span id="cb8-15"><a href="#cb8-15"></a>WiFiClient client<span class="op">;</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="co">// Set the WiFi network credentials</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> ssid <span class="op">=</span> <span class="st">"borneo"</span><span class="op">;</span> <span class="co">// your wifi SSID name</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> password <span class="op">=</span> <span class="st">"rainforest"</span><span class="op">;</span> <span class="co">// wifi password</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a></span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="co">// Set the ThingSpeak server address</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> server <span class="op">=</span> <span class="st">"api.thingspeak.com"</span><span class="op">;</span></span>
 <span id="cb8-16"><a href="#cb8-16"></a></span>
-<span id="cb8-17"><a href="#cb8-17"></a><span class="co">//------------------------------------------------------------------</span></span>
-<span id="cb8-18"><a href="#cb8-18"></a><span class="co">//DS18B20:</span></span>
-<span id="cb8-19"><a href="#cb8-19"></a><span class="pp">#include </span><span class="im">&lt;OneWire.h&gt;</span></span>
-<span id="cb8-20"><a href="#cb8-20"></a><span class="pp">#include </span><span class="im">&lt;DallasTemperature.h&gt;</span></span>
-<span id="cb8-21"><a href="#cb8-21"></a></span>
-<span id="cb8-22"><a href="#cb8-22"></a><span class="co">// Data wire is connected to GPIO4</span></span>
-<span id="cb8-23"><a href="#cb8-23"></a><span class="pp">#define ONE_WIRE_BUS </span><span class="dv">4</span></span>
-<span id="cb8-24"><a href="#cb8-24"></a><span class="co">// Setup a oneWire instance to communicate with a OneWire device</span></span>
-<span id="cb8-25"><a href="#cb8-25"></a>OneWire oneWire<span class="op">(</span>ONE_WIRE_BUS<span class="op">);</span></span>
-<span id="cb8-26"><a href="#cb8-26"></a><span class="co">// Pass our oneWire reference to Dallas Temperature sensor </span></span>
-<span id="cb8-27"><a href="#cb8-27"></a>DallasTemperature sensors<span class="op">(&amp;</span>oneWire<span class="op">);</span></span>
-<span id="cb8-28"><a href="#cb8-28"></a></span>
-<span id="cb8-29"><a href="#cb8-29"></a><span class="co">//Insert the right address for your sensors</span></span>
-<span id="cb8-30"><a href="#cb8-30"></a>DeviceAddress sensor1 <span class="op">=</span> <span class="op">{</span> <span class="bn">0x28</span><span class="op">,</span> <span class="bn">0xFF</span><span class="op">,</span> <span class="bn">0x64</span><span class="op">,</span> <span class="bn">0x02</span><span class="op">,</span> <span class="bn">0xEF</span><span class="op">,</span> <span class="bn">0x01</span><span class="op">,</span> <span class="bn">0xA7</span><span class="op">,</span> <span class="bn">0x31</span> <span class="op">};</span></span>
-<span id="cb8-31"><a href="#cb8-31"></a>DeviceAddress sensor2 <span class="op">=</span> <span class="op">{</span> <span class="bn">0x28</span><span class="op">,</span> <span class="bn">0x35</span><span class="op">,</span> <span class="bn">0xD3</span><span class="op">,</span> <span class="bn">0x11</span><span class="op">,</span> <span class="bn">0x00</span><span class="op">,</span> <span class="bn">0x00</span><span class="op">,</span> <span class="bn">0x00</span><span class="op">,</span> <span class="bn">0xBF</span> <span class="op">};</span></span>
-<span id="cb8-32"><a href="#cb8-32"></a></span>
-<span id="cb8-33"><a href="#cb8-33"></a><span class="co">//------------------------------------------------------------------</span></span>
-<span id="cb8-34"><a href="#cb8-34"></a><span class="co">//SHT31:</span></span>
-<span id="cb8-35"><a href="#cb8-35"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span></span>
-<span id="cb8-36"><a href="#cb8-36"></a><span class="pp">#include </span><span class="im">&lt;Wire.h&gt;</span></span>
-<span id="cb8-37"><a href="#cb8-37"></a><span class="pp">#include </span><span class="im">"Adafruit_SHT31.h"</span></span>
-<span id="cb8-38"><a href="#cb8-38"></a></span>
-<span id="cb8-39"><a href="#cb8-39"></a>Adafruit_SHT31 sht31 <span class="op">=</span> Adafruit_SHT31<span class="op">();</span></span>
-<span id="cb8-40"><a href="#cb8-40"></a><span class="co">//------------------------------------------------------------------</span></span>
-<span id="cb8-41"><a href="#cb8-41"></a><span class="co">//VL53LOX:</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a><span class="co">// Create a WiFiClient object to connect to the WiFi network</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a>WiFiClient client<span class="op">;</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a></span>
+<span id="cb8-20"><a href="#cb8-20"></a><span class="co">// Set the time to wait between uploading data to ThingSpeak (in milliseconds)</span></span>
+<span id="cb8-21"><a href="#cb8-21"></a><span class="dt">int</span> wait_between_uploads <span class="op">=</span> <span class="dv">10000</span><span class="op">;</span> <span class="co">// 10 seconds</span></span>
+<span id="cb8-22"><a href="#cb8-22"></a></span>
+<span id="cb8-23"><a href="#cb8-23"></a><span class="co">// Thermistor setup------------------------------------------------------------------</span></span>
+<span id="cb8-24"><a href="#cb8-24"></a><span class="dt">int</span> analog_pin <span class="op">=</span> <span class="dv">32</span><span class="op">;</span> <span class="co">// Pin into which we connect the input voltage</span></span>
+<span id="cb8-25"><a href="#cb8-25"></a><span class="dt">int</span> val <span class="op">;</span>  <span class="co">// variable to store the value read</span></span>
+<span id="cb8-26"><a href="#cb8-26"></a><span class="dt">float</span> v2<span class="op">;</span> <span class="co">// variable to store the voltage of v2</span></span>
+<span id="cb8-27"><a href="#cb8-27"></a><span class="dt">int</span> r1 <span class="op">=</span> <span class="dv">10000</span><span class="op">;</span> <span class="co">// R1 value (in the voltage divider)</span></span>
+<span id="cb8-28"><a href="#cb8-28"></a><span class="dt">float</span> v1 <span class="op">=</span> <span class="fl">3.3</span><span class="op">;</span> <span class="co">// V1 value</span></span>
+<span id="cb8-29"><a href="#cb8-29"></a><span class="dt">int</span> b_val <span class="op">=</span> <span class="dv">4150</span><span class="op">;</span> <span class="co">// B value of the resistor (from the data sheet)</span></span>
+<span id="cb8-30"><a href="#cb8-30"></a><span class="dt">float</span> r2<span class="op">;</span> <span class="co">// variable to store the resistance of r2 (thermistor resistance)</span></span>
+<span id="cb8-31"><a href="#cb8-31"></a><span class="dt">float</span> t<span class="op">;</span> <span class="co">// variable to store the temperature</span></span>
+<span id="cb8-32"><a href="#cb8-32"></a><span class="dt">int</span> adc_steps <span class="op">=</span> <span class="dv">4095</span><span class="op">;</span> <span class="co">// the number of increments our ADC has (ESP32 = 12bit)</span></span>
+<span id="cb8-33"><a href="#cb8-33"></a><span class="dt">float</span> r_25 <span class="op">=</span> <span class="dv">10000</span><span class="op">;</span> <span class="co">// the thermistor resistance at 25C (from the data sheet)</span></span>
+<span id="cb8-34"><a href="#cb8-34"></a></span>
+<span id="cb8-35"><a href="#cb8-35"></a><span class="co">// function to convert resistance to temperature according to the b value</span></span>
+<span id="cb8-36"><a href="#cb8-36"></a><span class="co">// equation in this link:</span></span>
+<span id="cb8-37"><a href="#cb8-37"></a><span class="co">// https://www.thinksrs.com/downloads/programs/therm%20calc/ntccalibrator/ntccalculator.html</span></span>
+<span id="cb8-38"><a href="#cb8-38"></a><span class="dt">float</span> resistance_to_temperature<span class="op">(</span><span class="dt">int</span> b<span class="op">,</span> <span class="dt">float</span> r<span class="op">,</span> <span class="dt">float</span> r_25<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb8-39"><a href="#cb8-39"></a>  <span class="cf">return</span> b<span class="op">/(</span>log<span class="op">(</span>r<span class="op">/</span>r_25<span class="op">)+(</span>b<span class="op">/</span><span class="fl">298.15</span><span class="op">))-</span><span class="fl">273.15</span><span class="op">;</span></span>
+<span id="cb8-40"><a href="#cb8-40"></a><span class="op">}</span></span>
+<span id="cb8-41"><a href="#cb8-41"></a></span>
 <span id="cb8-42"><a href="#cb8-42"></a></span>
-<span id="cb8-43"><a href="#cb8-43"></a><span class="pp">#include </span><span class="im">"Adafruit_VL53L0X.h"</span></span>
-<span id="cb8-44"><a href="#cb8-44"></a>Adafruit_VL53L0X lox <span class="op">=</span> Adafruit_VL53L0X<span class="op">();</span></span>
-<span id="cb8-45"><a href="#cb8-45"></a></span>
+<span id="cb8-43"><a href="#cb8-43"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb8-44"><a href="#cb8-44"></a>  <span class="co">// Start the serial communication at 112500 baud</span></span>
+<span id="cb8-45"><a href="#cb8-45"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">112500</span><span class="op">);</span></span>
 <span id="cb8-46"><a href="#cb8-46"></a></span>
-<span id="cb8-47"><a href="#cb8-47"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb8-48"><a href="#cb8-48"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
-<span id="cb8-49"><a href="#cb8-49"></a>  <span class="co">//------------------------------------------------------------------</span></span>
-<span id="cb8-50"><a href="#cb8-50"></a>  <span class="co">//Thingspeak and wifi:</span></span>
-<span id="cb8-51"><a href="#cb8-51"></a>  WiFi<span class="op">.</span>disconnect<span class="op">();</span></span>
-<span id="cb8-52"><a href="#cb8-52"></a>  delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
-<span id="cb8-53"><a href="#cb8-53"></a>  WiFi<span class="op">.</span>begin<span class="op">(</span>ssid<span class="op">,</span> password<span class="op">);</span></span>
-<span id="cb8-54"><a href="#cb8-54"></a></span>
-<span id="cb8-55"><a href="#cb8-55"></a>  Serial<span class="op">.</span>println<span class="op">();</span></span>
-<span id="cb8-56"><a href="#cb8-56"></a>  Serial<span class="op">.</span>println<span class="op">();</span></span>
-<span id="cb8-57"><a href="#cb8-57"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Connecting to "</span><span class="op">);</span></span>
-<span id="cb8-58"><a href="#cb8-58"></a>  Serial<span class="op">.</span>println<span class="op">(</span>ssid<span class="op">);</span></span>
-<span id="cb8-59"><a href="#cb8-59"></a></span>
-<span id="cb8-60"><a href="#cb8-60"></a>    ThingSpeak<span class="op">.</span>begin<span class="op">(</span>client<span class="op">);</span></span>
-<span id="cb8-61"><a href="#cb8-61"></a> </span>
-<span id="cb8-62"><a href="#cb8-62"></a>  WiFi<span class="op">.</span>begin<span class="op">(</span>ssid<span class="op">,</span> password<span class="op">);</span></span>
-<span id="cb8-63"><a href="#cb8-63"></a>  </span>
-<span id="cb8-64"><a href="#cb8-64"></a> </span>
-<span id="cb8-65"><a href="#cb8-65"></a>  <span class="cf">while</span> <span class="op">(</span>WiFi<span class="op">.</span>status<span class="op">()</span> <span class="op">!=</span> WL_CONNECTED<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb8-66"><a href="#cb8-66"></a>    delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
-<span id="cb8-67"><a href="#cb8-67"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"."</span><span class="op">);</span></span>
-<span id="cb8-68"><a href="#cb8-68"></a>  <span class="op">}</span></span>
-<span id="cb8-69"><a href="#cb8-69"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
-<span id="cb8-70"><a href="#cb8-70"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"NodeMcu connected to wifi..."</span><span class="op">);</span></span>
-<span id="cb8-71"><a href="#cb8-71"></a>  Serial<span class="op">.</span>println<span class="op">(</span>ssid<span class="op">);</span></span>
-<span id="cb8-72"><a href="#cb8-72"></a>  Serial<span class="op">.</span>println<span class="op">();</span></span>
-<span id="cb8-73"><a href="#cb8-73"></a>  <span class="co">//------------------------------------------------------------------</span></span>
-<span id="cb8-74"><a href="#cb8-74"></a>  <span class="co">//DS18B20:</span></span>
-<span id="cb8-75"><a href="#cb8-75"></a>  sensors<span class="op">.</span>begin<span class="op">();</span></span>
-<span id="cb8-76"><a href="#cb8-76"></a></span>
-<span id="cb8-77"><a href="#cb8-77"></a>  <span class="co">//------------------------------------------------------------------</span></span>
-<span id="cb8-78"><a href="#cb8-78"></a>  <span class="co">//SHT31:</span></span>
-<span id="cb8-79"><a href="#cb8-79"></a>    <span class="cf">if</span> <span class="op">(!</span> sht31<span class="op">.</span>begin<span class="op">(</span><span class="bn">0x44</span><span class="op">))</span> <span class="op">{</span></span>
-<span id="cb8-80"><a href="#cb8-80"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Couldn't find SHT31"</span><span class="op">);</span></span>
-<span id="cb8-81"><a href="#cb8-81"></a>    <span class="cf">while</span> <span class="op">(</span><span class="dv">1</span><span class="op">)</span> delay<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
-<span id="cb8-82"><a href="#cb8-82"></a>  <span class="op">}</span></span>
+<span id="cb8-47"><a href="#cb8-47"></a>  <span class="co">// Disconnect any previous WiFi connection</span></span>
+<span id="cb8-48"><a href="#cb8-48"></a>  WiFi<span class="op">.</span>disconnect<span class="op">();</span></span>
+<span id="cb8-49"><a href="#cb8-49"></a>  delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
+<span id="cb8-50"><a href="#cb8-50"></a></span>
+<span id="cb8-51"><a href="#cb8-51"></a>  <span class="co">// Connect to the WiFi network</span></span>
+<span id="cb8-52"><a href="#cb8-52"></a>  WiFi<span class="op">.</span>begin<span class="op">(</span>ssid<span class="op">,</span> password<span class="op">);</span></span>
+<span id="cb8-53"><a href="#cb8-53"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Connecting to "</span><span class="op">);</span></span>
+<span id="cb8-54"><a href="#cb8-54"></a>  Serial<span class="op">.</span>println<span class="op">(</span>ssid<span class="op">);</span></span>
+<span id="cb8-55"><a href="#cb8-55"></a>  <span class="cf">while</span> <span class="op">(</span>WiFi<span class="op">.</span>status<span class="op">()</span> <span class="op">!=</span> WL_CONNECTED<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb8-56"><a href="#cb8-56"></a>    delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb8-57"><a href="#cb8-57"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"."</span><span class="op">);</span></span>
+<span id="cb8-58"><a href="#cb8-58"></a>  <span class="op">}</span></span>
+<span id="cb8-59"><a href="#cb8-59"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
+<span id="cb8-60"><a href="#cb8-60"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"ESP32 connected to WiFi: "</span><span class="op">);</span></span>
+<span id="cb8-61"><a href="#cb8-61"></a>  Serial<span class="op">.</span>println<span class="op">(</span>ssid<span class="op">);</span></span>
+<span id="cb8-62"><a href="#cb8-62"></a>  Serial<span class="op">.</span>println<span class="op">();</span></span>
+<span id="cb8-63"><a href="#cb8-63"></a></span>
+<span id="cb8-64"><a href="#cb8-64"></a>  <span class="co">// Initialize the ThingSpeak library with the WiFi client</span></span>
+<span id="cb8-65"><a href="#cb8-65"></a>  ThingSpeak<span class="op">.</span>begin<span class="op">(</span>client<span class="op">);</span></span>
+<span id="cb8-66"><a href="#cb8-66"></a><span class="op">}</span></span>
+<span id="cb8-67"><a href="#cb8-67"></a></span>
+<span id="cb8-68"><a href="#cb8-68"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb8-69"><a href="#cb8-69"></a></span>
+<span id="cb8-70"><a href="#cb8-70"></a>  val <span class="op">=</span> analogRead<span class="op">(</span>analog_pin<span class="op">);</span>  <span class="co">// read the input pin (reading v2)</span></span>
+<span id="cb8-71"><a href="#cb8-71"></a>  v2 <span class="op">=</span> <span class="op">(</span>v1<span class="op">/</span>adc_steps<span class="op">)*</span>val<span class="op">;</span>  <span class="co">// convert to voltage of v2 according to ADC</span></span>
+<span id="cb8-72"><a href="#cb8-72"></a>  r2 <span class="op">=</span> <span class="op">(</span>v2<span class="op">*</span>r1<span class="op">)/(</span>v1<span class="op">-</span>v2<span class="op">);</span></span>
+<span id="cb8-73"><a href="#cb8-73"></a>  t <span class="op">=</span> resistance_to_temperature<span class="op">(</span>b_val<span class="op">,</span> r2<span class="op">,</span> r_25<span class="op">);</span></span>
+<span id="cb8-74"><a href="#cb8-74"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Temperature: "</span><span class="op">);</span></span>
+<span id="cb8-75"><a href="#cb8-75"></a>  Serial<span class="op">.</span>print<span class="op">(</span>t<span class="op">);</span>          <span class="co">// print temperature</span></span>
+<span id="cb8-76"><a href="#cb8-76"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">" C"</span><span class="op">);</span></span>
+<span id="cb8-77"><a href="#cb8-77"></a></span>
+<span id="cb8-78"><a href="#cb8-78"></a>  <span class="co">// Set the values to be sent to ThingSpeak</span></span>
+<span id="cb8-79"><a href="#cb8-79"></a>  ThingSpeak<span class="op">.</span>setField<span class="op">(</span><span class="dv">1</span><span class="op">,</span> t<span class="op">);</span></span>
+<span id="cb8-80"><a href="#cb8-80"></a></span>
+<span id="cb8-81"><a href="#cb8-81"></a>  <span class="co">// Send the data to ThingSpeak</span></span>
+<span id="cb8-82"><a href="#cb8-82"></a>  ThingSpeak<span class="op">.</span>writeFields<span class="op">(</span>myChannelNumber<span class="op">,</span> myWriteAPIKey<span class="op">);</span></span>
 <span id="cb8-83"><a href="#cb8-83"></a></span>
-<span id="cb8-84"><a href="#cb8-84"></a>  <span class="co">//------------------------------------------------------------------</span></span>
-<span id="cb8-85"><a href="#cb8-85"></a>  <span class="co">//VL53LOX:</span></span>
-<span id="cb8-86"><a href="#cb8-86"></a>  <span class="co">// wait until serial port opens for native USB devices</span></span>
-<span id="cb8-87"><a href="#cb8-87"></a>  <span class="cf">while</span> <span class="op">(!</span> Serial<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb8-88"><a href="#cb8-88"></a>    delay<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
-<span id="cb8-89"><a href="#cb8-89"></a>  <span class="op">}</span></span>
-<span id="cb8-90"><a href="#cb8-90"></a>  </span>
-<span id="cb8-91"><a href="#cb8-91"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Adafruit VL53L0X test"</span><span class="op">);</span></span>
-<span id="cb8-92"><a href="#cb8-92"></a>  <span class="cf">if</span> <span class="op">(!</span>lox<span class="op">.</span>begin<span class="op">())</span> <span class="op">{</span></span>
-<span id="cb8-93"><a href="#cb8-93"></a>    Serial<span class="op">.</span>println<span class="op">(</span>F<span class="op">(</span><span class="st">"Failed to boot VL53L0X"</span><span class="op">));</span></span>
-<span id="cb8-94"><a href="#cb8-94"></a>    <span class="cf">while</span><span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
-<span id="cb8-95"><a href="#cb8-95"></a>  <span class="op">}</span></span>
-<span id="cb8-96"><a href="#cb8-96"></a>  <span class="co">// power </span></span>
-<span id="cb8-97"><a href="#cb8-97"></a>  Serial<span class="op">.</span>println<span class="op">(</span>F<span class="op">(</span><span class="st">"VL53L0X API Simple Ranging example</span><span class="sc">\n\n</span><span class="st">"</span><span class="op">));</span> </span>
-<span id="cb8-98"><a href="#cb8-98"></a>  </span>
-<span id="cb8-99"><a href="#cb8-99"></a><span class="op">}</span></span>
-<span id="cb8-100"><a href="#cb8-100"></a> </span>
-<span id="cb8-101"><a href="#cb8-101"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb8-102"><a href="#cb8-102"></a>  <span class="co">//------------------------------------------------------------------</span></span>
-<span id="cb8-103"><a href="#cb8-103"></a>  <span class="co">//DS18B20:</span></span>
-<span id="cb8-104"><a href="#cb8-104"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Requesting temperatures..."</span><span class="op">);</span></span>
-<span id="cb8-105"><a href="#cb8-105"></a>  sensors<span class="op">.</span>requestTemperatures<span class="op">();</span> <span class="co">// Send the command to get temperatures</span></span>
-<span id="cb8-106"><a href="#cb8-106"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"DONE"</span><span class="op">);</span></span>
-<span id="cb8-107"><a href="#cb8-107"></a>  </span>
-<span id="cb8-108"><a href="#cb8-108"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Sensor 1(*C): "</span><span class="op">);</span></span>
-<span id="cb8-109"><a href="#cb8-109"></a>  Serial<span class="op">.</span>print<span class="op">(</span>sensors<span class="op">.</span>getTempC<span class="op">(</span>sensor1<span class="op">));</span> </span>
-<span id="cb8-110"><a href="#cb8-110"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">" Sensor 1(*F): "</span><span class="op">);</span></span>
-<span id="cb8-111"><a href="#cb8-111"></a>  Serial<span class="op">.</span>println<span class="op">(</span>sensors<span class="op">.</span>getTempF<span class="op">(</span>sensor1<span class="op">));</span> </span>
-<span id="cb8-112"><a href="#cb8-112"></a> </span>
-<span id="cb8-113"><a href="#cb8-113"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Sensor 2(*C): "</span><span class="op">);</span></span>
-<span id="cb8-114"><a href="#cb8-114"></a>  Serial<span class="op">.</span>print<span class="op">(</span>sensors<span class="op">.</span>getTempC<span class="op">(</span>sensor2<span class="op">));</span> </span>
-<span id="cb8-115"><a href="#cb8-115"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">" Sensor 2(*F): "</span><span class="op">);</span></span>
-<span id="cb8-116"><a href="#cb8-116"></a>  Serial<span class="op">.</span>println<span class="op">(</span>sensors<span class="op">.</span>getTempF<span class="op">(</span>sensor2<span class="op">));</span> </span>
-<span id="cb8-117"><a href="#cb8-117"></a></span>
-<span id="cb8-118"><a href="#cb8-118"></a>  <span class="co">//------------------------------------------------------------------</span></span>
-<span id="cb8-119"><a href="#cb8-119"></a>  <span class="co">//SHT31:</span></span>
-<span id="cb8-120"><a href="#cb8-120"></a>  <span class="dt">float</span> t <span class="op">=</span> sht31<span class="op">.</span>readTemperature<span class="op">();</span></span>
-<span id="cb8-121"><a href="#cb8-121"></a>  <span class="dt">float</span> h <span class="op">=</span> sht31<span class="op">.</span>readHumidity<span class="op">();</span></span>
-<span id="cb8-122"><a href="#cb8-122"></a></span>
-<span id="cb8-123"><a href="#cb8-123"></a>  <span class="cf">if</span> <span class="op">(!</span> isnan<span class="op">(</span>t<span class="op">))</span>  <span class="op">{</span></span>
-<span id="cb8-124"><a href="#cb8-124"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Temp *C = "</span><span class="op">);</span> Serial<span class="op">.</span>println<span class="op">(</span>t<span class="op">);</span></span>
-<span id="cb8-125"><a href="#cb8-125"></a>  <span class="op">}</span></span>
-<span id="cb8-126"><a href="#cb8-126"></a>  <span class="cf">else</span>  <span class="op">{</span></span>
-<span id="cb8-127"><a href="#cb8-127"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Failed to read temperature"</span><span class="op">);</span></span>
-<span id="cb8-128"><a href="#cb8-128"></a>  <span class="op">}</span></span>
-<span id="cb8-129"><a href="#cb8-129"></a>  </span>
-<span id="cb8-130"><a href="#cb8-130"></a>  <span class="cf">if</span> <span class="op">(!</span> isnan<span class="op">(</span>h<span class="op">))</span>  <span class="op">{</span></span>
-<span id="cb8-131"><a href="#cb8-131"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Hum. % = "</span><span class="op">);</span> Serial<span class="op">.</span>println<span class="op">(</span>h<span class="op">);</span></span>
-<span id="cb8-132"><a href="#cb8-132"></a>  <span class="op">}</span></span>
-<span id="cb8-133"><a href="#cb8-133"></a>  <span class="cf">else</span>  <span class="op">{</span></span>
-<span id="cb8-134"><a href="#cb8-134"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Failed to read humidity"</span><span class="op">);</span></span>
-<span id="cb8-135"><a href="#cb8-135"></a>  <span class="op">}</span></span>
-<span id="cb8-136"><a href="#cb8-136"></a>  </span>
-<span id="cb8-137"><a href="#cb8-137"></a>  Serial<span class="op">.</span>println<span class="op">();</span></span>
-<span id="cb8-138"><a href="#cb8-138"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
-<span id="cb8-139"><a href="#cb8-139"></a></span>
-<span id="cb8-140"><a href="#cb8-140"></a>  <span class="co">//------------------------------------------------------------------</span></span>
-<span id="cb8-141"><a href="#cb8-141"></a>  <span class="co">//VL53LOX:</span></span>
-<span id="cb8-142"><a href="#cb8-142"></a>   VL53L0X_RangingMeasurementData_t measure<span class="op">;</span></span>
-<span id="cb8-143"><a href="#cb8-143"></a>    </span>
-<span id="cb8-144"><a href="#cb8-144"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Reading a measurement... "</span><span class="op">);</span></span>
-<span id="cb8-145"><a href="#cb8-145"></a>  lox<span class="op">.</span>rangingTest<span class="op">(&amp;</span>measure<span class="op">,</span> <span class="kw">false</span><span class="op">);</span> <span class="co">// pass in 'true' to get debug data printout!</span></span>
-<span id="cb8-146"><a href="#cb8-146"></a></span>
-<span id="cb8-147"><a href="#cb8-147"></a>  <span class="cf">if</span> <span class="op">(</span>measure<span class="op">.</span>RangeStatus <span class="op">!=</span> <span class="dv">4</span><span class="op">)</span> <span class="op">{</span>  <span class="co">// phase failures have incorrect data</span></span>
-<span id="cb8-148"><a href="#cb8-148"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Distance (mm): "</span><span class="op">);</span> Serial<span class="op">.</span>println<span class="op">(</span>measure<span class="op">.</span>RangeMilliMeter<span class="op">);</span></span>
-<span id="cb8-149"><a href="#cb8-149"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb8-150"><a href="#cb8-150"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">" out of range "</span><span class="op">);</span></span>
-<span id="cb8-151"><a href="#cb8-151"></a>  <span class="op">}</span></span>
-<span id="cb8-152"><a href="#cb8-152"></a>    </span>
-<span id="cb8-153"><a href="#cb8-153"></a>  delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
-<span id="cb8-154"><a href="#cb8-154"></a></span>
-<span id="cb8-155"><a href="#cb8-155"></a>  <span class="co">//------------------------------------------------------------------</span></span>
-<span id="cb8-156"><a href="#cb8-156"></a>  <span class="co">//Thingspeak:</span></span>
-<span id="cb8-157"><a href="#cb8-157"></a>  ThingSpeak<span class="op">.</span>setField<span class="op">(</span><span class="dv">1</span><span class="op">,</span>t<span class="op">);</span> <span class="co">// SHT temp</span></span>
-<span id="cb8-158"><a href="#cb8-158"></a>  ThingSpeak<span class="op">.</span>setField<span class="op">(</span><span class="dv">2</span><span class="op">,</span>h<span class="op">);</span> <span class="co">// SHT humidity</span></span>
-<span id="cb8-159"><a href="#cb8-159"></a>  ThingSpeak<span class="op">.</span>setField<span class="op">(</span><span class="dv">3</span><span class="op">,</span>sensors<span class="op">.</span>getTempC<span class="op">(</span>sensor1<span class="op">));</span> <span class="co">// DS18B20 in</span></span>
-<span id="cb8-160"><a href="#cb8-160"></a>  ThingSpeak<span class="op">.</span>setField<span class="op">(</span><span class="dv">4</span><span class="op">,</span>sensors<span class="op">.</span>getTempC<span class="op">(</span>sensor2<span class="op">));</span> <span class="co">// DS18B20 out</span></span>
-<span id="cb8-161"><a href="#cb8-161"></a>  ThingSpeak<span class="op">.</span>setField<span class="op">(</span><span class="dv">5</span><span class="op">,</span>measure<span class="op">.</span>RangeMilliMeter<span class="op">);</span> <span class="co">// distance</span></span>
-<span id="cb8-162"><a href="#cb8-162"></a>  ThingSpeak<span class="op">.</span>writeFields<span class="op">(</span>myChannelNumber<span class="op">,</span> myWriteAPIKey<span class="op">);</span></span>
-<span id="cb8-163"><a href="#cb8-163"></a></span>
-<span id="cb8-164"><a href="#cb8-164"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"uploaded to Thingspeak server...."</span><span class="op">);</span></span>
-<span id="cb8-165"><a href="#cb8-165"></a></span>
-<span id="cb8-166"><a href="#cb8-166"></a>  client<span class="op">.</span>stop<span class="op">();</span></span>
-<span id="cb8-167"><a href="#cb8-167"></a> </span>
-<span id="cb8-168"><a href="#cb8-168"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Waiting to upload next reading..."</span><span class="op">);</span></span>
-<span id="cb8-169"><a href="#cb8-169"></a>  Serial<span class="op">.</span>println<span class="op">();</span></span>
-<span id="cb8-170"><a href="#cb8-170"></a>  </span>
-<span id="cb8-171"><a href="#cb8-171"></a>  <span class="co">// thingspeak free needs minimum 15 sec delay between updates </span></span>
-<span id="cb8-172"><a href="#cb8-172"></a>  <span class="co">// payed can do 1sec</span></span>
-<span id="cb8-173"><a href="#cb8-173"></a></span>
-<span id="cb8-174"><a href="#cb8-174"></a> </span>
-<span id="cb8-175"><a href="#cb8-175"></a>  </span>
-<span id="cb8-176"><a href="#cb8-176"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
-<span id="cb8-177"><a href="#cb8-177"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-84"><a href="#cb8-84"></a>  <span class="co">// Print a message to the serial monitor indicating that the data has been uploaded</span></span>
+<span id="cb8-85"><a href="#cb8-85"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Uploaded to ThingSpeak server."</span><span class="op">);</span></span>
+<span id="cb8-86"><a href="#cb8-86"></a></span>
+<span id="cb8-87"><a href="#cb8-87"></a>  <span class="co">// Disconnect the WiFi client</span></span>
+<span id="cb8-88"><a href="#cb8-88"></a>  client<span class="op">.</span>stop<span class="op">();</span></span>
+<span id="cb8-89"><a href="#cb8-89"></a></span>
+<span id="cb8-90"><a href="#cb8-90"></a>  <span class="co">// Wait for the specified amount of time before uploading the next set of data</span></span>
+<span id="cb8-91"><a href="#cb8-91"></a>  <span class="co">// thingspeak needs minimum 15 sec delay between updates on a free acount,</span></span>
+<span id="cb8-92"><a href="#cb8-92"></a>  <span class="co">// a paid acount can update every 1 sec</span></span>
+<span id="cb8-93"><a href="#cb8-93"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Waiting to upload next reading..."</span><span class="op">);</span></span>
+<span id="cb8-94"><a href="#cb8-94"></a>  Serial<span class="op">.</span>println<span class="op">();</span></span>
+<span id="cb8-95"><a href="#cb8-95"></a>  </span>
+<span id="cb8-96"><a href="#cb8-96"></a>  delay<span class="op">(</span>wait_between_uploads<span class="op">);</span></span>
+<span id="cb8-97"><a href="#cb8-97"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
             </div>
             </div>
