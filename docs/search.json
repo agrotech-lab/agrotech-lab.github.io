@@ -1312,5 +1312,27 @@
       "**Projects**",
       "<span class='chapter-number'>29</span>  <span class='chapter-title'>Final Project</span>"
     ]
+  },
+  {
+    "objectID": "projects/examples.html",
+    "href": "projects/examples.html",
+    "title": "30  Example projects",
+    "section": "",
+    "text": "30.1 Open day 2024\nThis project was developed by Yair Mau to the 2024 open day at the Faculty of Agriculture.",
+    "crumbs": [
+      "**Projects**",
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Example projects</span>"
+    ]
+  },
+  {
+    "objectID": "projects/examples.html#open-day-2024",
+    "href": "projects/examples.html#open-day-2024",
+    "title": "30  Example projects",
+    "section": "",
+    "text": "30.1.1 Download:\n\n Fritzing diagram in pdf \n Fritzing diagram in fzz \n Code to upload to your ESP32 \n Python code to plot live the measured data \n\n\n\n30.1.2 Materials needed:\n\nESP32 Firebeetle 2\nBreadboard, wires, LED, relay, 330-ohm resistor\nSHT31 temperature and humidity sensor\nFan\nPower supply\nA computer to plot live data\n\n\n\n30.1.3 What this project is about:\nWhenever relative humidity goes above a given threshold (e.g. 80%), the fan turns on. When RH goes below threshold, fan turns off. The EPS32 must be connected to a computer, and you must run the python code. The python code communicates serially with the ESP32, and also shown on the screen a live graph of temperature and relative humidity.",
+    "crumbs": [
+      "**Projects**",
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Example projects</span>"
+    ]
   }
 ]

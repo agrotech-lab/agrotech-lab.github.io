@@ -55,6 +55,7 @@ book:
       - projects.qmd
       - projects/borrowing-equipment.qmd
       - projects/final-project.qmd
+      - projects/examples.qmd
 
   sidebar:
     collapse-level: 2

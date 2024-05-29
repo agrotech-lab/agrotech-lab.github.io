@@ -1,0 +1,27 @@
+# Example projects
+
+## Open day 2024
+
+This project was developed by Yair Mau to the 2024 open day at the Faculty of Agriculture.
+
+### Download:
+
+* <a href="./examples/open-day-2024/open-day-live-control.pdf" download> Fritzing diagram in pdf </a>
+* <a href="./examples/open-day-2024/open-day-live-control.fzz" download> Fritzing diagram in fzz </a>
+* <a href="./examples/open-day-2024/openday2024-live-control.ino" download> Code to upload to your ESP32 </a>
+* <a href="./examples/open-day-2024/openday2024-demonstration.py" download> Python code to plot live the measured data </a>
+
+
+### Materials needed:
+
+* ESP32 Firebeetle 2
+* Breadboard, wires, LED, relay, 330-ohm resistor
+* SHT31 temperature and humidity sensor
+* Fan
+* Power supply
+* A computer to plot live data
+
+### What this project is about:
+
+Whenever relative humidity goes above a given threshold (e.g. 80%), the fan turns on. When RH goes below threshold, fan turns off. The EPS32 must be connected to a computer, and you must run the python code. The python code communicates serially with the ESP32, and also shown on the screen a live graph of temperature and relative humidity.
+

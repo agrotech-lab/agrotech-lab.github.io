@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>agrotech lab - 3&nbsp; Install FireBeetle (ESP32)</title>
+<title>agrotech lab - 30&nbsp; Example projects</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tutorials/firebeetle_documentation.html" rel="next">
-<link href="../tutorials/arduino_IDE.html" rel="prev">
+<link href="../projects/final-project.html" rel="prev">
 <link href="..//archive/images/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -84,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../arduino-intro-and-links.html"><strong>First steps</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/install_firebeetle.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Install FireBeetle (ESP32)</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../projects.html"><strong>Projects</strong></a></li><li class="breadcrumb-item"><a href="../projects/examples.html"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Example projects</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -152,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/install_firebeetle.html" class="sidebar-item-text sidebar-link active">
+  <a href="../tutorials/install_firebeetle.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Install FireBeetle (ESP32)</span></span></a>
   </div>
 </li>
@@ -391,7 +390,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../projects/examples.html" class="sidebar-item-text sidebar-link">
+  <a href="../projects/examples.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Example projects</span></span></a>
   </div>
 </li>
@@ -407,12 +406,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#how-to-connect-the-firebeetle-2-mcu" id="toc-how-to-connect-the-firebeetle-2-mcu" class="nav-link active" data-scroll-target="#how-to-connect-the-firebeetle-2-mcu"><span class="header-section-number">3.1</span> How to connect the Firebeetle 2 MCU</a>
+  <li><a href="#open-day-2024" id="toc-open-day-2024" class="nav-link active" data-scroll-target="#open-day-2024"><span class="header-section-number">30.1</span> Open day 2024</a>
   <ul class="collapse">
-  <li><a href="#add-url-to-ardudino-ide" id="toc-add-url-to-ardudino-ide" class="nav-link" data-scroll-target="#add-url-to-ardudino-ide"><span class="header-section-number">3.1.1</span> Add URL to Ardudino IDE</a></li>
-  <li><a href="#select-board-and-port" id="toc-select-board-and-port" class="nav-link" data-scroll-target="#select-board-and-port"><span class="header-section-number">3.1.2</span> Select board and port</a></li>
+  <li><a href="#download" id="toc-download" class="nav-link" data-scroll-target="#download"><span class="header-section-number">30.1.1</span> Download:</a></li>
+  <li><a href="#materials-needed" id="toc-materials-needed" class="nav-link" data-scroll-target="#materials-needed"><span class="header-section-number">30.1.2</span> Materials needed:</a></li>
+  <li><a href="#what-this-project-is-about" id="toc-what-this-project-is-about" class="nav-link" data-scroll-target="#what-this-project-is-about"><span class="header-section-number">30.1.3</span> What this project is about:</a></li>
   </ul></li>
-  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">3.2</span> Troubleshooting</a></li>
   </ul>
 </nav>
     </div>
@@ -420,9 +419,9 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../arduino-intro-and-links.html"><strong>First steps</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/install_firebeetle.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Install FireBeetle (ESP32)</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../projects.html"><strong>Projects</strong></a></li><li class="breadcrumb-item"><a href="../projects/examples.html"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Example projects</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Install FireBeetle (ESP32)</span></h1>
+<h1 class="title"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Example projects</span></h1>
 </div>
 
 
@@ -439,55 +438,35 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="how-to-connect-the-firebeetle-2-mcu" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="how-to-connect-the-firebeetle-2-mcu"><span class="header-section-number">3.1</span> How to connect the Firebeetle 2 MCU</h2>
-<p>In our class we will be using the <a href="https://www.dfrobot.com/product-2195.html">FireBeetle 2 ESP32-E IoT Microcontroller</a> as our main MCU. In this guid you will learn how to install needed software on your computer.</p>
-<p>Full documentation of this MCU can be found on the <a href="https://wiki.dfrobot.com/FireBeetle_Board_ESP32_E_SKU_DFR0654">product wiki</a> by DFRobot. For a quick pinout reference, take a look at <a href="../posts/tutorials/firebeetle_documentation.html">this page</a>.</p>
-<hr>
-<p>Follow these simple steps to install FireBeetle 2 MCU on the Arduino IDE on your computer:</p>
-<ol type="1">
-<li>Add the json link in IDE</li>
-<li>Download the core of the maincontroller</li>
-<li>Select development board and serial port</li>
-</ol>
-<section id="add-url-to-ardudino-ide" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="add-url-to-ardudino-ide"><span class="header-section-number">3.1.1</span> Add URL to Ardudino IDE</h3>
-<p>To install the ESP32 board in your Arduino IDE, follow these next instructions:</p>
-<p>In your Arduino IDE, go to <code>File&gt; Preferences</code></p>
-<p><img src="../archive/figures/arduino-ide-open-preferences.png" class="img-fluid"></p>
-<p>Enter the following into the “Additional Board Manager URLs” field:</p>
-<p><code>https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json</code></p>
-<p>Then, click the “OK” button:</p>
-<p><img src="../archive/figures/ESP32-URL-Arduino-IDE.png" class="img-fluid"></p>
-<p><strong>Note: if you already have a different URL, you can separate the URLs with a comma as follows:</strong></p>
-<p><code>http://download.dfrobot.top/FireBeetle/package_DFRobot_index.json, https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json</code></p>
-<p>Open the Boards Manager. Go to <code>Tools &gt; Board &gt; Boards Manager</code></p>
-<p><img src="../archive/figures/boardsManager.png" class="img-fluid"></p>
-<p>Search for ESP32 and press install button for the “ESP32 by Espressif Systems”. Make sure the version is 2.0.7 or later.</p>
-<p><img src="../archive/figures/installing.png" class="img-fluid"></p>
-<p>That’s it. The installation can take a few minutes. Take a break.</p>
-<p><img src="../archive/figures/ESP32-Board-add-on-in-Arduino-IDE-installed.png" class="img-fluid"></p>
+<section id="open-day-2024" class="level2" data-number="30.1">
+<h2 data-number="30.1" class="anchored" data-anchor-id="open-day-2024"><span class="header-section-number">30.1</span> Open day 2024</h2>
+<p>This project was developed by Yair Mau to the 2024 open day at the Faculty of Agriculture.</p>
+<section id="download" class="level3" data-number="30.1.1">
+<h3 data-number="30.1.1" class="anchored" data-anchor-id="download"><span class="header-section-number">30.1.1</span> Download:</h3>
+<ul>
+<li><a href="./examples/open-day-2024/open-day-live-control.pdf" download=""> Fritzing diagram in pdf </a></li>
+<li><a href="./examples/open-day-2024/open-day-live-control.fzz" download=""> Fritzing diagram in fzz </a></li>
+<li><a href="./examples/open-day-2024/openday2024-live-control.ino" download=""> Code to upload to your ESP32 </a></li>
+<li><a href="./examples/open-day-2024/openday2024-demonstration.py" download=""> Python code to plot live the measured data </a></li>
+</ul>
 </section>
-<section id="select-board-and-port" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="select-board-and-port"><span class="header-section-number">3.1.2</span> Select board and port</h3>
-<p>Once the board is installed, select it: Open <code>Tools-&gt;Board-&gt;ESP32 Arduino-&gt;FireBeetle 2 ESP32-E</code> <img src="../archive/figures/choose_board.png" class="img-fluid" alt="choose board"></p>
-<p>Then select the Port<br>
-Open <code>Tools-&gt;Port-&gt;COMxx</code> (for windows the port wil be <code>COM</code> with some number, for Mac/linux it will be <code>/dev/cu.</code> and then something).<br>
-How do you know what port to choose?<br>
-Check the ports without the MCU pluged into the computer. Then plug the MCU and check the ports again. If you see a new port, thats the port of the MCU.</p>
+<section id="materials-needed" class="level3" data-number="30.1.2">
+<h3 data-number="30.1.2" class="anchored" data-anchor-id="materials-needed"><span class="header-section-number">30.1.2</span> Materials needed:</h3>
+<ul>
+<li>ESP32 Firebeetle 2</li>
+<li>Breadboard, wires, LED, relay, 330-ohm resistor</li>
+<li>SHT31 temperature and humidity sensor</li>
+<li>Fan</li>
+<li>Power supply</li>
+<li>A computer to plot live data</li>
+</ul>
 </section>
-</section>
-<section id="troubleshooting" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">3.2</span> Troubleshooting</h2>
-<p>Troubleshooting if there is no port for the MCU:</p>
-<ol type="1">
-<li>Missing driver. Could be you need to install a specific driver.<br>
-<a href="https://dfimg.dfrobot.com/nobody/wiki/0e0d6b3864f7163833ec5d7ad4af7632.EXE">Windows driver</a><br>
-<a href="https://dfimg.dfrobot.com/nobody/wiki/c195a13df2a1989d5dc04e76e6bcb701.ZIP">MacOS driver</a></li>
-<li>Bad USB cable. Some cables are bad and some are only for charging and cannot sync data. Try using a different USB cable that worked for a freind.</li>
-</ol>
+<section id="what-this-project-is-about" class="level3" data-number="30.1.3">
+<h3 data-number="30.1.3" class="anchored" data-anchor-id="what-this-project-is-about"><span class="header-section-number">30.1.3</span> What this project is about:</h3>
+<p>Whenever relative humidity goes above a given threshold (e.g.&nbsp;80%), the fan turns on. When RH goes below threshold, fan turns off. The EPS32 must be connected to a computer, and you must run the python code. The python code communicates serially with the ESP32, and also shown on the screen a live graph of temperature and relative humidity.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -902,14 +881,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tutorials/arduino_IDE.html" class="pagination-link" aria-label="Arduino IDE">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arduino IDE</span></span>
+      <a href="../projects/final-project.html" class="pagination-link" aria-label="Final Project">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Final Project</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tutorials/firebeetle_documentation.html" class="pagination-link" aria-label="FireBeetle 2 ESP32-E">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">FireBeetle 2 ESP32-E</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
