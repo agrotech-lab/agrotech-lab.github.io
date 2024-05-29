@@ -23,5 +23,5 @@ This project was developed by Yair Mau to the 2024 open day at the Faculty of Ag
 
 ### What this project is about:
 
-Whenever relative humidity goes above a given threshold (e.g. 80%), the fan turns on. When RH goes below threshold, fan turns off. The EPS32 must be connected to a computer, and you must run the python code. The python code communicates serially with the ESP32, and also shown on the screen a live graph of temperature and relative humidity.
+Whenever relative humidity goes above a given threshold (e.g. 80%), the fan turns on. When RH goes below threshold, fan turns off. The ESP32 must be connected to a computer, and you must run the python code. The python code communicates serially with the ESP32, and also shows on the screen a live graph of temperature and relative humidity.
 

@@ -1,5 +1,5 @@
 // the number of the LED pin
-const int ledPin = 13;  // 13 corresponds to GPIO13
+const int ledPin = D9;
 
 // setting PWM properties
 const int freq = 5000;
