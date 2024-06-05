@@ -29,7 +29,7 @@ code_source("esp_now_mac_address.ino")
 code_source("esp_now_sender.ino")
 ```
 
-## Find what the receiver MAC address is
+## Receiver code
 ```{python}
 #| echo: false
 #| output: asis

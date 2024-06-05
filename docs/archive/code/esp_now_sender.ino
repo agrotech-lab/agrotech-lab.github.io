@@ -69,9 +69,9 @@ void setup() {
  
 void loop() {
   // Set values to send
-  myData.id = 1;
-  myData.x = write here an integer number you like //random(0,50);
-  myData.y = write here an integer number you like //random(0,50);
+  myData.id = write here an integer representing your ID, anything goes;
+  myData.x = write here an integer number you love //random(0,50);
+  myData.y = write here an integer number you hate //random(0,50);
 
   // Send message via ESP-NOW
   esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &myData, sizeof(myData));
