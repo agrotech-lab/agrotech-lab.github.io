@@ -38,6 +38,7 @@ book:
       - tutorials/digital-read-write.qmd
       - tutorials/MQTT.qmd
       - tutorials/deep_sleep.qmd
+      - tutorials/esp_now.qmd
       - tutorials/python-matlab-basics.qmd
       - tutorials/API-thingspeak-python.qmd
     - part: "**Agro stuff**"

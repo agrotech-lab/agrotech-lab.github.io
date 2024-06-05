@@ -1,0 +1,38 @@
+---
+title: "ESP-NOW"
+echo: false
+jupyter: python3
+execute:
+  freeze: auto  # re-render only when source changes
+---
+
+{{< include ../_insert_ino_code.qmd >}}
+
+Here is an excellent introduction to what ESP-NOW is about. [Read this](https://randomnerdtutorials.com/esp-now-esp32-arduino-ide/).
+
+This tutorial is heavily based on the tutorial  
+["Receive Data from Multiple Boards (many-to-one)"](https://randomnerdtutorials.com/esp-now-many-to-one-esp32/)
+
+![](/archive/figures/ESP-NOW-ESP32-Receive-Data-Multiple-Boards-Many-to-One-Arduino-IDE.jpg.webp)
+
+## Find what the receiver MAC address is
+```{python}
+#| echo: false
+#| output: asis
+code_source("esp_now_mac_address.ino")
+```
+
+## Sender code
+```{python}
+#| echo: false
+#| output: asis
+code_source("esp_now_sender.ino")
+```
+
+## Find what the receiver MAC address is
+```{python}
+#| echo: false
+#| output: asis
+code_source("esp_now_receiver.ino")
+```
+ 

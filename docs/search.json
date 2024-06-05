@@ -852,11 +852,22 @@
     ]
   },
   {
+    "objectID": "tutorials/MQTT.html#publish-text",
+    "href": "tutorials/MQTT.html#publish-text",
+    "title": "19  MQTT",
+    "section": "19.5 Publish text",
+    "text": "19.5 Publish text\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n#include &lt;Arduino.h&gt;\n#include &lt;WiFi.h&gt;\n#include &lt;PubSubClient.h&gt;\n\nWiFiClient wifiClient;\nPubSubClient mqttClient(wifiClient); \n\nconst char* ssid = \"wifi_name\";\nconst char* password = \"wifi_password\";\n\nconst char* mqttServer = \"broker.hivemq.com\";\nint mqttPort = 1883;\n\nlong previous_time = 0;\nconst char* messageToSend = \"This is my fuuny message\"; // Message as a variable\n\nvoid setupMQTT() {\n  mqttClient.setServer(mqttServer, mqttPort);\n}\n\nvoid reconnect() {\n  Serial.println(\"Connecting to MQTT Broker...\");\n  while (!mqttClient.connected()) {\n    Serial.println(\"Reconnecting to MQTT Broker..\");\n    String clientId = \"ESP32Client-\";\n    clientId += String(random(0xffff), HEX);\n    \n    if (mqttClient.connect(clientId.c_str())) {\n      Serial.println(\"Connected.\");\n    }      \n  }\n}\n\nvoid setup() {\n  Serial.begin(115200);\n  WiFi.begin(ssid, password);\n  while (WiFi.status() != WL_CONNECTED) {\n    delay(500);\n    Serial.print(\".\");\n  } \n  Serial.println(\"\");\n  Serial.println(\"Connected to Wi-Fi\");\n\n  setupMQTT();\n}\n\nvoid loop() {\n  if (!mqttClient.connected())\n    reconnect();\n  mqttClient.loop();\n  long now = millis();\n\n  if (now - previous_time &gt; 5000) {\n    previous_time = now;\n    mqttClient.publish(\"agrotech/mqtt_tutorial/message\", messageToSend);\n  }\n}",
+    "crumbs": [
+      "**Sensors and comm**",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>MQTT</span>"
+    ]
+  },
+  {
     "objectID": "tutorials/MQTT.html#sensor-subscribe",
     "href": "tutorials/MQTT.html#sensor-subscribe",
     "title": "19  MQTT",
-    "section": "19.5 Sensor subscribe",
-    "text": "19.5 Sensor subscribe\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n//addapted from:\n//https://microcontrollerslab.com/esp32-mqtt-client-publish-subscribe-bme280-readings-hivemq/\n\n#include &lt;Arduino.h&gt;\n#include &lt;WiFi.h&gt;\n#include &lt;PubSubClient.h&gt;\n\nWiFiClient wifiClient;\nPubSubClient mqttClient(wifiClient); \n\nconst char* ssid = \"TP-Link_905D\";\nconst char* password = \"33072036\";\n\nchar *mqttServer = \"broker.hivemq.com\";\nint mqttPort = 1883;\n\nfloat value = 0;\nString msgString; // Declare msgString variable in the global scope\n\nvoid setupMQTT() {\n  mqttClient.setServer(mqttServer, mqttPort);\n  mqttClient.setCallback(callback);\n}\n\nvoid reconnect() {\n  Serial.println(\"Connecting to MQTT Broker...\");\n  while (!mqttClient.connected()) {\n      Serial.println(\"Reconnecting to MQTT Broker..\");\n      String clientId = \"ESP32Client-\";\n      clientId += String(random(0xffff), HEX);\n      \n      if (mqttClient.connect(clientId.c_str())) {\n        Serial.println(\"Connected.\");\n        // subscribe to topic\n        mqttClient.subscribe(\"agrotech/2023/sensor\");\n      }      \n  }\n}\n\nvoid setup() {\n  Serial.begin(115200);\n  WiFi.begin(ssid, password);\n    while (WiFi.status() != WL_CONNECTED) {\n      delay(500);\n      Serial.print(\".\");\n    } \n    Serial.println(\"\");\n     Serial.println(\"Connected to Wi-Fi\");\n\n  setupMQTT();\n\n}\n\n\nvoid loop() {\n  if (!mqttClient.connected()) {\n      reconnect();\n  }\n    \n  mqttClient.loop();\n  long now = millis();\n}\n\n\n\nvoid callback(char* topic, byte* message, unsigned int length) {\n  // Convert byte array to string\n  msgString = String((char*)message, length);\n\n  // Convert string to float\n  value = msgString.toFloat();\n\n  Serial.println(value);\n\n}",
+    "section": "19.6 Sensor subscribe",
+    "text": "19.6 Sensor subscribe\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n//addapted from:\n//https://microcontrollerslab.com/esp32-mqtt-client-publish-subscribe-bme280-readings-hivemq/\n\n#include &lt;Arduino.h&gt;\n#include &lt;WiFi.h&gt;\n#include &lt;PubSubClient.h&gt;\n\nWiFiClient wifiClient;\nPubSubClient mqttClient(wifiClient); \n\nconst char* ssid = \"TP-Link_905D\";\nconst char* password = \"33072036\";\n\nchar *mqttServer = \"broker.hivemq.com\";\nint mqttPort = 1883;\n\nfloat value = 0;\nString msgString; // Declare msgString variable in the global scope\n\nvoid setupMQTT() {\n  mqttClient.setServer(mqttServer, mqttPort);\n  mqttClient.setCallback(callback);\n}\n\nvoid reconnect() {\n  Serial.println(\"Connecting to MQTT Broker...\");\n  while (!mqttClient.connected()) {\n      Serial.println(\"Reconnecting to MQTT Broker..\");\n      String clientId = \"ESP32Client-\";\n      clientId += String(random(0xffff), HEX);\n      \n      if (mqttClient.connect(clientId.c_str())) {\n        Serial.println(\"Connected.\");\n        // subscribe to topic\n        mqttClient.subscribe(\"agrotech/2023/sensor\");\n      }      \n  }\n}\n\nvoid setup() {\n  Serial.begin(115200);\n  WiFi.begin(ssid, password);\n    while (WiFi.status() != WL_CONNECTED) {\n      delay(500);\n      Serial.print(\".\");\n    } \n    Serial.println(\"\");\n     Serial.println(\"Connected to Wi-Fi\");\n\n  setupMQTT();\n\n}\n\n\nvoid loop() {\n  if (!mqttClient.connected()) {\n      reconnect();\n  }\n    \n  mqttClient.loop();\n  long now = millis();\n}\n\n\n\nvoid callback(char* topic, byte* message, unsigned int length) {\n  // Convert byte array to string\n  msgString = String((char*)message, length);\n\n  // Convert string to float\n  value = msgString.toFloat();\n\n  Serial.println(value);\n\n}",
     "crumbs": [
       "**Sensors and comm**",
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>MQTT</span>"
@@ -866,8 +877,8 @@
     "objectID": "tutorials/MQTT.html#publish-and-subscribe",
     "href": "tutorials/MQTT.html#publish-and-subscribe",
     "title": "19  MQTT",
-    "section": "19.6 Publish and subscribe",
-    "text": "19.6 Publish and subscribe\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n//addapted from:\n//https://microcontrollerslab.com/esp32-mqtt-client-publish-subscribe-bme280-readings-hivemq/\n\n#include &lt;Arduino.h&gt;\n#include &lt;WiFi.h&gt;\n#include &lt;PubSubClient.h&gt;\n\nWiFiClient wifiClient;\nPubSubClient mqttClient(wifiClient); \n\nconst char* ssid = \"TP-Link_905D\";\nconst char* password = \"33072036\";\n\nchar *mqttServer = \"broker.hivemq.com\";\nint mqttPort = 1883;\n\nlong previous_time = 0;\nString msgString; // Declare msgString variable in the global scope\n\nvoid setupMQTT() {\n  mqttClient.setServer(mqttServer, mqttPort);\n  mqttClient.setCallback(callback);\n}\n\nvoid reconnect() {\n  Serial.println(\"Connecting to MQTT Broker...\");\n  while (!mqttClient.connected()) {\n      Serial.println(\"Reconnecting to MQTT Broker..\");\n      String clientId = \"ESP32Client-\";\n      clientId += String(random(0xffff), HEX);\n      \n      if (mqttClient.connect(clientId.c_str())) {\n        Serial.println(\"Connected.\");\n        // subscribe to topic\n        mqttClient.subscribe(\"agrotech/2023/message\");\n      }      \n  }\n}\n\nvoid setup() {\n  Serial.begin(115200);\n  WiFi.begin(ssid, password);\n    while (WiFi.status() != WL_CONNECTED) {\n      delay(500);\n      Serial.print(\".\");\n    } \n    Serial.println(\"\");\n     Serial.println(\"Connected to Wi-Fi\");\n\n  setupMQTT();\n}\n\n\nvoid loop() {\n  if (!mqttClient.connected())\n    reconnect();\n  mqttClient.loop();\n  long now = millis();\n\n  if (now - previous_time &gt; 1000) {\n    previous_time = now;\n\n    float temperature = random(1, 101);\n    char tempString[8];\n    dtostrf(temperature, 1, 2, tempString);\n    Serial.print(\"Temperature: \");\n    Serial.println(tempString);\n    mqttClient.publish(\"agrotech/2023/temperature\", tempString);\n\n    mqttClient.publish(\"agrotech/2023/string\", \"Hi :)\");\n\n//    Serial.print(\"Subscribed Message: \");\n//    Serial.println(msgString);\n  }\n}\n\n\nvoid callback(char* topic, byte* message, unsigned int length) {\n  // Convert byte array to string\n //  String msgString((char*)message, length);\n\n  msgString = String((char*)message, length);\n  \n  // Convert string to float\n  float msgFloat = msgString.toFloat();\n\n  // Convert string to integer\n  int msgInt = msgString.toInt();\n  \n  Serial.print(\"Message: \");\n  Serial.println(msgString);\n  Serial.print(\"Float: \");\n  Serial.println(msgFloat);\n  Serial.print(\"Integer: \");\n  Serial.println(msgInt);\n}",
+    "section": "19.7 Publish and subscribe",
+    "text": "19.7 Publish and subscribe\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n//addapted from:\n//https://microcontrollerslab.com/esp32-mqtt-client-publish-subscribe-bme280-readings-hivemq/\n\n#include &lt;Arduino.h&gt;\n#include &lt;WiFi.h&gt;\n#include &lt;PubSubClient.h&gt;\n\nWiFiClient wifiClient;\nPubSubClient mqttClient(wifiClient); \n\nconst char* ssid = \"TP-Link_905D\";\nconst char* password = \"33072036\";\n\nchar *mqttServer = \"broker.hivemq.com\";\nint mqttPort = 1883;\n\nlong previous_time = 0;\nString msgString; // Declare msgString variable in the global scope\n\nvoid setupMQTT() {\n  mqttClient.setServer(mqttServer, mqttPort);\n  mqttClient.setCallback(callback);\n}\n\nvoid reconnect() {\n  Serial.println(\"Connecting to MQTT Broker...\");\n  while (!mqttClient.connected()) {\n      Serial.println(\"Reconnecting to MQTT Broker..\");\n      String clientId = \"ESP32Client-\";\n      clientId += String(random(0xffff), HEX);\n      \n      if (mqttClient.connect(clientId.c_str())) {\n        Serial.println(\"Connected.\");\n        // subscribe to topic\n        mqttClient.subscribe(\"agrotech/2023/message\");\n      }      \n  }\n}\n\nvoid setup() {\n  Serial.begin(115200);\n  WiFi.begin(ssid, password);\n    while (WiFi.status() != WL_CONNECTED) {\n      delay(500);\n      Serial.print(\".\");\n    } \n    Serial.println(\"\");\n     Serial.println(\"Connected to Wi-Fi\");\n\n  setupMQTT();\n}\n\n\nvoid loop() {\n  if (!mqttClient.connected())\n    reconnect();\n  mqttClient.loop();\n  long now = millis();\n\n  if (now - previous_time &gt; 1000) {\n    previous_time = now;\n\n    float temperature = random(1, 101);\n    char tempString[8];\n    dtostrf(temperature, 1, 2, tempString);\n    Serial.print(\"Temperature: \");\n    Serial.println(tempString);\n    mqttClient.publish(\"agrotech/2023/temperature\", tempString);\n\n    mqttClient.publish(\"agrotech/2023/string\", \"Hi :)\");\n\n//    Serial.print(\"Subscribed Message: \");\n//    Serial.println(msgString);\n  }\n}\n\n\nvoid callback(char* topic, byte* message, unsigned int length) {\n  // Convert byte array to string\n //  String msgString((char*)message, length);\n\n  msgString = String((char*)message, length);\n  \n  // Convert string to float\n  float msgFloat = msgString.toFloat();\n\n  // Convert string to integer\n  int msgInt = msgString.toInt();\n  \n  Serial.print(\"Message: \");\n  Serial.println(msgString);\n  Serial.print(\"Float: \");\n  Serial.println(msgFloat);\n  Serial.print(\"Integer: \");\n  Serial.println(msgInt);\n}",
     "crumbs": [
       "**Sensors and comm**",
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>MQTT</span>"
@@ -877,8 +888,8 @@
     "objectID": "tutorials/MQTT.html#mqtt-python",
     "href": "tutorials/MQTT.html#mqtt-python",
     "title": "19  MQTT",
-    "section": "19.7 MQTT + Python",
-    "text": "19.7 MQTT + Python",
+    "section": "19.8 MQTT + Python",
+    "text": "19.8 MQTT + Python",
     "crumbs": [
       "**Sensors and comm**",
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>MQTT</span>"
@@ -888,8 +899,8 @@
     "objectID": "tutorials/MQTT.html#subscribe",
     "href": "tutorials/MQTT.html#subscribe",
     "title": "19  MQTT",
-    "section": "19.8 Subscribe",
-    "text": "19.8 Subscribe\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nimport paho.mqtt.client as mqtt\n\n# MQTT broker details\nbroker_address = \"broker.hivemq.com\"\nbroker_port = 1883\n\n# Callback function when a connection is established with the MQTT broker\ndef on_connect(client, userdata, flags, rc):\n    print(\"Connected to MQTT broker with result code: \" + str(rc))\n    # Subscribe to the topic upon successful connection\n    client.subscribe(\"agrotech/mqtt_tutorial/#\")\n\n# Callback function when a message is received\ndef on_message(client, userdata, msg):\n    print(\"Received message: \" + str(msg.payload.decode()))\n\n# Create a MQTT client instance\nclient = mqtt.Client()\n\n# Assign callback functions\nclient.on_connect = on_connect\nclient.on_message = on_message\n\n# Connect to the MQTT broker\nclient.connect(broker_address, broker_port, 60)\n\n# Loop to maintain the connection and process network traffic\nclient.loop_forever()",
+    "section": "19.9 Subscribe",
+    "text": "19.9 Subscribe\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nimport paho.mqtt.client as mqtt\n\n# MQTT broker details\nbroker_address = \"broker.hivemq.com\"\nbroker_port = 1883\n\n# Callback function when a connection is established with the MQTT broker\ndef on_connect(client, userdata, flags, rc):\n    print(\"Connected to MQTT broker with result code: \" + str(rc))\n    # Subscribe to the topic upon successful connection\n    client.subscribe(\"agrotech/mqtt_tutorial/#\")\n\n# Callback function when a message is received\ndef on_message(client, userdata, msg):\n    print(\"Received message: \" + str(msg.payload.decode()))\n\n# Create a MQTT client instance\nclient = mqtt.Client()\n\n# Assign callback functions\nclient.on_connect = on_connect\nclient.on_message = on_message\n\n# Connect to the MQTT broker\nclient.connect(broker_address, broker_port, 60)\n\n# Loop to maintain the connection and process network traffic\nclient.loop_forever()",
     "crumbs": [
       "**Sensors and comm**",
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>MQTT</span>"
@@ -899,8 +910,8 @@
     "objectID": "tutorials/MQTT.html#publish",
     "href": "tutorials/MQTT.html#publish",
     "title": "19  MQTT",
-    "section": "19.9 Publish",
-    "text": "19.9 Publish\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nimport paho.mqtt.client as mqtt\nimport random\nimport time\n\n# MQTT broker details\nbroker_address = \"broker.hivemq.com\"\nbroker_port = 1883\n\n# Create a MQTT client instance\nclient = mqtt.Client()\n\n# Connect to the MQTT broker\nclient.connect(broker_address, broker_port, 60)\n\n# Loop to publish random temperature readings\nwhile True:\n    temperature = random.uniform(20.0, 30.0)  # Generate a random temperature value between 20.0 and 30.0\n    client.publish(\"agrotech/mqtt_tutorial/temperature\", str(temperature))  # Publish the temperature value to the topic\n    print(\"Published temperature: \" + str(temperature))\n    time.sleep(1)  # Wait for 5 seconds before publishing the next temperature reading\n\n# Disconnect from the MQTT broker (not reached in this example)\nclient.disconnect()",
+    "section": "19.10 Publish",
+    "text": "19.10 Publish\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nimport paho.mqtt.client as mqtt\nimport random\nimport time\n\n# MQTT broker details\nbroker_address = \"broker.hivemq.com\"\nbroker_port = 1883\n\n# Create a MQTT client instance\nclient = mqtt.Client()\n\n# Connect to the MQTT broker\nclient.connect(broker_address, broker_port, 60)\n\n# Loop to publish random temperature readings\nwhile True:\n    temperature = random.uniform(20.0, 30.0)  # Generate a random temperature value between 20.0 and 30.0\n    client.publish(\"agrotech/mqtt_tutorial/temperature\", str(temperature))  # Publish the temperature value to the topic\n    print(\"Published temperature: \" + str(temperature))\n    time.sleep(1)  # Wait for 5 seconds before publishing the next temperature reading\n\n# Disconnect from the MQTT broker (not reached in this example)\nclient.disconnect()",
     "crumbs": [
       "**Sensors and comm**",
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>MQTT</span>"
@@ -910,8 +921,8 @@
     "objectID": "tutorials/MQTT.html#subscribe-to-csv",
     "href": "tutorials/MQTT.html#subscribe-to-csv",
     "title": "19  MQTT",
-    "section": "19.10 Subscribe to CSV",
-    "text": "19.10 Subscribe to CSV\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nimport paho.mqtt.client as mqtt\nimport pandas as pd\nfrom datetime import datetime\n\n# MQTT broker details\nbroker_address = \"broker.hivemq.com\"\nbroker_port = 1883\n\n# Create a DataFrame to store the messages\ndf = pd.DataFrame(columns=[\"topic\", \"value\"])\n\n# Callback function when a connection is established with the MQTT broker\ndef on_connect(client, userdata, flags, rc):\n    print(\"Connected to MQTT broker with result code: \" + str(rc))\n    # Subscribe to all subtopics within agrotech/mqtt_tutorial/\n    client.subscribe(\"agrotech/mqtt_tutorial/#\")\n\n# Callback function when a message is received\ndef on_message(client, userdata, msg):\n    global df\n    # Decode the message payload\n    value = msg.payload.decode()\n    # Extract the subtopic\n    subtopic = msg.topic.split(\"agrotech/mqtt_tutorial/\")[1]\n    # Get the current time\n    timestamp = datetime.now()\n    # Create a new DataFrame with the new message\n    new_row = pd.DataFrame({\"topic\": [subtopic], \"value\": [value]}, index=[timestamp])\n    # Append the new row to the DataFrame using concat\n    df = pd.concat([df, new_row])\n    print(f\"Received message on {msg.topic}: {value}\")\n\n# Create an MQTT client instance\nclient = mqtt.Client()\n\n# Assign callback functions\nclient.on_connect = on_connect\nclient.on_message = on_message\n\n# Connect to the MQTT broker\nclient.connect(broker_address, broker_port, 60)\n\n# Loop to maintain the connection and process network traffic\ntry:\n    client.loop_forever()\nexcept KeyboardInterrupt:\n    # Save the DataFrame to a CSV file when the script is interrupted\n    df.to_csv(\"mqtt_messages.csv\")\n    print(\"Data saved to mqtt_messages.csv\")",
+    "section": "19.11 Subscribe to CSV",
+    "text": "19.11 Subscribe to CSV\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nimport paho.mqtt.client as mqtt\nimport pandas as pd\nfrom datetime import datetime\n\n# MQTT broker details\nbroker_address = \"broker.hivemq.com\"\nbroker_port = 1883\n\n# Create a DataFrame to store the messages\ndf = pd.DataFrame(columns=[\"topic\", \"value\"])\n\n# Callback function when a connection is established with the MQTT broker\ndef on_connect(client, userdata, flags, rc):\n    print(\"Connected to MQTT broker with result code: \" + str(rc))\n    # Subscribe to all subtopics within agrotech/mqtt_tutorial/\n    client.subscribe(\"agrotech/mqtt_tutorial/#\")\n\n# Callback function when a message is received\ndef on_message(client, userdata, msg):\n    global df\n    # Decode the message payload\n    value = msg.payload.decode()\n    # Extract the subtopic\n    subtopic = msg.topic.split(\"agrotech/mqtt_tutorial/\")[1]\n    # Get the current time\n    timestamp = datetime.now()\n    # Create a new DataFrame with the new message\n    new_row = pd.DataFrame({\"topic\": [subtopic], \"value\": [value]}, index=[timestamp])\n    # Append the new row to the DataFrame using concat\n    df = pd.concat([df, new_row])\n    print(f\"Received message on {msg.topic}: {value}\")\n\n# Create an MQTT client instance\nclient = mqtt.Client()\n\n# Assign callback functions\nclient.on_connect = on_connect\nclient.on_message = on_message\n\n# Connect to the MQTT broker\nclient.connect(broker_address, broker_port, 60)\n\n# Loop to maintain the connection and process network traffic\ntry:\n    client.loop_forever()\nexcept KeyboardInterrupt:\n    # Save the DataFrame to a CSV file when the script is interrupted\n    df.to_csv(\"mqtt_messages.csv\")\n    print(\"Data saved to mqtt_messages.csv\")",
     "crumbs": [
       "**Sensors and comm**",
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>MQTT</span>"
@@ -951,432 +962,476 @@
     ]
   },
   {
-    "objectID": "tutorials/python-matlab-basics.html",
-    "href": "tutorials/python-matlab-basics.html",
-    "title": "21  Basic Data Analysis with Python and Matlab",
+    "objectID": "tutorials/esp_now.html",
+    "href": "tutorials/esp_now.html",
+    "title": "21  ESP-NOW",
     "section": "",
-    "text": "21.1 Matlab\nMatlab is a proprietary (paid) software, but all HUJI students can install it and use it for free as long as they are connected to the university’s internet, either directly or through a VPN. In any case, we will be using Matlab to plot graphs on Thingspeak, which is owned by the same parent company, MathWorks.\nHere are a few very useful tutorials provided by MathWorks:\nAs a first example that we will run together, please follow the steps below:\nRead here more about arguments that function thingSpeakRead can receive",
+    "text": "21.1 Find what the receiver MAC address is",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Basic Data Analysis with Python and Matlab</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>ESP-NOW</span>"
+    ]
+  },
+  {
+    "objectID": "tutorials/esp_now.html#find-what-the-receiver-mac-address-is",
+    "href": "tutorials/esp_now.html#find-what-the-receiver-mac-address-is",
+    "title": "21  ESP-NOW",
+    "section": "",
+    "text": "Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// Complete Instructions to Get and Change ESP MAC Address: https://RandomNerdTutorials.com/get-change-esp32-esp8266-mac-address-arduino/\n\n#ifdef ESP32\n  #include &lt;WiFi.h&gt;\n#else\n  #include &lt;ESP8266WiFi.h&gt;\n#endif\n\nvoid setup(){\n  Serial.begin(115200);\n  Serial.println();\n  Serial.print(\"ESP Board MAC Address:  \");\n  Serial.println(WiFi.macAddress());\n}\n \nvoid loop(){\n\n}",
+    "crumbs": [
+      "**Sensors and comm**",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>ESP-NOW</span>"
+    ]
+  },
+  {
+    "objectID": "tutorials/esp_now.html#sender-code",
+    "href": "tutorials/esp_now.html#sender-code",
+    "title": "21  ESP-NOW",
+    "section": "21.2 Sender code",
+    "text": "21.2 Sender code\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n/*********\n  Rui Santos\n  Complete project details at https://RandomNerdTutorials.com/esp-now-many-to-one-esp32/\n  \n  Permission is hereby granted, free of charge, to any person obtaining a copy\n  of this software and associated documentation files.\n  \n  The above copyright notice and this permission notice shall be included in all\n  copies or substantial portions of the Software.\n*********/\n\n#include &lt;esp_now.h&gt;\n#include &lt;WiFi.h&gt;\n\n// REPLACE WITH THE RECEIVER'S MAC Address\n// This is the slave MAC address\n// 40:22:D8:66:8E:2C\n// this is how you have to write it\nuint8_t broadcastAddress[] = {0x40, 0x22, 0xD8, 0x66, 0x8E, 0x2C};\n\n// Structure example to send data\n// Must match the receiver structure\ntypedef struct struct_message {\n    int id; // must be unique for each sender board\n    int x;\n    int y;\n} struct_message;\n\n// Create a struct_message called myData\nstruct_message myData;\n\n// Create peer interface\nesp_now_peer_info_t peerInfo;\n\n// callback when data is sent\nvoid OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {\n  Serial.print(\"\\r\\nLast Packet Send Status:\\t\");\n  Serial.println(status == ESP_NOW_SEND_SUCCESS ? \"Delivery Success\" : \"Delivery Fail\");\n}\n \nvoid setup() {\n  // Init Serial Monitor\n  Serial.begin(115200);\n\n  // Set device as a Wi-Fi Station\n  WiFi.mode(WIFI_STA);\n\n  // Init ESP-NOW\n  if (esp_now_init() != ESP_OK) {\n    Serial.println(\"Error initializing ESP-NOW\");\n    return;\n  }\n\n  // Once ESPNow is successfully Init, we will register for Send CB to\n  // get the status of Trasnmitted packet\n  esp_now_register_send_cb(OnDataSent);\n  \n  // Register peer\n  memcpy(peerInfo.peer_addr, broadcastAddress, 6);\n  peerInfo.channel = 0;  \n  peerInfo.encrypt = false;\n  \n  // Add peer        \n  if (esp_now_add_peer(&peerInfo) != ESP_OK){\n    Serial.println(\"Failed to add peer\");\n    return;\n  }\n}\n \nvoid loop() {\n  // Set values to send\n  myData.id = 1;\n  myData.x = write here an integer number you like //random(0,50);\n  myData.y = write here an integer number you like //random(0,50);\n\n  // Send message via ESP-NOW\n  esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &myData, sizeof(myData));\n   \n  if (result == ESP_OK) {\n    Serial.println(\"Sent with success\");\n  }\n  else {\n    Serial.println(\"Error sending the data\");\n  }\n  delay(10000);\n}",
+    "crumbs": [
+      "**Sensors and comm**",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>ESP-NOW</span>"
+    ]
+  },
+  {
+    "objectID": "tutorials/esp_now.html#find-what-the-receiver-mac-address-is-1",
+    "href": "tutorials/esp_now.html#find-what-the-receiver-mac-address-is-1",
+    "title": "21  ESP-NOW",
+    "section": "21.3 Find what the receiver MAC address is",
+    "text": "21.3 Find what the receiver MAC address is\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n#include &lt;esp_now.h&gt;\n#include &lt;WiFi.h&gt;\n\n// Structure example to receive data\n// Must match the sender structure\ntypedef struct struct_message {\n  int id;\n  int x;\n  int y;\n}struct_message;\n\n// Create a struct_message called myData\nstruct_message myData;\n\n// Create a structure to hold the readings from each board\nstruct_message board1;\nstruct_message board2;\nstruct_message board3;\n\n// Create an array with all the structures\nstruct_message boardsStruct[3] = {board1, board2, board3};\n\n// callback function that will be executed when data is received\nvoid OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) {\n  char macStr[18];\n  Serial.print(\"Packet received from: \");\n  snprintf(macStr, sizeof(macStr), \"%02x:%02x:%02x:%02x:%02x:%02x\",\n           mac_addr[0], mac_addr[1], mac_addr[2], mac_addr[3], mac_addr[4], mac_addr[5]);\n  Serial.println(macStr);\n  memcpy(&myData, incomingData, sizeof(myData));\n  Serial.printf(\"Board ID %u: %u bytes\\n\", myData.id, len);\n  // Update the structures with the new incoming data\n  boardsStruct[myData.id-1].x = myData.x;\n  boardsStruct[myData.id-1].y = myData.y;\n  Serial.printf(\"x value: %d \\n\", boardsStruct[myData.id-1].x);\n  Serial.printf(\"y value: %d \\n\", boardsStruct[myData.id-1].y);\n  Serial.println();\n}\n \nvoid setup() {\n  //Initialize Serial Monitor\n  Serial.begin(115200);\n  \n  //Set device as a Wi-Fi Station\n  WiFi.mode(WIFI_STA);\n\n  //Init ESP-NOW\n  if (esp_now_init() != ESP_OK) {\n    Serial.println(\"Error initializing ESP-NOW\");\n    return;\n  }\n  \n  // Once ESPNow is successfully Init, we will register for recv CB to\n  // get recv packer info\n  esp_now_register_recv_cb(OnDataRecv);\n}\n \nvoid loop() {\n  // Acess the variables for each board\n  /*int board1X = boardsStruct[0].x;\n  int board1Y = boardsStruct[0].y;\n  int board2X = boardsStruct[1].x;\n  int board2Y = boardsStruct[1].y;\n  int board3X = boardsStruct[2].x;\n  int board3Y = boardsStruct[2].y;*/\n\n  delay(10000);  \n}",
+    "crumbs": [
+      "**Sensors and comm**",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>ESP-NOW</span>"
+    ]
+  },
+  {
+    "objectID": "tutorials/python-matlab-basics.html",
+    "href": "tutorials/python-matlab-basics.html",
+    "title": "22  Basic Data Analysis with Python and Matlab",
+    "section": "",
+    "text": "22.1 Matlab\nMatlab is a proprietary (paid) software, but all HUJI students can install it and use it for free as long as they are connected to the university’s internet, either directly or through a VPN. In any case, we will be using Matlab to plot graphs on Thingspeak, which is owned by the same parent company, MathWorks.\nHere are a few very useful tutorials provided by MathWorks:\nAs a first example that we will run together, please follow the steps below:\nRead here more about arguments that function thingSpeakRead can receive",
+    "crumbs": [
+      "**Sensors and comm**",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Basic Data Analysis with Python and Matlab</span>"
     ]
   },
   {
     "objectID": "tutorials/python-matlab-basics.html#matlab",
     "href": "tutorials/python-matlab-basics.html#matlab",
-    "title": "21  Basic Data Analysis with Python and Matlab",
+    "title": "22  Basic Data Analysis with Python and Matlab",
     "section": "",
     "text": "Apps\nAnalyze Your Data\nPrepare and Analyze Data — Examples\nVisualize Data — Examples\nAct on Data — Examples\n\n\n\nLog into Thingspeak, open your channel, and then go to either Private View or Public View.\nPress on MATLAB Visualization box, on the top right.\nFrom Templates, choose Create a 2-D line plot, then press Create.\nIn case the template doesn’t load, you can create a custom visualization and paste the code below\n\n% Template MATLAB code for visualizing data from a channel as a 2D line\n% plot using PLOT function.\n\n% Prior to running this MATLAB code template, assign the channel variables.\n% Set 'readChannelID' to the channel ID of the channel to read from. \n% Also, assign the read field ID to 'fieldID1'. \n\n% TODO - Replace the [] with channel ID to read data from:\nreadChannelID = [];\n% TODO - Replace the [] with the Field ID to read data from:\nfieldID1 = [];\n\n% Channel Read API Key \n% If your channel is private, then enter the read API\n% Key between the '' below: \nreadAPIKey = '';\n\n%% Read Data %%\n\n[data, time] = thingSpeakRead(readChannelID, 'Field', fieldID1, 'NumPoints', 30, 'ReadKey', readAPIKey);\n\n%% Visualize Data %%\n\nplot(time, data);",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Basic Data Analysis with Python and Matlab</span>"
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Basic Data Analysis with Python and Matlab</span>"
     ]
   },
   {
     "objectID": "tutorials/python-matlab-basics.html#python",
     "href": "tutorials/python-matlab-basics.html#python",
-    "title": "21  Basic Data Analysis with Python and Matlab",
-    "section": "21.2 Python",
-    "text": "21.2 Python\nWe will be using Jupyter Notebook as our python interface. There are many ways of running python, we chose Jupyter because it allows for easy prototyping, and the Markdown cells are great for documentation.\nJupyter Notebook{: .button}",
+    "title": "22  Basic Data Analysis with Python and Matlab",
+    "section": "22.2 Python",
+    "text": "22.2 Python\nWe will be using Jupyter Notebook as our python interface. There are many ways of running python, we chose Jupyter because it allows for easy prototyping, and the Markdown cells are great for documentation.\nJupyter Notebook{: .button}",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Basic Data Analysis with Python and Matlab</span>"
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Basic Data Analysis with Python and Matlab</span>"
     ]
   },
   {
     "objectID": "tutorials/API-thingspeak-python.html",
     "href": "tutorials/API-thingspeak-python.html",
-    "title": "22  API to download Thingspeak data with Python",
+    "title": "23  API to download Thingspeak data with Python",
     "section": "",
-    "text": "22.1 Import relevant packages\nimport urllib\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\nimport matplotlib.dates as mdates",
+    "text": "23.1 Import relevant packages\nimport urllib\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\nimport matplotlib.dates as mdates",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>API to download Thingspeak data with Python</span>"
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>API to download Thingspeak data with Python</span>"
     ]
   },
   {
     "objectID": "tutorials/API-thingspeak-python.html#download-data-from-thingspeak-and-save-them-to-file",
     "href": "tutorials/API-thingspeak-python.html#download-data-from-thingspeak-and-save-them-to-file",
-    "title": "22  API to download Thingspeak data with Python",
-    "section": "22.2 Download data from Thingspeak and save them to file",
-    "text": "22.2 Download data from Thingspeak and save them to file\n\n# define what to download\nchannels = \"2076217\"\nfields = \"1,2,3\"\n\n# see here all the \"Query String Parameters\"\n# https://www.mathworks.com/help/thingspeak/readdata.html\n\nresults = 100\n# Download the last N results\n# url = f\"https://api.thingspeak.com/channels/{channels}/fields/{fields}.csv?results={results}\"\n\nminutes = \"30\"\n# Number of minutes before NOW to include in response.\n# url = f\"https://api.thingspeak.com/channels/{channels}/fields/{fields}.csv?minutes={minutes}\"\n\nstart = \"2023-04-16%2000:00:00\"  # format YYYY-MM-DD%20HH:NN:SS\nend = \"2023-04-19%2000:00:00\"    # format YYYY-MM-DD%20HH:NN:SS\nurl = f\"https://api.thingspeak.com/channels/{channels}/fields/{fields}.csv?start={start}&end={end}\"\n\n# Open the URL and get the response\ndata = urllib.request.urlopen(url)\n# Read the response data\nd = data.read()\n# save data to csv\nfilename1 = \"downloaded_data.csv\"\nfile = open(filename1, \"w\")\nfile.write(d.decode('UTF-8'))\nfile.close()",
+    "title": "23  API to download Thingspeak data with Python",
+    "section": "23.2 Download data from Thingspeak and save them to file",
+    "text": "23.2 Download data from Thingspeak and save them to file\n\n# define what to download\nchannels = \"2076217\"\nfields = \"1,2,3\"\n\n# see here all the \"Query String Parameters\"\n# https://www.mathworks.com/help/thingspeak/readdata.html\n\nresults = 100\n# Download the last N results\n# url = f\"https://api.thingspeak.com/channels/{channels}/fields/{fields}.csv?results={results}\"\n\nminutes = \"30\"\n# Number of minutes before NOW to include in response.\n# url = f\"https://api.thingspeak.com/channels/{channels}/fields/{fields}.csv?minutes={minutes}\"\n\nstart = \"2023-04-16%2000:00:00\"  # format YYYY-MM-DD%20HH:NN:SS\nend = \"2023-04-19%2000:00:00\"    # format YYYY-MM-DD%20HH:NN:SS\nurl = f\"https://api.thingspeak.com/channels/{channels}/fields/{fields}.csv?start={start}&end={end}\"\n\n# Open the URL and get the response\ndata = urllib.request.urlopen(url)\n# Read the response data\nd = data.read()\n# save data to csv\nfilename1 = \"downloaded_data.csv\"\nfile = open(filename1, \"w\")\nfile.write(d.decode('UTF-8'))\nfile.close()",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>API to download Thingspeak data with Python</span>"
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>API to download Thingspeak data with Python</span>"
     ]
   },
   {
     "objectID": "tutorials/API-thingspeak-python.html#load-data-as-a-pandas-dataframe",
     "href": "tutorials/API-thingspeak-python.html#load-data-as-a-pandas-dataframe",
-    "title": "22  API to download Thingspeak data with Python",
-    "section": "22.3 Load data as a pandas dataframe",
-    "text": "22.3 Load data as a pandas dataframe\n\n# load data\ndf = pd.read_csv(filename1)\n# rename columns\ndf = df.rename(columns={\"created_at\": \"timestamp\",\n                        \"field1\": \"Temp\",\n                        \"field2\": \"RH\",\n                        \"field3\": \"VPD\",\n                        # \"field4\": \"whatever\",\n                        })\n# set timestamp as index\ndf['timestamp'] = pd.to_datetime(df['timestamp'])\ndf = df.set_index('timestamp')\ndf\n\n\n\n\n\n\n\n\n\nentry_id\nTemp\nRH\nVPD\n\n\ntimestamp\n\n\n\n\n\n\n\n\n2023-04-16 00:01:20+00:00\n3892\n21.59\n72.31\n0.71442\n\n\n2023-04-16 00:06:22+00:00\n3893\n21.60\n72.14\n0.71925\n\n\n2023-04-16 00:11:24+00:00\n3894\n21.59\n72.38\n0.71262\n\n\n2023-04-16 00:16:25+00:00\n3895\n21.59\n71.86\n0.72603\n\n\n2023-04-16 00:21:27+00:00\n3896\n21.54\n71.49\n0.73333\n\n\n...\n...\n...\n...\n...\n\n\n2023-04-18 18:58:48+00:00\n4691\n23.93\n55.29\n1.32931\n\n\n2023-04-18 19:03:50+00:00\n4692\n23.98\n55.25\n1.33450\n\n\n2023-04-18 19:08:52+00:00\n4693\n23.92\n55.07\n1.33505\n\n\n2023-04-18 19:13:53+00:00\n4694\n23.92\n59.84\n1.19332\n\n\n2023-04-18 19:18:17+00:00\n4695\n23.92\n57.23\n1.27087\n\n\n\n\n804 rows × 4 columns",
+    "title": "23  API to download Thingspeak data with Python",
+    "section": "23.3 Load data as a pandas dataframe",
+    "text": "23.3 Load data as a pandas dataframe\n\n# load data\ndf = pd.read_csv(filename1)\n# rename columns\ndf = df.rename(columns={\"created_at\": \"timestamp\",\n                        \"field1\": \"Temp\",\n                        \"field2\": \"RH\",\n                        \"field3\": \"VPD\",\n                        # \"field4\": \"whatever\",\n                        })\n# set timestamp as index\ndf['timestamp'] = pd.to_datetime(df['timestamp'])\ndf = df.set_index('timestamp')\ndf\n\n\n\n\n\n\n\n\n\nentry_id\nTemp\nRH\nVPD\n\n\ntimestamp\n\n\n\n\n\n\n\n\n2023-04-16 00:01:20+00:00\n3892\n21.59\n72.31\n0.71442\n\n\n2023-04-16 00:06:22+00:00\n3893\n21.60\n72.14\n0.71925\n\n\n2023-04-16 00:11:24+00:00\n3894\n21.59\n72.38\n0.71262\n\n\n2023-04-16 00:16:25+00:00\n3895\n21.59\n71.86\n0.72603\n\n\n2023-04-16 00:21:27+00:00\n3896\n21.54\n71.49\n0.73333\n\n\n...\n...\n...\n...\n...\n\n\n2023-04-18 18:58:48+00:00\n4691\n23.93\n55.29\n1.32931\n\n\n2023-04-18 19:03:50+00:00\n4692\n23.98\n55.25\n1.33450\n\n\n2023-04-18 19:08:52+00:00\n4693\n23.92\n55.07\n1.33505\n\n\n2023-04-18 19:13:53+00:00\n4694\n23.92\n59.84\n1.19332\n\n\n2023-04-18 19:18:17+00:00\n4695\n23.92\n57.23\n1.27087\n\n\n\n\n804 rows × 4 columns",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>API to download Thingspeak data with Python</span>"
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>API to download Thingspeak data with Python</span>"
     ]
   },
   {
     "objectID": "tutorials/API-thingspeak-python.html#plot-data",
     "href": "tutorials/API-thingspeak-python.html#plot-data",
-    "title": "22  API to download Thingspeak data with Python",
-    "section": "22.4 Plot data",
-    "text": "22.4 Plot data\nNow you can manipulate your data however you want! Here we will simply plot one of the fields.\n\nfig, ax = plt.subplots(1)\nax.plot(df['Temp'])\nax.set(ylabel=\"temperature (°C)\")\nplt.gcf().autofmt_xdate()  # makes slanted dates",
+    "title": "23  API to download Thingspeak data with Python",
+    "section": "23.4 Plot data",
+    "text": "23.4 Plot data\nNow you can manipulate your data however you want! Here we will simply plot one of the fields.\n\nfig, ax = plt.subplots(1)\nax.plot(df['Temp'])\nax.set(ylabel=\"temperature (°C)\")\nplt.gcf().autofmt_xdate()  # makes slanted dates",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>22</span>  <span class='chapter-title'>API to download Thingspeak data with Python</span>"
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>API to download Thingspeak data with Python</span>"
     ]
   },
   {
     "objectID": "tutorials/water-and-energy-balances.html",
     "href": "tutorials/water-and-energy-balances.html",
-    "title": "23  Water and Energy Balances",
+    "title": "24  Water and Energy Balances",
     "section": "",
-    "text": "23.1 Water balance\nA useful source is Nadia Christina Sabeh’s PhD thesis, 2007.\n\\[\nE_V + E_C + E_S + E_T = 0\n\\]",
+    "text": "24.1 Water balance\nA useful source is Nadia Christina Sabeh’s PhD thesis, 2007.\n\\[\nE_V + E_C + E_S + E_T = 0\n\\]",
     "crumbs": [
       "**Agro stuff**",
-      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Water and Energy Balances</span>"
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Water and Energy Balances</span>"
     ]
   },
   {
     "objectID": "tutorials/water-and-energy-balances.html#energy-balance",
     "href": "tutorials/water-and-energy-balances.html#energy-balance",
-    "title": "23  Water and Energy Balances",
-    "section": "23.2 Energy balance",
-    "text": "23.2 Energy balance\n\n\\[\nQ_R + Q_G + Q_V + Q_S + Q_P + Q_L + Q_H = 0\n\\]",
+    "title": "24  Water and Energy Balances",
+    "section": "24.2 Energy balance",
+    "text": "24.2 Energy balance\n\n\\[\nQ_R + Q_G + Q_V + Q_S + Q_P + Q_L + Q_H = 0\n\\]",
     "crumbs": [
       "**Agro stuff**",
-      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Water and Energy Balances</span>"
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Water and Energy Balances</span>"
     ]
   },
   {
     "objectID": "tutorials/water-and-energy-balances.html#evaporative-cooling",
     "href": "tutorials/water-and-energy-balances.html#evaporative-cooling",
-    "title": "23  Water and Energy Balances",
-    "section": "23.3 Evaporative Cooling",
-    "text": "23.3 Evaporative Cooling",
+    "title": "24  Water and Energy Balances",
+    "section": "24.3 Evaporative Cooling",
+    "text": "24.3 Evaporative Cooling",
     "crumbs": [
       "**Agro stuff**",
-      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Water and Energy Balances</span>"
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Water and Energy Balances</span>"
     ]
   },
   {
     "objectID": "tutorials/water-and-energy-balances.html#potential-evapotranspiration",
     "href": "tutorials/water-and-energy-balances.html#potential-evapotranspiration",
-    "title": "23  Water and Energy Balances",
-    "section": "23.4 Potential Evapotranspiration",
-    "text": "23.4 Potential Evapotranspiration\n\n23.4.1 Penman (1948)\nThis equation accounts for two main terms: * the first is the available energy flux density, * the second term is the drying power of the air.\n\\[\nPE = \\frac{\\Delta(R_n-G) + \\gamma\\cdot 2.6 (1+0.536 u_2)\\text{VPD}}{\\lambda(\\Delta+\\gamma)}\n\\]\nMore about this here.\n\n\n23.4.2 PyET\nLuckily, we don’t have to work very hard to estimate the potential evapotranspiration. We will use the Python library pyet:\n\ndocumentation\ngithub\n\nUsing PyET is quite straightforward:\npyet.pm_fao56(tmean,               # mean temperature\n              wind,                # wind speed\n              rn=rn,               # net radiation\n              tmax=tmax,           # max temperature\n              tmin=tmin,           # max temperature\n              rh=rh,               # relative humidity\n              elevation=elevation) # elevation above sea level",
+    "title": "24  Water and Energy Balances",
+    "section": "24.4 Potential Evapotranspiration",
+    "text": "24.4 Potential Evapotranspiration\n\n24.4.1 Penman (1948)\nThis equation accounts for two main terms: * the first is the available energy flux density, * the second term is the drying power of the air.\n\\[\nPE = \\frac{\\Delta(R_n-G) + \\gamma\\cdot 2.6 (1+0.536 u_2)\\text{VPD}}{\\lambda(\\Delta+\\gamma)}\n\\]\nMore about this here.\n\n\n24.4.2 PyET\nLuckily, we don’t have to work very hard to estimate the potential evapotranspiration. We will use the Python library pyet:\n\ndocumentation\ngithub\n\nUsing PyET is quite straightforward:\npyet.pm_fao56(tmean,               # mean temperature\n              wind,                # wind speed\n              rn=rn,               # net radiation\n              tmax=tmax,           # max temperature\n              tmin=tmin,           # max temperature\n              rh=rh,               # relative humidity\n              elevation=elevation) # elevation above sea level",
     "crumbs": [
       "**Agro stuff**",
-      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Water and Energy Balances</span>"
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Water and Energy Balances</span>"
     ]
   },
   {
     "objectID": "tutorials/psychrometric-chart-and-evaporative-cooling.html",
     "href": "tutorials/psychrometric-chart-and-evaporative-cooling.html",
-    "title": "24  Psychrometric Chart and Evaporative Cooling",
+    "title": "25  Psychrometric Chart and Evaporative Cooling",
     "section": "",
-    "text": "24.1 Psychrometric Chart\nHi-res pdf of the graph above.\nThe chart allows us to study the relation between:\nYou can read more about all of these here.\nInformation about how to read the chart can be found here.",
+    "text": "25.1 Psychrometric Chart\nHi-res pdf of the graph above.\nThe chart allows us to study the relation between:\nYou can read more about all of these here.\nInformation about how to read the chart can be found here.",
     "crumbs": [
       "**Agro stuff**",
-      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Psychrometric Chart and Evaporative Cooling</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Psychrometric Chart and Evaporative Cooling</span>"
     ]
   },
   {
     "objectID": "tutorials/psychrometric-chart-and-evaporative-cooling.html#psychrometric-chart",
     "href": "tutorials/psychrometric-chart-and-evaporative-cooling.html#psychrometric-chart",
-    "title": "24  Psychrometric Chart and Evaporative Cooling",
+    "title": "25  Psychrometric Chart and Evaporative Cooling",
     "section": "",
     "text": "Chart\n\n\n\n\n\nAir temperature\nRelative humidity\nDew point\nWet bulb temperature\nMoisture content\nEnthalpy\nAir volume",
     "crumbs": [
       "**Agro stuff**",
-      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Psychrometric Chart and Evaporative Cooling</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Psychrometric Chart and Evaporative Cooling</span>"
     ]
   },
   {
     "objectID": "tutorials/psychrometric-chart-and-evaporative-cooling.html#evaporative-cooling-wiki",
     "href": "tutorials/psychrometric-chart-and-evaporative-cooling.html#evaporative-cooling-wiki",
-    "title": "24  Psychrometric Chart and Evaporative Cooling",
-    "section": "24.2 Evaporative cooling (wiki)",
-    "text": "24.2 Evaporative cooling (wiki)\nEvaporative coolers lower the temperature of air using the principle of evaporative cooling. Evaporative cooling is the conversion of liquid water into vapor using the thermal energy in the air, resulting in a lower air temperature. The energy needed to evaporate the water is taken from the air in the form of sensible heat, which affects the temperature of the air, and converted into latent heat, the energy present in the water vapor component of the air, whilst the air remains at a constant enthalpy value. This conversion of sensible heat to latent heat is known as an isenthalpic process because it occurs at a constant enthalpy value. Evaporative cooling therefore causes a drop in the temperature of air proportional to the sensible heat drop and an increase in humidity proportional to the latent heat gain. Evaporative cooling can be visualized using a psychrometric chart by finding the initial air condition and moving along a line of constant enthalpy toward a state of higher humidity\nIn the green house we have an evaporative cooler as shown in this diagram:\n \nWater trickles on a celullose pad, then fans push dry air from outside through the pad in which water evaporates and the air gets colder and humidity rises.",
+    "title": "25  Psychrometric Chart and Evaporative Cooling",
+    "section": "25.2 Evaporative cooling (wiki)",
+    "text": "25.2 Evaporative cooling (wiki)\nEvaporative coolers lower the temperature of air using the principle of evaporative cooling. Evaporative cooling is the conversion of liquid water into vapor using the thermal energy in the air, resulting in a lower air temperature. The energy needed to evaporate the water is taken from the air in the form of sensible heat, which affects the temperature of the air, and converted into latent heat, the energy present in the water vapor component of the air, whilst the air remains at a constant enthalpy value. This conversion of sensible heat to latent heat is known as an isenthalpic process because it occurs at a constant enthalpy value. Evaporative cooling therefore causes a drop in the temperature of air proportional to the sensible heat drop and an increase in humidity proportional to the latent heat gain. Evaporative cooling can be visualized using a psychrometric chart by finding the initial air condition and moving along a line of constant enthalpy toward a state of higher humidity\nIn the green house we have an evaporative cooler as shown in this diagram:\n \nWater trickles on a celullose pad, then fans push dry air from outside through the pad in which water evaporates and the air gets colder and humidity rises.",
     "crumbs": [
       "**Agro stuff**",
-      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Psychrometric Chart and Evaporative Cooling</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Psychrometric Chart and Evaporative Cooling</span>"
     ]
   },
   {
     "objectID": "tutorials/psychrometric-chart-and-evaporative-cooling.html#how-much-can-the-cooler-cool",
     "href": "tutorials/psychrometric-chart-and-evaporative-cooling.html#how-much-can-the-cooler-cool",
-    "title": "24  Psychrometric Chart and Evaporative Cooling",
-    "section": "24.3 How much can the cooler cool?",
-    "text": "24.3 How much can the cooler cool?\nThe evaporative cooler can cool as low as the “wet bulb trmperature”.\nWe can look at the chart, and we should for the first time… But let’s calculate it using the PschroLib python package.\nAll the library’s functions can be found here.\nimport psychrolib\n\n# Set the unit system, for example to SI (can be either SI or IP) - this needs to be done only once\npsychrolib.SetUnitSystem(psychrolib.SI)\n\naltitude = 0\natm_pressure = psychrolib.GetStandardAtmPressure(0)\n\n# Calculate the wet bulb temperature for a dry bulb temperature of 25 C , a relative humidity of 80% and atmospheric pressure (kPa)\nWBT = psychrolib.GetTWetBulbFromRelHum(25.0, 0.80,atm_pressure )\nprint(f'Wet Bulb Temperature: {WBT:.3f} degree C')\nprint(f'Degrees cooled: {25-WBT:.3f} degree C')\nOutput:\nWet Bulb Temperature: 22.380 degree C\nDegrees cooled: 2.620 degree C\nNow let’s see how many degrees will it cool if we have only 30% relative humidity outside:\nWBT = psychrolib.GetTWetBulbFromRelHum(25.0, 0.30,atm_pressure )\nprint(f'Wet Bulb Temperature: {WBT:.3f} degree C')\nprint(f'Degrees cooled: {25-WBT:.3f} degree C')\nOutput:\nWet Bulb Temperature: 14.422 degree C\nDegrees cooled: 10.578 degree C\nAs you can see it is much more efficient in dry areas like deserts. Therefore it is many times called a “desert cooler”. What will the relative humidity be for the air that leaves the pad?\n\n24.3.1 Efficiency\nTheoretically, an evaporative cooler cools down to the wet bulb temperature, but in reality it is not 100% efficient and the air comes out not as cold. Many factors can influence: water quality, air speed, pad thickness, pad condition (you will se that ours is not great…), etc. We can calculate the efficiency by this equation:\n\\[\n\\eta = \\dfrac{T_i-T_o}{T_i-T_w},\n\\]\nwhere\n\n\\(T_i = \\:\\) temperature coming into the pad.\n\n\\(T_o = \\:\\) temperature coming out of the pad.\n\\(T_w = \\:\\) wet bulb temperature.\n\nWe can calculate it using data from our sensors and learn about the greenhouse we are using.\nFor example:\nIf we measure 30C and 60% humidity outside and the temperature out of the pad is 26C\nT_i = 30\nT_o = 26\nT_w = psychrolib.GetTWetBulbFromRelHum(T_i, 0.60,atm_pressure )\nprint(f'Wet Bulb Temperature: {T_w:.3f} degree C')\n\neffi = (T_i-T_o)/(T_i-T_w)\nprint(f'Efficiency is: {100*effi:.3f} %')\nOutput:\nWet Bulb Temperature: 23.812 degree C\nEfficiency is: 64.646 %\n\n\n24.3.2 What else can we calculate?\nKnowing the fan’s capacity (we can measure that too using wind sensors) and the temerature and humidity of the air leaving the greenhouse we can calculate:\n\nAmount of water evaporated from the pad,\nAmount of water evaporated from the greenhouse (being a concreete greenhouse that means total evaporation from plants and pots),\nHeat removed from the greenouse by the flowing air,\n\nThese are just some ideas, you can think of other interesting things to calculate.\nThere are existing models for predicting the temperatures of greenhouses. There are many other factors taking place such as solar radiation, outside wind, amounts of plants in the greenhouse, etc. We won’t be studying those here, but maybe you can come up with some models/conclusions/correlations of your own :)",
+    "title": "25  Psychrometric Chart and Evaporative Cooling",
+    "section": "25.3 How much can the cooler cool?",
+    "text": "25.3 How much can the cooler cool?\nThe evaporative cooler can cool as low as the “wet bulb trmperature”.\nWe can look at the chart, and we should for the first time… But let’s calculate it using the PschroLib python package.\nAll the library’s functions can be found here.\nimport psychrolib\n\n# Set the unit system, for example to SI (can be either SI or IP) - this needs to be done only once\npsychrolib.SetUnitSystem(psychrolib.SI)\n\naltitude = 0\natm_pressure = psychrolib.GetStandardAtmPressure(0)\n\n# Calculate the wet bulb temperature for a dry bulb temperature of 25 C , a relative humidity of 80% and atmospheric pressure (kPa)\nWBT = psychrolib.GetTWetBulbFromRelHum(25.0, 0.80,atm_pressure )\nprint(f'Wet Bulb Temperature: {WBT:.3f} degree C')\nprint(f'Degrees cooled: {25-WBT:.3f} degree C')\nOutput:\nWet Bulb Temperature: 22.380 degree C\nDegrees cooled: 2.620 degree C\nNow let’s see how many degrees will it cool if we have only 30% relative humidity outside:\nWBT = psychrolib.GetTWetBulbFromRelHum(25.0, 0.30,atm_pressure )\nprint(f'Wet Bulb Temperature: {WBT:.3f} degree C')\nprint(f'Degrees cooled: {25-WBT:.3f} degree C')\nOutput:\nWet Bulb Temperature: 14.422 degree C\nDegrees cooled: 10.578 degree C\nAs you can see it is much more efficient in dry areas like deserts. Therefore it is many times called a “desert cooler”. What will the relative humidity be for the air that leaves the pad?\n\n25.3.1 Efficiency\nTheoretically, an evaporative cooler cools down to the wet bulb temperature, but in reality it is not 100% efficient and the air comes out not as cold. Many factors can influence: water quality, air speed, pad thickness, pad condition (you will se that ours is not great…), etc. We can calculate the efficiency by this equation:\n\\[\n\\eta = \\dfrac{T_i-T_o}{T_i-T_w},\n\\]\nwhere\n\n\\(T_i = \\:\\) temperature coming into the pad.\n\n\\(T_o = \\:\\) temperature coming out of the pad.\n\\(T_w = \\:\\) wet bulb temperature.\n\nWe can calculate it using data from our sensors and learn about the greenhouse we are using.\nFor example:\nIf we measure 30C and 60% humidity outside and the temperature out of the pad is 26C\nT_i = 30\nT_o = 26\nT_w = psychrolib.GetTWetBulbFromRelHum(T_i, 0.60,atm_pressure )\nprint(f'Wet Bulb Temperature: {T_w:.3f} degree C')\n\neffi = (T_i-T_o)/(T_i-T_w)\nprint(f'Efficiency is: {100*effi:.3f} %')\nOutput:\nWet Bulb Temperature: 23.812 degree C\nEfficiency is: 64.646 %\n\n\n25.3.2 What else can we calculate?\nKnowing the fan’s capacity (we can measure that too using wind sensors) and the temerature and humidity of the air leaving the greenhouse we can calculate:\n\nAmount of water evaporated from the pad,\nAmount of water evaporated from the greenhouse (being a concreete greenhouse that means total evaporation from plants and pots),\nHeat removed from the greenouse by the flowing air,\n\nThese are just some ideas, you can think of other interesting things to calculate.\nThere are existing models for predicting the temperatures of greenhouses. There are many other factors taking place such as solar radiation, outside wind, amounts of plants in the greenhouse, etc. We won’t be studying those here, but maybe you can come up with some models/conclusions/correlations of your own :)",
     "crumbs": [
       "**Agro stuff**",
-      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Psychrometric Chart and Evaporative Cooling</span>"
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Psychrometric Chart and Evaporative Cooling</span>"
     ]
   },
   {
     "objectID": "assignments/assignment1.html",
     "href": "assignments/assignment1.html",
-    "title": "25  Assignment 1",
+    "title": "26  Assignment 1",
     "section": "",
     "text": "You will write Arduino code that incorporates all the following elements learned in First programs. Upload your .ino file on the course’s Moodle page. You’ll have two weeks until deadline.\n\nvariable declaration, e.g.\nfloat my_var=1.23;\nint i, j;\nfunction declaration, e.g.\nint my_sum(int x, int y) {\n  return x + y;\n}\nBuilt-in and external LED control\nConditionals, e.g.\nif (temperature &gt; 30.0) {\n  fan = 1;\n} else {\n  fan = 0;\n}\nRandom numbers, e.g.\n// random number from -5 (inclusive) to +5 (exclusive)\nrand1 = random(-5, 5);\nSerial plotting, numbers and text\nComments explaining every step of what you did\nBonus: connect to WiFi and make use of time from the internet\nObligatory: at the very top of your code, write in many lines an explanation (in English) of what your code does\n\n/*\nAuthor: Harry Potter\nClass: Agrotech Lab\nDate: 2023-03-14\nThis code does bla bla bla.\nMore explanations here.\n*/",
     "crumbs": [
       "**Assignments**",
-      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Assignment 1</span>"
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Assignment 1</span>"
     ]
   },
   {
     "objectID": "assignments/assignment2.html",
     "href": "assignments/assignment2.html",
-    "title": "26  Assignment 2",
+    "title": "27  Assignment 2",
     "section": "",
-    "text": "26.1  Some guidelines\nIn this project each one of you will individually create a Thingspeak channel and will upload to it data from an ESP32.\nMinimal requirements:",
+    "text": "27.1  Some guidelines\nIn this project each one of you will individually create a Thingspeak channel and will upload to it data from an ESP32.\nMinimal requirements:",
     "crumbs": [
       "**Assignments**",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Assignment 2</span>"
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Assignment 2</span>"
     ]
   },
   {
     "objectID": "assignments/assignment2.html#some-guidelines",
     "href": "assignments/assignment2.html#some-guidelines",
-    "title": "26  Assignment 2",
+    "title": "27  Assignment 2",
     "section": "",
     "text": "Measure temperature (using SHT31)\nMeasure humidity (using SHT31)\nCalculate VPD",
     "crumbs": [
       "**Assignments**",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Assignment 2</span>"
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Assignment 2</span>"
     ]
   },
   {
     "objectID": "assignments/assignment2.html#deadline",
     "href": "assignments/assignment2.html#deadline",
-    "title": "26  Assignment 2",
-    "section": "26.2  Deadline",
-    "text": "26.2  Deadline\nAll Chanels must be live in two weeks from the day you hear about it in class.\nThe name of the channel MUST be spelled with the prefix “Assignment2_” and then your first and last name with separated by an underscore.\nFor example: Assignment2_Erez_Feuer\nYou MUST provide information regarding your channel in the “description” section which can be found under “channel settings”. This information should include:\n\nlocation (e.g.: balcony in Rechovot, kitchen in Gan-Yavne, 7th floor bedroom window, etc.),\nwhat the sensors are measuring, and\nany other information that you find relevant - the more the better.\n\nUpload interval should be every 5 minutes.",
+    "title": "27  Assignment 2",
+    "section": "27.2  Deadline",
+    "text": "27.2  Deadline\nAll Chanels must be live in two weeks from the day you hear about it in class.\nThe name of the channel MUST be spelled with the prefix “Assignment2_” and then your first and last name with separated by an underscore.\nFor example: Assignment2_Erez_Feuer\nYou MUST provide information regarding your channel in the “description” section which can be found under “channel settings”. This information should include:\n\nlocation (e.g.: balcony in Rechovot, kitchen in Gan-Yavne, 7th floor bedroom window, etc.),\nwhat the sensors are measuring, and\nany other information that you find relevant - the more the better.\n\nUpload interval should be every 5 minutes.",
     "crumbs": [
       "**Assignments**",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Assignment 2</span>"
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Assignment 2</span>"
     ]
   },
   {
     "objectID": "assignments/assignment2.html#public-view",
     "href": "assignments/assignment2.html#public-view",
-    "title": "26  Assignment 2",
-    "section": "26.3  Public view",
-    "text": "26.3  Public view\nWe will be monitoring your Thingspeak channels via the “Public view” section. It is very simple to make your channel public, just check “Share channel view with everyone” under the Sharing tab as you can this in the following image:",
+    "title": "27  Assignment 2",
+    "section": "27.3  Public view",
+    "text": "27.3  Public view\nWe will be monitoring your Thingspeak channels via the “Public view” section. It is very simple to make your channel public, just check “Share channel view with everyone” under the Sharing tab as you can this in the following image:",
     "crumbs": [
       "**Assignments**",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Assignment 2</span>"
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Assignment 2</span>"
     ]
   },
   {
     "objectID": "assignments/assignment2.html#how-to-power-your-projects",
     "href": "assignments/assignment2.html#how-to-power-your-projects",
-    "title": "26  Assignment 2",
-    "section": "26.4  How to power your projects",
-    "text": "26.4  How to power your projects\nOnce the code is uploaded to the ESP32 and every thing works fine, you don’t need your computer anymore, and can use a generic USB charger as a power supply. Don’t worry about the code, it will work as long as the ESP32 has power, because you already uploaded the code to memory.",
+    "title": "27  Assignment 2",
+    "section": "27.4  How to power your projects",
+    "text": "27.4  How to power your projects\nOnce the code is uploaded to the ESP32 and every thing works fine, you don’t need your computer anymore, and can use a generic USB charger as a power supply. Don’t worry about the code, it will work as long as the ESP32 has power, because you already uploaded the code to memory.",
     "crumbs": [
       "**Assignments**",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Assignment 2</span>"
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Assignment 2</span>"
     ]
   },
   {
     "objectID": "assignments/assignment2.html#calculate-vpd",
     "href": "assignments/assignment2.html#calculate-vpd",
-    "title": "26  Assignment 2",
-    "section": "26.5 Calculate VPD",
-    "text": "26.5 Calculate VPD\nThe Vapor Pressure Deficit (VPD, in kPa) is the difference between saturation vapor pressure \\(e_s\\) and actual vapor pressure \\(e_d\\):\n\\[\\text{VPD} = e_s - e_d.\\]\nFor temperatures ranging from 0 to 50 °C, the saturation vapor pressure can be calculated with\n\\[\ne_s = \\exp \\left[ \\frac{16.78\\, T -116.9}{T+237.3} \\right],\n\\]\nand the actual vapor pressure is given by\n\\[\ne_d = e_s \\frac{RH}{100},\n\\]\nwhere \\(RH\\) is the relative humidity (%), and the temperature \\(T\\) in the equations above is in degrees Celcius.",
+    "title": "27  Assignment 2",
+    "section": "27.5 Calculate VPD",
+    "text": "27.5 Calculate VPD\nThe Vapor Pressure Deficit (VPD, in kPa) is the difference between saturation vapor pressure \\(e_s\\) and actual vapor pressure \\(e_d\\):\n\\[\\text{VPD} = e_s - e_d.\\]\nFor temperatures ranging from 0 to 50 °C, the saturation vapor pressure can be calculated with\n\\[\ne_s = \\exp \\left[ \\frac{16.78\\, T -116.9}{T+237.3} \\right],\n\\]\nand the actual vapor pressure is given by\n\\[\ne_d = e_s \\frac{RH}{100},\n\\]\nwhere \\(RH\\) is the relative humidity (%), and the temperature \\(T\\) in the equations above is in degrees Celcius.",
     "crumbs": [
       "**Assignments**",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Assignment 2</span>"
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Assignment 2</span>"
     ]
   },
   {
     "objectID": "assignments/assignment2.html#circuit-diagram",
     "href": "assignments/assignment2.html#circuit-diagram",
-    "title": "26  Assignment 2",
-    "section": "26.6 Circuit diagram",
-    "text": "26.6 Circuit diagram\nAs part of the project, you will draw the circuit diagram using the following website:\nhttps://www.circuit-diagram.org/editor/\nSave the diagram as a png and upload it to moodle.",
+    "title": "27  Assignment 2",
+    "section": "27.6 Circuit diagram",
+    "text": "27.6 Circuit diagram\nAs part of the project, you will draw the circuit diagram using the following website:\nhttps://www.circuit-diagram.org/editor/\nSave the diagram as a png and upload it to moodle.",
     "crumbs": [
       "**Assignments**",
-      "<span class='chapter-number'>26</span>  <span class='chapter-title'>Assignment 2</span>"
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>Assignment 2</span>"
     ]
   },
   {
     "objectID": "resources.html",
     "href": "resources.html",
-    "title": "27   Resources",
+    "title": "28   Resources",
     "section": "",
-    "text": "27.1  Equipment",
+    "text": "28.1  Equipment",
     "crumbs": [
       "**Resources**",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
     ]
   },
   {
     "objectID": "resources.html#equipment",
     "href": "resources.html#equipment",
-    "title": "27   Resources",
+    "title": "28   Resources",
     "section": "",
-    "text": "27.1.1 Equipment Pickup Form\n\nPlease fill out this form every time you receive a new sensor or equipment. You will need to provide your 9-digit ID number and indicate which sensor(s) you have received.\nMake sure your name and phone number are written on the box containing the equipment.\nBy filling out this form, you agree to receive the item(s) and are obligated to return them at the end of the course.\nIf you’re not sure, click here to check which equipment you borrowed from the course.\n\n\n27.1.1.0.1 Do you want to order equipment for yourself?\nClick for a list of the main components used in this course.",
+    "text": "28.1.1 Equipment Pickup Form\n\nPlease fill out this form every time you receive a new sensor or equipment. You will need to provide your 9-digit ID number and indicate which sensor(s) you have received.\nMake sure your name and phone number are written on the box containing the equipment.\nBy filling out this form, you agree to receive the item(s) and are obligated to return them at the end of the course.\nIf you’re not sure, click here to check which equipment you borrowed from the course.\n\n\n28.1.1.0.1 Do you want to order equipment for yourself?\nClick for a list of the main components used in this course.",
     "crumbs": [
       "**Resources**",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
     ]
   },
   {
     "objectID": "resources.html#github",
     "href": "resources.html#github",
-    "title": "27   Resources",
-    "section": "27.2  Github",
-    "text": "27.2  Github\nMake an account on Github. Create a repository called “agrotech” or whatever you else want to call it. You can upload to this repository your code, data, diagrams, pictures, markdown, etc. In the end of the semester you will upload your project report as a Jupyter Notebook file.\nFrom now on, your main Github page can be your “geek face” on the internet. Make a clean and simple readme.md, telling the world who you are and what you do.",
+    "title": "28   Resources",
+    "section": "28.2  Github",
+    "text": "28.2  Github\nMake an account on Github. Create a repository called “agrotech” or whatever you else want to call it. You can upload to this repository your code, data, diagrams, pictures, markdown, etc. In the end of the semester you will upload your project report as a Jupyter Notebook file.\nFrom now on, your main Github page can be your “geek face” on the internet. Make a clean and simple readme.md, telling the world who you are and what you do.",
     "crumbs": [
       "**Resources**",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
     ]
   },
   {
     "objectID": "resources.html#jupyter-notebook",
     "href": "resources.html#jupyter-notebook",
-    "title": "27   Resources",
-    "section": "27.3  Jupyter Notebook",
-    "text": "27.3  Jupyter Notebook\nThe easiest way to install Python (+ Jupyter Notebook, Spyder, PyCharm, JupyterLab, etc) on any OS is to download Anaconda. Jupyter Notebook is a versatile environment that allows you to write code and documentation in one single file, taking advantage of Markdown. Click for a short and a long markdown cheat sheet.",
+    "title": "28   Resources",
+    "section": "28.3  Jupyter Notebook",
+    "text": "28.3  Jupyter Notebook\nThe easiest way to install Python (+ Jupyter Notebook, Spyder, PyCharm, JupyterLab, etc) on any OS is to download Anaconda. Jupyter Notebook is a versatile environment that allows you to write code and documentation in one single file, taking advantage of Markdown. Click for a short and a long markdown cheat sheet.",
     "crumbs": [
       "**Resources**",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
     ]
   },
   {
     "objectID": "resources.html#fritzing",
     "href": "resources.html#fritzing",
-    "title": "27   Resources",
-    "section": "27.4  Fritzing",
-    "text": "27.4  Fritzing\nFritzing is a nice software that lets you easily draw your own circuits and diagrams.",
+    "title": "28   Resources",
+    "section": "28.4  Fritzing",
+    "text": "28.4  Fritzing\nFritzing is a nice software that lets you easily draw your own circuits and diagrams.",
     "crumbs": [
       "**Resources**",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
     ]
   },
   {
     "objectID": "resources.html#useful-links",
     "href": "resources.html#useful-links",
-    "title": "27   Resources",
-    "section": "27.5  Useful links",
-    "text": "27.5  Useful links\nThe world of MCUs has great support online. You actually don’t need this course to learn it… We are only here to guide you and help with the first steps. SO below are some usful links to websites/Youtube channels that provide excellent information:\nArduino syntax and coding:\n\nArduino — Language Reference\n\nTutorials by sensor manufacturers:\n\nSparkfun\n\nAdafruit\n\nProject ideas:\n\nArduino Project Hub\n\nInstructables — Arduino\n\nArduino beginners course:\n\nPaul McWhorter - New Arduino Tutorials\n\nExamples of good Youtube channels:\n\nAndreas Spiess\n\nG6EJD - David\n\nGreatScott!\n\neduc8s.tv\n\nOregon State’s OPEnS Lab\n\nGithub",
+    "title": "28   Resources",
+    "section": "28.5  Useful links",
+    "text": "28.5  Useful links\nThe world of MCUs has great support online. You actually don’t need this course to learn it… We are only here to guide you and help with the first steps. SO below are some usful links to websites/Youtube channels that provide excellent information:\nArduino syntax and coding:\n\nArduino — Language Reference\n\nTutorials by sensor manufacturers:\n\nSparkfun\n\nAdafruit\n\nProject ideas:\n\nArduino Project Hub\n\nInstructables — Arduino\n\nArduino beginners course:\n\nPaul McWhorter - New Arduino Tutorials\n\nExamples of good Youtube channels:\n\nAndreas Spiess\n\nG6EJD - David\n\nGreatScott!\n\neduc8s.tv\n\nOregon State’s OPEnS Lab\n\nGithub",
     "crumbs": [
       "**Resources**",
-      "<span class='chapter-number'>27</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>{{< iconify fluent brain-circuit-20-regular >}} Resources</span>"
     ]
   },
   {
     "objectID": "projects.html",
     "href": "projects.html",
-    "title": "28   Projects",
+    "title": "29   Projects",
     "section": "",
-    "text": "28.1  Final Project\nRead carefully the instructions. Click here.",
+    "text": "29.1  Final Project\nRead carefully the instructions. Click here.",
     "crumbs": [
       "**Projects**",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>{{< iconify material-symbols rocket-launch >}} Projects</span>"
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>{{< iconify material-symbols rocket-launch >}} Projects</span>"
     ]
   },
   {
     "objectID": "projects.html#final-project",
     "href": "projects.html#final-project",
-    "title": "28   Projects",
+    "title": "29   Projects",
     "section": "",
     "text": "2022 Final projects\n\n\n\n\nTeam\nProject\n\n\n\n\n   Ronna Melamed Bat – May Nir\nMeasuring PAR outside and inside the greenhouse\n\n\n   Avital Akerman – Elad Greenfeld\nAutomated Irrigation System\n\n\n   Nadav Hen – Guy Donagi – David Zingerman\nTemporal and spatial temperature measurement in a greenhouse\n\n\n   Zeev Rozman – Imri Zadak – Alex Evenko-Greenapple\nweather station\n\n\n   Yuval Chemke – Reem Har Levi\nHydroponics Monitoring and Balance\n\n\n   Peleg Atir – Aviad Mendelovich – Ruth Yitzhaki\nVPD control using automatic sprinklers\n\n\n   Amir Sheffer – Yitzchak Kanovsky – Aviv Saadia\n3D heatmap model of a greenhouse",
     "crumbs": [
       "**Projects**",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>{{< iconify material-symbols rocket-launch >}} Projects</span>"
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>{{< iconify material-symbols rocket-launch >}} Projects</span>"
     ]
   },
   {
     "objectID": "projects.html#passover-2022-mini-project",
     "href": "projects.html#passover-2022-mini-project",
-    "title": "28   Projects",
-    "section": "28.2  Passover 2022 mini project",
-    "text": "28.2  Passover 2022 mini project\nclick here",
+    "title": "29   Projects",
+    "section": "29.2  Passover 2022 mini project",
+    "text": "29.2  Passover 2022 mini project\nclick here",
     "crumbs": [
       "**Projects**",
-      "<span class='chapter-number'>28</span>  <span class='chapter-title'>{{< iconify material-symbols rocket-launch >}} Projects</span>"
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>{{< iconify material-symbols rocket-launch >}} Projects</span>"
     ]
   },
   {
     "objectID": "projects/borrowing-equipment.html",
     "href": "projects/borrowing-equipment.html",
-    "title": "29  Borrowing equipment",
+    "title": "30  Borrowing equipment",
     "section": "",
-    "text": "We want to give you the freedom to try out all the equipment, but we need help in tracking what equipment you took. For that reson we started a colaborative spreadsheet in which you can list the equipment you took home / are using in your project. (Only HUJI accounts can edit that sheet).\n Link to sheet\n\n29.0.1 About the sheet & some guidelines:\n\nEach unique component has its own column, including its name, brief description and link to a picture of it.\nOne row per student (please add yourself).\nInsert the amount you took of each component in numbers only.\nIn the Graveyard section write in text (example: 2 x ESP32) all the equipment that you burnt, found malfunctioning, lost, etc… Whatever we can’t use anymore… IMPORTANT: there is no shame in having a big list, honesty is what we are looking for. We are just trying to keep track of all the equipment.\nPlease make sure to immediately update the sheet as you take/return the equipment.\nNo need to list super-fundamental equipment like resistors and cables.\n\n\n\n29.0.2 We need your help:\nThe sheet is not complete and will be expanded during the semester. If there is missing information, please add/fix it. It can be:\n\nMissing component column\n\nNo description\n\nNo image link",
+    "text": "We want to give you the freedom to try out all the equipment, but we need help in tracking what equipment you took. For that reson we started a colaborative spreadsheet in which you can list the equipment you took home / are using in your project. (Only HUJI accounts can edit that sheet).\n Link to sheet\n\n30.0.1 About the sheet & some guidelines:\n\nEach unique component has its own column, including its name, brief description and link to a picture of it.\nOne row per student (please add yourself).\nInsert the amount you took of each component in numbers only.\nIn the Graveyard section write in text (example: 2 x ESP32) all the equipment that you burnt, found malfunctioning, lost, etc… Whatever we can’t use anymore… IMPORTANT: there is no shame in having a big list, honesty is what we are looking for. We are just trying to keep track of all the equipment.\nPlease make sure to immediately update the sheet as you take/return the equipment.\nNo need to list super-fundamental equipment like resistors and cables.\n\n\n\n30.0.2 We need your help:\nThe sheet is not complete and will be expanded during the semester. If there is missing information, please add/fix it. It can be:\n\nMissing component column\n\nNo description\n\nNo image link",
     "crumbs": [
       "**Projects**",
-      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Borrowing equipment</span>"
+      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Borrowing equipment</span>"
     ]
   },
   {
     "objectID": "projects/final-project.html",
     "href": "projects/final-project.html",
-    "title": "30  Final Project",
+    "title": "31  Final Project",
     "section": "",
-    "text": "30.1 Updates\nPlease consult this Google Spreadsheet to be up-to-date with what’s going on with the various projects. Every team should update this spreadsheet regularly with the relevant information.",
+    "text": "31.1 Updates\nPlease consult this Google Spreadsheet to be up-to-date with what’s going on with the various projects. Every team should update this spreadsheet regularly with the relevant information.",
     "crumbs": [
       "**Projects**",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Final Project</span>"
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Final Project</span>"
     ]
   },
   {
     "objectID": "projects/final-project.html#the-platform",
     "href": "projects/final-project.html#the-platform",
-    "title": "30  Final Project",
-    "section": "30.2 The platform",
-    "text": "30.2 The platform\nThis year the final projects will all take place in a greenhouse on campus and will share the theme of data logging and control. Each team will focus on a different aspect in the greenhouse, e.g., temperature and RH monitoring, energy balance, irrigation control, plant monitoring, etc. All the data collected will be uploaded to the same Thingspeak account, so everyone will have access to everyone else’s data. The different teams are expected to be in contact and share with each other what they are doing, so that you can exchange ideas and build into each other’s strengths.",
+    "title": "31  Final Project",
+    "section": "31.2 The platform",
+    "text": "31.2 The platform\nThis year the final projects will all take place in a greenhouse on campus and will share the theme of data logging and control. Each team will focus on a different aspect in the greenhouse, e.g., temperature and RH monitoring, energy balance, irrigation control, plant monitoring, etc. All the data collected will be uploaded to the same Thingspeak account, so everyone will have access to everyone else’s data. The different teams are expected to be in contact and share with each other what they are doing, so that you can exchange ideas and build into each other’s strengths.",
     "crumbs": [
       "**Projects**",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Final Project</span>"
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Final Project</span>"
     ]
   },
   {
     "objectID": "projects/final-project.html#final-report-github-page",
     "href": "projects/final-project.html#final-report-github-page",
-    "title": "30  Final Project",
-    "section": "30.3 Final Report = GitHub page",
-    "text": "30.3 Final Report = GitHub page\nDocumenting your project well is probably one of the most important lessons you will learn. Without documentation your projects will not live on and they will end their life right after the semester is over; you will forget what exactly you did and no one will be able to reproduce what you have done. We don’t want that for our projects…\nThe goal of the Agrotech-Lab course is to create a repository of all the cool projects made over the years. That way the projects will live forever and future students and other people around the world can learn from your work.\nWe require that each team creates a Github page including all the documentation. It should include:\n\nIntroduction: general explanation about the project and its goals\nHardware and assembly: Make the description as detailed as posible. Include many photos, links to order, datasheets etc.\nCode: Provide all code used in this project. Code should be organized with comments throughout explaining it.\nInstructions: How to make and use the project.\nExperinment: Show an example of the project “in action”.\n\nPlese note, the github page is your “final project paper/report”.",
+    "title": "31  Final Project",
+    "section": "31.3 Final Report = GitHub page",
+    "text": "31.3 Final Report = GitHub page\nDocumenting your project well is probably one of the most important lessons you will learn. Without documentation your projects will not live on and they will end their life right after the semester is over; you will forget what exactly you did and no one will be able to reproduce what you have done. We don’t want that for our projects…\nThe goal of the Agrotech-Lab course is to create a repository of all the cool projects made over the years. That way the projects will live forever and future students and other people around the world can learn from your work.\nWe require that each team creates a Github page including all the documentation. It should include:\n\nIntroduction: general explanation about the project and its goals\nHardware and assembly: Make the description as detailed as posible. Include many photos, links to order, datasheets etc.\nCode: Provide all code used in this project. Code should be organized with comments throughout explaining it.\nInstructions: How to make and use the project.\nExperinment: Show an example of the project “in action”.\n\nPlese note, the github page is your “final project paper/report”.",
     "crumbs": [
       "**Projects**",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Final Project</span>"
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Final Project</span>"
     ]
   },
   {
     "objectID": "projects/final-project.html#presentation",
     "href": "projects/final-project.html#presentation",
-    "title": "30  Final Project",
-    "section": "30.4 Presentation",
-    "text": "30.4 Presentation\nOn the last day, when we meet to show our projects, each team will give a short talk of 5 minutes. During this talk you will touch the following points:\n\nWhat did you do?\nWhy do a project like yours?\nAre there agricultural or other benefits?\nHow did you do it? Hardware and code (no need to go over it, just explain in general).\nWhat did you learn? Show graphs and data analysis.\n\n\n30.4.1 Attention!\nPresentation is something you present to others, it does not mean a “Powerpoint presentation”. Your presentation will be solely based on your GitHub repository.",
+    "title": "31  Final Project",
+    "section": "31.4 Presentation",
+    "text": "31.4 Presentation\nOn the last day, when we meet to show our projects, each team will give a short talk of 5 minutes. During this talk you will touch the following points:\n\nWhat did you do?\nWhy do a project like yours?\nAre there agricultural or other benefits?\nHow did you do it? Hardware and code (no need to go over it, just explain in general).\nWhat did you learn? Show graphs and data analysis.\n\n\n31.4.1 Attention!\nPresentation is something you present to others, it does not mean a “Powerpoint presentation”. Your presentation will be solely based on your GitHub repository.",
     "crumbs": [
       "**Projects**",
-      "<span class='chapter-number'>30</span>  <span class='chapter-title'>Final Project</span>"
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Final Project</span>"
     ]
   },
   {
     "objectID": "projects/examples.html",
     "href": "projects/examples.html",
-    "title": "31  Example projects",
+    "title": "32  Example projects",
     "section": "",
-    "text": "31.1 Open day 2024\nThis project was developed by Yair Mau to the 2024 open day at the Faculty of Agriculture.",
+    "text": "32.1 Open day 2024\nThis project was developed by Yair Mau to the 2024 open day at the Faculty of Agriculture.",
     "crumbs": [
       "**Projects**",
-      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Example projects</span>"
+      "<span class='chapter-number'>32</span>  <span class='chapter-title'>Example projects</span>"
     ]
   },
   {
     "objectID": "projects/examples.html#open-day-2024",
     "href": "projects/examples.html#open-day-2024",
-    "title": "31  Example projects",
+    "title": "32  Example projects",
     "section": "",
-    "text": "31.1.1 Download:\n\n Fritzing diagram in pdf \n Fritzing diagram in fzz \n Code to upload to your ESP32 \n Python code to plot live the measured data \n\n\n\n31.1.2 Materials needed:\n\nESP32 Firebeetle 2\nBreadboard, wires, LED, relay, 330-ohm resistor\nSHT31 temperature and humidity sensor\nFan\nPower supply\nA computer to plot live data\n\n\n\n31.1.3 What this project is about:\nWhenever relative humidity goes above a given threshold (e.g. 80%), the fan turns on. When RH goes below threshold, fan turns off. The ESP32 must be connected to a computer, and you must run the python code. The python code communicates serially with the ESP32, and also shows on the screen a live graph of temperature and relative humidity.",
+    "text": "32.1.1 Download:\n\n Fritzing diagram in pdf \n Fritzing diagram in fzz \n Code to upload to your ESP32 \n Python code to plot live the measured data \n\n\n\n32.1.2 Materials needed:\n\nESP32 Firebeetle 2\nBreadboard, wires, LED, relay, 330-ohm resistor\nSHT31 temperature and humidity sensor\nFan\nPower supply\nA computer to plot live data\n\n\n\n32.1.3 What this project is about:\nWhenever relative humidity goes above a given threshold (e.g. 80%), the fan turns on. When RH goes below threshold, fan turns off. The ESP32 must be connected to a computer, and you must run the python code. The python code communicates serially with the ESP32, and also shows on the screen a live graph of temperature and relative humidity.",
     "crumbs": [
       "**Projects**",
-      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Example projects</span>"
+      "<span class='chapter-number'>32</span>  <span class='chapter-title'>Example projects</span>"
     ]
   }
 ]

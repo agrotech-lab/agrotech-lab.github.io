@@ -214,5 +214,8 @@
   },
   "tutorials/deep_sleep.qmd": {
     "deep_sleep.html": "f1ae72a1"
+  },
+  "tutorials/esp_now.qmd": {
+    "esp_now.html": "953e9f57"
   }
 }

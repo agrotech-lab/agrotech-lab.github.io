@@ -67,6 +67,12 @@ Understanding how topics are written and structured is crucial for effective mes
 code_source("MQTT_led_subscribe.ino")
 ```
 
+## Publish text
+```{python}
+#| echo: false
+#| output: asis
+code_source("agrotech_mqtt_publish_text.ino")
+```
 
 ## Sensor subscribe
 ```{python}
