@@ -8,8 +8,8 @@
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient); 
 
-const char* ssid = "TP-Link_905D";
-const char* password = "33072036";
+const char* ssid = "wifi_name";
+const char* password = "wifi_password";
 
 char *mqttServer = "broker.hivemq.com";
 int mqttPort = 1883;
@@ -32,7 +32,7 @@ void reconnect() {
       if (mqttClient.connect(clientId.c_str())) {
         Serial.println("Connected.");
         // subscribe to topic
-        mqttClient.subscribe("agrotech/2023/LED");
+        mqttClient.subscribe("agrotech/mqtt_tutorial/LED");
       }      
   }
 }

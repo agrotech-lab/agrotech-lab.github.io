@@ -1,0 +1,36 @@
+---
+title: "Deep Sleep"
+echo: false
+jupyter: python3
+execute:
+  freeze: auto  # re-render only when source changes
+---
+
+{{< include ../_insert_ino_code.qmd >}}
+
+Deep sleep is a power-saving mode on the ESP32 microcontroller that allows it to significantly reduce its power consumption by shutting down most of its components and functionalities. This mode is particularly useful for battery-powered applications where conserving energy is crucial.
+
+## Key Features of Deep Sleep
+
+1. **Low Power Consumption:**  
+    In deep sleep mode, the ESP32 consumes only a few microamps of current, drastically reducing power usage compared to its normal operating modes.
+1. **Preservation of Data:**  
+    The ESP32 can save the state of its peripherals and the values of certain variables in RTC (Real-Time Clock) memory, which is retained during deep sleep. This allows the microcontroller to resume tasks efficiently upon waking up.
+1. **Wake-Up Sources:**  
+    The ESP32 can be awakened from deep sleep by various events:
+    * Timer: The internal RTC can be programmed to wake the device after a specified time interval.
+    * External Pin: A change in the state of a designated GPIO pin can trigger a wake-up.
+    * Touch Sensor: Touch pad sensors can be used to wake up the device.
+    * ULP Coprocessor: The Ultra-Low-Power (ULP) coprocessor can run while the main CPU is in deep sleep and trigger a wake-up event based on sensor readings or other conditions.
+1. **Application Examples:**  
+    * Battery-Powered Sensors: Environmental sensors that need to periodically send data can spend most of their time in deep sleep, waking up only to take measurements and transmit data.
+    * IoT Devices: Devices that need to conserve power, such as remote weather stations or smart home devices, can use deep sleep to extend battery life.
+
+
+
+## Deep Sleep code
+```{python}
+#| echo: false
+#| output: asis
+code_source("deep_sleep.ino")
+```

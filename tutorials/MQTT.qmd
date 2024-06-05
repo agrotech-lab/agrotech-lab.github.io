@@ -86,14 +86,14 @@ code_source("MQTT_publish_and_subscribe.ino")
 
 ## MQTT + Python
 
-## Publish
+## Subscribe
 ```{python}
 #| echo: false
 #| output: asis
 code_source("MQTT_python_subscribe.py")
 ```
 
-## Subscribe
+## Publish
 ```{python}
 #| echo: false
 #| output: asis

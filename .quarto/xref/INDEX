@@ -211,5 +211,8 @@
   },
   "projects/examples.qmd": {
     "examples.html": "2fae3361"
+  },
+  "tutorials/deep_sleep.qmd": {
+    "deep_sleep.html": "f1ae72a1"
   }
 }
