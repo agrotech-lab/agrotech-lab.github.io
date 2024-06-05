@@ -1,23 +1,28 @@
 import paho.mqtt.client as mqtt
-import random
-import time
 
 # MQTT broker details
 broker_address = "broker.hivemq.com"
 broker_port = 1883
 
+# Callback function when a connection is established with the MQTT broker
+def on_connect(client, userdata, flags, rc):
+    print("Connected to MQTT broker with result code: " + str(rc))
+    # Subscribe to the topic upon successful connection
+    client.subscribe("agrotech/mqtt_tutorial/#")
+
+# Callback function when a message is received
+def on_message(client, userdata, msg):
+    print("Received message: " + str(msg.payload.decode()))
+
 # Create a MQTT client instance
 client = mqtt.Client()
+
+# Assign callback functions
+client.on_connect = on_connect
+client.on_message = on_message
 
 # Connect to the MQTT broker
 client.connect(broker_address, broker_port, 60)
 
-# Loop to publish random temperature readings
-while True:
-    temperature = random.uniform(20.0, 30.0)  # Generate a random temperature value between 20.0 and 30.0
-    client.publish("agrotech/2023/temperature", str(temperature))  # Publish the temperature value to the topic
-    print("Published temperature: " + str(temperature))
-    time.sleep(1)  # Wait for 5 seconds before publishing the next temperature reading
-
-# Disconnect from the MQTT broker (not reached in this example)
-client.disconnect()
+# Loop to maintain the connection and process network traffic
+client.loop_forever()

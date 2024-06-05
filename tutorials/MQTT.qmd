@@ -50,7 +50,7 @@ For example, consider the topic structure in agriculture:
 
 * `agriculture/field1/humidity`: This topic represents the humidity data in a specific field. It consists of three levels: `agriculture`, `field1`, and `humidity`.
 
-* `agriculture/+/soil moisture`: This topic uses a wildcard character, `+`, which can match any single level. Subscribing to this topic would allow receiving messages related to soil moisture from various areas within agriculture.
+* `agriculture/+/soil moisture`: This topic uses a wildcard character, `+`, which can match exactly one topic level. Subscribing to this topic would allow receiving messages related to soil moisture from various areas within agriculture.
 
 * `agriculture/#`: This topic uses the wildcard character `#`, which can match multiple levels or no level at all. Subscribing to this topic would enable receiving messages from any sub-topic under `agriculture`.
 
@@ -98,4 +98,11 @@ code_source("MQTT_python_subscribe.py")
 #| echo: false
 #| output: asis
 code_source("MQTT_python_publish.py")
+```
+
+## Subscribe to CSV
+```{python}
+#| echo: false
+#| output: asis
+code_source("mqtt_to_csv.py")
 ```

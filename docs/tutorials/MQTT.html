@@ -453,6 +453,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#mqtt-python" id="toc-mqtt-python" class="nav-link" data-scroll-target="#mqtt-python"><span class="header-section-number">19.7</span> MQTT + Python</a></li>
   <li><a href="#publish" id="toc-publish" class="nav-link" data-scroll-target="#publish"><span class="header-section-number">19.8</span> Publish</a></li>
   <li><a href="#subscribe" id="toc-subscribe" class="nav-link" data-scroll-target="#subscribe"><span class="header-section-number">19.9</span> Subscribe</a></li>
+  <li><a href="#subscribe-to-csv" id="toc-subscribe-to-csv" class="nav-link" data-scroll-target="#subscribe-to-csv"><span class="header-section-number">19.10</span> Subscribe to CSV</a></li>
   </ul>
 </nav>
     </div>
@@ -517,7 +518,7 @@ Subscribing allows clients to express their interest in receiving messages from 
 <ul>
 <li><p><code>agriculture/temperature</code>: This topic represents the temperature data in the agricultural context. It consists of a single level, <code>agriculture</code> followed by another level, <code>temperature</code>.</p></li>
 <li><p><code>agriculture/field1/humidity</code>: This topic represents the humidity data in a specific field. It consists of three levels: <code>agriculture</code>, <code>field1</code>, and <code>humidity</code>.</p></li>
-<li><p><code>agriculture/+/soil moisture</code>: This topic uses a wildcard character, <code>+</code>, which can match any single level. Subscribing to this topic would allow receiving messages related to soil moisture from various areas within agriculture.</p></li>
+<li><p><code>agriculture/+/soil moisture</code>: This topic uses a wildcard character, <code>+</code>, which can match exactly one topic level. Subscribing to this topic would allow receiving messages related to soil moisture from various areas within agriculture.</p></li>
 <li><p><code>agriculture/#</code>: This topic uses the wildcard character <code>#</code>, which can match multiple levels or no level at all. Subscribing to this topic would enable receiving messages from any sub-topic under <code>agriculture</code>.</p></li>
 </ul>
 <p>The use of forward slashes and levels in topic design allows for a structured approach to organizing data in MQTT. It enables subscribers to select specific levels or use wildcard characters to filter and receive messages of interest.</p>
@@ -848,28 +849,33 @@ Subscribing allows clients to express their interest in receiving messages from 
             <div class="card card-body border-0">
         
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> paho.mqtt.client <span class="im">as</span> mqtt</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="im">import</span> random</span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="im">import</span> time</span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co"># MQTT broker details</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a>broker_address <span class="op">=</span> <span class="st">"broker.hivemq.com"</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>broker_port <span class="op">=</span> <span class="dv">1883</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="co"># Create a MQTT client instance</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>client <span class="op">=</span> mqtt.Client()</span>
-<span id="cb4-11"><a href="#cb4-11"></a></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="co"># Connect to the MQTT broker</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a>client.<span class="ex">connect</span>(broker_address, broker_port, <span class="dv">60</span>)</span>
-<span id="cb4-14"><a href="#cb4-14"></a></span>
-<span id="cb4-15"><a href="#cb4-15"></a><span class="co"># Loop to publish random temperature readings</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb4-17"><a href="#cb4-17"></a>    temperature <span class="op">=</span> random.uniform(<span class="fl">20.0</span>, <span class="fl">30.0</span>)  <span class="co"># Generate a random temperature value between 20.0 and 30.0</span></span>
-<span id="cb4-18"><a href="#cb4-18"></a>    client.publish(<span class="st">"agrotech/2023/temperature"</span>, <span class="bu">str</span>(temperature))  <span class="co"># Publish the temperature value to the topic</span></span>
-<span id="cb4-19"><a href="#cb4-19"></a>    <span class="bu">print</span>(<span class="st">"Published temperature: "</span> <span class="op">+</span> <span class="bu">str</span>(temperature))</span>
-<span id="cb4-20"><a href="#cb4-20"></a>    time.sleep(<span class="dv">1</span>)  <span class="co"># Wait for 5 seconds before publishing the next temperature reading</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a></span>
-<span id="cb4-22"><a href="#cb4-22"></a><span class="co"># Disconnect from the MQTT broker (not reached in this example)</span></span>
-<span id="cb4-23"><a href="#cb4-23"></a>client.disconnect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co"># MQTT broker details</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>broker_address <span class="op">=</span> <span class="st">"broker.hivemq.com"</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>broker_port <span class="op">=</span> <span class="dv">1883</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co"># Callback function when a connection is established with the MQTT broker</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="kw">def</span> on_connect(client, userdata, flags, rc):</span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="bu">print</span>(<span class="st">"Connected to MQTT broker with result code: "</span> <span class="op">+</span> <span class="bu">str</span>(rc))</span>
+<span id="cb4-10"><a href="#cb4-10"></a>    <span class="co"># Subscribe to the topic upon successful connection</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>    client.subscribe(<span class="st">"agrotech/mqtt_tutorial/#"</span>)</span>
+<span id="cb4-12"><a href="#cb4-12"></a></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co"># Callback function when a message is received</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="kw">def</span> on_message(client, userdata, msg):</span>
+<span id="cb4-15"><a href="#cb4-15"></a>    <span class="bu">print</span>(<span class="st">"Received message: "</span> <span class="op">+</span> <span class="bu">str</span>(msg.payload.decode()))</span>
+<span id="cb4-16"><a href="#cb4-16"></a></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="co"># Create a MQTT client instance</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a>client <span class="op">=</span> mqtt.Client()</span>
+<span id="cb4-19"><a href="#cb4-19"></a></span>
+<span id="cb4-20"><a href="#cb4-20"></a><span class="co"># Assign callback functions</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a>client.on_connect <span class="op">=</span> on_connect</span>
+<span id="cb4-22"><a href="#cb4-22"></a>client.on_message <span class="op">=</span> on_message</span>
+<span id="cb4-23"><a href="#cb4-23"></a></span>
+<span id="cb4-24"><a href="#cb4-24"></a><span class="co"># Connect to the MQTT broker</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a>client.<span class="ex">connect</span>(broker_address, broker_port, <span class="dv">60</span>)</span>
+<span id="cb4-26"><a href="#cb4-26"></a></span>
+<span id="cb4-27"><a href="#cb4-27"></a><span class="co"># Loop to maintain the connection and process network traffic</span></span>
+<span id="cb4-28"><a href="#cb4-28"></a>client.loop_forever()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
             </div>
             </div>
@@ -888,33 +894,94 @@ Subscribing allows clients to express their interest in receiving messages from 
             <div class="card card-body border-0">
         
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> paho.mqtt.client <span class="im">as</span> mqtt</span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="co"># MQTT broker details</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>broker_address <span class="op">=</span> <span class="st">"broker.hivemq.com"</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>broker_port <span class="op">=</span> <span class="dv">1883</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="co"># Callback function when a connection is established with the MQTT broker</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="kw">def</span> on_connect(client, userdata, flags, rc):</span>
-<span id="cb5-9"><a href="#cb5-9"></a>    <span class="bu">print</span>(<span class="st">"Connected to MQTT broker with result code: "</span> <span class="op">+</span> <span class="bu">str</span>(rc))</span>
-<span id="cb5-10"><a href="#cb5-10"></a>    <span class="co"># Subscribe to the topic upon successful connection</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a>    client.subscribe(<span class="st">"agrotech/2023/temperature"</span>)</span>
-<span id="cb5-12"><a href="#cb5-12"></a></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="co"># Callback function when a message is received</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="kw">def</span> on_message(client, userdata, msg):</span>
-<span id="cb5-15"><a href="#cb5-15"></a>    <span class="bu">print</span>(<span class="st">"Received temperature: "</span> <span class="op">+</span> <span class="bu">str</span>(msg.payload.decode()))</span>
-<span id="cb5-16"><a href="#cb5-16"></a></span>
-<span id="cb5-17"><a href="#cb5-17"></a><span class="co"># Create a MQTT client instance</span></span>
-<span id="cb5-18"><a href="#cb5-18"></a>client <span class="op">=</span> mqtt.Client()</span>
-<span id="cb5-19"><a href="#cb5-19"></a></span>
-<span id="cb5-20"><a href="#cb5-20"></a><span class="co"># Assign callback functions</span></span>
-<span id="cb5-21"><a href="#cb5-21"></a>client.on_connect <span class="op">=</span> on_connect</span>
-<span id="cb5-22"><a href="#cb5-22"></a>client.on_message <span class="op">=</span> on_message</span>
-<span id="cb5-23"><a href="#cb5-23"></a></span>
-<span id="cb5-24"><a href="#cb5-24"></a><span class="co"># Connect to the MQTT broker</span></span>
-<span id="cb5-25"><a href="#cb5-25"></a>client.<span class="ex">connect</span>(broker_address, broker_port, <span class="dv">60</span>)</span>
-<span id="cb5-26"><a href="#cb5-26"></a></span>
-<span id="cb5-27"><a href="#cb5-27"></a><span class="co"># Loop to maintain the connection and process network traffic</span></span>
-<span id="cb5-28"><a href="#cb5-28"></a>client.loop_forever()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="im">import</span> random</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="im">import</span> time</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co"># MQTT broker details</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>broker_address <span class="op">=</span> <span class="st">"broker.hivemq.com"</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>broker_port <span class="op">=</span> <span class="dv">1883</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co"># Create a MQTT client instance</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>client <span class="op">=</span> mqtt.Client()</span>
+<span id="cb5-11"><a href="#cb5-11"></a></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co"># Connect to the MQTT broker</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a>client.<span class="ex">connect</span>(broker_address, broker_port, <span class="dv">60</span>)</span>
+<span id="cb5-14"><a href="#cb5-14"></a></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co"># Loop to publish random temperature readings</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb5-17"><a href="#cb5-17"></a>    temperature <span class="op">=</span> random.uniform(<span class="fl">20.0</span>, <span class="fl">30.0</span>)  <span class="co"># Generate a random temperature value between 20.0 and 30.0</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a>    client.publish(<span class="st">"agrotech/mqtt_tutorial/temperature"</span>, <span class="bu">str</span>(temperature))  <span class="co"># Publish the temperature value to the topic</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a>    <span class="bu">print</span>(<span class="st">"Published temperature: "</span> <span class="op">+</span> <span class="bu">str</span>(temperature))</span>
+<span id="cb5-20"><a href="#cb5-20"></a>    time.sleep(<span class="dv">1</span>)  <span class="co"># Wait for 5 seconds before publishing the next temperature reading</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a></span>
+<span id="cb5-22"><a href="#cb5-22"></a><span class="co"># Disconnect from the MQTT broker (not reached in this example)</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a>client.disconnect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
+</section>
+<section id="subscribe-to-csv" class="level2" data-number="19.10">
+<h2 data-number="19.10" class="anchored" data-anchor-id="subscribe-to-csv"><span class="header-section-number">19.10</span> Subscribe to CSV</h2>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#mqtt_to_csvpy" aria-expanded="false" aria-controls="mqtt_to_csvpy">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/mqtt_to_csv.py" download="" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="mqtt_to_csvpy">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="im">import</span> paho.mqtt.client <span class="im">as</span> mqtt</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co"># MQTT broker details</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>broker_address <span class="op">=</span> <span class="st">"broker.hivemq.com"</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>broker_port <span class="op">=</span> <span class="dv">1883</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co"># Create a DataFrame to store the messages</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>df <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>[<span class="st">"topic"</span>, <span class="st">"value"</span>])</span>
+<span id="cb6-11"><a href="#cb6-11"></a></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co"># Callback function when a connection is established with the MQTT broker</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="kw">def</span> on_connect(client, userdata, flags, rc):</span>
+<span id="cb6-14"><a href="#cb6-14"></a>    <span class="bu">print</span>(<span class="st">"Connected to MQTT broker with result code: "</span> <span class="op">+</span> <span class="bu">str</span>(rc))</span>
+<span id="cb6-15"><a href="#cb6-15"></a>    <span class="co"># Subscribe to all subtopics within agrotech/mqtt_tutorial/</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>    client.subscribe(<span class="st">"agrotech/mqtt_tutorial/#"</span>)</span>
+<span id="cb6-17"><a href="#cb6-17"></a></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="co"># Callback function when a message is received</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="kw">def</span> on_message(client, userdata, msg):</span>
+<span id="cb6-20"><a href="#cb6-20"></a>    <span class="kw">global</span> df</span>
+<span id="cb6-21"><a href="#cb6-21"></a>    <span class="co"># Decode the message payload</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a>    value <span class="op">=</span> msg.payload.decode()</span>
+<span id="cb6-23"><a href="#cb6-23"></a>    <span class="co"># Extract the subtopic</span></span>
+<span id="cb6-24"><a href="#cb6-24"></a>    subtopic <span class="op">=</span> msg.topic.split(<span class="st">"agrotech/mqtt_tutorial/"</span>)[<span class="dv">1</span>]</span>
+<span id="cb6-25"><a href="#cb6-25"></a>    <span class="co"># Get the current time</span></span>
+<span id="cb6-26"><a href="#cb6-26"></a>    timestamp <span class="op">=</span> datetime.now()</span>
+<span id="cb6-27"><a href="#cb6-27"></a>    <span class="co"># Create a new DataFrame with the new message</span></span>
+<span id="cb6-28"><a href="#cb6-28"></a>    new_row <span class="op">=</span> pd.DataFrame({<span class="st">"topic"</span>: [subtopic], <span class="st">"value"</span>: [value]}, index<span class="op">=</span>[timestamp])</span>
+<span id="cb6-29"><a href="#cb6-29"></a>    <span class="co"># Append the new row to the DataFrame using concat</span></span>
+<span id="cb6-30"><a href="#cb6-30"></a>    df <span class="op">=</span> pd.concat([df, new_row])</span>
+<span id="cb6-31"><a href="#cb6-31"></a>    <span class="bu">print</span>(<span class="ss">f"Received message on </span><span class="sc">{</span>msg<span class="sc">.</span>topic<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-32"><a href="#cb6-32"></a></span>
+<span id="cb6-33"><a href="#cb6-33"></a><span class="co"># Create an MQTT client instance</span></span>
+<span id="cb6-34"><a href="#cb6-34"></a>client <span class="op">=</span> mqtt.Client()</span>
+<span id="cb6-35"><a href="#cb6-35"></a></span>
+<span id="cb6-36"><a href="#cb6-36"></a><span class="co"># Assign callback functions</span></span>
+<span id="cb6-37"><a href="#cb6-37"></a>client.on_connect <span class="op">=</span> on_connect</span>
+<span id="cb6-38"><a href="#cb6-38"></a>client.on_message <span class="op">=</span> on_message</span>
+<span id="cb6-39"><a href="#cb6-39"></a></span>
+<span id="cb6-40"><a href="#cb6-40"></a><span class="co"># Connect to the MQTT broker</span></span>
+<span id="cb6-41"><a href="#cb6-41"></a>client.<span class="ex">connect</span>(broker_address, broker_port, <span class="dv">60</span>)</span>
+<span id="cb6-42"><a href="#cb6-42"></a></span>
+<span id="cb6-43"><a href="#cb6-43"></a><span class="co"># Loop to maintain the connection and process network traffic</span></span>
+<span id="cb6-44"><a href="#cb6-44"></a><span class="cf">try</span>:</span>
+<span id="cb6-45"><a href="#cb6-45"></a>    client.loop_forever()</span>
+<span id="cb6-46"><a href="#cb6-46"></a><span class="cf">except</span> <span class="pp">KeyboardInterrupt</span>:</span>
+<span id="cb6-47"><a href="#cb6-47"></a>    <span class="co"># Save the DataFrame to a CSV file when the script is interrupted</span></span>
+<span id="cb6-48"><a href="#cb6-48"></a>    df.to_csv(<span class="st">"mqtt_messages.csv"</span>)</span>
+<span id="cb6-49"><a href="#cb6-49"></a>    <span class="bu">print</span>(<span class="st">"Data saved to mqtt_messages.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
             </div>
             </div>
