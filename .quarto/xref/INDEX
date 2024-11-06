@@ -217,5 +217,8 @@
   },
   "tutorials/esp_now.qmd": {
     "esp_now.html": "953e9f57"
+  },
+  "tutorials/electronics-class-old.qmd": {
+    "electronics-class-old.html": "d094ba0c"
   }
 }

@@ -6,26 +6,23 @@ execute:
   freeze: auto  # re-render only when source changes
 ---
 
-![](https://cdn.sparkfun.com/assets/6/e/8/3/c/51f93d85757b7f2049270817.png)
-
-## Presentation
-
-<a href="/archive/teaching-material/electronics-class.pdf" download>Download presentation pdf </a>
-
-<!-- <object data="/archive/teaching-material/electronics-class.pdf" width="800" height="500" type='application/pdf'></object> -->
-
-![](/archive/figures/ohm-resistance.jpg)
-
-----
-
 {{< include ../_insert_ino_code.qmd >}}
 
-## Circuit diagrams
 
-Make your own circuit diagrams here: <https://www.circuit-diagram.org/editor/>
+## Objectives
 
+By the end of this class, students will:
 
-## Digital Write
+1. Understand the basics of using an ESP32 to control an LED.
+2. Familiarize themselves with essential electronics concepts, including voltage, current, and resistance.
+3. Learn practical skills in measuring and setting up circuits.
+
+---
+
+## ESP32 to LED
+
+- **Goal**: Connect and control an LED using an ESP32 microcontroller.
+- **Diagram:** pin A4 --- long leg of LED --- short leg of LED --- resisistor (330 $\Omega$) --- GND
 
 Use the following code to activate LED pin.
 
@@ -36,63 +33,95 @@ code_source("digital-write.ino")
 ```
 
 
-## PWM with ESP32
+## Measuring Voltage with a Multimeter
 
-Pulse-width modulation (PWM) is a method of controlling the average power delivered by an electrical signal. The average value of voltage (and current) fed to the load is controlled by switching the supply between 0 and 100% at a rate faster than it takes the load to change significantly. **PWM is a technique for getting analog results with digital means.** Digital control is used to create a square wave, a signal switched between on and off. This on-off pattern can simulate voltages in between the full Vcc of the board and off by changing the portion of time the signal spends on versus the time that the signal spends off. PWM is used in many applications such as controlling motor speed, heat output of heaters and variable speed fan controllers.
+To measure voltage with a multimeter, follow these steps:
 
-![](https://cdn.sparkfun.com/assets/f/9/c/8/a/512e869bce395fbc64000002.JPG)
+1. Set your multimeter to the DC voltage (V) setting, usually indicated by a straight line and a dashed line beneath it.
+1. Insert the black probe into the multimeter's COM port and the red probe into the VΩmA port.
+1. Connect the black probe to the GND pin on the ESP32 and the red probe to pin A4.
+1. Observe the voltage reading displayed on the multimeter screen.
 
-Use the following code to activate LED pin with PWM.
+## Ohm’s Law
 
-```{python}
-#| echo: false
-#| output: asis
-code_source("PWM-basic.ino")
-```
+$$
+\Delta V = I \cdot R
+$$
 
+- **Concept**: Understand the relationship between voltage (V, in volt), current (I, in ampere), and resistance (R, in ohm).
 
-## Reading an Analog Pin
+## Power Supply: Setting and Measuring
 
-Use the following code to read an analog pin.
+![](/archive/figures/power-supply.jpg)
 
-```{python}
-#| echo: false
-#| output: asis
-code_source("analog-read.ino")
-```
+- **Goal**: Understand how to set and measure output from a power supply.
+- **Instructions**: Safely configure voltage and measure output using a multimeter.
 
+## Measuring Resistance
 
-## ADC to voltage
+[Resistor Color Code Calculator](https://www.digikey.com/en/resources/conversion-calculators/conversion-calculator-resistor-color-code). Pay attention to the number of bands.
 
-Use the following code to convert ADC reading to voltage.
+- **Goal**: Measure resistance accurately.
+- **Activity**: Use a multimeter to check the values of different resistors.
+- **Activity**: Take two different resistors and put them in **series** and measure the effective resistance.
+- **Activity**: Take two different resistors and put them in **parallel** and measure the effective resistance.
 
-```{python}
-#| echo: false
-#| output: asis
-code_source("ADC-to-voltage.ino")
-```
+$$
+R_{\text{series}} = R_1 + R_2
+$$
 
+$$
+R_{\text{parallel}} = \left( \frac{1}{R_1} + \frac{1}{R_2} \right)^{-1}
+$$
 
-## Potentiometer and PWM
+## Current Measurement
 
-Use the following code to control PWM with potentiometer and dim the LED.
+- **Goal**: Understand the concept of current and how to measure it.
+- **Activity**: Set up a circuit (one resistor or two resistors in series/parallel) and measure the current flowing through different components. Compare the measurement to what you expect from Ohm's law.
 
-```{python}
-#| echo: false
-#| output: asis
-code_source("potentiometer-PWM.ino")
-```
+## Power in Circuits
 
-## Thermistor
+$$
+P = V \cdot I
+$$
 
-[Download Data Sheet](/archive/teaching-material/thermistor-datasheet-NTCM-10K-B4150.pdf)
+From Ohm's law and the equation for the power, we can derive
+$$
+P = I^2 \cdot R
+$$
 
-```{python}
-#| echo: false
-#| output: asis
-code_source("thermistor.ino")
-```
+$$
+P = \frac{V^2}{R}
+$$
 
-![](/archive/figures/thermistor-agrotech-schematic.png)
+- **Concept**: Calculate power (P, in watts) in electrical circuits using the equation above.
+- **Application**: Get acquainted with the power output of electric components (resistors, LEDs). What happens when the power exceeds their intended value?
 
-![](/archive/figures/thermistor-agrotech-breadboard.png)
+## LED Operation at Higher Voltage
+
+- **Goal**: Explain LED operation and safely operate it with a 10V power source (using resistors or voltage regulators).
+- **Activity**: Set up a circuit to ensure safe operation of the LED at a higher voltage. Calculate the necessary value of the resistor in this configuration (not 330 $\Omega$!)
+
+Source: [Sparkfun](https://learn.sparkfun.com/tutorials/light-emitting-diodes-leds/all)
+![](/archive/figures/LED1.JPG)
+
+The first row in the table indicates how much current your LED will be able to handle continuously. In this case, you can give it 20mA or less, and it will shine its brightest at 20mA. The second row tells us what the maximum peak current should be for short bursts. This LED can handle short bumps to 30mA, but you don't want to sustain that current for too long. This datasheet is even helpful enough to suggest a stable current range (in the third row from the top) of 16-18mA. That's a good target number to help you make the resistor calculations we talked about.
+
+The following few rows are of less importance for the purposes of this tutorial. The reverse voltage is a diode property that you shouldn't have to worry about in most cases. The power dissipation is the amount of power in milliWatts that the LED can use before taking damage. This should work itself out as long as you keep the LED within its suggested voltage and current ratings.
+
+![](/archive/figures/LED2.JPG)
+
+The first row tells us what the forward voltage drop across the LED will be. Forward voltage is a term that will come up a lot when working with LEDs. This number will help you decide how much voltage your circuit will need to supply to the LED. If you have more than one LED connected to a single power source, these numbers are really important because the forward voltage of all of the LEDs added together can't exceed the supply voltage. 
+
+## Potentiometer
+
+![](/archive/figures/potentiometer.png)
+
+- **Goal**: Introduce variable resistors and their applications.
+- **Goal**: Measure the resistance with the multimeter, while twisting the knob.
+- **Activity**: Use a potentiometer to control the brightness of an LED or another output device. Add this potentiometer in series in the circuit you have just built, turn the knob and see what happens.
+
+## Pulse Width Modulation (PWM)
+
+- **Goal**: Understand and use PWM to control the brightness of an LED.
+- **Instructions**: Implement a code example on the ESP32 to adjust LED brightness using PWM.

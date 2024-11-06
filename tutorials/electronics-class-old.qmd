@@ -1,0 +1,99 @@
+---
+title: "Electronics Class Old"
+echo: false
+jupyter: python3
+execute:
+  freeze: auto  # re-render only when source changes
+---
+
+![](https://cdn.sparkfun.com/assets/6/e/8/3/c/51f93d85757b7f2049270817.png)
+
+## Presentation
+
+<a href="/archive/teaching-material/electronics-class.pdf" download>Download presentation pdf </a>
+
+<!-- <object data="/archive/teaching-material/electronics-class.pdf" width="800" height="500" type='application/pdf'></object> -->
+
+![](/archive/figures/ohm-resistance.jpg)
+
+----
+
+{{< include ../_insert_ino_code.qmd >}}
+
+## Circuit diagrams
+
+Make your own circuit diagrams here: <https://www.circuit-diagram.org/editor/>
+
+
+## Digital Write
+
+Use the following code to activate LED pin.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("digital-write.ino")
+```
+
+
+
+## PWM with ESP32
+
+Pulse-width modulation (PWM) is a method of controlling the average power delivered by an electrical signal. The average value of voltage (and current) fed to the load is controlled by switching the supply between 0 and 100% at a rate faster than it takes the load to change significantly. **PWM is a technique for getting analog results with digital means.** Digital control is used to create a square wave, a signal switched between on and off. This on-off pattern can simulate voltages in between the full Vcc of the board and off by changing the portion of time the signal spends on versus the time that the signal spends off. PWM is used in many applications such as controlling motor speed, heat output of heaters and variable speed fan controllers.
+
+![](https://cdn.sparkfun.com/assets/f/9/c/8/a/512e869bce395fbc64000002.JPG)
+
+Use the following code to activate LED pin with PWM.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("PWM-basic.ino")
+```
+
+
+## Reading an Analog Pin
+
+Use the following code to read an analog pin.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("analog-read.ino")
+```
+
+
+## ADC to voltage
+
+Use the following code to convert ADC reading to voltage.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("ADC-to-voltage.ino")
+```
+
+
+## Potentiometer and PWM
+
+Use the following code to control PWM with potentiometer and dim the LED.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("potentiometer-PWM.ino")
+```
+
+## Thermistor
+
+[Download Data Sheet](/archive/teaching-material/thermistor-datasheet-NTCM-10K-B4150.pdf)
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("thermistor.ino")
+```
+
+![](/archive/figures/thermistor-agrotech-schematic.png)
+
+![](/archive/figures/thermistor-agrotech-breadboard.png)

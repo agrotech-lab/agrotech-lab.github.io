@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tutorials/soldering-and-wires.html" rel="next">
+<link href="../tutorials/electronics-class-old.html" rel="next">
 <link href="../tutorials/basic-electronics-concepts.html" rel="prev">
 <link href="..//archive/images/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -108,6 +108,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../custom.scss">
 </head>
@@ -277,14 +306,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../tutorials/electronics-class-old.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Electronics Class Old</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../tutorials/soldering-and-wires.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Soldering and Wires</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Soldering and Wires</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/relay.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Relay</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Relay</span></span></a>
   </div>
 </li>
       </ul>
@@ -301,49 +336,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/intro-to-sensor-modules-and-thingspeak.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Intro to Sensor Modules and Thingspeak</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Intro to Sensor Modules and Thingspeak</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/pulse-sensors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Pulse sensors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Pulse sensors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/digital-read-write.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Digital read and write</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Digital read and write</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/MQTT.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">MQTT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">MQTT</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/deep_sleep.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Deep Sleep</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Deep Sleep</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/esp_now.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">ESP-NOW</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">ESP-NOW</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/python-matlab-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Basic Data Analysis with Python and Matlab</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Basic Data Analysis with Python and Matlab</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/API-thingspeak-python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">API to download Thingspeak data with Python</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">API to download Thingspeak data with Python</span></span></a>
   </div>
 </li>
       </ul>
@@ -360,13 +395,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/water-and-energy-balances.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Water and Energy Balances</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Water and Energy Balances</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/psychrometric-chart-and-evaporative-cooling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Psychrometric Chart and Evaporative Cooling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Psychrometric Chart and Evaporative Cooling</span></span></a>
   </div>
 </li>
       </ul>
@@ -383,13 +418,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../assignments/assignment1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Assignment 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Assignment 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../assignments/assignment2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Assignment 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Assignment 2</span></span></a>
   </div>
 </li>
       </ul>
@@ -406,7 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title"> Resources</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title"> Resources</span></span></a>
   </div>
 </li>
       </ul>
@@ -423,25 +458,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title"> Projects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title"> Projects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects/borrowing-equipment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Borrowing equipment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Borrowing equipment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects/final-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects/examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Example projects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Example projects</span></span></a>
   </div>
 </li>
       </ul>
@@ -456,14 +491,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#presentation" id="toc-presentation" class="nav-link active" data-scroll-target="#presentation"><span class="header-section-number">13.1</span> Presentation</a></li>
-  <li><a href="#circuit-diagrams" id="toc-circuit-diagrams" class="nav-link" data-scroll-target="#circuit-diagrams"><span class="header-section-number">13.2</span> Circuit diagrams</a></li>
-  <li><a href="#digital-write" id="toc-digital-write" class="nav-link" data-scroll-target="#digital-write"><span class="header-section-number">13.3</span> Digital Write</a></li>
-  <li><a href="#pwm-with-esp32" id="toc-pwm-with-esp32" class="nav-link" data-scroll-target="#pwm-with-esp32"><span class="header-section-number">13.4</span> PWM with ESP32</a></li>
-  <li><a href="#reading-an-analog-pin" id="toc-reading-an-analog-pin" class="nav-link" data-scroll-target="#reading-an-analog-pin"><span class="header-section-number">13.5</span> Reading an Analog Pin</a></li>
-  <li><a href="#adc-to-voltage" id="toc-adc-to-voltage" class="nav-link" data-scroll-target="#adc-to-voltage"><span class="header-section-number">13.6</span> ADC to voltage</a></li>
-  <li><a href="#potentiometer-and-pwm" id="toc-potentiometer-and-pwm" class="nav-link" data-scroll-target="#potentiometer-and-pwm"><span class="header-section-number">13.7</span> Potentiometer and PWM</a></li>
-  <li><a href="#thermistor" id="toc-thermistor" class="nav-link" data-scroll-target="#thermistor"><span class="header-section-number">13.8</span> Thermistor</a></li>
+  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives"><span class="header-section-number">13.1</span> Objectives</a></li>
+  <li><a href="#esp32-to-led" id="toc-esp32-to-led" class="nav-link" data-scroll-target="#esp32-to-led"><span class="header-section-number">13.2</span> ESP32 to LED</a></li>
+  <li><a href="#measuring-voltage-with-a-multimeter" id="toc-measuring-voltage-with-a-multimeter" class="nav-link" data-scroll-target="#measuring-voltage-with-a-multimeter"><span class="header-section-number">13.3</span> Measuring Voltage with a Multimeter</a></li>
+  <li><a href="#ohms-law" id="toc-ohms-law" class="nav-link" data-scroll-target="#ohms-law"><span class="header-section-number">13.4</span> Ohm’s Law</a></li>
+  <li><a href="#power-supply-setting-and-measuring" id="toc-power-supply-setting-and-measuring" class="nav-link" data-scroll-target="#power-supply-setting-and-measuring"><span class="header-section-number">13.5</span> Power Supply: Setting and Measuring</a></li>
+  <li><a href="#measuring-resistance" id="toc-measuring-resistance" class="nav-link" data-scroll-target="#measuring-resistance"><span class="header-section-number">13.6</span> Measuring Resistance</a></li>
+  <li><a href="#current-measurement" id="toc-current-measurement" class="nav-link" data-scroll-target="#current-measurement"><span class="header-section-number">13.7</span> Current Measurement</a></li>
+  <li><a href="#power-in-circuits" id="toc-power-in-circuits" class="nav-link" data-scroll-target="#power-in-circuits"><span class="header-section-number">13.8</span> Power in Circuits</a></li>
+  <li><a href="#led-operation-at-higher-voltage" id="toc-led-operation-at-higher-voltage" class="nav-link" data-scroll-target="#led-operation-at-higher-voltage"><span class="header-section-number">13.9</span> LED Operation at Higher Voltage</a></li>
+  <li><a href="#potentiometer" id="toc-potentiometer" class="nav-link" data-scroll-target="#potentiometer"><span class="header-section-number">13.10</span> Potentiometer</a></li>
+  <li><a href="#pulse-width-modulation-pwm" id="toc-pulse-width-modulation-pwm" class="nav-link" data-scroll-target="#pulse-width-modulation-pwm"><span class="header-section-number">13.11</span> Pulse Width Modulation (PWM)</a></li>
   </ul>
 </nav>
     </div>
@@ -490,26 +528,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><img src="https://cdn.sparkfun.com/assets/6/e/8/3/c/51f93d85757b7f2049270817.png" class="img-fluid"></p>
-<section id="presentation" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="presentation"><span class="header-section-number">13.1</span> Presentation</h2>
-<p><a href="../archive/teaching-material/electronics-class.pdf" download="">Download presentation pdf </a></p>
-<!-- <object data="/archive/teaching-material/electronics-class.pdf" width="800" height="500" type='application/pdf'></object> -->
-<p><img src="../archive/figures/ohm-resistance.jpg" class="img-fluid"></p>
-<hr>
 <!-- ---
 title: ""
 echo: false
 jupyter: python3
 section-divs: false
 --- -->
+<section id="objectives" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="objectives"><span class="header-section-number">13.1</span> Objectives</h2>
+<p>By the end of this class, students will:</p>
+<ol type="1">
+<li>Understand the basics of using an ESP32 to control an LED.</li>
+<li>Familiarize themselves with essential electronics concepts, including voltage, current, and resistance.</li>
+<li>Learn practical skills in measuring and setting up circuits.</li>
+</ol>
+<hr>
 </section>
-<section id="circuit-diagrams" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="circuit-diagrams"><span class="header-section-number">13.2</span> Circuit diagrams</h2>
-<p>Make your own circuit diagrams here: <a href="https://www.circuit-diagram.org/editor/" class="uri">https://www.circuit-diagram.org/editor/</a></p>
-</section>
-<section id="digital-write" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="digital-write"><span class="header-section-number">13.3</span> Digital Write</h2>
+<section id="esp32-to-led" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="esp32-to-led"><span class="header-section-number">13.2</span> ESP32 to LED</h2>
+<ul>
+<li><strong>Goal</strong>: Connect and control an LED using an ESP32 microcontroller.</li>
+<li><strong>Diagram:</strong> pin A4 — long leg of LED — short leg of LED — resisistor (330 <span class="math inline">\(\Omega\)</span>) — GND</li>
+</ul>
 <p>Use the following code to activate LED pin.</p>
 <button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#digital-writeino" aria-expanded="false" aria-controls="digital-writeino">
     <i class="bi bi-toggles"></i> Toggle code
@@ -521,7 +561,7 @@ section-divs: false
             <div class="collapse" id="digital-writeino">
             <div class="card card-body border-0">
         
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1"></a><span class="dt">int</span> LED_pin <span class="op">=</span> <span class="dv">13</span><span class="op">;</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1"></a><span class="dt">int</span> LED_pin <span class="op">=</span> A4<span class="op">;</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="co">// the setup function runs once when you press reset or power the board</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
@@ -532,230 +572,108 @@ section-divs: false
 <span id="cb1-9"><a href="#cb1-9"></a><span class="co">// the loop function runs over and over again forever</span></span>
 <span id="cb1-10"><a href="#cb1-10"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb1-11"><a href="#cb1-11"></a>  digitalWrite<span class="op">(</span>LED_pin<span class="op">,</span> HIGH<span class="op">);</span>   <span class="co">// turn the LED on (HIGH is the voltage level)</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span>                       <span class="co">// wait for a second</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>  delay<span class="op">(</span><span class="dv">3000</span><span class="op">);</span>                       <span class="co">// wait for a second</span></span>
 <span id="cb1-13"><a href="#cb1-13"></a>  digitalWrite<span class="op">(</span>LED_pin<span class="op">,</span> LOW<span class="op">);</span>    <span class="co">// turn the LED off by making the voltage LOW</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span>                       <span class="co">// wait for a second</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>  delay<span class="op">(</span><span class="dv">3000</span><span class="op">);</span>                       <span class="co">// wait for a second</span></span>
 <span id="cb1-15"><a href="#cb1-15"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
             </div>
             </div>
             
 </section>
-<section id="pwm-with-esp32" class="level2" data-number="13.4">
-<h2 data-number="13.4" class="anchored" data-anchor-id="pwm-with-esp32"><span class="header-section-number">13.4</span> PWM with ESP32</h2>
-<p>Pulse-width modulation (PWM) is a method of controlling the average power delivered by an electrical signal. The average value of voltage (and current) fed to the load is controlled by switching the supply between 0 and 100% at a rate faster than it takes the load to change significantly. <strong>PWM is a technique for getting analog results with digital means.</strong> Digital control is used to create a square wave, a signal switched between on and off. This on-off pattern can simulate voltages in between the full Vcc of the board and off by changing the portion of time the signal spends on versus the time that the signal spends off. PWM is used in many applications such as controlling motor speed, heat output of heaters and variable speed fan controllers.</p>
-<p><img src="https://cdn.sparkfun.com/assets/f/9/c/8/a/512e869bce395fbc64000002.JPG" class="img-fluid"></p>
-<p>Use the following code to activate LED pin with PWM.</p>
-<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#PWM-basicino" aria-expanded="false" aria-controls="PWM-basicino">
-    <i class="bi bi-toggles"></i> Toggle code
-    </button>
-     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/PWM-basic.ino" download="" target="_blank" rel="noopener noreferrer">
-        <i class="bi bi-download"></i> Download code
-    </a>
-
-            <div class="collapse" id="PWM-basicino">
-            <div class="card card-body border-0">
-        
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">// the number of the LED pin</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="dt">const</span> <span class="dt">int</span> ledPin <span class="op">=</span> <span class="dv">13</span><span class="op">;</span>  <span class="co">// 13 corresponds to GPIO13</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">// setting PWM properties</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="dt">const</span> <span class="dt">int</span> freq <span class="op">=</span> <span class="dv">5000</span><span class="op">;</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="dt">const</span> <span class="dt">int</span> ledChannel <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="dt">const</span> <span class="dt">int</span> resolution <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a> </span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="dt">void</span> setup<span class="op">(){</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>  <span class="co">// configure LED PWM functionalitites</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>  ledcSetup<span class="op">(</span>ledChannel<span class="op">,</span> freq<span class="op">,</span> resolution<span class="op">);</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>  </span>
-<span id="cb2-13"><a href="#cb2-13"></a>  <span class="co">// attach the channel to the GPIO to be controlled</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a>  ledcAttachPin<span class="op">(</span>ledPin<span class="op">,</span> ledChannel<span class="op">);</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="op">}</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a> </span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="dt">void</span> loop<span class="op">(){</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a>  <span class="co">// increase the LED brightness</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a>  <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> dutyCycle <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> dutyCycle <span class="op">&lt;=</span> <span class="dv">255</span><span class="op">;</span> dutyCycle<span class="op">++){</span>   </span>
-<span id="cb2-20"><a href="#cb2-20"></a>    <span class="co">// changing the LED brightness with PWM</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a>    ledcWrite<span class="op">(</span>ledChannel<span class="op">,</span> dutyCycle<span class="op">);</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a>    delay<span class="op">(</span><span class="dv">15</span><span class="op">);</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a>  <span class="op">}</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a></span>
-<span id="cb2-25"><a href="#cb2-25"></a>  <span class="co">// decrease the LED brightness</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a>  <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> dutyCycle <span class="op">=</span> <span class="dv">255</span><span class="op">;</span> dutyCycle <span class="op">&gt;=</span> <span class="dv">0</span><span class="op">;</span> dutyCycle<span class="op">--){</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a>    <span class="co">// changing the LED brightness with PWM</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a>    ledcWrite<span class="op">(</span>ledChannel<span class="op">,</span> dutyCycle<span class="op">);</span>   </span>
-<span id="cb2-29"><a href="#cb2-29"></a>    delay<span class="op">(</span><span class="dv">15</span><span class="op">);</span></span>
-<span id="cb2-30"><a href="#cb2-30"></a>  <span class="op">}</span></span>
-<span id="cb2-31"><a href="#cb2-31"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-            </div>
-            </div>
-            
+<section id="measuring-voltage-with-a-multimeter" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="measuring-voltage-with-a-multimeter"><span class="header-section-number">13.3</span> Measuring Voltage with a Multimeter</h2>
+<p>To measure voltage with a multimeter, follow these steps:</p>
+<ol type="1">
+<li>Set your multimeter to the DC voltage (V) setting, usually indicated by a straight line and a dashed line beneath it.</li>
+<li>Insert the black probe into the multimeter’s COM port and the red probe into the VΩmA port.</li>
+<li>Connect the black probe to the GND pin on the ESP32 and the red probe to pin A4.</li>
+<li>Observe the voltage reading displayed on the multimeter screen.</li>
+</ol>
 </section>
-<section id="reading-an-analog-pin" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="reading-an-analog-pin"><span class="header-section-number">13.5</span> Reading an Analog Pin</h2>
-<p>Use the following code to read an analog pin.</p>
-<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#analog-readino" aria-expanded="false" aria-controls="analog-readino">
-    <i class="bi bi-toggles"></i> Toggle code
-    </button>
-     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/analog-read.ino" download="" target="_blank" rel="noopener noreferrer">
-        <i class="bi bi-download"></i> Download code
-    </a>
-
-            <div class="collapse" id="analog-readino">
-            <div class="card card-body border-0">
-        
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1"></a><span class="dt">const</span> <span class="dt">int</span> analog_pin <span class="op">=</span> A4<span class="op">;</span> <span class="co">// Pin into which we connect the input voltage</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="dt">int</span> val <span class="op">;</span>  <span class="co">// variable to store the value read</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span> <span class="co">//</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="op">}</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a>  val <span class="op">=</span> analogRead<span class="op">(</span>analog_pin<span class="op">);</span>  <span class="co">// read the input pin</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a>  Serial<span class="op">.</span>println<span class="op">(</span>val<span class="op">);</span>          <span class="co">// print value</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a>  delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-            </div>
-            </div>
-            
+<section id="ohms-law" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="ohms-law"><span class="header-section-number">13.4</span> Ohm’s Law</h2>
+<p><span class="math display">\[
+\Delta V = I \cdot R
+\]</span></p>
+<ul>
+<li><strong>Concept</strong>: Understand the relationship between voltage (V, in volt), current (I, in ampere), and resistance (R, in ohm).</li>
+</ul>
 </section>
-<section id="adc-to-voltage" class="level2" data-number="13.6">
-<h2 data-number="13.6" class="anchored" data-anchor-id="adc-to-voltage"><span class="header-section-number">13.6</span> ADC to voltage</h2>
-<p>Use the following code to convert ADC reading to voltage.</p>
-<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#ADC-to-voltageino" aria-expanded="false" aria-controls="ADC-to-voltageino">
-    <i class="bi bi-toggles"></i> Toggle code
-    </button>
-     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/ADC-to-voltage.ino" download="" target="_blank" rel="noopener noreferrer">
-        <i class="bi bi-download"></i> Download code
-    </a>
-
-            <div class="collapse" id="ADC-to-voltageino">
-            <div class="card card-body border-0">
-        
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1"></a><span class="dt">const</span> <span class="dt">int</span> analog_pin <span class="op">=</span> A4<span class="op">;</span> <span class="co">// Pin into which we connect the input voltage</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="dt">int</span> val <span class="op">;</span>  <span class="co">// variable to store the value read</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="dt">float</span> voltage<span class="op">;</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span> <span class="co">//</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="op">}</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>  val <span class="op">=</span> analogRead<span class="op">(</span>analog_pin<span class="op">);</span>  <span class="co">// read the input pin</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>  voltage <span class="op">=</span> <span class="op">(</span><span class="fl">3.3</span><span class="op">/</span><span class="dv">4095</span><span class="op">)*</span>val<span class="op">;</span>  <span class="co">// convert to voltage according to ADC</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Voltage: "</span><span class="op">);</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a>  Serial<span class="op">.</span>print<span class="op">(</span>voltage<span class="op">);</span>          <span class="co">// print value</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">" V"</span><span class="op">);</span></span>
-<span id="cb4-15"><a href="#cb4-15"></a>  delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-            </div>
-            </div>
-            
+<section id="power-supply-setting-and-measuring" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="power-supply-setting-and-measuring"><span class="header-section-number">13.5</span> Power Supply: Setting and Measuring</h2>
+<p><img src="../archive/figures/power-supply.jpg" class="img-fluid"></p>
+<ul>
+<li><strong>Goal</strong>: Understand how to set and measure output from a power supply.</li>
+<li><strong>Instructions</strong>: Safely configure voltage and measure output using a multimeter.</li>
+</ul>
 </section>
-<section id="potentiometer-and-pwm" class="level2" data-number="13.7">
-<h2 data-number="13.7" class="anchored" data-anchor-id="potentiometer-and-pwm"><span class="header-section-number">13.7</span> Potentiometer and PWM</h2>
-<p>Use the following code to control PWM with potentiometer and dim the LED.</p>
-<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#potentiometer-PWMino" aria-expanded="false" aria-controls="potentiometer-PWMino">
-    <i class="bi bi-toggles"></i> Toggle code
-    </button>
-     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/potentiometer-PWM.ino" download="" target="_blank" rel="noopener noreferrer">
-        <i class="bi bi-download"></i> Download code
-    </a>
-
-            <div class="collapse" id="potentiometer-PWMino">
-            <div class="card card-body border-0">
-        
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">// the number of the LED pin</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="dt">const</span> <span class="dt">int</span> ledPin <span class="op">=</span> <span class="dv">13</span><span class="op">;</span>  <span class="co">// 13 corresponds to GPIO13</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="dt">int</span> analog_pin <span class="op">=</span> <span class="dv">32</span><span class="op">;</span> <span class="co">// Pin into which we connect the input voltage</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="dt">int</span> val <span class="op">;</span>  <span class="co">// variable to store the value read</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="co">// setting PWM properties</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="dt">const</span> <span class="dt">int</span> freq <span class="op">=</span> <span class="dv">5000</span><span class="op">;</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="dt">const</span> <span class="dt">int</span> ledChannel <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="dt">const</span> <span class="dt">int</span> resolution <span class="op">=</span> <span class="dv">12</span><span class="op">;</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a> </span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="dt">void</span> setup<span class="op">(){</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a>    </span>
-<span id="cb5-15"><a href="#cb5-15"></a>  <span class="co">// configure LED PWM functionalitites</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a>  ledcSetup<span class="op">(</span>ledChannel<span class="op">,</span> freq<span class="op">,</span> resolution<span class="op">);</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a>  </span>
-<span id="cb5-18"><a href="#cb5-18"></a>  <span class="co">// attach the channel to the GPIO to be controlled</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a>  ledcAttachPin<span class="op">(</span>ledPin<span class="op">,</span> ledChannel<span class="op">);</span></span>
-<span id="cb5-20"><a href="#cb5-20"></a><span class="op">}</span></span>
-<span id="cb5-21"><a href="#cb5-21"></a> </span>
-<span id="cb5-22"><a href="#cb5-22"></a><span class="dt">void</span> loop<span class="op">(){</span></span>
-<span id="cb5-23"><a href="#cb5-23"></a>    val <span class="op">=</span> analogRead<span class="op">(</span>analog_pin<span class="op">);</span>  <span class="co">// read the input pin</span></span>
-<span id="cb5-24"><a href="#cb5-24"></a>    Serial<span class="op">.</span>println<span class="op">(</span>val<span class="op">);</span>          <span class="co">// print value</span></span>
-<span id="cb5-25"><a href="#cb5-25"></a>    ledcWrite<span class="op">(</span>ledChannel<span class="op">,</span> val<span class="op">);</span></span>
-<span id="cb5-26"><a href="#cb5-26"></a>    delay<span class="op">(</span><span class="dv">15</span><span class="op">);</span></span>
-<span id="cb5-27"><a href="#cb5-27"></a>  <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-            </div>
-            </div>
-            
+<section id="measuring-resistance" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="measuring-resistance"><span class="header-section-number">13.6</span> Measuring Resistance</h2>
+<p><a href="https://www.digikey.com/en/resources/conversion-calculators/conversion-calculator-resistor-color-code">Resistor Color Code Calculator</a>. Pay attention to the number of bands.</p>
+<ul>
+<li><strong>Goal</strong>: Measure resistance accurately.</li>
+<li><strong>Activity</strong>: Use a multimeter to check the values of different resistors.</li>
+<li><strong>Activity</strong>: Take two different resistors and put them in <strong>series</strong> and measure the effective resistance.</li>
+<li><strong>Activity</strong>: Take two different resistors and put them in <strong>parallel</strong> and measure the effective resistance.</li>
+</ul>
+<p><span class="math display">\[
+R_{\text{series}} = R_1 + R_2
+\]</span></p>
+<p><span class="math display">\[
+R_{\text{parallel}} = \left( \frac{1}{R_1} + \frac{1}{R_2} \right)^{-1}
+\]</span></p>
 </section>
-<section id="thermistor" class="level2" data-number="13.8">
-<h2 data-number="13.8" class="anchored" data-anchor-id="thermistor"><span class="header-section-number">13.8</span> Thermistor</h2>
-<p><a href="../archive/teaching-material/thermistor-datasheet-NTCM-10K-B4150.pdf">Download Data Sheet</a></p>
-<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#thermistorino" aria-expanded="false" aria-controls="thermistorino">
-    <i class="bi bi-toggles"></i> Toggle code
-    </button>
-     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/thermistor.ino" download="" target="_blank" rel="noopener noreferrer">
-        <i class="bi bi-download"></i> Download code
-    </a>
-
-            <div class="collapse" id="thermistorino">
-            <div class="card card-body border-0">
-        
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">// Thermistor </span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co">// reading the temperature via the ESP32's ADC</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="dt">const</span> <span class="dt">int</span> analog_pin <span class="op">=</span> A4<span class="op">;</span> <span class="co">// Pin into which we connect the input voltage</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="dt">int</span> val <span class="op">;</span>  <span class="co">// variable to store the value read</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="dt">float</span> v2<span class="op">;</span> <span class="co">// variable to store the voltage of v2</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="dt">int</span> r1 <span class="op">=</span> <span class="dv">10000</span><span class="op">;</span> <span class="co">// R1 value (in the voltage divider)</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="dt">float</span> v1 <span class="op">=</span> <span class="fl">3.3</span><span class="op">;</span> <span class="co">// V1 value</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="dt">int</span> b_val <span class="op">=</span> <span class="dv">4150</span><span class="op">;</span> <span class="co">// B value of the resistor (from the data sheet)</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="dt">float</span> r2<span class="op">;</span> <span class="co">// variable to store the resistance of r2 (thermistor resistance)</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="dt">float</span> t<span class="op">;</span> <span class="co">// variable to store the temperature</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="dt">int</span> adc_steps <span class="op">=</span> <span class="dv">4095</span><span class="op">;</span> <span class="co">// the number of increments our ADC has (ESP32 = 12bit)</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="dt">float</span> r_25 <span class="op">=</span> <span class="dv">10000</span><span class="op">;</span> <span class="co">// the thermistor resistance at 25C (from the data sheet)</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="co">// function to convert resistance to temperature according to the b value</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="co">// equation in this link:</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="co">// https://www.thinksrs.com/downloads/programs/therm%20calc/ntccalibrator/ntccalculator.html</span></span>
-<span id="cb6-18"><a href="#cb6-18"></a><span class="dt">float</span> resistance_to_temperature<span class="op">(</span><span class="dt">int</span> b<span class="op">,</span> <span class="dt">float</span> r<span class="op">,</span> <span class="dt">float</span> r_25<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a>  <span class="cf">return</span> b<span class="op">/(</span>log<span class="op">(</span>r<span class="op">/</span>r_25<span class="op">)+(</span>b<span class="op">/</span><span class="fl">298.15</span><span class="op">))-</span><span class="fl">273.15</span><span class="op">;</span></span>
-<span id="cb6-20"><a href="#cb6-20"></a><span class="op">}</span></span>
-<span id="cb6-21"><a href="#cb6-21"></a></span>
-<span id="cb6-22"><a href="#cb6-22"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb6-23"><a href="#cb6-23"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span> <span class="co">//</span></span>
-<span id="cb6-24"><a href="#cb6-24"></a><span class="op">}</span></span>
-<span id="cb6-25"><a href="#cb6-25"></a></span>
-<span id="cb6-26"><a href="#cb6-26"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb6-27"><a href="#cb6-27"></a>  val <span class="op">=</span> analogRead<span class="op">(</span>analog_pin<span class="op">);</span>  <span class="co">// read the input pin (reading v2)</span></span>
-<span id="cb6-28"><a href="#cb6-28"></a>  v2 <span class="op">=</span> <span class="op">(</span>v1<span class="op">/</span>adc_steps<span class="op">)*</span>val<span class="op">;</span>  <span class="co">// convert to voltage of v2 according to ADC</span></span>
-<span id="cb6-29"><a href="#cb6-29"></a>  r2 <span class="op">=</span> <span class="op">(</span>v2<span class="op">*</span>r1<span class="op">)/(</span>v1<span class="op">-</span>v2<span class="op">);</span></span>
-<span id="cb6-30"><a href="#cb6-30"></a>  t <span class="op">=</span> resistance_to_temperature<span class="op">(</span>b_val<span class="op">,</span> r2<span class="op">,</span> r_25<span class="op">);</span></span>
-<span id="cb6-31"><a href="#cb6-31"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Temperature: "</span><span class="op">);</span></span>
-<span id="cb6-32"><a href="#cb6-32"></a>  Serial<span class="op">.</span>print<span class="op">(</span>t<span class="op">);</span>          <span class="co">// print temperature</span></span>
-<span id="cb6-33"><a href="#cb6-33"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">" C"</span><span class="op">);</span></span>
-<span id="cb6-34"><a href="#cb6-34"></a>  delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
-<span id="cb6-35"><a href="#cb6-35"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-            </div>
-            </div>
-            
-<p><img src="../archive/figures/thermistor-agrotech-schematic.png" class="img-fluid"></p>
-<p><img src="../archive/figures/thermistor-agrotech-breadboard.png" class="img-fluid"></p>
+<section id="current-measurement" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="current-measurement"><span class="header-section-number">13.7</span> Current Measurement</h2>
+<ul>
+<li><strong>Goal</strong>: Understand the concept of current and how to measure it.</li>
+<li><strong>Activity</strong>: Set up a circuit (one resistor or two resistors in series/parallel) and measure the current flowing through different components. Compare the measurement to what you expect from Ohm’s law.</li>
+</ul>
+</section>
+<section id="power-in-circuits" class="level2" data-number="13.8">
+<h2 data-number="13.8" class="anchored" data-anchor-id="power-in-circuits"><span class="header-section-number">13.8</span> Power in Circuits</h2>
+<p><span class="math display">\[
+P = V \cdot I
+\]</span></p>
+<p>From Ohm’s law and the equation for the power, we can derive <span class="math display">\[
+P = I^2 \cdot R
+\]</span></p>
+<p><span class="math display">\[
+P = \frac{V^2}{R}
+\]</span></p>
+<ul>
+<li><strong>Concept</strong>: Calculate power (P, in watts) in electrical circuits using the equation above.</li>
+<li><strong>Application</strong>: Get acquainted with the power output of electric components (resistors, LEDs). What happens when the power exceeds their intended value?</li>
+</ul>
+</section>
+<section id="led-operation-at-higher-voltage" class="level2" data-number="13.9">
+<h2 data-number="13.9" class="anchored" data-anchor-id="led-operation-at-higher-voltage"><span class="header-section-number">13.9</span> LED Operation at Higher Voltage</h2>
+<ul>
+<li><strong>Goal</strong>: Explain LED operation and safely operate it with a 10V power source (using resistors or voltage regulators).</li>
+<li><strong>Activity</strong>: Set up a circuit to ensure safe operation of the LED at a higher voltage. Calculate the necessary value of the resistor in this configuration (not 330 <span class="math inline">\(\Omega\)</span>!)</li>
+</ul>
+<p>Source: <a href="https://learn.sparkfun.com/tutorials/light-emitting-diodes-leds/all">Sparkfun</a> <img src="../archive/figures/LED1.JPG" class="img-fluid"></p>
+<p>The first row in the table indicates how much current your LED will be able to handle continuously. In this case, you can give it 20mA or less, and it will shine its brightest at 20mA. The second row tells us what the maximum peak current should be for short bursts. This LED can handle short bumps to 30mA, but you don’t want to sustain that current for too long. This datasheet is even helpful enough to suggest a stable current range (in the third row from the top) of 16-18mA. That’s a good target number to help you make the resistor calculations we talked about.</p>
+<p>The following few rows are of less importance for the purposes of this tutorial. The reverse voltage is a diode property that you shouldn’t have to worry about in most cases. The power dissipation is the amount of power in milliWatts that the LED can use before taking damage. This should work itself out as long as you keep the LED within its suggested voltage and current ratings.</p>
+<p><img src="../archive/figures/LED2.JPG" class="img-fluid"></p>
+<p>The first row tells us what the forward voltage drop across the LED will be. Forward voltage is a term that will come up a lot when working with LEDs. This number will help you decide how much voltage your circuit will need to supply to the LED. If you have more than one LED connected to a single power source, these numbers are really important because the forward voltage of all of the LEDs added together can’t exceed the supply voltage.</p>
+</section>
+<section id="potentiometer" class="level2" data-number="13.10">
+<h2 data-number="13.10" class="anchored" data-anchor-id="potentiometer"><span class="header-section-number">13.10</span> Potentiometer</h2>
+<p><img src="../archive/figures/potentiometer.png" class="img-fluid"></p>
+<ul>
+<li><strong>Goal</strong>: Introduce variable resistors and their applications.</li>
+<li><strong>Goal</strong>: Measure the resistance with the multimeter, while twisting the knob.</li>
+<li><strong>Activity</strong>: Use a potentiometer to control the brightness of an LED or another output device. Add this potentiometer in series in the circuit you have just built, turn the knob and see what happens.</li>
+</ul>
+</section>
+<section id="pulse-width-modulation-pwm" class="level2" data-number="13.11">
+<h2 data-number="13.11" class="anchored" data-anchor-id="pulse-width-modulation-pwm"><span class="header-section-number">13.11</span> Pulse Width Modulation (PWM)</h2>
+<ul>
+<li><strong>Goal</strong>: Understand and use PWM to control the brightness of an LED.</li>
+<li><strong>Instructions</strong>: Implement a code example on the ESP32 to adjust LED brightness using PWM.</li>
+</ul>
 
 
 </section>
@@ -1177,8 +1095,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tutorials/soldering-and-wires.html" class="pagination-link" aria-label="Soldering and Wires">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Soldering and Wires</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tutorials/electronics-class-old.html" class="pagination-link" aria-label="Electronics Class Old">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Electronics Class Old</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

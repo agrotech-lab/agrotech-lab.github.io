@@ -29,6 +29,7 @@ book:
       chapters:
       - tutorials/basic-electronics-concepts.qmd
       - tutorials/electronics-class.qmd
+      - tutorials/electronics-class-old.qmd
       - tutorials/soldering-and-wires.qmd
       - tutorials/relay.qmd
     - part: "**Sensors and comm**"
