@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -491,17 +491,16 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives"><span class="header-section-number">13.1</span> Objectives</a></li>
-  <li><a href="#esp32-to-led" id="toc-esp32-to-led" class="nav-link" data-scroll-target="#esp32-to-led"><span class="header-section-number">13.2</span> ESP32 to LED</a></li>
-  <li><a href="#measuring-voltage-with-a-multimeter" id="toc-measuring-voltage-with-a-multimeter" class="nav-link" data-scroll-target="#measuring-voltage-with-a-multimeter"><span class="header-section-number">13.3</span> Measuring Voltage with a Multimeter</a></li>
-  <li><a href="#ohms-law" id="toc-ohms-law" class="nav-link" data-scroll-target="#ohms-law"><span class="header-section-number">13.4</span> Ohm’s Law</a></li>
-  <li><a href="#power-supply-setting-and-measuring" id="toc-power-supply-setting-and-measuring" class="nav-link" data-scroll-target="#power-supply-setting-and-measuring"><span class="header-section-number">13.5</span> Power Supply: Setting and Measuring</a></li>
-  <li><a href="#measuring-resistance" id="toc-measuring-resistance" class="nav-link" data-scroll-target="#measuring-resistance"><span class="header-section-number">13.6</span> Measuring Resistance</a></li>
-  <li><a href="#current-measurement" id="toc-current-measurement" class="nav-link" data-scroll-target="#current-measurement"><span class="header-section-number">13.7</span> Current Measurement</a></li>
-  <li><a href="#power-in-circuits" id="toc-power-in-circuits" class="nav-link" data-scroll-target="#power-in-circuits"><span class="header-section-number">13.8</span> Power in Circuits</a></li>
-  <li><a href="#led-operation-at-higher-voltage" id="toc-led-operation-at-higher-voltage" class="nav-link" data-scroll-target="#led-operation-at-higher-voltage"><span class="header-section-number">13.9</span> LED Operation at Higher Voltage</a></li>
-  <li><a href="#potentiometer" id="toc-potentiometer" class="nav-link" data-scroll-target="#potentiometer"><span class="header-section-number">13.10</span> Potentiometer</a></li>
-  <li><a href="#pulse-width-modulation-pwm" id="toc-pulse-width-modulation-pwm" class="nav-link" data-scroll-target="#pulse-width-modulation-pwm"><span class="header-section-number">13.11</span> Pulse Width Modulation (PWM)</a></li>
+  <li><a href="#esp32-to-led" id="toc-esp32-to-led" class="nav-link active" data-scroll-target="#esp32-to-led"><span class="header-section-number">13.1</span> ESP32 to LED</a></li>
+  <li><a href="#measuring-voltage-with-a-multimeter" id="toc-measuring-voltage-with-a-multimeter" class="nav-link" data-scroll-target="#measuring-voltage-with-a-multimeter"><span class="header-section-number">13.2</span> Measuring Voltage with a Multimeter</a></li>
+  <li><a href="#ohms-law" id="toc-ohms-law" class="nav-link" data-scroll-target="#ohms-law"><span class="header-section-number">13.3</span> Ohm’s Law</a></li>
+  <li><a href="#power-supply-setting-and-measuring" id="toc-power-supply-setting-and-measuring" class="nav-link" data-scroll-target="#power-supply-setting-and-measuring"><span class="header-section-number">13.4</span> Power Supply: Setting and Measuring</a></li>
+  <li><a href="#measuring-resistance" id="toc-measuring-resistance" class="nav-link" data-scroll-target="#measuring-resistance"><span class="header-section-number">13.5</span> Measuring Resistance</a></li>
+  <li><a href="#current-measurement" id="toc-current-measurement" class="nav-link" data-scroll-target="#current-measurement"><span class="header-section-number">13.6</span> Current Measurement</a></li>
+  <li><a href="#power-in-circuits" id="toc-power-in-circuits" class="nav-link" data-scroll-target="#power-in-circuits"><span class="header-section-number">13.7</span> Power in Circuits</a></li>
+  <li><a href="#led-operation-at-higher-voltage" id="toc-led-operation-at-higher-voltage" class="nav-link" data-scroll-target="#led-operation-at-higher-voltage"><span class="header-section-number">13.8</span> LED Operation at Higher Voltage</a></li>
+  <li><a href="#potentiometer" id="toc-potentiometer" class="nav-link" data-scroll-target="#potentiometer"><span class="header-section-number">13.9</span> Potentiometer</a></li>
+  <li><a href="#pulse-width-modulation-pwm" id="toc-pulse-width-modulation-pwm" class="nav-link" data-scroll-target="#pulse-width-modulation-pwm"><span class="header-section-number">13.10</span> Pulse Width Modulation (PWM)</a></li>
   </ul>
 </nav>
     </div>
@@ -534,22 +533,32 @@ echo: false
 jupyter: python3
 section-divs: false
 --- -->
-<section id="objectives" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="objectives"><span class="header-section-number">13.1</span> Objectives</h2>
-<p>By the end of this class, students will:</p>
+<p>By the end of this class you will:</p>
 <ol type="1">
 <li>Understand the basics of using an ESP32 to control an LED.</li>
-<li>Familiarize themselves with essential electronics concepts, including voltage, current, and resistance.</li>
+<li>Familiarize yourself with essential electronics concepts, including voltage, current, and resistance.</li>
+<li>Get acquainted with the multimeter and its functionalities.</li>
 <li>Learn practical skills in measuring and setting up circuits.</li>
 </ol>
 <hr>
-</section>
-<section id="esp32-to-led" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="esp32-to-led"><span class="header-section-number">13.2</span> ESP32 to LED</h2>
+<section id="esp32-to-led" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="esp32-to-led"><span class="header-section-number">13.1</span> ESP32 to LED</h2>
 <ul>
 <li><strong>Goal</strong>: Connect and control an LED using an ESP32 microcontroller.</li>
 <li><strong>Diagram:</strong> pin A4 — long leg of LED — short leg of LED — resisistor (330 <span class="math inline">\(\Omega\)</span>) — GND</li>
 </ul>
+<details>
+<summary>
+see diagram
+</summary>
+<img src="../archive/figures/diagrams/led-resistor-esp32_schem.png" class="img-fluid">
+</details>
+<details>
+<summary>
+see wiring scheme
+</summary>
+<img src="../archive/figures/diagrams/led-resistor-esp32_bb.png" class="img-fluid">
+</details>
 <p>Use the following code to activate LED pin.</p>
 <button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#digital-writeino" aria-expanded="false" aria-controls="digital-writeino">
     <i class="bi bi-toggles"></i> Toggle code
@@ -581,8 +590,8 @@ section-divs: false
             </div>
             
 </section>
-<section id="measuring-voltage-with-a-multimeter" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="measuring-voltage-with-a-multimeter"><span class="header-section-number">13.3</span> Measuring Voltage with a Multimeter</h2>
+<section id="measuring-voltage-with-a-multimeter" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="measuring-voltage-with-a-multimeter"><span class="header-section-number">13.2</span> Measuring Voltage with a Multimeter</h2>
 <p>To measure voltage with a multimeter, follow these steps:</p>
 <ol type="1">
 <li>Set your multimeter to the DC voltage (V) setting, usually indicated by a straight line and a dashed line beneath it.</li>
@@ -590,49 +599,86 @@ section-divs: false
 <li>Connect the black probe to the GND pin on the ESP32 and the red probe to pin A4.</li>
 <li>Observe the voltage reading displayed on the multimeter screen.</li>
 </ol>
+<details>
+<summary>
+see wiring scheme
+</summary>
+<img src="../archive/figures/diagrams/esp32-multimeter_bb.png" class="img-fluid">
+</details>
 </section>
-<section id="ohms-law" class="level2" data-number="13.4">
-<h2 data-number="13.4" class="anchored" data-anchor-id="ohms-law"><span class="header-section-number">13.4</span> Ohm’s Law</h2>
+<section id="ohms-law" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="ohms-law"><span class="header-section-number">13.3</span> Ohm’s Law</h2>
+<p><img src="../archive/figures/ohm-cartoon.jpg" class="img-fluid"></p>
 <p><span class="math display">\[
 \Delta V = I \cdot R
 \]</span></p>
 <ul>
-<li><strong>Concept</strong>: Understand the relationship between voltage (V, in volt), current (I, in ampere), and resistance (R, in ohm).</li>
+<li><strong>Concept</strong>: Understand the relationship between voltage (V, in volts), current (I, in amperes), and resistance (R, in ohms).</li>
 </ul>
 </section>
-<section id="power-supply-setting-and-measuring" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="power-supply-setting-and-measuring"><span class="header-section-number">13.5</span> Power Supply: Setting and Measuring</h2>
+<section id="power-supply-setting-and-measuring" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="power-supply-setting-and-measuring"><span class="header-section-number">13.4</span> Power Supply: Setting and Measuring</h2>
 <p><img src="../archive/figures/power-supply.jpg" class="img-fluid"></p>
 <ul>
 <li><strong>Goal</strong>: Understand how to set and measure output from a power supply.</li>
 <li><strong>Instructions</strong>: Safely configure voltage and measure output using a multimeter.</li>
 </ul>
+<details>
+<summary>
+see wiring scheme
+</summary>
+<img src="../archive/figures/diagrams/multimeter-powersupply_bb.png" class="img-fluid">
+</details>
 </section>
-<section id="measuring-resistance" class="level2" data-number="13.6">
-<h2 data-number="13.6" class="anchored" data-anchor-id="measuring-resistance"><span class="header-section-number">13.6</span> Measuring Resistance</h2>
+<section id="measuring-resistance" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="measuring-resistance"><span class="header-section-number">13.5</span> Measuring Resistance</h2>
 <p><a href="https://www.digikey.com/en/resources/conversion-calculators/conversion-calculator-resistor-color-code">Resistor Color Code Calculator</a>. Pay attention to the number of bands.</p>
 <ul>
 <li><strong>Goal</strong>: Measure resistance accurately.</li>
 <li><strong>Activity</strong>: Use a multimeter to check the values of different resistors.</li>
-<li><strong>Activity</strong>: Take two different resistors and put them in <strong>series</strong> and measure the effective resistance.</li>
-<li><strong>Activity</strong>: Take two different resistors and put them in <strong>parallel</strong> and measure the effective resistance.</li>
 </ul>
+<p>Take two different resistors and put them in <strong>series</strong> and measure the effective resistance.</p>
 <p><span class="math display">\[
 R_{\text{series}} = R_1 + R_2
 \]</span></p>
+<details>
+<summary>
+see diagram
+</summary>
+<img src="../archive/figures/diagrams/resistors-series-multimeter_schem.png" class="img-fluid">
+</details>
+<details>
+<summary>
+see wiring scheme
+</summary>
+<img src="../archive/figures/diagrams/resistors-series-multimeter_bb.png" class="img-fluid">
+</details>
+<p>Take two different resistors and put them in <strong>parallel</strong> and measure the effective resistance.</p>
 <p><span class="math display">\[
 R_{\text{parallel}} = \left( \frac{1}{R_1} + \frac{1}{R_2} \right)^{-1}
 \]</span></p>
+<details>
+<summary>
+see diagram
+</summary>
+<img src="../archive/figures/diagrams/resistors-parallel-multimeter_schem.png" class="img-fluid">
+</details>
+<details>
+<summary>
+see wiring scheme
+</summary>
+<img src="../archive/figures/diagrams/resistors-parallel-multimeter_bb.png" class="img-fluid">
+</details>
 </section>
-<section id="current-measurement" class="level2" data-number="13.7">
-<h2 data-number="13.7" class="anchored" data-anchor-id="current-measurement"><span class="header-section-number">13.7</span> Current Measurement</h2>
+<section id="current-measurement" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="current-measurement"><span class="header-section-number">13.6</span> Current Measurement</h2>
 <ul>
 <li><strong>Goal</strong>: Understand the concept of current and how to measure it.</li>
 <li><strong>Activity</strong>: Set up a circuit (one resistor or two resistors in series/parallel) and measure the current flowing through different components. Compare the measurement to what you expect from Ohm’s law.</li>
 </ul>
 </section>
-<section id="power-in-circuits" class="level2" data-number="13.8">
-<h2 data-number="13.8" class="anchored" data-anchor-id="power-in-circuits"><span class="header-section-number">13.8</span> Power in Circuits</h2>
+<section id="power-in-circuits" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="power-in-circuits"><span class="header-section-number">13.7</span> Power in Circuits</h2>
 <p><span class="math display">\[
 P = V \cdot I
 \]</span></p>
@@ -647,29 +693,65 @@ P = \frac{V^2}{R}
 <li><strong>Application</strong>: Get acquainted with the power output of electric components (resistors, LEDs). What happens when the power exceeds their intended value?</li>
 </ul>
 </section>
-<section id="led-operation-at-higher-voltage" class="level2" data-number="13.9">
-<h2 data-number="13.9" class="anchored" data-anchor-id="led-operation-at-higher-voltage"><span class="header-section-number">13.9</span> LED Operation at Higher Voltage</h2>
+<section id="led-operation-at-higher-voltage" class="level2" data-number="13.8">
+<h2 data-number="13.8" class="anchored" data-anchor-id="led-operation-at-higher-voltage"><span class="header-section-number">13.8</span> LED Operation at Higher Voltage</h2>
 <ul>
 <li><strong>Goal</strong>: Explain LED operation and safely operate it with a 10V power source (using resistors or voltage regulators).</li>
 <li><strong>Activity</strong>: Set up a circuit to ensure safe operation of the LED at a higher voltage. Calculate the necessary value of the resistor in this configuration (not 330 <span class="math inline">\(\Omega\)</span>!)</li>
 </ul>
+<details>
+<summary>
+see diagram
+</summary>
+<img src="../archive/figures/diagrams/led-resistor-powersupply_schem.png" class="img-fluid">
+</details>
+<details>
+<summary>
+see wiring scheme
+</summary>
+<img src="../archive/figures/diagrams/led-resistor-powersupply_bb.png" class="img-fluid">
+</details>
 <p>Source: <a href="https://learn.sparkfun.com/tutorials/light-emitting-diodes-leds/all">Sparkfun</a> <img src="../archive/figures/LED1.JPG" class="img-fluid"></p>
 <p>The first row in the table indicates how much current your LED will be able to handle continuously. In this case, you can give it 20mA or less, and it will shine its brightest at 20mA. The second row tells us what the maximum peak current should be for short bursts. This LED can handle short bumps to 30mA, but you don’t want to sustain that current for too long. This datasheet is even helpful enough to suggest a stable current range (in the third row from the top) of 16-18mA. That’s a good target number to help you make the resistor calculations we talked about.</p>
 <p>The following few rows are of less importance for the purposes of this tutorial. The reverse voltage is a diode property that you shouldn’t have to worry about in most cases. The power dissipation is the amount of power in milliWatts that the LED can use before taking damage. This should work itself out as long as you keep the LED within its suggested voltage and current ratings.</p>
 <p><img src="../archive/figures/LED2.JPG" class="img-fluid"></p>
 <p>The first row tells us what the forward voltage drop across the LED will be. Forward voltage is a term that will come up a lot when working with LEDs. This number will help you decide how much voltage your circuit will need to supply to the LED. If you have more than one LED connected to a single power source, these numbers are really important because the forward voltage of all of the LEDs added together can’t exceed the supply voltage.</p>
 </section>
-<section id="potentiometer" class="level2" data-number="13.10">
-<h2 data-number="13.10" class="anchored" data-anchor-id="potentiometer"><span class="header-section-number">13.10</span> Potentiometer</h2>
+<section id="potentiometer" class="level2" data-number="13.9">
+<h2 data-number="13.9" class="anchored" data-anchor-id="potentiometer"><span class="header-section-number">13.9</span> Potentiometer</h2>
 <p><img src="../archive/figures/potentiometer.png" class="img-fluid"></p>
 <ul>
 <li><strong>Goal</strong>: Introduce variable resistors and their applications.</li>
-<li><strong>Goal</strong>: Measure the resistance with the multimeter, while twisting the knob.</li>
-<li><strong>Activity</strong>: Use a potentiometer to control the brightness of an LED or another output device. Add this potentiometer in series in the circuit you have just built, turn the knob and see what happens.</li>
 </ul>
+<p>Measure the resistance with the multimeter, while twisting the knob.</p>
+<details>
+<summary>
+see diagram
+</summary>
+<img src="../archive/figures/diagrams/potentiometer-multimeter_schem.png" class="img-fluid">
+</details>
+<details>
+<summary>
+see wiring scheme
+</summary>
+<img src="../archive/figures/diagrams/potentiometer-multimeter_bb.png" class="img-fluid">
+</details>
+<p>Use a potentiometer to control the brightness of an LED or another output device. Add this potentiometer in series in the circuit you have just built, turn the knob and see what happens.</p>
+<details>
+<summary>
+see diagram
+</summary>
+<img src="../archive/figures/diagrams/led-resistor-potentiometer-esp32_schem.png" class="img-fluid">
+</details>
+<details>
+<summary>
+see wiring scheme
+</summary>
+<img src="../archive/figures/diagrams/led-resistor-potentiometer-esp32_bb.png" class="img-fluid">
+</details>
 </section>
-<section id="pulse-width-modulation-pwm" class="level2" data-number="13.11">
-<h2 data-number="13.11" class="anchored" data-anchor-id="pulse-width-modulation-pwm"><span class="header-section-number">13.11</span> Pulse Width Modulation (PWM)</h2>
+<section id="pulse-width-modulation-pwm" class="level2" data-number="13.10">
+<h2 data-number="13.10" class="anchored" data-anchor-id="pulse-width-modulation-pwm"><span class="header-section-number">13.10</span> Pulse Width Modulation (PWM)</h2>
 <ul>
 <li><strong>Goal</strong>: Understand and use PWM to control the brightness of an LED.</li>
 <li><strong>Instructions</strong>: Implement a code example on the ESP32 to adjust LED brightness using PWM.</li>

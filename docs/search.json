@@ -559,18 +559,7 @@
     "href": "tutorials/electronics-class.html",
     "title": "13  Electronics Class",
     "section": "",
-    "text": "13.1 Objectives\nBy the end of this class, students will:",
-    "crumbs": [
-      "**Electronics**",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
-    ]
-  },
-  {
-    "objectID": "tutorials/electronics-class.html#objectives",
-    "href": "tutorials/electronics-class.html#objectives",
-    "title": "13  Electronics Class",
-    "section": "",
-    "text": "Understand the basics of using an ESP32 to control an LED.\nFamiliarize themselves with essential electronics concepts, including voltage, current, and resistance.\nLearn practical skills in measuring and setting up circuits.",
+    "text": "13.1 ESP32 to LED\nUse the following code to activate LED pin.",
     "crumbs": [
       "**Electronics**",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
@@ -580,8 +569,8 @@
     "objectID": "tutorials/electronics-class.html#esp32-to-led",
     "href": "tutorials/electronics-class.html#esp32-to-led",
     "title": "13  Electronics Class",
-    "section": "13.2 ESP32 to LED",
-    "text": "13.2 ESP32 to LED\n\nGoal: Connect and control an LED using an ESP32 microcontroller.\nDiagram: pin A4 — long leg of LED — short leg of LED — resisistor (330 \\(\\Omega\\)) — GND\n\nUse the following code to activate LED pin.\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nint LED_pin = A4;\n\n// the setup function runs once when you press reset or power the board\nvoid setup() {\n  // initialize digital pin LED_pin as an output.\n  pinMode(LED_pin, OUTPUT);\n}\n\n// the loop function runs over and over again forever\nvoid loop() {\n  digitalWrite(LED_pin, HIGH);   // turn the LED on (HIGH is the voltage level)\n  delay(3000);                       // wait for a second\n  digitalWrite(LED_pin, LOW);    // turn the LED off by making the voltage LOW\n  delay(3000);                       // wait for a second\n}",
+    "section": "",
+    "text": "Goal: Connect and control an LED using an ESP32 microcontroller.\nDiagram: pin A4 — long leg of LED — short leg of LED — resisistor (330 \\(\\Omega\\)) — GND\n\n\n\nsee diagram\n\n\n\n\n\nsee wiring scheme\n\n\n\n\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nint LED_pin = A4;\n\n// the setup function runs once when you press reset or power the board\nvoid setup() {\n  // initialize digital pin LED_pin as an output.\n  pinMode(LED_pin, OUTPUT);\n}\n\n// the loop function runs over and over again forever\nvoid loop() {\n  digitalWrite(LED_pin, HIGH);   // turn the LED on (HIGH is the voltage level)\n  delay(3000);                       // wait for a second\n  digitalWrite(LED_pin, LOW);    // turn the LED off by making the voltage LOW\n  delay(3000);                       // wait for a second\n}",
     "crumbs": [
       "**Electronics**",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
@@ -591,8 +580,8 @@
     "objectID": "tutorials/electronics-class.html#measuring-voltage-with-a-multimeter",
     "href": "tutorials/electronics-class.html#measuring-voltage-with-a-multimeter",
     "title": "13  Electronics Class",
-    "section": "13.3 Measuring Voltage with a Multimeter",
-    "text": "13.3 Measuring Voltage with a Multimeter\nTo measure voltage with a multimeter, follow these steps:\n\nSet your multimeter to the DC voltage (V) setting, usually indicated by a straight line and a dashed line beneath it.\nInsert the black probe into the multimeter’s COM port and the red probe into the VΩmA port.\nConnect the black probe to the GND pin on the ESP32 and the red probe to pin A4.\nObserve the voltage reading displayed on the multimeter screen.",
+    "section": "13.2 Measuring Voltage with a Multimeter",
+    "text": "13.2 Measuring Voltage with a Multimeter\nTo measure voltage with a multimeter, follow these steps:\n\nSet your multimeter to the DC voltage (V) setting, usually indicated by a straight line and a dashed line beneath it.\nInsert the black probe into the multimeter’s COM port and the red probe into the VΩmA port.\nConnect the black probe to the GND pin on the ESP32 and the red probe to pin A4.\nObserve the voltage reading displayed on the multimeter screen.\n\n\n\nsee wiring scheme",
     "crumbs": [
       "**Electronics**",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
@@ -602,8 +591,8 @@
     "objectID": "tutorials/electronics-class.html#ohms-law",
     "href": "tutorials/electronics-class.html#ohms-law",
     "title": "13  Electronics Class",
-    "section": "13.4 Ohm’s Law",
-    "text": "13.4 Ohm’s Law\n\\[\n\\Delta V = I \\cdot R\n\\]\n\nConcept: Understand the relationship between voltage (V, in volt), current (I, in ampere), and resistance (R, in ohm).",
+    "section": "13.3 Ohm’s Law",
+    "text": "13.3 Ohm’s Law\n\n\\[\n\\Delta V = I \\cdot R\n\\]\n\nConcept: Understand the relationship between voltage (V, in volts), current (I, in amperes), and resistance (R, in ohms).",
     "crumbs": [
       "**Electronics**",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
@@ -613,8 +602,8 @@
     "objectID": "tutorials/electronics-class.html#power-supply-setting-and-measuring",
     "href": "tutorials/electronics-class.html#power-supply-setting-and-measuring",
     "title": "13  Electronics Class",
-    "section": "13.5 Power Supply: Setting and Measuring",
-    "text": "13.5 Power Supply: Setting and Measuring\n\n\nGoal: Understand how to set and measure output from a power supply.\nInstructions: Safely configure voltage and measure output using a multimeter.",
+    "section": "13.4 Power Supply: Setting and Measuring",
+    "text": "13.4 Power Supply: Setting and Measuring\n\n\nGoal: Understand how to set and measure output from a power supply.\nInstructions: Safely configure voltage and measure output using a multimeter.\n\n\n\nsee wiring scheme",
     "crumbs": [
       "**Electronics**",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
@@ -624,8 +613,8 @@
     "objectID": "tutorials/electronics-class.html#measuring-resistance",
     "href": "tutorials/electronics-class.html#measuring-resistance",
     "title": "13  Electronics Class",
-    "section": "13.6 Measuring Resistance",
-    "text": "13.6 Measuring Resistance\nResistor Color Code Calculator. Pay attention to the number of bands.\n\nGoal: Measure resistance accurately.\nActivity: Use a multimeter to check the values of different resistors.\nActivity: Take two different resistors and put them in series and measure the effective resistance.\nActivity: Take two different resistors and put them in parallel and measure the effective resistance.\n\n\\[\nR_{\\text{series}} = R_1 + R_2\n\\]\n\\[\nR_{\\text{parallel}} = \\left( \\frac{1}{R_1} + \\frac{1}{R_2} \\right)^{-1}\n\\]",
+    "section": "13.5 Measuring Resistance",
+    "text": "13.5 Measuring Resistance\nResistor Color Code Calculator. Pay attention to the number of bands.\n\nGoal: Measure resistance accurately.\nActivity: Use a multimeter to check the values of different resistors.\n\nTake two different resistors and put them in series and measure the effective resistance.\n\\[\nR_{\\text{series}} = R_1 + R_2\n\\]\n\n\nsee diagram\n\n\n\n\n\nsee wiring scheme\n\n\n\nTake two different resistors and put them in parallel and measure the effective resistance.\n\\[\nR_{\\text{parallel}} = \\left( \\frac{1}{R_1} + \\frac{1}{R_2} \\right)^{-1}\n\\]\n\n\nsee diagram\n\n\n\n\n\nsee wiring scheme",
     "crumbs": [
       "**Electronics**",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
@@ -635,8 +624,8 @@
     "objectID": "tutorials/electronics-class.html#current-measurement",
     "href": "tutorials/electronics-class.html#current-measurement",
     "title": "13  Electronics Class",
-    "section": "13.7 Current Measurement",
-    "text": "13.7 Current Measurement\n\nGoal: Understand the concept of current and how to measure it.\nActivity: Set up a circuit (one resistor or two resistors in series/parallel) and measure the current flowing through different components. Compare the measurement to what you expect from Ohm’s law.",
+    "section": "13.6 Current Measurement",
+    "text": "13.6 Current Measurement\n\nGoal: Understand the concept of current and how to measure it.\nActivity: Set up a circuit (one resistor or two resistors in series/parallel) and measure the current flowing through different components. Compare the measurement to what you expect from Ohm’s law.",
     "crumbs": [
       "**Electronics**",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
@@ -646,8 +635,8 @@
     "objectID": "tutorials/electronics-class.html#power-in-circuits",
     "href": "tutorials/electronics-class.html#power-in-circuits",
     "title": "13  Electronics Class",
-    "section": "13.8 Power in Circuits",
-    "text": "13.8 Power in Circuits\n\\[\nP = V \\cdot I\n\\]\nFrom Ohm’s law and the equation for the power, we can derive \\[\nP = I^2 \\cdot R\n\\]\n\\[\nP = \\frac{V^2}{R}\n\\]\n\nConcept: Calculate power (P, in watts) in electrical circuits using the equation above.\nApplication: Get acquainted with the power output of electric components (resistors, LEDs). What happens when the power exceeds their intended value?",
+    "section": "13.7 Power in Circuits",
+    "text": "13.7 Power in Circuits\n\\[\nP = V \\cdot I\n\\]\nFrom Ohm’s law and the equation for the power, we can derive \\[\nP = I^2 \\cdot R\n\\]\n\\[\nP = \\frac{V^2}{R}\n\\]\n\nConcept: Calculate power (P, in watts) in electrical circuits using the equation above.\nApplication: Get acquainted with the power output of electric components (resistors, LEDs). What happens when the power exceeds their intended value?",
     "crumbs": [
       "**Electronics**",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
@@ -657,8 +646,8 @@
     "objectID": "tutorials/electronics-class.html#led-operation-at-higher-voltage",
     "href": "tutorials/electronics-class.html#led-operation-at-higher-voltage",
     "title": "13  Electronics Class",
-    "section": "13.9 LED Operation at Higher Voltage",
-    "text": "13.9 LED Operation at Higher Voltage\n\nGoal: Explain LED operation and safely operate it with a 10V power source (using resistors or voltage regulators).\nActivity: Set up a circuit to ensure safe operation of the LED at a higher voltage. Calculate the necessary value of the resistor in this configuration (not 330 \\(\\Omega\\)!)\n\nSource: Sparkfun \nThe first row in the table indicates how much current your LED will be able to handle continuously. In this case, you can give it 20mA or less, and it will shine its brightest at 20mA. The second row tells us what the maximum peak current should be for short bursts. This LED can handle short bumps to 30mA, but you don’t want to sustain that current for too long. This datasheet is even helpful enough to suggest a stable current range (in the third row from the top) of 16-18mA. That’s a good target number to help you make the resistor calculations we talked about.\nThe following few rows are of less importance for the purposes of this tutorial. The reverse voltage is a diode property that you shouldn’t have to worry about in most cases. The power dissipation is the amount of power in milliWatts that the LED can use before taking damage. This should work itself out as long as you keep the LED within its suggested voltage and current ratings.\n\nThe first row tells us what the forward voltage drop across the LED will be. Forward voltage is a term that will come up a lot when working with LEDs. This number will help you decide how much voltage your circuit will need to supply to the LED. If you have more than one LED connected to a single power source, these numbers are really important because the forward voltage of all of the LEDs added together can’t exceed the supply voltage.",
+    "section": "13.8 LED Operation at Higher Voltage",
+    "text": "13.8 LED Operation at Higher Voltage\n\nGoal: Explain LED operation and safely operate it with a 10V power source (using resistors or voltage regulators).\nActivity: Set up a circuit to ensure safe operation of the LED at a higher voltage. Calculate the necessary value of the resistor in this configuration (not 330 \\(\\Omega\\)!)\n\n\n\nsee diagram\n\n\n\n\n\nsee wiring scheme\n\n\n\nSource: Sparkfun \nThe first row in the table indicates how much current your LED will be able to handle continuously. In this case, you can give it 20mA or less, and it will shine its brightest at 20mA. The second row tells us what the maximum peak current should be for short bursts. This LED can handle short bumps to 30mA, but you don’t want to sustain that current for too long. This datasheet is even helpful enough to suggest a stable current range (in the third row from the top) of 16-18mA. That’s a good target number to help you make the resistor calculations we talked about.\nThe following few rows are of less importance for the purposes of this tutorial. The reverse voltage is a diode property that you shouldn’t have to worry about in most cases. The power dissipation is the amount of power in milliWatts that the LED can use before taking damage. This should work itself out as long as you keep the LED within its suggested voltage and current ratings.\n\nThe first row tells us what the forward voltage drop across the LED will be. Forward voltage is a term that will come up a lot when working with LEDs. This number will help you decide how much voltage your circuit will need to supply to the LED. If you have more than one LED connected to a single power source, these numbers are really important because the forward voltage of all of the LEDs added together can’t exceed the supply voltage.",
     "crumbs": [
       "**Electronics**",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
@@ -668,8 +657,8 @@
     "objectID": "tutorials/electronics-class.html#potentiometer",
     "href": "tutorials/electronics-class.html#potentiometer",
     "title": "13  Electronics Class",
-    "section": "13.10 Potentiometer",
-    "text": "13.10 Potentiometer\n\n\nGoal: Introduce variable resistors and their applications.\nGoal: Measure the resistance with the multimeter, while twisting the knob.\nActivity: Use a potentiometer to control the brightness of an LED or another output device. Add this potentiometer in series in the circuit you have just built, turn the knob and see what happens.",
+    "section": "13.9 Potentiometer",
+    "text": "13.9 Potentiometer\n\n\nGoal: Introduce variable resistors and their applications.\n\nMeasure the resistance with the multimeter, while twisting the knob.\n\n\nsee diagram\n\n\n\n\n\nsee wiring scheme\n\n\n\nUse a potentiometer to control the brightness of an LED or another output device. Add this potentiometer in series in the circuit you have just built, turn the knob and see what happens.\n\n\nsee diagram\n\n\n\n\n\nsee wiring scheme",
     "crumbs": [
       "**Electronics**",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"
@@ -679,8 +668,8 @@
     "objectID": "tutorials/electronics-class.html#pulse-width-modulation-pwm",
     "href": "tutorials/electronics-class.html#pulse-width-modulation-pwm",
     "title": "13  Electronics Class",
-    "section": "13.11 Pulse Width Modulation (PWM)",
-    "text": "13.11 Pulse Width Modulation (PWM)\n\nGoal: Understand and use PWM to control the brightness of an LED.\nInstructions: Implement a code example on the ESP32 to adjust LED brightness using PWM.",
+    "section": "13.10 Pulse Width Modulation (PWM)",
+    "text": "13.10 Pulse Width Modulation (PWM)\n\nGoal: Understand and use PWM to control the brightness of an LED.\nInstructions: Implement a code example on the ESP32 to adjust LED brightness using PWM.",
     "crumbs": [
       "**Electronics**",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Electronics Class</span>"

@@ -8,14 +8,12 @@ execute:
 
 {{< include ../_insert_ino_code.qmd >}}
 
-
-## Objectives
-
-By the end of this class, students will:
+By the end of this class you will:
 
 1. Understand the basics of using an ESP32 to control an LED.
-2. Familiarize themselves with essential electronics concepts, including voltage, current, and resistance.
-3. Learn practical skills in measuring and setting up circuits.
+1. Familiarize yourself with essential electronics concepts, including voltage, current, and resistance.
+1. Get acquainted with the multimeter and its functionalities.
+1. Learn practical skills in measuring and setting up circuits.
 
 ---
 
@@ -23,6 +21,16 @@ By the end of this class, students will:
 
 - **Goal**: Connect and control an LED using an ESP32 microcontroller.
 - **Diagram:** pin A4 --- long leg of LED --- short leg of LED --- resisistor (330 $\Omega$) --- GND
+
+<details>
+<summary>see diagram</summary>
+![](/archive/figures/diagrams/led-resistor-esp32_schem.png)
+</details>
+
+<details>
+<summary>see wiring scheme</summary>
+![](/archive/figures/diagrams/led-resistor-esp32_bb.png)
+</details>
 
 Use the following code to activate LED pin.
 
@@ -42,13 +50,20 @@ To measure voltage with a multimeter, follow these steps:
 1. Connect the black probe to the GND pin on the ESP32 and the red probe to pin A4.
 1. Observe the voltage reading displayed on the multimeter screen.
 
+<details>
+<summary>see wiring scheme</summary>
+![](/archive/figures/diagrams/esp32-multimeter_bb.png)
+</details>
+
 ## Ohm’s Law
+
+![](/archive/figures/ohm-cartoon.jpg)
 
 $$
 \Delta V = I \cdot R
 $$
 
-- **Concept**: Understand the relationship between voltage (V, in volt), current (I, in ampere), and resistance (R, in ohm).
+- **Concept**: Understand the relationship between voltage (V, in volts), current (I, in amperes), and resistance (R, in ohms).
 
 ## Power Supply: Setting and Measuring
 
@@ -57,22 +72,51 @@ $$
 - **Goal**: Understand how to set and measure output from a power supply.
 - **Instructions**: Safely configure voltage and measure output using a multimeter.
 
+<details>
+<summary>see wiring scheme</summary>
+![](/archive/figures/diagrams/multimeter-powersupply_bb.png)
+</details>
+
 ## Measuring Resistance
 
 [Resistor Color Code Calculator](https://www.digikey.com/en/resources/conversion-calculators/conversion-calculator-resistor-color-code). Pay attention to the number of bands.
 
 - **Goal**: Measure resistance accurately.
 - **Activity**: Use a multimeter to check the values of different resistors.
-- **Activity**: Take two different resistors and put them in **series** and measure the effective resistance.
-- **Activity**: Take two different resistors and put them in **parallel** and measure the effective resistance.
+
+
+Take two different resistors and put them in **series** and measure the effective resistance.
 
 $$
 R_{\text{series}} = R_1 + R_2
 $$
 
+<details>
+<summary>see diagram</summary>
+![](/archive/figures/diagrams/resistors-series-multimeter_schem.png)
+</details>
+
+<details>
+<summary>see wiring scheme</summary>
+![](/archive/figures/diagrams/resistors-series-multimeter_bb.png)
+</details>
+
+Take two different resistors and put them in **parallel** and measure the effective resistance.
+
 $$
 R_{\text{parallel}} = \left( \frac{1}{R_1} + \frac{1}{R_2} \right)^{-1}
 $$
+
+<details>
+<summary>see diagram</summary>
+![](/archive/figures/diagrams/resistors-parallel-multimeter_schem.png)
+</details>
+
+<details>
+<summary>see wiring scheme</summary>
+![](/archive/figures/diagrams/resistors-parallel-multimeter_bb.png)
+</details>
+
 
 ## Current Measurement
 
@@ -102,6 +146,17 @@ $$
 - **Goal**: Explain LED operation and safely operate it with a 10V power source (using resistors or voltage regulators).
 - **Activity**: Set up a circuit to ensure safe operation of the LED at a higher voltage. Calculate the necessary value of the resistor in this configuration (not 330 $\Omega$!)
 
+<details>
+<summary>see diagram</summary>
+![](/archive/figures/diagrams/led-resistor-powersupply_schem.png)
+</details>
+
+<details>
+<summary>see wiring scheme</summary>
+![](/archive/figures/diagrams/led-resistor-powersupply_bb.png)
+</details>
+
+
 Source: [Sparkfun](https://learn.sparkfun.com/tutorials/light-emitting-diodes-leds/all)
 ![](/archive/figures/LED1.JPG)
 
@@ -118,8 +173,30 @@ The first row tells us what the forward voltage drop across the LED will be. For
 ![](/archive/figures/potentiometer.png)
 
 - **Goal**: Introduce variable resistors and their applications.
-- **Goal**: Measure the resistance with the multimeter, while twisting the knob.
-- **Activity**: Use a potentiometer to control the brightness of an LED or another output device. Add this potentiometer in series in the circuit you have just built, turn the knob and see what happens.
+
+Measure the resistance with the multimeter, while twisting the knob.
+
+<details>
+<summary>see diagram</summary>
+![](/archive/figures/diagrams/potentiometer-multimeter_schem.png)
+</details>
+
+<details>
+<summary>see wiring scheme</summary>
+![](/archive/figures/diagrams/potentiometer-multimeter_bb.png)
+</details>
+
+Use a potentiometer to control the brightness of an LED or another output device. Add this potentiometer in series in the circuit you have just built, turn the knob and see what happens.
+
+<details>
+<summary>see diagram</summary>
+![](/archive/figures/diagrams/led-resistor-potentiometer-esp32_schem.png)
+</details>
+
+<details>
+<summary>see wiring scheme</summary>
+![](/archive/figures/diagrams/led-resistor-potentiometer-esp32_bb.png)
+</details>
 
 ## Pulse Width Modulation (PWM)
 
