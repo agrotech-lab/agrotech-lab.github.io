@@ -1,0 +1,118 @@
+---
+title: "Electronics Class 2"
+echo: false
+jupyter: python3
+execute:
+  freeze: auto  # re-render only when source changes
+---
+
+{{< include ../_insert_ino_code.qmd >}}
+
+
+---
+
+## Digital read
+
+- **Goal**: Read button press and take an action (flash external LED).
+
+Use the following code.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("button-digitalread.ino")
+```
+
+
+## Measuring Voltage with a Multimeter
+
+To measure voltage with a multimeter, follow these steps:
+
+1. Set your multimeter to the DC voltage (V) setting, usually indicated by a straight line and a dashed line beneath it.
+1. Insert the black probe into the multimeter's COM port and the red probe into the VΩmA port.
+1. Connect the black probe to the GND pin on the ESP32 and the red probe to pin A4.
+1. Observe the voltage reading displayed on the multimeter screen.
+
+## Ohm’s Law
+
+$$
+\Delta V = I \cdot R
+$$
+
+- **Concept**: Understand the relationship between voltage (V, in volt), current (I, in ampere), and resistance (R, in ohm).
+
+## Power Supply: Setting and Measuring
+
+![](/archive/figures/power-supply.jpg)
+
+- **Goal**: Understand how to set and measure output from a power supply.
+- **Instructions**: Safely configure voltage and measure output using a multimeter.
+
+## Measuring Resistance
+
+[Resistor Color Code Calculator](https://www.digikey.com/en/resources/conversion-calculators/conversion-calculator-resistor-color-code). Pay attention to the number of bands.
+
+- **Goal**: Measure resistance accurately.
+- **Activity**: Use a multimeter to check the values of different resistors.
+- **Activity**: Take two different resistors and put them in **series** and measure the effective resistance.
+- **Activity**: Take two different resistors and put them in **parallel** and measure the effective resistance.
+
+$$
+R_{\text{series}} = R_1 + R_2
+$$
+
+$$
+R_{\text{parallel}} = \left( \frac{1}{R_1} + \frac{1}{R_2} \right)^{-1}
+$$
+
+## Current Measurement
+
+- **Goal**: Understand the concept of current and how to measure it.
+- **Activity**: Set up a circuit (one resistor or two resistors in series/parallel) and measure the current flowing through different components. Compare the measurement to what you expect from Ohm's law.
+
+## Power in Circuits
+
+$$
+P = V \cdot I
+$$
+
+From Ohm's law and the equation for the power, we can derive
+$$
+P = I^2 \cdot R
+$$
+
+$$
+P = \frac{V^2}{R}
+$$
+
+- **Concept**: Calculate power (P, in watts) in electrical circuits using the equation above.
+- **Application**: Get acquainted with the power output of electric components (resistors, LEDs). What happens when the power exceeds their intended value?
+
+## LED Operation at Higher Voltage
+
+- **Goal**: Explain LED operation and safely operate it with a 10V power source (using resistors or voltage regulators).
+- **Activity**: Set up a circuit to ensure safe operation of the LED at a higher voltage. Calculate the necessary value of the resistor in this configuration (not 330 $\Omega$!)
+
+Source: [Sparkfun](https://learn.sparkfun.com/tutorials/light-emitting-diodes-leds/all)
+![](/archive/figures/LED1.JPG)
+
+The first row in the table indicates how much current your LED will be able to handle continuously. In this case, you can give it 20mA or less, and it will shine its brightest at 20mA. The second row tells us what the maximum peak current should be for short bursts. This LED can handle short bumps to 30mA, but you don't want to sustain that current for too long. This datasheet is even helpful enough to suggest a stable current range (in the third row from the top) of 16-18mA. That's a good target number to help you make the resistor calculations we talked about.
+
+The following few rows are of less importance for the purposes of this tutorial. The reverse voltage is a diode property that you shouldn't have to worry about in most cases. The power dissipation is the amount of power in milliWatts that the LED can use before taking damage. This should work itself out as long as you keep the LED within its suggested voltage and current ratings.
+
+![](/archive/figures/LED2.JPG)
+
+The first row tells us what the forward voltage drop across the LED will be. Forward voltage is a term that will come up a lot when working with LEDs. This number will help you decide how much voltage your circuit will need to supply to the LED. If you have more than one LED connected to a single power source, these numbers are really important because the forward voltage of all of the LEDs added together can't exceed the supply voltage. 
+
+## Potentiometer
+
+![](/archive/figures/potentiometer.png)
+
+- **Goal**: Introduce variable resistors and their applications.
+- **Goal**: Measure the resistance with the multimeter, while twisting the knob.
+- **Activity**: Use a potentiometer to control the brightness of an LED or another output device. Add this potentiometer in series in the circuit you have just built, turn the knob and see what happens.
+
+## Pulse Width Modulation (PWM)
+
+- **Goal**: Understand and use PWM to control the brightness of an LED.
+- **Instructions**: Implement a code example on the ESP32 to adjust LED brightness using PWM.
