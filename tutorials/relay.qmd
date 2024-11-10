@@ -1,5 +1,5 @@
 ---
-title: "Relay"
+title: "Switches, Relays, Transistors"
 echo: false
 jupyter: python3
 execute:
@@ -8,18 +8,79 @@ execute:
 
 {{< include ../_insert_ino_code.qmd >}}
 
-![](https://www.circuitbasics.com/wp-content/uploads/2020/07/image-25.png)
 
-A relay is an electromagnetic switch that opens and closes circuits electromechanically or electronically. A relatively small electric current that can turn on or off a much larger electric current operates a relay. Relays work like some electrical products since they receive an electrical signal and send the signal to other equipment by turning the switch on and off. Even if the relay contact is normally closed or normally open, they are not energized. Its state will change only if you apply an electrical current to the contacts.
+## Toggle Switch
 
-| pin name             | function                                                                                                                                                       |
-|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Normally Closed (NC) | Connect to this terminal if you want your device to be off when the relay is powered and normally on when the relay is not powered.                            |
-| Common               | Common terminal to connect the load.                                                                                                                           |
-| Normally Open (NO)   | Connect your device (e.g., LED or any load) to this terminal if you want the device to be off when the relay is not powered, and on when the relay is powered. |
-| Ground               | Connect with ground pin.                                                                                                                                       |
-| Vcc pin              | Connects to 5V pin                                                                                                                                             |
-| Signal pin           | Control pin for relay                                                                                                                                          |
+No code is needed here, we use the ESP32 just as a power source.
+
+<details>
+<summary>see diagram</summary>
+![](/archive/figures/diagrams/toggle-switchbutton-esp32_bb.png)
+</details>
+
+<details>
+<summary>see wiring scheme</summary>
+![](/archive/figures/diagrams/toggle-switchbutton-esp32_schem.png)
+</details>
+
+## Relay
+
+
+![](/archive/figures/relay-module.jpg)
+
+A relay is an electromagnetic switch that opens and closes circuits electromechanically or electronically. A relatively small electric current that can turn on or off a much larger electric current operates a relay.
+
+The right side in the image above has a set of four pins and a set of three pins. The top set consists of:
+
+* `VCC` should be connected to the ESP32 VCC (5 volts)
+* `GND` connects to the ESP32 GND.
+* `IN1` and `IN2` are input pins, used to control the bottom and top relays, respectively, and should be connected to a GPIO pin in the ESP32. 
+
+The terminals on the left are connected to the `load`, the equipment that consumes power.
+The signal you send to the IN pins determines whether the relay is active or not. The relay is triggered when the input goes below about 2V. This means that you’ll have the following scenarios:
+
+- **Normally Closed (NC) configuration**:
+  - HIGH signal – current is flowing
+  - LOW signal – current is not flowing
+
+- **Normally Open (NO) configuration**:
+  - HIGH signal – current is not flowing
+  - LOW signal – current is flowing
+
+Whether you use the NC or NO configuration, you should always connect one of them to the `COM` (common) terminal.
+
+You should use a normally closed configuration when the current should be flowing most of the time, and you only want to stop it occasionally.
+
+Use a normally open configuration when you want the current to flow occasionally (for example, to turn on a lamp occasionally).
+
+![](/archive/figures/Relay-2-ch-channel-module-input-pins-pinout.jpeg)
+
+The other set of three pins (on the left in the figure above) are GND, VCC, and JD-VCC. The JD-VCC pin powers the electromagnet of the relay. Notice that the module has a jumper cap connecting the VCC and JD-VCC pins; the one shown here is yellow, but yours may be a different color.
+
+With the jumper cap on, the VCC and JD-VCC pins are connected. That means the relay electromagnet is directly powered from the ESP32 power pin, so the relay module and the ESP32 circuits are not physically isolated from each other.
+
+Without the jumper cap, you need to provide an independent power source to power up the relay’s electromagnet through the JD-VCC pin. That configuration physically isolates the relays from the ESP32 with the module’s built-in optocoupler, which prevents damage to the ESP32 in case of electrical spikes.
+
+Let's make an LED blink, but now using a relay. The code below is the same you used to make the LED blink, when it got its energy from pin `A4`. This time, we will use `A4` to signal the relay to open or close the circuit.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("digital-write.ino")
+```
+
+<details>
+<summary>see diagram</summary>
+![](/archive/figures/diagrams/relay-led-esp32_bb.png)
+</details>
+
+<details>
+<summary>see wiring scheme</summary>
+![](/archive/figures/diagrams/relay-led-esp32_schem.png)
+</details>
+
+
+## Transistor, N-channel MOSFET
 
 ----
 

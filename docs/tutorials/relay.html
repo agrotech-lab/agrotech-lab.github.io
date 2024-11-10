@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>agrotech lab - 16&nbsp; Relay</title>
+<title>agrotech lab - 15&nbsp; Switches, Relays, Transistors</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,18 +20,52 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tutorials/intro-to-sensor-modules-and-thingspeak.html" rel="next">
-<link href="../tutorials/soldering-and-wires.html" rel="prev">
+<link href="../tutorials/soldering-and-wires.html" rel="next">
+<link href="../tutorials/electronics-class-2.html" rel="prev">
 <link href="..//archive/images/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -70,6 +104,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../custom.scss">
@@ -84,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/basic-electronics-concepts.html"><strong>Electronics</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/relay.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Relay</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/basic-electronics-concepts.html"><strong>Electronics</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/relay.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Switches, Relays, Transistors</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -240,20 +277,26 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/electronics-class-old.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Electronics Class Old</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/soldering-and-wires.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Soldering and Wires</span></span></a>
+  <a href="../tutorials/electronics-class-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Electronics Class 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/relay.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Relay</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Switches, Relays, Transistors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/soldering-and-wires.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Soldering and Wires</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/electronics-class-old.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Electronics Class Old</span></span></a>
   </div>
 </li>
       </ul>
@@ -270,49 +313,49 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/intro-to-sensor-modules-and-thingspeak.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Intro to Sensor Modules and Thingspeak</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Intro to Sensor Modules and Thingspeak</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/pulse-sensors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Pulse sensors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Pulse sensors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/digital-read-write.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Digital read and write</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Digital read and write</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/MQTT.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">MQTT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">MQTT</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/deep_sleep.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Deep Sleep</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Deep Sleep</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/esp_now.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">ESP-NOW</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">ESP-NOW</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/python-matlab-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Basic Data Analysis with Python and Matlab</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Basic Data Analysis with Python and Matlab</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/API-thingspeak-python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">API to download Thingspeak data with Python</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">API to download Thingspeak data with Python</span></span></a>
   </div>
 </li>
       </ul>
@@ -329,13 +372,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/water-and-energy-balances.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Water and Energy Balances</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Water and Energy Balances</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/psychrometric-chart-and-evaporative-cooling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Psychrometric Chart and Evaporative Cooling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Psychrometric Chart and Evaporative Cooling</span></span></a>
   </div>
 </li>
       </ul>
@@ -352,13 +395,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../assignments/assignment1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Assignment 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Assignment 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../assignments/assignment2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Assignment 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Assignment 2</span></span></a>
   </div>
 </li>
       </ul>
@@ -375,7 +418,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title"> Resources</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title"> Resources</span></span></a>
   </div>
 </li>
       </ul>
@@ -392,25 +435,25 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title"> Projects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title"> Projects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects/borrowing-equipment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Borrowing equipment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Borrowing equipment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects/final-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects/examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Example projects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Example projects</span></span></a>
   </div>
 </li>
       </ul>
@@ -425,7 +468,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#relay" id="toc-relay" class="nav-link active" data-scroll-target="#relay"><span class="header-section-number">17</span> Relay</a></li>
+  <li><a href="#toggle-switch" id="toc-toggle-switch" class="nav-link active" data-scroll-target="#toggle-switch"><span class="header-section-number">15.1</span> Toggle Switch</a></li>
+  <li><a href="#relay" id="toc-relay" class="nav-link" data-scroll-target="#relay"><span class="header-section-number">15.2</span> Relay</a></li>
+  <li><a href="#transistor-n-channel-mosfet" id="toc-transistor-n-channel-mosfet" class="nav-link" data-scroll-target="#transistor-n-channel-mosfet"><span class="header-section-number">15.3</span> Transistor, N-channel MOSFET</a></li>
   </ul>
 </nav>
     </div>
@@ -433,9 +478,9 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/basic-electronics-concepts.html"><strong>Electronics</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/relay.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Relay</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/basic-electronics-concepts.html"><strong>Electronics</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/relay.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Switches, Relays, Transistors</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Relay</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Switches, Relays, Transistors</span></h1>
 </div>
 
 
@@ -458,48 +503,97 @@ echo: false
 jupyter: python3
 section-divs: false
 --- -->
-<section id="relay" class="level1" data-number="17">
-<h1 data-number="17"><span class="header-section-number">17</span> Relay</h1>
-<p><img src="https://www.circuitbasics.com/wp-content/uploads/2020/07/image-25.png" class="img-fluid"></p>
-<p>A relay is an electromagnetic switch that opens and closes circuits electromechanically or electronically. A relatively small electric current that can turn on or off a much larger electric current operates a relay. Relays work like some electrical products since they receive an electrical signal and send the signal to other equipment by turning the switch on and off. Even if the relay contact is normally closed or normally open, they are not energized. Its state will change only if you apply an electrical current to the contacts.</p>
-<table class="table">
-<colgroup>
-<col style="width: 12%">
-<col style="width: 87%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>pin name</th>
-<th>function</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Normally Closed (NC)</td>
-<td>Connect to this terminal if you want your device to be off when the relay is powered and normally on when the relay is not powered.</td>
-</tr>
-<tr class="even">
-<td>Common</td>
-<td>Common terminal to connect the load.</td>
-</tr>
-<tr class="odd">
-<td>Normally Open (NO)</td>
-<td>Connect your device (e.g., LED or any load) to this terminal if you want the device to be off when the relay is not powered, and on when the relay is powered.</td>
-</tr>
-<tr class="even">
-<td>Ground</td>
-<td>Connect with ground pin.</td>
-</tr>
-<tr class="odd">
-<td>Vcc pin</td>
-<td>Connects to 5V pin</td>
-</tr>
-<tr class="even">
-<td>Signal pin</td>
-<td>Control pin for relay</td>
-</tr>
-</tbody>
-</table>
+<section id="toggle-switch" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="toggle-switch"><span class="header-section-number">15.1</span> Toggle Switch</h2>
+<p>No code is needed here, we use the ESP32 just as a power source.</p>
+<details>
+<summary>
+see diagram
+</summary>
+<img src="../archive/figures/diagrams/toggle-switchbutton-esp32_bb.png" class="img-fluid">
+</details>
+<details>
+<summary>
+see wiring scheme
+</summary>
+<img src="../archive/figures/diagrams/toggle-switchbutton-esp32_schem.png" class="img-fluid">
+</details>
+</section>
+<section id="relay" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="relay"><span class="header-section-number">15.2</span> Relay</h2>
+<p><img src="../archive/figures/relay-module.jpg" class="img-fluid"></p>
+<p>A relay is an electromagnetic switch that opens and closes circuits electromechanically or electronically. A relatively small electric current that can turn on or off a much larger electric current operates a relay.</p>
+<p>The right side in the image above has a set of four pins and a set of three pins. The top set consists of:</p>
+<ul>
+<li><code>VCC</code> should be connected to the ESP32 VCC (5 volts)</li>
+<li><code>GND</code> connects to the ESP32 GND.</li>
+<li><code>IN1</code> and <code>IN2</code> are input pins, used to control the bottom and top relays, respectively, and should be connected to a GPIO pin in the ESP32.</li>
+</ul>
+<p>The terminals on the left are connected to the <code>load</code>, the equipment that consumes power. The signal you send to the IN pins determines whether the relay is active or not. The relay is triggered when the input goes below about 2V. This means that you’ll have the following scenarios:</p>
+<ul>
+<li><strong>Normally Closed (NC) configuration</strong>:
+<ul>
+<li>HIGH signal – current is flowing</li>
+<li>LOW signal – current is not flowing</li>
+</ul></li>
+<li><strong>Normally Open (NO) configuration</strong>:
+<ul>
+<li>HIGH signal – current is not flowing</li>
+<li>LOW signal – current is flowing</li>
+</ul></li>
+</ul>
+<p>Whether you use the NC or NO configuration, you should always connect one of them to the <code>COM</code> (common) terminal.</p>
+<p>You should use a normally closed configuration when the current should be flowing most of the time, and you only want to stop it occasionally.</p>
+<p>Use a normally open configuration when you want the current to flow occasionally (for example, to turn on a lamp occasionally).</p>
+<p><img src="../archive/figures/Relay-2-ch-channel-module-input-pins-pinout.jpeg" class="img-fluid"></p>
+<p>The other set of three pins (on the left in the figure above) are GND, VCC, and JD-VCC. The JD-VCC pin powers the electromagnet of the relay. Notice that the module has a jumper cap connecting the VCC and JD-VCC pins; the one shown here is yellow, but yours may be a different color.</p>
+<p>With the jumper cap on, the VCC and JD-VCC pins are connected. That means the relay electromagnet is directly powered from the ESP32 power pin, so the relay module and the ESP32 circuits are not physically isolated from each other.</p>
+<p>Without the jumper cap, you need to provide an independent power source to power up the relay’s electromagnet through the JD-VCC pin. That configuration physically isolates the relays from the ESP32 with the module’s built-in optocoupler, which prevents damage to the ESP32 in case of electrical spikes.</p>
+<p>Let’s make an LED blink, but now using a relay. The code below is the same you used to make the LED blink, when it got its energy from pin <code>A4</code>. This time, we will use <code>A4</code> to signal the relay to open or close the circuit.</p>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#digital-writeino" aria-expanded="false" aria-controls="digital-writeino">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/digital-write.ino" download="" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="digital-writeino">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1"></a><span class="dt">int</span> LED_pin <span class="op">=</span> A4<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">// the setup function runs once when you press reset or power the board</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="co">// initialize digital pin LED_pin as an output.</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>  pinMode<span class="op">(</span>LED_pin<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="op">}</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co">// the loop function runs over and over again forever</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>  digitalWrite<span class="op">(</span>LED_pin<span class="op">,</span> HIGH<span class="op">);</span>   <span class="co">// turn the LED on (HIGH is the voltage level)</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>  delay<span class="op">(</span><span class="dv">3000</span><span class="op">);</span>                       <span class="co">// wait for a second</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>  digitalWrite<span class="op">(</span>LED_pin<span class="op">,</span> LOW<span class="op">);</span>    <span class="co">// turn the LED off by making the voltage LOW</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span>                       <span class="co">// wait for a second</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
+<details>
+<summary>
+see diagram
+</summary>
+<img src="../archive/figures/diagrams/relay-led-esp32_bb.png" class="img-fluid">
+</details>
+<details>
+<summary>
+see wiring scheme
+</summary>
+<img src="../archive/figures/diagrams/relay-led-esp32_schem.png" class="img-fluid">
+</details>
+</section>
+<section id="transistor-n-channel-mosfet" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="transistor-n-channel-mosfet"><span class="header-section-number">15.3</span> Transistor, N-channel MOSFET</h2>
 <hr>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -925,13 +1019,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tutorials/soldering-and-wires.html" class="pagination-link" aria-label="Soldering and Wires">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Soldering and Wires</span></span>
+      <a href="../tutorials/electronics-class-2.html" class="pagination-link" aria-label="Electronics Class 2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Electronics Class 2</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tutorials/intro-to-sensor-modules-and-thingspeak.html" class="pagination-link" aria-label="Intro to Sensor Modules and Thingspeak">
-        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Intro to Sensor Modules and Thingspeak</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tutorials/soldering-and-wires.html" class="pagination-link" aria-label="Soldering and Wires">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Soldering and Wires</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

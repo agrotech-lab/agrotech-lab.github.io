@@ -220,5 +220,8 @@
   },
   "tutorials/electronics-class-old.qmd": {
     "electronics-class-old.html": "d094ba0c"
+  },
+  "tutorials/electronics-class-2.qmd": {
+    "electronics-class-2.html": "721c70be"
   }
 }
