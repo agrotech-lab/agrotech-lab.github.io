@@ -1,0 +1,161 @@
+---
+title: "Control"
+echo: false
+jupyter: python3
+execute:
+  freeze: auto  # re-render only when source changes
+---
+
+{{< include ../_insert_ino_code.qmd >}}
+
+### Not-so-good LED dimmer
+
+As we saw last time, we can use a potentiometer to control the brightness of an LED or another output device. Add this potentiometer in series in the circuit you have just built, turn the knob and see what happens.
+
+<details>
+<summary>see diagram</summary>
+![](/archive/figures/diagrams/led-resistor-potentiometer-esp32_schem.png)
+</details>
+
+<details>
+<summary>see wiring scheme</summary>
+![](/archive/figures/diagrams/led-resistor-potentiometer-esp32_bb.png)
+</details>
+
+
+## PWM with ESP32
+
+Pulse-width modulation (PWM) is a method of controlling the average power delivered by an electrical signal. The average value of voltage (and current) fed to the load is controlled by switching the supply between 0 and 100% at a rate faster than it takes the load to change significantly. **PWM is a technique for getting analog results with digital means.** Digital control is used to create a square wave, a signal switched between on and off. This on-off pattern can simulate voltages in between the full Vcc of the board and off by changing the portion of time the signal spends on versus the time that the signal spends off. PWM is used in many applications such as controlling motor speed, heat output of heaters and variable speed fan controllers.
+
+![](https://cdn.sparkfun.com/assets/f/9/c/8/a/512e869bce395fbc64000002.JPG)
+
+Use the following code to activate LED pin with PWM.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("PWM-basic.ino")
+```
+
+
+## Relay
+
+
+![](/archive/figures/relay-module.jpg)
+
+A relay is an electromagnetic switch that opens and closes circuits electromechanically or electronically. A relatively small electric current that can turn on or off a much larger electric current operates a relay.
+
+The right side in the image above has a set of four pins and a set of three pins. The top set consists of:
+
+* `VCC` should be connected to the ESP32 VCC (5 volts)
+* `GND` connects to the ESP32 GND.
+* `IN1` and `IN2` are input pins, used to control the bottom and top relays, respectively, and should be connected to a GPIO pin in the ESP32. 
+
+The terminals on the left are connected to the `load`, the equipment that consumes power.
+The signal you send to the IN pins determines whether the relay is active or not. The relay is triggered when the input goes below about 2V. This means that you’ll have the following scenarios:
+
+- **Normally Closed (NC) configuration**:
+  - HIGH signal – current is flowing
+  - LOW signal – current is not flowing
+
+- **Normally Open (NO) configuration**:
+  - HIGH signal – current is not flowing
+  - LOW signal – current is flowing
+
+Whether you use the NC or NO configuration, you should always connect one of them to the `COM` (common) terminal.
+
+You should use a normally closed configuration when the current should be flowing most of the time, and you only want to stop it occasionally.
+
+Use a normally open configuration when you want the current to flow occasionally (for example, to turn on a lamp occasionally).
+
+![](/archive/figures/Relay-2-ch-channel-module-input-pins-pinout.jpeg)
+
+The other set of three pins (on the left in the figure above) are GND, VCC, and JD-VCC. The JD-VCC pin powers the electromagnet of the relay. Notice that the module has a jumper cap connecting the VCC and JD-VCC pins; the one shown here is yellow, but yours may be a different color.
+
+With the jumper cap on, the VCC and JD-VCC pins are connected. That means the relay electromagnet is directly powered from the ESP32 power pin, so the relay module and the ESP32 circuits are not physically isolated from each other.
+
+Without the jumper cap, you need to provide an independent power source to power up the relay’s electromagnet through the JD-VCC pin. That configuration physically isolates the relays from the ESP32 with the module’s built-in optocoupler, which prevents damage to the ESP32 in case of electrical spikes.
+
+![](/archive/figures/relay-esp32-wiring.png)
+
+The figure above shows in a very simple way that the relay behaves like a switch with respect to the top circuit.
+
+<div class="alert alert-danger">
+You should **NOT** build the above circuit, since it is a high voltage circuit (220 V). In class we will use 5, 12 or 24 volts.</div>
+
+Let's make an LED blink, but now using a relay. The code below is the same you used to make the LED blink, when it got its energy from pin `A4`. This time, we will use `A4` to signal the relay to open or close the circuit.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("digital-write.ino")
+```
+
+<details>
+<summary>see diagram</summary>
+![](/archive/figures/diagrams/relay-led-esp32_schem.png)
+</details>
+
+<details>
+<summary>see wiring scheme</summary>
+![](/archive/figures/diagrams/relay-led-esp32_bb.png)
+</details>
+
+## SHT31 Sensor
+
+The SHT31 is a high-precision temperature and humidity sensor that can be used in a wide range of applications. It measures temperature and humidity using a capacitive humidity sensor and a band-gap temperature sensor. It has a wide measurement range of -40°C to 125°C for temperature and 0-100% for relative humidity. The SHT31 is a digital sensor, which means it communicates with the microcontroller over a digital interface. See more details on the [Adafruit's github page for the SHT31](https://github.com/adafruit/Adafruit_SHT31
+) and full specs on the [SHT31 datasheet](https://www.mouser.com/datasheet/2/682/Sensirion_Humidity_Sensors_SHT3x_Datasheet_digital-971521.pdf).
+
+
+### Libraries
+
+To use the SHT31 sensor with an ESP32 microcontroller, we will need to use the Adafruit_SHT31 library. This library is specifically designed to work with the SHT31 sensor and makes it easy to read temperature and humidity values from the sensor.
+
+To install the library, follow these steps:
+
+1. Open the Arduino IDE
+2. Go to **Sketch > Include Library > Manage Libraries**
+3. Search for "Adafruit_SHT31" and click the **Install** button
+4. Wait for the library to install
+
+### Wiring
+
+To connect the SHT31 sensor to the ESP32 microcontroller, we will need to use four wires: VCC, GND, SDA, and SCL. Here is a table that shows how to connect the wires:
+
+| SHT31 Pin | ESP32 Pin |
+|-----------|-----------|
+| VCC       | 3V3       |
+| GND       | GND       |
+| SDA       | GPIO21    |
+| SCL       | GPIO22    |
+
+**Note:** The ESP32's 3V3 pin provides 3.3 volts of power, which is the correct voltage for the SHT31 sensor. Do not use the 5V pin, as it will damage the sensor.
+
+### Code
+
+Here is the code for reading temperature and humidity values from the SHT31 sensor.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("sht31.ino")
+```
+
+
+## Challenges
+
+### High temperature  activates fan
+
+You will receive a low-voltage fan. Build a control system that turns the fan on if temperature goes above a given threshold, e.g. 30 °C.
+
+### Traffic lights
+
+Using red, orange and green LEDs, build a traffic light system that responds to temperature:
+
+* red turns on if $T>30$ °C
+* orange turns on if $27<T<30$ °C
+* green turns on if $T<27$ °C
+
+### Bonus
+
+Build an PMW-based control system where the duty cycle tempends on temperature.

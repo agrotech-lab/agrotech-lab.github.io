@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>agrotech lab - 11&nbsp; RGB LED</title>
+<title>agrotech lab - 14&nbsp; Control</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tutorials/basic-electronics-concepts.html" rel="next">
-<link href="../tutorials/SHT31.html" rel="prev">
+<link href="../tutorials/electronics-class-2.html" rel="next">
+<link href="../tutorials/electronics-class.html" rel="prev">
 <link href="..//archive/images/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -108,6 +108,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../custom.scss">
 </head>
@@ -121,7 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/first-programs.html"><strong>Running simple programs</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/RGB.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">RGB LED</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/basic-electronics-concepts.html"><strong>Electronics</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/control.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Control</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -248,7 +277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/RGB.html" class="sidebar-item-text sidebar-link active">
+  <a href="../tutorials/RGB.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">RGB LED</span></span></a>
   </div>
 </li>
@@ -277,7 +306,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/control.html" class="sidebar-item-text sidebar-link">
+  <a href="../tutorials/control.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Control</span></span></a>
   </div>
 </li>
@@ -470,15 +499,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#not-so-good-led-dimmer" id="toc-not-so-good-led-dimmer" class="nav-link active" data-scroll-target="#not-so-good-led-dimmer"><span class="header-section-number">14.0.1</span> Not-so-good LED dimmer</a></li>
+  <li><a href="#pwm-with-esp32" id="toc-pwm-with-esp32" class="nav-link" data-scroll-target="#pwm-with-esp32"><span class="header-section-number">14.1</span> PWM with ESP32</a></li>
+  <li><a href="#relay" id="toc-relay" class="nav-link" data-scroll-target="#relay"><span class="header-section-number">14.2</span> Relay</a></li>
+  <li><a href="#sht31-sensor" id="toc-sht31-sensor" class="nav-link" data-scroll-target="#sht31-sensor"><span class="header-section-number">14.3</span> SHT31 Sensor</a>
+  <ul class="collapse">
+  <li><a href="#libraries" id="toc-libraries" class="nav-link" data-scroll-target="#libraries"><span class="header-section-number">14.3.1</span> Libraries</a></li>
+  <li><a href="#wiring" id="toc-wiring" class="nav-link" data-scroll-target="#wiring"><span class="header-section-number">14.3.2</span> Wiring</a></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code"><span class="header-section-number">14.3.3</span> Code</a></li>
+  </ul></li>
+  <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges"><span class="header-section-number">14.4</span> Challenges</a>
+  <ul class="collapse">
+  <li><a href="#high-temperature-activates-fan" id="toc-high-temperature-activates-fan" class="nav-link" data-scroll-target="#high-temperature-activates-fan"><span class="header-section-number">14.4.1</span> High temperature activates fan</a></li>
+  <li><a href="#traffic-lights" id="toc-traffic-lights" class="nav-link" data-scroll-target="#traffic-lights"><span class="header-section-number">14.4.2</span> Traffic lights</a></li>
+  <li><a href="#bonus" id="toc-bonus" class="nav-link" data-scroll-target="#bonus"><span class="header-section-number">14.4.3</span> Bonus</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/first-programs.html"><strong>Running simple programs</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/RGB.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">RGB LED</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/basic-electronics-concepts.html"><strong>Electronics</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/control.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Control</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">RGB LED</span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Control</span></h1>
 </div>
 
 
@@ -501,88 +550,284 @@ echo: false
 jupyter: python3
 section-divs: false
 --- -->
-<p>The ESP32 board we are using has an built in RGB LED on pin <code>D8</code>. The following code is an example of how to use it. Please note that it requires the installation of the <code>"Freenove_WS2812_Lib_for_ESP32.h"</code> library. It can be found in the Arduino IDE library manager or downloaded from <a href="https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32">the github repository</a>. If you are not sure how to install a library follow our <a href="../tutorials/libraries.html">guide</a>.</p>
-<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#rgbino" aria-expanded="false" aria-controls="rgbino">
+<section id="not-so-good-led-dimmer" class="level3" data-number="14.0.1">
+<h3 data-number="14.0.1" class="anchored" data-anchor-id="not-so-good-led-dimmer"><span class="header-section-number">14.0.1</span> Not-so-good LED dimmer</h3>
+<p>As we saw last time, we can use a potentiometer to control the brightness of an LED or another output device. Add this potentiometer in series in the circuit you have just built, turn the knob and see what happens.</p>
+<details>
+<summary>
+see diagram
+</summary>
+<img src="../archive/figures/diagrams/led-resistor-potentiometer-esp32_schem.png" class="img-fluid">
+</details>
+<details>
+<summary>
+see wiring scheme
+</summary>
+<img src="../archive/figures/diagrams/led-resistor-potentiometer-esp32_bb.png" class="img-fluid">
+</details>
+</section>
+<section id="pwm-with-esp32" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="pwm-with-esp32"><span class="header-section-number">14.1</span> PWM with ESP32</h2>
+<p>Pulse-width modulation (PWM) is a method of controlling the average power delivered by an electrical signal. The average value of voltage (and current) fed to the load is controlled by switching the supply between 0 and 100% at a rate faster than it takes the load to change significantly. <strong>PWM is a technique for getting analog results with digital means.</strong> Digital control is used to create a square wave, a signal switched between on and off. This on-off pattern can simulate voltages in between the full Vcc of the board and off by changing the portion of time the signal spends on versus the time that the signal spends off. PWM is used in many applications such as controlling motor speed, heat output of heaters and variable speed fan controllers.</p>
+<p><img src="https://cdn.sparkfun.com/assets/f/9/c/8/a/512e869bce395fbc64000002.JPG" class="img-fluid"></p>
+<p>Use the following code to activate LED pin with PWM.</p>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#PWM-basicino" aria-expanded="false" aria-controls="PWM-basicino">
     <i class="bi bi-toggles"></i> Toggle code
     </button>
-     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/rgb.ino" download="" target="_blank" rel="noopener noreferrer">
+     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/PWM-basic.ino" download="" target="_blank" rel="noopener noreferrer">
         <i class="bi bi-download"></i> Download code
     </a>
 
-            <div class="collapse" id="rgbino">
+            <div class="collapse" id="PWM-basicino">
             <div class="card card-body border-0">
         
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">// Include the library for controlling WS2812 LEDs using ESP32</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="co">// https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="pp">#include </span><span class="im">"Freenove_WS2812_Lib_for_ESP32.h"</span><span class="pp"> </span></span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co">// Define the number of LEDs and the pin they are connected to</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="pp">#define LEDS_COUNT </span><span class="dv">1</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="pp">#define LEDS_PIN D8</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="pp">#define CHANNEL </span><span class="dv">0</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co">// Create an instance of the WS2812 LED strip with the specified number of LEDs, pin number, and color type</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a>Freenove_ESP32_WS2812 strip <span class="op">=</span> Freenove_ESP32_WS2812<span class="op">(</span>LEDS_COUNT<span class="op">,</span> LEDS_PIN<span class="op">,</span> CHANNEL<span class="op">,</span> TYPE_GRB<span class="op">);</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="co">// Define an array of colors to cycle through</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="co">// u8 = unsigned 8-bit integer (a byte), capable of holding numbers from 0 t0 255</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="co">//                  R    G    B</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a>u8 m_color<span class="op">[][</span><span class="dv">3</span><span class="op">]</span> <span class="op">=</span> <span class="op">{{</span><span class="dv">255</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span>   <span class="dv">0</span>  <span class="op">},</span>        <span class="co">// red</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a>                   <span class="op">{</span><span class="dv">0</span><span class="op">,</span>   <span class="dv">255</span><span class="op">,</span> <span class="dv">0</span>  <span class="op">},</span>        <span class="co">// green</span></span>
-<span id="cb1-18"><a href="#cb1-18"></a>                   <span class="op">{</span><span class="dv">0</span><span class="op">,</span>   <span class="dv">0</span><span class="op">,</span>   <span class="dv">255</span><span class="op">},</span>        <span class="co">// blue</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a>                   <span class="op">{</span><span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">},</span>        <span class="co">// white</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a>                   <span class="op">{</span><span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">0</span>  <span class="op">},</span>        <span class="co">// yellow</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a>                   <span class="op">{</span><span class="dv">255</span><span class="op">,</span> <span class="dv">0</span>  <span class="op">,</span> <span class="dv">255</span><span class="op">},</span>        <span class="co">// magenta</span></span>
-<span id="cb1-22"><a href="#cb1-22"></a>                   <span class="op">{</span><span class="dv">0</span><span class="op">,</span>   <span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">},</span>        <span class="co">// cyan</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a>                   <span class="op">{</span><span class="dv">0</span><span class="op">,</span>   <span class="dv">0</span><span class="op">,</span>   <span class="dv">0</span><span class="op">}</span>           <span class="co">// black</span></span>
-<span id="cb1-24"><a href="#cb1-24"></a>                  <span class="op">};</span></span>
-<span id="cb1-25"><a href="#cb1-25"></a><span class="co">// number of colors = total bytes in m_color divided by bytes in m_color[0</span></span>
-<span id="cb1-26"><a href="#cb1-26"></a><span class="dt">int</span> N_colors <span class="op">=</span> <span class="kw">sizeof</span><span class="op">(</span>m_color<span class="op">)</span> <span class="op">/</span> <span class="kw">sizeof</span><span class="op">(</span>m_color<span class="op">[</span><span class="dv">0</span><span class="op">]);</span></span>
-<span id="cb1-27"><a href="#cb1-27"></a><span class="co">// Setup function - runs once when the microcontroller starts up</span></span>
-<span id="cb1-28"><a href="#cb1-28"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-29"><a href="#cb1-29"></a>  <span class="co">// Initialize the LED strip</span></span>
-<span id="cb1-30"><a href="#cb1-30"></a>  strip<span class="op">.</span>begin<span class="op">();</span></span>
-<span id="cb1-31"><a href="#cb1-31"></a>  <span class="co">// Set the brightness of the LEDs to 50%</span></span>
-<span id="cb1-32"><a href="#cb1-32"></a>  strip<span class="op">.</span>setBrightness<span class="op">(</span><span class="dv">50</span><span class="op">);</span></span>
-<span id="cb1-33"><a href="#cb1-33"></a><span class="op">}</span></span>
-<span id="cb1-34"><a href="#cb1-34"></a></span>
-<span id="cb1-35"><a href="#cb1-35"></a><span class="co">// Loop function - runs repeatedly while the microcontroller is powered on</span></span>
-<span id="cb1-36"><a href="#cb1-36"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-37"><a href="#cb1-37"></a>  <span class="co">// 1.</span></span>
-<span id="cb1-38"><a href="#cb1-38"></a>  <span class="co">// Cycle through the array of colors defined before</span></span>
-<span id="cb1-39"><a href="#cb1-39"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> N_colors<span class="op">;</span> j<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb1-40"><a href="#cb1-40"></a>    <span class="co">// Set LED to the current color and display the result</span></span>
-<span id="cb1-41"><a href="#cb1-41"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> LEDS_COUNT<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb1-42"><a href="#cb1-42"></a>      strip<span class="op">.</span>setLedColorData<span class="op">(</span>i<span class="op">,</span> m_color<span class="op">[</span>j<span class="op">][</span><span class="dv">0</span><span class="op">],</span></span>
-<span id="cb1-43"><a href="#cb1-43"></a>                               m_color<span class="op">[</span>j<span class="op">][</span><span class="dv">1</span><span class="op">],</span></span>
-<span id="cb1-44"><a href="#cb1-44"></a>                               m_color<span class="op">[</span>j<span class="op">][</span><span class="dv">2</span><span class="op">]</span></span>
-<span id="cb1-45"><a href="#cb1-45"></a>                           <span class="op">);</span></span>
-<span id="cb1-46"><a href="#cb1-46"></a>      strip<span class="op">.</span>show<span class="op">();</span></span>
-<span id="cb1-47"><a href="#cb1-47"></a>      delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span> <span class="co">// milliseconds</span></span>
-<span id="cb1-48"><a href="#cb1-48"></a>    <span class="op">}</span></span>
-<span id="cb1-49"><a href="#cb1-49"></a>  <span class="op">}</span></span>
-<span id="cb1-50"><a href="#cb1-50"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span>  <span class="co">// milliseconds</span></span>
-<span id="cb1-51"><a href="#cb1-51"></a>  <span class="co">// 2.</span></span>
-<span id="cb1-52"><a href="#cb1-52"></a>  <span class="co">// Cycle through a range of colors using the Wheel function</span></span>
-<span id="cb1-53"><a href="#cb1-53"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> <span class="dv">255</span><span class="op">;</span> j<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb1-54"><a href="#cb1-54"></a>    strip<span class="op">.</span>setLedColorData<span class="op">(</span><span class="dv">0</span><span class="op">,</span> strip<span class="op">.</span>Wheel<span class="op">(</span>j<span class="op">));</span></span>
-<span id="cb1-55"><a href="#cb1-55"></a>    strip<span class="op">.</span>show<span class="op">();</span></span>
-<span id="cb1-56"><a href="#cb1-56"></a>    delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
-<span id="cb1-57"><a href="#cb1-57"></a>  <span class="op">}</span></span>
-<span id="cb1-58"><a href="#cb1-58"></a>  <span class="co">// 3.</span></span>
-<span id="cb1-59"><a href="#cb1-59"></a>  <span class="co">// make LED black and wait 1 second before starting all over</span></span>
-<span id="cb1-60"><a href="#cb1-60"></a>  <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> <span class="dv">255</span><span class="op">;</span> j<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb1-61"><a href="#cb1-61"></a>    strip<span class="op">.</span>setLedColorData<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
-<span id="cb1-62"><a href="#cb1-62"></a>    strip<span class="op">.</span>show<span class="op">();</span></span>
-<span id="cb1-63"><a href="#cb1-63"></a>  <span class="op">}</span></span>
-<span id="cb1-64"><a href="#cb1-64"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span>  <span class="co">// milliseconds</span></span>
-<span id="cb1-65"><a href="#cb1-65"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">// the number of the LED pin</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="dt">const</span> <span class="dt">int</span> ledPin <span class="op">=</span> D9<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">// setting PWM properties</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="dt">const</span> <span class="dt">int</span> freq <span class="op">=</span> <span class="dv">5000</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="dt">const</span> <span class="dt">int</span> ledChannel <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="dt">const</span> <span class="dt">int</span> resolution <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a> </span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="dt">void</span> setup<span class="op">(){</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>  <span class="co">// configure LED PWM functionalitites</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>  ledcSetup<span class="op">(</span>ledChannel<span class="op">,</span> freq<span class="op">,</span> resolution<span class="op">);</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>  </span>
+<span id="cb1-13"><a href="#cb1-13"></a>  <span class="co">// attach the channel to the GPIO to be controlled</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>  ledcAttachPin<span class="op">(</span>ledPin<span class="op">,</span> ledChannel<span class="op">);</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="op">}</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a> </span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="dt">void</span> loop<span class="op">(){</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a>  <span class="co">// increase the LED brightness</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a>  <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> dutyCycle <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> dutyCycle <span class="op">&lt;=</span> <span class="dv">255</span><span class="op">;</span> dutyCycle<span class="op">++){</span>   </span>
+<span id="cb1-20"><a href="#cb1-20"></a>    <span class="co">// changing the LED brightness with PWM</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a>    ledcWrite<span class="op">(</span>ledChannel<span class="op">,</span> dutyCycle<span class="op">);</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a>    delay<span class="op">(</span><span class="dv">15</span><span class="op">);</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>  <span class="op">}</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a></span>
+<span id="cb1-25"><a href="#cb1-25"></a>  <span class="co">// decrease the LED brightness</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>  <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> dutyCycle <span class="op">=</span> <span class="dv">255</span><span class="op">;</span> dutyCycle <span class="op">&gt;=</span> <span class="dv">0</span><span class="op">;</span> dutyCycle<span class="op">--){</span></span>
+<span id="cb1-27"><a href="#cb1-27"></a>    <span class="co">// changing the LED brightness with PWM</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a>    ledcWrite<span class="op">(</span>ledChannel<span class="op">,</span> dutyCycle<span class="op">);</span>   </span>
+<span id="cb1-29"><a href="#cb1-29"></a>    delay<span class="op">(</span><span class="dv">15</span><span class="op">);</span></span>
+<span id="cb1-30"><a href="#cb1-30"></a>  <span class="op">}</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
             </div>
             </div>
             
+</section>
+<section id="relay" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="relay"><span class="header-section-number">14.2</span> Relay</h2>
+<p><img src="../archive/figures/relay-module.jpg" class="img-fluid"></p>
+<p>A relay is an electromagnetic switch that opens and closes circuits electromechanically or electronically. A relatively small electric current that can turn on or off a much larger electric current operates a relay.</p>
+<p>The right side in the image above has a set of four pins and a set of three pins. The top set consists of:</p>
+<ul>
+<li><code>VCC</code> should be connected to the ESP32 VCC (5 volts)</li>
+<li><code>GND</code> connects to the ESP32 GND.</li>
+<li><code>IN1</code> and <code>IN2</code> are input pins, used to control the bottom and top relays, respectively, and should be connected to a GPIO pin in the ESP32.</li>
+</ul>
+<p>The terminals on the left are connected to the <code>load</code>, the equipment that consumes power. The signal you send to the IN pins determines whether the relay is active or not. The relay is triggered when the input goes below about 2V. This means that you’ll have the following scenarios:</p>
+<ul>
+<li><strong>Normally Closed (NC) configuration</strong>:
+<ul>
+<li>HIGH signal – current is flowing</li>
+<li>LOW signal – current is not flowing</li>
+</ul></li>
+<li><strong>Normally Open (NO) configuration</strong>:
+<ul>
+<li>HIGH signal – current is not flowing</li>
+<li>LOW signal – current is flowing</li>
+</ul></li>
+</ul>
+<p>Whether you use the NC or NO configuration, you should always connect one of them to the <code>COM</code> (common) terminal.</p>
+<p>You should use a normally closed configuration when the current should be flowing most of the time, and you only want to stop it occasionally.</p>
+<p>Use a normally open configuration when you want the current to flow occasionally (for example, to turn on a lamp occasionally).</p>
+<p><img src="../archive/figures/Relay-2-ch-channel-module-input-pins-pinout.jpeg" class="img-fluid"></p>
+<p>The other set of three pins (on the left in the figure above) are GND, VCC, and JD-VCC. The JD-VCC pin powers the electromagnet of the relay. Notice that the module has a jumper cap connecting the VCC and JD-VCC pins; the one shown here is yellow, but yours may be a different color.</p>
+<p>With the jumper cap on, the VCC and JD-VCC pins are connected. That means the relay electromagnet is directly powered from the ESP32 power pin, so the relay module and the ESP32 circuits are not physically isolated from each other.</p>
+<p>Without the jumper cap, you need to provide an independent power source to power up the relay’s electromagnet through the JD-VCC pin. That configuration physically isolates the relays from the ESP32 with the module’s built-in optocoupler, which prevents damage to the ESP32 in case of electrical spikes.</p>
+<p><img src="../archive/figures/relay-esp32-wiring.png" class="img-fluid"></p>
+<p>The figure above shows in a very simple way that the relay behaves like a switch with respect to the top circuit.</p>
+<div class="alert alert-danger">
+You should <strong>NOT</strong> build the above circuit, since it is a high voltage circuit (220 V). In class we will use 5, 12 or 24 volts.
+</div>
+<p>Let’s make an LED blink, but now using a relay. The code below is the same you used to make the LED blink, when it got its energy from pin <code>A4</code>. This time, we will use <code>A4</code> to signal the relay to open or close the circuit.</p>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#digital-writeino" aria-expanded="false" aria-controls="digital-writeino">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/digital-write.ino" download="" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="digital-writeino">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1"></a><span class="dt">int</span> LED_pin <span class="op">=</span> A4<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">// the setup function runs once when you press reset or power the board</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="co">// initialize digital pin LED_pin as an output.</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  pinMode<span class="op">(</span>LED_pin<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="op">}</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co">// the loop function runs over and over again forever</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>  digitalWrite<span class="op">(</span>LED_pin<span class="op">,</span> HIGH<span class="op">);</span>   <span class="co">// turn the LED on (HIGH is the voltage level)</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>  delay<span class="op">(</span><span class="dv">3000</span><span class="op">);</span>                       <span class="co">// wait for a second</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>  digitalWrite<span class="op">(</span>LED_pin<span class="op">,</span> LOW<span class="op">);</span>    <span class="co">// turn the LED off by making the voltage LOW</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span>                       <span class="co">// wait for a second</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
+<details>
+<summary>
+see diagram
+</summary>
+<img src="../archive/figures/diagrams/relay-led-esp32_schem.png" class="img-fluid">
+</details>
+<details>
+<summary>
+see wiring scheme
+</summary>
+<img src="../archive/figures/diagrams/relay-led-esp32_bb.png" class="img-fluid">
+</details>
+</section>
+<section id="sht31-sensor" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="sht31-sensor"><span class="header-section-number">14.3</span> SHT31 Sensor</h2>
+<p>The SHT31 is a high-precision temperature and humidity sensor that can be used in a wide range of applications. It measures temperature and humidity using a capacitive humidity sensor and a band-gap temperature sensor. It has a wide measurement range of -40°C to 125°C for temperature and 0-100% for relative humidity. The SHT31 is a digital sensor, which means it communicates with the microcontroller over a digital interface. See more details on the <a href="https://github.com/adafruit/Adafruit_SHT31">Adafruit’s github page for the SHT31</a> and full specs on the <a href="https://www.mouser.com/datasheet/2/682/Sensirion_Humidity_Sensors_SHT3x_Datasheet_digital-971521.pdf">SHT31 datasheet</a>.</p>
+<section id="libraries" class="level3" data-number="14.3.1">
+<h3 data-number="14.3.1" class="anchored" data-anchor-id="libraries"><span class="header-section-number">14.3.1</span> Libraries</h3>
+<p>To use the SHT31 sensor with an ESP32 microcontroller, we will need to use the Adafruit_SHT31 library. This library is specifically designed to work with the SHT31 sensor and makes it easy to read temperature and humidity values from the sensor.</p>
+<p>To install the library, follow these steps:</p>
+<ol type="1">
+<li>Open the Arduino IDE</li>
+<li>Go to <strong>Sketch &gt; Include Library &gt; Manage Libraries</strong></li>
+<li>Search for “Adafruit_SHT31” and click the <strong>Install</strong> button</li>
+<li>Wait for the library to install</li>
+</ol>
+</section>
+<section id="wiring" class="level3" data-number="14.3.2">
+<h3 data-number="14.3.2" class="anchored" data-anchor-id="wiring"><span class="header-section-number">14.3.2</span> Wiring</h3>
+<p>To connect the SHT31 sensor to the ESP32 microcontroller, we will need to use four wires: VCC, GND, SDA, and SCL. Here is a table that shows how to connect the wires:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>SHT31 Pin</th>
+<th>ESP32 Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>VCC</td>
+<td>3V3</td>
+</tr>
+<tr class="even">
+<td>GND</td>
+<td>GND</td>
+</tr>
+<tr class="odd">
+<td>SDA</td>
+<td>GPIO21</td>
+</tr>
+<tr class="even">
+<td>SCL</td>
+<td>GPIO22</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> The ESP32’s 3V3 pin provides 3.3 volts of power, which is the correct voltage for the SHT31 sensor. Do not use the 5V pin, as it will damage the sensor.</p>
+</section>
+<section id="code" class="level3" data-number="14.3.3">
+<h3 data-number="14.3.3" class="anchored" data-anchor-id="code"><span class="header-section-number">14.3.3</span> Code</h3>
+<p>Here is the code for reading temperature and humidity values from the SHT31 sensor.</p>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#sht31ino" aria-expanded="false" aria-controls="sht31ino">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/sht31.ino" download="" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="sht31ino">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">/*</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co"> * This program is a modification of</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co"> * http://www.esp32learning.com/code/esp32-and-sht31-sensor-example.php</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co"> */</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span><span class="pp">   </span><span class="co">// Include the Arduino library</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="pp">#include </span><span class="im">&lt;Wire.h&gt;</span><span class="pp">      </span><span class="co">// Include the Wire library for I2C communication</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="pp">#include </span><span class="im">"Adafruit_SHT31.h"</span><span class="pp"> </span><span class="co">// Include the SHT31 library from Adafruit</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a></span>
+<span id="cb3-9"><a href="#cb3-9"></a>Adafruit_SHT31 sht31 <span class="op">=</span> Adafruit_SHT31<span class="op">();</span> <span class="co">// Create an instance of the SHT31 object</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span>        <span class="co">// Initialize the serial communication with a baud rate of 112500</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>  <span class="cf">if</span> <span class="op">(!</span> sht31<span class="op">.</span>begin<span class="op">(</span><span class="bn">0x44</span><span class="op">))</span> <span class="op">{</span>   <span class="co">// Check if SHT31 is connected and start it with address 0x44</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a>    <span class="co">// Print an error message if SHT31 is not found</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Couldn't find SHT31"</span><span class="op">);</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a>    <span class="cf">while</span> <span class="op">(</span><span class="dv">1</span><span class="op">)</span> delay<span class="op">(</span><span class="dv">1</span><span class="op">);</span>  <span class="co">// Wait indefinitely</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a>  <span class="op">}</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="op">}</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a>  <span class="co">// Read temperature from SHT31 and assign it to "temperature"</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a>  <span class="dt">float</span> temperature <span class="op">=</span> sht31<span class="op">.</span>readTemperature<span class="op">();</span> </span>
+<span id="cb3-23"><a href="#cb3-23"></a>  <span class="co">// Read relative humidity from SHT31 and assign it to "humidity"</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a>  <span class="dt">float</span> humidity <span class="op">=</span> sht31<span class="op">.</span>readHumidity<span class="op">();</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a></span>
+<span id="cb3-26"><a href="#cb3-26"></a>  <span class="cf">if</span> <span class="op">(!</span> isnan<span class="op">(</span>temperature<span class="op">))</span> <span class="op">{</span>     <span class="co">// Check if t is not NaN (not a number)</span></span>
+<span id="cb3-27"><a href="#cb3-27"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"temp_deg_C:"</span><span class="op">);</span>  <span class="co">// Print temperature label</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a>    Serial<span class="op">.</span>print<span class="op">(</span>temperature<span class="op">);</span>    <span class="co">// Print temperature value</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span><span class="op">);</span>           <span class="co">// Write a tab space</span></span>
+<span id="cb3-30"><a href="#cb3-30"></a>  <span class="op">}</span> </span>
+<span id="cb3-31"><a href="#cb3-31"></a>  <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb3-32"><a href="#cb3-32"></a>    <span class="co">// Print an error message if temperature reading fails</span></span>
+<span id="cb3-33"><a href="#cb3-33"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Failed to read temperature"</span><span class="op">);</span></span>
+<span id="cb3-34"><a href="#cb3-34"></a>  <span class="op">}</span></span>
+<span id="cb3-35"><a href="#cb3-35"></a></span>
+<span id="cb3-36"><a href="#cb3-36"></a>  <span class="cf">if</span> <span class="op">(!</span> isnan<span class="op">(</span>humidity<span class="op">))</span> <span class="op">{</span>        <span class="co">// Check if h is not NaN (not a number)</span></span>
+<span id="cb3-37"><a href="#cb3-37"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"rel_hum_%:"</span><span class="op">);</span>   <span class="co">// Print humidity label</span></span>
+<span id="cb3-38"><a href="#cb3-38"></a>    Serial<span class="op">.</span>print<span class="op">(</span>humidity<span class="op">);</span>       <span class="co">// Print humidity value</span></span>
+<span id="cb3-39"><a href="#cb3-39"></a>  <span class="op">}</span> </span>
+<span id="cb3-40"><a href="#cb3-40"></a>  <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb3-41"><a href="#cb3-41"></a>    <span class="co">// Print an error message if humidity reading fails</span></span>
+<span id="cb3-42"><a href="#cb3-42"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Failed to read humidity"</span><span class="op">);</span></span>
+<span id="cb3-43"><a href="#cb3-43"></a>  <span class="op">}</span></span>
+<span id="cb3-44"><a href="#cb3-44"></a></span>
+<span id="cb3-45"><a href="#cb3-45"></a>  Serial<span class="op">.</span>println<span class="op">();</span>    <span class="co">// Break line</span></span>
+<span id="cb3-46"><a href="#cb3-46"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span>         <span class="co">// Wait 1 second</span></span>
+<span id="cb3-47"><a href="#cb3-47"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
+</section>
+</section>
+<section id="challenges" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="challenges"><span class="header-section-number">14.4</span> Challenges</h2>
+<section id="high-temperature-activates-fan" class="level3" data-number="14.4.1">
+<h3 data-number="14.4.1" class="anchored" data-anchor-id="high-temperature-activates-fan"><span class="header-section-number">14.4.1</span> High temperature activates fan</h3>
+<p>You will receive a low-voltage fan. Build a control system that turns the fan on if temperature goes above a given threshold, e.g.&nbsp;30 °C.</p>
+</section>
+<section id="traffic-lights" class="level3" data-number="14.4.2">
+<h3 data-number="14.4.2" class="anchored" data-anchor-id="traffic-lights"><span class="header-section-number">14.4.2</span> Traffic lights</h3>
+<p>Using red, orange and green LEDs, build a traffic light system that responds to temperature:</p>
+<ul>
+<li>red turns on if <span class="math inline">\(T&gt;30\)</span> °C</li>
+<li>orange turns on if <span class="math inline">\(27&lt;T&lt;30\)</span> °C</li>
+<li>green turns on if <span class="math inline">\(T&lt;27\)</span> °C</li>
+</ul>
+</section>
+<section id="bonus" class="level3" data-number="14.4.3">
+<h3 data-number="14.4.3" class="anchored" data-anchor-id="bonus"><span class="header-section-number">14.4.3</span> Bonus</h3>
+<p>Build an PMW-based control system where the duty cycle tempends on temperature.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -996,13 +1241,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tutorials/SHT31.html" class="pagination-link" aria-label="SHT31 temperature &amp; humidity sensor">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">SHT31 temperature &amp; humidity sensor</span></span>
+      <a href="../tutorials/electronics-class.html" class="pagination-link" aria-label="Electronics Class">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Electronics Class</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tutorials/basic-electronics-concepts.html" class="pagination-link" aria-label="Basic Electronics Concepts">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Basic Electronics Concepts</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tutorials/electronics-class-2.html" class="pagination-link" aria-label="Electronics Class 2">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Electronics Class 2</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

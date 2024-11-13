@@ -29,6 +29,7 @@ book:
       chapters:
       - tutorials/basic-electronics-concepts.qmd
       - tutorials/electronics-class.qmd
+      - tutorials/control.qmd
       - tutorials/electronics-class-2.qmd
       - tutorials/relay.qmd
       - tutorials/soldering-and-wires.qmd

@@ -198,7 +198,3 @@ Use a potentiometer to control the brightness of an LED or another output device
 ![](/archive/figures/diagrams/led-resistor-potentiometer-esp32_bb.png)
 </details>
 
-## Pulse Width Modulation (PWM)
-
-- **Goal**: Understand and use PWM to control the brightness of an LED.
-- **Instructions**: Implement a code example on the ESP32 to adjust LED brightness using PWM.
