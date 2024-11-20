@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>agrotech lab - 20&nbsp; Pulse sensors</title>
+<title>agrotech lab - 21&nbsp; Pulse sensors</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tutorials/digital-read-write.html" rel="next">
+<link href="../tutorials/MQTT.html" rel="next">
 <link href="../tutorials/intro-to-sensor-modules-and-thingspeak.html" rel="prev">
 <link href="..//archive/images/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/intro-to-sensor-modules-and-thingspeak.html"><strong>Sensors and comm</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/pulse-sensors.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Pulse sensors</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/digital-read-write.html"><strong>Sensors and comm</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/pulse-sensors.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Pulse sensors</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -318,20 +318,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../tutorials/digital-read-write.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Reading digital and analog</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../tutorials/intro-to-sensor-modules-and-thingspeak.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Intro to Sensor Modules and Thingspeak</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Intro to Sensor Modules and Thingspeak</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/pulse-sensors.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Pulse sensors</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/digital-read-write.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Digital read and write</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Pulse sensors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -474,10 +474,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#square-wave" id="toc-square-wave" class="nav-link active" data-scroll-target="#square-wave"><span class="header-section-number">20.1</span> Square wave</a>
+  <li><a href="#square-wave" id="toc-square-wave" class="nav-link active" data-scroll-target="#square-wave"><span class="header-section-number">21.1</span> Square wave</a>
   <ul class="collapse">
-  <li><a href="#pulse-counter" id="toc-pulse-counter" class="nav-link" data-scroll-target="#pulse-counter"><span class="header-section-number">20.1.1</span> Pulse counter</a></li>
-  <li><a href="#calculate-frequency-from-counts" id="toc-calculate-frequency-from-counts" class="nav-link" data-scroll-target="#calculate-frequency-from-counts"><span class="header-section-number">20.1.2</span> Calculate frequency from counts</a></li>
+  <li><a href="#pulse-counter" id="toc-pulse-counter" class="nav-link" data-scroll-target="#pulse-counter"><span class="header-section-number">21.1.1</span> Pulse counter</a></li>
+  <li><a href="#calculate-frequency-from-counts" id="toc-calculate-frequency-from-counts" class="nav-link" data-scroll-target="#calculate-frequency-from-counts"><span class="header-section-number">21.1.2</span> Calculate frequency from counts</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -486,9 +486,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/intro-to-sensor-modules-and-thingspeak.html"><strong>Sensors and comm</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/pulse-sensors.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Pulse sensors</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/digital-read-write.html"><strong>Sensors and comm</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/pulse-sensors.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Pulse sensors</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Pulse sensors</span></h1>
+<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Pulse sensors</span></h1>
 </div>
 
 
@@ -511,11 +511,11 @@ echo: false
 jupyter: python3
 section-divs: false
 --- -->
-<section id="square-wave" class="level2" data-number="20.1">
-<h2 data-number="20.1" class="anchored" data-anchor-id="square-wave"><span class="header-section-number">20.1</span> Square wave</h2>
+<section id="square-wave" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="square-wave"><span class="header-section-number">21.1</span> Square wave</h2>
 <p><img src="https://i.stack.imgur.com/rTpKu.png" class="img-fluid"></p>
-<section id="pulse-counter" class="level3" data-number="20.1.1">
-<h3 data-number="20.1.1" class="anchored" data-anchor-id="pulse-counter"><span class="header-section-number">20.1.1</span> Pulse counter</h3>
+<section id="pulse-counter" class="level3" data-number="21.1.1">
+<h3 data-number="21.1.1" class="anchored" data-anchor-id="pulse-counter"><span class="header-section-number">21.1.1</span> Pulse counter</h3>
 <button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#pulse_counterino" aria-expanded="false" aria-controls="pulse_counterino">
     <i class="bi bi-toggles"></i> Toggle code
     </button>
@@ -551,8 +551,8 @@ section-divs: false
             </div>
             
 </section>
-<section id="calculate-frequency-from-counts" class="level3" data-number="20.1.2">
-<h3 data-number="20.1.2" class="anchored" data-anchor-id="calculate-frequency-from-counts"><span class="header-section-number">20.1.2</span> Calculate frequency from counts</h3>
+<section id="calculate-frequency-from-counts" class="level3" data-number="21.1.2">
+<h3 data-number="21.1.2" class="anchored" data-anchor-id="calculate-frequency-from-counts"><span class="header-section-number">21.1.2</span> Calculate frequency from counts</h3>
 <button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#pulse_frequencyino" aria-expanded="false" aria-controls="pulse_frequencyino">
     <i class="bi bi-toggles"></i> Toggle code
     </button>
@@ -1024,12 +1024,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../tutorials/intro-to-sensor-modules-and-thingspeak.html" class="pagination-link" aria-label="Intro to Sensor Modules and Thingspeak">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Intro to Sensor Modules and Thingspeak</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Intro to Sensor Modules and Thingspeak</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tutorials/digital-read-write.html" class="pagination-link" aria-label="Digital read and write">
-        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Digital read and write</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tutorials/MQTT.html" class="pagination-link" aria-label="MQTT">
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">MQTT</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

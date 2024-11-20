@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>agrotech lab - 19&nbsp; Intro to Sensor Modules and Thingspeak</title>
+<title>agrotech lab - 20&nbsp; Intro to Sensor Modules and Thingspeak</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../tutorials/pulse-sensors.html" rel="next">
-<link href="../tutorials/electronics-class-old.html" rel="prev">
+<link href="../tutorials/digital-read-write.html" rel="prev">
 <link href="..//archive/images/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/intro-to-sensor-modules-and-thingspeak.html"><strong>Sensors and comm</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/intro-to-sensor-modules-and-thingspeak.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Intro to Sensor Modules and Thingspeak</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/digital-read-write.html"><strong>Sensors and comm</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/intro-to-sensor-modules-and-thingspeak.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Intro to Sensor Modules and Thingspeak</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -318,20 +318,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../tutorials/digital-read-write.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Reading digital and analog</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../tutorials/intro-to-sensor-modules-and-thingspeak.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Intro to Sensor Modules and Thingspeak</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Intro to Sensor Modules and Thingspeak</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/pulse-sensors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Pulse sensors</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/digital-read-write.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Digital read and write</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Pulse sensors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -474,15 +474,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#ds18b20-temperature-sensor" id="toc-ds18b20-temperature-sensor" class="nav-link active" data-scroll-target="#ds18b20-temperature-sensor"><span class="header-section-number">19.1</span> DS18B20 Temperature Sensor</a></li>
-  <li><a href="#sht31-temperature-humidity-sensor-using-i2c-communication" id="toc-sht31-temperature-humidity-sensor-using-i2c-communication" class="nav-link" data-scroll-target="#sht31-temperature-humidity-sensor-using-i2c-communication"><span class="header-section-number">19.2</span> SHT31 Temperature &amp; Humidity Sensor Using I2C communication</a></li>
-  <li><a href="#vl53l0x-time-of-flight-distance-sensor-using-i2c-communication" id="toc-vl53l0x-time-of-flight-distance-sensor-using-i2c-communication" class="nav-link" data-scroll-target="#vl53l0x-time-of-flight-distance-sensor-using-i2c-communication"><span class="header-section-number">19.3</span> VL53L0X Time-of-Flight Distance Sensor Using I2C communication</a></li>
-  <li><a href="#serial-read-and-blink" id="toc-serial-read-and-blink" class="nav-link" data-scroll-target="#serial-read-and-blink"><span class="header-section-number">19.4</span> Serial read and blink</a></li>
-  <li><a href="#touch-sensor" id="toc-touch-sensor" class="nav-link" data-scroll-target="#touch-sensor"><span class="header-section-number">19.5</span> Touch sensor</a></li>
-  <li><a href="#control-led-with-touch-sensor" id="toc-control-led-with-touch-sensor" class="nav-link" data-scroll-target="#control-led-with-touch-sensor"><span class="header-section-number">19.6</span> Control LED with touch sensor</a></li>
-  <li><a href="#thingspeak" id="toc-thingspeak" class="nav-link" data-scroll-target="#thingspeak"><span class="header-section-number">19.7</span> Thingspeak</a></li>
-  <li><a href="#basic-code-for-uploading-data-to-thingspeak" id="toc-basic-code-for-uploading-data-to-thingspeak" class="nav-link" data-scroll-target="#basic-code-for-uploading-data-to-thingspeak"><span class="header-section-number">19.8</span> Basic Code for Uploading Data to Thingspeak</a></li>
-  <li><a href="#uploading-thermistor-data-to-thingspeak" id="toc-uploading-thermistor-data-to-thingspeak" class="nav-link" data-scroll-target="#uploading-thermistor-data-to-thingspeak"><span class="header-section-number">19.9</span> Uploading Thermistor Data to Thingspeak</a></li>
+  <li><a href="#ds18b20-temperature-sensor" id="toc-ds18b20-temperature-sensor" class="nav-link active" data-scroll-target="#ds18b20-temperature-sensor"><span class="header-section-number">20.1</span> DS18B20 Temperature Sensor</a></li>
+  <li><a href="#sht31-temperature-humidity-sensor-using-i2c-communication" id="toc-sht31-temperature-humidity-sensor-using-i2c-communication" class="nav-link" data-scroll-target="#sht31-temperature-humidity-sensor-using-i2c-communication"><span class="header-section-number">20.2</span> SHT31 Temperature &amp; Humidity Sensor Using I2C communication</a></li>
+  <li><a href="#vl53l0x-time-of-flight-distance-sensor-using-i2c-communication" id="toc-vl53l0x-time-of-flight-distance-sensor-using-i2c-communication" class="nav-link" data-scroll-target="#vl53l0x-time-of-flight-distance-sensor-using-i2c-communication"><span class="header-section-number">20.3</span> VL53L0X Time-of-Flight Distance Sensor Using I2C communication</a></li>
+  <li><a href="#serial-read-and-blink" id="toc-serial-read-and-blink" class="nav-link" data-scroll-target="#serial-read-and-blink"><span class="header-section-number">20.4</span> Serial read and blink</a></li>
+  <li><a href="#touch-sensor" id="toc-touch-sensor" class="nav-link" data-scroll-target="#touch-sensor"><span class="header-section-number">20.5</span> Touch sensor</a></li>
+  <li><a href="#control-led-with-touch-sensor" id="toc-control-led-with-touch-sensor" class="nav-link" data-scroll-target="#control-led-with-touch-sensor"><span class="header-section-number">20.6</span> Control LED with touch sensor</a></li>
+  <li><a href="#thingspeak" id="toc-thingspeak" class="nav-link" data-scroll-target="#thingspeak"><span class="header-section-number">20.7</span> Thingspeak</a></li>
+  <li><a href="#basic-code-for-uploading-data-to-thingspeak" id="toc-basic-code-for-uploading-data-to-thingspeak" class="nav-link" data-scroll-target="#basic-code-for-uploading-data-to-thingspeak"><span class="header-section-number">20.8</span> Basic Code for Uploading Data to Thingspeak</a></li>
+  <li><a href="#uploading-thermistor-data-to-thingspeak" id="toc-uploading-thermistor-data-to-thingspeak" class="nav-link" data-scroll-target="#uploading-thermistor-data-to-thingspeak"><span class="header-section-number">20.9</span> Uploading Thermistor Data to Thingspeak</a></li>
   </ul>
 </nav>
     </div>
@@ -490,9 +490,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/intro-to-sensor-modules-and-thingspeak.html"><strong>Sensors and comm</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/intro-to-sensor-modules-and-thingspeak.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Intro to Sensor Modules and Thingspeak</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/digital-read-write.html"><strong>Sensors and comm</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/intro-to-sensor-modules-and-thingspeak.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Intro to Sensor Modules and Thingspeak</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Intro to Sensor Modules and Thingspeak</span></h1>
+<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Intro to Sensor Modules and Thingspeak</span></h1>
 </div>
 
 
@@ -516,8 +516,8 @@ jupyter: python3
 section-divs: false
 --- -->
 <p><img src="../archive/figures/thingspeak-screenshot-graphs.png" class="img-fluid"></p>
-<section id="ds18b20-temperature-sensor" class="level2" data-number="19.1">
-<h2 data-number="19.1" class="anchored" data-anchor-id="ds18b20-temperature-sensor"><span class="header-section-number">19.1</span> DS18B20 Temperature Sensor</h2>
+<section id="ds18b20-temperature-sensor" class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="ds18b20-temperature-sensor"><span class="header-section-number">20.1</span> DS18B20 Temperature Sensor</h2>
 <p>Pretty accurate temperature sensor. Each sensor has its own unique address, enabling the connection of numerous sensors to only on pin on the Arduino/ESP32.</p>
 <p>In <a href="https://randomnerdtutorials.com/esp32-multiple-ds18b20-temperature-sensors/">this tutorial</a> you can find a lot more information.</p>
 <p>Code for finding the sensor’s address:</p>
@@ -569,8 +569,8 @@ section-divs: false
             
 <p><br></p>
 </section>
-<section id="sht31-temperature-humidity-sensor-using-i2c-communication" class="level2" data-number="19.2">
-<h2 data-number="19.2" class="anchored" data-anchor-id="sht31-temperature-humidity-sensor-using-i2c-communication"><span class="header-section-number">19.2</span> SHT31 Temperature &amp; Humidity Sensor Using I2C communication</h2>
+<section id="sht31-temperature-humidity-sensor-using-i2c-communication" class="level2" data-number="20.2">
+<h2 data-number="20.2" class="anchored" data-anchor-id="sht31-temperature-humidity-sensor-using-i2c-communication"><span class="header-section-number">20.2</span> SHT31 Temperature &amp; Humidity Sensor Using I2C communication</h2>
 <p>In <a href="http://www.esp32learning.com/code/esp32-and-sht31-sensor-example.php">this tutorial</a> you can find a lot more information.</p>
 <p>Code for reading the sensor:</p>
 <button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#sht31ino" aria-expanded="false" aria-controls="sht31ino">
@@ -636,8 +636,8 @@ section-divs: false
             
 <p><br></p>
 </section>
-<section id="vl53l0x-time-of-flight-distance-sensor-using-i2c-communication" class="level2" data-number="19.3">
-<h2 data-number="19.3" class="anchored" data-anchor-id="vl53l0x-time-of-flight-distance-sensor-using-i2c-communication"><span class="header-section-number">19.3</span> VL53L0X Time-of-Flight Distance Sensor Using I2C communication</h2>
+<section id="vl53l0x-time-of-flight-distance-sensor-using-i2c-communication" class="level2" data-number="20.3">
+<h2 data-number="20.3" class="anchored" data-anchor-id="vl53l0x-time-of-flight-distance-sensor-using-i2c-communication"><span class="header-section-number">20.3</span> VL53L0X Time-of-Flight Distance Sensor Using I2C communication</h2>
 <p>In <a href="http://www.esp32learning.com/code/vl53l0x-time-of-flight-sensor-and-esp32.php">this tutorial</a> you can find a lot more information.</p>
 <p>Code for reading the sensor:</p>
 <button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#Agrotech_2022_VL53L0Xino" aria-expanded="false" aria-controls="Agrotech_2022_VL53L0Xino">
@@ -692,8 +692,8 @@ section-divs: false
             </div>
             
 </section>
-<section id="serial-read-and-blink" class="level2" data-number="19.4">
-<h2 data-number="19.4" class="anchored" data-anchor-id="serial-read-and-blink"><span class="header-section-number">19.4</span> Serial read and blink</h2>
+<section id="serial-read-and-blink" class="level2" data-number="20.4">
+<h2 data-number="20.4" class="anchored" data-anchor-id="serial-read-and-blink"><span class="header-section-number">20.4</span> Serial read and blink</h2>
 <button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#serial_read_and_blinkino" aria-expanded="false" aria-controls="serial_read_and_blinkino">
     <i class="bi bi-toggles"></i> Toggle code
     </button>
@@ -754,8 +754,8 @@ section-divs: false
             </div>
             
 </section>
-<section id="touch-sensor" class="level2" data-number="19.5">
-<h2 data-number="19.5" class="anchored" data-anchor-id="touch-sensor"><span class="header-section-number">19.5</span> Touch sensor</h2>
+<section id="touch-sensor" class="level2" data-number="20.5">
+<h2 data-number="20.5" class="anchored" data-anchor-id="touch-sensor"><span class="header-section-number">20.5</span> Touch sensor</h2>
 <button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#touch_sensorino" aria-expanded="false" aria-controls="touch_sensorino">
     <i class="bi bi-toggles"></i> Toggle code
     </button>
@@ -802,8 +802,8 @@ section-divs: false
             </div>
             
 </section>
-<section id="control-led-with-touch-sensor" class="level2" data-number="19.6">
-<h2 data-number="19.6" class="anchored" data-anchor-id="control-led-with-touch-sensor"><span class="header-section-number">19.6</span> Control LED with touch sensor</h2>
+<section id="control-led-with-touch-sensor" class="level2" data-number="20.6">
+<h2 data-number="20.6" class="anchored" data-anchor-id="control-led-with-touch-sensor"><span class="header-section-number">20.6</span> Control LED with touch sensor</h2>
 <button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#touch_control_LEDino" aria-expanded="false" aria-controls="touch_control_LEDino">
     <i class="bi bi-toggles"></i> Toggle code
     </button>
@@ -859,12 +859,12 @@ section-divs: false
             </div>
             
 </section>
-<section id="thingspeak" class="level2" data-number="19.7">
-<h2 data-number="19.7" class="anchored" data-anchor-id="thingspeak"><span class="header-section-number">19.7</span> Thingspeak</h2>
+<section id="thingspeak" class="level2" data-number="20.7">
+<h2 data-number="20.7" class="anchored" data-anchor-id="thingspeak"><span class="header-section-number">20.7</span> Thingspeak</h2>
 <p><a href="https://thingspeak.com/">Thingspeak webpage</a>.</p>
 </section>
-<section id="basic-code-for-uploading-data-to-thingspeak" class="level2" data-number="19.8">
-<h2 data-number="19.8" class="anchored" data-anchor-id="basic-code-for-uploading-data-to-thingspeak"><span class="header-section-number">19.8</span> Basic Code for Uploading Data to Thingspeak</h2>
+<section id="basic-code-for-uploading-data-to-thingspeak" class="level2" data-number="20.8">
+<h2 data-number="20.8" class="anchored" data-anchor-id="basic-code-for-uploading-data-to-thingspeak"><span class="header-section-number">20.8</span> Basic Code for Uploading Data to Thingspeak</h2>
 <button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#Agrotech_2022_Thingspeakino" aria-expanded="false" aria-controls="Agrotech_2022_Thingspeakino">
     <i class="bi bi-toggles"></i> Toggle code
     </button>
@@ -943,8 +943,8 @@ section-divs: false
             </div>
             
 </section>
-<section id="uploading-thermistor-data-to-thingspeak" class="level2" data-number="19.9">
-<h2 data-number="19.9" class="anchored" data-anchor-id="uploading-thermistor-data-to-thingspeak"><span class="header-section-number">19.9</span> Uploading Thermistor Data to Thingspeak</h2>
+<section id="uploading-thermistor-data-to-thingspeak" class="level2" data-number="20.9">
+<h2 data-number="20.9" class="anchored" data-anchor-id="uploading-thermistor-data-to-thingspeak"><span class="header-section-number">20.9</span> Uploading Thermistor Data to Thingspeak</h2>
 <button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#thermistor_to_thingspeakino" aria-expanded="false" aria-controls="thermistor_to_thingspeakino">
     <i class="bi bi-toggles"></i> Toggle code
     </button>
@@ -1481,13 +1481,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tutorials/electronics-class-old.html" class="pagination-link" aria-label="Electronics Class Old">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Electronics Class Old</span></span>
+      <a href="../tutorials/digital-read-write.html" class="pagination-link" aria-label="Reading digital and analog">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Reading digital and analog</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../tutorials/pulse-sensors.html" class="pagination-link" aria-label="Pulse sensors">
-        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Pulse sensors</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Pulse sensors</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

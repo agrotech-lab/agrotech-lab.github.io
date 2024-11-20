@@ -918,146 +918,256 @@
     ]
   },
   {
-    "objectID": "tutorials/intro-to-sensor-modules-and-thingspeak.html",
-    "href": "tutorials/intro-to-sensor-modules-and-thingspeak.html",
-    "title": "19  Intro to Sensor Modules and Thingspeak",
+    "objectID": "tutorials/digital-read-write.html",
+    "href": "tutorials/digital-read-write.html",
+    "title": "19  Reading digital and analog",
     "section": "",
-    "text": "19.1 DS18B20 Temperature Sensor\nPretty accurate temperature sensor. Each sensor has its own unique address, enabling the connection of numerous sensors to only on pin on the Arduino/ESP32.\nIn this tutorial you can find a lot more information.\nCode for finding the sensor’s address:",
+    "text": "19.1 Turn on LED upon button press",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Reading digital and analog</span>"
+    ]
+  },
+  {
+    "objectID": "tutorials/digital-read-write.html#turn-on-led-upon-button-press",
+    "href": "tutorials/digital-read-write.html#turn-on-led-upon-button-press",
+    "title": "19  Reading digital and analog",
+    "section": "",
+    "text": "Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// Define the pin numbers\nconst int buttonPin = D4;\nconst int ledPin = A4;\n\nvoid setup() {\n  // Set the pin modes\n  pinMode(buttonPin, INPUT_PULLUP);\n  pinMode(ledPin, OUTPUT);\n\n  // Initialize Serial communication\n  Serial.begin(115200);\n}\n\nvoid loop() {\n  // Read the state of the button\n  int buttonState = digitalRead(buttonPin);\n\n  // If the button is not pressed (pin is pulled high)\n  if (buttonState == HIGH) {\n    // Turn on the LED\n    digitalWrite(ledPin, LOW);\n\n    // Print the button state to the Serial Monitor\n    Serial.println(\"Button is not pressed.\");\n  } else {\n    // Turn off the LED\n    digitalWrite(ledPin, HIGH);\n\n    // Print the button state to the Serial Monitor\n    Serial.println(\"Button is pressed.\");\n  }\n\n  // Delay for a short period to debounce the button\n  delay(50);\n}",
+    "crumbs": [
+      "**Sensors and comm**",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Reading digital and analog</span>"
+    ]
+  },
+  {
+    "objectID": "tutorials/digital-read-write.html#toggle-led-upon-button-press",
+    "href": "tutorials/digital-read-write.html#toggle-led-upon-button-press",
+    "title": "19  Reading digital and analog",
+    "section": "19.2 Toggle LED upon button press",
+    "text": "19.2 Toggle LED upon button press\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// Define the pin numbers\nconst int buttonPin = D4;\nconst int ledPin = A4;\n\n// Initialize the LED state to off\nbool ledState = false;\n\nvoid setup() {\n  // Set the pin modes\n  pinMode(buttonPin, INPUT_PULLUP);\n  pinMode(ledPin, OUTPUT);\n\n  // Initialize Serial communication\n  Serial.begin(115200);\n}\n\nvoid loop() {\n  // Read the state of the button\n  int buttonState = digitalRead(buttonPin);\n\n  // If the button is pressed\n  if (buttonState == LOW) {\n    // Toggle the LED state\n    ledState = !ledState;\n    digitalWrite(ledPin, ledState);\n\n    // Print the LED state to the Serial Monitor\n    if (ledState) {\n      Serial.println(\"LED is on.\");\n    } else {\n      Serial.println(\"LED is off.\");\n    }\n\n    // Wait a short period to debounce the button\n    delay(500);\n  }\n}",
+    "crumbs": [
+      "**Sensors and comm**",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Reading digital and analog</span>"
+    ]
+  },
+  {
+    "objectID": "tutorials/digital-read-write.html#digital-read",
+    "href": "tutorials/digital-read-write.html#digital-read",
+    "title": "19  Reading digital and analog",
+    "section": "19.3 Digital read",
+    "text": "19.3 Digital read\n\nGoal: Read button press and take an action (flash external LED).\n\nUse the following code.\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nconst int buttonPin = A4;        // Pin where the button is connected\nconst int ledPin = D9;   // Pin where the LED is connected\n\n// Variable to store the button state\nint buttonState = 0;\n\nvoid setup() {\n  // Initialize the LED pin as an output\n  pinMode(ledPin, OUTPUT);\n\n  // Initialize the button pin as an input\n  pinMode(buttonPin, INPUT_PULLUP);  // Use the internal pull-up resistor\n  \n  // Start serial communication for debugging (optional)\n  Serial.begin(115200);\n}\n\nvoid loop() {\n  // Read the state of the button\n  buttonState = digitalRead(buttonPin);\n  \n  // Check if the button is pressed\n  if (buttonState == LOW) {  // Assuming the button connects to ground when pressed\n    Serial.println(\"Button pressed! Blinking LED...\");\n    \n    // Blink the LED rapidly for 2 seconds (20 times per second)\n    unsigned long startMillis = millis();\n    while (millis() - startMillis &lt; 2000) { // Run for 2000ms (2 seconds)\n      digitalWrite(ledPin, HIGH);   // Turn the LED on\n      delay(50);                    // Wait for 50ms\n      digitalWrite(ledPin, LOW);    // Turn the LED off\n      delay(50);                    // Wait for 50ms\n    }\n    \n    // Optional: You can add a small delay here to debounce the button\n    delay(200);  // Debounce the button for 200ms\n  }\n\n  // Add a small delay to avoid excessive readings\n  delay(50);\n}\n\n            \n            \n            \n\n\nsee diagram\n\n\n\n\n\nsee wiring scheme",
+    "crumbs": [
+      "**Sensors and comm**",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Reading digital and analog</span>"
+    ]
+  },
+  {
+    "objectID": "tutorials/digital-read-write.html#touch-sensor",
+    "href": "tutorials/digital-read-write.html#touch-sensor",
+    "title": "19  Reading digital and analog",
+    "section": "19.4 Touch sensor",
+    "text": "19.4 Touch sensor\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n#include &lt;Arduino.h&gt;\n\n// Define the touch sensor pin\n#define TOUCH_PIN D12  // You can change this to another touch pin if needed\n\nvoid setup() {\n  // Initialize serial communication at 115200 baud\n  Serial.begin(115200);\n  \n  // Wait for the serial monitor to connect\n  while (!Serial) {\n    ; // Wait for serial port to connect. Needed for native USB port only\n  }\n}\n\nvoid loop() {\n  // Read the value from the touch sensor\n  int touchValue = touchRead(TOUCH_PIN);\n\n  // Print the touch sensor value\n  Serial.print(\"Touch value: \");\n  Serial.println(touchValue);\n  \n  // Check if the touch sensor is activated (value will be lower when touched)\n  if (touchValue &lt; 30) {  // You might need to adjust this threshold value\n    Serial.println(\"Touch detected!\");\n  }\n\n  // Add a small delay to avoid spamming the serial monitor\n  delay(100);\n}",
+    "crumbs": [
+      "**Sensors and comm**",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Reading digital and analog</span>"
+    ]
+  },
+  {
+    "objectID": "tutorials/digital-read-write.html#control-led-with-touch-sensor",
+    "href": "tutorials/digital-read-write.html#control-led-with-touch-sensor",
+    "title": "19  Reading digital and analog",
+    "section": "19.5 Control LED with touch sensor",
+    "text": "19.5 Control LED with touch sensor\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n#include &lt;Arduino.h&gt;\n\n// Define the touch sensor pin\n#define TOUCH_PIN T0  // You can change this to another touch pin if needed\n\n// Define the built-in LED pin\n#define LED_PIN LED_BUILTIN  // Most ESP32 boards use GPIO 2 for the built-in LED\n\nvoid setup() {\n  // Initialize serial communication at 115200 baud\n  Serial.begin(115200);\n  \n  // Wait for the serial monitor to connect\n  while (!Serial) {\n    ; // Wait for serial port to connect. Needed for native USB port only\n  }\n\n  // Set the LED pin as an output\n  pinMode(LED_PIN, OUTPUT);\n}\n\nvoid loop() {\n  // Read the value from the touch sensor\n  int touchValue = touchRead(TOUCH_PIN);\n\n  // Print the touch sensor value\n  Serial.print(\"Touch value: \");\n  Serial.println(touchValue);\n  \n  // Check if the touch sensor is activated (value will be lower when touched)\n  if (touchValue &lt; 30) {  // You might need to adjust this threshold value\n    Serial.println(\"Touch detected!\");\n    digitalWrite(LED_PIN, HIGH);  // Turn on the LED\n  } else {\n    digitalWrite(LED_PIN, LOW);  // Turn off the LED\n  }\n\n  // Add a small delay to avoid spamming the serial monitor\n  delay(100);\n}",
+    "crumbs": [
+      "**Sensors and comm**",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Reading digital and analog</span>"
+    ]
+  },
+  {
+    "objectID": "tutorials/digital-read-write.html#reading-an-analog-pin-convert-to-digital-with-built-in-adc",
+    "href": "tutorials/digital-read-write.html#reading-an-analog-pin-convert-to-digital-with-built-in-adc",
+    "title": "19  Reading digital and analog",
+    "section": "19.6 Reading an Analog Pin, convert to digital with built-in ADC",
+    "text": "19.6 Reading an Analog Pin, convert to digital with built-in ADC\nWe will read the signal (middle) pin of the potentiometer, and use the 12-bit built-in Analog to Digital Converter.\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nconst int analog_pin = A4; // Pin into which we connect the input voltage\nint val ;  // variable to store the value read\n\n\nvoid setup() {\n  Serial.begin(115200); //\n}\n\nvoid loop() {\n  val = analogRead(analog_pin);  // read the input pin\n  Serial.println(val);          // print value\n  delay(100);\n}\n\n            \n            \n            \n\n\nsee diagram\n\n\n\n\n\nsee wiring scheme\n\n\n\nWhy is the maximum number 4095? What does this have to do with 12-bits?",
+    "crumbs": [
+      "**Sensors and comm**",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Reading digital and analog</span>"
+    ]
+  },
+  {
+    "objectID": "tutorials/digital-read-write.html#reading-an-analog-pin-convert-to-voltage",
+    "href": "tutorials/digital-read-write.html#reading-an-analog-pin-convert-to-voltage",
+    "title": "19  Reading digital and analog",
+    "section": "19.7 Reading an Analog Pin, convert to voltage",
+    "text": "19.7 Reading an Analog Pin, convert to voltage\nUse the same wiring as above. We will convert bits to volts now: \\(4095 \\text{ bits} = 3.3\\text{ volts}\\).\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nconst int analog_pin = A4; // Pin into which we connect the input voltage\nint val ;  // variable to store the value read\nfloat voltage;\n\nvoid setup() {\n  Serial.begin(115200); //\n}\n\nvoid loop() {\n  val = analogRead(analog_pin);  // read the input pin\n  voltage = (3.3/4095)*val;  // convert to voltage according to ADC\n  Serial.print(\"Voltage: \");\n  Serial.print(voltage);          // print value\n  Serial.println(\" V\");\n  delay(100);\n}",
+    "crumbs": [
+      "**Sensors and comm**",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Reading digital and analog</span>"
+    ]
+  },
+  {
+    "objectID": "tutorials/digital-read-write.html#reading-potentiometer-with-analog-pin-convert-to-angle",
+    "href": "tutorials/digital-read-write.html#reading-potentiometer-with-analog-pin-convert-to-angle",
+    "title": "19  Reading digital and analog",
+    "section": "19.8 Reading Potentiometer with Analog Pin, convert to angle",
+    "text": "19.8 Reading Potentiometer with Analog Pin, convert to angle\nPut a piece of cardboard in your potentiometer’s slit. Your goal is to build a calibration curve, that is, a function that converts reading from something you don’t care about (increments from 0 to 4095) to something that you do care about (angle).\nThe simplest thing you can do is to measure the increments (\\(i\\)) that you get for two given angles (say, \\(\\theta\\) equals zero and 90 degrees). Let’s say you measured \\((i_1,\\theta_1)\\) and \\((i_2,\\theta_2)\\). If the potentiometer is linear, we will get a linear relationship between angle and increment:\n\\[\n\\theta = a i + b\n\\]\nSubstitute these two points in the equation above:\n\\[\n\\theta_1 = a i_1 + b\n\\tag{19.1}\\]\n\\[\n\\theta_2 = a i_2 + b\n\\tag{19.2}\\]\nNow let’s subtract Equation 19.3 from Equation 19.1:\n\\[\n\\theta_1 - \\theta_2 = a (i_1 - i_2)\n\\tag{19.3}\\]\nNow solve for the slope \\(a\\):\n\\[\na = (\\theta_1 - \\theta_2) / (i_1 - i_2)\n\\tag{19.4}\\]\nTo find the intercept \\(b\\), just substitute \\(a\\) into Equation 19.1 and solve for \\(b\\):\n\\[\nb = \\theta_1 - a i_1\n\\tag{19.5}\\]\nput the lines below in the code we ran before, they are not in the correct place, it is here just so you have an idea how to update the previous code.\nfloat angle, increment, a, b;\n\na = 12345;  // put here what you calculated\nb = 12345;  // put here what you calculated\n\nincrement = analogRead(analog_pin);\nangle = a * increment + b;",
+    "crumbs": [
+      "**Sensors and comm**",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Reading digital and analog</span>"
+    ]
+  },
+  {
+    "objectID": "tutorials/digital-read-write.html#voltage-divider",
+    "href": "tutorials/digital-read-write.html#voltage-divider",
+    "title": "19  Reading digital and analog",
+    "section": "19.9 Voltage divider",
+    "text": "19.9 Voltage divider\nMany sensors have calibration curves that relate their resistance changes to the measured variable. For example, the resistance of photoresistors and thermistors changes with light and temperature, respectively. To handle this, we need to understand Voltage Dividers.\n\nCheck out this great tutorial\nHow to derive the equation for the voltage divider?\nFirst, write Ohm’s law for the two components in series:\n\\[\nV_{in} = (R_1 + R_2) I\n\\tag{19.6}\\]\nNow write Ohm’s law just for the second component\n\\[\nV_{out} = R_2 I\n\\tag{19.7}\\]\nNow solve Equation 19.7 for \\(I\\)\n\\[\nI = \\frac{V_{out}}{R_2}\n\\tag{19.8}\\]\n… and substitute it into Equation 19.6:\n\\[\nV_{in} = (R_1 + R_2) \\frac{V_{out}}{R_2}\n\\tag{19.9}\\]\nSolving for \\(V_{out}\\) yields the famous equation for the voltage divider:\n\\[\nV_{out} = \\frac{R_2}{R_1 + R_2} V_{in}\n\\tag{19.10}\\]\nWe usually need to find the value of the resistance \\(R_2\\):\n\\[\nR_2 = \\frac{V_{in} - V_{out}}{V_{out}} R_2\n\\]",
+    "crumbs": [
+      "**Sensors and comm**",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Reading digital and analog</span>"
+    ]
+  },
+  {
+    "objectID": "tutorials/digital-read-write.html#thermistor",
+    "href": "tutorials/digital-read-write.html#thermistor",
+    "title": "19  Reading digital and analog",
+    "section": "19.10 Thermistor",
+    "text": "19.10 Thermistor\nDownload Data Sheet\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// Thermistor \n// reading the temperature via the ESP32's ADC\n\nconst int analog_pin = A4; // Pin into which we connect the input voltage\nint val ;  // variable to store the value read\nfloat v2; // variable to store the voltage of v2\nint r1 = 10000; // R1 value (in the voltage divider)\nfloat v1 = 3.3; // V1 value\nint b_val = 4150; // B value of the resistor (from the data sheet)\nfloat r2; // variable to store the resistance of r2 (thermistor resistance)\nfloat t; // variable to store the temperature\nint adc_steps = 4095; // the number of increments our ADC has (ESP32 = 12bit)\nfloat r_25 = 10000; // the thermistor resistance at 25C (from the data sheet)\n\n// function to convert resistance to temperature according to the b value\n// equation in this link:\n// https://www.thinksrs.com/downloads/programs/therm%20calc/ntccalibrator/ntccalculator.html\nfloat resistance_to_temperature(int b, float r, float r_25) {\n  return b/(log(r/r_25)+(b/298.15))-273.15;\n}\n\nvoid setup() {\n  Serial.begin(115200); //\n}\n\nvoid loop() {\n  val = analogRead(analog_pin);  // read the input pin (reading v2)\n  v2 = (v1/adc_steps)*val;  // convert to voltage of v2 according to ADC\n  r2 = (v2*r1)/(v1-v2);\n  t = resistance_to_temperature(b_val, r2, r_25);\n  Serial.print(\"Temperature: \");\n  Serial.print(t);          // print temperature\n  Serial.println(\" C\");\n  delay(100);\n}",
+    "crumbs": [
+      "**Sensors and comm**",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Reading digital and analog</span>"
+    ]
+  },
+  {
+    "objectID": "tutorials/intro-to-sensor-modules-and-thingspeak.html",
+    "href": "tutorials/intro-to-sensor-modules-and-thingspeak.html",
+    "title": "20  Intro to Sensor Modules and Thingspeak",
+    "section": "",
+    "text": "20.1 DS18B20 Temperature Sensor\nPretty accurate temperature sensor. Each sensor has its own unique address, enabling the connection of numerous sensors to only on pin on the Arduino/ESP32.\nIn this tutorial you can find a lot more information.\nCode for finding the sensor’s address:",
+    "crumbs": [
+      "**Sensors and comm**",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
     ]
   },
   {
     "objectID": "tutorials/intro-to-sensor-modules-and-thingspeak.html#ds18b20-temperature-sensor",
     "href": "tutorials/intro-to-sensor-modules-and-thingspeak.html#ds18b20-temperature-sensor",
-    "title": "19  Intro to Sensor Modules and Thingspeak",
+    "title": "20  Intro to Sensor Modules and Thingspeak",
     "section": "",
     "text": "Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n/*\n * Rui Santos \n * Complete Project Details https://randomnerdtutorials.com\n */\n\n#include &lt;OneWire.h&gt;\n\n// Based on the OneWire library example\n\nOneWire ds(4);  //data wire connected to GPIO 4\n\nvoid setup(void) {\n  Serial.begin(115200);\n}\n\nvoid loop(void) {\n  byte i;\n  byte addr[8];\n  \n  if (!ds.search(addr)) {\n    Serial.println(\" No more addresses.\");\n    Serial.println();\n    ds.reset_search();\n    delay(250);\n    return;\n  }\n  Serial.print(\" ROM =\");\n  for (i = 0; i &lt; 8; i++) {\n    Serial.write(' ');\n    Serial.print(addr[i], HEX);\n  }\n}",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
     ]
   },
   {
     "objectID": "tutorials/intro-to-sensor-modules-and-thingspeak.html#sht31-temperature-humidity-sensor-using-i2c-communication",
     "href": "tutorials/intro-to-sensor-modules-and-thingspeak.html#sht31-temperature-humidity-sensor-using-i2c-communication",
-    "title": "19  Intro to Sensor Modules and Thingspeak",
-    "section": "19.2 SHT31 Temperature & Humidity Sensor Using I2C communication",
-    "text": "19.2 SHT31 Temperature & Humidity Sensor Using I2C communication\nIn this tutorial you can find a lot more information.\nCode for reading the sensor:\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n/*\n * This program is a modification of\n * http://www.esp32learning.com/code/esp32-and-sht31-sensor-example.php\n */\n#include &lt;Arduino.h&gt;   // Include the Arduino library\n#include &lt;Wire.h&gt;      // Include the Wire library for I2C communication\n#include \"Adafruit_SHT31.h\" // Include the SHT31 library from Adafruit\n\nAdafruit_SHT31 sht31 = Adafruit_SHT31(); // Create an instance of the SHT31 object\n\nvoid setup() {\n  Serial.begin(9600);        // Initialize the serial communication with a baud rate of 112500\n  if (! sht31.begin(0x44)) {   // Check if SHT31 is connected and start it with address 0x44\n    // Print an error message if SHT31 is not found\n    Serial.println(\"Couldn't find SHT31\");\n    while (1) delay(1);  // Wait indefinitely\n  }\n}\n\nvoid loop() {\n  // Read temperature from SHT31 and assign it to \"temperature\"\n  float temperature = sht31.readTemperature(); \n  // Read relative humidity from SHT31 and assign it to \"humidity\"\n  float humidity = sht31.readHumidity();\n\n  if (! isnan(temperature)) {     // Check if t is not NaN (not a number)\n    Serial.print(\"temp_deg_C:\");  // Print temperature label\n    Serial.print(temperature);    // Print temperature value\n    Serial.print(\"\\t\");           // Write a tab space\n  } \n  else {\n    // Print an error message if temperature reading fails\n    Serial.println(\"Failed to read temperature\");\n  }\n\n  if (! isnan(humidity)) {        // Check if h is not NaN (not a number)\n    Serial.print(\"rel_hum_%:\");   // Print humidity label\n    Serial.print(humidity);       // Print humidity value\n  } \n  else {\n    // Print an error message if humidity reading fails\n    Serial.println(\"Failed to read humidity\");\n  }\n\n  Serial.println();    // Break line\n  delay(1000);         // Wait 1 second\n}",
+    "title": "20  Intro to Sensor Modules and Thingspeak",
+    "section": "20.2 SHT31 Temperature & Humidity Sensor Using I2C communication",
+    "text": "20.2 SHT31 Temperature & Humidity Sensor Using I2C communication\nIn this tutorial you can find a lot more information.\nCode for reading the sensor:\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n/*\n * This program is a modification of\n * http://www.esp32learning.com/code/esp32-and-sht31-sensor-example.php\n */\n#include &lt;Arduino.h&gt;   // Include the Arduino library\n#include &lt;Wire.h&gt;      // Include the Wire library for I2C communication\n#include \"Adafruit_SHT31.h\" // Include the SHT31 library from Adafruit\n\nAdafruit_SHT31 sht31 = Adafruit_SHT31(); // Create an instance of the SHT31 object\n\nvoid setup() {\n  Serial.begin(9600);        // Initialize the serial communication with a baud rate of 112500\n  if (! sht31.begin(0x44)) {   // Check if SHT31 is connected and start it with address 0x44\n    // Print an error message if SHT31 is not found\n    Serial.println(\"Couldn't find SHT31\");\n    while (1) delay(1);  // Wait indefinitely\n  }\n}\n\nvoid loop() {\n  // Read temperature from SHT31 and assign it to \"temperature\"\n  float temperature = sht31.readTemperature(); \n  // Read relative humidity from SHT31 and assign it to \"humidity\"\n  float humidity = sht31.readHumidity();\n\n  if (! isnan(temperature)) {     // Check if t is not NaN (not a number)\n    Serial.print(\"temp_deg_C:\");  // Print temperature label\n    Serial.print(temperature);    // Print temperature value\n    Serial.print(\"\\t\");           // Write a tab space\n  } \n  else {\n    // Print an error message if temperature reading fails\n    Serial.println(\"Failed to read temperature\");\n  }\n\n  if (! isnan(humidity)) {        // Check if h is not NaN (not a number)\n    Serial.print(\"rel_hum_%:\");   // Print humidity label\n    Serial.print(humidity);       // Print humidity value\n  } \n  else {\n    // Print an error message if humidity reading fails\n    Serial.println(\"Failed to read humidity\");\n  }\n\n  Serial.println();    // Break line\n  delay(1000);         // Wait 1 second\n}",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
     ]
   },
   {
     "objectID": "tutorials/intro-to-sensor-modules-and-thingspeak.html#vl53l0x-time-of-flight-distance-sensor-using-i2c-communication",
     "href": "tutorials/intro-to-sensor-modules-and-thingspeak.html#vl53l0x-time-of-flight-distance-sensor-using-i2c-communication",
-    "title": "19  Intro to Sensor Modules and Thingspeak",
-    "section": "19.3 VL53L0X Time-of-Flight Distance Sensor Using I2C communication",
-    "text": "19.3 VL53L0X Time-of-Flight Distance Sensor Using I2C communication\nIn this tutorial you can find a lot more information.\nCode for reading the sensor:\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n#include \"Adafruit_VL53L0X.h\"\n\n// also on http://www.esp32learning.com/code/vl53l0x-time-of-flight-sensor-and-esp32.php\nAdafruit_VL53L0X lox = Adafruit_VL53L0X();\n\nvoid setup() {\n  Serial.begin(115200);\n\n  // wait until serial port opens for native USB devices\n  while (! Serial) {\n    delay(1);\n  }\n  \n  Serial.println(\"Adafruit VL53L0X test\");\n  if (!lox.begin()) {\n    Serial.println(F(\"Failed to boot VL53L0X\"));\n    while(1);\n  }\n  // power \n  Serial.println(F(\"VL53L0X API Simple Ranging example\\n\\n\")); \n}\n\n\nvoid loop() {\n  VL53L0X_RangingMeasurementData_t measure;\n    \n  Serial.print(\"Reading a measurement... \");\n  lox.rangingTest(&measure, false); // pass in 'true' to get debug data printout!\n\n  if (measure.RangeStatus != 4) {  // phase failures have incorrect data\n    Serial.print(\"Distance (mm): \"); Serial.println(measure.RangeMilliMeter);\n  } else {\n    Serial.println(\" out of range \");\n  }\n    \n  delay(100);\n}",
+    "title": "20  Intro to Sensor Modules and Thingspeak",
+    "section": "20.3 VL53L0X Time-of-Flight Distance Sensor Using I2C communication",
+    "text": "20.3 VL53L0X Time-of-Flight Distance Sensor Using I2C communication\nIn this tutorial you can find a lot more information.\nCode for reading the sensor:\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n#include \"Adafruit_VL53L0X.h\"\n\n// also on http://www.esp32learning.com/code/vl53l0x-time-of-flight-sensor-and-esp32.php\nAdafruit_VL53L0X lox = Adafruit_VL53L0X();\n\nvoid setup() {\n  Serial.begin(115200);\n\n  // wait until serial port opens for native USB devices\n  while (! Serial) {\n    delay(1);\n  }\n  \n  Serial.println(\"Adafruit VL53L0X test\");\n  if (!lox.begin()) {\n    Serial.println(F(\"Failed to boot VL53L0X\"));\n    while(1);\n  }\n  // power \n  Serial.println(F(\"VL53L0X API Simple Ranging example\\n\\n\")); \n}\n\n\nvoid loop() {\n  VL53L0X_RangingMeasurementData_t measure;\n    \n  Serial.print(\"Reading a measurement... \");\n  lox.rangingTest(&measure, false); // pass in 'true' to get debug data printout!\n\n  if (measure.RangeStatus != 4) {  // phase failures have incorrect data\n    Serial.print(\"Distance (mm): \"); Serial.println(measure.RangeMilliMeter);\n  } else {\n    Serial.println(\" out of range \");\n  }\n    \n  delay(100);\n}",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
     ]
   },
   {
     "objectID": "tutorials/intro-to-sensor-modules-and-thingspeak.html#serial-read-and-blink",
     "href": "tutorials/intro-to-sensor-modules-and-thingspeak.html#serial-read-and-blink",
-    "title": "19  Intro to Sensor Modules and Thingspeak",
-    "section": "19.4 Serial read and blink",
-    "text": "19.4 Serial read and blink\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// Define the built-in LED pin\n#define LED_PIN LED_BUILTIN  // Most ESP32 boards use GPIO 2 for the built-in LED\n\nvoid setup() {\n  // Initialize serial communication at 115200 baud\n  Serial.begin(115200);\n  \n  // Wait for the serial monitor to connect\n  while (!Serial) {\n    ; // Wait for serial port to connect. Needed for native USB port only\n  }\n  \n  // Set the LED pin as an output\n  pinMode(LED_PIN, OUTPUT);\n  \n  // Print instructions\n  Serial.println(\"Enter the number of times you want the LED to blink:\");\n}\n\nvoid loop() {\n  // Check if data is available to read\n  if (Serial.available() &gt; 0) {\n    // Read the integer from the serial monitor\n    int blinkCount = Serial.parseInt();\n    \n    // Check if the parsed integer is greater than 0\n    if (blinkCount &gt; 0) {\n      // Print the received number\n      Serial.print(\"Blinking LED \");\n      Serial.print(blinkCount);\n      Serial.println(\" times\");\n      \n      // Blink the LED the specified number of times\n      for (int i = 0; i &lt; blinkCount; i++) {\n        digitalWrite(LED_PIN, HIGH);  // Turn on the LED\n        delay(500);                   // Wait for 500 milliseconds\n        digitalWrite(LED_PIN, LOW);   // Turn off the LED\n        delay(500);                   // Wait for 500 milliseconds\n      }\n      \n      // Print done message\n      Serial.println(\"Done blinking\");\n    }\n  }\n}",
+    "title": "20  Intro to Sensor Modules and Thingspeak",
+    "section": "20.4 Serial read and blink",
+    "text": "20.4 Serial read and blink\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// Define the built-in LED pin\n#define LED_PIN LED_BUILTIN  // Most ESP32 boards use GPIO 2 for the built-in LED\n\nvoid setup() {\n  // Initialize serial communication at 115200 baud\n  Serial.begin(115200);\n  \n  // Wait for the serial monitor to connect\n  while (!Serial) {\n    ; // Wait for serial port to connect. Needed for native USB port only\n  }\n  \n  // Set the LED pin as an output\n  pinMode(LED_PIN, OUTPUT);\n  \n  // Print instructions\n  Serial.println(\"Enter the number of times you want the LED to blink:\");\n}\n\nvoid loop() {\n  // Check if data is available to read\n  if (Serial.available() &gt; 0) {\n    // Read the integer from the serial monitor\n    int blinkCount = Serial.parseInt();\n    \n    // Check if the parsed integer is greater than 0\n    if (blinkCount &gt; 0) {\n      // Print the received number\n      Serial.print(\"Blinking LED \");\n      Serial.print(blinkCount);\n      Serial.println(\" times\");\n      \n      // Blink the LED the specified number of times\n      for (int i = 0; i &lt; blinkCount; i++) {\n        digitalWrite(LED_PIN, HIGH);  // Turn on the LED\n        delay(500);                   // Wait for 500 milliseconds\n        digitalWrite(LED_PIN, LOW);   // Turn off the LED\n        delay(500);                   // Wait for 500 milliseconds\n      }\n      \n      // Print done message\n      Serial.println(\"Done blinking\");\n    }\n  }\n}",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
     ]
   },
   {
     "objectID": "tutorials/intro-to-sensor-modules-and-thingspeak.html#touch-sensor",
     "href": "tutorials/intro-to-sensor-modules-and-thingspeak.html#touch-sensor",
-    "title": "19  Intro to Sensor Modules and Thingspeak",
-    "section": "19.5 Touch sensor",
-    "text": "19.5 Touch sensor\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n#include &lt;Arduino.h&gt;\n\n// Define the touch sensor pin\n#define TOUCH_PIN D12  // You can change this to another touch pin if needed\n\nvoid setup() {\n  // Initialize serial communication at 115200 baud\n  Serial.begin(115200);\n  \n  // Wait for the serial monitor to connect\n  while (!Serial) {\n    ; // Wait for serial port to connect. Needed for native USB port only\n  }\n}\n\nvoid loop() {\n  // Read the value from the touch sensor\n  int touchValue = touchRead(TOUCH_PIN);\n\n  // Print the touch sensor value\n  Serial.print(\"Touch value: \");\n  Serial.println(touchValue);\n  \n  // Check if the touch sensor is activated (value will be lower when touched)\n  if (touchValue &lt; 30) {  // You might need to adjust this threshold value\n    Serial.println(\"Touch detected!\");\n  }\n\n  // Add a small delay to avoid spamming the serial monitor\n  delay(100);\n}",
+    "title": "20  Intro to Sensor Modules and Thingspeak",
+    "section": "20.5 Touch sensor",
+    "text": "20.5 Touch sensor\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n#include &lt;Arduino.h&gt;\n\n// Define the touch sensor pin\n#define TOUCH_PIN D12  // You can change this to another touch pin if needed\n\nvoid setup() {\n  // Initialize serial communication at 115200 baud\n  Serial.begin(115200);\n  \n  // Wait for the serial monitor to connect\n  while (!Serial) {\n    ; // Wait for serial port to connect. Needed for native USB port only\n  }\n}\n\nvoid loop() {\n  // Read the value from the touch sensor\n  int touchValue = touchRead(TOUCH_PIN);\n\n  // Print the touch sensor value\n  Serial.print(\"Touch value: \");\n  Serial.println(touchValue);\n  \n  // Check if the touch sensor is activated (value will be lower when touched)\n  if (touchValue &lt; 30) {  // You might need to adjust this threshold value\n    Serial.println(\"Touch detected!\");\n  }\n\n  // Add a small delay to avoid spamming the serial monitor\n  delay(100);\n}",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
     ]
   },
   {
     "objectID": "tutorials/intro-to-sensor-modules-and-thingspeak.html#control-led-with-touch-sensor",
     "href": "tutorials/intro-to-sensor-modules-and-thingspeak.html#control-led-with-touch-sensor",
-    "title": "19  Intro to Sensor Modules and Thingspeak",
-    "section": "19.6 Control LED with touch sensor",
-    "text": "19.6 Control LED with touch sensor\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n#include &lt;Arduino.h&gt;\n\n// Define the touch sensor pin\n#define TOUCH_PIN T0  // You can change this to another touch pin if needed\n\n// Define the built-in LED pin\n#define LED_PIN LED_BUILTIN  // Most ESP32 boards use GPIO 2 for the built-in LED\n\nvoid setup() {\n  // Initialize serial communication at 115200 baud\n  Serial.begin(115200);\n  \n  // Wait for the serial monitor to connect\n  while (!Serial) {\n    ; // Wait for serial port to connect. Needed for native USB port only\n  }\n\n  // Set the LED pin as an output\n  pinMode(LED_PIN, OUTPUT);\n}\n\nvoid loop() {\n  // Read the value from the touch sensor\n  int touchValue = touchRead(TOUCH_PIN);\n\n  // Print the touch sensor value\n  Serial.print(\"Touch value: \");\n  Serial.println(touchValue);\n  \n  // Check if the touch sensor is activated (value will be lower when touched)\n  if (touchValue &lt; 30) {  // You might need to adjust this threshold value\n    Serial.println(\"Touch detected!\");\n    digitalWrite(LED_PIN, HIGH);  // Turn on the LED\n  } else {\n    digitalWrite(LED_PIN, LOW);  // Turn off the LED\n  }\n\n  // Add a small delay to avoid spamming the serial monitor\n  delay(100);\n}",
+    "title": "20  Intro to Sensor Modules and Thingspeak",
+    "section": "20.6 Control LED with touch sensor",
+    "text": "20.6 Control LED with touch sensor\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n#include &lt;Arduino.h&gt;\n\n// Define the touch sensor pin\n#define TOUCH_PIN T0  // You can change this to another touch pin if needed\n\n// Define the built-in LED pin\n#define LED_PIN LED_BUILTIN  // Most ESP32 boards use GPIO 2 for the built-in LED\n\nvoid setup() {\n  // Initialize serial communication at 115200 baud\n  Serial.begin(115200);\n  \n  // Wait for the serial monitor to connect\n  while (!Serial) {\n    ; // Wait for serial port to connect. Needed for native USB port only\n  }\n\n  // Set the LED pin as an output\n  pinMode(LED_PIN, OUTPUT);\n}\n\nvoid loop() {\n  // Read the value from the touch sensor\n  int touchValue = touchRead(TOUCH_PIN);\n\n  // Print the touch sensor value\n  Serial.print(\"Touch value: \");\n  Serial.println(touchValue);\n  \n  // Check if the touch sensor is activated (value will be lower when touched)\n  if (touchValue &lt; 30) {  // You might need to adjust this threshold value\n    Serial.println(\"Touch detected!\");\n    digitalWrite(LED_PIN, HIGH);  // Turn on the LED\n  } else {\n    digitalWrite(LED_PIN, LOW);  // Turn off the LED\n  }\n\n  // Add a small delay to avoid spamming the serial monitor\n  delay(100);\n}",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
     ]
   },
   {
     "objectID": "tutorials/intro-to-sensor-modules-and-thingspeak.html#thingspeak",
     "href": "tutorials/intro-to-sensor-modules-and-thingspeak.html#thingspeak",
-    "title": "19  Intro to Sensor Modules and Thingspeak",
-    "section": "19.7 Thingspeak",
-    "text": "19.7 Thingspeak\nThingspeak webpage.",
+    "title": "20  Intro to Sensor Modules and Thingspeak",
+    "section": "20.7 Thingspeak",
+    "text": "20.7 Thingspeak\nThingspeak webpage.",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
     ]
   },
   {
     "objectID": "tutorials/intro-to-sensor-modules-and-thingspeak.html#basic-code-for-uploading-data-to-thingspeak",
     "href": "tutorials/intro-to-sensor-modules-and-thingspeak.html#basic-code-for-uploading-data-to-thingspeak",
-    "title": "19  Intro to Sensor Modules and Thingspeak",
-    "section": "19.8 Basic Code for Uploading Data to Thingspeak",
-    "text": "19.8 Basic Code for Uploading Data to Thingspeak\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// #include &lt;ESP8266WiFi.h&gt;\n#include &lt;WiFi.h&gt;\n\n#include \"ThingSpeak.h\"\nunsigned long myChannelNumber = write_here_the_relevant_number;\nconst char * myWriteAPIKey = \"write_here_the_correct_API_key\";\n\nconst char* ssid = \"wifi_name\"; // your wifi SSID name\nconst char* password = \"wifi_password\" ;// wifi pasword\n \nconst char* server = \"api.thingspeak.com\";\n\nWiFiClient client;\n\n\n \nvoid setup() {\n  Serial.begin(115200);\n  WiFi.disconnect();\n  delay(10);\n  WiFi.begin(ssid, password);\n\n  Serial.println();\n  Serial.println();\n  Serial.print(\"Connecting to \");\n  Serial.println(ssid);\n\n    ThingSpeak.begin(client);\n \n  WiFi.begin(ssid, password);\n  \n \n  while (WiFi.status() != WL_CONNECTED) {\n    delay(500);\n    Serial.print(\".\");\n  }\n  Serial.println(\"\");\n  Serial.print(\"NodeMcu connected to wifi...\");\n  Serial.println(ssid);\n  Serial.println();\n}\n \nvoid loop() {\n\n \n  ThingSpeak.setField(1,11);\n  ThingSpeak.setField(2,22);\n  ThingSpeak.setField(3,33);\n  ThingSpeak.setField(4,44);\n  ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);\n\n  Serial.println(\"uploaded to Thingspeak server....\");\n\n  client.stop();\n \n  Serial.println(\"Waiting to upload next reading...\");\n  Serial.println();\n  // thingspeak needs minimum 15 sec delay between updates\n\n \n  \n  delay(20000);\n}",
+    "title": "20  Intro to Sensor Modules and Thingspeak",
+    "section": "20.8 Basic Code for Uploading Data to Thingspeak",
+    "text": "20.8 Basic Code for Uploading Data to Thingspeak\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// #include &lt;ESP8266WiFi.h&gt;\n#include &lt;WiFi.h&gt;\n\n#include \"ThingSpeak.h\"\nunsigned long myChannelNumber = write_here_the_relevant_number;\nconst char * myWriteAPIKey = \"write_here_the_correct_API_key\";\n\nconst char* ssid = \"wifi_name\"; // your wifi SSID name\nconst char* password = \"wifi_password\" ;// wifi pasword\n \nconst char* server = \"api.thingspeak.com\";\n\nWiFiClient client;\n\n\n \nvoid setup() {\n  Serial.begin(115200);\n  WiFi.disconnect();\n  delay(10);\n  WiFi.begin(ssid, password);\n\n  Serial.println();\n  Serial.println();\n  Serial.print(\"Connecting to \");\n  Serial.println(ssid);\n\n    ThingSpeak.begin(client);\n \n  WiFi.begin(ssid, password);\n  \n \n  while (WiFi.status() != WL_CONNECTED) {\n    delay(500);\n    Serial.print(\".\");\n  }\n  Serial.println(\"\");\n  Serial.print(\"NodeMcu connected to wifi...\");\n  Serial.println(ssid);\n  Serial.println();\n}\n \nvoid loop() {\n\n \n  ThingSpeak.setField(1,11);\n  ThingSpeak.setField(2,22);\n  ThingSpeak.setField(3,33);\n  ThingSpeak.setField(4,44);\n  ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);\n\n  Serial.println(\"uploaded to Thingspeak server....\");\n\n  client.stop();\n \n  Serial.println(\"Waiting to upload next reading...\");\n  Serial.println();\n  // thingspeak needs minimum 15 sec delay between updates\n\n \n  \n  delay(20000);\n}",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
     ]
   },
   {
     "objectID": "tutorials/intro-to-sensor-modules-and-thingspeak.html#uploading-thermistor-data-to-thingspeak",
     "href": "tutorials/intro-to-sensor-modules-and-thingspeak.html#uploading-thermistor-data-to-thingspeak",
-    "title": "19  Intro to Sensor Modules and Thingspeak",
-    "section": "19.9 Uploading Thermistor Data to Thingspeak",
-    "text": "19.9 Uploading Thermistor Data to Thingspeak\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n#include &lt;WiFi.h&gt;\n\n// Include the ThingSpeak library\n#include \"ThingSpeak.h\"\n\n// Set the ThingSpeak channel and API key information\nunsigned long myChannelNumber = 2557936;\nconst char* myWriteAPIKey = \"KUEIEB7R1B58O9KY\";\n\n// Set the WiFi network credentials\nconst char* ssid = \"borneo\"; // your wifi SSID name\nconst char* password = \"rainforest\"; // wifi password\n\n// Set the ThingSpeak server address\nconst char* server = \"api.thingspeak.com\";\n\n// Create a WiFiClient object to connect to the WiFi network\nWiFiClient client;\n\n// Set the time to wait between uploading data to ThingSpeak (in milliseconds)\nint wait_between_uploads = 10000; // 10 seconds\n\n// Thermistor setup------------------------------------------------------------------\nint analog_pin = 32; // Pin into which we connect the input voltage\nint val ;  // variable to store the value read\nfloat v2; // variable to store the voltage of v2\nint r1 = 10000; // R1 value (in the voltage divider)\nfloat v1 = 3.3; // V1 value\nint b_val = 4150; // B value of the resistor (from the data sheet)\nfloat r2; // variable to store the resistance of r2 (thermistor resistance)\nfloat t; // variable to store the temperature\nint adc_steps = 4095; // the number of increments our ADC has (ESP32 = 12bit)\nfloat r_25 = 10000; // the thermistor resistance at 25C (from the data sheet)\n\n// function to convert resistance to temperature according to the b value\n// equation in this link:\n// https://www.thinksrs.com/downloads/programs/therm%20calc/ntccalibrator/ntccalculator.html\nfloat resistance_to_temperature(int b, float r, float r_25) {\n  return b/(log(r/r_25)+(b/298.15))-273.15;\n}\n\n\nvoid setup() {\n  // Start the serial communication at 112500 baud\n  Serial.begin(112500);\n\n  // Disconnect any previous WiFi connection\n  WiFi.disconnect();\n  delay(10);\n\n  // Connect to the WiFi network\n  WiFi.begin(ssid, password);\n  Serial.print(\"Connecting to \");\n  Serial.println(ssid);\n  while (WiFi.status() != WL_CONNECTED) {\n    delay(500);\n    Serial.print(\".\");\n  }\n  Serial.println(\"\");\n  Serial.print(\"ESP32 connected to WiFi: \");\n  Serial.println(ssid);\n  Serial.println();\n\n  // Initialize the ThingSpeak library with the WiFi client\n  ThingSpeak.begin(client);\n}\n\nvoid loop() {\n\n  val = analogRead(analog_pin);  // read the input pin (reading v2)\n  v2 = (v1/adc_steps)*val;  // convert to voltage of v2 according to ADC\n  r2 = (v2*r1)/(v1-v2);\n  t = resistance_to_temperature(b_val, r2, r_25);\n  Serial.print(\"Temperature: \");\n  Serial.print(t);          // print temperature\n  Serial.println(\" C\");\n\n  // Set the values to be sent to ThingSpeak\n  ThingSpeak.setField(1, t);\n\n  // Send the data to ThingSpeak\n  ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);\n\n  // Print a message to the serial monitor indicating that the data has been uploaded\n  Serial.println(\"Uploaded to ThingSpeak server.\");\n\n  // Disconnect the WiFi client\n  client.stop();\n\n  // Wait for the specified amount of time before uploading the next set of data\n  // thingspeak needs minimum 15 sec delay between updates on a free acount,\n  // a paid acount can update every 1 sec\n  Serial.println(\"Waiting to upload next reading...\");\n  Serial.println();\n  \n  delay(wait_between_uploads);\n}",
+    "title": "20  Intro to Sensor Modules and Thingspeak",
+    "section": "20.9 Uploading Thermistor Data to Thingspeak",
+    "text": "20.9 Uploading Thermistor Data to Thingspeak\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n#include &lt;WiFi.h&gt;\n\n// Include the ThingSpeak library\n#include \"ThingSpeak.h\"\n\n// Set the ThingSpeak channel and API key information\nunsigned long myChannelNumber = 2557936;\nconst char* myWriteAPIKey = \"KUEIEB7R1B58O9KY\";\n\n// Set the WiFi network credentials\nconst char* ssid = \"borneo\"; // your wifi SSID name\nconst char* password = \"rainforest\"; // wifi password\n\n// Set the ThingSpeak server address\nconst char* server = \"api.thingspeak.com\";\n\n// Create a WiFiClient object to connect to the WiFi network\nWiFiClient client;\n\n// Set the time to wait between uploading data to ThingSpeak (in milliseconds)\nint wait_between_uploads = 10000; // 10 seconds\n\n// Thermistor setup------------------------------------------------------------------\nint analog_pin = 32; // Pin into which we connect the input voltage\nint val ;  // variable to store the value read\nfloat v2; // variable to store the voltage of v2\nint r1 = 10000; // R1 value (in the voltage divider)\nfloat v1 = 3.3; // V1 value\nint b_val = 4150; // B value of the resistor (from the data sheet)\nfloat r2; // variable to store the resistance of r2 (thermistor resistance)\nfloat t; // variable to store the temperature\nint adc_steps = 4095; // the number of increments our ADC has (ESP32 = 12bit)\nfloat r_25 = 10000; // the thermistor resistance at 25C (from the data sheet)\n\n// function to convert resistance to temperature according to the b value\n// equation in this link:\n// https://www.thinksrs.com/downloads/programs/therm%20calc/ntccalibrator/ntccalculator.html\nfloat resistance_to_temperature(int b, float r, float r_25) {\n  return b/(log(r/r_25)+(b/298.15))-273.15;\n}\n\n\nvoid setup() {\n  // Start the serial communication at 112500 baud\n  Serial.begin(112500);\n\n  // Disconnect any previous WiFi connection\n  WiFi.disconnect();\n  delay(10);\n\n  // Connect to the WiFi network\n  WiFi.begin(ssid, password);\n  Serial.print(\"Connecting to \");\n  Serial.println(ssid);\n  while (WiFi.status() != WL_CONNECTED) {\n    delay(500);\n    Serial.print(\".\");\n  }\n  Serial.println(\"\");\n  Serial.print(\"ESP32 connected to WiFi: \");\n  Serial.println(ssid);\n  Serial.println();\n\n  // Initialize the ThingSpeak library with the WiFi client\n  ThingSpeak.begin(client);\n}\n\nvoid loop() {\n\n  val = analogRead(analog_pin);  // read the input pin (reading v2)\n  v2 = (v1/adc_steps)*val;  // convert to voltage of v2 according to ADC\n  r2 = (v2*r1)/(v1-v2);\n  t = resistance_to_temperature(b_val, r2, r_25);\n  Serial.print(\"Temperature: \");\n  Serial.print(t);          // print temperature\n  Serial.println(\" C\");\n\n  // Set the values to be sent to ThingSpeak\n  ThingSpeak.setField(1, t);\n\n  // Send the data to ThingSpeak\n  ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);\n\n  // Print a message to the serial monitor indicating that the data has been uploaded\n  Serial.println(\"Uploaded to ThingSpeak server.\");\n\n  // Disconnect the WiFi client\n  client.stop();\n\n  // Wait for the specified amount of time before uploading the next set of data\n  // thingspeak needs minimum 15 sec delay between updates on a free acount,\n  // a paid acount can update every 1 sec\n  Serial.println(\"Waiting to upload next reading...\");\n  Serial.println();\n  \n  delay(wait_between_uploads);\n}",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Intro to Sensor Modules and Thingspeak</span>"
     ]
   },
   {
     "objectID": "tutorials/pulse-sensors.html",
     "href": "tutorials/pulse-sensors.html",
-    "title": "20  Pulse sensors",
+    "title": "21  Pulse sensors",
     "section": "",
-    "text": "20.1 Square wave",
+    "text": "21.1 Square wave",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Pulse sensors</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Pulse sensors</span>"
     ]
   },
   {
     "objectID": "tutorials/pulse-sensors.html#square-wave",
     "href": "tutorials/pulse-sensors.html#square-wave",
-    "title": "20  Pulse sensors",
+    "title": "21  Pulse sensors",
     "section": "",
-    "text": "20.1.1 Pulse counter\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nint sensorPin = A4;\nvolatile long pulse_count;\n\nfloat volume;\n\nvoid setup() {\n  pinMode(sensorPin, INPUT);\n  Serial.begin(115200);\n  attachInterrupt(digitalPinToInterrupt(sensorPin), increase, RISING);\n}\n\nvoid loop() {\n  Serial.print(pulse_count);\n  Serial.println(\" counts\");\n  delay(50);\n}\n\nICACHE_RAM_ATTR void increase() {\n  pulse_count++;\n}\n\n            \n            \n            \n\n\n20.1.2 Calculate frequency from counts\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nint sensorPin = A4;\nvolatile long pulse_count;\nunsigned long last_print_time;\nlong total_pulse_count = 0;\nfloat volume;\n\nvoid setup() {\n  pinMode(sensorPin, INPUT);\n  Serial.begin(115200);\n  attachInterrupt(digitalPinToInterrupt(sensorPin), increase, RISING);\n  last_print_time = millis();\n}\n\nvoid loop() {\n  unsigned long current_time = millis();\n  if (current_time - last_print_time &gt;= 1000) { // print every second\n    float frequency = (float)pulse_count / ((current_time - last_print_time) / 1000.0);\n    total_pulse_count += pulse_count; // update total pulse count\n    Serial.print(total_pulse_count);\n    Serial.print(\" total counts, \");\n    Serial.print(frequency);\n    Serial.println(\" counts per second\");\n    pulse_count = 0; // reset pulse count\n    last_print_time = current_time;\n  }\n}\n\nICACHE_RAM_ATTR void increase() {\n  pulse_count++;\n}",
+    "text": "21.1.1 Pulse counter\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nint sensorPin = A4;\nvolatile long pulse_count;\n\nfloat volume;\n\nvoid setup() {\n  pinMode(sensorPin, INPUT);\n  Serial.begin(115200);\n  attachInterrupt(digitalPinToInterrupt(sensorPin), increase, RISING);\n}\n\nvoid loop() {\n  Serial.print(pulse_count);\n  Serial.println(\" counts\");\n  delay(50);\n}\n\nICACHE_RAM_ATTR void increase() {\n  pulse_count++;\n}\n\n            \n            \n            \n\n\n21.1.2 Calculate frequency from counts\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \nint sensorPin = A4;\nvolatile long pulse_count;\nunsigned long last_print_time;\nlong total_pulse_count = 0;\nfloat volume;\n\nvoid setup() {\n  pinMode(sensorPin, INPUT);\n  Serial.begin(115200);\n  attachInterrupt(digitalPinToInterrupt(sensorPin), increase, RISING);\n  last_print_time = millis();\n}\n\nvoid loop() {\n  unsigned long current_time = millis();\n  if (current_time - last_print_time &gt;= 1000) { // print every second\n    float frequency = (float)pulse_count / ((current_time - last_print_time) / 1000.0);\n    total_pulse_count += pulse_count; // update total pulse count\n    Serial.print(total_pulse_count);\n    Serial.print(\" total counts, \");\n    Serial.print(frequency);\n    Serial.println(\" counts per second\");\n    pulse_count = 0; // reset pulse count\n    last_print_time = current_time;\n  }\n}\n\nICACHE_RAM_ATTR void increase() {\n  pulse_count++;\n}",
     "crumbs": [
       "**Sensors and comm**",
-      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Pulse sensors</span>"
-    ]
-  },
-  {
-    "objectID": "tutorials/digital-read-write.html",
-    "href": "tutorials/digital-read-write.html",
-    "title": "21  Digital read and write",
-    "section": "",
-    "text": "21.0.1 Turn on LED upon button press\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// Define the pin numbers\nconst int buttonPin = D4;\nconst int ledPin = A4;\n\nvoid setup() {\n  // Set the pin modes\n  pinMode(buttonPin, INPUT_PULLUP);\n  pinMode(ledPin, OUTPUT);\n\n  // Initialize Serial communication\n  Serial.begin(115200);\n}\n\nvoid loop() {\n  // Read the state of the button\n  int buttonState = digitalRead(buttonPin);\n\n  // If the button is not pressed (pin is pulled high)\n  if (buttonState == HIGH) {\n    // Turn on the LED\n    digitalWrite(ledPin, LOW);\n\n    // Print the button state to the Serial Monitor\n    Serial.println(\"Button is not pressed.\");\n  } else {\n    // Turn off the LED\n    digitalWrite(ledPin, HIGH);\n\n    // Print the button state to the Serial Monitor\n    Serial.println(\"Button is pressed.\");\n  }\n\n  // Delay for a short period to debounce the button\n  delay(50);\n}\n\n            \n            \n            \n\n\n21.0.2 Toggle LED upon button press\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// Define the pin numbers\nconst int buttonPin = D4;\nconst int ledPin = A4;\n\n// Initialize the LED state to off\nbool ledState = false;\n\nvoid setup() {\n  // Set the pin modes\n  pinMode(buttonPin, INPUT_PULLUP);\n  pinMode(ledPin, OUTPUT);\n\n  // Initialize Serial communication\n  Serial.begin(115200);\n}\n\nvoid loop() {\n  // Read the state of the button\n  int buttonState = digitalRead(buttonPin);\n\n  // If the button is pressed\n  if (buttonState == LOW) {\n    // Toggle the LED state\n    ledState = !ledState;\n    digitalWrite(ledPin, ledState);\n\n    // Print the LED state to the Serial Monitor\n    if (ledState) {\n      Serial.println(\"LED is on.\");\n    } else {\n      Serial.println(\"LED is off.\");\n    }\n\n    // Wait a short period to debounce the button\n    delay(500);\n  }\n}",
-    "crumbs": [
-      "**Sensors and comm**",
-      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Digital read and write</span>"
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Pulse sensors</span>"
     ]
   },
   {

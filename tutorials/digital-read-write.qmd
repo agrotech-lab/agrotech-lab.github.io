@@ -1,5 +1,5 @@
 ---
-title: "Digital read and write"
+title: "Reading digital and analog"
 echo: false
 jupyter: python3
 execute:
@@ -22,6 +22,191 @@ code_source("led_button.ino")
 #| output: asis
 code_source("button_led_toggle.ino")
 ```
+
+## Digital read
+
+- **Goal**: Read button press and take an action (flash external LED).
+
+Use the following code.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("button-digitalread-flash.ino")
+```
+
+<details>
+<summary>see diagram</summary>
+![](/archive/figures/diagrams/button-flashLED_bb.png)
+</details>
+
+<details>
+<summary>see wiring scheme</summary>
+![](/archive/figures/diagrams/button-flashLED_schem.png)
+</details>
+
+## Touch sensor
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("touch_sensor.ino")
+```
+
+## Control LED with touch sensor
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("touch_control_LED.ino")
+```
+
+
+## Reading an Analog Pin, convert to digital with built-in ADC
+
+We will read the signal (middle) pin of the potentiometer, and use the 12-bit built-in Analog to Digital Converter.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("analog-read.ino")
+```
+
+<details>
+<summary>see diagram</summary>
+![](/archive/figures/diagrams/potentiometer-esp32_bb.png)
+</details>
+
+<details>
+<summary>see wiring scheme</summary>
+![](/archive/figures/diagrams/potentiometer-esp32_schem.png)
+</details>
+
+Why is the maximum number 4095? What does this have to do with 12-bits?
+
+## Reading an Analog Pin, convert to voltage
+
+Use the same wiring as above. We will convert bits to volts now: $4095 \text{ bits} = 3.3\text{ volts}$.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("ADC-to-voltage.ino")
+```
+
+## Reading Potentiometer with Analog Pin, convert to angle
+
+Put a piece of cardboard in your potentiometer's slit. Your goal is to build a **calibration curve**, that is, a function that converts reading from something you don't care about (increments from 0 to 4095) to something that you do care about (angle).
+
+The simplest thing you can do is to measure the increments ($i$) that you get for two given angles (say, $\theta$ equals zero and 90 degrees). Let's say you measured $(i_1,\theta_1)$ and $(i_2,\theta_2)$. If the potentiometer is linear, we will get a linear relationship between angle and increment:
+
+$$
+\theta = a i + b
+$$
+
+Substitute these two points in the equation above:
+
+$$
+\theta_1 = a i_1 + b
+$$ {#eq-linear1}
+
+$$
+\theta_2 = a i_2 + b
+$$ {#eq-linear2}
+
+Now let's subtract @eq-linear2 from @eq-linear1:
+
+$$
+\theta_1 - \theta_2 = a (i_1 - i_2)
+$$ {#eq-linear2}
+
+Now solve for the slope $a$:
+
+$$
+a = (\theta_1 - \theta_2) / (i_1 - i_2)
+$$ {#eq-linear_slope}
+
+To find the intercept $b$, just substitute $a$ into @eq-linear1 and solve for $b$:
+
+$$
+b = \theta_1 - a i_1
+$$ {#eq-linear_intercept}
+
+
+put the lines below in the code we ran before, they are not in the correct place, it is here just so you have an idea how to update the previous code.
+```cpp
+float angle, increment, a, b;
+
+a = 12345;  // put here what you calculated
+b = 12345;  // put here what you calculated
+
+increment = analogRead(analog_pin);
+angle = a * increment + b;
+```
+
+
+## Voltage divider
+
+Many sensors have calibration curves that relate their resistance changes to the measured variable. For example, the resistance of photoresistors and thermistors changes with light and temperature, respectively. To handle this, we need to understand **Voltage Dividers**.
+
+![](/archive/figures/voltage_divider.png)
+
+[Check out this great tutorial](https://learn.sparkfun.com/tutorials/voltage-dividers/all)
+
+
+How to derive the equation for the voltage divider?
+
+First, write Ohm's law for the two components in series:
+
+$$
+V_{in} = (R_1 + R_2) I
+$$ {#eq-ohm1}
+
+Now write Ohm's law just for the second component
+
+$$
+V_{out} = R_2 I
+$$ {#eq-ohm2}
+
+Now solve @eq-ohm2 for $I$
+
+$$
+I = \frac{V_{out}}{R_2}
+$$ {#eq-ohm3}
+
+... and substitute it into @eq-ohm1:
+
+$$
+V_{in} = (R_1 + R_2) \frac{V_{out}}{R_2}
+$$ {#eq-ohm4}
+
+Solving for $V_{out}$ yields the famous equation for the voltage divider:
+
+$$
+V_{out} = \frac{R_2}{R_1 + R_2} V_{in}
+$$ {#eq-voltage_divider}
+
+We usually need to find the value of the resistance $R_2$:
+
+$$
+R_2 = \frac{V_{in} - V_{out}}{V_{out}} R_2
+$$
+
+
+
+## Thermistor
+
+[Download Data Sheet](/archive/teaching-material/thermistor-datasheet-NTCM-10K-B4150.pdf)
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("thermistor.ino")
+```
+
+![](/archive/figures/thermistor-agrotech-schematic.png)
+
+![](/archive/figures/thermistor-agrotech-breadboard.png)
 
 
 ----

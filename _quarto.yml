@@ -36,9 +36,10 @@ book:
       - tutorials/electronics-class-old.qmd
     - part: "**Sensors and comm**"
       chapters:
+      # - tutorials/reading.qmd
+      - tutorials/digital-read-write.qmd
       - tutorials/intro-to-sensor-modules-and-thingspeak.qmd
       - tutorials/pulse-sensors.qmd
-      - tutorials/digital-read-write.qmd
       - tutorials/MQTT.qmd
       - tutorials/deep_sleep.qmd
       - tutorials/esp_now.qmd

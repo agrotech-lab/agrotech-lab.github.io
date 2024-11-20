@@ -226,5 +226,8 @@
   },
   "tutorials/control.qmd": {
     "control.html": "f8a35ee0"
+  },
+  "tutorials/reading.qmd": {
+    "reading.html": "44b0282a"
   }
 }
