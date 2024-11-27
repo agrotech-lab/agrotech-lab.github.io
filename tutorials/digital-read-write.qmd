@@ -193,8 +193,62 @@ R_2 = \frac{V_{in} - V_{out}}{V_{out}} R_2
 $$
 
 
+## Photoresistor
+
+![](/archive/figures/photoresistor.jpg)
+![](/archive/figures/photoresistor-curve.jpg)
+
+Play with your photoresistor. Measure its resistance when it receives bright light and when it doesn't receive any light at all. This will give you an idea of what value of resistor to use together with your photoresistor when building your voltage divider. Build the following circuit:  
+`3V3` → `resistor` → * `photoresistor` → `GND`  
+Connect pin `A4` to the asterisk, this is your $V_\text{out}$ in the voltage divider.
+
+[](/tutorials/digital-read-write.html#reading-an-analog-pin-convert-to-digital-with-built-in-adc)
+
+We will read the increments from the photoresistor, using a code from before:
+```{python}
+#| echo: false
+#| output: asis
+code_source("analog-read.ino")
+```
+
 
 ## Thermistor
+
+![](/archive/figures/thermistor.jpg)
+![](/archive/figures/thermistor-curve.jpg)
+
+* [Model equations and calculator of constants for thermistors](https://www.thinksrs.com/downloads/programs/therm%20calc/ntccalibrator/ntccalculator.html)
+* [Thermistor tutorial](https://learn.adafruit.com/thermistor/using-a-thermistor?gclid=CjwKCAjw8sCRBhA6EiwA6_IF4aVJKhNGZ1uXLi9KoB-jvnO2kBAEfc7wec8Rc3JcZuQGs_f4GHzYKRoCxxoQAvD_BwE)
+
+![](/archive/figures/thermistor-table1.png)
+![](/archive/figures/thermistor-table2.png)
+
+We will use the $\beta$ model
+
+$$
+R = R_{25} \exp\left[ \beta \left(\frac{1}{T} - \frac{1}{298.15} \right) \right],
+$$
+
+where
+
+* $R$ is given in ohms,
+* $R_{25}$ is the resistance for 25 °C,
+* $T$ is temperature in Kelvin.
+
+Of course, we want the temperature (°C) as a function of the resistance:
+
+$$
+T = \left[ \frac{1}{\beta} \ln\left(\frac{R}{R_{25}}\right) + \frac{1}{298.15} \right]^{-1} - 273.15
+$$
+
+
+<div class="alert alert-danger">
+For our thermistor,
+$$
+\beta = 4150
+$$
+</div>
+
 
 [Download Data Sheet](/archive/teaching-material/thermistor-datasheet-NTCM-10K-B4150.pdf)
 
@@ -207,6 +261,7 @@ code_source("thermistor.ino")
 ![](/archive/figures/thermistor-agrotech-schematic.png)
 
 ![](/archive/figures/thermistor-agrotech-breadboard.png)
+
 
 
 ----

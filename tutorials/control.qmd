@@ -37,6 +37,14 @@ Use the following code to activate LED pin with PWM.
 code_source("PWM-basic.ino")
 ```
 
+<br>
+If for some reason you are working with an older version of ESP32 board manager (2.0.17 or lower), then use the code below. If you have no idea what I'm talking about, just ignore this.
+```{python}
+#| echo: false
+#| output: asis
+code_source("PWM-basic-old.ino")
+```
+
 
 ## Relay
 

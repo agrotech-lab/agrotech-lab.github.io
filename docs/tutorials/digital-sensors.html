@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>agrotech lab - 10&nbsp; SHT31 temperature &amp; humidity sensor</title>
+<title>agrotech lab - 13&nbsp; Digital sensors</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tutorials/RGB.html" rel="next">
-<link href="../tutorials/merging.html" rel="prev">
+<link href="../tutorials/cloud-connectivity.html" rel="next">
+<link href="../tutorials/digital-read-write.html" rel="prev">
 <link href="..//archive/images/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -121,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/first-programs.html"><strong>Running simple programs</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/SHT31.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">SHT31 temperature &amp; humidity sensor</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/first-programs.html"><strong>Lectures</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/digital-sensors.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Digital sensors</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -169,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text"><strong>First steps</strong></span></a>
+ <span class="menu-text"><strong>Start here</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -193,24 +193,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Install FireBeetle (ESP32)</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/firebeetle_documentation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">FireBeetle 2 ESP32-E</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/breadboard.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Breadboard</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text"><strong>Running simple programs</strong></span></a>
+ <span class="menu-text"><strong>Basics</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -218,8 +206,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/first-programs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">First programs</span></span></a>
+  <a href="../tutorials/breadboard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Breadboard</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/basic-electronics-concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic Electronics Concepts</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/firebeetle_documentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">FireBeetle 2 ESP32-E</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -228,36 +228,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Libraries</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/thingspeak.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ThingSpeak</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/merging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Code Merging</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/SHT31.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">SHT31 temperature &amp; humidity sensor</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/RGB.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">RGB LED</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text"><strong>Electronics</strong></span></a>
+ <span class="menu-text"><strong>Lectures</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -265,44 +241,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/basic-electronics-concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Basic Electronics Concepts</span></span></a>
+  <a href="../tutorials/first-programs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">First programs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/electronics-class.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Electronics Class</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Control</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Electronics Class</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/electronics-class-2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Electronics Class 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Electronics Class 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/relay.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Switches, Relays, Transistors</span></span></a>
+  <a href="../tutorials/control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Control</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/soldering-and-wires.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Soldering and Wires</span></span></a>
+  <a href="../tutorials/digital-read-write.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reading digital and analog</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/electronics-class-old.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Electronics Class Old</span></span></a>
+  <a href="../tutorials/digital-sensors.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Digital sensors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/cloud-connectivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Cloud connectivity</span></span></a>
   </div>
 </li>
       </ul>
@@ -310,7 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text"><strong>Sensors and comm</strong></span></a>
+ <span class="menu-text"><strong>Running simple programs</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -318,50 +294,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/digital-read-write.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Reading digital and analog</span></span></a>
+  <a href="../tutorials/merging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Code Merging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/intro-to-sensor-modules-and-thingspeak.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Intro to Sensor Modules and Thingspeak</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/pulse-sensors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Pulse sensors</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/MQTT.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">MQTT</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/deep_sleep.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Deep Sleep</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/esp_now.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">ESP-NOW</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/python-matlab-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Basic Data Analysis with Python and Matlab</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/API-thingspeak-python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">API to download Thingspeak data with Python</span></span></a>
+  <a href="../tutorials/RGB.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">RGB LED</span></span></a>
   </div>
 </li>
       </ul>
@@ -369,7 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text"><strong>Agro stuff</strong></span></a>
+ <span class="menu-text"><strong>Electronics</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -377,14 +317,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/water-and-energy-balances.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Water and Energy Balances</span></span></a>
+  <a href="../tutorials/relay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Switches, Relays, Transistors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/psychrometric-chart-and-evaporative-cooling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Psychrometric Chart and Evaporative Cooling</span></span></a>
+  <a href="../tutorials/soldering-and-wires.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Soldering and Wires</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/electronics-class-old.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Electronics Class Old</span></span></a>
   </div>
 </li>
       </ul>
@@ -392,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text"><strong>Assignments</strong></span></a>
+ <span class="menu-text"><strong>Sensors and comm</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -400,14 +346,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../assignments/assignment1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Assignment 1</span></span></a>
+  <a href="../tutorials/pulse-sensors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Pulse sensors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../assignments/assignment2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Assignment 2</span></span></a>
+  <a href="../tutorials/MQTT.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">MQTT</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/deep_sleep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Deep Sleep</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/esp_now.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">ESP-NOW</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/python-matlab-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Basic Data Analysis with Python and Matlab</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/API-thingspeak-python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">API to download Thingspeak data with Python</span></span></a>
   </div>
 </li>
       </ul>
@@ -415,7 +385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text"><strong>Resources</strong></span></a>
+ <span class="menu-text"><strong>Agro stuff</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -423,8 +393,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title"> Resources</span></span></a>
+  <a href="../tutorials/water-and-energy-balances.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Water and Energy Balances</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/psychrometric-chart-and-evaporative-cooling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Psychrometric Chart and Evaporative Cooling</span></span></a>
   </div>
 </li>
       </ul>
@@ -432,7 +408,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text"><strong>Projects</strong></span></a>
+ <span class="menu-text"><strong>Assignments</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -440,26 +416,66 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Assignment 1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Assignment 2</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
+ <span class="menu-text"><strong>Resources</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title"> Resources</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
+ <span class="menu-text"><strong>Projects</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title"> Projects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title"> Projects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects/borrowing-equipment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Borrowing equipment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Borrowing equipment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects/final-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects/examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Example projects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Example projects</span></span></a>
   </div>
 </li>
       </ul>
@@ -474,11 +490,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">10.1</span> Introduction</a></li>
-  <li><a href="#sht31-sensor" id="toc-sht31-sensor" class="nav-link" data-scroll-target="#sht31-sensor"><span class="header-section-number">10.2</span> SHT31 Sensor</a></li>
-  <li><a href="#libraries" id="toc-libraries" class="nav-link" data-scroll-target="#libraries"><span class="header-section-number">10.3</span> Libraries</a></li>
-  <li><a href="#wiring" id="toc-wiring" class="nav-link" data-scroll-target="#wiring"><span class="header-section-number">10.4</span> Wiring</a></li>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code"><span class="header-section-number">10.5</span> Code</a></li>
+  <li><a href="#sht31-temperature-humidity-sensor-using-i2c-communication" id="toc-sht31-temperature-humidity-sensor-using-i2c-communication" class="nav-link active" data-scroll-target="#sht31-temperature-humidity-sensor-using-i2c-communication"><span class="header-section-number">13.1</span> SHT31 Temperature &amp; Humidity Sensor Using I2C communication</a></li>
+  <li><a href="#vl53l0x-time-of-flight-distance-sensor-using-i2c-communication" id="toc-vl53l0x-time-of-flight-distance-sensor-using-i2c-communication" class="nav-link" data-scroll-target="#vl53l0x-time-of-flight-distance-sensor-using-i2c-communication"><span class="header-section-number">13.2</span> VL53L0X Time-of-Flight Distance Sensor Using I2C communication</a></li>
+  <li><a href="#ds18b20-temperature-sensor" id="toc-ds18b20-temperature-sensor" class="nav-link" data-scroll-target="#ds18b20-temperature-sensor"><span class="header-section-number">13.3</span> DS18B20 Temperature Sensor</a></li>
   </ul>
 </nav>
     </div>
@@ -486,9 +500,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/first-programs.html"><strong>Running simple programs</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/SHT31.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">SHT31 temperature &amp; humidity sensor</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/first-programs.html"><strong>Lectures</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/digital-sensors.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Digital sensors</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">SHT31 temperature &amp; humidity sensor</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Digital sensors</span></h1>
 </div>
 
 
@@ -511,59 +525,10 @@ echo: false
 jupyter: python3
 section-divs: false
 --- -->
-<section id="introduction" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">10.1</span> Introduction</h2>
-<p>In this tutorial, we will learn how to use the ESP32 microcontroller with the SHT31 temperature and humidity sensor. We will cover the basics of the sensor, including how it works and how to connect it to an ESP32. We will also learn how to use the Adafruit_SHT31 library to read temperature and humidity values from the sensor. By the end of this tutorial, you will be able to build your own ESP32 and SHT31-based projects.</p>
-</section>
-<section id="sht31-sensor" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="sht31-sensor"><span class="header-section-number">10.2</span> SHT31 Sensor</h2>
-<p>The SHT31 is a high-precision temperature and humidity sensor that can be used in a wide range of applications. It measures temperature and humidity using a capacitive humidity sensor and a band-gap temperature sensor. It has a wide measurement range of -40°C to 125°C for temperature and 0-100% for relative humidity. The SHT31 is a digital sensor, which means it communicates with the microcontroller over a digital interface. See more details on the <a href="https://github.com/adafruit/Adafruit_SHT31">Adafruit’s github page for the SHT31</a> and full specs on the <a href="https://www.mouser.com/datasheet/2/682/Sensirion_Humidity_Sensors_SHT3x_Datasheet_digital-971521.pdf">SHT31 datasheet</a>.</p>
-</section>
-<section id="libraries" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="libraries"><span class="header-section-number">10.3</span> Libraries</h2>
-<p>To use the SHT31 sensor with an ESP32 microcontroller, we will need to use the Adafruit_SHT31 library. This library is specifically designed to work with the SHT31 sensor and makes it easy to read temperature and humidity values from the sensor.</p>
-<p>To install the library, follow these steps:</p>
-<ol type="1">
-<li>Open the Arduino IDE</li>
-<li>Go to <strong>Sketch &gt; Include Library &gt; Manage Libraries</strong></li>
-<li>Search for “Adafruit_SHT31” and click the <strong>Install</strong> button</li>
-<li>Wait for the library to install</li>
-</ol>
-</section>
-<section id="wiring" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="wiring"><span class="header-section-number">10.4</span> Wiring</h2>
-<p>To connect the SHT31 sensor to the ESP32 microcontroller, we will need to use four wires: VCC, GND, SDA, and SCL. Here is a table that shows how to connect the wires:</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>SHT31 Pin</th>
-<th>ESP32 Pin</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>VCC</td>
-<td>3V3</td>
-</tr>
-<tr class="even">
-<td>GND</td>
-<td>GND</td>
-</tr>
-<tr class="odd">
-<td>SDA</td>
-<td>GPIO21</td>
-</tr>
-<tr class="even">
-<td>SCL</td>
-<td>GPIO22</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Note:</strong> The ESP32’s 3V3 pin provides 3.3 volts of power, which is the correct voltage for the SHT31 sensor. Do not use the 5V pin, as it will damage the sensor.</p>
-</section>
-<section id="code" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="code"><span class="header-section-number">10.5</span> Code</h2>
-<p>Here is the code for reading temperature and humidity values from the SHT31 sensor.</p>
+<section id="sht31-temperature-humidity-sensor-using-i2c-communication" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="sht31-temperature-humidity-sensor-using-i2c-communication"><span class="header-section-number">13.1</span> SHT31 Temperature &amp; Humidity Sensor Using I2C communication</h2>
+<p>In <a href="http://www.esp32learning.com/code/esp32-and-sht31-sensor-example.php">this tutorial</a> you can find a lot more information.</p>
+<p>Code for reading the sensor:</p>
 <button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#sht31ino" aria-expanded="false" aria-controls="sht31ino">
     <i class="bi bi-toggles"></i> Toggle code
     </button>
@@ -621,6 +586,116 @@ section-divs: false
 <span id="cb1-45"><a href="#cb1-45"></a>  Serial<span class="op">.</span>println<span class="op">();</span>    <span class="co">// Break line</span></span>
 <span id="cb1-46"><a href="#cb1-46"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span>         <span class="co">// Wait 1 second</span></span>
 <span id="cb1-47"><a href="#cb1-47"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
+<p><br></p>
+</section>
+<section id="vl53l0x-time-of-flight-distance-sensor-using-i2c-communication" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="vl53l0x-time-of-flight-distance-sensor-using-i2c-communication"><span class="header-section-number">13.2</span> VL53L0X Time-of-Flight Distance Sensor Using I2C communication</h2>
+<p>In <a href="http://www.esp32learning.com/code/vl53l0x-time-of-flight-sensor-and-esp32.php">this tutorial</a> you can find a lot more information.</p>
+<p>Code for reading the sensor:</p>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#Agrotech_2022_VL53L0Xino" aria-expanded="false" aria-controls="Agrotech_2022_VL53L0Xino">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/Agrotech_2022_VL53L0X.ino" download="" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="Agrotech_2022_VL53L0Xino">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1"></a><span class="pp">#include </span><span class="im">"Adafruit_VL53L0X.h"</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">// also on http://www.esp32learning.com/code/vl53l0x-time-of-flight-sensor-and-esp32.php</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>Adafruit_VL53L0X lox <span class="op">=</span> Adafruit_VL53L0X<span class="op">();</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="co">// wait until serial port opens for native USB devices</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="cf">while</span> <span class="op">(!</span> Serial<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>    delay<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>  <span class="op">}</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>  </span>
+<span id="cb2-14"><a href="#cb2-14"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Adafruit VL53L0X test"</span><span class="op">);</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>  <span class="cf">if</span> <span class="op">(!</span>lox<span class="op">.</span>begin<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>    Serial<span class="op">.</span>println<span class="op">(</span>F<span class="op">(</span><span class="st">"Failed to boot VL53L0X"</span><span class="op">));</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>    <span class="cf">while</span><span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>  <span class="op">}</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>  <span class="co">// power </span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>  Serial<span class="op">.</span>println<span class="op">(</span>F<span class="op">(</span><span class="st">"VL53L0X API Simple Ranging example</span><span class="sc">\n\n</span><span class="st">"</span><span class="op">));</span> </span>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="op">}</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a></span>
+<span id="cb2-23"><a href="#cb2-23"></a></span>
+<span id="cb2-24"><a href="#cb2-24"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>  VL53L0X_RangingMeasurementData_t measure<span class="op">;</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>    </span>
+<span id="cb2-27"><a href="#cb2-27"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Reading a measurement... "</span><span class="op">);</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a>  lox<span class="op">.</span>rangingTest<span class="op">(&amp;</span>measure<span class="op">,</span> <span class="kw">false</span><span class="op">);</span> <span class="co">// pass in 'true' to get debug data printout!</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a></span>
+<span id="cb2-30"><a href="#cb2-30"></a>  <span class="cf">if</span> <span class="op">(</span>measure<span class="op">.</span>RangeStatus <span class="op">!=</span> <span class="dv">4</span><span class="op">)</span> <span class="op">{</span>  <span class="co">// phase failures have incorrect data</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Distance (mm): "</span><span class="op">);</span> Serial<span class="op">.</span>println<span class="op">(</span>measure<span class="op">.</span>RangeMilliMeter<span class="op">);</span></span>
+<span id="cb2-32"><a href="#cb2-32"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb2-33"><a href="#cb2-33"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">" out of range "</span><span class="op">);</span></span>
+<span id="cb2-34"><a href="#cb2-34"></a>  <span class="op">}</span></span>
+<span id="cb2-35"><a href="#cb2-35"></a>    </span>
+<span id="cb2-36"><a href="#cb2-36"></a>  delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
+<span id="cb2-37"><a href="#cb2-37"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
+<p><br></p>
+</section>
+<section id="ds18b20-temperature-sensor" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="ds18b20-temperature-sensor"><span class="header-section-number">13.3</span> DS18B20 Temperature Sensor</h2>
+<p>Pretty accurate temperature sensor. Each sensor has its own unique address, enabling the connection of numerous sensors to only on pin on the Arduino/ESP32.</p>
+<p>In <a href="https://randomnerdtutorials.com/esp32-multiple-ds18b20-temperature-sensors/">this tutorial</a> you can find a lot more information.</p>
+<p>Code for finding the sensor’s address:</p>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#Agrotech_2022_find_DS18B20ino" aria-expanded="false" aria-controls="Agrotech_2022_find_DS18B20ino">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/Agrotech_2022_find_DS18B20.ino" download="" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="Agrotech_2022_find_DS18B20ino">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">/*</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co"> * Rui Santos </span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co"> * Complete Project Details https://randomnerdtutorials.com</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co"> */</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="pp">#include </span><span class="im">&lt;OneWire.h&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">// Based on the OneWire library example</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a></span>
+<span id="cb3-10"><a href="#cb3-10"></a>OneWire ds<span class="op">(</span><span class="dv">4</span><span class="op">);</span>  <span class="co">//data wire connected to GPIO 4</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="dt">void</span> setup<span class="op">(</span><span class="dt">void</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="op">}</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="dt">void</span> loop<span class="op">(</span><span class="dt">void</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a>  byte i<span class="op">;</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a>  byte addr<span class="op">[</span><span class="dv">8</span><span class="op">];</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a>  </span>
+<span id="cb3-20"><a href="#cb3-20"></a>  <span class="cf">if</span> <span class="op">(!</span>ds<span class="op">.</span>search<span class="op">(</span>addr<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">" No more addresses."</span><span class="op">);</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a>    Serial<span class="op">.</span>println<span class="op">();</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a>    ds<span class="op">.</span>reset_search<span class="op">();</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a>    delay<span class="op">(</span><span class="dv">250</span><span class="op">);</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a>    <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a>  <span class="op">}</span></span>
+<span id="cb3-27"><a href="#cb3-27"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">" ROM ="</span><span class="op">);</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a>  <span class="cf">for</span> <span class="op">(</span>i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">8</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a>    Serial<span class="op">.</span>write<span class="op">(</span><span class="ch">' '</span><span class="op">);</span></span>
+<span id="cb3-30"><a href="#cb3-30"></a>    Serial<span class="op">.</span>print<span class="op">(</span>addr<span class="op">[</span>i<span class="op">],</span> HEX<span class="op">);</span></span>
+<span id="cb3-31"><a href="#cb3-31"></a>  <span class="op">}</span></span>
+<span id="cb3-32"><a href="#cb3-32"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
             </div>
             </div>
@@ -1041,13 +1116,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tutorials/merging.html" class="pagination-link" aria-label="Code Merging">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Code Merging</span></span>
+      <a href="../tutorials/digital-read-write.html" class="pagination-link" aria-label="Reading digital and analog">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reading digital and analog</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tutorials/RGB.html" class="pagination-link" aria-label="RGB LED">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">RGB LED</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tutorials/cloud-connectivity.html" class="pagination-link" aria-label="Cloud connectivity">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Cloud connectivity</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

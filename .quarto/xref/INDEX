@@ -229,5 +229,11 @@
   },
   "tutorials/reading.qmd": {
     "reading.html": "44b0282a"
+  },
+  "tutorials/digital-sensors.qmd": {
+    "digital-sensors.html": "f944f93b"
+  },
+  "tutorials/cloud-connectivity.qmd": {
+    "cloud-connectivity.html": "0d175fd2"
   }
 }
