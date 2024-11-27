@@ -10,35 +10,40 @@ book:
   chapters:
     - index.qmd
     - schedule.qmd
-    - part: "**First steps**"
+    - part: "**Start here**"
       chapters:
       - arduino-intro-and-links.qmd
       - tutorials/arduino_IDE.qmd
       - tutorials/install_firebeetle.qmd
-      - tutorials/firebeetle_documentation.qmd
+    - part: "**Basics**"
+      chapters:
       - tutorials/breadboard.qmd
-    - part: "**Running simple programs**"
+      - tutorials/basic-electronics-concepts.qmd
+      - tutorials/firebeetle_documentation.qmd
+      - tutorials/libraries.qmd
+    - part: "**Lectures**"
       chapters:
       - tutorials/first-programs.qmd
-      - tutorials/libraries.qmd
-      - tutorials/thingspeak.qmd
+      - tutorials/electronics-class.qmd
+      - tutorials/electronics-class-2.qmd
+      - tutorials/control.qmd
+      - tutorials/digital-read-write.qmd
+      - tutorials/digital-sensors.qmd
+      - tutorials/cloud-connectivity.qmd
+    - part: "**Running simple programs**"
+      chapters:
+      # - tutorials/thingspeak.qmd
       - tutorials/merging.qmd
-      - tutorials/SHT31.qmd
+      # - tutorials/SHT31.qmd
       - tutorials/RGB.qmd
     - part: "**Electronics**"
       chapters:
-      - tutorials/basic-electronics-concepts.qmd
-      - tutorials/electronics-class.qmd
-      - tutorials/control.qmd
-      - tutorials/electronics-class-2.qmd
       - tutorials/relay.qmd
       - tutorials/soldering-and-wires.qmd
       - tutorials/electronics-class-old.qmd
     - part: "**Sensors and comm**"
       chapters:
       # - tutorials/reading.qmd
-      - tutorials/digital-read-write.qmd
-      - tutorials/intro-to-sensor-modules-and-thingspeak.qmd
       - tutorials/pulse-sensors.qmd
       - tutorials/MQTT.qmd
       - tutorials/deep_sleep.qmd
