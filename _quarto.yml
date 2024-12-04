@@ -67,6 +67,7 @@ book:
       - projects/borrowing-equipment.qmd
       - projects/final-project.qmd
       - projects/examples.qmd
+      - projects/greenhouse.qmd
 
   sidebar:
     collapse-level: 2

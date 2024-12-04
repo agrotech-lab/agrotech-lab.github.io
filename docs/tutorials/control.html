@@ -507,6 +507,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Example projects</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/greenhouse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">The Smart Greenhouse</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -533,6 +539,10 @@ window.Quarto = {
   <li><a href="#high-temperature-activates-fan" id="toc-high-temperature-activates-fan" class="nav-link" data-scroll-target="#high-temperature-activates-fan"><span class="header-section-number">11.4.1</span> High temperature activates fan</a></li>
   <li><a href="#traffic-lights" id="toc-traffic-lights" class="nav-link" data-scroll-target="#traffic-lights"><span class="header-section-number">11.4.2</span> Traffic lights</a></li>
   <li><a href="#bonus" id="toc-bonus" class="nav-link" data-scroll-target="#bonus"><span class="header-section-number">11.4.3</span> Bonus</a></li>
+  </ul></li>
+  <li><a href="#extra-codes-and-examples" id="toc-extra-codes-and-examples" class="nav-link" data-scroll-target="#extra-codes-and-examples"><span class="header-section-number">11.5</span> Extra codes and examples</a>
+  <ul class="collapse">
+  <li><a href="#serial-read-and-blink" id="toc-serial-read-and-blink" class="nav-link" data-scroll-target="#serial-read-and-blink"><span class="header-section-number">11.5.1</span> Serial read and blink</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -885,6 +895,71 @@ see wiring scheme
 <section id="bonus" class="level3" data-number="11.4.3">
 <h3 data-number="11.4.3" class="anchored" data-anchor-id="bonus"><span class="header-section-number">11.4.3</span> Bonus</h3>
 <p>Build an PMW-based control system where the duty cycle tempends on temperature.</p>
+</section>
+</section>
+<section id="extra-codes-and-examples" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="extra-codes-and-examples"><span class="header-section-number">11.5</span> Extra codes and examples</h2>
+<section id="serial-read-and-blink" class="level3" data-number="11.5.1">
+<h3 data-number="11.5.1" class="anchored" data-anchor-id="serial-read-and-blink"><span class="header-section-number">11.5.1</span> Serial read and blink</h3>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#serial_read_and_blinkino" aria-expanded="false" aria-controls="serial_read_and_blinkino">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/serial_read_and_blink.ino" download="" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="serial_read_and_blinkino">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">// Define the built-in LED pin</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="pp">#define LED_PIN </span>LED_BUILTIN<span class="pp">  </span><span class="co">// Most ESP32 boards use GPIO 2 for the built-in LED</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="co">// Initialize serial communication at 115200 baud</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>  </span>
+<span id="cb5-8"><a href="#cb5-8"></a>  <span class="co">// Wait for the serial monitor to connect</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>  <span class="cf">while</span> <span class="op">(!</span>Serial<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>    <span class="op">;</span> <span class="co">// Wait for serial port to connect. Needed for native USB port only</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>  <span class="op">}</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a>  </span>
+<span id="cb5-13"><a href="#cb5-13"></a>  <span class="co">// Set the LED pin as an output</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a>  pinMode<span class="op">(</span>LED_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a>  </span>
+<span id="cb5-16"><a href="#cb5-16"></a>  <span class="co">// Print instructions</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Enter the number of times you want the LED to blink:"</span><span class="op">);</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="op">}</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a></span>
+<span id="cb5-20"><a href="#cb5-20"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a>  <span class="co">// Check if data is available to read</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a>  <span class="cf">if</span> <span class="op">(</span>Serial<span class="op">.</span>available<span class="op">()</span> <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a>    <span class="co">// Read the integer from the serial monitor</span></span>
+<span id="cb5-24"><a href="#cb5-24"></a>    <span class="dt">int</span> blinkCount <span class="op">=</span> Serial<span class="op">.</span>parseInt<span class="op">();</span></span>
+<span id="cb5-25"><a href="#cb5-25"></a>    </span>
+<span id="cb5-26"><a href="#cb5-26"></a>    <span class="co">// Check if the parsed integer is greater than 0</span></span>
+<span id="cb5-27"><a href="#cb5-27"></a>    <span class="cf">if</span> <span class="op">(</span>blinkCount <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-28"><a href="#cb5-28"></a>      <span class="co">// Print the received number</span></span>
+<span id="cb5-29"><a href="#cb5-29"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Blinking LED "</span><span class="op">);</span></span>
+<span id="cb5-30"><a href="#cb5-30"></a>      Serial<span class="op">.</span>print<span class="op">(</span>blinkCount<span class="op">);</span></span>
+<span id="cb5-31"><a href="#cb5-31"></a>      Serial<span class="op">.</span>println<span class="op">(</span><span class="st">" times"</span><span class="op">);</span></span>
+<span id="cb5-32"><a href="#cb5-32"></a>      </span>
+<span id="cb5-33"><a href="#cb5-33"></a>      <span class="co">// Blink the LED the specified number of times</span></span>
+<span id="cb5-34"><a href="#cb5-34"></a>      <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> blinkCount<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb5-35"><a href="#cb5-35"></a>        digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> HIGH<span class="op">);</span>  <span class="co">// Turn on the LED</span></span>
+<span id="cb5-36"><a href="#cb5-36"></a>        delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span>                   <span class="co">// Wait for 500 milliseconds</span></span>
+<span id="cb5-37"><a href="#cb5-37"></a>        digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> LOW<span class="op">);</span>   <span class="co">// Turn off the LED</span></span>
+<span id="cb5-38"><a href="#cb5-38"></a>        delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span>                   <span class="co">// Wait for 500 milliseconds</span></span>
+<span id="cb5-39"><a href="#cb5-39"></a>      <span class="op">}</span></span>
+<span id="cb5-40"><a href="#cb5-40"></a>      </span>
+<span id="cb5-41"><a href="#cb5-41"></a>      <span class="co">// Print done message</span></span>
+<span id="cb5-42"><a href="#cb5-42"></a>      Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Done blinking"</span><span class="op">);</span></span>
+<span id="cb5-43"><a href="#cb5-43"></a>    <span class="op">}</span></span>
+<span id="cb5-44"><a href="#cb5-44"></a>  <span class="op">}</span></span>
+<span id="cb5-45"><a href="#cb5-45"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
 
 
 </section>

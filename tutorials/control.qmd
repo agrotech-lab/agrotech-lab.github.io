@@ -167,3 +167,14 @@ Using red, orange and green LEDs, build a traffic light system that responds to 
 ### Bonus
 
 Build an PMW-based control system where the duty cycle tempends on temperature.
+
+
+## Extra codes and examples
+
+### Serial read and blink
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("serial_read_and_blink.ino")
+```

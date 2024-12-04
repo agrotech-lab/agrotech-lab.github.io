@@ -235,5 +235,8 @@
   },
   "tutorials/cloud-connectivity.qmd": {
     "cloud-connectivity.html": "0d175fd2"
+  },
+  "projects/greenhouse.qmd": {
+    "greenhouse.html": "14099603"
   }
 }

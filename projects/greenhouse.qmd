@@ -1,0 +1,15 @@
+---
+title: "The Smart Greenhouse"
+echo: false
+jupyter: python3
+---
+
+![](/archive/figures/greenhouse/gh1.JPG)
+
+![](/archive/figures/greenhouse/gh4.JPG)
+
+![](/archive/figures/greenhouse/gh3.JPG)
+
+![](/archive/figures/greenhouse/gh2.JPG)
+
+

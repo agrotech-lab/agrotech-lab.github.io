@@ -632,6 +632,17 @@
     ]
   },
   {
+    "objectID": "tutorials/control.html#extra-codes-and-examples",
+    "href": "tutorials/control.html#extra-codes-and-examples",
+    "title": "11  Control",
+    "section": "11.5 Extra codes and examples",
+    "text": "11.5 Extra codes and examples\n\n11.5.1 Serial read and blink\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n// Define the built-in LED pin\n#define LED_PIN LED_BUILTIN  // Most ESP32 boards use GPIO 2 for the built-in LED\n\nvoid setup() {\n  // Initialize serial communication at 115200 baud\n  Serial.begin(115200);\n  \n  // Wait for the serial monitor to connect\n  while (!Serial) {\n    ; // Wait for serial port to connect. Needed for native USB port only\n  }\n  \n  // Set the LED pin as an output\n  pinMode(LED_PIN, OUTPUT);\n  \n  // Print instructions\n  Serial.println(\"Enter the number of times you want the LED to blink:\");\n}\n\nvoid loop() {\n  // Check if data is available to read\n  if (Serial.available() &gt; 0) {\n    // Read the integer from the serial monitor\n    int blinkCount = Serial.parseInt();\n    \n    // Check if the parsed integer is greater than 0\n    if (blinkCount &gt; 0) {\n      // Print the received number\n      Serial.print(\"Blinking LED \");\n      Serial.print(blinkCount);\n      Serial.println(\" times\");\n      \n      // Blink the LED the specified number of times\n      for (int i = 0; i &lt; blinkCount; i++) {\n        digitalWrite(LED_PIN, HIGH);  // Turn on the LED\n        delay(500);                   // Wait for 500 milliseconds\n        digitalWrite(LED_PIN, LOW);   // Turn off the LED\n        delay(500);                   // Wait for 500 milliseconds\n      }\n      \n      // Print done message\n      Serial.println(\"Done blinking\");\n    }\n  }\n}",
+    "crumbs": [
+      "**Lectures**",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Control</span>"
+    ]
+  },
+  {
     "objectID": "tutorials/digital-read-write.html",
     "href": "tutorials/digital-read-write.html",
     "title": "12  Reading digital and analog",
