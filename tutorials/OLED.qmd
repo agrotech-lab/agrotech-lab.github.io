@@ -1,0 +1,32 @@
+---
+title: "OLED screen"
+echo: false
+jupyter: python3
+execute:
+  freeze: auto  # re-render only when source changes
+---
+
+{{< include ../_insert_ino_code.qmd >}}
+
+
+![](/archive/figures/OLED.png)
+
+
+A screen is an essential component in many projects, offering a visual interface to communicate information to users. Here are some general uses and benefits:
+
+1. **Real-Time Data Display**: Screens allow you to show real-time data such as sensor readings, system status, or user instructions, making the device more interactive and user-friendly.
+
+2. **Debugging and Monitoring**: During development, a screen can be invaluable for debugging and monitoring the performance of your system, showing error messages or status updates.
+
+3. **User Interaction**: Screens enable user interaction by displaying menus, prompts, or feedback, making the device intuitive and easy to use.
+
+4. **Aesthetic and Functional Design**: Adding a screen enhances both the aesthetics and functionality of a project, giving it a polished and professional look.
+
+A screen bridges the gap between technology and the user by providing clear, accessible communication.
+
+## OLED code
+```{python}
+#| echo: false
+#| output: asis
+code_source("OLED.ino")
+```

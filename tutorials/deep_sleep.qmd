@@ -42,4 +42,13 @@ Adapted from [here](https://randomnerdtutorials.com/esp32-touch-wake-up-deep-sle
 #| output: asis
 code_source("touch_wakeup.ino")
 ```
+
+
+## Save values between sleeps
+Recommended tutorial [here](https://randomnerdtutorials.com/esp32-save-data-permanently-preferences/).
+```{python}
+#| echo: false
+#| output: asis
+code_source("save_values.ino")
+```
  

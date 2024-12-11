@@ -714,6 +714,13 @@
     "text": "22.3 Deep Sleep wake with touch\nAdapted from here.\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n/*\nDeep Sleep with Touch Wake Up\n=====================================\nThis code displays how to use deep sleep with\na touch as a wake up source and how to store data in\nRTC memory to use it over reboots\n\nESP32 can have multiple touch pads enabled as wakeup source\nESP32-S2 and ESP32-S3 supports only 1 touch pad as wakeup source enabled\n\nThis code is under Public Domain License.\n\nAuthor:\nPranav Cherukupalli &lt;cherukupallip@gmail.com&gt;\n*/\n\n#if CONFIG_IDF_TARGET_ESP32\n#define THRESHOLD 40   /* Greater the value, more the sensitivity */\n#else                  //ESP32-S2 and ESP32-S3 + default for other chips (to be adjusted) */\n#define THRESHOLD 5000 /* Lower the value, more the sensitivity */\n#endif\n\nRTC_DATA_ATTR int bootCount = 0;\ntouch_pad_t touchPin;\n/*\nMethod to print the reason by which ESP32\nhas been awaken from sleep\n*/\nvoid print_wakeup_reason() {\n  esp_sleep_wakeup_cause_t wakeup_reason;\n\n  wakeup_reason = esp_sleep_get_wakeup_cause();\n\n  switch (wakeup_reason) {\n    case ESP_SLEEP_WAKEUP_EXT0:     Serial.println(\"Wakeup caused by external signal using RTC_IO\"); break;\n    case ESP_SLEEP_WAKEUP_EXT1:     Serial.println(\"Wakeup caused by external signal using RTC_CNTL\"); break;\n    case ESP_SLEEP_WAKEUP_TIMER:    Serial.println(\"Wakeup caused by timer\"); break;\n    case ESP_SLEEP_WAKEUP_TOUCHPAD: Serial.println(\"Wakeup caused by touchpad\"); break;\n    case ESP_SLEEP_WAKEUP_ULP:      Serial.println(\"Wakeup caused by ULP program\"); break;\n    default:                        Serial.printf(\"Wakeup was not caused by deep sleep: %d\\n\", wakeup_reason); break;\n  }\n}\n\n/*\nMethod to print the touchpad by which ESP32\nhas been awaken from sleep\n*/\nvoid print_wakeup_touchpad() {\n  touchPin = esp_sleep_get_touchpad_wakeup_status();\n\n#if CONFIG_IDF_TARGET_ESP32\n  switch (touchPin) {\n    case 0:  Serial.println(\"Touch detected on GPIO 4\"); break;\n    case 1:  Serial.println(\"Touch detected on GPIO 0\"); break;\n    case 2:  Serial.println(\"Touch detected on GPIO 2\"); break;\n    case 3:  Serial.println(\"Touch detected on GPIO 15\"); break;\n    case 4:  Serial.println(\"Touch detected on GPIO 13\"); break;\n    case 5:  Serial.println(\"Touch detected on GPIO 12\"); break;\n    case 6:  Serial.println(\"Touch detected on GPIO 14\"); break;\n    case 7:  Serial.println(\"Touch detected on GPIO 27\"); break;\n    case 8:  Serial.println(\"Touch detected on GPIO 33\"); break;\n    case 9:  Serial.println(\"Touch detected on GPIO 32\"); break;\n    default: Serial.println(\"Wakeup not by touchpad\"); break;\n  }\n#else\n  if (touchPin &lt; TOUCH_PAD_MAX) {\n    Serial.printf(\"Touch detected on GPIO %d\\n\", touchPin);\n  } else {\n    Serial.println(\"Wakeup not by touchpad\");\n  }\n#endif\n}\n\nvoid setup() {\n  Serial.begin(115200);\n  delay(1000);  //Take some time to open up the Serial Monitor\n\n  //Increment boot number and print it every reboot\n  ++bootCount;\n  Serial.println(\"Boot number: \" + String(bootCount));\n\n  //Print the wakeup reason for ESP32 and touchpad too\n  print_wakeup_reason();\n  print_wakeup_touchpad();\n\n#if CONFIG_IDF_TARGET_ESP32\n  //Setup sleep wakeup on Touch Pad 3 + 7 (GPIO15 + GPIO 27)\n  touchSleepWakeUpEnable(T3, THRESHOLD);\n  touchSleepWakeUpEnable(T7, THRESHOLD);\n\n#else  //ESP32-S2 + ESP32-S3\n  //Setup sleep wakeup on Touch Pad 3 (GPIO3)\n  touchSleepWakeUpEnable(T3, THRESHOLD);\n\n#endif\n\n  //Go to sleep now\n  Serial.println(\"Going to sleep now\");\n  esp_deep_sleep_start();\n  Serial.println(\"This will never be printed\");\n}\n\nvoid loop() {\n  //This will never be reached\n}"
   },
   {
+    "objectID": "tutorials/deep_sleep.html#save-values-between-sleeps",
+    "href": "tutorials/deep_sleep.html#save-values-between-sleeps",
+    "title": "22  Deep Sleep",
+    "section": "22.4 Save values between sleeps",
+    "text": "22.4 Save values between sleeps\nRecommended tutorial here.\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n/*\nGood tutorial\nhttps://randomnerdtutorials.com/esp32-save-data-permanently-preferences/\n*/\n#include &lt;Preferences.h&gt; // Include the Preferences library\n\n#define uS_TO_S_FACTOR 1000000ULL  /* Conversion factor for microseconds to seconds */\n#define TIME_TO_SLEEP  10          /* Time ESP32 will go to sleep (in seconds) */\n\nPreferences preferences;           // Create a Preferences object\n\nvoid setup() {\n  Serial.begin(115200);\n  Serial.println(\"Good morning!\");\n  delay(100); // Take some time to open up the Serial Monitor\n\n  // Turn on LED\n  Serial.println(\"Turn on LED\");\n  pinMode(LED_BUILTIN, OUTPUT);\n  digitalWrite(LED_BUILTIN, HIGH);\n  delay(2000);\n\n  // Open Preferences in RW mode\n  preferences.begin(\"my-app\", false); // \"my-app\" is the namespace, false = read/write mode\n\n  // Retrieve stored values\n  int storedInt = preferences.getInt(\"myInt\", 0);      // Default value is 0 if not set\n  float storedFloat = preferences.getFloat(\"myFloat\", 0.0); // Default is 0.0\n  String storedString = preferences.getString(\"myString\", \"Default\");\n\n  Serial.println(\"Retrieved values from flash:\");\n  Serial.println(\"Int: \" + String(storedInt));\n  Serial.println(\"Float: \" + String(storedFloat));\n  Serial.println(\"String: \" + storedString);\n\n  // Increment and store new values\n  storedInt++;\n  storedFloat += 1.5;\n  storedString = \"Wake #\" + String(storedInt);\n\n  preferences.putInt(\"myInt\", storedInt);\n  preferences.putFloat(\"myFloat\", storedFloat);\n  preferences.putString(\"myString\", storedString);\n\n  Serial.println(\"Stored updated values in flash:\");\n  Serial.println(\"Int: \" + String(storedInt));\n  Serial.println(\"Float: \" + String(storedFloat));\n  Serial.println(\"String: \" + storedString);\n\n  // Close Preferences\n  preferences.end();\n\n  // Configure the wake-up source\n  esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP * uS_TO_S_FACTOR);\n  Serial.println(\"Setup ESP32 to sleep for every \" + String(TIME_TO_SLEEP) + \" seconds\");\n\n  Serial.println(\"Going to sleep now\");\n  Serial.flush();\n  esp_deep_sleep_start();\n\n  Serial.println(\"This will never be printed\");\n}\n\nvoid loop() {\n  // This is not going to be called\n}"
+  },
+  {
     "objectID": "tutorials/esp_now.html#find-what-the-receiver-mac-address-is",
     "href": "tutorials/esp_now.html#find-what-the-receiver-mac-address-is",
     "title": "23  ESP-NOW",
@@ -735,199 +742,206 @@
     "text": "23.3 Receiver code\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n#include &lt;esp_now.h&gt;\n#include &lt;WiFi.h&gt;\n\n// Structure example to receive data\n// Must match the sender structure\ntypedef struct struct_message {\n  int id;\n  int x;\n  int y;\n}struct_message;\n\n// Create a struct_message called myData\nstruct_message myData;\n\n// Create a structure to hold the readings from each board\nstruct_message board1;\nstruct_message board2;\nstruct_message board3;\n\n// Create an array with all the structures\nstruct_message boardsStruct[3] = {board1, board2, board3};\n\n// callback function that will be executed when data is received\nvoid OnDataRecv(const uint8_t * mac_addr, const uint8_t *incomingData, int len) {\n  char macStr[18];\n  Serial.print(\"Packet received from: \");\n  snprintf(macStr, sizeof(macStr), \"%02x:%02x:%02x:%02x:%02x:%02x\",\n           mac_addr[0], mac_addr[1], mac_addr[2], mac_addr[3], mac_addr[4], mac_addr[5]);\n  Serial.println(macStr);\n  memcpy(&myData, incomingData, sizeof(myData));\n  Serial.printf(\"Board ID %u: %u bytes\\n\", myData.id, len);\n  // Update the structures with the new incoming data\n  boardsStruct[myData.id-1].x = myData.x;\n  boardsStruct[myData.id-1].y = myData.y;\n  Serial.printf(\"x value: %d \\n\", boardsStruct[myData.id-1].x);\n  Serial.printf(\"y value: %d \\n\", boardsStruct[myData.id-1].y);\n  Serial.println();\n}\n \nvoid setup() {\n  //Initialize Serial Monitor\n  Serial.begin(115200);\n  \n  //Set device as a Wi-Fi Station\n  WiFi.mode(WIFI_STA);\n\n  //Init ESP-NOW\n  if (esp_now_init() != ESP_OK) {\n    Serial.println(\"Error initializing ESP-NOW\");\n    return;\n  }\n  \n  // Once ESPNow is successfully Init, we will register for recv CB to\n  // get recv packer info\n  esp_now_register_recv_cb(OnDataRecv);\n}\n \nvoid loop() {\n  // Acess the variables for each board\n  /*int board1X = boardsStruct[0].x;\n  int board1Y = boardsStruct[0].y;\n  int board2X = boardsStruct[1].x;\n  int board2Y = boardsStruct[1].y;\n  int board3X = boardsStruct[2].x;\n  int board3Y = boardsStruct[2].y;*/\n\n  delay(10000);  \n}"
   },
   {
+    "objectID": "tutorials/OLED.html#oled-code",
+    "href": "tutorials/OLED.html#oled-code",
+    "title": "24  OLED screen",
+    "section": "24.1 OLED code",
+    "text": "24.1 OLED code\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n#include &lt;Wire.h&gt;\n#include &lt;U8g2lib.h&gt;\n\n// Initialize the display (change constructor according to your OLED model)\nU8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);\n\nvoid setup() {\n  // initialize the display\n  u8g2.begin();\n  \n  // display a startup message\n  u8g2.clearBuffer();                // clear the internal memory\n\n    // Small text\n  u8g2.setFont(u8g2_font_6x10_tr);\n  u8g2.drawStr(3, 10, \"S-Hello\");\n\n  // Medium text\n  u8g2.setFont(u8g2_font_ncenB08_tr);\n  u8g2.drawStr(3, 30, \"M-Hello\");\n\n  // Large text\n  u8g2.setFont(u8g2_font_fur20_tr);\n  u8g2.drawStr(3, 60, \"L-Hello\");\n\n  // transfer buffer to the display\n  u8g2.sendBuffer();      \n  \n  delay(5000); // wait \n}\n\nvoid loop() {\n  static int counter = 0;\n  \n  // update the screen\n  u8g2.clearBuffer();\n  u8g2.setFont(u8g2_font_ncenB08_tr); // choose a suitable font\n  u8g2.drawStr(3, 16, \"Counter:\");\n  u8g2.drawStr(73, 16, String(counter).c_str());\n  u8g2.sendBuffer();\n  \n  // increment the counter\n  counter++;\n  \n  // wait for 1 second\n  delay(1000);\n}"
+  },
+  {
     "objectID": "tutorials/python-matlab-basics.html#matlab",
     "href": "tutorials/python-matlab-basics.html#matlab",
-    "title": "24  Basic Data Analysis with Python and Matlab",
-    "section": "24.1 Matlab",
-    "text": "24.1 Matlab\nMatlab is a proprietary (paid) software, but all HUJI students can install it and use it for free as long as they are connected to the university’s internet, either directly or through a VPN. In any case, we will be using Matlab to plot graphs on Thingspeak, which is owned by the same parent company, MathWorks.\nHere are a few very useful tutorials provided by MathWorks:\n\nApps\nAnalyze Your Data\nPrepare and Analyze Data — Examples\nVisualize Data — Examples\nAct on Data — Examples\n\nAs a first example that we will run together, please follow the steps below:\n\nLog into Thingspeak, open your channel, and then go to either Private View or Public View.\nPress on MATLAB Visualization box, on the top right.\nFrom Templates, choose Create a 2-D line plot, then press Create.\nIn case the template doesn’t load, you can create a custom visualization and paste the code below\n\n% Template MATLAB code for visualizing data from a channel as a 2D line\n% plot using PLOT function.\n\n% Prior to running this MATLAB code template, assign the channel variables.\n% Set 'readChannelID' to the channel ID of the channel to read from. \n% Also, assign the read field ID to 'fieldID1'. \n\n% TODO - Replace the [] with channel ID to read data from:\nreadChannelID = [];\n% TODO - Replace the [] with the Field ID to read data from:\nfieldID1 = [];\n\n% Channel Read API Key \n% If your channel is private, then enter the read API\n% Key between the '' below: \nreadAPIKey = '';\n\n%% Read Data %%\n\n[data, time] = thingSpeakRead(readChannelID, 'Field', fieldID1, 'NumPoints', 30, 'ReadKey', readAPIKey);\n\n%% Visualize Data %%\n\nplot(time, data);\nRead here more about arguments that function thingSpeakRead can receive"
+    "title": "25  Basic Data Analysis with Python and Matlab",
+    "section": "25.1 Matlab",
+    "text": "25.1 Matlab\nMatlab is a proprietary (paid) software, but all HUJI students can install it and use it for free as long as they are connected to the university’s internet, either directly or through a VPN. In any case, we will be using Matlab to plot graphs on Thingspeak, which is owned by the same parent company, MathWorks.\nHere are a few very useful tutorials provided by MathWorks:\n\nApps\nAnalyze Your Data\nPrepare and Analyze Data — Examples\nVisualize Data — Examples\nAct on Data — Examples\n\nAs a first example that we will run together, please follow the steps below:\n\nLog into Thingspeak, open your channel, and then go to either Private View or Public View.\nPress on MATLAB Visualization box, on the top right.\nFrom Templates, choose Create a 2-D line plot, then press Create.\nIn case the template doesn’t load, you can create a custom visualization and paste the code below\n\n% Template MATLAB code for visualizing data from a channel as a 2D line\n% plot using PLOT function.\n\n% Prior to running this MATLAB code template, assign the channel variables.\n% Set 'readChannelID' to the channel ID of the channel to read from. \n% Also, assign the read field ID to 'fieldID1'. \n\n% TODO - Replace the [] with channel ID to read data from:\nreadChannelID = [];\n% TODO - Replace the [] with the Field ID to read data from:\nfieldID1 = [];\n\n% Channel Read API Key \n% If your channel is private, then enter the read API\n% Key between the '' below: \nreadAPIKey = '';\n\n%% Read Data %%\n\n[data, time] = thingSpeakRead(readChannelID, 'Field', fieldID1, 'NumPoints', 30, 'ReadKey', readAPIKey);\n\n%% Visualize Data %%\n\nplot(time, data);\nRead here more about arguments that function thingSpeakRead can receive"
   },
   {
     "objectID": "tutorials/python-matlab-basics.html#python",
     "href": "tutorials/python-matlab-basics.html#python",
-    "title": "24  Basic Data Analysis with Python and Matlab",
-    "section": "24.2 Python",
-    "text": "24.2 Python\nWe will be using Jupyter Notebook as our python interface. There are many ways of running python, we chose Jupyter because it allows for easy prototyping, and the Markdown cells are great for documentation.\nJupyter Notebook{: .button}"
+    "title": "25  Basic Data Analysis with Python and Matlab",
+    "section": "25.2 Python",
+    "text": "25.2 Python\nWe will be using Jupyter Notebook as our python interface. There are many ways of running python, we chose Jupyter because it allows for easy prototyping, and the Markdown cells are great for documentation.\nJupyter Notebook{: .button}"
   },
   {
     "objectID": "tutorials/API-thingspeak-python.html#import-relevant-packages",
     "href": "tutorials/API-thingspeak-python.html#import-relevant-packages",
-    "title": "25  API to download Thingspeak data with Python",
-    "section": "25.1 Import relevant packages",
-    "text": "25.1 Import relevant packages\n\nimport urllib\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\nimport matplotlib.dates as mdates"
+    "title": "26  API to download Thingspeak data with Python",
+    "section": "26.1 Import relevant packages",
+    "text": "26.1 Import relevant packages\n\nimport urllib\nimport matplotlib.pyplot as plt\nimport numpy as np\nimport pandas as pd\nimport matplotlib.dates as mdates"
   },
   {
     "objectID": "tutorials/API-thingspeak-python.html#download-data-from-thingspeak-and-save-them-to-file",
     "href": "tutorials/API-thingspeak-python.html#download-data-from-thingspeak-and-save-them-to-file",
-    "title": "25  API to download Thingspeak data with Python",
-    "section": "25.2 Download data from Thingspeak and save them to file",
-    "text": "25.2 Download data from Thingspeak and save them to file\n\n# define what to download\nchannels = \"2076217\"\nfields = \"1,2,3\"\n\n# see here all the \"Query String Parameters\"\n# https://www.mathworks.com/help/thingspeak/readdata.html\n\nresults = 100\n# Download the last N results\n# url = f\"https://api.thingspeak.com/channels/{channels}/fields/{fields}.csv?results={results}\"\n\nminutes = \"30\"\n# Number of minutes before NOW to include in response.\n# url = f\"https://api.thingspeak.com/channels/{channels}/fields/{fields}.csv?minutes={minutes}\"\n\nstart = \"2023-04-16%2000:00:00\"  # format YYYY-MM-DD%20HH:NN:SS\nend = \"2023-04-19%2000:00:00\"    # format YYYY-MM-DD%20HH:NN:SS\nurl = f\"https://api.thingspeak.com/channels/{channels}/fields/{fields}.csv?start={start}&end={end}\"\n\n# Open the URL and get the response\ndata = urllib.request.urlopen(url)\n# Read the response data\nd = data.read()\n# save data to csv\nfilename1 = \"downloaded_data.csv\"\nfile = open(filename1, \"w\")\nfile.write(d.decode('UTF-8'))\nfile.close()"
+    "title": "26  API to download Thingspeak data with Python",
+    "section": "26.2 Download data from Thingspeak and save them to file",
+    "text": "26.2 Download data from Thingspeak and save them to file\n\n# define what to download\nchannels = \"2076217\"\nfields = \"1,2,3\"\n\n# see here all the \"Query String Parameters\"\n# https://www.mathworks.com/help/thingspeak/readdata.html\n\nresults = 100\n# Download the last N results\n# url = f\"https://api.thingspeak.com/channels/{channels}/fields/{fields}.csv?results={results}\"\n\nminutes = \"30\"\n# Number of minutes before NOW to include in response.\n# url = f\"https://api.thingspeak.com/channels/{channels}/fields/{fields}.csv?minutes={minutes}\"\n\nstart = \"2023-04-16%2000:00:00\"  # format YYYY-MM-DD%20HH:NN:SS\nend = \"2023-04-19%2000:00:00\"    # format YYYY-MM-DD%20HH:NN:SS\nurl = f\"https://api.thingspeak.com/channels/{channels}/fields/{fields}.csv?start={start}&end={end}\"\n\n# Open the URL and get the response\ndata = urllib.request.urlopen(url)\n# Read the response data\nd = data.read()\n# save data to csv\nfilename1 = \"downloaded_data.csv\"\nfile = open(filename1, \"w\")\nfile.write(d.decode('UTF-8'))\nfile.close()"
   },
   {
     "objectID": "tutorials/API-thingspeak-python.html#load-data-as-a-pandas-dataframe",
     "href": "tutorials/API-thingspeak-python.html#load-data-as-a-pandas-dataframe",
-    "title": "25  API to download Thingspeak data with Python",
-    "section": "25.3 Load data as a pandas dataframe",
-    "text": "25.3 Load data as a pandas dataframe\n\n# load data\ndf = pd.read_csv(filename1)\n# rename columns\ndf = df.rename(columns={\"created_at\": \"timestamp\",\n                        \"field1\": \"Temp\",\n                        \"field2\": \"RH\",\n                        \"field3\": \"VPD\",\n                        # \"field4\": \"whatever\",\n                        })\n# set timestamp as index\ndf['timestamp'] = pd.to_datetime(df['timestamp'])\ndf = df.set_index('timestamp')\ndf\n\n\n\n\n\n\n\n\nentry_id\nTemp\nRH\nVPD\n\n\ntimestamp\n\n\n\n\n\n\n\n\n2023-04-16 00:01:20+00:00\n3892\n21.59\n72.31\n0.71442\n\n\n2023-04-16 00:06:22+00:00\n3893\n21.60\n72.14\n0.71925\n\n\n2023-04-16 00:11:24+00:00\n3894\n21.59\n72.38\n0.71262\n\n\n2023-04-16 00:16:25+00:00\n3895\n21.59\n71.86\n0.72603\n\n\n2023-04-16 00:21:27+00:00\n3896\n21.54\n71.49\n0.73333\n\n\n...\n...\n...\n...\n...\n\n\n2023-04-18 18:58:48+00:00\n4691\n23.93\n55.29\n1.32931\n\n\n2023-04-18 19:03:50+00:00\n4692\n23.98\n55.25\n1.33450\n\n\n2023-04-18 19:08:52+00:00\n4693\n23.92\n55.07\n1.33505\n\n\n2023-04-18 19:13:53+00:00\n4694\n23.92\n59.84\n1.19332\n\n\n2023-04-18 19:18:17+00:00\n4695\n23.92\n57.23\n1.27087\n\n\n\n\n804 rows × 4 columns"
+    "title": "26  API to download Thingspeak data with Python",
+    "section": "26.3 Load data as a pandas dataframe",
+    "text": "26.3 Load data as a pandas dataframe\n\n# load data\ndf = pd.read_csv(filename1)\n# rename columns\ndf = df.rename(columns={\"created_at\": \"timestamp\",\n                        \"field1\": \"Temp\",\n                        \"field2\": \"RH\",\n                        \"field3\": \"VPD\",\n                        # \"field4\": \"whatever\",\n                        })\n# set timestamp as index\ndf['timestamp'] = pd.to_datetime(df['timestamp'])\ndf = df.set_index('timestamp')\ndf\n\n\n\n\n\n\n\n\nentry_id\nTemp\nRH\nVPD\n\n\ntimestamp\n\n\n\n\n\n\n\n\n2023-04-16 00:01:20+00:00\n3892\n21.59\n72.31\n0.71442\n\n\n2023-04-16 00:06:22+00:00\n3893\n21.60\n72.14\n0.71925\n\n\n2023-04-16 00:11:24+00:00\n3894\n21.59\n72.38\n0.71262\n\n\n2023-04-16 00:16:25+00:00\n3895\n21.59\n71.86\n0.72603\n\n\n2023-04-16 00:21:27+00:00\n3896\n21.54\n71.49\n0.73333\n\n\n...\n...\n...\n...\n...\n\n\n2023-04-18 18:58:48+00:00\n4691\n23.93\n55.29\n1.32931\n\n\n2023-04-18 19:03:50+00:00\n4692\n23.98\n55.25\n1.33450\n\n\n2023-04-18 19:08:52+00:00\n4693\n23.92\n55.07\n1.33505\n\n\n2023-04-18 19:13:53+00:00\n4694\n23.92\n59.84\n1.19332\n\n\n2023-04-18 19:18:17+00:00\n4695\n23.92\n57.23\n1.27087\n\n\n\n\n804 rows × 4 columns"
   },
   {
     "objectID": "tutorials/API-thingspeak-python.html#plot-data",
     "href": "tutorials/API-thingspeak-python.html#plot-data",
-    "title": "25  API to download Thingspeak data with Python",
-    "section": "25.4 Plot data",
-    "text": "25.4 Plot data\nNow you can manipulate your data however you want! Here we will simply plot one of the fields.\n\nfig, ax = plt.subplots(1)\nax.plot(df['Temp'])\nax.set(ylabel=\"temperature (°C)\")\nplt.gcf().autofmt_xdate()  # makes slanted dates"
+    "title": "26  API to download Thingspeak data with Python",
+    "section": "26.4 Plot data",
+    "text": "26.4 Plot data\nNow you can manipulate your data however you want! Here we will simply plot one of the fields.\n\nfig, ax = plt.subplots(1)\nax.plot(df['Temp'])\nax.set(ylabel=\"temperature (°C)\")\nplt.gcf().autofmt_xdate()  # makes slanted dates"
   },
   {
     "objectID": "tutorials/water-and-energy-balances.html#water-balance",
     "href": "tutorials/water-and-energy-balances.html#water-balance",
-    "title": "26  Water and Energy Balances",
-    "section": "26.1 Water balance",
-    "text": "26.1 Water balance\nA useful source is Nadia Christina Sabeh’s PhD thesis, 2007.\n\n\\[\nE_V + E_C + E_S + E_T = 0\n\\]"
+    "title": "27  Water and Energy Balances",
+    "section": "27.1 Water balance",
+    "text": "27.1 Water balance\nA useful source is Nadia Christina Sabeh’s PhD thesis, 2007.\n\n\\[\nE_V + E_C + E_S + E_T = 0\n\\]"
   },
   {
     "objectID": "tutorials/water-and-energy-balances.html#energy-balance",
     "href": "tutorials/water-and-energy-balances.html#energy-balance",
-    "title": "26  Water and Energy Balances",
-    "section": "26.2 Energy balance",
-    "text": "26.2 Energy balance\n\n\\[\nQ_R + Q_G + Q_V + Q_S + Q_P + Q_L + Q_H = 0\n\\]"
+    "title": "27  Water and Energy Balances",
+    "section": "27.2 Energy balance",
+    "text": "27.2 Energy balance\n\n\\[\nQ_R + Q_G + Q_V + Q_S + Q_P + Q_L + Q_H = 0\n\\]"
   },
   {
     "objectID": "tutorials/water-and-energy-balances.html#evaporative-cooling",
     "href": "tutorials/water-and-energy-balances.html#evaporative-cooling",
-    "title": "26  Water and Energy Balances",
-    "section": "26.3 Evaporative Cooling",
-    "text": "26.3 Evaporative Cooling"
+    "title": "27  Water and Energy Balances",
+    "section": "27.3 Evaporative Cooling",
+    "text": "27.3 Evaporative Cooling"
   },
   {
     "objectID": "tutorials/water-and-energy-balances.html#potential-evapotranspiration",
     "href": "tutorials/water-and-energy-balances.html#potential-evapotranspiration",
-    "title": "26  Water and Energy Balances",
-    "section": "26.4 Potential Evapotranspiration",
-    "text": "26.4 Potential Evapotranspiration\n\n26.4.1 Penman (1948)\nThis equation accounts for two main terms: * the first is the available energy flux density, * the second term is the drying power of the air.\n\\[\nPE = \\frac{\\Delta(R_n-G) + \\gamma\\cdot 2.6 (1+0.536 u_2)\\text{VPD}}{\\lambda(\\Delta+\\gamma)}\n\\]\nMore about this here.\n\n\n26.4.2 PyET\nLuckily, we don’t have to work very hard to estimate the potential evapotranspiration. We will use the Python library pyet:\n\ndocumentation\ngithub\n\nUsing PyET is quite straightforward:\npyet.pm_fao56(tmean,               # mean temperature\n              wind,                # wind speed\n              rn=rn,               # net radiation\n              tmax=tmax,           # max temperature\n              tmin=tmin,           # max temperature\n              rh=rh,               # relative humidity\n              elevation=elevation) # elevation above sea level"
+    "title": "27  Water and Energy Balances",
+    "section": "27.4 Potential Evapotranspiration",
+    "text": "27.4 Potential Evapotranspiration\n\n27.4.1 Penman (1948)\nThis equation accounts for two main terms: * the first is the available energy flux density, * the second term is the drying power of the air.\n\\[\nPE = \\frac{\\Delta(R_n-G) + \\gamma\\cdot 2.6 (1+0.536 u_2)\\text{VPD}}{\\lambda(\\Delta+\\gamma)}\n\\]\nMore about this here.\n\n\n27.4.2 PyET\nLuckily, we don’t have to work very hard to estimate the potential evapotranspiration. We will use the Python library pyet:\n\ndocumentation\ngithub\n\nUsing PyET is quite straightforward:\npyet.pm_fao56(tmean,               # mean temperature\n              wind,                # wind speed\n              rn=rn,               # net radiation\n              tmax=tmax,           # max temperature\n              tmin=tmin,           # max temperature\n              rh=rh,               # relative humidity\n              elevation=elevation) # elevation above sea level"
   },
   {
     "objectID": "tutorials/psychrometric-chart-and-evaporative-cooling.html#psychrometric-chart",
     "href": "tutorials/psychrometric-chart-and-evaporative-cooling.html#psychrometric-chart",
-    "title": "27  Psychrometric Chart and Evaporative Cooling",
-    "section": "27.1 Psychrometric Chart",
-    "text": "27.1 Psychrometric Chart\n\n\n\nChart\n\n\nHi-res pdf of the graph above.\nThe chart allows us to study the relation between:\n\nAir temperature\nRelative humidity\nDew point\nWet bulb temperature\nMoisture content\nEnthalpy\nAir volume\n\nYou can read more about all of these here.\nInformation about how to read the chart can be found here."
+    "title": "28  Psychrometric Chart and Evaporative Cooling",
+    "section": "28.1 Psychrometric Chart",
+    "text": "28.1 Psychrometric Chart\n\n\n\nChart\n\n\nHi-res pdf of the graph above.\nThe chart allows us to study the relation between:\n\nAir temperature\nRelative humidity\nDew point\nWet bulb temperature\nMoisture content\nEnthalpy\nAir volume\n\nYou can read more about all of these here.\nInformation about how to read the chart can be found here."
   },
   {
     "objectID": "tutorials/psychrometric-chart-and-evaporative-cooling.html#evaporative-cooling-wiki",
     "href": "tutorials/psychrometric-chart-and-evaporative-cooling.html#evaporative-cooling-wiki",
-    "title": "27  Psychrometric Chart and Evaporative Cooling",
-    "section": "27.2 Evaporative cooling (wiki)",
-    "text": "27.2 Evaporative cooling (wiki)\nEvaporative coolers lower the temperature of air using the principle of evaporative cooling. Evaporative cooling is the conversion of liquid water into vapor using the thermal energy in the air, resulting in a lower air temperature. The energy needed to evaporate the water is taken from the air in the form of sensible heat, which affects the temperature of the air, and converted into latent heat, the energy present in the water vapor component of the air, whilst the air remains at a constant enthalpy value. This conversion of sensible heat to latent heat is known as an isenthalpic process because it occurs at a constant enthalpy value. Evaporative cooling therefore causes a drop in the temperature of air proportional to the sensible heat drop and an increase in humidity proportional to the latent heat gain. Evaporative cooling can be visualized using a psychrometric chart by finding the initial air condition and moving along a line of constant enthalpy toward a state of higher humidity\nIn the green house we have an evaporative cooler as shown in this diagram:\n \nWater trickles on a celullose pad, then fans push dry air from outside through the pad in which water evaporates and the air gets colder and humidity rises."
+    "title": "28  Psychrometric Chart and Evaporative Cooling",
+    "section": "28.2 Evaporative cooling (wiki)",
+    "text": "28.2 Evaporative cooling (wiki)\nEvaporative coolers lower the temperature of air using the principle of evaporative cooling. Evaporative cooling is the conversion of liquid water into vapor using the thermal energy in the air, resulting in a lower air temperature. The energy needed to evaporate the water is taken from the air in the form of sensible heat, which affects the temperature of the air, and converted into latent heat, the energy present in the water vapor component of the air, whilst the air remains at a constant enthalpy value. This conversion of sensible heat to latent heat is known as an isenthalpic process because it occurs at a constant enthalpy value. Evaporative cooling therefore causes a drop in the temperature of air proportional to the sensible heat drop and an increase in humidity proportional to the latent heat gain. Evaporative cooling can be visualized using a psychrometric chart by finding the initial air condition and moving along a line of constant enthalpy toward a state of higher humidity\nIn the green house we have an evaporative cooler as shown in this diagram:\n \nWater trickles on a celullose pad, then fans push dry air from outside through the pad in which water evaporates and the air gets colder and humidity rises."
   },
   {
     "objectID": "tutorials/psychrometric-chart-and-evaporative-cooling.html#how-much-can-the-cooler-cool",
     "href": "tutorials/psychrometric-chart-and-evaporative-cooling.html#how-much-can-the-cooler-cool",
-    "title": "27  Psychrometric Chart and Evaporative Cooling",
-    "section": "27.3 How much can the cooler cool?",
-    "text": "27.3 How much can the cooler cool?\nThe evaporative cooler can cool as low as the “wet bulb trmperature”.\nWe can look at the chart, and we should for the first time… But let’s calculate it using the PschroLib python package.\nAll the library’s functions can be found here.\nimport psychrolib\n\n# Set the unit system, for example to SI (can be either SI or IP) - this needs to be done only once\npsychrolib.SetUnitSystem(psychrolib.SI)\n\naltitude = 0\natm_pressure = psychrolib.GetStandardAtmPressure(0)\n\n# Calculate the wet bulb temperature for a dry bulb temperature of 25 C , a relative humidity of 80% and atmospheric pressure (kPa)\nWBT = psychrolib.GetTWetBulbFromRelHum(25.0, 0.80,atm_pressure )\nprint(f'Wet Bulb Temperature: {WBT:.3f} degree C')\nprint(f'Degrees cooled: {25-WBT:.3f} degree C')\nOutput:\nWet Bulb Temperature: 22.380 degree C\nDegrees cooled: 2.620 degree C\nNow let’s see how many degrees will it cool if we have only 30% relative humidity outside:\nWBT = psychrolib.GetTWetBulbFromRelHum(25.0, 0.30,atm_pressure )\nprint(f'Wet Bulb Temperature: {WBT:.3f} degree C')\nprint(f'Degrees cooled: {25-WBT:.3f} degree C')\nOutput:\nWet Bulb Temperature: 14.422 degree C\nDegrees cooled: 10.578 degree C\nAs you can see it is much more efficient in dry areas like deserts. Therefore it is many times called a “desert cooler”. What will the relative humidity be for the air that leaves the pad?\n\n27.3.1 Efficiency\nTheoretically, an evaporative cooler cools down to the wet bulb temperature, but in reality it is not 100% efficient and the air comes out not as cold. Many factors can influence: water quality, air speed, pad thickness, pad condition (you will se that ours is not great…), etc. We can calculate the efficiency by this equation:\n\\[\n\\eta = \\dfrac{T_i-T_o}{T_i-T_w},\n\\]\nwhere\n\n\\(T_i = \\:\\) temperature coming into the pad.\n\n\\(T_o = \\:\\) temperature coming out of the pad.\n\\(T_w = \\:\\) wet bulb temperature.\n\nWe can calculate it using data from our sensors and learn about the greenhouse we are using.\nFor example:\nIf we measure 30C and 60% humidity outside and the temperature out of the pad is 26C\nT_i = 30\nT_o = 26\nT_w = psychrolib.GetTWetBulbFromRelHum(T_i, 0.60,atm_pressure )\nprint(f'Wet Bulb Temperature: {T_w:.3f} degree C')\n\neffi = (T_i-T_o)/(T_i-T_w)\nprint(f'Efficiency is: {100*effi:.3f} %')\nOutput:\nWet Bulb Temperature: 23.812 degree C\nEfficiency is: 64.646 %\n\n\n27.3.2 What else can we calculate?\nKnowing the fan’s capacity (we can measure that too using wind sensors) and the temerature and humidity of the air leaving the greenhouse we can calculate:\n\nAmount of water evaporated from the pad,\nAmount of water evaporated from the greenhouse (being a concreete greenhouse that means total evaporation from plants and pots),\nHeat removed from the greenouse by the flowing air,\n\nThese are just some ideas, you can think of other interesting things to calculate.\nThere are existing models for predicting the temperatures of greenhouses. There are many other factors taking place such as solar radiation, outside wind, amounts of plants in the greenhouse, etc. We won’t be studying those here, but maybe you can come up with some models/conclusions/correlations of your own :)"
+    "title": "28  Psychrometric Chart and Evaporative Cooling",
+    "section": "28.3 How much can the cooler cool?",
+    "text": "28.3 How much can the cooler cool?\nThe evaporative cooler can cool as low as the “wet bulb trmperature”.\nWe can look at the chart, and we should for the first time… But let’s calculate it using the PschroLib python package.\nAll the library’s functions can be found here.\nimport psychrolib\n\n# Set the unit system, for example to SI (can be either SI or IP) - this needs to be done only once\npsychrolib.SetUnitSystem(psychrolib.SI)\n\naltitude = 0\natm_pressure = psychrolib.GetStandardAtmPressure(0)\n\n# Calculate the wet bulb temperature for a dry bulb temperature of 25 C , a relative humidity of 80% and atmospheric pressure (kPa)\nWBT = psychrolib.GetTWetBulbFromRelHum(25.0, 0.80,atm_pressure )\nprint(f'Wet Bulb Temperature: {WBT:.3f} degree C')\nprint(f'Degrees cooled: {25-WBT:.3f} degree C')\nOutput:\nWet Bulb Temperature: 22.380 degree C\nDegrees cooled: 2.620 degree C\nNow let’s see how many degrees will it cool if we have only 30% relative humidity outside:\nWBT = psychrolib.GetTWetBulbFromRelHum(25.0, 0.30,atm_pressure )\nprint(f'Wet Bulb Temperature: {WBT:.3f} degree C')\nprint(f'Degrees cooled: {25-WBT:.3f} degree C')\nOutput:\nWet Bulb Temperature: 14.422 degree C\nDegrees cooled: 10.578 degree C\nAs you can see it is much more efficient in dry areas like deserts. Therefore it is many times called a “desert cooler”. What will the relative humidity be for the air that leaves the pad?\n\n28.3.1 Efficiency\nTheoretically, an evaporative cooler cools down to the wet bulb temperature, but in reality it is not 100% efficient and the air comes out not as cold. Many factors can influence: water quality, air speed, pad thickness, pad condition (you will se that ours is not great…), etc. We can calculate the efficiency by this equation:\n\\[\n\\eta = \\dfrac{T_i-T_o}{T_i-T_w},\n\\]\nwhere\n\n\\(T_i = \\:\\) temperature coming into the pad.\n\n\\(T_o = \\:\\) temperature coming out of the pad.\n\\(T_w = \\:\\) wet bulb temperature.\n\nWe can calculate it using data from our sensors and learn about the greenhouse we are using.\nFor example:\nIf we measure 30C and 60% humidity outside and the temperature out of the pad is 26C\nT_i = 30\nT_o = 26\nT_w = psychrolib.GetTWetBulbFromRelHum(T_i, 0.60,atm_pressure )\nprint(f'Wet Bulb Temperature: {T_w:.3f} degree C')\n\neffi = (T_i-T_o)/(T_i-T_w)\nprint(f'Efficiency is: {100*effi:.3f} %')\nOutput:\nWet Bulb Temperature: 23.812 degree C\nEfficiency is: 64.646 %\n\n\n28.3.2 What else can we calculate?\nKnowing the fan’s capacity (we can measure that too using wind sensors) and the temerature and humidity of the air leaving the greenhouse we can calculate:\n\nAmount of water evaporated from the pad,\nAmount of water evaporated from the greenhouse (being a concreete greenhouse that means total evaporation from plants and pots),\nHeat removed from the greenouse by the flowing air,\n\nThese are just some ideas, you can think of other interesting things to calculate.\nThere are existing models for predicting the temperatures of greenhouses. There are many other factors taking place such as solar radiation, outside wind, amounts of plants in the greenhouse, etc. We won’t be studying those here, but maybe you can come up with some models/conclusions/correlations of your own :)"
   },
   {
     "objectID": "assignments/assignment1.html",
     "href": "assignments/assignment1.html",
-    "title": "28  Assignment 1",
+    "title": "29  Assignment 1",
     "section": "",
     "text": "You will write Arduino code that incorporates all the following elements learned in First programs. Upload your .ino file on the course’s Moodle page. You’ll have two weeks until deadline.\n\nvariable declaration, e.g.\nfloat my_var=1.23;\nint i, j;\nfunction declaration, e.g.\nint my_sum(int x, int y) {\n  return x + y;\n}\nBuilt-in and external LED control\nConditionals, e.g.\nif (temperature &gt; 30.0) {\n  fan = 1;\n} else {\n  fan = 0;\n}\nRandom numbers, e.g.\n// random number from -5 (inclusive) to +5 (exclusive)\nrand1 = random(-5, 5);\nSerial plotting, numbers and text\nComments explaining every step of what you did\nBonus: connect to WiFi and make use of time from the internet\nObligatory: at the very top of your code, write in many lines an explanation (in English) of what your code does\n\n/*\nAuthor: Harry Potter\nClass: Agrotech Lab\nDate: 2023-03-14\nThis code does bla bla bla.\nMore explanations here.\n*/"
   },
   {
     "objectID": "assignments/assignment2.html",
     "href": "assignments/assignment2.html",
-    "title": "29  Assignment 2",
+    "title": "30  Assignment 2",
     "section": "",
     "text": "Create a small project where you control an output device (such as LEDs, relays, etc.) based on changes in an input, like temperature or humidity readings.\nBonus: Include LED brightness control using PWM.\nThis assignment is basically the Challenges section from the lecture on control.\nUpload the .ino file, ensuring you include a few lines of comments at the beginning of the code to explain what the project does."
   },
   {
     "objectID": "resources.html#iconify-mdi-led-on-equipment",
     "href": "resources.html#iconify-mdi-led-on-equipment",
-    "title": "30   Resources",
-    "section": "30.1  Equipment",
-    "text": "30.1  Equipment\n\n30.1.1 Equipment Pickup Form\n\nPlease fill out this form every time you receive a new sensor or equipment. You will need to provide your 9-digit ID number and indicate which sensor(s) you have received.\nMake sure your name and phone number are written on the box containing the equipment.\nBy filling out this form, you agree to receive the item(s) and are obligated to return them at the end of the course.\nIf you’re not sure, click here to check which equipment you borrowed from the course.\n\n\n30.1.1.0.1 Do you want to order equipment for yourself?\nClick for a list of the main components used in this course."
+    "title": "31   Resources",
+    "section": "31.1  Equipment",
+    "text": "31.1  Equipment\n\n31.1.1 Equipment Pickup Form\n\nPlease fill out this form every time you receive a new sensor or equipment. You will need to provide your 9-digit ID number and indicate which sensor(s) you have received.\nMake sure your name and phone number are written on the box containing the equipment.\nBy filling out this form, you agree to receive the item(s) and are obligated to return them at the end of the course.\nIf you’re not sure, click here to check which equipment you borrowed from the course.\n\n\n31.1.1.0.1 Do you want to order equipment for yourself?\nClick for a list of the main components used in this course."
   },
   {
     "objectID": "resources.html#iconify-akar-icons-github-fill-github",
     "href": "resources.html#iconify-akar-icons-github-fill-github",
-    "title": "30   Resources",
-    "section": "30.2  Github",
-    "text": "30.2  Github\nMake an account on Github. Create a repository called “agrotech” or whatever you else want to call it. You can upload to this repository your code, data, diagrams, pictures, markdown, etc. In the end of the semester you will upload your project report as a Jupyter Notebook file.\nFrom now on, your main Github page can be your “geek face” on the internet. Make a clean and simple readme.md, telling the world who you are and what you do."
+    "title": "31   Resources",
+    "section": "31.2  Github",
+    "text": "31.2  Github\nMake an account on Github. Create a repository called “agrotech” or whatever you else want to call it. You can upload to this repository your code, data, diagrams, pictures, markdown, etc. In the end of the semester you will upload your project report as a Jupyter Notebook file.\nFrom now on, your main Github page can be your “geek face” on the internet. Make a clean and simple readme.md, telling the world who you are and what you do."
   },
   {
     "objectID": "resources.html#iconify-simple-icons-jupyter-jupyter-notebook",
     "href": "resources.html#iconify-simple-icons-jupyter-jupyter-notebook",
-    "title": "30   Resources",
-    "section": "30.3  Jupyter Notebook",
-    "text": "30.3  Jupyter Notebook\nThe easiest way to install Python (+ Jupyter Notebook, Spyder, PyCharm, JupyterLab, etc) on any OS is to download Anaconda. Jupyter Notebook is a versatile environment that allows you to write code and documentation in one single file, taking advantage of Markdown. Click for a short and a long markdown cheat sheet."
+    "title": "31   Resources",
+    "section": "31.3  Jupyter Notebook",
+    "text": "31.3  Jupyter Notebook\nThe easiest way to install Python (+ Jupyter Notebook, Spyder, PyCharm, JupyterLab, etc) on any OS is to download Anaconda. Jupyter Notebook is a versatile environment that allows you to write code and documentation in one single file, taking advantage of Markdown. Click for a short and a long markdown cheat sheet."
   },
   {
     "objectID": "resources.html#iconify-eos-icons-hardware-circuit-fritzing",
     "href": "resources.html#iconify-eos-icons-hardware-circuit-fritzing",
-    "title": "30   Resources",
-    "section": "30.4  Fritzing",
-    "text": "30.4  Fritzing\nFritzing is a nice software that lets you easily draw your own circuits and diagrams."
+    "title": "31   Resources",
+    "section": "31.4  Fritzing",
+    "text": "31.4  Fritzing\nFritzing is a nice software that lets you easily draw your own circuits and diagrams."
   },
   {
     "objectID": "resources.html#iconify-akar-icons-link-chain-useful-links",
     "href": "resources.html#iconify-akar-icons-link-chain-useful-links",
-    "title": "30   Resources",
-    "section": "30.5  Useful links",
-    "text": "30.5  Useful links\nThe world of MCUs has great support online. You actually don’t need this course to learn it… We are only here to guide you and help with the first steps. SO below are some usful links to websites/Youtube channels that provide excellent information:\nArduino syntax and coding:\n\nArduino — Language Reference\n\nTutorials by sensor manufacturers:\n\nSparkfun\n\nAdafruit\n\nProject ideas:\n\nArduino Project Hub\n\nInstructables — Arduino\n\nArduino beginners course:\n\nPaul McWhorter - New Arduino Tutorials\n\nExamples of good Youtube channels:\n\nAndreas Spiess\n\nG6EJD - David\n\nGreatScott!\n\neduc8s.tv\n\nOregon State’s OPEnS Lab\n\nGithub"
+    "title": "31   Resources",
+    "section": "31.5  Useful links",
+    "text": "31.5  Useful links\nThe world of MCUs has great support online. You actually don’t need this course to learn it… We are only here to guide you and help with the first steps. SO below are some usful links to websites/Youtube channels that provide excellent information:\nArduino syntax and coding:\n\nArduino — Language Reference\n\nTutorials by sensor manufacturers:\n\nSparkfun\n\nAdafruit\n\nProject ideas:\n\nArduino Project Hub\n\nInstructables — Arduino\n\nArduino beginners course:\n\nPaul McWhorter - New Arduino Tutorials\n\nExamples of good Youtube channels:\n\nAndreas Spiess\n\nG6EJD - David\n\nGreatScott!\n\neduc8s.tv\n\nOregon State’s OPEnS Lab\n\nGithub"
   },
   {
     "objectID": "projects.html#iconify-icons8-finish-flag-final-project",
     "href": "projects.html#iconify-icons8-finish-flag-final-project",
-    "title": "31   Projects",
-    "section": "31.1  Final Project",
-    "text": "31.1  Final Project\nRead carefully the instructions. Click here.\n\n\n2022 Final projects\n\n\n\n\nTeam\nProject\n\n\n\n\n   Ronna Melamed Bat – May Nir\nMeasuring PAR outside and inside the greenhouse\n\n\n   Avital Akerman – Elad Greenfeld\nAutomated Irrigation System\n\n\n   Nadav Hen – Guy Donagi – David Zingerman\nTemporal and spatial temperature measurement in a greenhouse\n\n\n   Zeev Rozman – Imri Zadak – Alex Evenko-Greenapple\nweather station\n\n\n   Yuval Chemke – Reem Har Levi\nHydroponics Monitoring and Balance\n\n\n   Peleg Atir – Aviad Mendelovich – Ruth Yitzhaki\nVPD control using automatic sprinklers\n\n\n   Amir Sheffer – Yitzchak Kanovsky – Aviv Saadia\n3D heatmap model of a greenhouse"
+    "title": "32   Projects",
+    "section": "32.1  Final Project",
+    "text": "32.1  Final Project\nRead carefully the instructions. Click here.\n\n\n2022 Final projects\n\n\n\n\nTeam\nProject\n\n\n\n\n   Ronna Melamed Bat – May Nir\nMeasuring PAR outside and inside the greenhouse\n\n\n   Avital Akerman – Elad Greenfeld\nAutomated Irrigation System\n\n\n   Nadav Hen – Guy Donagi – David Zingerman\nTemporal and spatial temperature measurement in a greenhouse\n\n\n   Zeev Rozman – Imri Zadak – Alex Evenko-Greenapple\nweather station\n\n\n   Yuval Chemke – Reem Har Levi\nHydroponics Monitoring and Balance\n\n\n   Peleg Atir – Aviad Mendelovich – Ruth Yitzhaki\nVPD control using automatic sprinklers\n\n\n   Amir Sheffer – Yitzchak Kanovsky – Aviv Saadia\n3D heatmap model of a greenhouse"
   },
   {
     "objectID": "projects.html#iconify-icon-park-solid-pyramid-one-passover-2022-mini-project",
     "href": "projects.html#iconify-icon-park-solid-pyramid-one-passover-2022-mini-project",
-    "title": "31   Projects",
-    "section": "31.2  Passover 2022 mini project",
-    "text": "31.2  Passover 2022 mini project\nclick here"
+    "title": "32   Projects",
+    "section": "32.2  Passover 2022 mini project",
+    "text": "32.2  Passover 2022 mini project\nclick here"
   },
   {
     "objectID": "projects/borrowing-equipment.html",
     "href": "projects/borrowing-equipment.html",
-    "title": "32  Borrowing equipment",
+    "title": "33  Borrowing equipment",
     "section": "",
-    "text": "We want to give you the freedom to try out all the equipment, but we need help in tracking what equipment you took. For that reson we started a colaborative spreadsheet in which you can list the equipment you took home / are using in your project. (Only HUJI accounts can edit that sheet).\n Link to sheet\n\n32.0.1 About the sheet & some guidelines:\n\nEach unique component has its own column, including its name, brief description and link to a picture of it.\nOne row per student (please add yourself).\nInsert the amount you took of each component in numbers only.\nIn the Graveyard section write in text (example: 2 x ESP32) all the equipment that you burnt, found malfunctioning, lost, etc… Whatever we can’t use anymore… IMPORTANT: there is no shame in having a big list, honesty is what we are looking for. We are just trying to keep track of all the equipment.\nPlease make sure to immediately update the sheet as you take/return the equipment.\nNo need to list super-fundamental equipment like resistors and cables.\n\n\n\n32.0.2 We need your help:\nThe sheet is not complete and will be expanded during the semester. If there is missing information, please add/fix it. It can be:\n\nMissing component column\n\nNo description\n\nNo image link"
+    "text": "We want to give you the freedom to try out all the equipment, but we need help in tracking what equipment you took. For that reson we started a colaborative spreadsheet in which you can list the equipment you took home / are using in your project. (Only HUJI accounts can edit that sheet).\n Link to sheet\n\n33.0.1 About the sheet & some guidelines:\n\nEach unique component has its own column, including its name, brief description and link to a picture of it.\nOne row per student (please add yourself).\nInsert the amount you took of each component in numbers only.\nIn the Graveyard section write in text (example: 2 x ESP32) all the equipment that you burnt, found malfunctioning, lost, etc… Whatever we can’t use anymore… IMPORTANT: there is no shame in having a big list, honesty is what we are looking for. We are just trying to keep track of all the equipment.\nPlease make sure to immediately update the sheet as you take/return the equipment.\nNo need to list super-fundamental equipment like resistors and cables.\n\n\n\n33.0.2 We need your help:\nThe sheet is not complete and will be expanded during the semester. If there is missing information, please add/fix it. It can be:\n\nMissing component column\n\nNo description\n\nNo image link"
   },
   {
     "objectID": "projects/final-project.html#updates",
     "href": "projects/final-project.html#updates",
-    "title": "33  Final Project",
-    "section": "33.1 Updates",
-    "text": "33.1 Updates\nPlease consult this Google Spreadsheet to be up-to-date with what’s going on with the various projects. Every team should update this spreadsheet regularly with the relevant information."
+    "title": "34  Final Project",
+    "section": "34.1 Updates",
+    "text": "34.1 Updates\nPlease consult this Google Spreadsheet to be up-to-date with what’s going on with the various projects. Every team should update this spreadsheet regularly with the relevant information."
   },
   {
     "objectID": "projects/final-project.html#the-platform",
     "href": "projects/final-project.html#the-platform",
-    "title": "33  Final Project",
-    "section": "33.2 The platform",
-    "text": "33.2 The platform\nThis year the final projects will all take place in a greenhouse on campus and will share the theme of data logging and control. Each team will focus on a different aspect in the greenhouse, e.g., temperature and RH monitoring, energy balance, irrigation control, plant monitoring, etc. All the data collected will be uploaded to the same Thingspeak account, so everyone will have access to everyone else’s data. The different teams are expected to be in contact and share with each other what they are doing, so that you can exchange ideas and build into each other’s strengths."
+    "title": "34  Final Project",
+    "section": "34.2 The platform",
+    "text": "34.2 The platform\nThis year the final projects will all take place in a greenhouse on campus and will share the theme of data logging and control. Each team will focus on a different aspect in the greenhouse, e.g., temperature and RH monitoring, energy balance, irrigation control, plant monitoring, etc. All the data collected will be uploaded to the same Thingspeak account, so everyone will have access to everyone else’s data. The different teams are expected to be in contact and share with each other what they are doing, so that you can exchange ideas and build into each other’s strengths."
   },
   {
     "objectID": "projects/final-project.html#final-report-github-page",
     "href": "projects/final-project.html#final-report-github-page",
-    "title": "33  Final Project",
-    "section": "33.3 Final Report = GitHub page",
-    "text": "33.3 Final Report = GitHub page\nDocumenting your project well is probably one of the most important lessons you will learn. Without documentation your projects will not live on and they will end their life right after the semester is over; you will forget what exactly you did and no one will be able to reproduce what you have done. We don’t want that for our projects…\nThe goal of the Agrotech-Lab course is to create a repository of all the cool projects made over the years. That way the projects will live forever and future students and other people around the world can learn from your work.\nWe require that each team creates a Github page including all the documentation. It should include:\n\nIntroduction: general explanation about the project and its goals\nHardware and assembly: Make the description as detailed as posible. Include many photos, links to order, datasheets etc.\nCode: Provide all code used in this project. Code should be organized with comments throughout explaining it.\nInstructions: How to make and use the project.\nExperinment: Show an example of the project “in action”.\n\nPlese note, the github page is your “final project paper/report”."
+    "title": "34  Final Project",
+    "section": "34.3 Final Report = GitHub page",
+    "text": "34.3 Final Report = GitHub page\nDocumenting your project well is probably one of the most important lessons you will learn. Without documentation your projects will not live on and they will end their life right after the semester is over; you will forget what exactly you did and no one will be able to reproduce what you have done. We don’t want that for our projects…\nThe goal of the Agrotech-Lab course is to create a repository of all the cool projects made over the years. That way the projects will live forever and future students and other people around the world can learn from your work.\nWe require that each team creates a Github page including all the documentation. It should include:\n\nIntroduction: general explanation about the project and its goals\nHardware and assembly: Make the description as detailed as posible. Include many photos, links to order, datasheets etc.\nCode: Provide all code used in this project. Code should be organized with comments throughout explaining it.\nInstructions: How to make and use the project.\nExperinment: Show an example of the project “in action”.\n\nPlese note, the github page is your “final project paper/report”."
   },
   {
     "objectID": "projects/final-project.html#presentation",
     "href": "projects/final-project.html#presentation",
-    "title": "33  Final Project",
-    "section": "33.4 Presentation",
-    "text": "33.4 Presentation\nOn the last day, when we meet to show our projects, each team will give a short talk of 5 minutes. During this talk you will touch the following points:\n\nWhat did you do?\nWhy do a project like yours?\nAre there agricultural or other benefits?\nHow did you do it? Hardware and code (no need to go over it, just explain in general).\nWhat did you learn? Show graphs and data analysis.\n\n\n33.4.1 Attention!\nPresentation is something you present to others, it does not mean a “Powerpoint presentation”. Your presentation will be solely based on your GitHub repository."
+    "title": "34  Final Project",
+    "section": "34.4 Presentation",
+    "text": "34.4 Presentation\nOn the last day, when we meet to show our projects, each team will give a short talk of 5 minutes. During this talk you will touch the following points:\n\nWhat did you do?\nWhy do a project like yours?\nAre there agricultural or other benefits?\nHow did you do it? Hardware and code (no need to go over it, just explain in general).\nWhat did you learn? Show graphs and data analysis.\n\n\n34.4.1 Attention!\nPresentation is something you present to others, it does not mean a “Powerpoint presentation”. Your presentation will be solely based on your GitHub repository."
   },
   {
     "objectID": "projects/examples.html#open-day-2024",
     "href": "projects/examples.html#open-day-2024",
-    "title": "34  Example projects",
-    "section": "34.1 Open day 2024",
-    "text": "34.1 Open day 2024\nThis project was developed by Yair Mau to the 2024 open day at the Faculty of Agriculture.\n\n34.1.1 Download:\n\n Fritzing diagram in pdf \n Fritzing diagram in fzz \n Code to upload to your ESP32 \n Python code to plot live the measured data \n\n\n\n34.1.2 Materials needed:\n\nESP32 Firebeetle 2\nBreadboard, wires, LED, relay, 330-ohm resistor\nSHT31 temperature and humidity sensor\nFan\nPower supply\nA computer to plot live data\n\n\n\n34.1.3 What this project is about:\nWhenever relative humidity goes above a given threshold (e.g. 80%), the fan turns on. When RH goes below threshold, fan turns off. The ESP32 must be connected to a computer, and you must run the python code. The python code communicates serially with the ESP32, and also shows on the screen a live graph of temperature and relative humidity."
+    "title": "35  Example projects",
+    "section": "35.1 Open day 2024",
+    "text": "35.1 Open day 2024\nThis project was developed by Yair Mau to the 2024 open day at the Faculty of Agriculture.\n\n35.1.1 Download:\n\n Fritzing diagram in pdf \n Fritzing diagram in fzz \n Code to upload to your ESP32 \n Python code to plot live the measured data \n\n\n\n35.1.2 Materials needed:\n\nESP32 Firebeetle 2\nBreadboard, wires, LED, relay, 330-ohm resistor\nSHT31 temperature and humidity sensor\nFan\nPower supply\nA computer to plot live data\n\n\n\n35.1.3 What this project is about:\nWhenever relative humidity goes above a given threshold (e.g. 80%), the fan turns on. When RH goes below threshold, fan turns off. The ESP32 must be connected to a computer, and you must run the python code. The python code communicates serially with the ESP32, and also shows on the screen a live graph of temperature and relative humidity."
   }
 ]

@@ -48,6 +48,7 @@ book:
       - tutorials/MQTT.qmd
       - tutorials/deep_sleep.qmd
       - tutorials/esp_now.qmd
+      - tutorials/OLED.qmd
       - tutorials/python-matlab-basics.qmd
       - tutorials/API-thingspeak-python.qmd
     - part: "**Agro stuff**"
