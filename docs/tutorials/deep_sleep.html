@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -83,13 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -98,14 +92,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
@@ -118,12 +111,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/pulse-sensors.html"><strong>Sensors and comm</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/deep_sleep.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Deep Sleep</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/pulse-sensors.html"><strong>Sensors and comm</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/deep_sleep.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Deep Sleep</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -133,7 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
       <img src="../archive/images/site-logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
@@ -141,9 +134,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="../">agrotech lab</a> 
         <div class="sidebar-tools-main tools-wide">
-    <a href="https://yairmau.com/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
-    <a href="../sources.html" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-bookmark-fill"></i></a>
-    <a href="../things-to-remember.html" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-asterisk"></i></a>
+    <a href="https://yairmau.com/" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
+    <a href="../sources.html" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-bookmark-fill"></i></a>
+    <a href="../things-to-remember.html" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-asterisk"></i></a>
 </div>
     </div>
       </div>
@@ -440,7 +433,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title"> Resources</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title"><iconify-icon inline="" icon="fluent:brain-circuit-20-regular"></iconify-icon> Resources</span></span></a>
   </div>
 </li>
       </ul>
@@ -457,7 +450,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title"> Projects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title"><iconify-icon inline="" icon="material-symbols:rocket-launch"></iconify-icon> Projects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -489,7 +482,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -498,6 +491,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#key-features-of-deep-sleep" id="toc-key-features-of-deep-sleep" class="nav-link active" data-scroll-target="#key-features-of-deep-sleep"><span class="header-section-number">22.1</span> Key Features of Deep Sleep</a></li>
   <li><a href="#deep-sleep-code" id="toc-deep-sleep-code" class="nav-link" data-scroll-target="#deep-sleep-code"><span class="header-section-number">22.2</span> Deep Sleep code</a></li>
+  <li><a href="#deep-sleep-wake-with-touch" id="toc-deep-sleep-wake-with-touch" class="nav-link" data-scroll-target="#deep-sleep-wake-with-touch"><span class="header-section-number">22.3</span> Deep Sleep wake with touch</a></li>
   </ul>
 </nav>
     </div>
@@ -505,7 +499,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/pulse-sensors.html"><strong>Sensors and comm</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/deep_sleep.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Deep Sleep</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Deep Sleep</span></h1>
 </div>
@@ -520,9 +514,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-
 </header>
-
 
 <!-- ---
 title: ""
@@ -598,6 +590,129 @@ The ESP32 can be awakened from deep sleep by various events:
 <span id="cb1-31"><a href="#cb1-31"></a><span class="dt">void</span> loop<span class="op">(){</span></span>
 <span id="cb1-32"><a href="#cb1-32"></a>  <span class="co">//This is not going to be called</span></span>
 <span id="cb1-33"><a href="#cb1-33"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
+</section>
+<section id="deep-sleep-wake-with-touch" class="level2" data-number="22.3">
+<h2 data-number="22.3" class="anchored" data-anchor-id="deep-sleep-wake-with-touch"><span class="header-section-number">22.3</span> Deep Sleep wake with touch</h2>
+<p>Adapted from <a href="https://randomnerdtutorials.com/esp32-touch-wake-up-deep-sleep/">here</a>.</p>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#touch_wakeupino" aria-expanded="false" aria-controls="touch_wakeupino">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/touch_wakeup.ino" download="" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="touch_wakeupino">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">/*</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">Deep Sleep with Touch Wake Up</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">=====================================</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">This code displays how to use deep sleep with</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">a touch as a wake up source and how to store data in</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">RTC memory to use it over reboots</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">ESP32 can have multiple touch pads enabled as wakeup source</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co">ESP32-S2 and ESP32-S3 supports only 1 touch pad as wakeup source enabled</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co">This code is under Public Domain License.</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="co">Author:</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="co">Pranav Cherukupalli &lt;cherukupallip@gmail.com&gt;</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co">*/</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="pp">#if CONFIG_IDF_TARGET_ESP32</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="pp">#define THRESHOLD </span><span class="dv">40</span><span class="pp">   </span><span class="co">/* Greater the value, more the sensitivity */</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="pp">#else                  </span><span class="co">//ESP32-S2 and ESP32-S3 + default for other chips (to be adjusted) */</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a><span class="pp">#define THRESHOLD </span><span class="dv">5000</span><span class="pp"> </span><span class="co">/* Lower the value, more the sensitivity */</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="pp">#endif</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a></span>
+<span id="cb2-23"><a href="#cb2-23"></a>RTC_DATA_ATTR <span class="dt">int</span> bootCount <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>touch_pad_t touchPin<span class="op">;</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a><span class="co">/*</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a><span class="co">Method to print the reason by which ESP32</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a><span class="co">has been awaken from sleep</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a><span class="co">*/</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a><span class="dt">void</span> print_wakeup_reason<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a>  esp_sleep_wakeup_cause_t wakeup_reason<span class="op">;</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a></span>
+<span id="cb2-32"><a href="#cb2-32"></a>  wakeup_reason <span class="op">=</span> esp_sleep_get_wakeup_cause<span class="op">();</span></span>
+<span id="cb2-33"><a href="#cb2-33"></a></span>
+<span id="cb2-34"><a href="#cb2-34"></a>  <span class="cf">switch</span> <span class="op">(</span>wakeup_reason<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-35"><a href="#cb2-35"></a>    <span class="cf">case</span> ESP_SLEEP_WAKEUP_EXT0<span class="op">:</span>     Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Wakeup caused by external signal using RTC_IO"</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-36"><a href="#cb2-36"></a>    <span class="cf">case</span> ESP_SLEEP_WAKEUP_EXT1<span class="op">:</span>     Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Wakeup caused by external signal using RTC_CNTL"</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-37"><a href="#cb2-37"></a>    <span class="cf">case</span> ESP_SLEEP_WAKEUP_TIMER<span class="op">:</span>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Wakeup caused by timer"</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-38"><a href="#cb2-38"></a>    <span class="cf">case</span> ESP_SLEEP_WAKEUP_TOUCHPAD<span class="op">:</span> Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Wakeup caused by touchpad"</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-39"><a href="#cb2-39"></a>    <span class="cf">case</span> ESP_SLEEP_WAKEUP_ULP<span class="op">:</span>      Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Wakeup caused by ULP program"</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-40"><a href="#cb2-40"></a>    <span class="cf">default</span><span class="op">:</span>                        Serial<span class="op">.</span>printf<span class="op">(</span><span class="st">"Wakeup was not caused by deep sleep: </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> wakeup_reason<span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-41"><a href="#cb2-41"></a>  <span class="op">}</span></span>
+<span id="cb2-42"><a href="#cb2-42"></a><span class="op">}</span></span>
+<span id="cb2-43"><a href="#cb2-43"></a></span>
+<span id="cb2-44"><a href="#cb2-44"></a><span class="co">/*</span></span>
+<span id="cb2-45"><a href="#cb2-45"></a><span class="co">Method to print the touchpad by which ESP32</span></span>
+<span id="cb2-46"><a href="#cb2-46"></a><span class="co">has been awaken from sleep</span></span>
+<span id="cb2-47"><a href="#cb2-47"></a><span class="co">*/</span></span>
+<span id="cb2-48"><a href="#cb2-48"></a><span class="dt">void</span> print_wakeup_touchpad<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-49"><a href="#cb2-49"></a>  touchPin <span class="op">=</span> esp_sleep_get_touchpad_wakeup_status<span class="op">();</span></span>
+<span id="cb2-50"><a href="#cb2-50"></a></span>
+<span id="cb2-51"><a href="#cb2-51"></a><span class="pp">#if CONFIG_IDF_TARGET_ESP32</span></span>
+<span id="cb2-52"><a href="#cb2-52"></a>  <span class="cf">switch</span> <span class="op">(</span>touchPin<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-53"><a href="#cb2-53"></a>    <span class="cf">case</span> <span class="dv">0</span><span class="op">:</span>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Touch detected on GPIO 4"</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-54"><a href="#cb2-54"></a>    <span class="cf">case</span> <span class="dv">1</span><span class="op">:</span>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Touch detected on GPIO 0"</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-55"><a href="#cb2-55"></a>    <span class="cf">case</span> <span class="dv">2</span><span class="op">:</span>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Touch detected on GPIO 2"</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-56"><a href="#cb2-56"></a>    <span class="cf">case</span> <span class="dv">3</span><span class="op">:</span>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Touch detected on GPIO 15"</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-57"><a href="#cb2-57"></a>    <span class="cf">case</span> <span class="dv">4</span><span class="op">:</span>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Touch detected on GPIO 13"</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-58"><a href="#cb2-58"></a>    <span class="cf">case</span> <span class="dv">5</span><span class="op">:</span>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Touch detected on GPIO 12"</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-59"><a href="#cb2-59"></a>    <span class="cf">case</span> <span class="dv">6</span><span class="op">:</span>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Touch detected on GPIO 14"</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-60"><a href="#cb2-60"></a>    <span class="cf">case</span> <span class="dv">7</span><span class="op">:</span>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Touch detected on GPIO 27"</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-61"><a href="#cb2-61"></a>    <span class="cf">case</span> <span class="dv">8</span><span class="op">:</span>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Touch detected on GPIO 33"</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-62"><a href="#cb2-62"></a>    <span class="cf">case</span> <span class="dv">9</span><span class="op">:</span>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Touch detected on GPIO 32"</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-63"><a href="#cb2-63"></a>    <span class="cf">default</span><span class="op">:</span> Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Wakeup not by touchpad"</span><span class="op">);</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-64"><a href="#cb2-64"></a>  <span class="op">}</span></span>
+<span id="cb2-65"><a href="#cb2-65"></a><span class="pp">#else</span></span>
+<span id="cb2-66"><a href="#cb2-66"></a>  <span class="cf">if</span> <span class="op">(</span>touchPin <span class="op">&lt;</span> TOUCH_PAD_MAX<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-67"><a href="#cb2-67"></a>    Serial<span class="op">.</span>printf<span class="op">(</span><span class="st">"Touch detected on GPIO </span><span class="sc">%d\n</span><span class="st">"</span><span class="op">,</span> touchPin<span class="op">);</span></span>
+<span id="cb2-68"><a href="#cb2-68"></a>  <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb2-69"><a href="#cb2-69"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Wakeup not by touchpad"</span><span class="op">);</span></span>
+<span id="cb2-70"><a href="#cb2-70"></a>  <span class="op">}</span></span>
+<span id="cb2-71"><a href="#cb2-71"></a><span class="pp">#endif</span></span>
+<span id="cb2-72"><a href="#cb2-72"></a><span class="op">}</span></span>
+<span id="cb2-73"><a href="#cb2-73"></a></span>
+<span id="cb2-74"><a href="#cb2-74"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-75"><a href="#cb2-75"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb2-76"><a href="#cb2-76"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span>  <span class="co">//Take some time to open up the Serial Monitor</span></span>
+<span id="cb2-77"><a href="#cb2-77"></a></span>
+<span id="cb2-78"><a href="#cb2-78"></a>  <span class="co">//Increment boot number and print it every reboot</span></span>
+<span id="cb2-79"><a href="#cb2-79"></a>  <span class="op">++</span>bootCount<span class="op">;</span></span>
+<span id="cb2-80"><a href="#cb2-80"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Boot number: "</span> <span class="op">+</span> String<span class="op">(</span>bootCount<span class="op">));</span></span>
+<span id="cb2-81"><a href="#cb2-81"></a></span>
+<span id="cb2-82"><a href="#cb2-82"></a>  <span class="co">//Print the wakeup reason for ESP32 and touchpad too</span></span>
+<span id="cb2-83"><a href="#cb2-83"></a>  print_wakeup_reason<span class="op">();</span></span>
+<span id="cb2-84"><a href="#cb2-84"></a>  print_wakeup_touchpad<span class="op">();</span></span>
+<span id="cb2-85"><a href="#cb2-85"></a></span>
+<span id="cb2-86"><a href="#cb2-86"></a><span class="pp">#if CONFIG_IDF_TARGET_ESP32</span></span>
+<span id="cb2-87"><a href="#cb2-87"></a>  <span class="co">//Setup sleep wakeup on Touch Pad 3 + 7 (GPIO15 + GPIO 27)</span></span>
+<span id="cb2-88"><a href="#cb2-88"></a>  touchSleepWakeUpEnable<span class="op">(</span>T3<span class="op">,</span> THRESHOLD<span class="op">);</span></span>
+<span id="cb2-89"><a href="#cb2-89"></a>  touchSleepWakeUpEnable<span class="op">(</span>T7<span class="op">,</span> THRESHOLD<span class="op">);</span></span>
+<span id="cb2-90"><a href="#cb2-90"></a></span>
+<span id="cb2-91"><a href="#cb2-91"></a><span class="pp">#else  </span><span class="co">//ESP32-S2 + ESP32-S3</span></span>
+<span id="cb2-92"><a href="#cb2-92"></a>  <span class="co">//Setup sleep wakeup on Touch Pad 3 (GPIO3)</span></span>
+<span id="cb2-93"><a href="#cb2-93"></a>  touchSleepWakeUpEnable<span class="op">(</span>T3<span class="op">,</span> THRESHOLD<span class="op">);</span></span>
+<span id="cb2-94"><a href="#cb2-94"></a></span>
+<span id="cb2-95"><a href="#cb2-95"></a><span class="pp">#endif</span></span>
+<span id="cb2-96"><a href="#cb2-96"></a></span>
+<span id="cb2-97"><a href="#cb2-97"></a>  <span class="co">//Go to sleep now</span></span>
+<span id="cb2-98"><a href="#cb2-98"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Going to sleep now"</span><span class="op">);</span></span>
+<span id="cb2-99"><a href="#cb2-99"></a>  esp_deep_sleep_start<span class="op">();</span></span>
+<span id="cb2-100"><a href="#cb2-100"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"This will never be printed"</span><span class="op">);</span></span>
+<span id="cb2-101"><a href="#cb2-101"></a><span class="op">}</span></span>
+<span id="cb2-102"><a href="#cb2-102"></a></span>
+<span id="cb2-103"><a href="#cb2-103"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-104"><a href="#cb2-104"></a>  <span class="co">//This will never be reached</span></span>
+<span id="cb2-105"><a href="#cb2-105"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
             </div>
             </div>
@@ -686,27 +801,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -716,17 +814,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -738,130 +827,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -905,7 +871,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -931,32 +896,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1018,18 +957,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tutorials/MQTT.html" class="pagination-link" aria-label="MQTT">
+      <a href="../tutorials/MQTT.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">MQTT</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tutorials/esp_now.html" class="pagination-link" aria-label="ESP-NOW">
+      <a href="../tutorials/esp_now.html" class="pagination-link">
         <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">ESP-NOW</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 

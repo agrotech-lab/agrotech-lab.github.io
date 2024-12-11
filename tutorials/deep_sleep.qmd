@@ -34,4 +34,12 @@ Deep sleep is a power-saving mode on the ESP32 microcontroller that allows it to
 #| output: asis
 code_source("deep_sleep.ino")
 ```
+
+## Deep Sleep wake with touch
+Adapted from [here](https://randomnerdtutorials.com/esp32-touch-wake-up-deep-sleep/).
+```{python}
+#| echo: false
+#| output: asis
+code_source("touch_wakeup.ino")
+```
  
