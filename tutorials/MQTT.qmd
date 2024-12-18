@@ -112,3 +112,17 @@ code_source("MQTT_python_publish.py")
 #| output: asis
 code_source("mqtt_to_csv.py")
 ```
+
+
+## Control irrigation solenoid in the greenhouse
+
+Use the code below to control the irrigation solenoid outside the greenhouse.
+
+Code usage: connect a jumper to A4. Whenever you touch the jumper, the solenoid will be open, otherwise it will be closed.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("mqtt_toggle_irrigation.ino")
+```
+
