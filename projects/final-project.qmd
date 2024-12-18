@@ -14,7 +14,22 @@ Please consult this [Google Spreadsheet](https://docs.google.com/spreadsheets/d/
 Every team should update this spreadsheet regularly with the relevant information.
 
 ## The platform
-This year the final projects will all take place in a greenhouse on campus and will share the theme of data logging and control. Each team will focus on a different aspect in the greenhouse, e.g., temperature and RH monitoring, energy balance, irrigation control, plant monitoring, etc. All the data collected will be uploaded to the same Thingspeak account, so everyone will have access to everyone else's data.  The different teams are expected to be in contact and share with each other what they are doing, so that you can exchange ideas and build into each other's strengths.
+This year the final projects will all take place in a greenhouse on campus and will share the theme of data logging and control.
+Each team's project will involve irrigation control based on sensor readings (see minimal requirements below), and will include an expansion in whatever way the group finds useful and fun. 
+
+* **Minimal requirements:**
+  1. set up environmental sensors, such as temperature, humidity, soil moisture, wind, radiation, etc.
+  1. log all the measured data in a dedicated Thingspeak channel.
+  1. set up an irrigation control system based on the sensed data.
+* **Extra: something cool or creative to add to this basic setup, for example**
+  1. extra sensors
+  1. graphical user interface such as screen with menus and buttons
+  1. calculations based on measurements, such as the Penman equation, using python
+  1. optimization of water usage
+  1. fertilization through irrigation (fertigation)
+  1. alerts in case something malfunctions
+  1. consult with the lecturers regarding other ideas
+  
 
 
 ## Final Report = GitHub page
@@ -32,7 +47,7 @@ It should include:
 * **Hardware and assembly:** Make the description as detailed as posible. Include many photos, links to order, datasheets etc.
 * **Code:** Provide all code used in this project. Code should be organized with comments throughout explaining it.
 * **Instructions:** How to make and use the project.
-* **Experinment:** Show an example of the project "in action".
+* **Experiment:** Show an example of the project "in action".
 
 Plese note, the github page **is** your "final project paper/report". 
 
