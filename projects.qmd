@@ -1,12 +1,41 @@
 ---
-title: "{{< iconify material-symbols rocket-launch >}} Projects"
+title: "{{< iconify icons8 finish-flag >}} Past Final Projects"
 ---
 
-## {{< iconify icons8 finish-flag >}} Final Project
+<!-- [Read carefully the instructions. Click here.](projects/final-project.html) -->
 
-[Read carefully the instructions. Click here.](projects/final-project.html)
+## 2024--25 Final projects
 
-<details><summary>2022 Final projects</summary>
+## 2023--24 Final projects
+
+| Team | Project                                                      |
+|------|--------------------------------------------------------------|
+| <i class="bi bi-github"></i> &nbsp; [Gabi Harel, Yoav Abeyv, Rotem Porat](https://github.com/Gabriella38/Agrotech-Final/) | Monitoring Microbial Metabolism               |
+| <i class="bi bi-github"></i> &nbsp; [Ella Faruchi, Rotem David, Matar Tal, Asif Charazi](https://github.com/Ella-Faruchi/agrotech/) | The Eggs-periment               |
+| <i class="bi bi-github"></i> &nbsp; [Gil Lifshitz, Matar Shema](https://github.com/GiLifshitz/Baby_sensor) | Baby Sensor               |
+| <i class="bi bi-github"></i> &nbsp; [Neta Cohen Simhi, Omer Meyer, Itai David, Aya Even Dar](https://github.com/NetaCohenSimhi/composensor) | Compost Monitoring System               |
+| <i class="bi bi-github"></i> &nbsp; [Gali Shaani, Yonatan Schwartz](https://github.com/Yonatansch12/Agrotech-Lab-71252/blob/main/README.md) | Seed counter               |
+
+
+
+
+## 2022--23 Final projects
+
+| Team | Project                                                      |
+|------|--------------------------------------------------------------|
+| <i class="bi bi-github"></i> &nbsp; [Aviv Tzafrir, Daniel Shiller, Guy Dabby](https://github.com/dash1010/Hydrofonic-system) | Hydroponic system              |
+| <i class="bi bi-github"></i> &nbsp; [Orel Suliman, Yotam Menachem](https://github.com/Yotam-Menachem/Agro-Tech-Lab-Plant-propagation-GreenHouse/tree/main) | Greeny - Plant-propagation-GreenHouse              |
+| <i class="bi bi-github"></i> &nbsp; [Guy Brauner, Victoria Sholohov, Shir Avraham](https://github.com/VikaShol/Agrotech_Lab_2023) | Humidity control                                  |
+| <i class="bi bi-github"></i> &nbsp; [Eliraz Shomron](https://github.com/elirazshomron/Agtech_project) | Plant water system management |
+| <i class="bi bi-github"></i> &nbsp; [Yovel Rodoy](https://github.com/yovelrod/Agrotech_Lab_2023/tree/main) | meteorological station                                              |
+| <i class="bi bi-github"></i> &nbsp; [Yael Halperin, Oded Hollander, Shachar Miller](https://github.com/OdedHol/agrotech) | Deep Water Culture (DWC)                           |
+| <i class="bi bi-github"></i> &nbsp; [Bnaya Hami, Alon Dror, Michal Mannes](https://github.com/BnayaHami/Balcony_gardener) | Balcony gardener                       |
+| <i class="bi bi-github"></i> &nbsp; [Ran Avner, Omer Eyal, Zohar Batito](https://github.com/ranavner/real_time_dashboard) | smart watering system   
+
+
+##  2021--22 Final projects
+
+
 | Team | Project                                                      |
 |------|--------------------------------------------------------------|
 | <i class="bi bi-github"></i> &nbsp; [Ronna Melamed Bat -- May Nir](https://github.com/mayniragqueen/agrotech-project) | Measuring PAR outside and inside the greenhouse              |
@@ -17,11 +46,9 @@ title: "{{< iconify material-symbols rocket-launch >}} Projects"
 | <i class="bi bi-github"></i> &nbsp; [Peleg Atir -- Aviad Mendelovich -- Ruth Yitzhaki](https://github.com/Ruthyitzhaki/Agrotech-lab-2022) | VPD control using automatic sprinklers                       |
 | <i class="bi bi-github"></i> &nbsp; [Amir Sheffer -- Yitzchak Kanovsky -- Aviv Saadia](https://github.com/amirsheffer/Agro-tech-project) | 3D heatmap model of a greenhouse                             |
 
-</details>
 
-## {{< iconify icon-park-solid pyramid-one >}} Passover 2022 mini project
+  
 
-[click here](/posts/projects/passover-2023.html)
 
 <!-- ## {{< iconify mingcute transfer-3-line >}} Borrowing equipment
 

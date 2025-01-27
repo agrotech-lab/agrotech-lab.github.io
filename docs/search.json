@@ -1613,34 +1613,45 @@
   {
     "objectID": "projects.html",
     "href": "projects.html",
-    "title": "32   Projects",
+    "title": "32   Past Final Projects",
     "section": "",
-    "text": "32.1  Final Project\nRead carefully the instructions. Click here.",
+    "text": "32.1 2024–25 Final projects",
     "crumbs": [
       "**Projects**",
-      "<span class='chapter-number'>32</span>  <span class='chapter-title'>{{< iconify material-symbols rocket-launch >}} Projects</span>"
+      "<span class='chapter-number'>32</span>  <span class='chapter-title'>{{< iconify icons8 finish-flag >}} Past Final Projects</span>"
     ]
   },
   {
-    "objectID": "projects.html#final-project",
-    "href": "projects.html#final-project",
-    "title": "32   Projects",
-    "section": "",
-    "text": "2022 Final projects\n\n\n\n\nTeam\nProject\n\n\n\n\n   Ronna Melamed Bat – May Nir\nMeasuring PAR outside and inside the greenhouse\n\n\n   Avital Akerman – Elad Greenfeld\nAutomated Irrigation System\n\n\n   Nadav Hen – Guy Donagi – David Zingerman\nTemporal and spatial temperature measurement in a greenhouse\n\n\n   Zeev Rozman – Imri Zadak – Alex Evenko-Greenapple\nweather station\n\n\n   Yuval Chemke – Reem Har Levi\nHydroponics Monitoring and Balance\n\n\n   Peleg Atir – Aviad Mendelovich – Ruth Yitzhaki\nVPD control using automatic sprinklers\n\n\n   Amir Sheffer – Yitzchak Kanovsky – Aviv Saadia\n3D heatmap model of a greenhouse",
+    "objectID": "projects.html#final-projects-1",
+    "href": "projects.html#final-projects-1",
+    "title": "32   Past Final Projects",
+    "section": "32.2 2023–24 Final projects",
+    "text": "32.2 2023–24 Final projects\n\n\n\nTeam\nProject\n\n\n\n\n   Gabi Harel, Yoav Abeyv, Rotem Porat\nMonitoring Microbial Metabolism\n\n\n   Ella Faruchi, Rotem David, Matar Tal, Asif Charazi\nThe Eggs-periment\n\n\n   Gil Lifshitz, Matar Shema\nBaby Sensor\n\n\n   Neta Cohen Simhi, Omer Meyer, Itai David, Aya Even Dar\nCompost Monitoring System\n\n\n   Gali Shaani, Yonatan Schwartz\nSeed counter",
     "crumbs": [
       "**Projects**",
-      "<span class='chapter-number'>32</span>  <span class='chapter-title'>{{< iconify material-symbols rocket-launch >}} Projects</span>"
+      "<span class='chapter-number'>32</span>  <span class='chapter-title'>{{< iconify icons8 finish-flag >}} Past Final Projects</span>"
     ]
   },
   {
-    "objectID": "projects.html#passover-2022-mini-project",
-    "href": "projects.html#passover-2022-mini-project",
-    "title": "32   Projects",
-    "section": "32.2  Passover 2022 mini project",
-    "text": "32.2  Passover 2022 mini project\nclick here",
+    "objectID": "projects.html#final-projects-2",
+    "href": "projects.html#final-projects-2",
+    "title": "32   Past Final Projects",
+    "section": "32.3 2022–23 Final projects",
+    "text": "32.3 2022–23 Final projects\n\n\n\nTeam\nProject\n\n\n\n\n   Aviv Tzafrir, Daniel Shiller, Guy Dabby\nHydroponic system\n\n\n   Orel Suliman, Yotam Menachem\nGreeny - Plant-propagation-GreenHouse\n\n\n   Guy Brauner, Victoria Sholohov, Shir Avraham\nHumidity control\n\n\n   Eliraz Shomron\nPlant water system management\n\n\n   Yovel Rodoy\nmeteorological station\n\n\n   Yael Halperin, Oded Hollander, Shachar Miller\nDeep Water Culture (DWC)\n\n\n   Bnaya Hami, Alon Dror, Michal Mannes\nBalcony gardener\n\n\n   Ran Avner, Omer Eyal, Zohar Batito\nsmart watering system",
     "crumbs": [
       "**Projects**",
-      "<span class='chapter-number'>32</span>  <span class='chapter-title'>{{< iconify material-symbols rocket-launch >}} Projects</span>"
+      "<span class='chapter-number'>32</span>  <span class='chapter-title'>{{< iconify icons8 finish-flag >}} Past Final Projects</span>"
+    ]
+  },
+  {
+    "objectID": "projects.html#final-projects-3",
+    "href": "projects.html#final-projects-3",
+    "title": "32   Past Final Projects",
+    "section": "32.4 2021–22 Final projects",
+    "text": "32.4 2021–22 Final projects\n\n\n\nTeam\nProject\n\n\n\n\n   Ronna Melamed Bat – May Nir\nMeasuring PAR outside and inside the greenhouse\n\n\n   Avital Akerman – Elad Greenfeld\nAutomated Irrigation System\n\n\n   Nadav Hen – Guy Donagi – David Zingerman\nTemporal and spatial temperature measurement in a greenhouse\n\n\n   Zeev Rozman – Imri Zadak – Alex Evenko-Greenapple\nweather station\n\n\n   Yuval Chemke – Reem Har Levi\nHydroponics Monitoring and Balance\n\n\n   Peleg Atir – Aviad Mendelovich – Ruth Yitzhaki\nVPD control using automatic sprinklers\n\n\n   Amir Sheffer – Yitzchak Kanovsky – Aviv Saadia\n3D heatmap model of a greenhouse",
+    "crumbs": [
+      "**Projects**",
+      "<span class='chapter-number'>32</span>  <span class='chapter-title'>{{< iconify icons8 finish-flag >}} Past Final Projects</span>"
     ]
   },
   {
