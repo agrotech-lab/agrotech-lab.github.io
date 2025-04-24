@@ -1,0 +1,64 @@
+---
+title: "MQTT example"
+echo: false
+jupyter: python3
+execute:
+  freeze: auto  # re-render only when source changes
+---
+
+{{< include ../_insert_ino_code.qmd >}}
+
+![](https://mqtt.org/assets/downloads/mqtt-logo.png)
+
+## Intro
+
+Each FireBeetle board connects to Wi-Fi and subscribes to an MQTT topic. Whenever a new message is published to the topic, the board receives it and changes the color of its built-in RGB LED accordingly.
+
+### MQTT Topic
+
+The board listens to the following topic:
+
+```
+agrotech/mqtt_tutorial/LED
+```
+
+You can publish messages to this topic using an MQTT client, such as the <a href="https://mqttx.app/web-client" target="_blank">MQTTX Web Client</a>. Make sure to connect to the broker `broker.emqx.io` on port `1883`.
+
+### Supported Commands
+
+You can send color commands in various formats:
+
+#### 🔤 Named Colors
+You can use full names or single-letter shorthands (case-insensitive):
+
+| Command      | Resulting Color        |
+|--------------|------------------------|
+| `red` or `r` | 🔴 Red                 |
+| `green` or `g` | 🟢 Green              |
+| `blue` or `b` | 🔵 Blue               |
+| `white` or `w` | ⚪ White              |
+| `yellow` or `y` | 🟡 Yellow           |
+| `cyan` or `c` | 🟦 Cyan               |
+| `magenta` or `m` | 🟣 Magenta         |
+| `off` or `black` | ⚫ LED Off         |
+
+#### 🎨 Custom RGB Triplets
+You can also send a custom color as a comma-separated RGB value, e.g.:
+
+```
+255,100,0
+```
+
+This would set the LED to an orange-like color. The values should range from `0` to `255`.
+
+---
+
+This setup is ideal for remote visual feedback or synchronized color indicators across multiple ESP32 boards on the same MQTT topic.
+
+## LED subscribe
+```{python}
+#| echo: false
+#| output: asis
+code_source("MQTT_led_subscribe_example.ino")
+```
+

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>agrotech lab - 2&nbsp; Arduino IDE</title>
+<title>agrotech lab - 37&nbsp; MQTT example</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tutorials/install_firebeetle.html" rel="next">
-<link href="../arduino-intro-and-links.html" rel="prev">
+<link href="../projects/greenhouse.html" rel="prev">
 <link href="..//archive/images/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -97,6 +96,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../custom.scss">
@@ -111,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../arduino-intro-and-links.html"><strong>Start here</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/arduino_IDE.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arduino IDE</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../projects.html"><strong>Projects</strong></a></li><li class="breadcrumb-item"><a href="../projects/mqtt_example.html"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">MQTT example</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -173,7 +175,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/arduino_IDE.html" class="sidebar-item-text sidebar-link active">
+  <a href="../tutorials/arduino_IDE.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arduino IDE</span></span></a>
   </div>
 </li>
@@ -482,7 +484,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../projects/mqtt_example.html" class="sidebar-item-text sidebar-link">
+  <a href="../projects/mqtt_example.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">MQTT example</span></span></a>
   </div>
 </li>
@@ -498,21 +500,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-arduino-ide" id="toc-what-is-arduino-ide" class="nav-link active" data-scroll-target="#what-is-arduino-ide"><span class="header-section-number">2.1</span> What is Arduino IDE?</a></li>
-  <li><a href="#how-to-install-arduino-ide" id="toc-how-to-install-arduino-ide" class="nav-link" data-scroll-target="#how-to-install-arduino-ide"><span class="header-section-number">2.2</span> How to Install Arduino IDE?</a></li>
-  <li><a href="#step-1-download" id="toc-step-1-download" class="nav-link" data-scroll-target="#step-1-download"><span class="header-section-number">2.3</span> Step 1: Download</a></li>
-  <li><a href="#step-2-install-arduino-ide" id="toc-step-2-install-arduino-ide" class="nav-link" data-scroll-target="#step-2-install-arduino-ide"><span class="header-section-number">2.4</span> Step 2: Install Arduino IDE</a></li>
-  <li><a href="#how-to-use-arduino-ide" id="toc-how-to-use-arduino-ide" class="nav-link" data-scroll-target="#how-to-use-arduino-ide"><span class="header-section-number">2.5</span> How to use Arduino IDE?</a>
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro"><span class="header-section-number">37.1</span> Intro</a>
   <ul class="collapse">
-  <li><a href="#the-arduino-ide" id="toc-the-arduino-ide" class="nav-link" data-scroll-target="#the-arduino-ide"><span class="header-section-number">2.5.1</span> The Arduino IDE</a></li>
-  <li><a href="#the-setup-and-loop-functions" id="toc-the-setup-and-loop-functions" class="nav-link" data-scroll-target="#the-setup-and-loop-functions"><span class="header-section-number">2.5.2</span> The Setup and Loop Functions</a></li>
-  <li><a href="#libraries" id="toc-libraries" class="nav-link" data-scroll-target="#libraries"><span class="header-section-number">2.5.3</span> Libraries</a></li>
-  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><span class="header-section-number">2.5.4</span> Variables</a></li>
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="header-section-number">2.5.5</span> Functions</a></li>
-  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together"><span class="header-section-number">2.5.6</span> Putting It All Together</a></li>
+  <li><a href="#mqtt-topic" id="toc-mqtt-topic" class="nav-link" data-scroll-target="#mqtt-topic"><span class="header-section-number">37.1.1</span> MQTT Topic</a></li>
+  <li><a href="#supported-commands" id="toc-supported-commands" class="nav-link" data-scroll-target="#supported-commands"><span class="header-section-number">37.1.2</span> Supported Commands</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">2.6</span> Conclusion</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">2.7</span> Example</a></li>
+  <li><a href="#led-subscribe" id="toc-led-subscribe" class="nav-link" data-scroll-target="#led-subscribe"><span class="header-section-number">37.2</span> LED subscribe</a></li>
   </ul>
 </nav>
     </div>
@@ -522,7 +515,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arduino IDE</span></h1>
+<h1 class="title"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">MQTT example</span></h1>
 </div>
 
 
@@ -537,117 +530,195 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="what-is-arduino-ide" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="what-is-arduino-ide"><span class="header-section-number">2.1</span> What is Arduino IDE?</h2>
-<p>Arduino IDE (Integrated Development Environment) is a software application that is used to write and upload code to MCU boards. Arduino IDE code is written in C or C++ programming language. It is a free and open-source platform that makes it easy for beginners to get started with Arduino programming.</p>
-<p>Arduino IDE comes with a text editor, a code library, and a serial monitor that allows you to communicate with your Arduino board. It is available for Windows, Mac, and Linux operating systems.</p>
+<!-- ---
+title: ""
+echo: false
+jupyter: python3
+section-divs: false
+--- -->
+<p><img src="https://mqtt.org/assets/downloads/mqtt-logo.png" class="img-fluid"></p>
+<section id="intro" class="level2" data-number="37.1">
+<h2 data-number="37.1" class="anchored" data-anchor-id="intro"><span class="header-section-number">37.1</span> Intro</h2>
+<p>Each FireBeetle board connects to Wi-Fi and subscribes to an MQTT topic. Whenever a new message is published to the topic, the board receives it and changes the color of its built-in RGB LED accordingly.</p>
+<section id="mqtt-topic" class="level3" data-number="37.1.1">
+<h3 data-number="37.1.1" class="anchored" data-anchor-id="mqtt-topic"><span class="header-section-number">37.1.1</span> MQTT Topic</h3>
+<p>The board listens to the following topic:</p>
+<pre><code>agrotech/mqtt_tutorial/LED</code></pre>
+<p>You can publish messages to this topic using an MQTT client, such as the <a href="https://mqttx.app/web-client" target="_blank">MQTTX Web Client</a>. Make sure to connect to the broker <code>broker.emqx.io</code> on port <code>1883</code>.</p>
 </section>
-<section id="how-to-install-arduino-ide" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="how-to-install-arduino-ide"><span class="header-section-number">2.2</span> How to Install Arduino IDE?</h2>
-<p>Follow these simple steps to install Arduino IDE on your computer:</p>
+<section id="supported-commands" class="level3" data-number="37.1.2">
+<h3 data-number="37.1.2" class="anchored" data-anchor-id="supported-commands"><span class="header-section-number">37.1.2</span> Supported Commands</h3>
+<p>You can send color commands in various formats:</p>
+<section id="named-colors" class="level4" data-number="37.1.2.1">
+<h4 data-number="37.1.2.1" class="anchored" data-anchor-id="named-colors"><span class="header-section-number">37.1.2.1</span> 🔤 Named Colors</h4>
+<p>You can use full names or single-letter shorthands (case-insensitive):</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Resulting Color</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>red</code> or <code>r</code></td>
+<td>🔴 Red</td>
+</tr>
+<tr class="even">
+<td><code>green</code> or <code>g</code></td>
+<td>🟢 Green</td>
+</tr>
+<tr class="odd">
+<td><code>blue</code> or <code>b</code></td>
+<td>🔵 Blue</td>
+</tr>
+<tr class="even">
+<td><code>white</code> or <code>w</code></td>
+<td>⚪ White</td>
+</tr>
+<tr class="odd">
+<td><code>yellow</code> or <code>y</code></td>
+<td>🟡 Yellow</td>
+</tr>
+<tr class="even">
+<td><code>cyan</code> or <code>c</code></td>
+<td>🟦 Cyan</td>
+</tr>
+<tr class="odd">
+<td><code>magenta</code> or <code>m</code></td>
+<td>🟣 Magenta</td>
+</tr>
+<tr class="even">
+<td><code>off</code> or <code>black</code></td>
+<td>⚫ LED Off</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="step-1-download" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="step-1-download"><span class="header-section-number">2.3</span> Step 1: Download</h2>
-<p>Go to the official <a href="https://www.arduino.cc/en/software">Arduino website</a> and download the latest version of the <strong>Legacy IDE (1.8.X)</strong> for your operating system. <strong>Don’t download version 2.0.X</strong>, it will work for you but all the tutorials we will be following are in the previouse version (1.8.X).</p>
-</section>
-<section id="step-2-install-arduino-ide" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="step-2-install-arduino-ide"><span class="header-section-number">2.4</span> Step 2: Install Arduino IDE</h2>
-<p>Once the download is complete, run the installer and follow the on-screen instructions to install Arduino IDE on your computer.</p>
+<section id="custom-rgb-triplets" class="level4" data-number="37.1.2.2">
+<h4 data-number="37.1.2.2" class="anchored" data-anchor-id="custom-rgb-triplets"><span class="header-section-number">37.1.2.2</span> 🎨 Custom RGB Triplets</h4>
+<p>You can also send a custom color as a comma-separated RGB value, e.g.:</p>
+<pre><code>255,100,0</code></pre>
+<p>This would set the LED to an orange-like color. The values should range from <code>0</code> to <code>255</code>.</p>
 <hr>
-<p>Congratulations, you have successfully installed Arduino IDE on your computer and you are ready to start programming your MCU! <img src="https://images.squarespace-cdn.com/content/v1/5f4fc1d00dea6b17b03f63ad/1613610070709-1IF1A6I1W246K9U3NB1P/Screen+Shot+2021-02-17+at+18.00.37.png" class="img-fluid" alt="Adruino IDE"></p>
-</section>
-<section id="how-to-use-arduino-ide" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="how-to-use-arduino-ide"><span class="header-section-number">2.5</span> How to use Arduino IDE?</h2>
-<p>In this guide, we will explain the basics of Arduino IDE code and how to write your own Arduino programs.</p>
-<section id="the-arduino-ide" class="level3" data-number="2.5.1">
-<h3 data-number="2.5.1" class="anchored" data-anchor-id="the-arduino-ide"><span class="header-section-number">2.5.1</span> The Arduino IDE</h3>
-<p>The Arduino Integrated Development Environment (IDE) is a software development platform for creating programs that run on Arduino boards. The IDE includes a code editor, a compiler, and a firmware uploader. You can use the IDE to write, edit, and upload your Arduino programs.</p>
-</section>
-<section id="the-setup-and-loop-functions" class="level3" data-number="2.5.2">
-<h3 data-number="2.5.2" class="anchored" data-anchor-id="the-setup-and-loop-functions"><span class="header-section-number">2.5.2</span> The Setup and Loop Functions</h3>
-<p>In the Arduino IDE, every program must have two functions: <code>setup()</code> and <code>loop()</code>. The <code>setup()</code> function is called only once when the program starts, and it is used to initialize the program and set up any necessary variables. The <code>loop()</code> function, on the other hand, is called repeatedly after the <code>setup()</code> function, and it is used to run the main program logic.</p>
-</section>
-<section id="libraries" class="level3" data-number="2.5.3">
-<h3 data-number="2.5.3" class="anchored" data-anchor-id="libraries"><span class="header-section-number">2.5.3</span> Libraries</h3>
-<p>Libraries are prewritten pieces of code that you can use in your Arduino programs. Libraries contain functions and variables that you can use to make your programming tasks easier. You can include libraries in your program by using the <code>#include</code> directive at the beginning of your program.</p>
-</section>
-<section id="variables" class="level3" data-number="2.5.4">
-<h3 data-number="2.5.4" class="anchored" data-anchor-id="variables"><span class="header-section-number">2.5.4</span> Variables</h3>
-<p>Variables are used to store values in your program. In Arduino programming, you need to declare your variables at the beginning of your program. To declare a variable, you need to specify its data type and name. For example, <code>int myVariable = 10;</code> declares an integer variable called <code>myVariable</code> and assigns it the value 10.</p>
-</section>
-<section id="functions" class="level3" data-number="2.5.5">
-<h3 data-number="2.5.5" class="anchored" data-anchor-id="functions"><span class="header-section-number">2.5.5</span> Functions</h3>
-<p>Functions are blocks of code that perform a specific task. In Arduino programming, functions can be used to simplify your program and make it easier to read and understand. To create a function, you need to specify its return type, name, and any arguments it requires. For example, <code>int my_function(int arg1, int arg2)</code> creates a function called <code>my_function</code> that takes two integer arguments and returns an integer value.</p>
-</section>
-<section id="putting-it-all-together" class="level3" data-number="2.5.6">
-<h3 data-number="2.5.6" class="anchored" data-anchor-id="putting-it-all-together"><span class="header-section-number">2.5.6</span> Putting It All Together</h3>
-<p>Now that you understand the basic elements of Arduino programming, you can start writing your own programs. To get started, you can follow these steps:</p>
-<ol type="1">
-<li>Open the Arduino IDE and create a new sketch.</li>
-<li>Write your program code in the <code>setup()</code> and <code>loop()</code> functions.</li>
-<li>Declare any variables and functions you need at the beginning of your program.</li>
-<li>Include any libraries you need by using the <code>#include</code> directive.</li>
-<li>Upload your program to your Arduino board by clicking the upload button in the IDE.</li>
-</ol>
+<p>This setup is ideal for remote visual feedback or synchronized color indicators across multiple ESP32 boards on the same MQTT topic.</p>
 </section>
 </section>
-<section id="conclusion" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">2.6</span> Conclusion</h2>
-<p>Arduino IDE code is an essential part of Arduino programming. Understanding the basics of Arduino IDE code, including the <code>setup()</code> and <code>loop()</code> functions, libraries, variables, and functions, is essential for creating your own Arduino programs. With practice and patience, you can become proficient in Arduino programming and develop exciting projects using the Arduino platform.</p>
 </section>
-<section id="example" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="example"><span class="header-section-number">2.7</span> Example</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">// Include the necessary library for controlling the digital pin</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co">// Define the pin number for the LED</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="at">const</span> <span class="dt">int</span> LED_PIN <span class="op">=</span> <span class="dv">13</span><span class="op">;</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>  <span class="co">// Set the LED pin as an output</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>  pinMode<span class="op">(</span>LED_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="op">}</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a>  <span class="co">// Turn the LED on</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>  digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a></span>
-<span id="cb1-16"><a href="#cb1-16"></a>  <span class="co">// Wait for 1 second</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
-<span id="cb1-18"><a href="#cb1-18"></a></span>
-<span id="cb1-19"><a href="#cb1-19"></a>  <span class="co">// Turn the LED off</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a>  digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a></span>
-<span id="cb1-22"><a href="#cb1-22"></a>  <span class="co">// Wait for another second</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
-<span id="cb1-24"><a href="#cb1-24"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Let’s break down each part of the program:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This line includes the Arduino library, which contains functions for controlling the digital pins on the Arduino board.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1"></a><span class="at">const</span> <span class="dt">int</span> LED_PIN <span class="op">=</span> <span class="dv">13</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This line defines a constant integer variable called <code>LED_PIN</code> and assigns it the value 13. This is the pin number that the LED is connected to.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="co">// Set the LED pin as an output</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>  pinMode<span class="op">(</span>LED_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This is the <code>setup()</code> function, which is called once when the program starts. In this function, we set the LED pin as an output by calling <code>pinMode(LED_PIN, OUTPUT)</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span> <span class="op">...</span> <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This is the <code>loop()</code> function, which is called repeatedly after the <code>setup()</code> function. In this function, we turn the LED on by calling <code>digitalWrite(LED_PIN, HIGH)</code> and then wait for 1 second by calling <code>delay(1000)</code>. We then turn the LED off by calling <code>digitalWrite(LED_PIN, LOW)</code> and wait for another second.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1"></a>  <span class="co">// Turn the LED on</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>  digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="co">// Wait for 1 second</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a></span>
-<span id="cb6-7"><a href="#cb6-7"></a>  <span class="co">// Turn the LED off</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>  digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a></span>
-<span id="cb6-10"><a href="#cb6-10"></a>  <span class="co">// Wait for another second</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>These two lines turn the LED on and off by setting the voltage of the LED pin to <code>HIGH</code> and <code>LOW</code>, respectively.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1"></a>delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This line causes the program to pause for 1 second (1000 milliseconds) before continuing. The <code>delay()</code> function is used to control the timing of the program.</p>
-<p>Overall, this program is very simple, but it demonstrates the basic structure of an Arduino program. The <code>setup()</code> function is used to initialize the program, while the <code>loop()</code> function is used to perform the main program logic. The program uses the <code>digitalWrite()</code> function to turn the LED on and off, and the <code>delay()</code> function to control the timing of the program. By understanding these basic concepts, you can start to build more complex programs on the Arduino platform.</p>
+<section id="led-subscribe" class="level2" data-number="37.2">
+<h2 data-number="37.2" class="anchored" data-anchor-id="led-subscribe"><span class="header-section-number">37.2</span> LED subscribe</h2>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#MQTT_led_subscribe_exampleino" aria-expanded="false" aria-controls="MQTT_led_subscribe_exampleino">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/MQTT_led_subscribe_example.ino" download="" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="MQTT_led_subscribe_exampleino">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="pp">#include </span><span class="im">&lt;WiFi.h&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="pp">#include </span><span class="im">&lt;PubSubClient.h&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="pp">#include </span><span class="im">&lt;Adafruit_NeoPixel.h&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="pp">#define LED_PIN    </span><span class="dv">5</span><span class="pp">  </span><span class="co">// built-in WS2812 RGB on FireBeetle 2 = GPIO5 (D8)</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="pp">#define NUM_LEDS   </span><span class="dv">1</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="pp">#define BRIGHTNESS </span><span class="dv">50</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> ssid <span class="op">=</span> <span class="st">"erez"</span><span class="op">;</span>         <span class="co">// &lt;-- change this</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> password <span class="op">=</span> <span class="st">"arduino1"</span><span class="op">;</span> <span class="co">// &lt;-- change this</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> mqttServer <span class="op">=</span> <span class="st">"broker.emqx.io"</span><span class="op">;</span>  <span class="co">// &lt;== NEW BROKER</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="dt">int</span> mqttPort <span class="op">=</span> <span class="dv">1883</span><span class="op">;</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> mqttTopic <span class="op">=</span> <span class="st">"agrotech/mqtt_tutorial/LED"</span><span class="op">;</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a></span>
+<span id="cb3-16"><a href="#cb3-16"></a>WiFiClient wifiClient<span class="op">;</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a>PubSubClient mqttClient<span class="op">(</span>wifiClient<span class="op">);</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a>Adafruit_NeoPixel strip<span class="op">(</span>NUM_LEDS<span class="op">,</span> LED_PIN<span class="op">,</span> NEO_GRB <span class="op">+</span> NEO_KHZ800<span class="op">);</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a></span>
+<span id="cb3-20"><a href="#cb3-20"></a>String msgString<span class="op">;</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="dt">void</span> setColor<span class="op">(</span><span class="dt">uint8_t</span> r<span class="op">,</span> <span class="dt">uint8_t</span> g<span class="op">,</span> <span class="dt">uint8_t</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a>  strip<span class="op">.</span>setPixelColor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> strip<span class="op">.</span>Color<span class="op">(</span>r<span class="op">,</span> g<span class="op">,</span> b<span class="op">));</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a>  strip<span class="op">.</span>show<span class="op">();</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="op">}</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a></span>
+<span id="cb3-27"><a href="#cb3-27"></a><span class="dt">void</span> parseColor<span class="op">(</span>String color<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a>  color<span class="op">.</span>trim<span class="op">();</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a>  color<span class="op">.</span>toLowerCase<span class="op">();</span></span>
+<span id="cb3-30"><a href="#cb3-30"></a></span>
+<span id="cb3-31"><a href="#cb3-31"></a>  <span class="co">// named or shorthand colors</span></span>
+<span id="cb3-32"><a href="#cb3-32"></a>  <span class="cf">if</span> <span class="op">(</span>color <span class="op">==</span> <span class="st">"r"</span> <span class="op">||</span> color <span class="op">==</span> <span class="st">"red"</span><span class="op">)</span> setColor<span class="op">(</span><span class="dv">255</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb3-33"><a href="#cb3-33"></a>  <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>color <span class="op">==</span> <span class="st">"g"</span> <span class="op">||</span> color <span class="op">==</span> <span class="st">"green"</span><span class="op">)</span> setColor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb3-34"><a href="#cb3-34"></a>  <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>color <span class="op">==</span> <span class="st">"b"</span> <span class="op">||</span> color <span class="op">==</span> <span class="st">"blue"</span><span class="op">)</span> setColor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">255</span><span class="op">);</span></span>
+<span id="cb3-35"><a href="#cb3-35"></a>  <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>color <span class="op">==</span> <span class="st">"w"</span> <span class="op">||</span> color <span class="op">==</span> <span class="st">"white"</span><span class="op">)</span> setColor<span class="op">(</span><span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">);</span></span>
+<span id="cb3-36"><a href="#cb3-36"></a>  <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>color <span class="op">==</span> <span class="st">"y"</span> <span class="op">||</span> color <span class="op">==</span> <span class="st">"yellow"</span><span class="op">)</span> setColor<span class="op">(</span><span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb3-37"><a href="#cb3-37"></a>  <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>color <span class="op">==</span> <span class="st">"m"</span> <span class="op">||</span> color <span class="op">==</span> <span class="st">"magenta"</span><span class="op">)</span> setColor<span class="op">(</span><span class="dv">255</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">255</span><span class="op">);</span></span>
+<span id="cb3-38"><a href="#cb3-38"></a>  <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>color <span class="op">==</span> <span class="st">"c"</span> <span class="op">||</span> color <span class="op">==</span> <span class="st">"cyan"</span><span class="op">)</span> setColor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">);</span></span>
+<span id="cb3-39"><a href="#cb3-39"></a>  <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>color <span class="op">==</span> <span class="st">"off"</span> <span class="op">||</span> color <span class="op">==</span> <span class="st">"black"</span><span class="op">)</span> setColor<span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span></span>
+<span id="cb3-40"><a href="#cb3-40"></a>  <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>color<span class="op">.</span>indexOf<span class="op">(</span><span class="ch">','</span><span class="op">)</span> <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-41"><a href="#cb3-41"></a>    <span class="co">// RGB triplet: "100,200,30"</span></span>
+<span id="cb3-42"><a href="#cb3-42"></a>    <span class="dt">int</span> r <span class="op">=</span> color<span class="op">.</span>substring<span class="op">(</span><span class="dv">0</span><span class="op">,</span> color<span class="op">.</span>indexOf<span class="op">(</span><span class="ch">','</span><span class="op">)).</span>toInt<span class="op">();</span></span>
+<span id="cb3-43"><a href="#cb3-43"></a>    <span class="dt">int</span> g <span class="op">=</span> color<span class="op">.</span>substring<span class="op">(</span>color<span class="op">.</span>indexOf<span class="op">(</span><span class="ch">','</span><span class="op">)</span> <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> color<span class="op">.</span>lastIndexOf<span class="op">(</span><span class="ch">','</span><span class="op">)).</span>toInt<span class="op">();</span></span>
+<span id="cb3-44"><a href="#cb3-44"></a>    <span class="dt">int</span> b <span class="op">=</span> color<span class="op">.</span>substring<span class="op">(</span>color<span class="op">.</span>lastIndexOf<span class="op">(</span><span class="ch">','</span><span class="op">)</span> <span class="op">+</span> <span class="dv">1</span><span class="op">).</span>toInt<span class="op">();</span></span>
+<span id="cb3-45"><a href="#cb3-45"></a>    setColor<span class="op">(</span>r<span class="op">,</span> g<span class="op">,</span> b<span class="op">);</span></span>
+<span id="cb3-46"><a href="#cb3-46"></a>  <span class="op">}</span></span>
+<span id="cb3-47"><a href="#cb3-47"></a>  <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb3-48"><a href="#cb3-48"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Unknown color command"</span><span class="op">);</span></span>
+<span id="cb3-49"><a href="#cb3-49"></a>  <span class="op">}</span></span>
+<span id="cb3-50"><a href="#cb3-50"></a><span class="op">}</span></span>
+<span id="cb3-51"><a href="#cb3-51"></a></span>
+<span id="cb3-52"><a href="#cb3-52"></a><span class="dt">void</span> callback<span class="op">(</span><span class="dt">char</span><span class="op">*</span> topic<span class="op">,</span> byte<span class="op">*</span> message<span class="op">,</span> <span class="dt">unsigned</span> <span class="dt">int</span> length<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-53"><a href="#cb3-53"></a>  msgString <span class="op">=</span> String<span class="op">((</span><span class="dt">char</span><span class="op">*)</span>message<span class="op">,</span> length<span class="op">);</span></span>
+<span id="cb3-54"><a href="#cb3-54"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"MQTT message received: "</span><span class="op">);</span></span>
+<span id="cb3-55"><a href="#cb3-55"></a>  Serial<span class="op">.</span>println<span class="op">(</span>msgString<span class="op">);</span></span>
+<span id="cb3-56"><a href="#cb3-56"></a>  parseColor<span class="op">(</span>msgString<span class="op">);</span></span>
+<span id="cb3-57"><a href="#cb3-57"></a><span class="op">}</span></span>
+<span id="cb3-58"><a href="#cb3-58"></a></span>
+<span id="cb3-59"><a href="#cb3-59"></a><span class="dt">void</span> setupMQTT<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-60"><a href="#cb3-60"></a>  mqttClient<span class="op">.</span>setServer<span class="op">(</span>mqttServer<span class="op">,</span> mqttPort<span class="op">);</span></span>
+<span id="cb3-61"><a href="#cb3-61"></a>  mqttClient<span class="op">.</span>setCallback<span class="op">(</span>callback<span class="op">);</span></span>
+<span id="cb3-62"><a href="#cb3-62"></a><span class="op">}</span></span>
+<span id="cb3-63"><a href="#cb3-63"></a></span>
+<span id="cb3-64"><a href="#cb3-64"></a><span class="dt">void</span> reconnect<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-65"><a href="#cb3-65"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Connecting to MQTT Broker..."</span><span class="op">);</span></span>
+<span id="cb3-66"><a href="#cb3-66"></a>  <span class="cf">while</span> <span class="op">(!</span>mqttClient<span class="op">.</span>connected<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb3-67"><a href="#cb3-67"></a>    String clientId <span class="op">=</span> <span class="st">"ESP32Client-"</span> <span class="op">+</span> String<span class="op">(</span>random<span class="op">(</span><span class="bn">0xffff</span><span class="op">),</span> HEX<span class="op">);</span></span>
+<span id="cb3-68"><a href="#cb3-68"></a>    <span class="cf">if</span> <span class="op">(</span>mqttClient<span class="op">.</span>connect<span class="op">(</span>clientId<span class="op">.</span>c_str<span class="op">()))</span> <span class="op">{</span></span>
+<span id="cb3-69"><a href="#cb3-69"></a>      Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Connected to MQTT."</span><span class="op">);</span></span>
+<span id="cb3-70"><a href="#cb3-70"></a>      mqttClient<span class="op">.</span>subscribe<span class="op">(</span>mqttTopic<span class="op">);</span></span>
+<span id="cb3-71"><a href="#cb3-71"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb3-72"><a href="#cb3-72"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"."</span><span class="op">);</span></span>
+<span id="cb3-73"><a href="#cb3-73"></a>      delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
+<span id="cb3-74"><a href="#cb3-74"></a>    <span class="op">}</span></span>
+<span id="cb3-75"><a href="#cb3-75"></a>  <span class="op">}</span></span>
+<span id="cb3-76"><a href="#cb3-76"></a><span class="op">}</span></span>
+<span id="cb3-77"><a href="#cb3-77"></a></span>
+<span id="cb3-78"><a href="#cb3-78"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-79"><a href="#cb3-79"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb3-80"><a href="#cb3-80"></a></span>
+<span id="cb3-81"><a href="#cb3-81"></a>  WiFi<span class="op">.</span>begin<span class="op">(</span>ssid<span class="op">,</span> password<span class="op">);</span></span>
+<span id="cb3-82"><a href="#cb3-82"></a>  <span class="cf">while</span> <span class="op">(</span>WiFi<span class="op">.</span>status<span class="op">()</span> <span class="op">!=</span> WL_CONNECTED<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-83"><a href="#cb3-83"></a>    delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb3-84"><a href="#cb3-84"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"."</span><span class="op">);</span></span>
+<span id="cb3-85"><a href="#cb3-85"></a>  <span class="op">}</span></span>
+<span id="cb3-86"><a href="#cb3-86"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"</span><span class="sc">\n</span><span class="st">Connected to WiFi."</span><span class="op">);</span></span>
+<span id="cb3-87"><a href="#cb3-87"></a></span>
+<span id="cb3-88"><a href="#cb3-88"></a>  strip<span class="op">.</span>begin<span class="op">();</span></span>
+<span id="cb3-89"><a href="#cb3-89"></a>  strip<span class="op">.</span>setBrightness<span class="op">(</span>BRIGHTNESS<span class="op">);</span></span>
+<span id="cb3-90"><a href="#cb3-90"></a>  strip<span class="op">.</span>show<span class="op">();</span> <span class="co">// off</span></span>
+<span id="cb3-91"><a href="#cb3-91"></a></span>
+<span id="cb3-92"><a href="#cb3-92"></a>  setupMQTT<span class="op">();</span></span>
+<span id="cb3-93"><a href="#cb3-93"></a><span class="op">}</span></span>
+<span id="cb3-94"><a href="#cb3-94"></a></span>
+<span id="cb3-95"><a href="#cb3-95"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-96"><a href="#cb3-96"></a>  <span class="cf">if</span> <span class="op">(!</span>mqttClient<span class="op">.</span>connected<span class="op">())</span> reconnect<span class="op">();</span></span>
+<span id="cb3-97"><a href="#cb3-97"></a>  mqttClient<span class="op">.</span>loop<span class="op">();</span></span>
+<span id="cb3-98"><a href="#cb3-98"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
 
 
 </section>
@@ -888,14 +959,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../arduino-intro-and-links.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Arduino intro</span></span>
+      <a href="../projects/greenhouse.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">The Smart Greenhouse</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tutorials/install_firebeetle.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Install FireBeetle (ESP32)</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

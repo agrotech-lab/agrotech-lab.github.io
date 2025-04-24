@@ -69,6 +69,7 @@ book:
       - projects/final-project.qmd
       - projects/examples.qmd
       - projects/greenhouse.qmd
+      - projects/mqtt_example.qmd
 
   sidebar:
     collapse-level: 2

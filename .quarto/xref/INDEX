@@ -241,5 +241,11 @@
   },
   "tutorials/OLED.qmd": {
     "OLED.html": "8528db26"
+  },
+  "tutorials/mqtt_example.qmd": {
+    "mqtt_example.html": "827f6543"
+  },
+  "projects/mqtt_example.qmd": {
+    "mqtt_example.html": "89b3b611"
   }
 }
