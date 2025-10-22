@@ -98,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" data-relocate-top="true"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
@@ -505,8 +505,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#printing-increasing-numbers" id="toc-printing-increasing-numbers" class="nav-link" data-scroll-target="#printing-increasing-numbers"><span class="header-section-number">8.2</span> Printing increasing numbers</a></li>
   <li><a href="#printing-random-numbers-then-plotting" id="toc-printing-random-numbers-then-plotting" class="nav-link" data-scroll-target="#printing-random-numbers-then-plotting"><span class="header-section-number">8.3</span> Printing random numbers, then plotting!</a></li>
   <li><a href="#floats-functions-conditionals" id="toc-floats-functions-conditionals" class="nav-link" data-scroll-target="#floats-functions-conditionals"><span class="header-section-number">8.4</span> Floats, functions, conditionals</a></li>
-  <li><a href="#wifi-read-time" id="toc-wifi-read-time" class="nav-link" data-scroll-target="#wifi-read-time"><span class="header-section-number">8.5</span> WiFi, read time</a></li>
-  <li><a href="#home-assignment" id="toc-home-assignment" class="nav-link" data-scroll-target="#home-assignment"><span class="header-section-number">8.6</span> Home assignment</a></li>
+  <li><a href="#serial-read" id="toc-serial-read" class="nav-link" data-scroll-target="#serial-read"><span class="header-section-number">8.5</span> Serial read</a></li>
+  <li><a href="#wifi-read-time" id="toc-wifi-read-time" class="nav-link" data-scroll-target="#wifi-read-time"><span class="header-section-number">8.6</span> WiFi, read time</a></li>
+  <li><a href="#home-assignment" id="toc-home-assignment" class="nav-link" data-scroll-target="#home-assignment"><span class="header-section-number">8.7</span> Home assignment</a></li>
   </ul>
 </nav>
     </div>
@@ -771,8 +772,56 @@ section-divs: false
             
 <hr>
 </section>
-<section id="wifi-read-time" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="wifi-read-time"><span class="header-section-number">8.5</span> WiFi, read time</h2>
+<section id="serial-read" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="serial-read"><span class="header-section-number">8.5</span> Serial read</h2>
+<p>We can also read data from the Serial Monitor and use it to control the behavior of the ESP32. In this example, the ESP32 waits for you to type a number into the Serial Monitor and then blinks that number of times.</p>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#serial-read-blinkino" aria-expanded="false" aria-controls="serial-read-blinkino">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/serial-read-blink.ino" download="" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="serial-read-blinkino">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">// serial-read-blink.ino</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>String inputString <span class="op">=</span> <span class="st">""</span><span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  pinMode<span class="op">(</span>ledPin<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Type a number and press Enter:"</span><span class="op">);</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="op">}</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>  <span class="co">// check if data is available in the Serial Monitor</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a>  <span class="cf">if</span> <span class="op">(</span>Serial<span class="op">.</span>available<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>    inputString <span class="op">=</span> Serial<span class="op">.</span>readStringUntil<span class="op">(</span><span class="ch">'</span><span class="sc">\n</span><span class="ch">'</span><span class="op">);</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a>    <span class="dt">int</span> n <span class="op">=</span> inputString<span class="op">.</span>toInt<span class="op">();</span>  <span class="co">// convert text to integer</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a></span>
+<span id="cb6-16"><a href="#cb6-16"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Blinking "</span><span class="op">);</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a>    Serial<span class="op">.</span>print<span class="op">(</span>n<span class="op">);</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">" times"</span><span class="op">);</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a></span>
+<span id="cb6-20"><a href="#cb6-20"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a>      digitalWrite<span class="op">(</span>LED_BUILTIN<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a>      delay<span class="op">(</span><span class="dv">200</span><span class="op">);</span></span>
+<span id="cb6-23"><a href="#cb6-23"></a>      digitalWrite<span class="op">(</span>LED_BUILTIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb6-24"><a href="#cb6-24"></a>      delay<span class="op">(</span><span class="dv">200</span><span class="op">);</span></span>
+<span id="cb6-25"><a href="#cb6-25"></a>    <span class="op">}</span></span>
+<span id="cb6-26"><a href="#cb6-26"></a></span>
+<span id="cb6-27"><a href="#cb6-27"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Done. Type another number:"</span><span class="op">);</span></span>
+<span id="cb6-28"><a href="#cb6-28"></a>  <span class="op">}</span></span>
+<span id="cb6-29"><a href="#cb6-29"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
+<hr>
+</section>
+<section id="wifi-read-time" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="wifi-read-time"><span class="header-section-number">8.6</span> WiFi, read time</h2>
 <button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#wifi-timeino" aria-expanded="false" aria-controls="wifi-timeino">
     <i class="bi bi-toggles"></i> Toggle code
     </button>
@@ -783,96 +832,96 @@ section-divs: false
             <div class="collapse" id="wifi-timeino">
             <div class="card card-body border-0">
         
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">//-----------------------------------------------------------------------------------</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co">//  WIFI setup:</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="pp">#include </span><span class="im">&lt;WiFi.h&gt;</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> ssid <span class="op">=</span> <span class="st">"HUJI-guest"</span><span class="op">;</span> <span class="co">// your wifi SSID name</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> password <span class="op">=</span> <span class="st">""</span> <span class="op">;</span><span class="co">// wifi pasword</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>String formattedTime<span class="op">;</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="dt">float</span> rand_int <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> cumulative <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a></span>
-<span id="cb6-11"><a href="#cb6-11"></a>WiFiClient client<span class="op">;</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">//-------------------------------------------------------------------------------------</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="co">// Set time</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="pp">#include </span><span class="im">&lt;NTPClient.h&gt;</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="pp">#include </span><span class="im">&lt;WiFiUdp.h&gt;</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a></span>
-<span id="cb6-18"><a href="#cb6-18"></a><span class="dt">const</span> <span class="dt">long</span> utcOffsetInSeconds <span class="op">=</span> <span class="dv">3600</span> <span class="op">*</span> <span class="dv">2</span><span class="op">;</span> <span class="co">// For UTC +2.00 : 2 * 60 * 60</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a></span>
-<span id="cb6-20"><a href="#cb6-20"></a><span class="dt">char</span> daysOfTheWeek<span class="op">[</span><span class="dv">7</span><span class="op">][</span><span class="dv">12</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="st">"Sunday"</span><span class="op">,</span> <span class="st">"Monday"</span><span class="op">,</span> <span class="st">"Tuesday"</span><span class="op">,</span> <span class="st">"Wednesday"</span><span class="op">,</span> <span class="st">"Thursday"</span><span class="op">,</span> <span class="st">"Friday"</span><span class="op">,</span> <span class="st">"Saturday"</span><span class="op">};</span></span>
-<span id="cb6-21"><a href="#cb6-21"></a></span>
-<span id="cb6-22"><a href="#cb6-22"></a><span class="co">// Define NTP Client to get time</span></span>
-<span id="cb6-23"><a href="#cb6-23"></a>WiFiUDP ntpUDP<span class="op">;</span></span>
-<span id="cb6-24"><a href="#cb6-24"></a>NTPClient timeClient<span class="op">(</span>ntpUDP<span class="op">,</span> <span class="st">"pool.ntp.org"</span><span class="op">,</span> utcOffsetInSeconds<span class="op">);</span></span>
-<span id="cb6-25"><a href="#cb6-25"></a></span>
-<span id="cb6-26"><a href="#cb6-26"></a><span class="dt">int</span> time_s <span class="op">;</span> <span class="co">// variable for the second</span></span>
-<span id="cb6-27"><a href="#cb6-27"></a></span>
-<span id="cb6-28"><a href="#cb6-28"></a></span>
-<span id="cb6-29"><a href="#cb6-29"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb6-30"><a href="#cb6-30"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
-<span id="cb6-31"><a href="#cb6-31"></a>  <span class="co">//---------------------------------------------------------------------------</span></span>
-<span id="cb6-32"><a href="#cb6-32"></a>  <span class="co">//wifi conection:</span></span>
-<span id="cb6-33"><a href="#cb6-33"></a>  WiFi<span class="op">.</span>disconnect<span class="op">();</span></span>
-<span id="cb6-34"><a href="#cb6-34"></a>  delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
-<span id="cb6-35"><a href="#cb6-35"></a>  WiFi<span class="op">.</span>begin<span class="op">(</span>ssid<span class="op">,</span> password<span class="op">);</span></span>
-<span id="cb6-36"><a href="#cb6-36"></a></span>
-<span id="cb6-37"><a href="#cb6-37"></a>  Serial<span class="op">.</span>println<span class="op">();</span></span>
-<span id="cb6-38"><a href="#cb6-38"></a>  Serial<span class="op">.</span>println<span class="op">();</span></span>
-<span id="cb6-39"><a href="#cb6-39"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Connecting to "</span><span class="op">);</span></span>
-<span id="cb6-40"><a href="#cb6-40"></a>  Serial<span class="op">.</span>println<span class="op">(</span>ssid<span class="op">);</span></span>
-<span id="cb6-41"><a href="#cb6-41"></a></span>
-<span id="cb6-42"><a href="#cb6-42"></a>  WiFi<span class="op">.</span>begin<span class="op">(</span>ssid<span class="op">,</span> password<span class="op">);</span></span>
-<span id="cb6-43"><a href="#cb6-43"></a></span>
-<span id="cb6-44"><a href="#cb6-44"></a>  <span class="cf">while</span> <span class="op">(</span>WiFi<span class="op">.</span>status<span class="op">()</span> <span class="op">!=</span> WL_CONNECTED<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb6-45"><a href="#cb6-45"></a>    delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
-<span id="cb6-46"><a href="#cb6-46"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"."</span><span class="op">);</span></span>
-<span id="cb6-47"><a href="#cb6-47"></a>  <span class="op">}</span></span>
-<span id="cb6-48"><a href="#cb6-48"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
-<span id="cb6-49"><a href="#cb6-49"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"NodeMcu connected to wifi..."</span><span class="op">);</span></span>
-<span id="cb6-50"><a href="#cb6-50"></a>  Serial<span class="op">.</span>println<span class="op">(</span>ssid<span class="op">);</span></span>
-<span id="cb6-51"><a href="#cb6-51"></a>  Serial<span class="op">.</span>println<span class="op">();</span></span>
-<span id="cb6-52"><a href="#cb6-52"></a>  <span class="co">//-----------------------------------------------------------------------</span></span>
-<span id="cb6-53"><a href="#cb6-53"></a>  <span class="co">// stings for time:</span></span>
-<span id="cb6-54"><a href="#cb6-54"></a>  timeClient<span class="op">.</span>begin<span class="op">();</span></span>
-<span id="cb6-55"><a href="#cb6-55"></a></span>
-<span id="cb6-56"><a href="#cb6-56"></a><span class="op">}</span></span>
-<span id="cb6-57"><a href="#cb6-57"></a></span>
-<span id="cb6-58"><a href="#cb6-58"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb6-59"><a href="#cb6-59"></a>  timeClient<span class="op">.</span>update<span class="op">();</span></span>
-<span id="cb6-60"><a href="#cb6-60"></a>  time_s <span class="op">=</span> timeClient<span class="op">.</span>getSeconds<span class="op">();</span></span>
-<span id="cb6-61"><a href="#cb6-61"></a>  <span class="cf">if</span> <span class="op">(</span>time_s <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb6-62"><a href="#cb6-62"></a>    formattedTime <span class="op">=</span> timeClient<span class="op">.</span>getFormattedTime<span class="op">();</span></span>
-<span id="cb6-63"><a href="#cb6-63"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"A new minute has started!</span><span class="sc">\n</span><span class="st">Full time = "</span><span class="op">);</span></span>
-<span id="cb6-64"><a href="#cb6-64"></a>    Serial<span class="op">.</span>println<span class="op">(</span>formattedTime<span class="op">);</span></span>
-<span id="cb6-65"><a href="#cb6-65"></a>  <span class="op">}</span></span>
-<span id="cb6-66"><a href="#cb6-66"></a>  </span>
-<span id="cb6-67"><a href="#cb6-67"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"second = "</span><span class="op">);</span></span>
-<span id="cb6-68"><a href="#cb6-68"></a>  Serial<span class="op">.</span>print<span class="op">(</span>time_s<span class="op">);</span></span>
-<span id="cb6-69"><a href="#cb6-69"></a>  rand_int <span class="op">=</span> random<span class="op">(</span><span class="dv">10</span><span class="op">,</span> <span class="dv">20</span><span class="op">);</span></span>
-<span id="cb6-70"><a href="#cb6-70"></a>  cumulative <span class="op">+=</span> rand_int<span class="op">;</span></span>
-<span id="cb6-71"><a href="#cb6-71"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"</span><span class="sc">\t</span><span class="st">rand = "</span><span class="op">);</span></span>
-<span id="cb6-72"><a href="#cb6-72"></a>  Serial<span class="op">.</span>print<span class="op">(</span>rand_int<span class="op">);</span></span>
-<span id="cb6-73"><a href="#cb6-73"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"</span><span class="sc">\t</span><span class="st">running sum = "</span><span class="op">);</span></span>
-<span id="cb6-74"><a href="#cb6-74"></a>  Serial<span class="op">.</span>println<span class="op">(</span>cumulative<span class="op">);</span></span>
-<span id="cb6-75"><a href="#cb6-75"></a>  <span class="cf">if</span> <span class="op">(</span>time_s<span class="op">%</span><span class="dv">10</span><span class="op">==</span><span class="dv">9</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb6-76"><a href="#cb6-76"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Average  = "</span><span class="op">);</span></span>
-<span id="cb6-77"><a href="#cb6-77"></a>    Serial<span class="op">.</span>println<span class="op">(</span>cumulative <span class="op">/</span> <span class="dv">10</span><span class="op">);</span></span>
-<span id="cb6-78"><a href="#cb6-78"></a>    cumulative <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb6-79"><a href="#cb6-79"></a>  <span class="op">}</span></span>
-<span id="cb6-80"><a href="#cb6-80"></a>  </span>
-<span id="cb6-81"><a href="#cb6-81"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
-<span id="cb6-82"><a href="#cb6-82"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">//-----------------------------------------------------------------------------------</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co">//  WIFI setup:</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="pp">#include </span><span class="im">&lt;WiFi.h&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> ssid <span class="op">=</span> <span class="st">"HUJI-guest"</span><span class="op">;</span> <span class="co">// your wifi SSID name</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> password <span class="op">=</span> <span class="st">""</span> <span class="op">;</span><span class="co">// wifi pasword</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>String formattedTime<span class="op">;</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="dt">float</span> rand_int <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> cumulative <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a></span>
+<span id="cb7-11"><a href="#cb7-11"></a>WiFiClient client<span class="op">;</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">//-------------------------------------------------------------------------------------</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a><span class="co">// Set time</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="pp">#include </span><span class="im">&lt;NTPClient.h&gt;</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a><span class="pp">#include </span><span class="im">&lt;WiFiUdp.h&gt;</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="dt">const</span> <span class="dt">long</span> utcOffsetInSeconds <span class="op">=</span> <span class="dv">3600</span> <span class="op">*</span> <span class="dv">2</span><span class="op">;</span> <span class="co">// For UTC +2.00 : 2 * 60 * 60</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a></span>
+<span id="cb7-20"><a href="#cb7-20"></a><span class="dt">char</span> daysOfTheWeek<span class="op">[</span><span class="dv">7</span><span class="op">][</span><span class="dv">12</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="st">"Sunday"</span><span class="op">,</span> <span class="st">"Monday"</span><span class="op">,</span> <span class="st">"Tuesday"</span><span class="op">,</span> <span class="st">"Wednesday"</span><span class="op">,</span> <span class="st">"Thursday"</span><span class="op">,</span> <span class="st">"Friday"</span><span class="op">,</span> <span class="st">"Saturday"</span><span class="op">};</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a></span>
+<span id="cb7-22"><a href="#cb7-22"></a><span class="co">// Define NTP Client to get time</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a>WiFiUDP ntpUDP<span class="op">;</span></span>
+<span id="cb7-24"><a href="#cb7-24"></a>NTPClient timeClient<span class="op">(</span>ntpUDP<span class="op">,</span> <span class="st">"pool.ntp.org"</span><span class="op">,</span> utcOffsetInSeconds<span class="op">);</span></span>
+<span id="cb7-25"><a href="#cb7-25"></a></span>
+<span id="cb7-26"><a href="#cb7-26"></a><span class="dt">int</span> time_s <span class="op">;</span> <span class="co">// variable for the second</span></span>
+<span id="cb7-27"><a href="#cb7-27"></a></span>
+<span id="cb7-28"><a href="#cb7-28"></a></span>
+<span id="cb7-29"><a href="#cb7-29"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-30"><a href="#cb7-30"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb7-31"><a href="#cb7-31"></a>  <span class="co">//---------------------------------------------------------------------------</span></span>
+<span id="cb7-32"><a href="#cb7-32"></a>  <span class="co">//wifi conection:</span></span>
+<span id="cb7-33"><a href="#cb7-33"></a>  WiFi<span class="op">.</span>disconnect<span class="op">();</span></span>
+<span id="cb7-34"><a href="#cb7-34"></a>  delay<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
+<span id="cb7-35"><a href="#cb7-35"></a>  WiFi<span class="op">.</span>begin<span class="op">(</span>ssid<span class="op">,</span> password<span class="op">);</span></span>
+<span id="cb7-36"><a href="#cb7-36"></a></span>
+<span id="cb7-37"><a href="#cb7-37"></a>  Serial<span class="op">.</span>println<span class="op">();</span></span>
+<span id="cb7-38"><a href="#cb7-38"></a>  Serial<span class="op">.</span>println<span class="op">();</span></span>
+<span id="cb7-39"><a href="#cb7-39"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Connecting to "</span><span class="op">);</span></span>
+<span id="cb7-40"><a href="#cb7-40"></a>  Serial<span class="op">.</span>println<span class="op">(</span>ssid<span class="op">);</span></span>
+<span id="cb7-41"><a href="#cb7-41"></a></span>
+<span id="cb7-42"><a href="#cb7-42"></a>  WiFi<span class="op">.</span>begin<span class="op">(</span>ssid<span class="op">,</span> password<span class="op">);</span></span>
+<span id="cb7-43"><a href="#cb7-43"></a></span>
+<span id="cb7-44"><a href="#cb7-44"></a>  <span class="cf">while</span> <span class="op">(</span>WiFi<span class="op">.</span>status<span class="op">()</span> <span class="op">!=</span> WL_CONNECTED<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-45"><a href="#cb7-45"></a>    delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb7-46"><a href="#cb7-46"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"."</span><span class="op">);</span></span>
+<span id="cb7-47"><a href="#cb7-47"></a>  <span class="op">}</span></span>
+<span id="cb7-48"><a href="#cb7-48"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">""</span><span class="op">);</span></span>
+<span id="cb7-49"><a href="#cb7-49"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"NodeMcu connected to wifi..."</span><span class="op">);</span></span>
+<span id="cb7-50"><a href="#cb7-50"></a>  Serial<span class="op">.</span>println<span class="op">(</span>ssid<span class="op">);</span></span>
+<span id="cb7-51"><a href="#cb7-51"></a>  Serial<span class="op">.</span>println<span class="op">();</span></span>
+<span id="cb7-52"><a href="#cb7-52"></a>  <span class="co">//-----------------------------------------------------------------------</span></span>
+<span id="cb7-53"><a href="#cb7-53"></a>  <span class="co">// stings for time:</span></span>
+<span id="cb7-54"><a href="#cb7-54"></a>  timeClient<span class="op">.</span>begin<span class="op">();</span></span>
+<span id="cb7-55"><a href="#cb7-55"></a></span>
+<span id="cb7-56"><a href="#cb7-56"></a><span class="op">}</span></span>
+<span id="cb7-57"><a href="#cb7-57"></a></span>
+<span id="cb7-58"><a href="#cb7-58"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-59"><a href="#cb7-59"></a>  timeClient<span class="op">.</span>update<span class="op">();</span></span>
+<span id="cb7-60"><a href="#cb7-60"></a>  time_s <span class="op">=</span> timeClient<span class="op">.</span>getSeconds<span class="op">();</span></span>
+<span id="cb7-61"><a href="#cb7-61"></a>  <span class="cf">if</span> <span class="op">(</span>time_s <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-62"><a href="#cb7-62"></a>    formattedTime <span class="op">=</span> timeClient<span class="op">.</span>getFormattedTime<span class="op">();</span></span>
+<span id="cb7-63"><a href="#cb7-63"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"A new minute has started!</span><span class="sc">\n</span><span class="st">Full time = "</span><span class="op">);</span></span>
+<span id="cb7-64"><a href="#cb7-64"></a>    Serial<span class="op">.</span>println<span class="op">(</span>formattedTime<span class="op">);</span></span>
+<span id="cb7-65"><a href="#cb7-65"></a>  <span class="op">}</span></span>
+<span id="cb7-66"><a href="#cb7-66"></a>  </span>
+<span id="cb7-67"><a href="#cb7-67"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"second = "</span><span class="op">);</span></span>
+<span id="cb7-68"><a href="#cb7-68"></a>  Serial<span class="op">.</span>print<span class="op">(</span>time_s<span class="op">);</span></span>
+<span id="cb7-69"><a href="#cb7-69"></a>  rand_int <span class="op">=</span> random<span class="op">(</span><span class="dv">10</span><span class="op">,</span> <span class="dv">20</span><span class="op">);</span></span>
+<span id="cb7-70"><a href="#cb7-70"></a>  cumulative <span class="op">+=</span> rand_int<span class="op">;</span></span>
+<span id="cb7-71"><a href="#cb7-71"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"</span><span class="sc">\t</span><span class="st">rand = "</span><span class="op">);</span></span>
+<span id="cb7-72"><a href="#cb7-72"></a>  Serial<span class="op">.</span>print<span class="op">(</span>rand_int<span class="op">);</span></span>
+<span id="cb7-73"><a href="#cb7-73"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"</span><span class="sc">\t</span><span class="st">running sum = "</span><span class="op">);</span></span>
+<span id="cb7-74"><a href="#cb7-74"></a>  Serial<span class="op">.</span>println<span class="op">(</span>cumulative<span class="op">);</span></span>
+<span id="cb7-75"><a href="#cb7-75"></a>  <span class="cf">if</span> <span class="op">(</span>time_s<span class="op">%</span><span class="dv">10</span><span class="op">==</span><span class="dv">9</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-76"><a href="#cb7-76"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Average  = "</span><span class="op">);</span></span>
+<span id="cb7-77"><a href="#cb7-77"></a>    Serial<span class="op">.</span>println<span class="op">(</span>cumulative <span class="op">/</span> <span class="dv">10</span><span class="op">);</span></span>
+<span id="cb7-78"><a href="#cb7-78"></a>    cumulative <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-79"><a href="#cb7-79"></a>  <span class="op">}</span></span>
+<span id="cb7-80"><a href="#cb7-80"></a>  </span>
+<span id="cb7-81"><a href="#cb7-81"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
+<span id="cb7-82"><a href="#cb7-82"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
             </div>
             </div>
             
 <hr>
 </section>
-<section id="home-assignment" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="home-assignment"><span class="header-section-number">8.6</span> Home assignment</h2>
+<section id="home-assignment" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="home-assignment"><span class="header-section-number">8.7</span> Home assignment</h2>
 <p>Go to <a href="../assignments/assignment1.html">Assignment 1</a>.</p>
 
 

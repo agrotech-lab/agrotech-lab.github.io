@@ -82,6 +82,19 @@ code_source("sin-cos-square.ino")
 
 ----
 
+## Serial read
+
+We can also read data from the Serial Monitor and use it to control the behavior of the ESP32.
+In this example, the ESP32 waits for you to type a number into the Serial Monitor and then blinks that number of times.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("serial-read-blink.ino")
+```
+
+----
+
 ## WiFi, read time
 
 ```{python}
