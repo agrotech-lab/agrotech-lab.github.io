@@ -26,8 +26,8 @@ The main values we would like to promote: **curiosity, independence, creativity,
 
 * `10%`: **Presence.** 100% presence is required.
 * `10%`: **Equipment:** borrowing and returning. All equipment must be accounted for and taken care with respect. Together we will keep record of all borrowed equipment. Everything will be neatly return to storage by 10 July.
-* `30%`: **Homework.** Each homework assignment equals 10%.
-* `50%`: **Final project.**
+* `40%`: **Homework.** 
+* `40%`: **Final project.**
   * `25%`: Experimental setup.
   * `20%`: Report.
   * `5%`: Presentation.
@@ -36,7 +36,7 @@ The main values we would like to promote: **curiosity, independence, creativity,
 
 **Lecturers**  
 Erez Feuer: `erez.feuer@mail.huji.ac.il`  
-Yair Mau: `yair.mau@mail.huji.ac.il`
+Yair Mau: `yair.mau@mail.huji.ac.il` (on sabbatical for 2025-2026 class)
 
 **TA**  
-Guy Brauner: `guy.brauner@mail.huji.ac.il`  
+Gal Tzvik: `gal.tzvik@mail.huji.ac.il`  

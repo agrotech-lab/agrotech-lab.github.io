@@ -25,21 +25,21 @@
     "href": "index.html#iconify-mdi-scroll-text-outline-course-policy-and-grading",
     "title": "agrotech lab",
     "section": " Course policy and grading",
-    "text": "Course policy and grading\n\n10%: Presence. 100% presence is required.\n10%: Equipment: borrowing and returning. All equipment must be accounted for and taken care with respect. Together we will keep record of all borrowed equipment. Everything will be neatly return to storage by 10 July.\n30%: Homework. Each homework assignment equals 10%.\n50%: Final project.\n\n25%: Experimental setup.\n20%: Report.\n5%: Presentation."
+    "text": "Course policy and grading\n\n10%: Presence. 100% presence is required.\n10%: Equipment: borrowing and returning. All equipment must be accounted for and taken care with respect. Together we will keep record of all borrowed equipment. Everything will be neatly return to storage by 10 July.\n40%: Homework.\n40%: Final project.\n\n25%: Experimental setup.\n20%: Report.\n5%: Presentation."
   },
   {
     "objectID": "index.html#iconify-eva-email-outline-contact-the-staff",
     "href": "index.html#iconify-eva-email-outline-contact-the-staff",
     "title": "agrotech lab",
     "section": " Contact the staff",
-    "text": "Contact the staff\nLecturers\nErez Feuer: erez.feuer@mail.huji.ac.il\nYair Mau: yair.mau@mail.huji.ac.il\nTA\nGuy Brauner: guy.brauner@mail.huji.ac.il"
+    "text": "Contact the staff\nLecturers\nErez Feuer: erez.feuer@mail.huji.ac.il\nYair Mau: yair.mau@mail.huji.ac.il (on sabbatical for 2025-2026 class)\nTA\nGal Tzvik: gal.tzvik@mail.huji.ac.il"
   },
   {
     "objectID": "schedule.html",
     "href": "schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Wednesdays, from 17:00 to 20:00\n In the lab next to the “Ground Water” seminar room, 1st floor\n Map\n\n\n\n\n\ndate\ntopic\n\n\n\n\n2023-03-15\nCourse overview, what is agrotech, microcontrollers, examples, AI. Arduino IDE.\n\n\n2023-03-22\nBasic projects, circuits on breadboard, sensors, Thingspeak. Passover project rundown.\n\n\n2023-03-29\nTroubleshooting\n\n\n2023-04-05\nNO CLASS — Passover break\n\n\n2023-04-12\nNO CLASS — Passover break\n\n\n2023-04-19\nBasic electronics: multimeter, Ohm’s law, and circuitry.\n\n\n2023-04-26\nNO CLASS — Independence Day\n\n\n2023-05-03\nsensors and data logging\n\n\n2023-05-10\ncontrol, feedback\n\n\n2023-05-17\nguest speakers\n\n\n2023-05-24\nsoldering and assembly\n\n\n2023-05-31\nproject development\n\n\n2023-06-07\nproject development\n\n\n2023-06-14\nproject development\n\n\n2023-06-21\nproject development\n\n\n2023-06-28\npresentation of projects"
+    "text": "Wednesdays, from 17:00 to 20:00\n In the lab next to the “Ground Water” seminar room, 1st floor\n Map\n\n\n\n\n\ndate\ntopic\n\n\n\n\n2025-10-22\nCourse overview, what is agrotech, microcontrollers, examples, AI. Arduino IDE.\n\n\n2025-10-29\nBasic electronics: multimeter, Ohm’s law, and circuitry.\n\n\n2025-11-05\nBasic projects, circuits on breadboard, sensors, Thingspeak. mid project rundown.\n\n\n2025-11-12\nBasic projects, circuits on breadboard, sensors, Thingspeak. mid project rundown.\n\n\n2025-11-19\ndigital signals, sensors and data logging\n\n\n2025-11-26\ncontrol, feedback\n\n\n2025-12-03\nMQTT, power management, guest speaker\n\n\n2025-12-10\nfinal projects meetings soldering and assembly\n\n\n2025-12-17\nNO CLASS\n\n\n2025-12-24\nNO CLASS — Christmas\n\n\n2025-12-31\nproject development\n\n\n2026-01-07\nproject development\n\n\n2026-01-14\nproject development\n\n\n2026-01-21\nproject presentation"
   },
   {
     "objectID": "arduino-intro-and-links.html#what-is-a-microcontroller",
