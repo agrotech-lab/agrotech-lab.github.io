@@ -1,0 +1,32 @@
+---
+title: "Submission Guidelines"
+echo: false
+jupyter: python3
+execute:
+  freeze: auto  # re-render only when source changes
+---
+
+Unless stated otherwise, every assignment should be submitted according to the following guidelines:
+
+1. **Upload code and supporting materials** (such as schematics, wiring diagrams, etc.) to **Moodle**.
+2. Using the **Google Form** linked in the Moodle assignment, upload a short **video** (up to 2 minutes) showing the following:
+   1. The **hardware** you built  
+   2. The **software** you wrote (e.g., running code, interface, or serial output)  
+   3. A **short demonstration** showing that it works  
+   4. **You** in the video (so we can confirm it’s your work)  
+   5. You should **speak throughout** the video and explain what we’re seeing.
+
+Below is an example video: 
+  
+
+<div style="text-align: center;">
+  <iframe width="315" height="560"
+          src="https://www.youtube.com/embed/iCTo-jlNfLs"
+          title="Example homework video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+  </iframe>
+</div>
+
+> ⚠️ **Note:** The video does *not* need to be edited or polished. A simple recording from your phone is perfect. The goal is to show that your system works and that you understand what you’ve built — not to create a fancy production.

@@ -5,8 +5,9 @@ jupyter: python3
 execute:
   freeze: auto  # re-render only when source changes
 ---
+First, read the [submission guidelines](/assignments/submission_info.html).  
+You will write Arduino code that incorporates all the following elements learned in [First programs](/tutorials/first-programs.html). Upload your `.ino` file on the course's Moodle page, You'll have two weeks until deadline.
 
-You will write Arduino code that incorporates all the following elements learned in [First programs](/tutorials/first-programs.html). Upload your `.ino` file on the course's Moodle page. You'll have two weeks until deadline.
 
 * variable declaration, e.g.
   ```cpp
@@ -19,7 +20,7 @@ You will write Arduino code that incorporates all the following elements learned
     return x + y;
   }
   ```
-* Built-in and external LED control
+* Built-in and external LED control (external LED will be learned in week 2)
 * Conditionals, e.g.
   ```cpp
   if (temperature > 30.0) {
@@ -34,8 +35,9 @@ You will write Arduino code that incorporates all the following elements learned
   rand1 = random(-5, 5);
   ```
 * Serial plotting, numbers and text
+* Serial read 
 * Comments explaining every step of what you did
-* **Bonus**: connect to WiFi and make use of time from the internet
+* **Bonus**: connect to WiFi and make use of time from the internet (learned in week 2)
 * **Obligatory**: at the very top of your code, write in many lines an explanation (in English) of what your code does
 ```cpp
 /*

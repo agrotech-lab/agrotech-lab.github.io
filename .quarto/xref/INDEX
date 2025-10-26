@@ -247,5 +247,8 @@
   },
   "projects/mqtt_example.qmd": {
     "mqtt_example.html": "89b3b611"
+  },
+  "assignments/submission_info.qmd": {
+    "submission_info.html": "f48f2b77"
   }
 }

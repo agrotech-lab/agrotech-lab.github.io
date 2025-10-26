@@ -1,0 +1,11 @@
+{
+  "hash": "6771c9aaef4742e3c8d50f77a976562c",
+  "result": {
+    "markdown": "---\ntitle: Submission Guidelines\necho: false\nexecute:\n  freeze: auto\n---\n\nUnless stated otherwise, every assignment should be submitted according to the following guidelines:\n\n1. **Upload code and supporting materials** (such as schematics, wiring diagrams, etc.) to **Moodle**.\n2. Using the **Google Form** linked in the Moodle assignment, upload a short **video** (up to 2 minutes) showing the following:\n   1. The **hardware** you built  \n   2. The **software** you wrote (e.g., running code, interface, or serial output)  \n   3. A **short demonstration** showing that it works  \n   4. **You** in the video (so we can confirm it’s your work)  \n   5. You should **speak throughout** the video and explain what we’re seeing.\n\nBelow is an example video: \n  \n\n<div style=\"text-align: center;\">\n  <iframe width=\"315\" height=\"560\"\n          src=\"https://www.youtube.com/embed/iCTo-jlNfLs\"\n          title=\"Example homework video\"\n          frameborder=\"0\"\n          allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\"\n          allowfullscreen>\n  </iframe>\n</div>\n\n> ⚠️ **Note:** The video does *not* need to be edited or polished. A simple recording from your phone is perfect. The goal is to show that your system works and that you understand what you’ve built — not to create a fancy production.\n\n",
+    "supporting": [
+      "submission_info_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

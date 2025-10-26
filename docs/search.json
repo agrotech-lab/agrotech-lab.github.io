@@ -854,136 +854,143 @@
     "text": "28.3 How much can the cooler cool?\nThe evaporative cooler can cool as low as the “wet bulb trmperature”.\nWe can look at the chart, and we should for the first time… But let’s calculate it using the PschroLib python package.\nAll the library’s functions can be found here.\nimport psychrolib\n\n# Set the unit system, for example to SI (can be either SI or IP) - this needs to be done only once\npsychrolib.SetUnitSystem(psychrolib.SI)\n\naltitude = 0\natm_pressure = psychrolib.GetStandardAtmPressure(0)\n\n# Calculate the wet bulb temperature for a dry bulb temperature of 25 C , a relative humidity of 80% and atmospheric pressure (kPa)\nWBT = psychrolib.GetTWetBulbFromRelHum(25.0, 0.80,atm_pressure )\nprint(f'Wet Bulb Temperature: {WBT:.3f} degree C')\nprint(f'Degrees cooled: {25-WBT:.3f} degree C')\nOutput:\nWet Bulb Temperature: 22.380 degree C\nDegrees cooled: 2.620 degree C\nNow let’s see how many degrees will it cool if we have only 30% relative humidity outside:\nWBT = psychrolib.GetTWetBulbFromRelHum(25.0, 0.30,atm_pressure )\nprint(f'Wet Bulb Temperature: {WBT:.3f} degree C')\nprint(f'Degrees cooled: {25-WBT:.3f} degree C')\nOutput:\nWet Bulb Temperature: 14.422 degree C\nDegrees cooled: 10.578 degree C\nAs you can see it is much more efficient in dry areas like deserts. Therefore it is many times called a “desert cooler”. What will the relative humidity be for the air that leaves the pad?\n\n28.3.1 Efficiency\nTheoretically, an evaporative cooler cools down to the wet bulb temperature, but in reality it is not 100% efficient and the air comes out not as cold. Many factors can influence: water quality, air speed, pad thickness, pad condition (you will se that ours is not great…), etc. We can calculate the efficiency by this equation:\n\\[\n\\eta = \\dfrac{T_i-T_o}{T_i-T_w},\n\\]\nwhere\n\n\\(T_i = \\:\\) temperature coming into the pad.\n\n\\(T_o = \\:\\) temperature coming out of the pad.\n\\(T_w = \\:\\) wet bulb temperature.\n\nWe can calculate it using data from our sensors and learn about the greenhouse we are using.\nFor example:\nIf we measure 30C and 60% humidity outside and the temperature out of the pad is 26C\nT_i = 30\nT_o = 26\nT_w = psychrolib.GetTWetBulbFromRelHum(T_i, 0.60,atm_pressure )\nprint(f'Wet Bulb Temperature: {T_w:.3f} degree C')\n\neffi = (T_i-T_o)/(T_i-T_w)\nprint(f'Efficiency is: {100*effi:.3f} %')\nOutput:\nWet Bulb Temperature: 23.812 degree C\nEfficiency is: 64.646 %\n\n\n28.3.2 What else can we calculate?\nKnowing the fan’s capacity (we can measure that too using wind sensors) and the temerature and humidity of the air leaving the greenhouse we can calculate:\n\nAmount of water evaporated from the pad,\nAmount of water evaporated from the greenhouse (being a concreete greenhouse that means total evaporation from plants and pots),\nHeat removed from the greenouse by the flowing air,\n\nThese are just some ideas, you can think of other interesting things to calculate.\nThere are existing models for predicting the temperatures of greenhouses. There are many other factors taking place such as solar radiation, outside wind, amounts of plants in the greenhouse, etc. We won’t be studying those here, but maybe you can come up with some models/conclusions/correlations of your own :)"
   },
   {
+    "objectID": "assignments/submission_info.html",
+    "href": "assignments/submission_info.html",
+    "title": "29  Submission Guidelines",
+    "section": "",
+    "text": "Unless stated otherwise, every assignment should be submitted according to the following guidelines:\n\nUpload code and supporting materials (such as schematics, wiring diagrams, etc.) to Moodle.\nUsing the Google Form linked in the Moodle assignment, upload a short video (up to 2 minutes) showing the following:\n\nThe hardware you built\n\nThe software you wrote (e.g., running code, interface, or serial output)\n\nA short demonstration showing that it works\n\nYou in the video (so we can confirm it’s your work)\n\nYou should speak throughout the video and explain what we’re seeing.\n\n\nBelow is an example video:\n\n \n\n\n⚠️ Note: The video does not need to be edited or polished. A simple recording from your phone is perfect. The goal is to show that your system works and that you understand what you’ve built — not to create a fancy production."
+  },
+  {
     "objectID": "assignments/assignment1.html",
     "href": "assignments/assignment1.html",
-    "title": "29  Assignment 1",
+    "title": "30  Assignment 1",
     "section": "",
-    "text": "You will write Arduino code that incorporates all the following elements learned in First programs. Upload your .ino file on the course’s Moodle page. You’ll have two weeks until deadline.\n\nvariable declaration, e.g.\nfloat my_var=1.23;\nint i, j;\nfunction declaration, e.g.\nint my_sum(int x, int y) {\n  return x + y;\n}\nBuilt-in and external LED control\nConditionals, e.g.\nif (temperature &gt; 30.0) {\n  fan = 1;\n} else {\n  fan = 0;\n}\nRandom numbers, e.g.\n// random number from -5 (inclusive) to +5 (exclusive)\nrand1 = random(-5, 5);\nSerial plotting, numbers and text\nComments explaining every step of what you did\nBonus: connect to WiFi and make use of time from the internet\nObligatory: at the very top of your code, write in many lines an explanation (in English) of what your code does\n\n/*\nAuthor: Harry Potter\nClass: Agrotech Lab\nDate: 2023-03-14\nThis code does bla bla bla.\nMore explanations here.\n*/"
+    "text": "First, read the submission guidelines.\nYou will write Arduino code that incorporates all the following elements learned in First programs. Upload your .ino file on the course’s Moodle page, You’ll have two weeks until deadline.\n\nvariable declaration, e.g.\nfloat my_var=1.23;\nint i, j;\nfunction declaration, e.g.\nint my_sum(int x, int y) {\n  return x + y;\n}\nBuilt-in and external LED control (external LED will be learned in week 2)\nConditionals, e.g.\nif (temperature &gt; 30.0) {\n  fan = 1;\n} else {\n  fan = 0;\n}\nRandom numbers, e.g.\n// random number from -5 (inclusive) to +5 (exclusive)\nrand1 = random(-5, 5);\nSerial plotting, numbers and text\nSerial read\nComments explaining every step of what you did\nBonus: connect to WiFi and make use of time from the internet (learned in week 2)\nObligatory: at the very top of your code, write in many lines an explanation (in English) of what your code does\n\n/*\nAuthor: Harry Potter\nClass: Agrotech Lab\nDate: 2023-03-14\nThis code does bla bla bla.\nMore explanations here.\n*/"
   },
   {
     "objectID": "assignments/assignment2.html",
     "href": "assignments/assignment2.html",
-    "title": "30  Assignment 2",
+    "title": "31  Assignment 2",
     "section": "",
     "text": "Create a small project where you control an output device (such as LEDs, relays, etc.) based on changes in an input, like temperature or humidity readings.\nBonus: Include LED brightness control using PWM.\nThis assignment is basically the Challenges section from the lecture on control.\nUpload the .ino file, ensuring you include a few lines of comments at the beginning of the code to explain what the project does."
   },
   {
     "objectID": "resources.html#iconify-mdi-led-on-equipment",
     "href": "resources.html#iconify-mdi-led-on-equipment",
-    "title": "31   Resources",
-    "section": "31.1  Equipment",
-    "text": "31.1  Equipment\n\n31.1.1 Equipment Pickup Form\n\nPlease fill out this form every time you receive a new sensor or equipment. You will need to provide your 9-digit ID number and indicate which sensor(s) you have received.\nMake sure your name and phone number are written on the box containing the equipment.\nBy filling out this form, you agree to receive the item(s) and are obligated to return them at the end of the course.\nIf you’re not sure, click here to check which equipment you borrowed from the course.\n\n\n31.1.1.0.1 Do you want to order equipment for yourself?\nClick for a list of the main components used in this course."
+    "title": "32   Resources",
+    "section": "32.1  Equipment",
+    "text": "32.1  Equipment\n\n32.1.1 Equipment Pickup Form\n\nPlease fill out this form every time you receive a new sensor or equipment. You will need to provide your 9-digit ID number and indicate which sensor(s) you have received.\nMake sure your name and phone number are written on the box containing the equipment.\nBy filling out this form, you agree to receive the item(s) and are obligated to return them at the end of the course.\nIf you’re not sure, click here to check which equipment you borrowed from the course.\n\n\n32.1.1.0.1 Do you want to order equipment for yourself?\nClick for a list of the main components used in this course."
   },
   {
     "objectID": "resources.html#iconify-akar-icons-github-fill-github",
     "href": "resources.html#iconify-akar-icons-github-fill-github",
-    "title": "31   Resources",
-    "section": "31.2  Github",
-    "text": "31.2  Github\nMake an account on Github. Create a repository called “agrotech” or whatever you else want to call it. You can upload to this repository your code, data, diagrams, pictures, markdown, etc. In the end of the semester you will upload your project report as a Jupyter Notebook file.\nFrom now on, your main Github page can be your “geek face” on the internet. Make a clean and simple readme.md, telling the world who you are and what you do."
+    "title": "32   Resources",
+    "section": "32.2  Github",
+    "text": "32.2  Github\nMake an account on Github. Create a repository called “agrotech” or whatever you else want to call it. You can upload to this repository your code, data, diagrams, pictures, markdown, etc. In the end of the semester you will upload your project report as a Jupyter Notebook file.\nFrom now on, your main Github page can be your “geek face” on the internet. Make a clean and simple readme.md, telling the world who you are and what you do."
   },
   {
     "objectID": "resources.html#iconify-simple-icons-jupyter-jupyter-notebook",
     "href": "resources.html#iconify-simple-icons-jupyter-jupyter-notebook",
-    "title": "31   Resources",
-    "section": "31.3  Jupyter Notebook",
-    "text": "31.3  Jupyter Notebook\nThe easiest way to install Python (+ Jupyter Notebook, Spyder, PyCharm, JupyterLab, etc) on any OS is to download Anaconda. Jupyter Notebook is a versatile environment that allows you to write code and documentation in one single file, taking advantage of Markdown. Click for a short and a long markdown cheat sheet."
+    "title": "32   Resources",
+    "section": "32.3  Jupyter Notebook",
+    "text": "32.3  Jupyter Notebook\nThe easiest way to install Python (+ Jupyter Notebook, Spyder, PyCharm, JupyterLab, etc) on any OS is to download Anaconda. Jupyter Notebook is a versatile environment that allows you to write code and documentation in one single file, taking advantage of Markdown. Click for a short and a long markdown cheat sheet."
   },
   {
     "objectID": "resources.html#iconify-eos-icons-hardware-circuit-fritzing",
     "href": "resources.html#iconify-eos-icons-hardware-circuit-fritzing",
-    "title": "31   Resources",
-    "section": "31.4  Fritzing",
-    "text": "31.4  Fritzing\nFritzing is a nice software that lets you easily draw your own circuits and diagrams."
+    "title": "32   Resources",
+    "section": "32.4  Fritzing",
+    "text": "32.4  Fritzing\nFritzing is a nice software that lets you easily draw your own circuits and diagrams."
   },
   {
     "objectID": "resources.html#iconify-akar-icons-link-chain-useful-links",
     "href": "resources.html#iconify-akar-icons-link-chain-useful-links",
-    "title": "31   Resources",
-    "section": "31.5  Useful links",
-    "text": "31.5  Useful links\nThe world of MCUs has great support online. You actually don’t need this course to learn it… We are only here to guide you and help with the first steps. SO below are some usful links to websites/Youtube channels that provide excellent information:\nArduino syntax and coding:\n\nArduino — Language Reference\n\nTutorials by sensor manufacturers:\n\nSparkfun\n\nAdafruit\n\nProject ideas:\n\nArduino Project Hub\n\nInstructables — Arduino\n\nArduino beginners course:\n\nPaul McWhorter - New Arduino Tutorials\n\nExamples of good Youtube channels:\n\nAndreas Spiess\n\nG6EJD - David\n\nGreatScott!\n\neduc8s.tv\n\nOregon State’s OPEnS Lab\n\nGithub"
+    "title": "32   Resources",
+    "section": "32.5  Useful links",
+    "text": "32.5  Useful links\nThe world of MCUs has great support online. You actually don’t need this course to learn it… We are only here to guide you and help with the first steps. SO below are some usful links to websites/Youtube channels that provide excellent information:\nArduino syntax and coding:\n\nArduino — Language Reference\n\nTutorials by sensor manufacturers:\n\nSparkfun\n\nAdafruit\n\nProject ideas:\n\nArduino Project Hub\n\nInstructables — Arduino\n\nArduino beginners course:\n\nPaul McWhorter - New Arduino Tutorials\n\nExamples of good Youtube channels:\n\nAndreas Spiess\n\nG6EJD - David\n\nGreatScott!\n\neduc8s.tv\n\nOregon State’s OPEnS Lab\n\nGithub"
   },
   {
     "objectID": "projects.html#final-projects",
     "href": "projects.html#final-projects",
-    "title": "32   Past Final Projects",
-    "section": "32.1 2024–25 Final projects",
-    "text": "32.1 2024–25 Final projects"
+    "title": "33   Past Final Projects",
+    "section": "33.1 2024–25 Final projects",
+    "text": "33.1 2024–25 Final projects"
   },
   {
     "objectID": "projects.html#final-projects-1",
     "href": "projects.html#final-projects-1",
-    "title": "32   Past Final Projects",
-    "section": "32.2 2023–24 Final projects",
-    "text": "32.2 2023–24 Final projects\n\n\n\nTeam\nProject\n\n\n\n\n   Gabi Harel, Yoav Abeyv, Rotem Porat\nMonitoring Microbial Metabolism\n\n\n   Ella Faruchi, Rotem David, Matar Tal, Asif Charazi\nThe Eggs-periment\n\n\n   Gil Lifshitz, Matar Shema\nBaby Sensor\n\n\n   Neta Cohen Simhi, Omer Meyer, Itai David, Aya Even Dar\nCompost Monitoring System\n\n\n   Gali Shaani, Yonatan Schwartz\nSeed counter"
+    "title": "33   Past Final Projects",
+    "section": "33.2 2023–24 Final projects",
+    "text": "33.2 2023–24 Final projects\n\n\n\nTeam\nProject\n\n\n\n\n   Gabi Harel, Yoav Abeyv, Rotem Porat\nMonitoring Microbial Metabolism\n\n\n   Ella Faruchi, Rotem David, Matar Tal, Asif Charazi\nThe Eggs-periment\n\n\n   Gil Lifshitz, Matar Shema\nBaby Sensor\n\n\n   Neta Cohen Simhi, Omer Meyer, Itai David, Aya Even Dar\nCompost Monitoring System\n\n\n   Gali Shaani, Yonatan Schwartz\nSeed counter"
   },
   {
     "objectID": "projects.html#final-projects-2",
     "href": "projects.html#final-projects-2",
-    "title": "32   Past Final Projects",
-    "section": "32.3 2022–23 Final projects",
-    "text": "32.3 2022–23 Final projects\n\n\n\nTeam\nProject\n\n\n\n\n   Aviv Tzafrir, Daniel Shiller, Guy Dabby\nHydroponic system\n\n\n   Orel Suliman, Yotam Menachem\nGreeny - Plant-propagation-GreenHouse\n\n\n   Guy Brauner, Victoria Sholohov, Shir Avraham\nHumidity control\n\n\n   Eliraz Shomron\nPlant water system management\n\n\n   Yovel Rodoy\nmeteorological station\n\n\n   Yael Halperin, Oded Hollander, Shachar Miller\nDeep Water Culture (DWC)\n\n\n   Bnaya Hami, Alon Dror, Michal Mannes\nBalcony gardener\n\n\n   Ran Avner, Omer Eyal, Zohar Batito\nsmart watering system"
+    "title": "33   Past Final Projects",
+    "section": "33.3 2022–23 Final projects",
+    "text": "33.3 2022–23 Final projects\n\n\n\nTeam\nProject\n\n\n\n\n   Aviv Tzafrir, Daniel Shiller, Guy Dabby\nHydroponic system\n\n\n   Orel Suliman, Yotam Menachem\nGreeny - Plant-propagation-GreenHouse\n\n\n   Guy Brauner, Victoria Sholohov, Shir Avraham\nHumidity control\n\n\n   Eliraz Shomron\nPlant water system management\n\n\n   Yovel Rodoy\nmeteorological station\n\n\n   Yael Halperin, Oded Hollander, Shachar Miller\nDeep Water Culture (DWC)\n\n\n   Bnaya Hami, Alon Dror, Michal Mannes\nBalcony gardener\n\n\n   Ran Avner, Omer Eyal, Zohar Batito\nsmart watering system"
   },
   {
     "objectID": "projects.html#final-projects-3",
     "href": "projects.html#final-projects-3",
-    "title": "32   Past Final Projects",
-    "section": "32.4 2021–22 Final projects",
-    "text": "32.4 2021–22 Final projects\n\n\n\nTeam\nProject\n\n\n\n\n   Ronna Melamed Bat – May Nir\nMeasuring PAR outside and inside the greenhouse\n\n\n   Avital Akerman – Elad Greenfeld\nAutomated Irrigation System\n\n\n   Nadav Hen – Guy Donagi – David Zingerman\nTemporal and spatial temperature measurement in a greenhouse\n\n\n   Zeev Rozman – Imri Zadak – Alex Evenko-Greenapple\nweather station\n\n\n   Yuval Chemke – Reem Har Levi\nHydroponics Monitoring and Balance\n\n\n   Peleg Atir – Aviad Mendelovich – Ruth Yitzhaki\nVPD control using automatic sprinklers\n\n\n   Amir Sheffer – Yitzchak Kanovsky – Aviv Saadia\n3D heatmap model of a greenhouse"
+    "title": "33   Past Final Projects",
+    "section": "33.4 2021–22 Final projects",
+    "text": "33.4 2021–22 Final projects\n\n\n\nTeam\nProject\n\n\n\n\n   Ronna Melamed Bat – May Nir\nMeasuring PAR outside and inside the greenhouse\n\n\n   Avital Akerman – Elad Greenfeld\nAutomated Irrigation System\n\n\n   Nadav Hen – Guy Donagi – David Zingerman\nTemporal and spatial temperature measurement in a greenhouse\n\n\n   Zeev Rozman – Imri Zadak – Alex Evenko-Greenapple\nweather station\n\n\n   Yuval Chemke – Reem Har Levi\nHydroponics Monitoring and Balance\n\n\n   Peleg Atir – Aviad Mendelovich – Ruth Yitzhaki\nVPD control using automatic sprinklers\n\n\n   Amir Sheffer – Yitzchak Kanovsky – Aviv Saadia\n3D heatmap model of a greenhouse"
   },
   {
     "objectID": "projects/borrowing-equipment.html",
     "href": "projects/borrowing-equipment.html",
-    "title": "33  Borrowing equipment",
+    "title": "34  Borrowing equipment",
     "section": "",
-    "text": "We want to give you the freedom to try out all the equipment, but we need help in tracking what equipment you took. For that reson we started a colaborative spreadsheet in which you can list the equipment you took home / are using in your project. (Only HUJI accounts can edit that sheet).\n Link to sheet\n\n33.0.1 About the sheet & some guidelines:\n\nEach unique component has its own column, including its name, brief description and link to a picture of it.\nOne row per student (please add yourself).\nInsert the amount you took of each component in numbers only.\nIn the Graveyard section write in text (example: 2 x ESP32) all the equipment that you burnt, found malfunctioning, lost, etc… Whatever we can’t use anymore… IMPORTANT: there is no shame in having a big list, honesty is what we are looking for. We are just trying to keep track of all the equipment.\nPlease make sure to immediately update the sheet as you take/return the equipment.\nNo need to list super-fundamental equipment like resistors and cables.\n\n\n\n33.0.2 We need your help:\nThe sheet is not complete and will be expanded during the semester. If there is missing information, please add/fix it. It can be:\n\nMissing component column\n\nNo description\n\nNo image link"
+    "text": "We want to give you the freedom to try out all the equipment, but we need help in tracking what equipment you took. For that reson we started a colaborative spreadsheet in which you can list the equipment you took home / are using in your project. (Only HUJI accounts can edit that sheet).\n Link to sheet\n\n34.0.1 About the sheet & some guidelines:\n\nEach unique component has its own column, including its name, brief description and link to a picture of it.\nOne row per student (please add yourself).\nInsert the amount you took of each component in numbers only.\nIn the Graveyard section write in text (example: 2 x ESP32) all the equipment that you burnt, found malfunctioning, lost, etc… Whatever we can’t use anymore… IMPORTANT: there is no shame in having a big list, honesty is what we are looking for. We are just trying to keep track of all the equipment.\nPlease make sure to immediately update the sheet as you take/return the equipment.\nNo need to list super-fundamental equipment like resistors and cables.\n\n\n\n34.0.2 We need your help:\nThe sheet is not complete and will be expanded during the semester. If there is missing information, please add/fix it. It can be:\n\nMissing component column\n\nNo description\n\nNo image link"
   },
   {
     "objectID": "projects/final-project.html#updates",
     "href": "projects/final-project.html#updates",
-    "title": "34  Final Project",
-    "section": "34.1 Updates",
-    "text": "34.1 Updates\nPlease consult this Google Spreadsheet to be up-to-date with what’s going on with the various projects. Every team should update this spreadsheet regularly with the relevant information."
+    "title": "35  Final Project",
+    "section": "35.1 Updates",
+    "text": "35.1 Updates\nPlease consult this Google Spreadsheet to be up-to-date with what’s going on with the various projects. Every team should update this spreadsheet regularly with the relevant information."
   },
   {
     "objectID": "projects/final-project.html#the-platform",
     "href": "projects/final-project.html#the-platform",
-    "title": "34  Final Project",
-    "section": "34.2 The platform",
-    "text": "34.2 The platform\nThis year the final projects will all take place in a greenhouse on campus and will share the theme of data logging and control. Each team’s project will involve irrigation control based on sensor readings (see minimal requirements below), and will include an expansion in whatever way the group finds useful and fun.\n\nMinimal requirements:\n\nset up environmental sensors, such as temperature, humidity, soil moisture, wind, radiation, etc.\nlog all the measured data in a dedicated Thingspeak channel.\nset up an irrigation control system based on the sensed data.\n\nExtra: something cool or creative to add to this basic setup, for example\n\nextra sensors\ngraphical user interface such as screen with menus and buttons\ncalculations based on measurements, such as the Penman equation, using python\noptimization of water usage\nfertilization through irrigation (fertigation)\nalerts in case something malfunctions\nconsult with the lecturers regarding other ideas"
+    "title": "35  Final Project",
+    "section": "35.2 The platform",
+    "text": "35.2 The platform\nThis year the final projects will all take place in a greenhouse on campus and will share the theme of data logging and control. Each team’s project will involve irrigation control based on sensor readings (see minimal requirements below), and will include an expansion in whatever way the group finds useful and fun.\n\nMinimal requirements:\n\nset up environmental sensors, such as temperature, humidity, soil moisture, wind, radiation, etc.\nlog all the measured data in a dedicated Thingspeak channel.\nset up an irrigation control system based on the sensed data.\n\nExtra: something cool or creative to add to this basic setup, for example\n\nextra sensors\ngraphical user interface such as screen with menus and buttons\ncalculations based on measurements, such as the Penman equation, using python\noptimization of water usage\nfertilization through irrigation (fertigation)\nalerts in case something malfunctions\nconsult with the lecturers regarding other ideas"
   },
   {
     "objectID": "projects/final-project.html#final-report-github-page",
     "href": "projects/final-project.html#final-report-github-page",
-    "title": "34  Final Project",
-    "section": "34.3 Final Report = GitHub page",
-    "text": "34.3 Final Report = GitHub page\nDocumenting your project well is probably one of the most important lessons you will learn. Without documentation your projects will not live on and they will end their life right after the semester is over; you will forget what exactly you did and no one will be able to reproduce what you have done. We don’t want that for our projects…\nThe goal of the Agrotech-Lab course is to create a repository of all the cool projects made over the years. That way the projects will live forever and future students and other people around the world can learn from your work.\nWe require that each team creates a Github page including all the documentation. It should include:\n\nIntroduction: general explanation about the project and its goals\nHardware and assembly: Make the description as detailed as posible. Include many photos, links to order, datasheets etc.\nCode: Provide all code used in this project. Code should be organized with comments throughout explaining it.\nInstructions: How to make and use the project.\nExperiment: Show an example of the project “in action”.\n\nPlese note, the github page is your “final project paper/report”."
+    "title": "35  Final Project",
+    "section": "35.3 Final Report = GitHub page",
+    "text": "35.3 Final Report = GitHub page\nDocumenting your project well is probably one of the most important lessons you will learn. Without documentation your projects will not live on and they will end their life right after the semester is over; you will forget what exactly you did and no one will be able to reproduce what you have done. We don’t want that for our projects…\nThe goal of the Agrotech-Lab course is to create a repository of all the cool projects made over the years. That way the projects will live forever and future students and other people around the world can learn from your work.\nWe require that each team creates a Github page including all the documentation. It should include:\n\nIntroduction: general explanation about the project and its goals\nHardware and assembly: Make the description as detailed as posible. Include many photos, links to order, datasheets etc.\nCode: Provide all code used in this project. Code should be organized with comments throughout explaining it.\nInstructions: How to make and use the project.\nExperiment: Show an example of the project “in action”.\n\nPlese note, the github page is your “final project paper/report”."
   },
   {
     "objectID": "projects/final-project.html#presentation",
     "href": "projects/final-project.html#presentation",
-    "title": "34  Final Project",
-    "section": "34.4 Presentation",
-    "text": "34.4 Presentation\nOn the last day, when we meet to show our projects, each team will give a short talk of 5 minutes. During this talk you will touch the following points:\n\nWhat did you do?\nWhy do a project like yours?\nAre there agricultural or other benefits?\nHow did you do it? Hardware and code (no need to go over it, just explain in general).\nWhat did you learn? Show graphs and data analysis.\n\n\n34.4.1 Attention!\nPresentation is something you present to others, it does not mean a “Powerpoint presentation”. Your presentation will be solely based on your GitHub repository."
+    "title": "35  Final Project",
+    "section": "35.4 Presentation",
+    "text": "35.4 Presentation\nOn the last day, when we meet to show our projects, each team will give a short talk of 5 minutes. During this talk you will touch the following points:\n\nWhat did you do?\nWhy do a project like yours?\nAre there agricultural or other benefits?\nHow did you do it? Hardware and code (no need to go over it, just explain in general).\nWhat did you learn? Show graphs and data analysis.\n\n\n35.4.1 Attention!\nPresentation is something you present to others, it does not mean a “Powerpoint presentation”. Your presentation will be solely based on your GitHub repository."
   },
   {
     "objectID": "projects/examples.html#open-day-2024",
     "href": "projects/examples.html#open-day-2024",
-    "title": "35  Example projects",
-    "section": "35.1 Open day 2024",
-    "text": "35.1 Open day 2024\nThis project was developed by Yair Mau to the 2024 open day at the Faculty of Agriculture.\n\n35.1.1 Download:\n\n Fritzing diagram in pdf \n Fritzing diagram in fzz \n Code to upload to your ESP32 \n Python code to plot live the measured data \n\n\n\n35.1.2 Materials needed:\n\nESP32 Firebeetle 2\nBreadboard, wires, LED, relay, 330-ohm resistor\nSHT31 temperature and humidity sensor\nFan\nPower supply\nA computer to plot live data\n\n\n\n35.1.3 What this project is about:\nWhenever relative humidity goes above a given threshold (e.g. 80%), the fan turns on. When RH goes below threshold, fan turns off. The ESP32 must be connected to a computer, and you must run the python code. The python code communicates serially with the ESP32, and also shows on the screen a live graph of temperature and relative humidity."
+    "title": "36  Example projects",
+    "section": "36.1 Open day 2024",
+    "text": "36.1 Open day 2024\nThis project was developed by Yair Mau to the 2024 open day at the Faculty of Agriculture.\n\n36.1.1 Download:\n\n Fritzing diagram in pdf \n Fritzing diagram in fzz \n Code to upload to your ESP32 \n Python code to plot live the measured data \n\n\n\n36.1.2 Materials needed:\n\nESP32 Firebeetle 2\nBreadboard, wires, LED, relay, 330-ohm resistor\nSHT31 temperature and humidity sensor\nFan\nPower supply\nA computer to plot live data\n\n\n\n36.1.3 What this project is about:\nWhenever relative humidity goes above a given threshold (e.g. 80%), the fan turns on. When RH goes below threshold, fan turns off. The ESP32 must be connected to a computer, and you must run the python code. The python code communicates serially with the ESP32, and also shows on the screen a live graph of temperature and relative humidity."
   },
   {
     "objectID": "projects/mqtt_example.html#intro",
     "href": "projects/mqtt_example.html#intro",
-    "title": "37  MQTT example",
-    "section": "37.1 Intro",
-    "text": "37.1 Intro\nEach FireBeetle board connects to Wi-Fi and subscribes to an MQTT topic. Whenever a new message is published to the topic, the board receives it and changes the color of its built-in RGB LED accordingly.\n\n37.1.1 MQTT Topic\nThe board listens to the following topic:\nagrotech/mqtt_tutorial/LED\nYou can publish messages to this topic using an MQTT client, such as the MQTTX Web Client. Make sure to connect to the broker broker.emqx.io on port 1883.\n\n\n37.1.2 Supported Commands\nYou can send color commands in various formats:\n\n37.1.2.1 🔤 Named Colors\nYou can use full names or single-letter shorthands (case-insensitive):\n\n\n\nCommand\nResulting Color\n\n\n\n\nred or r\n🔴 Red\n\n\ngreen or g\n🟢 Green\n\n\nblue or b\n🔵 Blue\n\n\nwhite or w\n⚪ White\n\n\nyellow or y\n🟡 Yellow\n\n\ncyan or c\n🟦 Cyan\n\n\nmagenta or m\n🟣 Magenta\n\n\noff or black\n⚫ LED Off\n\n\n\n\n\n37.1.2.2 🎨 Custom RGB Triplets\nYou can also send a custom color as a comma-separated RGB value, e.g.:\n255,100,0\nThis would set the LED to an orange-like color. The values should range from 0 to 255.\n\nThis setup is ideal for remote visual feedback or synchronized color indicators across multiple ESP32 boards on the same MQTT topic."
+    "title": "38  MQTT example",
+    "section": "38.1 Intro",
+    "text": "38.1 Intro\nEach FireBeetle board connects to Wi-Fi and subscribes to an MQTT topic. Whenever a new message is published to the topic, the board receives it and changes the color of its built-in RGB LED accordingly.\n\n38.1.1 MQTT Topic\nThe board listens to the following topic:\nagrotech/mqtt_tutorial/LED\nYou can publish messages to this topic using an MQTT client, such as the MQTTX Web Client. Make sure to connect to the broker broker.emqx.io on port 1883.\n\n\n38.1.2 Supported Commands\nYou can send color commands in various formats:\n\n38.1.2.1 🔤 Named Colors\nYou can use full names or single-letter shorthands (case-insensitive):\n\n\n\nCommand\nResulting Color\n\n\n\n\nred or r\n🔴 Red\n\n\ngreen or g\n🟢 Green\n\n\nblue or b\n🔵 Blue\n\n\nwhite or w\n⚪ White\n\n\nyellow or y\n🟡 Yellow\n\n\ncyan or c\n🟦 Cyan\n\n\nmagenta or m\n🟣 Magenta\n\n\noff or black\n⚫ LED Off\n\n\n\n\n\n38.1.2.2 🎨 Custom RGB Triplets\nYou can also send a custom color as a comma-separated RGB value, e.g.:\n255,100,0\nThis would set the LED to an orange-like color. The values should range from 0 to 255.\n\nThis setup is ideal for remote visual feedback or synchronized color indicators across multiple ESP32 boards on the same MQTT topic."
   },
   {
     "objectID": "projects/mqtt_example.html#led-subscribe",
     "href": "projects/mqtt_example.html#led-subscribe",
-    "title": "37  MQTT example",
-    "section": "37.2 LED subscribe",
-    "text": "37.2 LED subscribe\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n#include &lt;Arduino.h&gt;\n#include &lt;WiFi.h&gt;\n#include &lt;PubSubClient.h&gt;\n#include &lt;Adafruit_NeoPixel.h&gt;\n\n#define LED_PIN    5  // built-in WS2812 RGB on FireBeetle 2 = GPIO5 (D8)\n#define NUM_LEDS   1\n#define BRIGHTNESS 50\n\nconst char* ssid = \"erez\";         // &lt;-- change this\nconst char* password = \"arduino1\"; // &lt;-- change this\nconst char* mqttServer = \"broker.emqx.io\";  // &lt;== NEW BROKER\nint mqttPort = 1883;\nconst char* mqttTopic = \"agrotech/mqtt_tutorial/LED\";\n\nWiFiClient wifiClient;\nPubSubClient mqttClient(wifiClient);\nAdafruit_NeoPixel strip(NUM_LEDS, LED_PIN, NEO_GRB + NEO_KHZ800);\n\nString msgString;\n\nvoid setColor(uint8_t r, uint8_t g, uint8_t b) {\n  strip.setPixelColor(0, strip.Color(r, g, b));\n  strip.show();\n}\n\nvoid parseColor(String color) {\n  color.trim();\n  color.toLowerCase();\n\n  // named or shorthand colors\n  if (color == \"r\" || color == \"red\") setColor(255, 0, 0);\n  else if (color == \"g\" || color == \"green\") setColor(0, 255, 0);\n  else if (color == \"b\" || color == \"blue\") setColor(0, 0, 255);\n  else if (color == \"w\" || color == \"white\") setColor(255, 255, 255);\n  else if (color == \"y\" || color == \"yellow\") setColor(255, 255, 0);\n  else if (color == \"m\" || color == \"magenta\") setColor(255, 0, 255);\n  else if (color == \"c\" || color == \"cyan\") setColor(0, 255, 255);\n  else if (color == \"off\" || color == \"black\") setColor(0, 0, 0);\n  else if (color.indexOf(',') != -1) {\n    // RGB triplet: \"100,200,30\"\n    int r = color.substring(0, color.indexOf(',')).toInt();\n    int g = color.substring(color.indexOf(',') + 1, color.lastIndexOf(',')).toInt();\n    int b = color.substring(color.lastIndexOf(',') + 1).toInt();\n    setColor(r, g, b);\n  }\n  else {\n    Serial.println(\"Unknown color command\");\n  }\n}\n\nvoid callback(char* topic, byte* message, unsigned int length) {\n  msgString = String((char*)message, length);\n  Serial.print(\"MQTT message received: \");\n  Serial.println(msgString);\n  parseColor(msgString);\n}\n\nvoid setupMQTT() {\n  mqttClient.setServer(mqttServer, mqttPort);\n  mqttClient.setCallback(callback);\n}\n\nvoid reconnect() {\n  Serial.println(\"Connecting to MQTT Broker...\");\n  while (!mqttClient.connected()) {\n    String clientId = \"ESP32Client-\" + String(random(0xffff), HEX);\n    if (mqttClient.connect(clientId.c_str())) {\n      Serial.println(\"Connected to MQTT.\");\n      mqttClient.subscribe(mqttTopic);\n    } else {\n      Serial.print(\".\");\n      delay(1000);\n    }\n  }\n}\n\nvoid setup() {\n  Serial.begin(115200);\n\n  WiFi.begin(ssid, password);\n  while (WiFi.status() != WL_CONNECTED) {\n    delay(500);\n    Serial.print(\".\");\n  }\n  Serial.println(\"\\nConnected to WiFi.\");\n\n  strip.begin();\n  strip.setBrightness(BRIGHTNESS);\n  strip.show(); // off\n\n  setupMQTT();\n}\n\nvoid loop() {\n  if (!mqttClient.connected()) reconnect();\n  mqttClient.loop();\n}"
+    "title": "38  MQTT example",
+    "section": "38.2 LED subscribe",
+    "text": "38.2 LED subscribe\n\n     Toggle code\n    \n     \n         Download code\n    \n\n            \n            \n        \n#include &lt;Arduino.h&gt;\n#include &lt;WiFi.h&gt;\n#include &lt;PubSubClient.h&gt;\n#include &lt;Adafruit_NeoPixel.h&gt;\n\n#define LED_PIN    5  // built-in WS2812 RGB on FireBeetle 2 = GPIO5 (D8)\n#define NUM_LEDS   1\n#define BRIGHTNESS 50\n\nconst char* ssid = \"erez\";         // &lt;-- change this\nconst char* password = \"arduino1\"; // &lt;-- change this\nconst char* mqttServer = \"broker.emqx.io\";  // &lt;== NEW BROKER\nint mqttPort = 1883;\nconst char* mqttTopic = \"agrotech/mqtt_tutorial/LED\";\n\nWiFiClient wifiClient;\nPubSubClient mqttClient(wifiClient);\nAdafruit_NeoPixel strip(NUM_LEDS, LED_PIN, NEO_GRB + NEO_KHZ800);\n\nString msgString;\n\nvoid setColor(uint8_t r, uint8_t g, uint8_t b) {\n  strip.setPixelColor(0, strip.Color(r, g, b));\n  strip.show();\n}\n\nvoid parseColor(String color) {\n  color.trim();\n  color.toLowerCase();\n\n  // named or shorthand colors\n  if (color == \"r\" || color == \"red\") setColor(255, 0, 0);\n  else if (color == \"g\" || color == \"green\") setColor(0, 255, 0);\n  else if (color == \"b\" || color == \"blue\") setColor(0, 0, 255);\n  else if (color == \"w\" || color == \"white\") setColor(255, 255, 255);\n  else if (color == \"y\" || color == \"yellow\") setColor(255, 255, 0);\n  else if (color == \"m\" || color == \"magenta\") setColor(255, 0, 255);\n  else if (color == \"c\" || color == \"cyan\") setColor(0, 255, 255);\n  else if (color == \"off\" || color == \"black\") setColor(0, 0, 0);\n  else if (color.indexOf(',') != -1) {\n    // RGB triplet: \"100,200,30\"\n    int r = color.substring(0, color.indexOf(',')).toInt();\n    int g = color.substring(color.indexOf(',') + 1, color.lastIndexOf(',')).toInt();\n    int b = color.substring(color.lastIndexOf(',') + 1).toInt();\n    setColor(r, g, b);\n  }\n  else {\n    Serial.println(\"Unknown color command\");\n  }\n}\n\nvoid callback(char* topic, byte* message, unsigned int length) {\n  msgString = String((char*)message, length);\n  Serial.print(\"MQTT message received: \");\n  Serial.println(msgString);\n  parseColor(msgString);\n}\n\nvoid setupMQTT() {\n  mqttClient.setServer(mqttServer, mqttPort);\n  mqttClient.setCallback(callback);\n}\n\nvoid reconnect() {\n  Serial.println(\"Connecting to MQTT Broker...\");\n  while (!mqttClient.connected()) {\n    String clientId = \"ESP32Client-\" + String(random(0xffff), HEX);\n    if (mqttClient.connect(clientId.c_str())) {\n      Serial.println(\"Connected to MQTT.\");\n      mqttClient.subscribe(mqttTopic);\n    } else {\n      Serial.print(\".\");\n      delay(1000);\n    }\n  }\n}\n\nvoid setup() {\n  Serial.begin(115200);\n\n  WiFi.begin(ssid, password);\n  while (WiFi.status() != WL_CONNECTED) {\n    delay(500);\n    Serial.print(\".\");\n  }\n  Serial.println(\"\\nConnected to WiFi.\");\n\n  strip.begin();\n  strip.setBrightness(BRIGHTNESS);\n  strip.show(); // off\n\n  setupMQTT();\n}\n\nvoid loop() {\n  if (!mqttClient.connected()) reconnect();\n  mqttClient.loop();\n}"
   }
 ]

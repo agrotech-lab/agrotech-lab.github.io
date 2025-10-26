@@ -57,6 +57,7 @@ book:
       - tutorials/psychrometric-chart-and-evaporative-cooling.qmd
     - part: "**Assignments**"
       chapters:
+      - assignments/submission_info.qmd
       - assignments/assignment1.qmd
       - assignments/assignment2.qmd
     - part: "**Resources**"
