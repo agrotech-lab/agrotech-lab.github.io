@@ -18,7 +18,7 @@ const char* server = "api.thingspeak.com";
 WiFiClient client;
 
 // Set the time to wait between uploading data to ThingSpeak (in milliseconds)
-int wait_between_uploads = 10000; // 10 seconds
+int wait_between_uploads = 15000; // 15 seconds
 
 void setup() {
   // Start the serial communication at 112500 baud

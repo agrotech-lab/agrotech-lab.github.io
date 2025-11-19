@@ -1,0 +1,43 @@
+---
+title: "ESP32 web servers"
+echo: false
+jupyter: python3
+---
+
+{{< include ../_insert_ino_code.qmd >}}
+
+## Introduction
+
+In this tutorial, we will learn how to use the ESP32 as a simple web server.
+
+Instead of sending data over the serial monitor, the ESP32 will create its own Wi-Fi network and host a small web page that you can open from your phone or laptop. This web page can:
+
+- **display information** (for example, temperature and humidity), and  
+- **receive input** (for example, a button click to turn an led on or off).
+
+We will focus on two examples:
+
+1. A web server that shows temperature and humidity from the SHT31 sensor.
+1. A web server that controls the built-in led.  
+
+Both examples work without any external Wi-Fi network. The ESP32 itself creates the Wi-Fi network.
+
+## SHT31 on web server
+
+Here is the code for reading temperature and humidity values from the SHT31 sensor and displaying them on a web page.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("SHT31_server.ino")
+```
+
+## Toggle LED on web server
+
+Here is the code for toggling the builtin LED from a web page.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("button_server.ino")
+```

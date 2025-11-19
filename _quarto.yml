@@ -50,6 +50,7 @@ book:
       - tutorials/esp_now.qmd
       - tutorials/OLED.qmd
       - tutorials/python-matlab-basics.qmd
+      - tutorials/web_server.qmd 
       - tutorials/API-thingspeak-python.qmd
     - part: "**Agro stuff**"
       chapters:
@@ -60,6 +61,7 @@ book:
       - assignments/submission_info.qmd
       - assignments/assignment1.qmd
       - assignments/assignment2.qmd
+      - assignments/assignment3.qmd
     - part: "**Resources**"
       chapters:
       - resources.qmd

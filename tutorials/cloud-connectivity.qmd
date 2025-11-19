@@ -38,28 +38,20 @@ code_source("thingspeak.ino")
 
 
 
-## Serial read and blink
-
-```{python}
-#| echo: false
-#| output: asis
-code_source("serial_read_and_blink.ino")
-```
-
-## Basic Code for Uploading Data to Thingspeak
-
-```{python}
-#| echo: false
-#| output: asis
-code_source("Agrotech_2022_Thingspeak.ino")
-```
-
 ## Uploading Thermistor Data to Thingspeak
 
 ```{python}
 #| echo: false
 #| output: asis
 code_source("thermistor_to_thingspeak.ino")
+```
+
+## Uploading SHT31 Data to Thingspeak
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("thingspeak_SHT31.ino")
 ```
 
 ----

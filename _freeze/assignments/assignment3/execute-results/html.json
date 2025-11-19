@@ -1,0 +1,11 @@
+{
+  "hash": "a44cb20f7f31176e77c74cfa19041a63",
+  "result": {
+    "markdown": "---\ntitle: Assignment 3\necho: false\nexecute:\n  freeze: auto\n---\n\n## Goal\n\nBuild an **ESP32 clock & weather station** that:\n\n- shows **time** and **temperatures** on an **OLED**\n- measures **indoor temperature** (SHT31) and **outdoor temperature** (DS18B20)\n- uploads data to **ThingSpeak**\n\n## Hardware (minimum)\n\n- ESP32\n- SHT31 temperature & humidity sensor (indoor)\n- DS18B20 / DS18x20 temperature sensor (outdoor)\n- I2C OLED \n\n\n## What your project must do\n\n1. **Display on the OLED**\n   - current time (HH:MM, with seconds optional)  \n   - indoor temperature (from SHT31)  \n   - outdoor temperature (from DS18B20)  \n   - temperature difference (for example: `ΔT = Tout − Tin`)\n\n2. **Upload to ThingSpeak**\n   - use your own ThingSpeak channel  \n   - send at least:  \n     - field 1: indoor temperature  \n     - field 2: outdoor temperature  \n     - field 3: temperature difference \n\n3. **Use real sensor readings**\n   - no fake / random values  \n   - both sensors must be wired and working\n\n## Bonus ideas (optional)\n\n- show a **weather forecast** (for example, today’s max temperature from an online API)  \n- add **controls** (buttons or web server) to change display mode or update rate  \n- add **alarms** if ΔT is larger than some threshold\n- recommendations - open window or turn on/off AC\n- log extra variables to ThingSpeak (humidity, min/max, etc.)\n- be creative\n\n## What to submit\n\n- link to your **ThingSpeak channel**  \n- short **video**  showing the project \n- your **code** (`.ino` or project folder)\n- **schematics** in `.pdf` format\n\n",
+    "supporting": [
+      "assignment3_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

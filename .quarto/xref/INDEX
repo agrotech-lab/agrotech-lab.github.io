@@ -250,5 +250,11 @@
   },
   "assignments/submission_info.qmd": {
     "submission_info.html": "f48f2b77"
+  },
+  "tutorials/web_server.qmd": {
+    "web_server.html": "1680f416"
+  },
+  "assignments/assignment3.qmd": {
+    "assignment3.html": "317f368f"
   }
 }

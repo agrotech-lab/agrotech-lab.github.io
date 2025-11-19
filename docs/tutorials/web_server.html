@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>agrotech lab - 5&nbsp; Basic Electronics Concepts</title>
+<title>agrotech lab - 26&nbsp; ESP32 web servers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tutorials/firebeetle_documentation.html" rel="next">
-<link href="../tutorials/breadboard.html" rel="prev">
+<link href="../tutorials/API-thingspeak-python.html" rel="next">
+<link href="../tutorials/python-matlab-basics.html" rel="prev">
 <link href="..//archive/images/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -63,6 +97,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../custom.scss">
@@ -77,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/breadboard.html"><strong>Basics</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/basic-electronics-concepts.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic Electronics Concepts</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/pulse-sensors.html"><strong>Sensors and comm</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/web_server.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">ESP32 web servers</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -168,7 +205,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/basic-electronics-concepts.html" class="sidebar-item-text sidebar-link active">
+  <a href="../tutorials/basic-electronics-concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic Electronics Concepts</span></span></a>
   </div>
 </li>
@@ -338,7 +375,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/web_server.html" class="sidebar-item-text sidebar-link">
+  <a href="../tutorials/web_server.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">ESP32 web servers</span></span></a>
   </div>
 </li>
@@ -482,8 +519,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#very-basic-concepts" id="toc-very-basic-concepts" class="nav-link active" data-scroll-target="#very-basic-concepts"><span class="header-section-number">5.1</span> Very Basic Concepts</a></li>
-  <li><a href="#other-links" id="toc-other-links" class="nav-link" data-scroll-target="#other-links"><span class="header-section-number">5.2</span> Other Links</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">26.1</span> Introduction</a></li>
+  <li><a href="#sht31-on-web-server" id="toc-sht31-on-web-server" class="nav-link" data-scroll-target="#sht31-on-web-server"><span class="header-section-number">26.2</span> SHT31 on web server</a></li>
+  <li><a href="#toggle-led-on-web-server" id="toc-toggle-led-on-web-server" class="nav-link" data-scroll-target="#toggle-led-on-web-server"><span class="header-section-number">26.3</span> Toggle LED on web server</a></li>
   </ul>
 </nav>
     </div>
@@ -493,7 +531,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic Electronics Concepts</span></h1>
+<h1 class="title"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">ESP32 web servers</span></h1>
 </div>
 
 
@@ -508,39 +546,262 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p><img src="https://cdn.sparkfun.com/assets/4/0/3/a/e/511948ffce395f7f47000000.png" class="img-fluid"></p>
-<section id="very-basic-concepts" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="very-basic-concepts"><span class="header-section-number">5.1</span> Very Basic Concepts</h2>
-<p>You should be familiar with the very basics of how electricity works. There are a million books and websites to learn from. We suggest the following webpages, written by Sparkfun, a big vendor of electronics.</p>
+<!-- ---
+title: ""
+echo: false
+jupyter: python3
+section-divs: false
+--- -->
+<section id="introduction" class="level2" data-number="26.1">
+<h2 data-number="26.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">26.1</span> Introduction</h2>
+<p>In this tutorial, we will learn how to use the ESP32 as a simple web server.</p>
+<p>Instead of sending data over the serial monitor, the ESP32 will create its own Wi-Fi network and host a small web page that you can open from your phone or laptop. This web page can:</p>
+<ul>
+<li><strong>display information</strong> (for example, temperature and humidity), and<br>
+</li>
+<li><strong>receive input</strong> (for example, a button click to turn an led on or off).</li>
+</ul>
+<p>We will focus on two examples:</p>
 <ol type="1">
-<li><a href="https://learn.sparkfun.com/tutorials/what-is-electricity">What is Electricity?</a></li>
-<li><a href="https://learn.sparkfun.com/tutorials/electric-power">Electric Power</a></li>
-<li><a href="https://learn.sparkfun.com/tutorials/voltage-current-resistance-and-ohms-law">Voltage, Current, Resistance, and Ohm’s Law</a></li>
-<li><a href="https://learn.sparkfun.com/tutorials/what-is-a-circuit">What is a Circuit?</a></li>
-<li><a href="https://learn.sparkfun.com/tutorials/how-to-use-a-multimeter">How to Use a Multimeter</a></li>
-<li><a href="https://learn.sparkfun.com/tutorials/voltage-dividers/all">Voltage Dividers</a></li>
-<li><a href="https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard">How to Use a Breadboard</a></li>
+<li>A web server that shows temperature and humidity from the SHT31 sensor.</li>
+<li>A web server that controls the built-in led.</li>
 </ol>
-<p>There is no end to learning about these topics! The good news is that you can accomplish <em>a lot</em> of stuff with the very basic notions of electric circuits. If you want to learn even more, navigate your way on the “Suggested Reading” section in the tutorials above.</p>
+<p>Both examples work without any external Wi-Fi network. The ESP32 itself creates the Wi-Fi network.</p>
 </section>
-<section id="other-links" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="other-links"><span class="header-section-number">5.2</span> Other Links</h2>
-<section id="what-is-an-led" class="level4" data-number="5.2.0.1">
-<h4 data-number="5.2.0.1" class="anchored" data-anchor-id="what-is-an-led"><span class="header-section-number">5.2.0.1</span> What is an LED?</h4>
-<ul>
-<li><a href="https://www.electronics-tutorials.ws/diode/diode_8.html">From electronics-tutorials.ws</a></li>
-<li><a href="https://learn.sparkfun.com/tutorials/light-emitting-diodes-leds/all">From Sparkfun</a></li>
-</ul>
+<section id="sht31-on-web-server" class="level2" data-number="26.2">
+<h2 data-number="26.2" class="anchored" data-anchor-id="sht31-on-web-server"><span class="header-section-number">26.2</span> SHT31 on web server</h2>
+<p>Here is the code for reading temperature and humidity values from the SHT31 sensor and displaying them on a web page.</p>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#SHT31_serverino" aria-expanded="false" aria-controls="SHT31_serverino">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/SHT31_server.ino" download="" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="SHT31_serverino">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="pp">#include </span><span class="im">&lt;Wire.h&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="pp">#include </span><span class="im">&lt;WiFi.h&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="pp">#include </span><span class="im">&lt;WebServer.h&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="pp">#include </span><span class="im">"Adafruit_SHT31.h"</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">// ── settings for students to change ───────────────────────────────</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">// wifi network name created by the esp32 (each student should use a different name)</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> apSsid     <span class="op">=</span> <span class="st">"esp32_sht31_student_1"</span><span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co">// device name shown on the web page</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> deviceName <span class="op">=</span> <span class="st">"student_1"</span><span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co">// ──────────────────────────────────────────────────────────────────</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="co">// sht31 sensor object</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>Adafruit_SHT31 sht31 <span class="op">=</span> Adafruit_SHT31<span class="op">();</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="co">// web server on port 80</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a>WebServer server<span class="op">(</span><span class="dv">80</span><span class="op">);</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="co">// build and send web page</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a><span class="dt">void</span> handleRoot<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-22"><a href="#cb1-22"></a>  <span class="co">// read temperature and humidity</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>  <span class="dt">float</span> temperature <span class="op">=</span> sht31<span class="op">.</span>readTemperature<span class="op">();</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a>  <span class="dt">float</span> humidity    <span class="op">=</span> sht31<span class="op">.</span>readHumidity<span class="op">();</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a></span>
+<span id="cb1-26"><a href="#cb1-26"></a>  <span class="co">// prepare strings for display</span></span>
+<span id="cb1-27"><a href="#cb1-27"></a>  String tempStr <span class="op">=</span> <span class="st">"n/a"</span><span class="op">;</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a>  String humStr  <span class="op">=</span> <span class="st">"n/a"</span><span class="op">;</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a></span>
+<span id="cb1-30"><a href="#cb1-30"></a>  <span class="cf">if</span> <span class="op">(!</span>isnan<span class="op">(</span>temperature<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a>    tempStr <span class="op">=</span> String<span class="op">(</span>temperature<span class="op">,</span> <span class="dv">1</span><span class="op">);</span> <span class="co">// 1 decimal place</span></span>
+<span id="cb1-32"><a href="#cb1-32"></a>  <span class="op">}</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a>  <span class="cf">if</span> <span class="op">(!</span>isnan<span class="op">(</span>humidity<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb1-34"><a href="#cb1-34"></a>    humStr <span class="op">=</span> String<span class="op">(</span>humidity<span class="op">,</span> <span class="dv">1</span><span class="op">);</span>     <span class="co">// 1 decimal place</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a>  <span class="op">}</span></span>
+<span id="cb1-36"><a href="#cb1-36"></a></span>
+<span id="cb1-37"><a href="#cb1-37"></a>  <span class="co">// simple html page</span></span>
+<span id="cb1-38"><a href="#cb1-38"></a>  String page<span class="op">;</span></span>
+<span id="cb1-39"><a href="#cb1-39"></a>  page <span class="op">+=</span> <span class="st">"&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset='utf-8'&gt;"</span><span class="op">;</span></span>
+<span id="cb1-40"><a href="#cb1-40"></a>  page <span class="op">+=</span> <span class="st">"&lt;meta http-equiv='refresh' content='1'&gt;"</span><span class="op">;</span>  <span class="co">// refresh every 1 second</span></span>
+<span id="cb1-41"><a href="#cb1-41"></a>  page <span class="op">+=</span> <span class="st">"&lt;title&gt;"</span><span class="op">;</span></span>
+<span id="cb1-42"><a href="#cb1-42"></a>  page <span class="op">+=</span> deviceName<span class="op">;</span></span>
+<span id="cb1-43"><a href="#cb1-43"></a>  page <span class="op">+=</span> <span class="st">" - SHT31&lt;/title&gt;"</span><span class="op">;</span></span>
+<span id="cb1-44"><a href="#cb1-44"></a>  page <span class="op">+=</span> <span class="st">"&lt;style&gt;"</span><span class="op">;</span></span>
+<span id="cb1-45"><a href="#cb1-45"></a>  page <span class="op">+=</span> <span class="st">"body{font-family:Arial,Helvetica,sans-serif;max-width:400px;margin:20px auto;}"</span><span class="op">;</span></span>
+<span id="cb1-46"><a href="#cb1-46"></a>  page <span class="op">+=</span> <span class="st">"&lt;/style&gt;&lt;/head&gt;&lt;body&gt;"</span><span class="op">;</span></span>
+<span id="cb1-47"><a href="#cb1-47"></a></span>
+<span id="cb1-48"><a href="#cb1-48"></a>  page <span class="op">+=</span> <span class="st">"&lt;h2&gt;esp32 sensor: "</span><span class="op">;</span></span>
+<span id="cb1-49"><a href="#cb1-49"></a>  page <span class="op">+=</span> deviceName<span class="op">;</span></span>
+<span id="cb1-50"><a href="#cb1-50"></a>  page <span class="op">+=</span> <span class="st">"&lt;/h2&gt;"</span><span class="op">;</span></span>
+<span id="cb1-51"><a href="#cb1-51"></a></span>
+<span id="cb1-52"><a href="#cb1-52"></a>  page <span class="op">+=</span> <span class="st">"&lt;p&gt;&lt;b&gt;temperature:&lt;/b&gt; "</span><span class="op">;</span></span>
+<span id="cb1-53"><a href="#cb1-53"></a>  page <span class="op">+=</span> tempStr<span class="op">;</span></span>
+<span id="cb1-54"><a href="#cb1-54"></a>  page <span class="op">+=</span> <span class="st">" &amp;deg;C&lt;/p&gt;"</span><span class="op">;</span></span>
+<span id="cb1-55"><a href="#cb1-55"></a></span>
+<span id="cb1-56"><a href="#cb1-56"></a>  page <span class="op">+=</span> <span class="st">"&lt;p&gt;&lt;b&gt;humidity:&lt;/b&gt; "</span><span class="op">;</span></span>
+<span id="cb1-57"><a href="#cb1-57"></a>  page <span class="op">+=</span> humStr<span class="op">;</span></span>
+<span id="cb1-58"><a href="#cb1-58"></a>  page <span class="op">+=</span> <span class="st">" %&lt;/p&gt;"</span><span class="op">;</span></span>
+<span id="cb1-59"><a href="#cb1-59"></a></span>
+<span id="cb1-60"><a href="#cb1-60"></a>  page <span class="op">+=</span> <span class="st">"&lt;p style='margin-top:20px;font-size:12px;color:#555;'&gt;"</span><span class="op">;</span></span>
+<span id="cb1-61"><a href="#cb1-61"></a>  page <span class="op">+=</span> <span class="st">"this page refreshes once per second."</span><span class="op">;</span></span>
+<span id="cb1-62"><a href="#cb1-62"></a>  page <span class="op">+=</span> <span class="st">"&lt;/p&gt;"</span><span class="op">;</span></span>
+<span id="cb1-63"><a href="#cb1-63"></a></span>
+<span id="cb1-64"><a href="#cb1-64"></a>  page <span class="op">+=</span> <span class="st">"&lt;/body&gt;&lt;/html&gt;"</span><span class="op">;</span></span>
+<span id="cb1-65"><a href="#cb1-65"></a></span>
+<span id="cb1-66"><a href="#cb1-66"></a>  server<span class="op">.</span>send<span class="op">(</span><span class="dv">200</span><span class="op">,</span> <span class="st">"text/html"</span><span class="op">,</span> page<span class="op">);</span></span>
+<span id="cb1-67"><a href="#cb1-67"></a><span class="op">}</span></span>
+<span id="cb1-68"><a href="#cb1-68"></a></span>
+<span id="cb1-69"><a href="#cb1-69"></a><span class="co">// handle unknown paths</span></span>
+<span id="cb1-70"><a href="#cb1-70"></a><span class="dt">void</span> handleNotFound<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-71"><a href="#cb1-71"></a>  server<span class="op">.</span>send<span class="op">(</span><span class="dv">404</span><span class="op">,</span> <span class="st">"text/plain"</span><span class="op">,</span> <span class="st">"not found"</span><span class="op">);</span></span>
+<span id="cb1-72"><a href="#cb1-72"></a><span class="op">}</span></span>
+<span id="cb1-73"><a href="#cb1-73"></a></span>
+<span id="cb1-74"><a href="#cb1-74"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-75"><a href="#cb1-75"></a>  <span class="co">// start serial for debug</span></span>
+<span id="cb1-76"><a href="#cb1-76"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb1-77"><a href="#cb1-77"></a>  delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb1-78"><a href="#cb1-78"></a></span>
+<span id="cb1-79"><a href="#cb1-79"></a>  <span class="co">// start sht31 on i2c address 0x44</span></span>
+<span id="cb1-80"><a href="#cb1-80"></a>  <span class="cf">if</span> <span class="op">(!</span>sht31<span class="op">.</span>begin<span class="op">(</span><span class="bn">0x44</span><span class="op">))</span> <span class="op">{</span></span>
+<span id="cb1-81"><a href="#cb1-81"></a>    Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"sht31 not found"</span><span class="op">);</span></span>
+<span id="cb1-82"><a href="#cb1-82"></a>  <span class="op">}</span></span>
+<span id="cb1-83"><a href="#cb1-83"></a></span>
+<span id="cb1-84"><a href="#cb1-84"></a>  <span class="co">// set wifi to access point mode</span></span>
+<span id="cb1-85"><a href="#cb1-85"></a>  WiFi<span class="op">.</span>mode<span class="op">(</span>WIFI_AP<span class="op">);</span></span>
+<span id="cb1-86"><a href="#cb1-86"></a></span>
+<span id="cb1-87"><a href="#cb1-87"></a>  <span class="co">// create open access point (no password)</span></span>
+<span id="cb1-88"><a href="#cb1-88"></a>  WiFi<span class="op">.</span>softAP<span class="op">(</span>apSsid<span class="op">);</span></span>
+<span id="cb1-89"><a href="#cb1-89"></a></span>
+<span id="cb1-90"><a href="#cb1-90"></a>  <span class="co">// print access point info</span></span>
+<span id="cb1-91"><a href="#cb1-91"></a>  IPAddress ip <span class="op">=</span> WiFi<span class="op">.</span>softAPIP<span class="op">();</span></span>
+<span id="cb1-92"><a href="#cb1-92"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"access point ssid: "</span><span class="op">);</span></span>
+<span id="cb1-93"><a href="#cb1-93"></a>  Serial<span class="op">.</span>println<span class="op">(</span>apSsid<span class="op">);</span></span>
+<span id="cb1-94"><a href="#cb1-94"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"access point ip:   "</span><span class="op">);</span></span>
+<span id="cb1-95"><a href="#cb1-95"></a>  Serial<span class="op">.</span>println<span class="op">(</span>ip<span class="op">);</span></span>
+<span id="cb1-96"><a href="#cb1-96"></a></span>
+<span id="cb1-97"><a href="#cb1-97"></a>  <span class="co">// define http routes</span></span>
+<span id="cb1-98"><a href="#cb1-98"></a>  server<span class="op">.</span>on<span class="op">(</span><span class="st">"/"</span><span class="op">,</span> handleRoot<span class="op">);</span></span>
+<span id="cb1-99"><a href="#cb1-99"></a>  server<span class="op">.</span>onNotFound<span class="op">(</span>handleNotFound<span class="op">);</span></span>
+<span id="cb1-100"><a href="#cb1-100"></a></span>
+<span id="cb1-101"><a href="#cb1-101"></a>  <span class="co">// start web server</span></span>
+<span id="cb1-102"><a href="#cb1-102"></a>  server<span class="op">.</span>begin<span class="op">();</span></span>
+<span id="cb1-103"><a href="#cb1-103"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"web server started"</span><span class="op">);</span></span>
+<span id="cb1-104"><a href="#cb1-104"></a><span class="op">}</span></span>
+<span id="cb1-105"><a href="#cb1-105"></a></span>
+<span id="cb1-106"><a href="#cb1-106"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-107"><a href="#cb1-107"></a>  <span class="co">// handle incoming http requests</span></span>
+<span id="cb1-108"><a href="#cb1-108"></a>  server<span class="op">.</span>handleClient<span class="op">();</span></span>
+<span id="cb1-109"><a href="#cb1-109"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
 </section>
-<section id="thermistor-tutorial" class="level4" data-number="5.2.0.2">
-<h4 data-number="5.2.0.2" class="anchored" data-anchor-id="thermistor-tutorial"><span class="header-section-number">5.2.0.2</span> Thermistor Tutorial</h4>
-<ul>
-<li><a href="https://learn.adafruit.com/thermistor/using-a-thermistor">From Adafruit</a></li>
-<li><a href="https://www.thinksrs.com/downloads/programs/therm%20calc/ntccalibrator/ntccalculator.html">Model equations and calculator of constants for thermistors</a></li>
-</ul>
+<section id="toggle-led-on-web-server" class="level2" data-number="26.3">
+<h2 data-number="26.3" class="anchored" data-anchor-id="toggle-led-on-web-server"><span class="header-section-number">26.3</span> Toggle LED on web server</h2>
+<p>Here is the code for toggling the builtin LED from a web page.</p>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#button_serverino" aria-expanded="false" aria-controls="button_serverino">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/button_server.ino" download="" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="button_serverino">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="pp">#include </span><span class="im">&lt;WiFi.h&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="pp">#include </span><span class="im">&lt;WebServer.h&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">// ── settings for students to change ───────────────────────────────</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">// wifi network name created by the esp32 (each student should use a different name)</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> apSsid <span class="op">=</span> <span class="st">"esp32_led_student_1"</span><span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">// ──────────────────────────────────────────────────────────────────</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co">// web server on port 80</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>WebServer server<span class="op">(</span><span class="dv">80</span><span class="op">);</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="co">// remember led state</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="dt">bool</span> ledState <span class="op">=</span> false<span class="op">;</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="co">// build and send web page</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="dt">void</span> handleRoot<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>  String page<span class="op">;</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>  page <span class="op">+=</span> <span class="st">"&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset='utf-8'&gt;"</span><span class="op">;</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>  page <span class="op">+=</span> <span class="st">"&lt;title&gt;esp32 led control&lt;/title&gt;"</span><span class="op">;</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>  page <span class="op">+=</span> <span class="st">"&lt;style&gt;"</span><span class="op">;</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>  page <span class="op">+=</span> <span class="st">"body{font-family:Arial,Helvetica,sans-serif;max-width:400px;margin:20px auto;}"</span><span class="op">;</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a>  page <span class="op">+=</span> <span class="st">"button{font-size:16px;padding:8px 16px;}"</span><span class="op">;</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>  page <span class="op">+=</span> <span class="st">"&lt;/style&gt;&lt;/head&gt;&lt;body&gt;"</span><span class="op">;</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a></span>
+<span id="cb2-26"><a href="#cb2-26"></a>  page <span class="op">+=</span> <span class="st">"&lt;h2&gt;esp32 led control&lt;/h2&gt;"</span><span class="op">;</span></span>
+<span id="cb2-27"><a href="#cb2-27"></a></span>
+<span id="cb2-28"><a href="#cb2-28"></a>  page <span class="op">+=</span> <span class="st">"&lt;p&gt;&lt;b&gt;led state:&lt;/b&gt; "</span><span class="op">;</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a>  page <span class="op">+=</span> <span class="op">(</span>ledState <span class="op">?</span> <span class="st">"ON"</span> <span class="op">:</span> <span class="st">"OFF"</span><span class="op">);</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a>  page <span class="op">+=</span> <span class="st">"&lt;/p&gt;"</span><span class="op">;</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a></span>
+<span id="cb2-32"><a href="#cb2-32"></a>  page <span class="op">+=</span> <span class="st">"&lt;form action=</span><span class="sc">\"</span><span class="st">/toggle</span><span class="sc">\"</span><span class="st"> method=</span><span class="sc">\"</span><span class="st">GET</span><span class="sc">\"</span><span class="st">&gt;"</span><span class="op">;</span></span>
+<span id="cb2-33"><a href="#cb2-33"></a>  page <span class="op">+=</span> <span class="st">"&lt;button type=</span><span class="sc">\"</span><span class="st">submit</span><span class="sc">\"</span><span class="st">&gt;toggle led&lt;/button&gt;"</span><span class="op">;</span></span>
+<span id="cb2-34"><a href="#cb2-34"></a>  page <span class="op">+=</span> <span class="st">"&lt;/form&gt;"</span><span class="op">;</span></span>
+<span id="cb2-35"><a href="#cb2-35"></a></span>
+<span id="cb2-36"><a href="#cb2-36"></a>  page <span class="op">+=</span> <span class="st">"&lt;/body&gt;&lt;/html&gt;"</span><span class="op">;</span></span>
+<span id="cb2-37"><a href="#cb2-37"></a></span>
+<span id="cb2-38"><a href="#cb2-38"></a>  server<span class="op">.</span>send<span class="op">(</span><span class="dv">200</span><span class="op">,</span> <span class="st">"text/html"</span><span class="op">,</span> page<span class="op">);</span></span>
+<span id="cb2-39"><a href="#cb2-39"></a><span class="op">}</span></span>
+<span id="cb2-40"><a href="#cb2-40"></a></span>
+<span id="cb2-41"><a href="#cb2-41"></a><span class="co">// toggle led and show main page</span></span>
+<span id="cb2-42"><a href="#cb2-42"></a><span class="dt">void</span> handleToggle<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-43"><a href="#cb2-43"></a>  ledState <span class="op">=</span> <span class="op">!</span>ledState<span class="op">;</span></span>
+<span id="cb2-44"><a href="#cb2-44"></a>  digitalWrite<span class="op">(</span>LED_BUILTIN<span class="op">,</span> ledState <span class="op">?</span> HIGH <span class="op">:</span> LOW<span class="op">);</span></span>
+<span id="cb2-45"><a href="#cb2-45"></a>  handleRoot<span class="op">();</span></span>
+<span id="cb2-46"><a href="#cb2-46"></a><span class="op">}</span></span>
+<span id="cb2-47"><a href="#cb2-47"></a></span>
+<span id="cb2-48"><a href="#cb2-48"></a><span class="co">// handle unknown paths</span></span>
+<span id="cb2-49"><a href="#cb2-49"></a><span class="dt">void</span> handleNotFound<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-50"><a href="#cb2-50"></a>  server<span class="op">.</span>send<span class="op">(</span><span class="dv">404</span><span class="op">,</span> <span class="st">"text/plain"</span><span class="op">,</span> <span class="st">"not found"</span><span class="op">);</span></span>
+<span id="cb2-51"><a href="#cb2-51"></a><span class="op">}</span></span>
+<span id="cb2-52"><a href="#cb2-52"></a></span>
+<span id="cb2-53"><a href="#cb2-53"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-54"><a href="#cb2-54"></a>  <span class="co">// start serial for debug</span></span>
+<span id="cb2-55"><a href="#cb2-55"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb2-56"><a href="#cb2-56"></a>  delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb2-57"><a href="#cb2-57"></a></span>
+<span id="cb2-58"><a href="#cb2-58"></a>  <span class="co">// set built-in led pin</span></span>
+<span id="cb2-59"><a href="#cb2-59"></a>  pinMode<span class="op">(</span>LED_BUILTIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb2-60"><a href="#cb2-60"></a>  digitalWrite<span class="op">(</span>LED_BUILTIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb2-61"><a href="#cb2-61"></a></span>
+<span id="cb2-62"><a href="#cb2-62"></a>  <span class="co">// set wifi to access point mode</span></span>
+<span id="cb2-63"><a href="#cb2-63"></a>  WiFi<span class="op">.</span>mode<span class="op">(</span>WIFI_AP<span class="op">);</span></span>
+<span id="cb2-64"><a href="#cb2-64"></a></span>
+<span id="cb2-65"><a href="#cb2-65"></a>  <span class="co">// create open access point (no password)</span></span>
+<span id="cb2-66"><a href="#cb2-66"></a>  WiFi<span class="op">.</span>softAP<span class="op">(</span>apSsid<span class="op">);</span></span>
+<span id="cb2-67"><a href="#cb2-67"></a></span>
+<span id="cb2-68"><a href="#cb2-68"></a>  <span class="co">// print access point info</span></span>
+<span id="cb2-69"><a href="#cb2-69"></a>  IPAddress ip <span class="op">=</span> WiFi<span class="op">.</span>softAPIP<span class="op">();</span></span>
+<span id="cb2-70"><a href="#cb2-70"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"access point ssid: "</span><span class="op">);</span></span>
+<span id="cb2-71"><a href="#cb2-71"></a>  Serial<span class="op">.</span>println<span class="op">(</span>apSsid<span class="op">);</span></span>
+<span id="cb2-72"><a href="#cb2-72"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"access point ip:   "</span><span class="op">);</span></span>
+<span id="cb2-73"><a href="#cb2-73"></a>  Serial<span class="op">.</span>println<span class="op">(</span>ip<span class="op">);</span></span>
+<span id="cb2-74"><a href="#cb2-74"></a></span>
+<span id="cb2-75"><a href="#cb2-75"></a>  <span class="co">// define http routes</span></span>
+<span id="cb2-76"><a href="#cb2-76"></a>  server<span class="op">.</span>on<span class="op">(</span><span class="st">"/"</span><span class="op">,</span> handleRoot<span class="op">);</span></span>
+<span id="cb2-77"><a href="#cb2-77"></a>  server<span class="op">.</span>on<span class="op">(</span><span class="st">"/toggle"</span><span class="op">,</span> handleToggle<span class="op">);</span></span>
+<span id="cb2-78"><a href="#cb2-78"></a>  server<span class="op">.</span>onNotFound<span class="op">(</span>handleNotFound<span class="op">);</span></span>
+<span id="cb2-79"><a href="#cb2-79"></a></span>
+<span id="cb2-80"><a href="#cb2-80"></a>  <span class="co">// start web server</span></span>
+<span id="cb2-81"><a href="#cb2-81"></a>  server<span class="op">.</span>begin<span class="op">();</span></span>
+<span id="cb2-82"><a href="#cb2-82"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"web server started"</span><span class="op">);</span></span>
+<span id="cb2-83"><a href="#cb2-83"></a><span class="op">}</span></span>
+<span id="cb2-84"><a href="#cb2-84"></a></span>
+<span id="cb2-85"><a href="#cb2-85"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-86"><a href="#cb2-86"></a>  <span class="co">// handle incoming http requests</span></span>
+<span id="cb2-87"><a href="#cb2-87"></a>  server<span class="op">.</span>handleClient<span class="op">();</span></span>
+<span id="cb2-88"><a href="#cb2-88"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -779,13 +1040,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tutorials/breadboard.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Breadboard</span></span>
+      <a href="../tutorials/python-matlab-basics.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Basic Data Analysis with Python and Matlab</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tutorials/firebeetle_documentation.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">FireBeetle 2 ESP32-E</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tutorials/API-thingspeak-python.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">API to download Thingspeak data with Python</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
