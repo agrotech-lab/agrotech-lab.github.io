@@ -34,7 +34,7 @@ You received a custom PCB that includes:
 
 ## Schematic
 
-<embed src="../archive/images/Schematic.pdf" type="application/pdf" width="100%" height="800px" />
+<embed src="../archive/images/Schematic.pdf" type="application/pdf" width="100%" height="500px" />
 
 ## PCB Layout
 
