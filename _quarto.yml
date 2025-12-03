@@ -62,6 +62,7 @@ book:
       - assignments/assignment1.qmd
       - assignments/assignment2.qmd
       - assignments/assignment3.qmd
+      - assignments/assignment4.qmd
     - part: "**Resources**"
       chapters:
       - resources.qmd
