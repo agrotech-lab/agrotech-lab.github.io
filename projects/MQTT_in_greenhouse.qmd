@@ -1,0 +1,221 @@
+---
+title: "MQTT in project greenhouse"
+echo: false
+jupyter: python3
+execute:
+  freeze: auto  # re-render only when source changes
+---
+
+{{< include ../_insert_ino_code.qmd >}}
+
+![](https://mqtt.org/assets/downloads/mqtt-logo.png)
+
+
+
+## MQTT in the greenhouse (how control & sensing works)
+
+In the greenhouse we use **MQTT** as a lightweight “message bus” that lets devices publish sensor data and receive control commands.
+
+Why MQTT?
+
+* **One broker, many devices:** sensors and controllers don’t need to know about each other directly—everything goes through the broker.
+* **Safer control:** students don’t need to wire high-voltage loads or power electronics. The *high-voltage / high-current* parts (e.g., irrigation solenoids, pumps, fans) are **already installed and protected** (relays, fuses, enclosures, labeling).
+* **Faster labs:** you focus on data + logic + automation, not on dangerous wiring.
+
+---
+
+## Broker + login details
+
+Use these details:
+
+* **Wi-Fi SSID:** `agrotech`
+* **Wi-Fi password:** `1Afuna2gezer`
+* **MQTT broker:** `192.168.0.102`
+* **MQTT port:** `1883`
+* **MQTT username:** `mqtt-user`
+* **MQTT password:** `1234`
+
+---
+
+## MQTT basics you need for this course
+
+### Topics
+
+A **topic** is a string path (like folders). Devices publish messages to topics; other devices subscribe to topics.
+
+Example control topic:
+
+* `/greenhouse/outside/irrigation/solenoid5`
+
+### Payloads
+
+For most greenhouse actuators we use a simple convention:
+
+* `0` → OFF / closed
+* `1` → ON / open
+
+So publishing `1` to a solenoid topic opens that valve; publishing `0` closes it.
+
+---
+
+## What is available in the greenhouse
+
+Below is the **current set of available MQTT endpoints**. Each endpoint has:
+
+* topic
+* direction: control (subscribe) or telemetry (publish)
+* expected payload format
+* notes / safety constraints
+
+
+### Actuators (control topics)
+
+All actuator topics expect a **binary payload**:
+
+* `0` → OFF / closed
+* `1` → ON / open
+
+These devices are **already wired through protected relays**. You should *only* control them via MQTT.
+
+#### Outside irrigation & fertigation
+
+| Device                          | Topic                                        | Payload   | Meaning              |
+| ------------------------------- | -------------------------------------------- | --------- | -------------------- |
+| Solenoid 1 (outside irrigation) | `/greenhouse/outside/irrigation/solenoid1`   | `0` / `1` | `0`=closed, `1`=open |
+| Solenoid 2 (outside irrigation) | `/greenhouse/outside/irrigation/solenoid2`   | `0` / `1` | `0`=closed, `1`=open |
+| Solenoid 3 (outside irrigation) | `/greenhouse/outside/irrigation/solenoid3`   | `0` / `1` | `0`=closed, `1`=open |
+| Solenoid 4 (outside irrigation) | `/greenhouse/outside/irrigation/solenoid4`   | `0` / `1` | `0`=closed, `1`=open |
+| Solenoid 5 (outside irrigation) | `/greenhouse/outside/irrigation/solenoid5`   | `0` / `1` | `0`=closed, `1`=open |
+| Solenoid 6 (outside irrigation) | `/greenhouse/outside/irrigation/solenoid6`   | `0` / `1` | `0`=closed, `1`=open |
+| Solenoid 7 (outside irrigation) | `/greenhouse/outside/irrigation/solenoid7`   | `0` / `1` | `0`=closed, `1`=open |
+| Solenoid 8 (outside irrigation) | `/greenhouse/outside/irrigation/solenoid8`   | `0` / `1` | `0`=closed, `1`=open |
+| Fertigation pump                | `/greenhouse/outside/irrigation/fertigation` | `0` / `1` | `0`=off, `1`=on      |
+
+> ⚠️ **Note:** Do not leave solenoids or the fertigation pump ON unattended. Always send `0` when finished testing.
+
+---
+
+#### 220 V sockets (inside greenhouse)
+
+These topics control **mains-voltage sockets** inside the greenhouse.
+Each one corresponds to the **top socket** in its socket array.
+
+| Device           | Topic                         | Payload   | Meaning         |
+| ---------------- | ----------------------------- | --------- | --------------- |
+| Socket 1 (220 V) | `/greenhouse/sockets/socket1` | `0` / `1` | `0`=off, `1`=on |
+| Socket 5 (220 V) | `/greenhouse/sockets/socket5` | `0` / `1` | `0`=off, `1`=on |
+| Socket 6 (220 V) | `/greenhouse/sockets/socket6` | `0` / `1` | `0`=off, `1`=on |
+
+> ⚠️ **Safety:** These are high-voltage outputs. Never connect or disconnect loads while powered. Use MQTT only.
+
+---
+
+### Sensors (telemetry topics)
+
+Sensors in the greenhouse **publish data to MQTT topics**.
+You do **not** send commands to these topics — you only **subscribe** to read values.
+
+All sensor messages use **plain numeric payloads** (no JSON).
+
+---
+
+#### Outside irrigation flow sensor
+
+These topics report the pulse output of the outside flow meter connected to the irrigation system.
+
+| Sensor                 | Topic                                            | Payload | Meaning                                 |
+| ---------------------- | ------------------------------------------------ | ------- | --------------------------------------- |
+| Flow pulses per second | `/greenhouse/sensors/outside_flow/pulse_per_sec` | number  | instantaneous pulse rate (pulses·s⁻¹)   |
+| Total flow pulses      | `/greenhouse/sensors/outside_flow/pulse_total`   | integer | cumulative pulse count since last reset |
+
+**Notes:**
+
+* `pulse_per_sec` is updated continuously and reflects **current flow activity**
+* `pulse_total` is **retained** on the broker, so new subscribers immediately receive the last value
+* Conversion from pulses to volume (e.g. liters) depends on the flow meter calibration and is done **client-side**
+
+---
+
+#### Typical usage
+
+* Subscribe to `pulse_per_sec` to detect **whether irrigation is currently flowing**
+* Subscribe to `pulse_total` to compute **total water usage** over time
+* Combine flow data with solenoid control topics to verify that irrigation commands worked as expected
+
+
+---
+
+## How to test MQTT without writing code
+
+You can test control and telemetry *immediately* using an MQTT client.
+
+### Phone apps
+
+* **Android:** *MQTT Client Lite* (works well)
+* **iPhone:** search “MQTT client” in the App Store (common options include clients like *MQTTAnalyzer* / *MQTT Client*—availability changes)
+
+What to do:
+
+1. Add a new connection:
+
+   * Host: `192.168.0.102`
+   * Port: `1883`
+   * Username/password: *(provided privately)*
+2. Subscribe to a telemetry topic to watch values (e.g., flow).
+3. Publish to a control topic:
+
+   * Topic: `/greenhouse/outside/irrigation/solenoid5`
+   * Message: `1` to open, `0` to close
+
+### Desktop apps (recommended)
+
+* **MQTT Explorer** (very friendly UI)
+* **MQTTX** (clean UI, cross-platform)
+
+These make it easy to:
+
+* browse topics
+* publish test payloads
+* subscribe and watch live values
+* debug retained messages
+
+
+---
+
+## Safety + good practice rules
+
+* **Always send `0` when you’re done** testing a solenoid/relay.
+* Don’t leave actuators ON unattended.
+* If something behaves unexpectedly, check:
+
+  * retained messages
+  * topic spelling (leading `/` matters)
+  * whether your payload is exactly `0` or `1`
+* **Never publish credentials** in notebooks, screenshots, or repos.
+
+---
+
+## Where this fits in the code below
+
+In the Arduino/ESP code, you’ll see:
+
+* Wi-Fi connect → join `agrotech`
+* MQTT connect → broker `192.168.0.102:1883`
+* subscribe (optional) to control topics
+* publish telemetry (optional) to sensor topics
+* publish `0/1` commands to control relays/solenoids
+
+
+
+## Control irrigation solenoid in the greenhouse
+
+Use the code below to control the irrigation solenoid outside the greenhouse.
+
+Code usage: connect a jumper to A4. Whenever you touch the jumper, the solenoid will be open, otherwise it will be closed.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("mqtt_toggle_irrigation.ino")
+```
+

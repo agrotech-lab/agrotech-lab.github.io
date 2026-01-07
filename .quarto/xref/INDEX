@@ -259,5 +259,8 @@
   },
   "assignments/assignment4.qmd": {
     "assignment4.html": "6c084b4a"
+  },
+  "projects/MQTT_in_greenhouse.qmd": {
+    "MQTT_in_greenhouse.html": "fd411da3"
   }
 }

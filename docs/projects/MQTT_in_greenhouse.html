@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>agrotech lab - 41&nbsp; MQTT in project greenhouse</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../projects/mqtt_example.html" rel="next">
+<link href="../projects/greenhouse.html" rel="prev">
+<link href="..//archive/images/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-1.0.0-beta.2/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../custom.scss">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../projects.html"><strong>Projects</strong></a></li><li class="breadcrumb-item"><a href="../projects/MQTT_in_greenhouse.html"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">MQTT in project greenhouse</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../archive/images/site-logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">agrotech lab</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://yairmau.com/" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
+    <a href="../sources.html" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-bookmark-fill"></i></a>
+    <a href="../things-to-remember.html" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-asterisk"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text"><strong>Start here</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../arduino-intro-and-links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Arduino intro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/arduino_IDE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arduino IDE</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/install_firebeetle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Install FireBeetle (ESP32)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text"><strong>Basics</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/breadboard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Breadboard</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/basic-electronics-concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic Electronics Concepts</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/firebeetle_documentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">FireBeetle 2 ESP32-E</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/libraries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Libraries</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text"><strong>Lectures</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/first-programs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">First programs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/electronics-class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Electronics Class</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/electronics-class-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Electronics Class 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Control</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/digital-read-write.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reading digital and analog</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/digital-sensors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Digital sensors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/cloud-connectivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Cloud connectivity</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text"><strong>Running simple programs</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/merging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Code Merging</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/RGB.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">RGB LED</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text"><strong>Electronics</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/relay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Switches, Relays, Transistors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/soldering-and-wires.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Soldering and Wires</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/electronics-class-old.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Electronics Class Old</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text"><strong>Sensors and comm</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/pulse-sensors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Pulse sensors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/MQTT.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">MQTT</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/deep_sleep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Deep Sleep</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/esp_now.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">ESP-NOW</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/OLED.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">OLED screen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/python-matlab-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Basic Data Analysis with Python and Matlab</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/web_server.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">ESP32 web servers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/API-thingspeak-python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">API to download Thingspeak data with Python</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text"><strong>Agro stuff</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/water-and-energy-balances.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Water and Energy Balances</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/psychrometric-chart-and-evaporative-cooling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Psychrometric Chart and Evaporative Cooling</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text"><strong>Assignments</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/submission_info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Submission Guidelines</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Assignment 1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Assignment 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Assignment 3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Assignment 4</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
+ <span class="menu-text"><strong>Resources</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title"><iconify-icon inline="" icon="fluent:brain-circuit-20-regular"></iconify-icon> Resources</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
+ <span class="menu-text"><strong>Projects</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title"><iconify-icon inline="" icon="icons8:finish-flag"></iconify-icon> Past Final Projects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/borrowing-equipment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Borrowing equipment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/final-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Example projects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/greenhouse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">The Smart Greenhouse</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/MQTT_in_greenhouse.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">MQTT in project greenhouse</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/mqtt_example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">MQTT example</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#mqtt-in-the-greenhouse-how-control-sensing-works" id="toc-mqtt-in-the-greenhouse-how-control-sensing-works" class="nav-link active" data-scroll-target="#mqtt-in-the-greenhouse-how-control-sensing-works"><span class="header-section-number">41.1</span> MQTT in the greenhouse (how control &amp; sensing works)</a></li>
+  <li><a href="#broker-login-details" id="toc-broker-login-details" class="nav-link" data-scroll-target="#broker-login-details"><span class="header-section-number">41.2</span> Broker + login details</a></li>
+  <li><a href="#mqtt-basics-you-need-for-this-course" id="toc-mqtt-basics-you-need-for-this-course" class="nav-link" data-scroll-target="#mqtt-basics-you-need-for-this-course"><span class="header-section-number">41.3</span> MQTT basics you need for this course</a>
+  <ul class="collapse">
+  <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics"><span class="header-section-number">41.3.1</span> Topics</a></li>
+  <li><a href="#payloads" id="toc-payloads" class="nav-link" data-scroll-target="#payloads"><span class="header-section-number">41.3.2</span> Payloads</a></li>
+  </ul></li>
+  <li><a href="#what-is-available-in-the-greenhouse" id="toc-what-is-available-in-the-greenhouse" class="nav-link" data-scroll-target="#what-is-available-in-the-greenhouse"><span class="header-section-number">41.4</span> What is available in the greenhouse</a>
+  <ul class="collapse">
+  <li><a href="#actuators-control-topics" id="toc-actuators-control-topics" class="nav-link" data-scroll-target="#actuators-control-topics"><span class="header-section-number">41.4.1</span> Actuators (control topics)</a></li>
+  <li><a href="#sensors-telemetry-topics" id="toc-sensors-telemetry-topics" class="nav-link" data-scroll-target="#sensors-telemetry-topics"><span class="header-section-number">41.4.2</span> Sensors (telemetry topics)</a></li>
+  </ul></li>
+  <li><a href="#how-to-test-mqtt-without-writing-code" id="toc-how-to-test-mqtt-without-writing-code" class="nav-link" data-scroll-target="#how-to-test-mqtt-without-writing-code"><span class="header-section-number">41.5</span> How to test MQTT without writing code</a>
+  <ul class="collapse">
+  <li><a href="#phone-apps" id="toc-phone-apps" class="nav-link" data-scroll-target="#phone-apps"><span class="header-section-number">41.5.1</span> Phone apps</a></li>
+  <li><a href="#desktop-apps-recommended" id="toc-desktop-apps-recommended" class="nav-link" data-scroll-target="#desktop-apps-recommended"><span class="header-section-number">41.5.2</span> Desktop apps (recommended)</a></li>
+  </ul></li>
+  <li><a href="#safety-good-practice-rules" id="toc-safety-good-practice-rules" class="nav-link" data-scroll-target="#safety-good-practice-rules"><span class="header-section-number">41.6</span> Safety + good practice rules</a></li>
+  <li><a href="#where-this-fits-in-the-code-below" id="toc-where-this-fits-in-the-code-below" class="nav-link" data-scroll-target="#where-this-fits-in-the-code-below"><span class="header-section-number">41.7</span> Where this fits in the code below</a></li>
+  <li><a href="#control-irrigation-solenoid-in-the-greenhouse" id="toc-control-irrigation-solenoid-in-the-greenhouse" class="nav-link" data-scroll-target="#control-irrigation-solenoid-in-the-greenhouse"><span class="header-section-number">41.8</span> Control irrigation solenoid in the greenhouse</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">MQTT in project greenhouse</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<!-- ---
+title: ""
+echo: false
+jupyter: python3
+section-divs: false
+--- -->
+<p><img src="https://mqtt.org/assets/downloads/mqtt-logo.png" class="img-fluid"></p>
+<section id="mqtt-in-the-greenhouse-how-control-sensing-works" class="level2" data-number="41.1">
+<h2 data-number="41.1" class="anchored" data-anchor-id="mqtt-in-the-greenhouse-how-control-sensing-works"><span class="header-section-number">41.1</span> MQTT in the greenhouse (how control &amp; sensing works)</h2>
+<p>In the greenhouse we use <strong>MQTT</strong> as a lightweight “message bus” that lets devices publish sensor data and receive control commands.</p>
+<p>Why MQTT?</p>
+<ul>
+<li><strong>One broker, many devices:</strong> sensors and controllers don’t need to know about each other directly—everything goes through the broker.</li>
+<li><strong>Safer control:</strong> students don’t need to wire high-voltage loads or power electronics. The <em>high-voltage / high-current</em> parts (e.g., irrigation solenoids, pumps, fans) are <strong>already installed and protected</strong> (relays, fuses, enclosures, labeling).</li>
+<li><strong>Faster labs:</strong> you focus on data + logic + automation, not on dangerous wiring.</li>
+</ul>
+<hr>
+</section>
+<section id="broker-login-details" class="level2" data-number="41.2">
+<h2 data-number="41.2" class="anchored" data-anchor-id="broker-login-details"><span class="header-section-number">41.2</span> Broker + login details</h2>
+<p>Use these details:</p>
+<ul>
+<li><strong>Wi-Fi SSID:</strong> <code>agrotech</code></li>
+<li><strong>Wi-Fi password:</strong> <code>1Afuna2gezer</code></li>
+<li><strong>MQTT broker:</strong> <code>192.168.0.102</code></li>
+<li><strong>MQTT port:</strong> <code>1883</code></li>
+<li><strong>MQTT username:</strong> <code>mqtt-user</code></li>
+<li><strong>MQTT password:</strong> <code>1234</code></li>
+</ul>
+<hr>
+</section>
+<section id="mqtt-basics-you-need-for-this-course" class="level2" data-number="41.3">
+<h2 data-number="41.3" class="anchored" data-anchor-id="mqtt-basics-you-need-for-this-course"><span class="header-section-number">41.3</span> MQTT basics you need for this course</h2>
+<section id="topics" class="level3" data-number="41.3.1">
+<h3 data-number="41.3.1" class="anchored" data-anchor-id="topics"><span class="header-section-number">41.3.1</span> Topics</h3>
+<p>A <strong>topic</strong> is a string path (like folders). Devices publish messages to topics; other devices subscribe to topics.</p>
+<p>Example control topic:</p>
+<ul>
+<li><code>/greenhouse/outside/irrigation/solenoid5</code></li>
+</ul>
+</section>
+<section id="payloads" class="level3" data-number="41.3.2">
+<h3 data-number="41.3.2" class="anchored" data-anchor-id="payloads"><span class="header-section-number">41.3.2</span> Payloads</h3>
+<p>For most greenhouse actuators we use a simple convention:</p>
+<ul>
+<li><code>0</code> → OFF / closed</li>
+<li><code>1</code> → ON / open</li>
+</ul>
+<p>So publishing <code>1</code> to a solenoid topic opens that valve; publishing <code>0</code> closes it.</p>
+<hr>
+</section>
+</section>
+<section id="what-is-available-in-the-greenhouse" class="level2" data-number="41.4">
+<h2 data-number="41.4" class="anchored" data-anchor-id="what-is-available-in-the-greenhouse"><span class="header-section-number">41.4</span> What is available in the greenhouse</h2>
+<p>Below is the <strong>current set of available MQTT endpoints</strong>. Each endpoint has:</p>
+<ul>
+<li>topic</li>
+<li>direction: control (subscribe) or telemetry (publish)</li>
+<li>expected payload format</li>
+<li>notes / safety constraints</li>
+</ul>
+<section id="actuators-control-topics" class="level3" data-number="41.4.1">
+<h3 data-number="41.4.1" class="anchored" data-anchor-id="actuators-control-topics"><span class="header-section-number">41.4.1</span> Actuators (control topics)</h3>
+<p>All actuator topics expect a <strong>binary payload</strong>:</p>
+<ul>
+<li><code>0</code> → OFF / closed</li>
+<li><code>1</code> → ON / open</li>
+</ul>
+<p>These devices are <strong>already wired through protected relays</strong>. You should <em>only</em> control them via MQTT.</p>
+<section id="outside-irrigation-fertigation" class="level4" data-number="41.4.1.1">
+<h4 data-number="41.4.1.1" class="anchored" data-anchor-id="outside-irrigation-fertigation"><span class="header-section-number">41.4.1.1</span> Outside irrigation &amp; fertigation</h4>
+<table class="table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 42%">
+<col style="width: 8%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Device</th>
+<th>Topic</th>
+<th>Payload</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Solenoid 1 (outside irrigation)</td>
+<td><code>/greenhouse/outside/irrigation/solenoid1</code></td>
+<td><code>0</code> / <code>1</code></td>
+<td><code>0</code>=closed, <code>1</code>=open</td>
+</tr>
+<tr class="even">
+<td>Solenoid 2 (outside irrigation)</td>
+<td><code>/greenhouse/outside/irrigation/solenoid2</code></td>
+<td><code>0</code> / <code>1</code></td>
+<td><code>0</code>=closed, <code>1</code>=open</td>
+</tr>
+<tr class="odd">
+<td>Solenoid 3 (outside irrigation)</td>
+<td><code>/greenhouse/outside/irrigation/solenoid3</code></td>
+<td><code>0</code> / <code>1</code></td>
+<td><code>0</code>=closed, <code>1</code>=open</td>
+</tr>
+<tr class="even">
+<td>Solenoid 4 (outside irrigation)</td>
+<td><code>/greenhouse/outside/irrigation/solenoid4</code></td>
+<td><code>0</code> / <code>1</code></td>
+<td><code>0</code>=closed, <code>1</code>=open</td>
+</tr>
+<tr class="odd">
+<td>Solenoid 5 (outside irrigation)</td>
+<td><code>/greenhouse/outside/irrigation/solenoid5</code></td>
+<td><code>0</code> / <code>1</code></td>
+<td><code>0</code>=closed, <code>1</code>=open</td>
+</tr>
+<tr class="even">
+<td>Solenoid 6 (outside irrigation)</td>
+<td><code>/greenhouse/outside/irrigation/solenoid6</code></td>
+<td><code>0</code> / <code>1</code></td>
+<td><code>0</code>=closed, <code>1</code>=open</td>
+</tr>
+<tr class="odd">
+<td>Solenoid 7 (outside irrigation)</td>
+<td><code>/greenhouse/outside/irrigation/solenoid7</code></td>
+<td><code>0</code> / <code>1</code></td>
+<td><code>0</code>=closed, <code>1</code>=open</td>
+</tr>
+<tr class="even">
+<td>Solenoid 8 (outside irrigation)</td>
+<td><code>/greenhouse/outside/irrigation/solenoid8</code></td>
+<td><code>0</code> / <code>1</code></td>
+<td><code>0</code>=closed, <code>1</code>=open</td>
+</tr>
+<tr class="odd">
+<td>Fertigation pump</td>
+<td><code>/greenhouse/outside/irrigation/fertigation</code></td>
+<td><code>0</code> / <code>1</code></td>
+<td><code>0</code>=off, <code>1</code>=on</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p>⚠️ <strong>Note:</strong> Do not leave solenoids or the fertigation pump ON unattended. Always send <code>0</code> when finished testing.</p>
+</blockquote>
+<hr>
+</section>
+<section id="v-sockets-inside-greenhouse" class="level4" data-number="41.4.1.2">
+<h4 data-number="41.4.1.2" class="anchored" data-anchor-id="v-sockets-inside-greenhouse"><span class="header-section-number">41.4.1.2</span> 220 V sockets (inside greenhouse)</h4>
+<p>These topics control <strong>mains-voltage sockets</strong> inside the greenhouse. Each one corresponds to the <strong>top socket</strong> in its socket array.</p>
+<table class="table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 42%">
+<col style="width: 13%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Device</th>
+<th>Topic</th>
+<th>Payload</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Socket 1 (220 V)</td>
+<td><code>/greenhouse/sockets/socket1</code></td>
+<td><code>0</code> / <code>1</code></td>
+<td><code>0</code>=off, <code>1</code>=on</td>
+</tr>
+<tr class="even">
+<td>Socket 5 (220 V)</td>
+<td><code>/greenhouse/sockets/socket5</code></td>
+<td><code>0</code> / <code>1</code></td>
+<td><code>0</code>=off, <code>1</code>=on</td>
+</tr>
+<tr class="odd">
+<td>Socket 6 (220 V)</td>
+<td><code>/greenhouse/sockets/socket6</code></td>
+<td><code>0</code> / <code>1</code></td>
+<td><code>0</code>=off, <code>1</code>=on</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p>⚠️ <strong>Safety:</strong> These are high-voltage outputs. Never connect or disconnect loads while powered. Use MQTT only.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="sensors-telemetry-topics" class="level3" data-number="41.4.2">
+<h3 data-number="41.4.2" class="anchored" data-anchor-id="sensors-telemetry-topics"><span class="header-section-number">41.4.2</span> Sensors (telemetry topics)</h3>
+<p>Sensors in the greenhouse <strong>publish data to MQTT topics</strong>. You do <strong>not</strong> send commands to these topics — you only <strong>subscribe</strong> to read values.</p>
+<p>All sensor messages use <strong>plain numeric payloads</strong> (no JSON).</p>
+<hr>
+<section id="outside-irrigation-flow-sensor" class="level4" data-number="41.4.2.1">
+<h4 data-number="41.4.2.1" class="anchored" data-anchor-id="outside-irrigation-flow-sensor"><span class="header-section-number">41.4.2.1</span> Outside irrigation flow sensor</h4>
+<p>These topics report the pulse output of the outside flow meter connected to the irrigation system.</p>
+<table class="table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 41%">
+<col style="width: 6%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sensor</th>
+<th>Topic</th>
+<th>Payload</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Flow pulses per second</td>
+<td><code>/greenhouse/sensors/outside_flow/pulse_per_sec</code></td>
+<td>number</td>
+<td>instantaneous pulse rate (pulses·s⁻¹)</td>
+</tr>
+<tr class="even">
+<td>Total flow pulses</td>
+<td><code>/greenhouse/sensors/outside_flow/pulse_total</code></td>
+<td>integer</td>
+<td>cumulative pulse count since last reset</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes:</strong></p>
+<ul>
+<li><code>pulse_per_sec</code> is updated continuously and reflects <strong>current flow activity</strong></li>
+<li><code>pulse_total</code> is <strong>retained</strong> on the broker, so new subscribers immediately receive the last value</li>
+<li>Conversion from pulses to volume (e.g.&nbsp;liters) depends on the flow meter calibration and is done <strong>client-side</strong></li>
+</ul>
+<hr>
+</section>
+<section id="typical-usage" class="level4" data-number="41.4.2.2">
+<h4 data-number="41.4.2.2" class="anchored" data-anchor-id="typical-usage"><span class="header-section-number">41.4.2.2</span> Typical usage</h4>
+<ul>
+<li>Subscribe to <code>pulse_per_sec</code> to detect <strong>whether irrigation is currently flowing</strong></li>
+<li>Subscribe to <code>pulse_total</code> to compute <strong>total water usage</strong> over time</li>
+<li>Combine flow data with solenoid control topics to verify that irrigation commands worked as expected</li>
+</ul>
+<hr>
+</section>
+</section>
+</section>
+<section id="how-to-test-mqtt-without-writing-code" class="level2" data-number="41.5">
+<h2 data-number="41.5" class="anchored" data-anchor-id="how-to-test-mqtt-without-writing-code"><span class="header-section-number">41.5</span> How to test MQTT without writing code</h2>
+<p>You can test control and telemetry <em>immediately</em> using an MQTT client.</p>
+<section id="phone-apps" class="level3" data-number="41.5.1">
+<h3 data-number="41.5.1" class="anchored" data-anchor-id="phone-apps"><span class="header-section-number">41.5.1</span> Phone apps</h3>
+<ul>
+<li><strong>Android:</strong> <em>MQTT Client Lite</em> (works well)</li>
+<li><strong>iPhone:</strong> search “MQTT client” in the App Store (common options include clients like <em>MQTTAnalyzer</em> / <em>MQTT Client</em>—availability changes)</li>
+</ul>
+<p>What to do:</p>
+<ol type="1">
+<li><p>Add a new connection:</p>
+<ul>
+<li>Host: <code>192.168.0.102</code></li>
+<li>Port: <code>1883</code></li>
+<li>Username/password: <em>(provided privately)</em></li>
+</ul></li>
+<li><p>Subscribe to a telemetry topic to watch values (e.g., flow).</p></li>
+<li><p>Publish to a control topic:</p>
+<ul>
+<li>Topic: <code>/greenhouse/outside/irrigation/solenoid5</code></li>
+<li>Message: <code>1</code> to open, <code>0</code> to close</li>
+</ul></li>
+</ol>
+</section>
+<section id="desktop-apps-recommended" class="level3" data-number="41.5.2">
+<h3 data-number="41.5.2" class="anchored" data-anchor-id="desktop-apps-recommended"><span class="header-section-number">41.5.2</span> Desktop apps (recommended)</h3>
+<ul>
+<li><strong>MQTT Explorer</strong> (very friendly UI)</li>
+<li><strong>MQTTX</strong> (clean UI, cross-platform)</li>
+</ul>
+<p>These make it easy to:</p>
+<ul>
+<li>browse topics</li>
+<li>publish test payloads</li>
+<li>subscribe and watch live values</li>
+<li>debug retained messages</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="safety-good-practice-rules" class="level2" data-number="41.6">
+<h2 data-number="41.6" class="anchored" data-anchor-id="safety-good-practice-rules"><span class="header-section-number">41.6</span> Safety + good practice rules</h2>
+<ul>
+<li><p><strong>Always send <code>0</code> when you’re done</strong> testing a solenoid/relay.</p></li>
+<li><p>Don’t leave actuators ON unattended.</p></li>
+<li><p>If something behaves unexpectedly, check:</p>
+<ul>
+<li>retained messages</li>
+<li>topic spelling (leading <code>/</code> matters)</li>
+<li>whether your payload is exactly <code>0</code> or <code>1</code></li>
+</ul></li>
+<li><p><strong>Never publish credentials</strong> in notebooks, screenshots, or repos.</p></li>
+</ul>
+<hr>
+</section>
+<section id="where-this-fits-in-the-code-below" class="level2" data-number="41.7">
+<h2 data-number="41.7" class="anchored" data-anchor-id="where-this-fits-in-the-code-below"><span class="header-section-number">41.7</span> Where this fits in the code below</h2>
+<p>In the Arduino/ESP code, you’ll see:</p>
+<ul>
+<li>Wi-Fi connect → join <code>agrotech</code></li>
+<li>MQTT connect → broker <code>192.168.0.102:1883</code></li>
+<li>subscribe (optional) to control topics</li>
+<li>publish telemetry (optional) to sensor topics</li>
+<li>publish <code>0/1</code> commands to control relays/solenoids</li>
+</ul>
+</section>
+<section id="control-irrigation-solenoid-in-the-greenhouse" class="level2" data-number="41.8">
+<h2 data-number="41.8" class="anchored" data-anchor-id="control-irrigation-solenoid-in-the-greenhouse"><span class="header-section-number">41.8</span> Control irrigation solenoid in the greenhouse</h2>
+<p>Use the code below to control the irrigation solenoid outside the greenhouse.</p>
+<p>Code usage: connect a jumper to A4. Whenever you touch the jumper, the solenoid will be open, otherwise it will be closed.</p>
+<button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#mqtt_toggle_irrigationino" aria-expanded="false" aria-controls="mqtt_toggle_irrigationino">
+    <i class="bi bi-toggles"></i> Toggle code
+    </button>
+     <a class="btn btn-outline-dark rounded" ,="" href="../archive/code/mqtt_toggle_irrigation.ino" download="" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-download"></i> Download code
+    </a>
+
+            <div class="collapse" id="mqtt_toggle_irrigationino">
+            <div class="card card-body border-0">
+        
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource c number-lines code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1"></a><span class="pp">#include </span><span class="im">&lt;WiFi.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="pp">#include </span><span class="im">&lt;PubSubClient.h&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">// WiFi credentials</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> ssid <span class="op">=</span> <span class="st">"agrotech"</span><span class="op">;</span>          <span class="co">// Replace with your WiFi SSID</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> password <span class="op">=</span> <span class="st">"1Afuna2gezer"</span><span class="op">;</span>  <span class="co">// Replace with your WiFi Password</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">// MQTT broker details</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> mqtt_server <span class="op">=</span> <span class="st">"192.168.0.102"</span><span class="op">;</span>    <span class="co">// IP address of Home Assistant</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="dt">const</span> <span class="dt">int</span> mqtt_port <span class="op">=</span> <span class="dv">1883</span><span class="op">;</span>                   <span class="co">// Default MQTT port</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> mqtt_user <span class="op">=</span> <span class="st">"mqtt-user"</span><span class="op">;</span>          <span class="co">// MQTT username</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> mqtt_password <span class="op">=</span> <span class="st">"1234"</span><span class="op">;</span>           <span class="co">// MQTT password</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="dt">const</span> <span class="dt">char</span><span class="op">*</span> mqtt_topic <span class="op">=</span> <span class="st">"/greenhouse/outside/irrigation/solenoid5"</span><span class="op">;</span> <span class="co">// MQTT topic</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="co">// Touch pin configuration</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="pp">#define TOUCH_PIN A4  </span><span class="co">// Use GPIO 4 as touch pin (T0 on ESP32)</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="co">// MQTT client and WiFi client</span></span>
+<span id="cb1-19"><a href="#cb1-19"></a>WiFiClient espClient<span class="op">;</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a>PubSubClient client<span class="op">(</span>espClient<span class="op">);</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a></span>
+<span id="cb1-22"><a href="#cb1-22"></a><span class="co">// State variable to track touch pin state</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a><span class="dt">bool</span> send_message <span class="op">=</span> false<span class="op">;</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a></span>
+<span id="cb1-25"><a href="#cb1-25"></a><span class="dt">void</span> setup_wifi<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Connecting to WiFi: "</span><span class="op">);</span></span>
+<span id="cb1-27"><a href="#cb1-27"></a>  Serial<span class="op">.</span>println<span class="op">(</span>ssid<span class="op">);</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a>  WiFi<span class="op">.</span>begin<span class="op">(</span>ssid<span class="op">,</span> password<span class="op">);</span></span>
+<span id="cb1-29"><a href="#cb1-29"></a></span>
+<span id="cb1-30"><a href="#cb1-30"></a>  <span class="cf">while</span> <span class="op">(</span>WiFi<span class="op">.</span>status<span class="op">()</span> <span class="op">!=</span> WL_CONNECTED<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a>    delay<span class="op">(</span><span class="dv">500</span><span class="op">);</span></span>
+<span id="cb1-32"><a href="#cb1-32"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"."</span><span class="op">);</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a>  <span class="op">}</span></span>
+<span id="cb1-34"><a href="#cb1-34"></a></span>
+<span id="cb1-35"><a href="#cb1-35"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"</span><span class="sc">\n</span><span class="st">WiFi connected"</span><span class="op">);</span></span>
+<span id="cb1-36"><a href="#cb1-36"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"IP address: "</span><span class="op">);</span></span>
+<span id="cb1-37"><a href="#cb1-37"></a>  Serial<span class="op">.</span>println<span class="op">(</span>WiFi<span class="op">.</span>localIP<span class="op">());</span></span>
+<span id="cb1-38"><a href="#cb1-38"></a><span class="op">}</span></span>
+<span id="cb1-39"><a href="#cb1-39"></a></span>
+<span id="cb1-40"><a href="#cb1-40"></a><span class="dt">void</span> reconnect<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-41"><a href="#cb1-41"></a>  <span class="co">// Attempt to reconnect to the MQTT broker</span></span>
+<span id="cb1-42"><a href="#cb1-42"></a>  <span class="cf">while</span> <span class="op">(!</span>client<span class="op">.</span>connected<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb1-43"><a href="#cb1-43"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Attempting MQTT connection..."</span><span class="op">);</span></span>
+<span id="cb1-44"><a href="#cb1-44"></a>    <span class="cf">if</span> <span class="op">(</span>client<span class="op">.</span>connect<span class="op">(</span><span class="st">"ESP32Client"</span><span class="op">,</span> mqtt_user<span class="op">,</span> mqtt_password<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb1-45"><a href="#cb1-45"></a>      Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"connected"</span><span class="op">);</span></span>
+<span id="cb1-46"><a href="#cb1-46"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb1-47"><a href="#cb1-47"></a>      Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"failed, rc="</span><span class="op">);</span></span>
+<span id="cb1-48"><a href="#cb1-48"></a>      Serial<span class="op">.</span>print<span class="op">(</span>client<span class="op">.</span>state<span class="op">());</span></span>
+<span id="cb1-49"><a href="#cb1-49"></a>      Serial<span class="op">.</span>println<span class="op">(</span><span class="st">" Retrying in 5 seconds..."</span><span class="op">);</span></span>
+<span id="cb1-50"><a href="#cb1-50"></a>      delay<span class="op">(</span><span class="dv">5000</span><span class="op">);</span></span>
+<span id="cb1-51"><a href="#cb1-51"></a>    <span class="op">}</span></span>
+<span id="cb1-52"><a href="#cb1-52"></a>  <span class="op">}</span></span>
+<span id="cb1-53"><a href="#cb1-53"></a><span class="op">}</span></span>
+<span id="cb1-54"><a href="#cb1-54"></a></span>
+<span id="cb1-55"><a href="#cb1-55"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-56"><a href="#cb1-56"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb1-57"><a href="#cb1-57"></a></span>
+<span id="cb1-58"><a href="#cb1-58"></a>  <span class="co">// Initialize WiFi</span></span>
+<span id="cb1-59"><a href="#cb1-59"></a>  setup_wifi<span class="op">();</span></span>
+<span id="cb1-60"><a href="#cb1-60"></a></span>
+<span id="cb1-61"><a href="#cb1-61"></a>  <span class="co">// Set up MQTT</span></span>
+<span id="cb1-62"><a href="#cb1-62"></a>  client<span class="op">.</span>setServer<span class="op">(</span>mqtt_server<span class="op">,</span> mqtt_port<span class="op">);</span></span>
+<span id="cb1-63"><a href="#cb1-63"></a></span>
+<span id="cb1-64"><a href="#cb1-64"></a>  <span class="co">// Ensure the ESP32 starts connected to the MQTT broker</span></span>
+<span id="cb1-65"><a href="#cb1-65"></a>  reconnect<span class="op">();</span></span>
+<span id="cb1-66"><a href="#cb1-66"></a><span class="op">}</span></span>
+<span id="cb1-67"><a href="#cb1-67"></a></span>
+<span id="cb1-68"><a href="#cb1-68"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-69"><a href="#cb1-69"></a>  <span class="cf">if</span> <span class="op">(!</span>client<span class="op">.</span>connected<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb1-70"><a href="#cb1-70"></a>    reconnect<span class="op">();</span></span>
+<span id="cb1-71"><a href="#cb1-71"></a>  <span class="op">}</span></span>
+<span id="cb1-72"><a href="#cb1-72"></a>  client<span class="op">.</span>loop<span class="op">();</span></span>
+<span id="cb1-73"><a href="#cb1-73"></a></span>
+<span id="cb1-74"><a href="#cb1-74"></a>  <span class="co">// Read the state of the touch pin</span></span>
+<span id="cb1-75"><a href="#cb1-75"></a>  <span class="dt">bool</span> is_touched <span class="op">=</span> touchRead<span class="op">(</span>TOUCH_PIN<span class="op">)</span> <span class="op">&lt;</span> <span class="dv">40</span><span class="op">;</span>  <span class="co">// If the value is less than 40, the pin is being touched</span></span>
+<span id="cb1-76"><a href="#cb1-76"></a></span>
+<span id="cb1-77"><a href="#cb1-77"></a>  <span class="co">// Send "1" if the pin is being touched</span></span>
+<span id="cb1-78"><a href="#cb1-78"></a>  <span class="cf">if</span> <span class="op">(</span>is_touched<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-79"><a href="#cb1-79"></a>    <span class="cf">if</span> <span class="op">(!</span>send_message<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-80"><a href="#cb1-80"></a>      client<span class="op">.</span>publish<span class="op">(</span>mqtt_topic<span class="op">,</span> <span class="st">"1"</span><span class="op">);</span></span>
+<span id="cb1-81"><a href="#cb1-81"></a>      Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Sent: 1"</span><span class="op">);</span></span>
+<span id="cb1-82"><a href="#cb1-82"></a>      send_message <span class="op">=</span> true<span class="op">;</span>  <span class="co">// Set flag to avoid sending multiple times while touching</span></span>
+<span id="cb1-83"><a href="#cb1-83"></a>    <span class="op">}</span></span>
+<span id="cb1-84"><a href="#cb1-84"></a>  <span class="op">}</span> </span>
+<span id="cb1-85"><a href="#cb1-85"></a>  <span class="co">// Send "0" if the pin is not being touched</span></span>
+<span id="cb1-86"><a href="#cb1-86"></a>  <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb1-87"><a href="#cb1-87"></a>    <span class="cf">if</span> <span class="op">(</span>send_message<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-88"><a href="#cb1-88"></a>      client<span class="op">.</span>publish<span class="op">(</span>mqtt_topic<span class="op">,</span> <span class="st">"0"</span><span class="op">);</span></span>
+<span id="cb1-89"><a href="#cb1-89"></a>      Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Sent: 0"</span><span class="op">);</span></span>
+<span id="cb1-90"><a href="#cb1-90"></a>      send_message <span class="op">=</span> false<span class="op">;</span>  <span class="co">// Reset the flag when pin is no longer touched</span></span>
+<span id="cb1-91"><a href="#cb1-91"></a>    <span class="op">}</span></span>
+<span id="cb1-92"><a href="#cb1-92"></a>  <span class="op">}</span></span>
+<span id="cb1-93"><a href="#cb1-93"></a></span>
+<span id="cb1-94"><a href="#cb1-94"></a>  <span class="co">// Optional: Small delay to avoid flooding the MQTT server with messages</span></span>
+<span id="cb1-95"><a href="#cb1-95"></a>  delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span>  <span class="co">// Adjust the delay if necessary</span></span>
+<span id="cb1-96"><a href="#cb1-96"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+            </div>
+            </div>
+            
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../projects/greenhouse.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">The Smart Greenhouse</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../projects/mqtt_example.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">MQTT example</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
