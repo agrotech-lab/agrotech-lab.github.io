@@ -65,6 +65,14 @@ $$
 
 - **Concept**: Understand the relationship between voltage (V, in volts), current (I, in amperes), and resistance (R, in ohms).
 
+```{=html}
+<link rel="stylesheet" href="../assets/teaching-demos.css">
+<link rel="stylesheet" href="../assets/circuit-demos.css">
+<script src="../assets/circuit-demos.js" defer></script>
+```
+
+{{< include ../_includes/resistor-demo.qmd >}}
+
 ## Power Supply: Setting and Measuring
 
 ![](/archive/figures/power-supply.jpg)
@@ -145,6 +153,8 @@ $$
 
 - **Goal**: Explain LED operation and safely operate it with a 10V power source (using resistors or voltage regulators).
 - **Activity**: Set up a circuit to ensure safe operation of the LED at a higher voltage. Calculate the necessary value of the resistor in this configuration (not 330 $\Omega$!)
+
+Use the [circuit explorer](#resistor-explorer) in **Resistor + LED** mode to compare the current and resistor power before building the circuit.
 
 <details>
 <summary>see diagram</summary>

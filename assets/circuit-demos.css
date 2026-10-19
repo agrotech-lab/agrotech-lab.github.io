@@ -1,0 +1,32 @@
+.circuit-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; margin: 1.25rem 0; }
+.circuit-control, .circuit-results { min-width: 0; }
+.teaching-demo .circuit-control input[type=number] { width: 7rem; max-width: 100%; }
+.teaching-demo .circuit-control select { width: 100%; }
+.teaching-demo .circuit-hint { font-size: .85rem; color: var(--demo-muted); }
+.teaching-demo .circuit-figure { display: block; width: 100%; margin: .75rem 0; }
+.circuit-figure svg { display: block; width: 100%; height: auto; border: 1px solid #dce5eb; border-radius: 8px; background: white; }
+.circuit-figure svg text { fill: var(--demo-ink); font: 18px system-ui, sans-serif; }
+.circuit-wire { stroke: #35586d; stroke-width: 2.5; stroke-linejoin: round; fill: none; }
+.circuit-component { fill: #e0eef8; }
+.circuit-node { fill: #17649a; }
+.circuit-figure figcaption { margin-top: .6rem; color: var(--demo-muted); font-size: .85rem; }
+.teaching-demo .circuit-status { border-left: 4px solid #17649a; background: #eaf2f8; padding: .65rem .85rem; font-size: .9rem; }
+.teaching-demo .circuit-status[data-state=limit], .teaching-demo .circuit-status[data-state=undefined] { border-color: #a9580a; background: #fff3e5; }
+.teaching-demo button:disabled { opacity: .55; cursor: default; }
+@media (min-width: 900px) {
+  .teaching-demo[data-demo=resistor]:fullscreen, .teaching-demo[data-demo=divider]:fullscreen { grid-template-areas: "heading heading" "intro intro" "workbench workbench" "presets formula" "status status" "details details" "note note" "footer footer"; }
+  .teaching-demo:fullscreen .circuit-workbench { grid-area: workbench; display: grid; grid-template-columns: 1fr 1.2fr; gap: 2rem; }
+  .teaching-demo:fullscreen .circuit-inputs { align-content: start; gap: .5rem 1rem; margin: .25rem 0; }
+  .teaching-demo:fullscreen .circuit-results .demo-stats { margin: .25rem 0; }
+  .teaching-demo:fullscreen .circuit-status { grid-area: status; margin: .25rem 0; }
+  .teaching-demo:fullscreen .circuit-figure { margin: .5rem 0; }
+}
+@media (max-width: 520px) {
+  .circuit-inputs { gap: 1rem .75rem; }
+  .circuit-control label { font-size: .85rem; min-height: 2.6em; }
+  .circuit-control select { font-size: .85rem; }
+  .circuit-figure svg text { font-size: 24px; }
+  .divider-inputs { grid-template-columns: 1fr; }
+  .divider-inputs label { min-height: 0; }
+}
+@media print { .circuit-inputs { display: none; } }

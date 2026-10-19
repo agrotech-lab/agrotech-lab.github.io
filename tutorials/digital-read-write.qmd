@@ -84,9 +84,11 @@ code_source("analog-read.ino")
 
 Why is the maximum number 4095? What does this have to do with 12-bits?
 
+Try the [interactive ADC explorer](electronics-class-2.qmd#adc-explorer) to compare voltage, bit depth and digital codes.
+
 ## Reading an Analog Pin, convert to voltage
 
-Use the same wiring as above. We will convert bits to volts now: $4095 \text{ bits} = 3.3\text{ volts}$.
+Use the same wiring as above. The 12-bit ADC returns a **code** from 0 to 4095. The example below uses the approximate endpoint conversion $V = \text{code} \times 3.3 / 4095$. For calibrated ESP32 measurements, use `analogReadMilliVolts()`.
 
 ```{python}
 #| echo: false
@@ -118,7 +120,7 @@ Now let's subtract @eq-linear2 from @eq-linear1:
 
 $$
 \theta_1 - \theta_2 = a (i_1 - i_2)
-$$ {#eq-linear2}
+$$ {#eq-linear_difference}
 
 Now solve for the slope $a$:
 
@@ -189,9 +191,18 @@ $$ {#eq-voltage_divider}
 We usually need to find the value of the resistance $R_2$:
 
 $$
-R_2 = \frac{V_{in} - V_{out}}{V_{out}} R_2
+R_2 = R_1 \frac{V_{out}}{V_{in} - V_{out}}
 $$
 
+This rearrangement assumes $R_1 > 0$ and $0 < V_{out} < V_{in}$, with no load drawing current from the output.
+
+```{=html}
+<link rel="stylesheet" href="../assets/teaching-demos.css">
+<link rel="stylesheet" href="../assets/circuit-demos.css">
+<script src="../assets/circuit-demos.js" defer></script>
+```
+
+{{< include ../_includes/divider-demo.qmd >}}
 
 ## Photoresistor
 

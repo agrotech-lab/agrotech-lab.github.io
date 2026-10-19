@@ -81,22 +81,38 @@ peripheral state do not, and wake-up restarts the application.
 Reference: https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/system/sleep_modes.html
 Library: https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32
 
-Next recommended pair: Ohm's law/LED resistor and voltage divider below.
-
-Following batches, in suggested order
-------------------------------------
-[ ] Ohm's law and LED resistor — tutorials/electronics-class.qmd
+Completed batch 3: circuits
+--------------------------
+[verified] Ohm's law and LED resistor — tutorials/electronics-class.qmd
     Supply voltage, resistance, LED forward voltage; show current and resistor
     power, with a simple circuit highlighting the quantities. Handle supply
     below forward voltage and zero resistance explicitly. Explain the simple
     LED model and limits. Keep multimeter exercises and physical experiments.
 
-[ ] Voltage divider and sensor calibration — tutorials/digital-read-write.qmd
-    Two resistance controls and a circuit; show Vout and optional ideal ADC
-    code. Later add two-point calibration for the angle sensor.
-    Correct the existing rearranged divider equation as part of that work:
-    R2 = R1 * Vout / (Vin - Vout), for 0 < Vout < Vin. The present equation
-    repeats R2 on both sides. There is also a repeated eq-linear2 label.
+[verified] Voltage divider — tutorials/digital-read-write.qmd
+    Two resistance controls and a circuit; show Vout, series current and an
+    ideal ADC code. Swapping R1/R2 and doubling both demonstrate ratios.
+    Corrected the rearranged divider equation to R2 = R1 * Vout / (Vin - Vout),
+    for R1 > 0 and 0 < Vout < Vin, and gave the repeated eq-linear2 a unique
+    label. Reused the ADC explorer via a link and corrected the adjacent
+    wording that called ADC codes "bits".
+
+Includes: _includes/resistor-demo.qmd, _includes/divider-demo.qmd
+Assets: assets/circuit-demos.js and assets/circuit-demos.css, plus the existing
+shared teaching-demos.css. Previous demo assets are unchanged.
+The resistor explorer starts with a resistor-only circuit; LED mode subtracts
+a fixed forward drop, with zero forward current below that drop. Current and
+power are not calculated at R = 0. LED current limits and resistor power
+ratings are editable examples, not universal component or GPIO ratings.
+The divider assumes no load current and converts kΩ to Ω for series current.
+One zero resistor is allowed; both zero is an undefined ratio. Outputs above
+3.3 V show "Out of range" instead of a clipped ideal ADC code. The ADC model
+is the same uniform-bin model used in batch 1, not a real GPIO voltage rating.
+
+Following batches, in suggested order
+------------------------------------
+[ ] Two-point sensor calibration — tutorials/digital-read-write.qmd
+    Use measured ADC/angle pairs to show slope, intercept, and interpolation.
 
 [ ] Thermostat hysteresis — tutorials/control.qmd
     Move temperature above and below thresholds; show fan state and a history
@@ -108,22 +124,23 @@ Following batches, in suggested order
     flow rate, and measurement granularity. Do not assume a universal sensor
     calibration constant. Reuse waveform drawing where practical.
 
-[ ] Evaporative cooling — tutorials/psychrometric-chart-and-evaporative-cooling.qmd
-    Air temperature, relative humidity, pressure and cooling effectiveness;
-    display wet-bulb temperature and predicted outlet temperature. Validate
-    against the existing psychrolib calculation before porting any equations.
-    Show physical ranges and assumptions; preserve the Python example.
-    Can be demoted
-
 [ ] MQTT topic sandbox — tutorials/MQTT.qmd
     Local simulation of publishers, subscribers, topic filters and payloads.
     Show which subscriptions match (+ and #), without a live public broker.
 
-[ ] Water balance — tutorials/water-and-energy-balances.qmd
+Deferred legacy material — outside the active teaching queue
+-----------------------------------------------------------
+User confirmed these topics are not currently taught. Leave their existing
+pages in place; do not schedule interactive work for them unless requested.
+
+[deferred] Evaporative cooling — tutorials/psychrometric-chart-and-evaporative-cooling.qmd
+    Original idea: temperature, humidity, pressure and effectiveness controls,
+    validated against the existing psychrolib calculation.
+
+[deferred] Water balance — tutorials/water-and-energy-balances.qmd
     Rain/irrigation, evapotranspiration and drainage inputs over time; show
     storage changes with consistent area/depth/volume units and bounds.
     Penman-Monteith is a later, larger task requiring careful unit validation.
-    Can be demoted
 
 Cross-page and content notes
 ----------------------------
@@ -135,6 +152,10 @@ Cross-page and content notes
   extension of the ESP32 demonstration.
 - ADC/PWM explanations also occur in digital-read-write.qmd and control.qmd.
   Reuse includes/assets or cross-link so fixes do not diverge between copies.
+- digital-read-write.qmd includes analog-read.ino twice. Its old code-display
+  helper gives both collapsible panels the ID analog-readino. Give repeated
+  code panels unique IDs when revisiting that helper; this pre-existing issue
+  is separate from the new circuit demos. The duplicate equation ID was fixed.
 - archive/code/potentiometer-PWM.ino uses legacy ledcSetup/ledcAttachPin.
   Review Arduino-ESP32 version assumptions in a separate code-update batch;
   the current API uses ledcAttach and pin-based ledcWrite.
@@ -191,3 +212,16 @@ assets match their source, and the notes remain outside the published site.
 
 After pushing each batch, check the GitHub Pages deployment and live page and
 asset contents before reporting publication complete.
+
+Batch 3 verification on 2026-10-19: 52 checks passed in installed Chrome.
+Covered Ohm/power scaling, LED threshold and rating comparisons, zero supply
+and resistance, unit conversions, divider ratios and swap/double operations,
+ADC boundary handling, numeric input limits, reset and keyboard operation.
+Both enlarged classroom views keep controls and circuit diagrams visible;
+390px and 320px layouts fit without overflow. Screenshots inspected; mobile
+circuit labels enlarged. No uncaught JavaScript exceptions. The existing
+polyfill.io request still fails; new demos require no external runtime.
+Existing Arduino examples, navigation, titles and TOC were preserved. All
+code downloads and new assets resolve. Only six affected search records were
+updated. No new duplicate IDs; calibration equation IDs are now unique.
+Firefox/Safari were not tested. Maintainer notes are absent from the website.
