@@ -8,7 +8,7 @@ title: "{{< iconify icons8 finish-flag >}} Past Final Projects"
 
 | Team | Project                                                      |
 |------|--------------------------------------------------------------|
-| <i class="bi bi-github"></i> &nbsp; [Denis Malin and team](https://github.com/talshalom-cmd/Final-Project---Irrigation-by-evaporation) | Smart Irrigation System (Penman–Monteith) |
+| <i class="bi bi-github"></i> &nbsp; [Denis Malin, Geva Weiss, Ido Chobotaro, Tal Shalom](https://github.com/talshalom-cmd/Final-Project---Irrigation-by-evaporation) | Smart Irrigation System (Penman–Monteith) |
 | <i class="bi bi-github"></i> &nbsp; [Liel Zang, Aviad Karmazyn, Liron Odeni, Liel Ben Lulu](https://github.com/LULI09-AGRO/Mini_Greenhuse-AgroTech-final-project) | Mini Greenhouse: VPD Monitoring and Control |
 | <i class="bi bi-github"></i> &nbsp; [Gal Ben Yaakov, Meir Asaf, Misgav Keisar, Sara Post](https://github.com/sarapost-alt/Humidity-and-EC-sensors) | Irrigation Control and Soil Moisture & EC Monitoring |
 | <i class="bi bi-github"></i> &nbsp; [Tal Stoler, Hadas Ekshtein, Yuval Masad, Amit Schraub](https://github.com/amitsh3231-pixel/Final-Project) | Light Compensation System |
