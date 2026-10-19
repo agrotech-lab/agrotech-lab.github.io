@@ -13,9 +13,9 @@ Deep sleep is a power-saving mode on the ESP32 microcontroller that allows it to
 ## Key Features of Deep Sleep
 
 1. **Low Power Consumption:**  
-    In deep sleep mode, the ESP32 consumes only a few microamps of current, drastically reducing power usage compared to its normal operating modes.
+    Deep sleep drastically reduces the chip's power use. The current of a complete board also includes its regulators, LEDs and connected sensors.
 1. **Preservation of Data:**  
-    The ESP32 can save the state of its peripherals and the values of certain variables in RTC (Real-Time Clock) memory, which is retained during deep sleep. This allows the microcontroller to resume tasks efficiently upon waking up.
+    Variables explicitly placed in RTC (Real-Time Clock) memory can be retained during deep sleep. Waking restarts the application; ordinary RAM and peripheral state are not preserved.
 1. **Wake-Up Sources:**  
     The ESP32 can be awakened from deep sleep by various events:
     * Timer: The internal RTC can be programmed to wake the device after a specified time interval.
@@ -27,6 +27,14 @@ Deep sleep is a power-saving mode on the ESP32 microcontroller that allows it to
     * IoT Devices: Devices that need to conserve power, such as remote weather stations or smart home devices, can use deep sleep to extend battery life.
 
 
+
+```{=html}
+<link rel="stylesheet" href="../assets/teaching-demos.css">
+<link rel="stylesheet" href="../assets/rgb-sleep-demos.css">
+<script src="../assets/rgb-sleep-demos.js" defer></script>
+```
+
+{{< include ../_includes/sleep-demo.qmd >}}
 
 ## Deep Sleep code
 ```{python}
@@ -51,4 +59,3 @@ Recommended tutorial [here](https://randomnerdtutorials.com/esp32-save-data-perm
 #| output: asis
 code_source("save_values.ino")
 ```
- 

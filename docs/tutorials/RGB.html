@@ -550,6 +550,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+
 <!-- ---
 title: ""
 echo: false
@@ -557,6 +558,32 @@ jupyter: python3
 section-divs: false
 --- -->
 <p>The ESP32 board we are using has an built in RGB LED on pin <code>D8</code>. The following code is an example of how to use it. Please note that it requires the installation of the <code>"Freenove_WS2812_Lib_for_ESP32.h"</code> library. It can be found in the Arduino IDE library manager or downloaded from <a href="https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32">the github repository</a>. If you are not sure how to install a library follow our <a href="../tutorials/libraries.html">guide</a>.</p>
+<link rel="stylesheet" href="../assets/teaching-demos.css">
+<link rel="stylesheet" href="../assets/rgb-sleep-demos.css">
+<script src="../assets/rgb-sleep-demos.js" defer=""></script>
+<div class="teaching-demo" id="rgb-mixer" data-demo="rgb" role="region" aria-labelledby="rgb-demo-title">
+  <div class="demo-heading"><div><p class="demo-eyebrow">Try it · Mixing light</p><h3 id="rgb-demo-title" class="unnumbered anchored">Three channels, millions of colours</h3></div><button type="button" data-fullscreen="" hidden="">Enlarge demo</button></div>
+  <p>Each channel is an 8-bit number from 0 to 255. Change the amounts of red, green, and blue and watch the colour they make together.</p>
+  <div class="rgb-workbench">
+    <div class="rgb-channels">
+      <div class="rgb-channel rgb-red"><label for="rgb-red">Red (R)</label><input id="rgb-red-number" type="number" aria-label="Red channel value" min="0" max="255" step="1" value="255"><input id="rgb-red" type="range" min="0" max="255" step="1" value="255"><div class="demo-scale"><span>0 · off</span><span>255 · maximum</span></div></div>
+      <div class="rgb-channel rgb-green"><label for="rgb-green">Green (G)</label><input id="rgb-green-number" type="number" aria-label="Green channel value" min="0" max="255" step="1" value="128"><input id="rgb-green" type="range" min="0" max="255" step="1" value="128"><div class="demo-scale"><span>0 · off</span><span>255 · maximum</span></div></div>
+      <div class="rgb-channel rgb-blue"><label for="rgb-blue">Blue (B)</label><input id="rgb-blue-number" type="number" aria-label="Blue channel value" min="0" max="255" step="1" value="0"><input id="rgb-blue" type="range" min="0" max="255" step="1" value="0"><div class="demo-scale"><span>0 · off</span><span>255 · maximum</span></div></div>
+    </div>
+    <div class="rgb-result">
+      <div id="rgb-swatch" class="rgb-swatch" role="img" aria-label="Mixed colour: red 255, green 128, blue 0" style="background-color: rgb(255, 128, 0)"></div>
+      <dl class="rgb-values"><div><dt>RGB values</dt><dd id="rgb-decimal">rgb(255, 128, 0)</dd></div><div><dt>Hex colour</dt><dd id="rgb-hex">#FF8000</dd></div></dl>
+      <figure class="rgb-mixing-figure figure"><svg id="rgb-mixing" viewbox="0 0 320 235" role="img" aria-labelledby="rgb-mixing-title rgb-mixing-description"><title id="rgb-mixing-title">Additive colour mixing</title><desc id="rgb-mixing-description">Overlapping red, green and blue circles. The centre combines all three channels.</desc><rect width="320" height="235" rx="8" fill="#101820"></rect><g class="rgb-lights"><rect width="320" height="235" rx="8" fill="black"></rect><circle data-light="red" cx="123" cy="91" r="69" fill="rgb(255,0,0)"></circle><circle data-light="green" cx="197" cy="91" r="69" fill="rgb(0,128,0)"></circle><circle data-light="blue" cx="160" cy="155" r="69" fill="rgb(0,0,0)"></circle></g><g class="rgb-circle-labels"><text x="48" y="35">R</text><text x="272" y="35">G</text><text x="252" y="216">B</text></g></svg><figcaption>The centre mixes all three channels.</figcaption></figure>
+    </div>
+  </div>
+  <div class="demo-presets" aria-label="Example colours"><button type="button" data-colour="255,0,0">Red</button><button type="button" data-colour="0,255,0">Green</button><button type="button" data-colour="0,0,255">Blue</button><button type="button" data-colour="255,255,0">Yellow</button><button type="button" data-colour="0,255,255">Cyan</button><button type="button" data-colour="255,0,255">Magenta</button><button type="button" data-colour="255,255,255">White</button><button type="button" data-colour="0,0,0">Off</button></div>
+  <div class="rgb-code"><p>Use these values with the <code>strip</code> object in the example below:</p><pre><code id="rgb-code">strip.setLedColorData(0, 255, 128, 0);
+strip.show();</code></pre></div>
+  <details class="demo-explanation"><summary>Why do red and green make yellow?</summary><p>These controls mix light. Red and green together produce yellow; green and blue produce cyan; red and blue produce magenta. Equal channel values make greys, from black at 0 to white at 255. With 256 values per channel, there are 256³ = 16,777,216 RGB combinations.</p></details>
+  <p class="demo-note">This is a screen preview. A physical LED has different colour and brightness characteristics. The example's <code>setBrightness()</code> setting also affects the LED output; this preview uses the RGB values directly.</p>
+  <div class="demo-footer"><p><strong>Try:</strong> Make yellow using only two channels. Then make white and lower all three channels equally.</p><button type="button" data-reset="">Reset</button></div>
+  <noscript><p>Enable JavaScript to use the mixer. Red (255, 0, 0) plus green (0, 255, 0) gives yellow (255, 255, 0).</p></noscript>
+</div>
 <button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#rgbino" aria-expanded="false" aria-controls="rgbino">
     <i class="bi bi-toggles"></i> Toggle code
     </button>

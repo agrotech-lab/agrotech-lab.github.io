@@ -15,8 +15,8 @@ Use SVG for plots. Check the maths, endpoints, keyboard use, mobile layout,
 and enlarged classroom view before publishing. Explain idealisations beside
 the demo; do not imply that simulated values are calibrated measurements.
 
-Current batch: Electronics Class 2
----------------------------------
+Completed batch 1: Electronics Class 2
+-------------------------------------
 Source: tutorials/electronics-class-2.qmd
 Includes: _includes/adc-demo.qmd, _includes/pwm-demo.qmd
 Shared style: assets/teaching-demos.css
@@ -41,15 +41,15 @@ Small repairs necessary for this batch:
 - Fix the existing missing button-digitalread.ino include to the actual
   archive/code/button-digitalread-flash.ino so the lesson renders.
 
-Next batch (recommended): RGB and deep sleep
-------------------------------------------
-[ ] RGB mixer — tutorials/RGB.qmd
+Batch 2: RGB and deep sleep
+--------------------------
+[verified] RGB mixer — tutorials/RGB.qmd
     Three 0-255 sliders, colour swatch, decimal RGB and hexadecimal values,
     and presets. Keep the current LED example. Explain that screen colours
     and a physical addressable LED do not have identical brightness/gamma.
     Teaching question: which channels make yellow, cyan, and white?
 
-[ ] Battery-life calculator — tutorials/deep_sleep.qmd
+[verified] Battery-life calculator — tutorials/deep_sleep.qmd
     Active/sleep current, duration, and usable battery capacity; show weighted
     average current, estimated runtime, and contributions to energy use.
     Make mA vs microamp units explicit. Use editable, labelled example values,
@@ -57,6 +57,31 @@ Next batch (recommended): RGB and deep sleep
     wake-up work; model is an estimate, not a battery discharge simulation.
     Teaching question: does a shorter wake time or lower sleep current help
     more for this duty cycle?
+
+Includes: _includes/rgb-demo.qmd, _includes/sleep-demo.qmd
+Assets: assets/rgb-sleep-demos.js, assets/rgb-sleep-demos.css, plus the existing
+assets/teaching-demos.css. These demos do not change the ADC/PWM assets.
+RGB includes eight presets, a colour swatch, an additive mixing diagram,
+decimal and hex readouts, and a snippet using the existing strip object.
+The physical LED also depends on its brightness setting and colour response;
+the preview displays RGB values directly rather than modelling LED hardware.
+
+The battery model uses average TOTAL BATTERY-SIDE current in each state,
+not bare-chip current or 3.3 V rail current mixed with battery-rated mAh.
+Sleep time is additional to awake time. Usable capacity is an editable
+fraction of nominal capacity. Regulator/sensor current and wake-up work must
+be included in the measured inputs. Self-discharge, temperature and changing
+battery voltage are not modelled, so long runtime estimates are optimistic.
+Compare time fraction with charge fraction; at the defaults, 3.3% awake time
+accounts for 98.2% of charge used. No-sleep and 1-/5-minute timing presets.
+
+Two short corrections beside the calculator: board components also draw
+current; RTC-retained variables survive deep sleep, while ordinary RAM and
+peripheral state do not, and wake-up restarts the application.
+Reference: https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/system/sleep_modes.html
+Library: https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32
+
+Next recommended pair: Ohm's law/LED resistor and voltage divider below.
 
 Following batches, in suggested order
 ------------------------------------
@@ -88,6 +113,7 @@ Following batches, in suggested order
     display wet-bulb temperature and predicted outlet temperature. Validate
     against the existing psychrolib calculation before porting any equations.
     Show physical ranges and assumptions; preserve the Python example.
+    Can be demoted
 
 [ ] MQTT topic sandbox — tutorials/MQTT.qmd
     Local simulation of publishers, subscribers, topic filters and payloads.
@@ -97,6 +123,7 @@ Following batches, in suggested order
     Rain/irrigation, evapotranspiration and drainage inputs over time; show
     storage changes with consistent area/depth/volume units and bounds.
     Penman-Monteith is a later, larger task requiring careful unit validation.
+    Can be demoted
 
 Cross-page and content notes
 ----------------------------
@@ -140,7 +167,7 @@ theme/library migration. Never copy this notes directory into docs/.
 [x] Check calculations, endpoints, controls, keyboard access and reset.
 [x] Check desktop/mobile layout and enlarged view in a browser.
 
-Verification on 2026-10-19: 35 browser checks passed in installed Chrome,
+Batch 1 verification on 2026-10-19: 35 browser checks passed in installed Chrome,
 including an ADC sweep across 2-12 bits, PWM frequency/duty combinations,
 invalid numeric input, both resets, keyboard input, full-width graphs,
 side-by-side classroom views, and 390px mobile layout without widget overflow.
@@ -148,6 +175,19 @@ Screenshots inspected. No uncaught JavaScript exceptions. Existing external
 polyfill request failure noted above. Firefox/Safari were not tested.
 Only the lesson's four search records changed; source and published assets
 match; maintainer notes are absent from docs/ and site search.
+
+Batch 2 verification on 2026-10-19: 48 browser checks passed in installed
+Chrome. Checked all eight RGB presets, additive-mixing diagram, hex padding,
+LED snippet argument order, numeric input limits, keyboard use and reset.
+Battery checks include hand-calculated defaults, microamp conversion, zero
+sleep time/current, equal state currents, higher sleep current, capacity
+scaling, the classroom comparison, and extreme input values. Short runtimes
+use minutes; tiny average currents use microamps instead of rounding to zero.
+Both demos have enlarged classroom layouts and fit 390px and 320px mobile
+screens. Screenshots inspected; no console errors or uncaught exceptions.
+No Firefox/Safari verification. Existing code downloads, navigation, titles,
+and TOC remain intact. Only the two relevant search entries changed. New
+assets match their source, and the notes remain outside the published site.
 
 After pushing each batch, check the GitHub Pages deployment and live page and
 asset contents before reporting publication complete.

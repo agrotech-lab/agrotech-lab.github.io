@@ -8,6 +8,13 @@ jupyter: python3
 
 The ESP32 board we are using has an built in RGB LED on pin `D8`. The following code is an example of how to use it. Please note that it requires the installation of the `"Freenove_WS2812_Lib_for_ESP32.h"` library. It can be found in the Arduino IDE library manager or downloaded from [the github repository](https://github.com/Freenove/Freenove_WS2812_Lib_for_ESP32). If you are not sure how to install a library follow our [guide](/tutorials/libraries.html).
 
+```{=html}
+<link rel="stylesheet" href="../assets/teaching-demos.css">
+<link rel="stylesheet" href="../assets/rgb-sleep-demos.css">
+<script src="../assets/rgb-sleep-demos.js" defer></script>
+```
+
+{{< include ../_includes/rgb-demo.qmd >}}
 
 ```{python}
 #| echo: false

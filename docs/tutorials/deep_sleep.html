@@ -559,6 +559,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+
 <!-- ---
 title: ""
 echo: false
@@ -570,9 +571,9 @@ section-divs: false
 <h2 data-number="22.1" class="anchored" data-anchor-id="key-features-of-deep-sleep"><span class="header-section-number">22.1</span> Key Features of Deep Sleep</h2>
 <ol type="1">
 <li><strong>Low Power Consumption:</strong><br>
-In deep sleep mode, the ESP32 consumes only a few microamps of current, drastically reducing power usage compared to its normal operating modes.</li>
+Deep sleep drastically reduces the chip’s power use. The current of a complete board also includes its regulators, LEDs and connected sensors.</li>
 <li><strong>Preservation of Data:</strong><br>
-The ESP32 can save the state of its peripherals and the values of certain variables in RTC (Real-Time Clock) memory, which is retained during deep sleep. This allows the microcontroller to resume tasks efficiently upon waking up.</li>
+Variables explicitly placed in RTC (Real-Time Clock) memory can be retained during deep sleep. Waking restarts the application; ordinary RAM and peripheral state are not preserved.</li>
 <li><strong>Wake-Up Sources:</strong><br>
 The ESP32 can be awakened from deep sleep by various events:
 <ul>
@@ -587,6 +588,35 @@ The ESP32 can be awakened from deep sleep by various events:
 <li>IoT Devices: Devices that need to conserve power, such as remote weather stations or smart home devices, can use deep sleep to extend battery life.</li>
 </ul></li>
 </ol>
+<link rel="stylesheet" href="../assets/teaching-demos.css">
+<link rel="stylesheet" href="../assets/rgb-sleep-demos.css">
+<script src="../assets/rgb-sleep-demos.js" defer=""></script>
+<div class="teaching-demo" id="sleep-calculator" data-demo="sleep" role="region" aria-labelledby="sleep-demo-title">
+  <div class="demo-heading"><div><p class="demo-eyebrow">Try it · A battery budget</p><h3 id="sleep-demo-title" class="unnumbered anchored">What uses the battery while you sleep?</h3></div><button type="button" data-fullscreen="" hidden="">Enlarge demo</button></div>
+  <p>Change the current and time spent in each state. Compare the share of time spent awake with its share of the battery charge used.</p>
+  <div class="sleep-workbench">
+    <div class="sleep-inputs">
+      <div class="sleep-control"><label for="sleep-active-current">Awake current <span>(mA)</span></label><input id="sleep-active-current-number" type="number" aria-label="Average total battery current while awake, milliamps" min="1" max="500" step="1" value="80"><input id="sleep-active-current" type="range" min="1" max="500" step="1" value="80"></div>
+      <div class="sleep-control"><label for="sleep-idle-current">Sleep current <span>(µA)</span></label><input id="sleep-idle-current-number" type="number" aria-label="Total battery current while asleep, microamps" min="0" max="5000" step="1" value="50"><input id="sleep-idle-current" type="range" min="0" max="5000" step="1" value="50"></div>
+      <div class="sleep-control"><label for="sleep-active-time">Time awake <span>(s)</span></label><input id="sleep-active-time-number" type="number" aria-label="Time awake per cycle, seconds" min="0.1" max="60" step="0.1" value="2"><input id="sleep-active-time" type="range" min="0.1" max="60" step="0.1" value="2"></div>
+      <div class="sleep-control"><label for="sleep-idle-time">Time asleep <span>(s)</span></label><input id="sleep-idle-time-number" type="number" aria-label="Time asleep per cycle, seconds" min="0" max="3600" step="1" value="58"><input id="sleep-idle-time" type="range" min="0" max="3600" step="1" value="58"></div>
+      <div class="sleep-control"><label for="sleep-capacity">Battery capacity <span>(mAh)</span></label><input id="sleep-capacity-number" type="number" aria-label="Rated battery capacity, milliamp hours" min="100" max="10000" step="1" value="2000"><input id="sleep-capacity" type="range" min="100" max="10000" step="1" value="2000"></div>
+      <div class="sleep-control"><label for="sleep-usable">Usable capacity <span>(%)</span></label><input id="sleep-usable-number" type="number" aria-label="Usable fraction of rated battery capacity, percent" min="10" max="100" step="1" value="80"><input id="sleep-usable" type="range" min="10" max="100" step="1" value="80"></div>
+    </div>
+    <div class="sleep-results">
+      <dl class="demo-stats"><div><dt>Average current</dt><dd id="sleep-average">2.715 mA</dd></div><div><dt>Estimated runtime</dt><dd id="sleep-runtime">24.6 days</dd></div><div><dt>Runtime vs always awake</dt><dd id="sleep-gain">29.5×</dd></div></dl>
+      <p id="sleep-budget" class="sleep-budget">1,600 mAh usable · 589.3 hours estimated. Always awake: 20.0 hours.</p>
+      <figure class="demo-plot sleep-breakdown figure"><svg id="sleep-plot" viewbox="0 0 600 245" role="img" aria-labelledby="sleep-plot-title sleep-plot-description"><title id="sleep-plot-title">Time and battery charge per cycle</title><desc id="sleep-plot-description">Awake for 3.3 percent of the time, using 98.2 percent of the charge.</desc><text x="18" y="24">Time per cycle</text><rect x="18" y="38" width="564" height="32" rx="3" class="sleep-bar-idle"></rect><rect id="sleep-time-bar" x="18" y="38" width="18.8" height="32" class="sleep-bar-active"></rect><text id="sleep-time-label" x="18" y="96">Awake 3.3% · asleep 96.7%</text><text x="18" y="145">Battery charge per cycle</text><rect x="18" y="159" width="564" height="32" rx="3" class="sleep-bar-idle"></rect><rect id="sleep-charge-bar" x="18" y="159" width="554" height="32" class="sleep-bar-active"></rect><text id="sleep-charge-label" x="18" y="217">Awake 98.2% · asleep 1.8%</text></svg><figcaption><span class="sleep-legend-active">Orange: awake</span><span class="sleep-legend-idle">Blue: asleep</span></figcaption></figure>
+      <p id="sleep-cycle" class="sleep-cycle">One cycle = 2 s awake + 58 s asleep = 60 s.</p>
+    </div>
+  </div>
+  <div class="demo-presets" aria-label="Example timing schedules"><button type="button" data-timing="2,58">1-minute cycle</button><button type="button" data-timing="2,298">5-minute cycle</button><button type="button" data-timing="2,0">No sleep</button></div>
+  <p class="demo-formula" id="sleep-formula">Iavg = (80 × 2 + 0.05 × 58) / 60 = 2.715 mA</p>
+  <details class="demo-explanation"><summary>How is battery life estimated?</summary><p>Average current = (awake current × awake time + sleep current × sleep time) / total cycle time. Convert µA to mA first: 1,000 µA = 1 mA. Usable capacity = rated capacity × usable fraction; runtime in hours = usable mAh / average mA.</p><p>The currents must be measured at the battery, including the board, sensors and regulator losses. The awake value is the average over the whole wake-up, measurement and transmission period. Sleep time is additional to awake time. This simple model excludes self-discharge, temperature and changing battery voltage, so very long runtimes are especially optimistic.</p></details>
+  <p class="demo-note">The defaults are illustrative, not measurements of the course board. Use measured total battery-side currents for your own project. Hardware configuration matters; see the <a href="https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/system/sleep_modes.html">ESP32 sleep-mode documentation</a>.</p>
+  <div class="demo-footer"><p><strong>Try:</strong> Halve the awake time. Reset, then halve the sleep current. Which saves more with these example values?</p><button type="button" data-reset="">Reset</button></div>
+  <noscript><p>Enable JavaScript to use the calculator. With the example values, average current is 2.715 mA and 1,600 usable mAh gives about 24.6 days.</p></noscript>
+</div>
 </section>
 <section id="deep-sleep-code" class="level2" data-number="22.2">
 <h2 data-number="22.2" class="anchored" data-anchor-id="deep-sleep-code"><span class="header-section-number">22.2</span> Deep Sleep code</h2>
@@ -797,11 +827,11 @@ The ESP32 can be awakened from deep sleep by various events:
 <span id="cb3-21"><a href="#cb3-21"></a>  delay<span class="op">(</span><span class="dv">2000</span><span class="op">);</span></span>
 <span id="cb3-22"><a href="#cb3-22"></a></span>
 <span id="cb3-23"><a href="#cb3-23"></a>  <span class="co">// Open Preferences in RW mode</span></span>
-<span id="cb3-24"><a href="#cb3-24"></a>  preferences<span class="op">.</span>begin<span class="op">(</span><span class="st">"my-app"</span><span class="op">,</span> false<span class="op">);</span> <span class="co">// "my-app" is the namespace, false = read/write mode</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a>  preferences<span class="op">.</span>begin<span class="op">(</span><span class="st">"my-app"</span><span class="op">,</span> <span class="kw">false</span><span class="op">);</span> <span class="co">// "my-app" is the namespace, false = read/write mode</span></span>
 <span id="cb3-25"><a href="#cb3-25"></a></span>
 <span id="cb3-26"><a href="#cb3-26"></a>  <span class="co">// Retrieve stored values</span></span>
 <span id="cb3-27"><a href="#cb3-27"></a>  <span class="dt">int</span> storedInt <span class="op">=</span> preferences<span class="op">.</span>getInt<span class="op">(</span><span class="st">"myInt"</span><span class="op">,</span> <span class="dv">0</span><span class="op">);</span>      <span class="co">// Default value is 0 if not set</span></span>
-<span id="cb3-28"><a href="#cb3-28"></a>  <span class="dt">float</span> storedFloat <span class="op">=</span> preferences<span class="op">.</span>getFloat<span class="op">(</span><span class="st">"myFloat"</span><span class="op">,</span> <span class="dv">0</span><span class="er">.0</span><span class="op">);</span> <span class="co">// Default is 0.0</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a>  <span class="dt">float</span> storedFloat <span class="op">=</span> preferences<span class="op">.</span>getFloat<span class="op">(</span><span class="st">"myFloat"</span><span class="op">,</span> <span class="fl">0.0</span><span class="op">);</span> <span class="co">// Default is 0.0</span></span>
 <span id="cb3-29"><a href="#cb3-29"></a>  String storedString <span class="op">=</span> preferences<span class="op">.</span>getString<span class="op">(</span><span class="st">"myString"</span><span class="op">,</span> <span class="st">"Default"</span><span class="op">);</span></span>
 <span id="cb3-30"><a href="#cb3-30"></a></span>
 <span id="cb3-31"><a href="#cb3-31"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Retrieved values from flash:"</span><span class="op">);</span></span>
