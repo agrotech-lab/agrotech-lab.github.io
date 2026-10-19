@@ -109,6 +109,41 @@ One zero resistor is allowed; both zero is an undefined ratio. Outputs above
 3.3 V show "Out of range" instead of a clipped ideal ADC code. The ADC model
 is the same uniform-bin model used in batch 1, not a real GPIO voltage rating.
 
+Completed batch 4: breadboard connections
+----------------------------------------
+[verified] Breadboard explorer — tutorials/breadboard.qmd
+    Prioritised at the user's request. Click a hole to reveal its connected
+    group; add/remove jumper wires; test two holes for continuity. Show the
+    metal strips, centre gap, separate rails and switchable halfway breaks.
+    Four classroom examples, reset and enlarged view. Preserve both original
+    photographs/diagrams and tutorial links. Correct the original statement
+    that implied all holes across a numbered row shared a connection.
+
+Include: _includes/breadboard-demo.qmd
+Assets: assets/breadboard-demo.js and assets/breadboard-demo.css, plus the
+existing shared teaching-demos.css. No changes to previous demo bundles.
+The shortened board has 10 numbered rows, two five-hole terminal strips per
+row and four side rails. In split mode, each rail has two groups of five;
+in continuous mode each rail has ten connected holes. Actual boards vary.
+Connectivity is a graph of metal strips and jumper endpoints. Wire crossings
+and passing over intermediate holes never create connections. Each hole can
+hold one jumper endpoint; up to 12 jumpers keep examples manageable. Same-strip
+jumpers are allowed and explain why they add no new connection. This is a
+connectivity model without power sources, component or current simulation.
+
+Keyboard: one tab stop among the holes, arrow navigation and Enter/Space to
+choose; Escape or a button cancels a pending endpoint. All hole names, attached
+jumpers, selection and probes have accessible labels. Continuity results are
+announced. Small screens scroll the board locally to retain usable targets.
+Controls appear before the board in the page and beside it when enlarged.
+
+References checked:
+https://learn.adafruit.com/breadboards-for-beginners/breadboards
+https://learn.adafruit.com/breadboards-for-beginners/breadboard-tips-and-tricks
+Five-hole terminal strips, separate left/right rails, and split rails checked
+against Adafruit's guide. The existing SparkFun link returned HTTP 403 to the
+reference-fetch tool; retained the user's original link.
+
 Following batches, in suggested order
 ------------------------------------
 [ ] Two-point sensor calibration — tutorials/digital-read-write.qmd
@@ -160,8 +195,8 @@ Cross-page and content notes
   Review Arduino-ESP32 version assumptions in a separate code-update batch;
   the current API uses ledcAttach and pin-based ledcWrite.
 - Installation, IDE, library and board setup pages primarily need version
-  checks, not interactive decoration. Breadboard, relay and sensor wiring
-  may later benefit from annotations, but preserve real wiring photographs.
+  checks, not interactive decoration. Relay and sensor wiring may later
+  benefit from annotations, but preserve real wiring photographs.
 - Browser verification found an existing polyfill.io request failing in the
   old page template. The new demos have no external runtime dependencies and
   still initialise correctly. Review that old template dependency as part
@@ -225,3 +260,18 @@ Existing Arduino examples, navigation, titles and TOC were preserved. All
 code downloads and new assets resolve. Only six affected search records were
 updated. No new duplicate IDs; calibration equation IDs are now unique.
 Firefox/Safari were not tested. Maintainer notes are absent from the website.
+
+Batch 4 verification on 2026-10-19: 65 checks passed in installed Chrome.
+Covered all 140 hole memberships, split/continuous rails, continuity across
+strips and rails, jumper chains, crossings without junctions, removing a
+middle jumper, redundant connections, occupied endpoints, cancellation,
+capacity limit, presets, reset and reset after horizontal scrolling. Checked
+native keyboard, mouse and emulated touch input. 390px and 320px layouts have
+no widget/page overflow; only the board scrolls sideways. Enlarged views at
+1280x1000 and 1366x768 keep board and controls visible together. Screenshots
+inspected. All controls/holes labelled, one tab stop within the board, unique
+page IDs, and no-JavaScript text fallback. No console errors or uncaught
+JavaScript exceptions. Firefox/Safari and a physical phone were not tested.
+Both original images, the page shell/navigation and previous demos remain
+intact. Only one search record changed; published assets match source.
+Maintainer notes remain absent from docs/ and the site search index.

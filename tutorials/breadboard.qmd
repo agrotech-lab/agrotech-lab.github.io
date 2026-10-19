@@ -3,12 +3,21 @@
 
 ![](https://cdn.sparkfun.com/assets/learn_tutorials/4/7/12615-02_Full_Size_Breadboard_Split_Power_Rails.jpg)
 
-A breadboard is a device used to prototype electronic circuits without the need for soldering. It consists of a plastic board with rows of holes, each of which is connected to others in the same row. In addition, there are two vertical columns on the sides of the board, which are known as the `+` and `-` rails. The `+` rail is typically used to connect positive voltage sources, while the `-` rail is used to connect negative voltage sources or the ground. When a component, such as a resistor, capacitor, or LED, is inserted into a hole on the breadboard, it makes contact with the metal strip that runs underneath the holes, which provides electrical connectivity between the components. This allows multiple components to be connected together to form a circuit. Breadboards are commonly used by hobbyists, students, and engineers to quickly prototype and test electronic circuits before they are soldered onto a printed circuit board.
+A breadboard is a device used to prototype electronic circuits without the need for soldering. It consists of a plastic board with rows of holes. In the central area, each group of five holes shares a metal strip; the centre gap separates the two groups in each numbered row. Different numbered rows are not connected. Along the sides are power rails marked `+` and `-`, typically used for the positive supply and ground. These markings do not supply power: the rails must be wired to a source. Each rail is separate, and some boards split the rails halfway along their length. When a component, such as a resistor, capacitor, or LED, is inserted into a hole on the breadboard, it makes contact with the metal strip that runs underneath the holes, which provides electrical connectivity between the components. This allows multiple components to be connected together to form a circuit. Breadboards are commonly used by hobbyists, students, and engineers to quickly prototype and test electronic circuits before they are soldered onto a printed circuit board.
+
+```{=html}
+<link rel="stylesheet" href="../assets/teaching-demos.css">
+<link rel="stylesheet" href="../assets/breadboard-demo.css">
+<script src="../assets/breadboard-demo.js" defer></script>
+```
+
+{{< include ../_includes/breadboard-demo.qmd >}}
 
 
 Very good tutorials on how to use a breadboard:
 
 * [wiring.org](https://wiring.org.co/learning/tutorials/breadboard/)
 * [sparkfun](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard/all)
+* [Adafruit: power rails and split rails](https://learn.adafruit.com/breadboards-for-beginners/breadboard-tips-and-tricks)
 
 ![breadboard wiring diagram](https://energia.nu/guide/foundations/basic_electronics_components/Sidekick_Breadboard_Internal_Connections.jpg)

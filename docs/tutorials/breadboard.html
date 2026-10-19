@@ -513,17 +513,68 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+
 <p><img src="https://cdn.sparkfun.com/assets/learn_tutorials/4/7/12615-02_Full_Size_Breadboard_Split_Power_Rails.jpg" class="img-fluid"></p>
-<p>A breadboard is a device used to prototype electronic circuits without the need for soldering. It consists of a plastic board with rows of holes, each of which is connected to others in the same row. In addition, there are two vertical columns on the sides of the board, which are known as the <code>+</code> and <code>-</code> rails. The <code>+</code> rail is typically used to connect positive voltage sources, while the <code>-</code> rail is used to connect negative voltage sources or the ground. When a component, such as a resistor, capacitor, or LED, is inserted into a hole on the breadboard, it makes contact with the metal strip that runs underneath the holes, which provides electrical connectivity between the components. This allows multiple components to be connected together to form a circuit. Breadboards are commonly used by hobbyists, students, and engineers to quickly prototype and test electronic circuits before they are soldered onto a printed circuit board.</p>
+<p>A breadboard is a device used to prototype electronic circuits without the need for soldering. It consists of a plastic board with rows of holes. In the central area, each group of five holes shares a metal strip; the centre gap separates the two groups in each numbered row. Different numbered rows are not connected. Along the sides are power rails marked <code>+</code> and <code>-</code>, typically used for the positive supply and ground. These markings do not supply power: the rails must be wired to a source. Each rail is separate, and some boards split the rails halfway along their length. When a component, such as a resistor, capacitor, or LED, is inserted into a hole on the breadboard, it makes contact with the metal strip that runs underneath the holes, which provides electrical connectivity between the components. This allows multiple components to be connected together to form a circuit. Breadboards are commonly used by hobbyists, students, and engineers to quickly prototype and test electronic circuits before they are soldered onto a printed circuit board.</p>
+<link rel="stylesheet" href="../assets/teaching-demos.css">
+<link rel="stylesheet" href="../assets/breadboard-demo.css">
+<script src="../assets/breadboard-demo.js" defer=""></script>
+<div class="teaching-demo" id="breadboard-explorer" data-demo="breadboard" role="region" aria-labelledby="breadboard-demo-title">
+  <div class="demo-heading"><div><p class="demo-eyebrow">Try it · Follow the hidden connections</p><h3 id="breadboard-demo-title" class="unnumbered anchored">Which holes are connected?</h3></div><button type="button" data-fullscreen="" hidden="">Enlarge demo</button></div>
+  <p>Click a hole to reveal every hole connected to it. Add a jumper to join two groups, or test a pair of holes for continuity.</p>
+  <div class="breadboard-workbench" hidden="">
+    <div class="breadboard-controls">
+      <div>
+        <label for="breadboard-mode">What do you want to do?</label>
+        <select id="breadboard-mode"><option value="inspect">Inspect connections</option><option value="wire">Add a jumper wire</option><option value="test">Test two holes</option></select>
+        <p id="breadboard-instruction">Choose a hole to highlight its connected group.</p>
+        <button type="button" id="breadboard-cancel" hidden="">Cancel first endpoint</button>
+      </div>
+      <div class="breadboard-options">
+        <label><input type="checkbox" id="breadboard-metal" checked=""> Show metal strips</label>
+        <label><input type="checkbox" id="breadboard-split" checked=""> Split power rails halfway</label>
+      </div>
+    </div>
+    <div class="breadboard-view">
+      <div class="breadboard-scroll" tabindex="0" role="group" aria-label="Interactive breadboard" aria-describedby="breadboard-keyboard">
+        <div class="breadboard-board" id="breadboard-board">
+          <svg viewbox="0 0 696 484" aria-hidden="true" focusable="false">
+            <rect x="2" y="2" width="692" height="480" rx="18" class="bb-body"></rect>
+            <rect x="111" y="44" width="474" height="406" rx="12" class="bb-terminal-area"></rect>
+            <rect x="328" y="70" width="40" height="358" rx="10" class="bb-trench"></rect>
+            <g id="breadboard-markings"></g>
+            <g id="breadboard-strips"></g>
+            <g id="breadboard-wires"></g>
+          </svg>
+          <div id="breadboard-holes" role="group" aria-label="Breadboard holes"></div>
+        </div>
+      </div>
+      <p class="breadboard-legend"><span><i class="bb-key-connected"></i>Connected group</span><span><i class="bb-key-selected"></i>Selected hole / probe A</span><span><b>B</b> Second probe</span></p>
+      <p id="breadboard-keyboard" class="demo-note">Keyboard: Tab to the board, then to a hole; use arrow keys to move and Enter or Space to select. Escape cancels a first endpoint. On a small screen, scroll the board sideways.</p>
+    </div>
+      <div class="breadboard-reading" role="status" aria-live="polite" aria-atomic="true">
+        <strong id="breadboard-result">a3 · 5 connected holes</strong>
+        <p id="breadboard-detail">a3–e3 share one metal strip.</p>
+        <p id="breadboard-action"></p>
+      </div>
+      <div class="breadboard-jumpers"><div class="breadboard-jumper-heading"><strong>Jumper wires <span id="breadboard-wire-count">(0)</span></strong><button type="button" id="breadboard-clear" disabled="">Clear wires</button></div><p id="breadboard-empty" class="demo-note">No jumpers yet. Wires connect only at their ends; crossing wires do not join.</p><ol id="breadboard-wire-list" aria-label="Jumper wires"></ol></div>
+  </div>
+  <div class="breadboard-examples" hidden=""><p><strong>Load an example</strong> <span class="demo-note">(replaces your jumpers)</span></p><div class="demo-presets"><button type="button" data-breadboard-example="row">Five-hole row</button><button type="button" data-breadboard-example="gap">Across the gap</button><button type="button" data-breadboard-example="bridge">Bridge the gap</button><button type="button" data-breadboard-example="rail">Split rail</button></div></div>
+  <details class="demo-explanation"><summary>What is connected inside a breadboard?</summary><p>For each numbered row, a–e form one group of five and f–j form another. The centre gap separates the two groups. The next numbered row is a different group, even within the same lettered column.</p><p>Each side rail runs lengthwise, separately from the other rails. On a board with split rails, the upper and lower sections are separate too; a jumper can join them. Actual boards vary: check continuity on your unpowered board with a multimeter.</p></details>
+  <p class="demo-note">A shortened, 10-row teaching model. The + and − marks are labels, not voltage sources. This demo models metal connections and ideal jumper wires, not component behaviour, voltage or current. Each hole accepts one jumper end.</p>
+  <div class="demo-footer"><span><strong>Try this:</strong> Test a3 and j3. Add a jumper from e3 to f3, then test again. What changed?</span><button type="button" data-reset="" hidden="">Reset</button></div>
+  <noscript><p>Enable JavaScript to use the breadboard controls. The explanation above and the wiring diagram below show the internal connections.</p></noscript>
+</div>
 <p>Very good tutorials on how to use a breadboard:</p>
 <ul>
 <li><a href="https://wiring.org.co/learning/tutorials/breadboard/">wiring.org</a></li>
 <li><a href="https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard/all">sparkfun</a></li>
+<li><a href="https://learn.adafruit.com/breadboards-for-beginners/breadboard-tips-and-tricks">Adafruit: power rails and split rails</a></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://energia.nu/guide/foundations/basic_electronics_components/Sidekick_Breadboard_Internal_Connections.jpg" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">breadboard wiring diagram</figcaption>
+<figcaption>breadboard wiring diagram</figcaption>
 </figure>
 </div>
 
