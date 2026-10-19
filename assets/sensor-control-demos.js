@@ -92,85 +92,73 @@
     root.querySelector('[data-reset]').addEventListener('click', () => reset());
     update();
   }
-  function hysteresis(root) {
-    const get = name => el(root, `hysteresis-${name}`), set = (name, value) => text(get(name), value);
-    const temperature = pair(root, 'hysteresis-temperature', () => { sample(); render(); }, 'degrees Celsius');
-    const on = pair(root, 'hysteresis-on', restart, 'degrees Celsius');
-    const width = pair(root, 'hysteresis-width', restart, 'degrees Celsius');
-    let history = [], single = false, memory = false, singleCount = 0, memoryCount = 0, total = 0, noiseIndex = 0;
-    // Integer tenths make comparisons at the displayed thresholds exact.
+  function fanControl(root) {
+    const get = name => el(root, `fan-${name}`), set = (name, value) => text(get(name), value);
+    const temperature = pair(root, 'fan-temperature', () => { sample(); render(); }, 'degrees Celsius');
+    const on = pair(root, 'fan-on', restart, 'degrees Celsius');
+    const off = pair(root, 'fan-off', restart, 'degrees Celsius');
+    let history = [], running = false, total = 0;
+    // Integer tenths keep comparisons exact at the temperatures shown.
     const units = value => Math.round(value * 10);
-    const thresholds = () => ({ high: units(on.value), low: units(on.value) - units(width.value) });
-    function sample(initial = false) {
-      const t = units(temperature.value), { high, low } = thresholds();
-      const oldSingle = single, oldMemory = memory;
-      single = t >= high;
-      // The ON comparison takes precedence at zero band width.
-      if (t >= high) memory = true; else if (t <= low) memory = false;
-      if (!initial) { if (single !== oldSingle) singleCount++; if (memory !== oldMemory) memoryCount++; }
-      history.push({ t: t / 10, single, memory, n: ++total });
+    function sample() {
+      const t = units(temperature.value);
+      if (t >= units(on.value)) running = true;
+      else if (t <= units(off.value)) running = false;
+      history.push({ t: t / 10, running, n: ++total });
       if (history.length > 48) history.shift();
     }
-    function clear() { history = []; total = 0; singleCount = 0; memoryCount = 0; single = false; memory = false; noiseIndex = 0; }
-    function restart() { clear(); sample(true); render(); }
-    function render() {
-      const { high, low } = thresholds(), t = units(temperature.value);
-      for (const [name, state, count] of [['single', single, singleCount], ['memory', memory, memoryCount]]) {
-        set(`${name}-state`, state ? 'ON' : 'OFF'); set(`${name}-count`, `${count} ${count === 1 ? 'switch' : 'switches'}`);
-        get(`${name}-card`).dataset.state = state ? 'on' : 'off';
+    function bounds(onMin, offMax) {
+      for (const suffix of ['', '-number']) {
+        get(`on${suffix}`).min = onMin;
+        get(`off${suffix}`).max = offMax;
       }
-      set('rule', width.value === 0 ? `Zero band: both fans are ON at T ≥ ${fixed(on.value)}°C and OFF below it.` : `ON at T ≥ ${fixed(high / 10)}°C; OFF at T ≤ ${fixed(low / 10)}°C. Between them, keep the previous state.`);
-      const explanation = t >= high ? 'At or above the ON threshold' : t <= low ? 'At or below the OFF threshold' : 'Inside the band: retaining the previous state';
-      set('status', `${fixed(temperature.value)}°C · ${width.value === 0 ? 'Zero band: both controllers use the same threshold' : explanation}. The hysteresis fan is ${memory ? 'ON' : 'OFF'}.`);
-      set('history-note', `Reading ${total}. ${total > 48 ? 'Showing the last 48 readings. ' : ''}Switch counts are since the trace began; the horizontal axis is reading number, not elapsed time.`);
-      root.querySelectorAll('[data-hysteresis-example=below], [data-hysteresis-example=above]').forEach(button => { button.disabled = width.value === 0; button.title = width.value === 0 ? 'Choose a nonzero band to compare its two possible states.' : ''; });
-      set('plot-description', `${history.length} displayed readings. Current temperature ${fixed(temperature.value)} degrees. Single-threshold fan ${single ? 'on' : 'off'}, ${singleCount} switches. Hysteresis fan ${memory ? 'on' : 'off'}, ${memoryCount} switches. On threshold ${fixed(high / 10)}, off threshold ${fixed(low / 10)} degrees.`);
-      draw(high / 10, low / 10);
     }
-    function draw(high, low) {
+    function restart() {
+      bounds(off.value, on.value);
+      history = []; total = 0; running = false;
+      sample(); render();
+    }
+    function render() {
+      set('state', running ? 'ON' : 'OFF');
+      get('card').dataset.state = running ? 'on' : 'off';
+      set('rule', on.value === off.value ? `Turn on at ${fixed(on.value)}°C or warmer. Turn off below ${fixed(off.value)}°C.` : `Turn on at ${fixed(on.value)}°C or warmer. Turn off at ${fixed(off.value)}°C or cooler.`);
+      set('status', `${fixed(temperature.value)}°C: the fan is ${running ? 'on' : 'off'}.`);
+      set('history-note', `Reading ${total}.${total > 48 ? ' Showing the last 48 readings.' : ''}`);
+      set('plot-description', `${history.length} displayed readings. Current temperature ${fixed(temperature.value)} degrees Celsius. The fan is ${running ? 'on' : 'off'}. ${get('rule').textContent}`);
+      draw();
+    }
+    function draw() {
       const axes = get('axes'), traces = get('traces'); axes.replaceChildren(); traces.replaceChildren();
-      const temps = history.map(point => point.t), ymin = Math.min(low - 2, ...temps.map(t => t - 1)), ymax = Math.max(high + 2, ...temps.map(t => t + 1));
-      const py = t => 220 - (t - ymin) / (ymax - ymin) * 175, cell = 515 / history.length, px = i => 85 + (i + .5) * cell;
+      const temps = history.map(point => point.t), ymin = Math.min(off.value - 2, ...temps.map(t => t - 1)), ymax = Math.max(on.value + 2, ...temps.map(t => t + 1));
+      const py = t => 190 - (t - ymin) / (ymax - ymin) * 145, cell = 515 / history.length, px = i => 85 + (i + .5) * cell;
       const label = (x, y, value, attributes = {}) => axes.append(svg('text', { x, y, ...attributes }, value));
-      axes.append(svg('rect', { x: 85, y: py(high), width: 515, height: py(low) - py(high), class: 'hysteresis-band' }));
+      axes.append(svg('rect', { x: 85, y: py(on.value), width: 515, height: py(off.value) - py(on.value), class: 'fan-between' }));
       for (let n = 0; n <= 2; n++) {
         const t = ymin + n / 2 * (ymax - ymin), yy = py(t);
         axes.append(svg('line', { x1: 85, x2: 600, y1: yy, y2: yy, class: 'demo-gridline' }));
         label(75, yy + 6, fixed(t), { 'text-anchor': 'end' });
       }
-      [high, low].forEach(t => axes.append(svg('line', { x1: 85, x2: 600, y1: py(t), y2: py(t), class: 'hysteresis-threshold' })));
+      [on.value, off.value].forEach(t => axes.append(svg('line', { x1: 85, x2: 600, y1: py(t), y2: py(t), class: 'fan-setting' })));
       label(85, 25, 'Temperature (°C)', { class: 'sensor-axis-title' });
-      label(75, 277, 'Single', { 'text-anchor': 'end' }); label(75, 329, 'Hyst.', { 'text-anchor': 'end' });
-      for (const [key, y] of [['single', 256], ['memory', 308]]) {
-        axes.append(svg('rect', { x: 85, y, width: 515, height: 25, rx: 3, class: 'hysteresis-track' }));
-        history.forEach((point, i) => { if (point[key]) traces.append(svg('rect', { x: 85 + i * cell, y, width: cell, height: 25, class: `hysteresis-${key}-on` })); });
-      }
+      label(75, 258, 'Fan', { 'text-anchor': 'end' });
+      axes.append(svg('rect', { x: 85, y: 238, width: 515, height: 25, rx: 3, class: 'fan-track' }));
+      history.forEach((point, i) => { if (point.running) traces.append(svg('rect', { x: 85 + i * cell, y: 238, width: cell, height: 25, class: 'fan-on' })); });
       const ticks = [...new Set([0, Math.floor((history.length - 1) / 2), history.length - 1])];
-      ticks.forEach(i => label(px(i), 363, history[i].n, { 'text-anchor': 'middle' }));
-      label(342, 399, 'Reading number', { 'text-anchor': 'middle', class: 'sensor-axis-title' });
-      traces.append(svg('path', { d: history.map((point, i) => `${i ? 'L' : 'M'}${px(i)},${py(point.t)}`).join(' '), class: 'hysteresis-reading' }));
+      ticks.forEach(i => label(px(i), 286, history[i].n, { 'text-anchor': 'middle' }));
+      label(342, 313, 'Reading number', { 'text-anchor': 'middle', class: 'sensor-axis-title' });
+      traces.append(svg('path', { d: history.map((point, i) => `${i ? 'L' : 'M'}${px(i)},${py(point.t)}`).join(' '), class: 'fan-reading' }));
       history.forEach((point, i) => traces.append(svg('circle', { cx: px(i), cy: py(point.t), r: history.length > 24 ? 2 : 4, fill: '#17649a' })));
     }
-    const noise = [-.2, .2, -.1, .1, -.2, .2, -.1, .1];
-    get('next').addEventListener('click', () => { temperature.set(on.value + noise[noiseIndex++ % noise.length]); sample(); render(); });
     get('clear').addEventListener('click', restart);
-    root.querySelectorAll('[data-hysteresis-example]').forEach(button => button.addEventListener('click', () => {
-      const high = on.value, low = (units(on.value) - units(width.value)) / 10, middle = (high + low) / 2;
-      let values;
-      if (button.dataset.hysteresisExample === 'cycle') values = [low - 1, middle, high, high + 1, middle, low, low - 1];
-      if (button.dataset.hysteresisExample === 'noise') values = noise.map(offset => high + offset);
-      if (button.dataset.hysteresisExample === 'below') values = [low - 1, middle];
-      if (button.dataset.hysteresisExample === 'above') values = [high + 1, middle];
-      clear(); values.forEach((value, index) => { temperature.set(value); sample(index === 0); });
-      render();
-    }));
-    root.querySelector('[data-reset]').addEventListener('click', () => { temperature.set(27); on.set(30); width.set(2); restart(); });
+    root.querySelector('[data-reset]').addEventListener('click', () => {
+      bounds(0, 50); temperature.set(27); on.set(30); off.set(28); restart();
+    });
     restart();
   }
   function start() {
-    document.querySelectorAll('[data-demo=calibration], [data-demo=hysteresis]').forEach(root => {
+    document.querySelectorAll('[data-demo=calibration], [data-demo=fan-control]').forEach(root => {
       if (root.dataset.ready) return;
-      if (root.dataset.demo === 'calibration') calibration(root); else hysteresis(root);
+      if (root.dataset.demo === 'calibration') calibration(root); else fanControl(root);
       const button = root.querySelector('[data-fullscreen]');
       if (document.fullscreenEnabled && root.requestFullscreen) {
         button.hidden = false;

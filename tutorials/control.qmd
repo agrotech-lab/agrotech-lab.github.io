@@ -156,9 +156,7 @@ code_source("sht31.ino")
 
 ### High temperature  activates fan
 
-You will receive a low-voltage fan. Build a control system that turns the fan on if temperature goes above a given threshold, e.g. 30 °C.
-
-What happens if the measured temperature keeps moving just above and below that threshold? Try separate ON and OFF thresholds, called **hysteresis**, before extending your fan controller.
+You will receive a low-voltage fan. Build a control system that turns the fan on when it gets too warm, for example at 30 °C. Choose when it should turn off again.
 
 ```{=html}
 <link rel="stylesheet" href="../assets/teaching-demos.css">

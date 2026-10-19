@@ -144,8 +144,8 @@ Five-hole terminal strips, separate left/right rails, and split rails checked
 against Adafruit's guide. The existing SparkFun link returned HTTP 403 to the
 reference-fetch tool; retained the user's original link.
 
-Completed batch 5: calibration and thermostat hysteresis
--------------------------------------------------------
+Completed batch 5: calibration and fan control
+---------------------------------------------
 [verified] Two-point sensor calibration — tutorials/digital-read-write.qmd
     Enter two measured ADC/known-angle pairs. A current-reading slider shows
     the estimated angle, slope, intercept and a live graph. Distinguish solid
@@ -153,13 +153,12 @@ Completed batch 5: calibration and thermostat hysteresis
     point-label swap; reset and enlarged classroom view. Preserve the existing
     derivation, Arduino exercise and voltage-divider explorer.
 
-[verified] Thermostat hysteresis — tutorials/control.qmd
-    Temperature, ON threshold and hysteresis-band controls. Compare the fan
-    state and switch count for a single threshold versus separate ON/OFF
-    thresholds. Readings and both fan states share a history plot. Load a
-    warm/cool cycle or noisy readings, or enter the band from below/above to
-    demonstrate two states at the same temperature. Step through noise one
-    reading at a time. Preserve relay wiring and the fan/traffic-light tasks.
+[verified] Fan on/off controls — tutorials/control.qmd#fan-control
+    Temperature, "Turn on at" and "Turn off at" controls with one fan display
+    and a history graph. Simplified at the instructor's request: no formal
+    terminology, comparison controller, preset sequences or guided examples.
+    Keep reset and enlarged classroom view. Preserve relay wiring and the
+    fan/traffic-light tasks. Old incoming demo links still work.
     Linked to the existing PWM explorer and fixed two typos in the bonus task.
 
 Includes: _includes/calibration-demo.qmd, _includes/hysteresis-demo.qmd
@@ -174,18 +173,16 @@ rescales vertically; displayed coefficients are rounded but computation uses
 full precision. Defaults are illustrative, not measured board calibration.
 Reference: https://learn.adafruit.com/calibrating-sensors/two-point-calibration
 
-Hysteresis is a cooling-fan decision model, without thermal dynamics or time
-simulation. ON when T >= upper; OFF when T <= upper minus band; otherwise
-retain state. At zero band, ON comparison takes precedence at equality and
-both controllers match. Integer tenths avoid float errors at boundaries.
-Threshold edits and clear trace start a new history, initially OFF inside
-the band (or determined by the first reading outside it). Initial state is
-not counted as a switch. Keep 48 recent readings and total switch counts
-since the trace began. X-axis is reading number, not seconds. ON means fan
-operation, not a GPIO level; the existing relay discussion remains relevant.
-Reference: https://www.ti.com/lit/ds/symlink/tmp709.pdf
-Checked hysteresis behavior in sections 7.3.1-2 and 8.2.3. The widget is an
-illustrative software controller, not an emulation of that specific device.
+The fan demo accepts temperature readings without simulating room cooling.
+ON when T >= the ON setting; OFF when T <= the OFF setting; otherwise retain
+state. If settings are equal, ON wins at equality; OFF below. Integer tenths
+keep comparisons exact. OFF cannot exceed ON; input limits stay synchronized.
+Changing settings or clearing the graph starts a new history: initially OFF
+unless the current reading reaches ON. Keep the last 48 readings; x-axis is
+reading number, not seconds. ON means fan operation, not a GPIO level; the
+existing relay discussion remains relevant. The original behavior reference
+was https://www.ti.com/lit/ds/symlink/tmp709.pdf, sections 7.3.1-2 and 8.2.3.
+This is an illustrative software controller, not an emulation of that device.
 
 Following batches, in suggested order
 ------------------------------------
@@ -330,3 +327,20 @@ Source and published assets match. Original page shell, navigation, images
 and Arduino downloads are preserved. No new duplicate IDs (the previously
 noted analog-readino duplicate remains). Only three search records changed.
 Maintainer notes remain absent from docs/ and the search index.
+
+Teaching preference (2026-10-19): Keep student-facing demos simple and use
+action-based labels. For the fan, say "Turn on at" and "Turn off at"; leave
+formal terms and guided examples for the instructor to introduce in class.
+The fan demo now has two direct temperature settings and one ON/OFF display.
+
+Fan simplification verification on 2026-10-19: 46 Chrome checks passed.
+Covered warming/cooling, exact decimal on/off settings, equal settings,
+linked input limits, invalid entries, graph clearing and setting changes,
+reset from both extremes, 48-reading history, native keyboard controls and
+plain wording in visible and accessible text. Checked 390px/320px layouts
+and enlarged 1366x768 classroom view; screenshots inspected. Calibration
+and the voltage divider still work with the shared assets. No uncaught
+JavaScript exceptions; existing polyfill.io request failure unchanged.
+Original page shell, images and downloads preserved. Only the Challenges
+search record changed. Source assets match published copies; maintainer
+notes stay outside docs/ and the search index.

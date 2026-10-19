@@ -21,22 +21,18 @@
 .sensor-status[data-state=outside], .sensor-status[data-state=invalid] { background: #fff2df; border-color: #a9580a; }
 .sensor-control input[aria-invalid=true], .calibration-points input[aria-invalid=true] { outline: 2px solid #a9580a; }
 .sensor-rule { font-size: .9rem; padding: .65rem .85rem; background: #eaf2f8; border-radius: 6px; }
-.fan-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
 .fan-card { border: 1px solid #c8d8e2; border-radius: 8px; padding: .7rem; background: #fff; }
 .fan-card[data-state=on] { background: #e4f3eb; border-color: #6ba48c; }
 .fan-card p { margin: 0 0 .2rem; font-size: .9rem; }
 .fan-card strong { display: block; font-size: 1.6rem; }
 .fan-card[data-state=on] strong { color: #076347; }
 .fan-card span { display: block; font-size: .85rem; }
-.hysteresis-examples { margin: 1rem 0; }
-.hysteresis-examples p { margin-bottom: .4rem; }
-.hysteresis-band { fill: #e5efe8; }
-.hysteresis-threshold { stroke: #8b5819; stroke-dasharray: 6 4; stroke-width: 1.5; }
-.hysteresis-reading { stroke: #17649a; stroke-width: 3; fill: none; }
-.hysteresis-track { fill: #f0f3f5; stroke: #bdcbd5; }
-.hysteresis-single-on { fill: #576f80; }
-.hysteresis-memory-on { fill: #18765b; }
-.teaching-demo[data-demo=calibration]:fullscreen, .teaching-demo[data-demo=hysteresis]:fullscreen { display: block; padding: 1.25rem 2rem; }
+.fan-between { fill: #e5efe8; }
+.fan-setting { stroke: #8b5819; stroke-dasharray: 6 4; stroke-width: 1.5; }
+.fan-reading { stroke: #17649a; stroke-width: 3; fill: none; }
+.fan-track { fill: #f0f3f5; stroke: #bdcbd5; }
+.fan-on { fill: #18765b; }
+.teaching-demo[data-demo=calibration]:fullscreen, .teaching-demo[data-demo=fan-control]:fullscreen { display: block; padding: 1.25rem 2rem; }
 @media (min-width: 900px) {
   .teaching-demo:fullscreen .sensor-workbench { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 1.5rem; align-items: start; }
   .teaching-demo:fullscreen .sensor-results .demo-stats { margin: 0 0 .5rem; }
@@ -45,13 +41,12 @@
   .teaching-demo:fullscreen .sensor-control label { display: inline-block; max-width: calc(100% - 7.5rem); padding-top: .5rem; }
   .teaching-demo:fullscreen .sensor-control input[type=number] { float: right; }
   .teaching-demo:fullscreen .sensor-control input[type=range] { clear: both; min-height: 1.65rem; margin-top: 0; }
-  .teaching-demo:fullscreen .hysteresis-examples .demo-presets { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .teaching-demo:fullscreen .sensor-plot { margin: .5rem 0; }
   .teaching-demo:fullscreen .sensor-plot svg { max-height: 340px; }
   .teaching-demo:fullscreen .sensor-plot text { font-size: 20px; }
 }
 @media (max-width: 520px) {
-  .teaching-demo[data-demo=calibration], .teaching-demo[data-demo=hysteresis] { padding: .8rem; }
+  .teaching-demo[data-demo=calibration], .teaching-demo[data-demo=fan-control] { padding: .8rem; }
   .calibration-points { gap: .5rem; }
   .calibration-points fieldset { padding: .5rem; }
   .calibration-points label { min-height: 2.5em; }
@@ -60,8 +55,7 @@
   .sensor-results .demo-stats dd { margin: 0; }
   .teaching-demo .sensor-plot text { font-size: 24px; }
   .teaching-demo .sensor-plot .sensor-axis-title { font-size: 25px; }
-  .teaching-demo[data-demo=calibration] .demo-footer, .teaching-demo[data-demo=hysteresis] .demo-footer { flex-wrap: wrap; }
+  .teaching-demo[data-demo=calibration] .demo-footer, .teaching-demo[data-demo=fan-control] .demo-footer { flex-wrap: wrap; }
   .fan-card { padding: .5rem; }
-  .fan-card p { min-height: 2.6em; }
 }
-@media print { .sensor-inputs, .hysteresis-examples { display: none; } }
+@media print { .sensor-inputs { display: none; } }
