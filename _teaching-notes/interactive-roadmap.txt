@@ -1,0 +1,153 @@
+Interactive teaching improvements
+=================================
+Maintainer notes, started 2026-10-19. This file is not a website chapter.
+Keep it out of docs/ and the site search index. It is visible in the source
+repository; do not put private student information here.
+
+Approach
+--------
+Preserve the existing explanations, diagrams, and Arduino examples. Add one
+or two small, focused demonstrations per batch at the point where a lecturer
+would use them. Each should answer a concrete question, have sensible defaults,
+labelled controls and units, reset, and a short classroom prompt. Prefer local
+HTML/CSS/JavaScript with no accounts, server, or external runtime dependency.
+Use SVG for plots. Check the maths, endpoints, keyboard use, mobile layout,
+and enlarged classroom view before publishing. Explain idealisations beside
+the demo; do not imply that simulated values are calibrated measurements.
+
+Current batch: Electronics Class 2
+---------------------------------
+Source: tutorials/electronics-class-2.qmd
+Includes: _includes/adc-demo.qmd, _includes/pwm-demo.qmd
+Shared style: assets/teaching-demos.css
+Behaviour: assets/electronics-demos.js
+
+[verified] ADC explorer: input voltage and bit depth, code, binary bit
+weights, quantisation staircase, and width of the current code's interval.
+Start with 3 bits, then compare with 12. Show why 4096 values end at code 4095.
+Ideal model: 2^N equal bins across 0-3.3 V, floor(Vin/LSB), clipped at full scale.
+This deliberately distinguishes bin width (3.3/4096 at 12 bits) from the
+existing sketch's approximate endpoint conversion (code * 3.3/4095).
+ESP32 hardware range depends on chip and attenuation; more bits do not remove
+noise. Resolution settings below the hardware range are a teaching model.
+
+[verified] PWM explorer: duty cycle, frequency, fixed time window or
+two-period view, pulse waveform, time-average voltage, period, and HIGH time.
+Include 0% and 100% endpoints. The pin switches between voltage levels; its
+time average is not a steady intermediate output voltage.
+
+Small repairs necessary for this batch:
+- Clarify that 0-4095 are ADC codes, not a number of bits.
+- Fix the existing missing button-digitalread.ino include to the actual
+  archive/code/button-digitalread-flash.ino so the lesson renders.
+
+Next batch (recommended): RGB and deep sleep
+------------------------------------------
+[ ] RGB mixer — tutorials/RGB.qmd
+    Three 0-255 sliders, colour swatch, decimal RGB and hexadecimal values,
+    and presets. Keep the current LED example. Explain that screen colours
+    and a physical addressable LED do not have identical brightness/gamma.
+    Teaching question: which channels make yellow, cyan, and white?
+
+[ ] Battery-life calculator — tutorials/deep_sleep.qmd
+    Active/sleep current, duration, and usable battery capacity; show weighted
+    average current, estimated runtime, and contributions to energy use.
+    Make mA vs microamp units explicit. Use editable, labelled example values,
+    not a claimed FireBeetle measurement. Include sensors, regulators and
+    wake-up work; model is an estimate, not a battery discharge simulation.
+    Teaching question: does a shorter wake time or lower sleep current help
+    more for this duty cycle?
+
+Following batches, in suggested order
+------------------------------------
+[ ] Ohm's law and LED resistor — tutorials/electronics-class.qmd
+    Supply voltage, resistance, LED forward voltage; show current and resistor
+    power, with a simple circuit highlighting the quantities. Handle supply
+    below forward voltage and zero resistance explicitly. Explain the simple
+    LED model and limits. Keep multimeter exercises and physical experiments.
+
+[ ] Voltage divider and sensor calibration — tutorials/digital-read-write.qmd
+    Two resistance controls and a circuit; show Vout and optional ideal ADC
+    code. Later add two-point calibration for the angle sensor.
+    Correct the existing rearranged divider equation as part of that work:
+    R2 = R1 * Vout / (Vin - Vout), for 0 < Vout < Vin. The present equation
+    repeats R2 on both sides. There is also a repeated eq-linear2 label.
+
+[ ] Thermostat hysteresis — tutorials/control.qmd
+    Move temperature above and below thresholds; show fan state and a history
+    trace. Make switching history explicit. Keep relay wiring and real lab
+    tasks. Link to the PWM explorer before considering a second PWM widget.
+
+[ ] Pulse counting — tutorials/pulse-sensors.qmd
+    Frequency, observation window, and pulses per litre; show counted pulses,
+    flow rate, and measurement granularity. Do not assume a universal sensor
+    calibration constant. Reuse waveform drawing where practical.
+
+[ ] Evaporative cooling — tutorials/psychrometric-chart-and-evaporative-cooling.qmd
+    Air temperature, relative humidity, pressure and cooling effectiveness;
+    display wet-bulb temperature and predicted outlet temperature. Validate
+    against the existing psychrolib calculation before porting any equations.
+    Show physical ranges and assumptions; preserve the Python example.
+
+[ ] MQTT topic sandbox — tutorials/MQTT.qmd
+    Local simulation of publishers, subscribers, topic filters and payloads.
+    Show which subscriptions match (+ and #), without a live public broker.
+
+[ ] Water balance — tutorials/water-and-energy-balances.qmd
+    Rain/irrigation, evapotranspiration and drainage inputs over time; show
+    storage changes with consistent area/depth/volume units and bounds.
+    Penman-Monteith is a later, larger task requiring careful unit validation.
+
+Cross-page and content notes
+----------------------------
+- tutorials/electronics-class-old.qmd and archive/teaching-material/
+  electronics-class.pdf repeat ADC/PWM concepts. Put new demos in the current
+  lecture first; later link from the older page instead of duplicating them.
+- The old presentation also discusses ADS1115. Its signed 16-bit codes and
+  programmable input ranges need their own model, not an unsigned 16-bit
+  extension of the ESP32 demonstration.
+- ADC/PWM explanations also occur in digital-read-write.qmd and control.qmd.
+  Reuse includes/assets or cross-link so fixes do not diverge between copies.
+- archive/code/potentiometer-PWM.ino uses legacy ledcSetup/ledcAttachPin.
+  Review Arduino-ESP32 version assumptions in a separate code-update batch;
+  the current API uses ledcAttach and pin-based ledcWrite.
+- Installation, IDE, library and board setup pages primarily need version
+  checks, not interactive decoration. Breadboard, relay and sensor wiring
+  may later benefit from annotations, but preserve real wiring photographs.
+- Browser verification found an existing polyfill.io request failing in the
+  old page template. The new demos have no external runtime dependencies and
+  still initialise correctly. Review that old template dependency as part
+  of a future site-wide build/tooling update.
+
+Reference checks for current batch
+----------------------------------
+https://docs.espressif.com/projects/arduino-esp32/en/latest/api/adc.html
+https://docs.espressif.com/projects/arduino-esp32/en/latest/api/ledc.html
+ADC defaults to 12-bit (0-4095); analogRead is raw and analogReadMilliVolts
+provides calibrated millivolts. Actual measurable range depends on hardware
+and attenuation. PWM frequency and hardware duty resolution are related;
+the present demo illustrates the waveform rather than LEDC configuration.
+
+Publishing and verification
+--------------------------
+The checked-in site was built with Quarto 1.3.450; local Quarto is 1.5.54.
+Render in a temporary project with QUARTO_PYTHON=/opt/anaconda3/bin/python3,
+then update the affected lesson content, assets, search records and execution
+cache while retaining the existing site shell. Avoid an unrelated site-wide
+theme/library migration. Never copy this notes directory into docs/.
+
+[x] Render and inspect both widgets in the actual lesson.
+[x] Check calculations, endpoints, controls, keyboard access and reset.
+[x] Check desktop/mobile layout and enlarged view in a browser.
+
+Verification on 2026-10-19: 35 browser checks passed in installed Chrome,
+including an ADC sweep across 2-12 bits, PWM frequency/duty combinations,
+invalid numeric input, both resets, keyboard input, full-width graphs,
+side-by-side classroom views, and 390px mobile layout without widget overflow.
+Screenshots inspected. No uncaught JavaScript exceptions. Existing external
+polyfill request failure noted above. Firefox/Safari were not tested.
+Only the lesson's four search records changed; source and published assets
+match; maintainer notes are absent from docs/ and site search.
+
+After pushing each batch, check the GitHub Pages deployment and live page and
+asset contents before reporting publication complete.

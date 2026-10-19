@@ -20,7 +20,7 @@ Use the following code.
 ```{python}
 #| echo: false
 #| output: asis
-code_source("button-digitalread.ino")
+code_source("button-digitalread-flash.ino")
 ```
 
 <details>
@@ -56,9 +56,16 @@ code_source("analog-read.ino")
 
 Why is the maximum number 4095? What does this have to do with 12-bits?
 
+```{=html}
+<link rel="stylesheet" href="../assets/teaching-demos.css">
+<script src="../assets/electronics-demos.js" defer></script>
+```
+
+{{< include ../_includes/adc-demo.qmd >}}
+
 ## Reading an Analog Pin, convert to voltage
 
-Use the same wiring as above. We will convert bits to volts now: $4095 \text{ bits} = 3.3\text{ volts}$.
+Use the same wiring as above. The ADC returns a **code** from 0 to 4095, rather than a number of bits. The example below uses the approximate endpoint conversion $V = \text{code} \times 3.3 / 4095$. For calibrated ESP32 measurements, use `analogReadMilliVolts()`.
 
 ```{python}
 #| echo: false
@@ -71,6 +78,8 @@ code_source("ADC-to-voltage.ino")
 Pulse-width modulation (PWM) is a method of controlling the average power delivered by an electrical signal. The average value of voltage (and current) fed to the load is controlled by switching the supply between 0 and 100% at a rate faster than it takes the load to change significantly. **PWM is a technique for getting analog results with digital means.** Digital control is used to create a square wave, a signal switched between on and off. This on-off pattern can simulate voltages in between the full Vcc of the board and off by changing the portion of time the signal spends on versus the time that the signal spends off. PWM is used in many applications such as controlling motor speed, heat output of heaters and variable speed fan controllers.
 
 ![](https://cdn.sparkfun.com/assets/f/9/c/8/a/512e869bce395fbc64000002.JPG)
+
+{{< include ../_includes/pwm-demo.qmd >}}
 
 Use the following code to activate LED pin with PWM, using the potentiometer as input.
 

@@ -1,0 +1,19 @@
+```{=html}
+<div class="teaching-demo" id="adc-explorer" data-demo="adc" role="region" aria-labelledby="adc-demo-title">
+  <div class="demo-heading"><div><p class="demo-eyebrow">Try it · Analog to digital</p><h3 id="adc-demo-title" class="unnumbered">How many values can we distinguish?</h3></div><button type="button" data-fullscreen hidden>Enlarge demo</button></div>
+  <p>Move the voltage slowly, then change the number of bits. Watch when the digital reading jumps.</p>
+  <div class="demo-controls">
+    <div><label for="adc-voltage">Input voltage</label><div class="demo-number"><input id="adc-voltage-number" aria-label="Input voltage in volts" type="number" min="0" max="3.3" step="0.0001" value="1.65"><span>V</span></div><input id="adc-voltage" type="range" min="0" max="3.3" step="0.0001" value="1.65"><div class="demo-scale"><span>0 V</span><span>3.3 V</span></div></div>
+    <div><label for="adc-bits">Resolution <output id="adc-bits-value" for="adc-bits">3 bits</output></label><input id="adc-bits" type="range" min="2" max="12" step="1" value="3"><div class="demo-scale"><span>2 bits</span><span>12 bits</span></div><div class="demo-presets"><button type="button" data-bits="3">3-bit steps</button><button type="button" data-bits="12">12-bit view</button></div></div>
+  </div>
+  <dl class="demo-stats"><div><dt>Possible values</dt><dd id="adc-levels">8</dd></div><div><dt>Largest code</dt><dd id="adc-maximum">7</dd></div><div><dt>One step (LSB)</dt><dd id="adc-step">412.500 mV</dd></div></dl>
+  <div class="demo-reading"><span>Digital reading</span><strong id="adc-code">4</strong><code id="adc-binary">100₂</code></div>
+  <div id="adc-bit-tiles" class="demo-bit-tiles" aria-hidden="true"></div>
+  <figure class="demo-plot"><svg id="adc-plot" viewBox="0 0 640 280" role="img" aria-labelledby="adc-plot-title adc-plot-description"><title id="adc-plot-title">ADC staircase</title><desc id="adc-plot-description">A staircase showing how a continuous input voltage becomes a discrete digital code.</desc><g data-grid></g><path data-staircase class="demo-signal" fill="none"></path><path data-guide class="demo-guide" fill="none"></path><circle data-marker r="6" class="demo-marker"></circle></svg><figcaption id="adc-bin">The same code covers 1.6500 V ≤ input &lt; 2.0625 V.</figcaption></figure>
+  <p class="demo-formula" id="adc-formula">2³ = 8 possible values, numbered 0–7.</p>
+  <details class="demo-explanation"><summary>Why 4095, rather than 4096?</summary><p>Twelve bits give 2<sup>12</sup> = 4096 possible codes. Counting starts at zero, so the last code is 4095. In this ideal model, each code covers a voltage interval of 3.3 / 4096 ≈ 0.806 mV. More bits make the intervals smaller; they do not remove sensor noise.</p></details>
+  <p class="demo-note">This is an ideal ADC with equal voltage intervals over 0–3.3 V. Real ESP32 measurements depend on attenuation, calibration, and noise; <a href="https://docs.espressif.com/projects/arduino-esp32/en/latest/api/adc.html">see the ADC documentation</a>.</p>
+  <div class="demo-footer"><p><strong>Try:</strong> At 3 bits, compare 1.70 V and 1.80 V. Can 12 bits distinguish them?</p><button type="button" data-reset>Reset</button></div>
+  <noscript><p>Enable JavaScript to use the controls. At 3 bits there are 8 codes (0–7); at 12 bits there are 4096 (0–4095).</p></noscript>
+</div>
+```

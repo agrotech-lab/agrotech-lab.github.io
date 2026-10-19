@@ -1,0 +1,18 @@
+```{=html}
+<div class="teaching-demo" id="pwm-explorer" data-demo="pwm" role="region" aria-labelledby="pwm-demo-title">
+  <div class="demo-heading"><div><p class="demo-eyebrow">Try it · Pulse-width modulation</p><h3 id="pwm-demo-title" class="unnumbered">Change the pulse, keep the voltage levels</h3></div><button type="button" data-fullscreen hidden>Enlarge demo</button></div>
+  <p>Duty cycle changes the fraction of time the signal is HIGH. Frequency changes how often the cycle repeats.</p>
+  <div class="demo-controls">
+    <div><label for="pwm-duty">Duty cycle</label><div class="demo-number"><input id="pwm-duty-number" aria-label="Duty cycle in percent" type="number" min="0" max="100" step="1" value="50"><span>%</span></div><input id="pwm-duty" type="range" min="0" max="100" step="1" value="50"><div class="demo-scale"><span>Always LOW</span><span>Always HIGH</span></div></div>
+    <div><label for="pwm-frequency">Frequency <output id="pwm-frequency-value" for="pwm-frequency">500 Hz</output></label><input id="pwm-frequency" type="range" min="100" max="5000" step="100" value="500"><div class="demo-scale"><span>100 Hz</span><span>5000 Hz</span></div><label class="demo-window-label" for="pwm-window">Time window <select id="pwm-window"><option value="10">10 ms</option><option value="2">2 ms</option><option value="periods">Two periods</option></select></label></div>
+  </div>
+  <div class="demo-presets" aria-label="Duty cycle examples"><button type="button" data-duty="0">0%</button><button type="button" data-duty="25">25%</button><button type="button" data-duty="50">50%</button><button type="button" data-duty="100">100%</button></div>
+  <dl class="demo-stats"><div><dt>Time-average voltage</dt><dd id="pwm-average">1.650 V</dd></div><div><dt>Period</dt><dd id="pwm-period">2.000 ms</dd></div><div><dt>HIGH time per period</dt><dd id="pwm-on-time">1.000 ms</dd></div></dl>
+  <figure class="demo-plot"><svg id="pwm-plot" viewBox="0 0 640 280" role="img" aria-labelledby="pwm-plot-title pwm-plot-description"><title id="pwm-plot-title">PWM waveform</title><desc id="pwm-plot-description">A square wave switching between 0 and 3.3 volts. A dashed line marks the time-average voltage.</desc><g data-grid></g><g data-pulses></g><path data-wave class="demo-signal" fill="none"></path><path data-average class="demo-average" fill="none"></path></svg><figcaption><span class="demo-legend-signal">Solid: pin voltage</span><span class="demo-legend-average">Dashed: time average</span></figcaption></figure>
+  <p class="demo-formula" id="pwm-formula">Average voltage = 0.50 × 3.3 V = 1.650 V</p>
+  <p class="demo-note">The pin switches between 0 V and 3.3 V. The dashed line is the time average, not a steady intermediate voltage at the pin.</p>
+  <details class="demo-explanation"><summary>What happens when only frequency changes?</summary><p>At a fixed duty cycle, the average voltage stays the same. The period and HIGH time become shorter as frequency rises. In a fixed time window, you see more pulses. Choose “Two periods” to inspect a single pulse more closely.</p></details>
+  <div class="demo-footer"><p><strong>Try:</strong> Keep duty at 50% and increase frequency. Then hold frequency steady and change duty.</p><button type="button" data-reset>Reset</button></div>
+  <noscript><p>Enable JavaScript to use the controls. At 50% duty and a 3.3 V HIGH level, the time-average voltage is 1.65 V.</p></noscript>
+</div>
+```
