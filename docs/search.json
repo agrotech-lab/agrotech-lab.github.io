@@ -32,14 +32,14 @@
     "href": "index.html#iconify-eva-email-outline-contact-the-staff",
     "title": "agrotech lab",
     "section": " Contact the staff",
-    "text": "Contact the staff\nLecturers\nErez Feuer: erez.feuer@mail.huji.ac.il\nYair Mau: yair.mau@mail.huji.ac.il (on sabbatical for 2025-2026 class)\nTA\nGal Tzvik: gal.tzvik@mail.huji.ac.il"
+    "text": "Contact the staff\nLecturers\nErez Feuer: erez.feuer@mail.huji.ac.il\nYair Mau: yair.mau@mail.huji.ac.il\nTA\nGal Tzvik: gal.tzvik@mail.huji.ac.il"
   },
   {
     "objectID": "schedule.html",
     "href": "schedule.html",
     "title": "Schedule",
     "section": "",
-    "text": "Wednesdays, from 17:00 to 20:00\n In the lab next to the “Ground Water” seminar room, 1st floor\n Map\n\n\n\n\n\ndate\ntopic\n\n\n\n\n2025-10-22\nCourse overview, what is agrotech, microcontrollers, examples, AI. Arduino IDE.\n\n\n2025-10-29\nBasic electronics: multimeter, Ohm’s law, and circuitry.\n\n\n2025-11-05\nBasic projects, circuits on breadboard, sensors, Thingspeak. mid project rundown.\n\n\n2025-11-12\nBasic projects, circuits on breadboard, sensors, Thingspeak. mid project rundown.\n\n\n2025-11-19\ndigital signals, sensors and data logging\n\n\n2025-11-26\ncontrol, feedback\n\n\n2025-12-03\nMQTT, power management, guest speaker\n\n\n2025-12-10\nfinal projects meetings soldering and assembly\n\n\n2025-12-17\nNO CLASS\n\n\n2025-12-24\nNO CLASS — Christmas\n\n\n2025-12-31\nproject development\n\n\n2026-01-07\nproject development\n\n\n2026-01-14\nproject development\n\n\n2026-01-21\nproject presentation"
+    "text": "Tuesdays, from 17:00 to 20:00\n In the lab next to the “Ground Water” seminar room, 1st floor\n Map\n2026–2027 semester: October 13, 2026 – January 15, 2027.\nNo classes on October 27 (Israel elections) or during December 6–12.\n\n\n\n\n\ndate\ntopic\n\n\n\n\n2026-10-13\nCourse overview, what is agrotech, microcontrollers, examples, AI. Arduino IDE.\n\n\n2026-10-20\nBasic electronics: multimeter, Ohm’s law, and circuitry.\n\n\n2026-10-27\nNO CLASS — Israel elections\n\n\n2026-11-03\nBasic projects, circuits on breadboard, sensors, Thingspeak. mid project rundown.\n\n\n2026-11-10\nBasic projects, circuits on breadboard, sensors, Thingspeak. mid project rundown.\n\n\n2026-11-17\ndigital signals, sensors and data logging\n\n\n2026-11-24\ncontrol, feedback\n\n\n2026-12-01\nMQTT, power management, guest speakers\n\n\n2026-12-08\nNO CLASS — December 6–12 break\n\n\n2026-12-15\nfinal projects meetings soldering and assembly\n\n\n2026-12-22\nproject development\n\n\n2026-12-29\nproject development\n\n\n2027-01-05\nproject development\n\n\n2027-01-12\nproject presentation"
   },
   {
     "objectID": "arduino-intro-and-links.html#what-is-a-microcontroller",
@@ -1022,32 +1022,39 @@
     "text": "35.5  Useful links\nThe world of MCUs has great support online. You actually don’t need this course to learn it… We are only here to guide you and help with the first steps. SO below are some usful links to websites/Youtube channels that provide excellent information:\nArduino syntax and coding:\n\nArduino — Language Reference\n\nTutorials by sensor manufacturers:\n\nSparkfun\n\nAdafruit\n\nProject ideas:\n\nArduino Project Hub\n\nInstructables — Arduino\n\nArduino beginners course:\n\nPaul McWhorter - New Arduino Tutorials\n\nExamples of good Youtube channels:\n\nAndreas Spiess\n\nG6EJD - David\n\nGreatScott!\n\neduc8s.tv\n\nOregon State’s OPEnS Lab\n\nGithub"
   },
   {
+    "objectID": "projects.html#final-projects-2025-26",
+    "href": "projects.html#final-projects-2025-26",
+    "title": "36   Past Final Projects",
+    "section": "36.1 2025–26 Final projects",
+    "text": "36.1 2025–26 Final projects\n\nSmart Irrigation System (Penman–Monteith)\n   Mini Greenhouse: VPD Monitoring and Control\n   Irrigation Control and Soil Moisture & EC Monitoring\n   Light Compensation System\n   Irrigation System Leakage Sensor"
+  },
+  {
     "objectID": "projects.html#final-projects",
     "href": "projects.html#final-projects",
     "title": "36   Past Final Projects",
-    "section": "36.1 2024–25 Final projects",
-    "text": "36.1 2024–25 Final projects"
+    "section": "36.2 2024–25 Final projects",
+    "text": "36.2 2024–25 Final projects\n\n   Precision Plant Watering System\n   The Smart Mini Greenhouse\n   Automated Irrigation Using Evapotranspiration Data\n   I’m Singing in the Rain\n   Foliar Fertigation Experiment"
   },
   {
     "objectID": "projects.html#final-projects-1",
     "href": "projects.html#final-projects-1",
     "title": "36   Past Final Projects",
-    "section": "36.2 2023–24 Final projects",
-    "text": "36.2 2023–24 Final projects\n\n\n\nTeam\nProject\n\n\n\n\n   Gabi Harel, Yoav Abeyv, Rotem Porat\nMonitoring Microbial Metabolism\n\n\n   Ella Faruchi, Rotem David, Matar Tal, Asif Charazi\nThe Eggs-periment\n\n\n   Gil Lifshitz, Matar Shema\nBaby Sensor\n\n\n   Neta Cohen Simhi, Omer Meyer, Itai David, Aya Even Dar\nCompost Monitoring System\n\n\n   Gali Shaani, Yonatan Schwartz\nSeed counter"
+    "section": "36.3 2023–24 Final projects",
+    "text": "36.3 2023–24 Final projects\n\n\n\nTeam\nProject\n\n\n\n\n   Gabi Harel, Yoav Abeyv, Rotem Porat\nMonitoring Microbial Metabolism\n\n\n   Ella Faruchi, Rotem David, Matar Tal, Asif Charazi\nThe Eggs-periment\n\n\n   Gil Lifshitz, Matar Shema\nBaby Sensor\n\n\n   Neta Cohen Simhi, Omer Meyer, Itai David, Aya Even Dar\nCompost Monitoring System\n\n\n   Gali Shaani, Yonatan Schwartz\nSeed counter"
   },
   {
     "objectID": "projects.html#final-projects-2",
     "href": "projects.html#final-projects-2",
     "title": "36   Past Final Projects",
-    "section": "36.3 2022–23 Final projects",
-    "text": "36.3 2022–23 Final projects\n\n\n\nTeam\nProject\n\n\n\n\n   Aviv Tzafrir, Daniel Shiller, Guy Dabby\nHydroponic system\n\n\n   Orel Suliman, Yotam Menachem\nGreeny - Plant-propagation-GreenHouse\n\n\n   Guy Brauner, Victoria Sholohov, Shir Avraham\nHumidity control\n\n\n   Eliraz Shomron\nPlant water system management\n\n\n   Yovel Rodoy\nmeteorological station\n\n\n   Yael Halperin, Oded Hollander, Shachar Miller\nDeep Water Culture (DWC)\n\n\n   Bnaya Hami, Alon Dror, Michal Mannes\nBalcony gardener\n\n\n   Ran Avner, Omer Eyal, Zohar Batito\nsmart watering system"
+    "section": "36.4 2022–23 Final projects",
+    "text": "36.4 2022–23 Final projects\n\n\n\nTeam\nProject\n\n\n\n\n   Aviv Tzafrir, Daniel Shiller, Guy Dabby\nHydroponic system\n\n\n   Orel Suliman, Yotam Menachem\nGreeny - Plant-propagation-GreenHouse\n\n\n   Guy Brauner, Victoria Sholohov, Shir Avraham\nHumidity control\n\n\n   Eliraz Shomron\nPlant water system management\n\n\n   Yovel Rodoy\nmeteorological station\n\n\n   Yael Halperin, Oded Hollander, Shachar Miller\nDeep Water Culture (DWC)\n\n\n   Bnaya Hami, Alon Dror, Michal Mannes\nBalcony gardener\n\n\n   Ran Avner, Omer Eyal, Zohar Batito\nsmart watering system"
   },
   {
     "objectID": "projects.html#final-projects-3",
     "href": "projects.html#final-projects-3",
     "title": "36   Past Final Projects",
-    "section": "36.4 2021–22 Final projects",
-    "text": "36.4 2021–22 Final projects\n\n\n\nTeam\nProject\n\n\n\n\n   Ronna Melamed Bat – May Nir\nMeasuring PAR outside and inside the greenhouse\n\n\n   Avital Akerman – Elad Greenfeld\nAutomated Irrigation System\n\n\n   Nadav Hen – Guy Donagi – David Zingerman\nTemporal and spatial temperature measurement in a greenhouse\n\n\n   Zeev Rozman – Imri Zadak – Alex Evenko-Greenapple\nweather station\n\n\n   Yuval Chemke – Reem Har Levi\nHydroponics Monitoring and Balance\n\n\n   Peleg Atir – Aviad Mendelovich – Ruth Yitzhaki\nVPD control using automatic sprinklers\n\n\n   Amir Sheffer – Yitzchak Kanovsky – Aviv Saadia\n3D heatmap model of a greenhouse"
+    "section": "36.5 2021–22 Final projects",
+    "text": "36.5 2021–22 Final projects\n\n\n\nTeam\nProject\n\n\n\n\n   Ronna Melamed Bat – May Nir\nMeasuring PAR outside and inside the greenhouse\n\n\n   Avital Akerman – Elad Greenfeld\nAutomated Irrigation System\n\n\n   Nadav Hen – Guy Donagi – David Zingerman\nTemporal and spatial temperature measurement in a greenhouse\n\n\n   Zeev Rozman – Imri Zadak – Alex Evenko-Greenapple\nweather station\n\n\n   Yuval Chemke – Reem Har Levi\nHydroponics Monitoring and Balance\n\n\n   Peleg Atir – Aviad Mendelovich – Ruth Yitzhaki\nVPD control using automatic sprinklers\n\n\n   Amir Sheffer – Yitzchak Kanovsky – Aviv Saadia\n3D heatmap model of a greenhouse"
   },
   {
     "objectID": "projects/borrowing-equipment.html",

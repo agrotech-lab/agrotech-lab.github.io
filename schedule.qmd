@@ -8,9 +8,12 @@ execute:
 
 # Schedule {.unnumbered}
 
-<i class="bi bi-clock-fill"></i> Wednesdays, from 17:00 to 20:00  
+<i class="bi bi-clock-fill"></i> Tuesdays, from 17:00 to 20:00\
 <i class="bi bi-geo-alt-fill"></i> In the lab next to the "Ground Water" seminar room, 1st floor  
 <i class="bi bi-map-fill"></i> [Map](https://goo.gl/maps/uFYttRLVckTKAB357)
+
+**2026–2027 semester:** October 13, 2026 – January 15, 2027.\
+No classes on October 27 (Israel elections) or during December 6–12.
 
 
 ```{python}
@@ -21,56 +24,50 @@ plus= '<i class="bi bi-plus-square-fill"></i>'
 from IPython.display import Markdown
 from tabulate import tabulate
 table = [
-  ["`2025-10-22`",
+  ["`2026-10-13`",
    "Course overview, what is agrotech, microcontrollers, examples, AI. Arduino IDE.",
   ],
-  ["`2025-10-29`",
+  ["`2026-10-20`",
    "Basic electronics: multimeter, Ohm's law, and circuitry."
   ],
-  ["`2025-11-05`",
+  ["`2026-10-27`",
+   '<span style="color:red">NO CLASS — Israel elections</span>'
+  ],
+  ["`2026-11-03`",
    "Basic projects, circuits on breadboard, sensors, Thingspeak. mid project rundown."
    ,
   ],
-  ["`2025-11-12`",
+  ["`2026-11-10`",
    "Basic projects, circuits on breadboard, sensors, Thingspeak. mid project rundown."
   ],
-  ["`2025-11-19`",
+  ["`2026-11-17`",
    "digital signals, sensors and data logging"
   ],
-  ["`2025-11-26`",
+  ["`2026-11-24`",
    'control, feedback'
   ],
-  ["`2025-12-03`",
+  ["`2026-12-01`",
    "MQTT, power management, guest speakers"
   ],
-  ["`2025-12-10`",
+  ["`2026-12-08`",
+   '<span style="color:red">NO CLASS — December 6–12 break</span>'
+  ],
+  ["`2026-12-15`",
    "final projects meetings "
    f'soldering and assembly'
   ],
-  ["`2025-12-17`",
-  '<span style="color:red">NO CLASS</span>'
-  ],
-  ["`2025-12-24`",
-  '<span style="color:red">NO CLASS --- Christmas</span>'
-  ],
-  ["`2025-12-31`",
+  ["`2026-12-22`",
   f'project development'
   ],
-  ["`2026-01-07`",
+  ["`2026-12-29`",
    f'project development'
   ],
-  ["`2026-01-14`",
+  ["`2027-01-05`",
    f'project development'
   ],
-  ["`2026-01-21`",
+  ["`2027-01-12`",
    f'project presentation'
   ],
-  # ["`2026-01-28`",
-  #  'project development'
-  # ],
-  # ["`2026-02-04`",
-  #  f'presentation of projects'
-  # ],
 ]
 
 Markdown(tabulate(

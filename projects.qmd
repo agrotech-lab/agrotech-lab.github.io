@@ -4,7 +4,21 @@ title: "{{< iconify icons8 finish-flag >}} Past Final Projects"
 
 <!-- [Read carefully the instructions. Click here.](projects/final-project.html) -->
 
+## 2025--26 Final projects {#final-projects-2025-26}
+
+* <i class="bi bi-github"></i> &nbsp; [Smart Irrigation System (Penman–Monteith)](https://github.com/talshalom-cmd/Final-Project---Irrigation-by-evaporation)
+* <i class="bi bi-github"></i> &nbsp; [Mini Greenhouse: VPD Monitoring and Control](https://github.com/LULI09-AGRO/Mini_Greenhuse-AgroTech-final-project)
+* <i class="bi bi-github"></i> &nbsp; [Irrigation Control and Soil Moisture & EC Monitoring](https://github.com/sarapost-alt/Humidity-and-EC-sensors)
+* <i class="bi bi-github"></i> &nbsp; [Light Compensation System](https://github.com/amitsh3231-pixel/Final-Project)
+* <i class="bi bi-github"></i> &nbsp; [Irrigation System Leakage Sensor](https://github.com/HallelAviner/Agrotech-Lab-Final-Project-2026)
+
 ## 2024--25 Final projects
+
+* <i class="bi bi-github"></i> &nbsp; [Precision Plant Watering System](https://github.com/vande01/agro-project)
+* <i class="bi bi-github"></i> &nbsp; [The Smart Mini Greenhouse](https://github.com/orenhasson/The-Smart-MiniGreenhouse)
+* <i class="bi bi-github"></i> &nbsp; [Automated Irrigation Using Evapotranspiration Data](https://github.com/omribooton/finalepro)
+* <i class="bi bi-github"></i> &nbsp; [I'm Singing in the Rain](https://github.com/idosela3/cool-agro)
+* <i class="bi bi-github"></i> &nbsp; [Foliar Fertigation Experiment](https://github.com/gash1999/Foliar-Fertigation-Exp)
 
 ## 2023--24 Final projects
 
