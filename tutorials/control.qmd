@@ -29,6 +29,8 @@ Pulse-width modulation (PWM) is a method of controlling the average power delive
 
 ![](https://cdn.sparkfun.com/assets/f/9/c/8/a/512e869bce395fbc64000002.JPG)
 
+Try the [interactive PWM explorer](electronics-class-2.qmd#pwm-explorer) to vary duty cycle and frequency and compare the switching waveform with its average voltage.
+
 Use the following code to activate LED pin with PWM.
 
 ```{python}
@@ -156,6 +158,16 @@ code_source("sht31.ino")
 
 You will receive a low-voltage fan. Build a control system that turns the fan on if temperature goes above a given threshold, e.g. 30 °C.
 
+What happens if the measured temperature keeps moving just above and below that threshold? Try separate ON and OFF thresholds, called **hysteresis**, before extending your fan controller.
+
+```{=html}
+<link rel="stylesheet" href="../assets/teaching-demos.css">
+<link rel="stylesheet" href="../assets/sensor-control-demos.css">
+<script src="../assets/sensor-control-demos.js" defer></script>
+```
+
+{{< include ../_includes/hysteresis-demo.qmd >}}
+
 ### Traffic lights
 
 Using red, orange and green LEDs, build a traffic light system that responds to temperature:
@@ -166,7 +178,7 @@ Using red, orange and green LEDs, build a traffic light system that responds to 
 
 ### Bonus
 
-Build an PMW-based control system where the duty cycle tempends on temperature.
+Build a PWM-based control system where the duty cycle depends on temperature.
 
 
 ## Extra codes and examples

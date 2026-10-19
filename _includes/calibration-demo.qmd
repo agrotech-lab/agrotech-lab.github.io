@@ -1,0 +1,26 @@
+```{=html}
+<div class="teaching-demo" id="calibration-explorer" data-demo="calibration" role="region" aria-labelledby="calibration-demo-title">
+  <div class="demo-heading"><div><p class="demo-eyebrow">Try it · From a reading to an angle</p><h3 id="calibration-demo-title" class="unnumbered">Two points define the conversion</h3></div><button type="button" data-fullscreen hidden>Enlarge demo</button></div>
+  <p>Enter the ADC codes measured at two known angles. Then move the current reading and follow its estimated angle on the calibration line.</p>
+  <div class="sensor-workbench">
+    <div class="sensor-inputs">
+      <div class="calibration-points">
+        <fieldset><legend>Point 1</legend><label for="calibration-code1">Measured ADC code</label><input id="calibration-code1" type="number" min="0" max="4095" step="1" value="500"><label for="calibration-angle1">Known angle (°)</label><input id="calibration-angle1" type="number" min="-180" max="360" step="0.1" value="0"></fieldset>
+        <fieldset><legend>Point 2</legend><label for="calibration-code2">Measured ADC code</label><input id="calibration-code2" type="number" min="0" max="4095" step="1" value="3500"><label for="calibration-angle2">Known angle (°)</label><input id="calibration-angle2" type="number" min="-180" max="360" step="0.1" value="90"></fieldset>
+      </div>
+      <div class="sensor-control"><label for="calibration-reading">Current ADC code</label><input id="calibration-reading-number" type="number" aria-label="Current ADC code" min="0" max="4095" step="1" value="2000"><input id="calibration-reading" type="range" min="0" max="4095" step="1" value="2000"><div class="demo-scale"><span>0</span><span>4095</span></div></div>
+      <div class="demo-presets" aria-label="Calibration examples"><button type="button" data-calibration-example="measured">Measured example</button><button type="button" data-calibration-example="reverse">Reversed response</button><button type="button" data-calibration-swap>Swap point labels</button></div>
+      <p class="sensor-status" id="calibration-status" role="status">Interpolation: the current code is between the two measured codes.</p>
+      <p class="demo-formula" id="calibration-formula">θ = 0.030000 × i − 15.00</p>
+    </div>
+    <div class="sensor-results">
+      <dl class="demo-stats"><div><dt>Estimated angle</dt><dd id="calibration-estimate">45.0°</dd></div><div><dt>Slope a (°/code)</dt><dd id="calibration-slope">0.030000</dd></div><div><dt>Intercept b (°)</dt><dd id="calibration-intercept">−15.00</dd></div></dl>
+      <figure class="demo-plot sensor-plot"><svg id="calibration-plot" viewBox="0 0 640 360" role="img" aria-labelledby="calibration-plot-title calibration-plot-description"><title id="calibration-plot-title">ADC code to angle calibration</title><desc id="calibration-plot-description">Two reference points define a line. ADC code 2000 gives 45 degrees with the example values.</desc><defs><clipPath id="calibration-clip"><rect x="85" y="30" width="515" height="255"></rect></clipPath></defs><g id="calibration-axes"></g><g id="calibration-lines" clip-path="url(#calibration-clip)"></g><g id="calibration-markers"></g></svg><figcaption><span>● Points 1 and 2: measurements</span><span>◆ Current estimate</span><span>Dashed: beyond the measured interval</span></figcaption></figure>
+    </div>
+  </div>
+  <details class="demo-explanation"><summary>What can two points tell us?</summary><p>They set the slope and offset of a straight-line model: a = (θ₂ − θ₁) / (i₂ − i₁), then b = θ₁ − a × i₁. Reversing both point labels leaves the same line. A sensor whose reading decreases as the angle increases has a negative slope.</p><p>The two ADC codes must differ. Two points alone cannot prove that the response is linear: check additional known angles. Estimates outside the measured interval are extrapolations. See <a href="https://learn.adafruit.com/calibrating-sensors/two-point-calibration">Adafruit's two-point calibration guide</a>.</p></details>
+  <p class="demo-note">Example measurements, not a calibration for your potentiometer. Use your own readings. The graph rescales vertically; calculated angles are not clamped to the reference angles. Displayed coefficients are rounded, but the calculation uses full precision.</p>
+  <div class="demo-footer"><span><strong>Try:</strong> Find 45°. Reverse the response, then move beyond either measured point. When does interpolation become extrapolation?</span><button type="button" data-reset>Reset</button></div>
+  <noscript><p>Enable JavaScript to use the controls. The example points (500, 0°) and (3500, 90°) give θ = 0.03 × i − 15, so code 2000 gives 45°.</p></noscript>
+</div>
+```

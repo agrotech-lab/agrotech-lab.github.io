@@ -144,15 +144,51 @@ Five-hole terminal strips, separate left/right rails, and split rails checked
 against Adafruit's guide. The existing SparkFun link returned HTTP 403 to the
 reference-fetch tool; retained the user's original link.
 
+Completed batch 5: calibration and thermostat hysteresis
+-------------------------------------------------------
+[verified] Two-point sensor calibration — tutorials/digital-read-write.qmd
+    Enter two measured ADC/known-angle pairs. A current-reading slider shows
+    the estimated angle, slope, intercept and a live graph. Distinguish solid
+    interpolation from dashed extrapolation. Reversed-response example and
+    point-label swap; reset and enlarged classroom view. Preserve the existing
+    derivation, Arduino exercise and voltage-divider explorer.
+
+[verified] Thermostat hysteresis — tutorials/control.qmd
+    Temperature, ON threshold and hysteresis-band controls. Compare the fan
+    state and switch count for a single threshold versus separate ON/OFF
+    thresholds. Readings and both fan states share a history plot. Load a
+    warm/cool cycle or noisy readings, or enter the band from below/above to
+    demonstrate two states at the same temperature. Step through noise one
+    reading at a time. Preserve relay wiring and the fan/traffic-light tasks.
+    Linked to the existing PWM explorer and fixed two typos in the bonus task.
+
+Includes: _includes/calibration-demo.qmd, _includes/hysteresis-demo.qmd
+Assets: assets/sensor-control-demos.js and assets/sensor-control-demos.css,
+plus existing teaching-demos.css. Previous demo bundles are unchanged.
+
+Calibration assumes a linear sensor response. Coefficients are calculated
+from the actual distance between reference codes, not from ADC full scale.
+Duplicate codes give an undefined result; equal reference angles give a flat
+line with an explanation. Out-of-interval estimates are not clamped. Graph
+rescales vertically; displayed coefficients are rounded but computation uses
+full precision. Defaults are illustrative, not measured board calibration.
+Reference: https://learn.adafruit.com/calibrating-sensors/two-point-calibration
+
+Hysteresis is a cooling-fan decision model, without thermal dynamics or time
+simulation. ON when T >= upper; OFF when T <= upper minus band; otherwise
+retain state. At zero band, ON comparison takes precedence at equality and
+both controllers match. Integer tenths avoid float errors at boundaries.
+Threshold edits and clear trace start a new history, initially OFF inside
+the band (or determined by the first reading outside it). Initial state is
+not counted as a switch. Keep 48 recent readings and total switch counts
+since the trace began. X-axis is reading number, not seconds. ON means fan
+operation, not a GPIO level; the existing relay discussion remains relevant.
+Reference: https://www.ti.com/lit/ds/symlink/tmp709.pdf
+Checked hysteresis behavior in sections 7.3.1-2 and 8.2.3. The widget is an
+illustrative software controller, not an emulation of that specific device.
+
 Following batches, in suggested order
 ------------------------------------
-[ ] Two-point sensor calibration — tutorials/digital-read-write.qmd
-    Use measured ADC/angle pairs to show slope, intercept, and interpolation.
-
-[ ] Thermostat hysteresis — tutorials/control.qmd
-    Move temperature above and below thresholds; show fan state and a history
-    trace. Make switching history explicit. Keep relay wiring and real lab
-    tasks. Link to the PWM explorer before considering a second PWM widget.
 
 [ ] Pulse counting — tutorials/pulse-sensors.qmd
     Frequency, observation window, and pulses per litre; show counted pulses,
@@ -275,3 +311,22 @@ JavaScript exceptions. Firefox/Safari and a physical phone were not tested.
 Both original images, the page shell/navigation and previous demos remain
 intact. Only one search record changed; published assets match source.
 Maintainer notes remain absent from docs/ and the site search index.
+
+Batch 5 verification on 2026-10-19: 83 checks passed in installed Chrome.
+Calibration checked at both references, interior/exterior codes, reversed
+response, swapped point labels, equal codes, equal angles, negative angles,
+full ADC span and a one-code reference interval. Checked numeric input bounds,
+rounding, invalid entries, reset, and coexistence with the voltage divider.
+Hysteresis checked for state retention from both directions, exact decimal
+thresholds, zero-width equivalence, startup/clear semantics, noisy sequences,
+narrow and maximum bands, rolling 48-reading history and cumulative counts.
+Keyboard inputs work; every control has a label. Both demos fit 390px and
+320px layouts without widget overflow. Enlarged controls/graphs fit together;
+1366x768 also shows calibration feedback/equation and hysteresis preset
+buttons. Screenshots inspected. Static explanations remain without JavaScript.
+No uncaught JavaScript exceptions. The existing polyfill.io template request
+still fails; neither new demo needs it. Firefox/Safari were not tested.
+Source and published assets match. Original page shell, navigation, images
+and Arduino downloads are preserved. No new duplicate IDs (the previously
+noted analog-readino duplicate remains). Only three search records changed.
+Maintainer notes remain absent from docs/ and the search index.

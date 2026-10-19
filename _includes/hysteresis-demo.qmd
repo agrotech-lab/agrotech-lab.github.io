@@ -1,0 +1,26 @@
+```{=html}
+<div class="teaching-demo" id="hysteresis-explorer" data-demo="hysteresis" role="region" aria-labelledby="hysteresis-demo-title">
+  <div class="demo-heading"><div><p class="demo-eyebrow">Try it · A fan that remembers</p><h3 id="hysteresis-demo-title" class="unnumbered">Same temperature, different fan state</h3></div><button type="button" data-fullscreen hidden>Enlarge demo</button></div>
+  <p>Move the temperature up and down. Compare a fan with one switching threshold against a fan with separate ON and OFF thresholds.</p>
+  <div class="sensor-workbench">
+    <div class="sensor-inputs">
+      <div class="sensor-control"><label for="hysteresis-temperature">Measured temperature (°C)</label><input id="hysteresis-temperature-number" type="number" aria-label="Measured temperature, degrees Celsius" min="0" max="50" step="0.1" value="27"><input id="hysteresis-temperature" type="range" min="0" max="50" step="0.1" value="27"></div>
+      <div class="sensor-control"><label for="hysteresis-on">Switch ON at (°C)</label><input id="hysteresis-on-number" type="number" aria-label="Fan on threshold, degrees Celsius" min="10" max="40" step="0.1" value="30"><input id="hysteresis-on" type="range" min="10" max="40" step="0.1" value="30"></div>
+      <div class="sensor-control"><label for="hysteresis-width">Hysteresis band (°C)</label><input id="hysteresis-width-number" type="number" aria-label="Hysteresis band width, degrees Celsius" min="0" max="10" step="0.2" value="2"><input id="hysteresis-width" type="range" min="0" max="10" step="0.2" value="2"></div>
+      <p id="hysteresis-rule" class="sensor-rule">ON at T ≥ 30.0°C; OFF at T ≤ 28.0°C. Between them, keep the previous state.</p>
+      <div class="demo-presets"><button type="button" id="hysteresis-next">Next noisy reading</button><button type="button" id="hysteresis-clear">Clear trace</button></div>
+      <div class="hysteresis-examples"><p><strong>Load a sequence</strong> <span class="demo-note">(starts a new trace)</span></p><div class="demo-presets"><button type="button" data-hysteresis-example="cycle">Warm → cool</button><button type="button" data-hysteresis-example="noise">Noise near threshold</button><button type="button" data-hysteresis-example="below">Enter band from below</button><button type="button" data-hysteresis-example="above">Enter band from above</button></div></div>
+    </div>
+    <div class="sensor-results">
+      <div class="fan-comparison"><div class="fan-card" id="hysteresis-single-card"><p>Single threshold</p><strong id="hysteresis-single-state">OFF</strong><span id="hysteresis-single-count">0 switches</span></div><div class="fan-card" id="hysteresis-memory-card"><p>With hysteresis</p><strong id="hysteresis-memory-state">OFF</strong><span id="hysteresis-memory-count">0 switches</span></div></div>
+      <figure class="demo-plot sensor-plot"><svg id="hysteresis-plot" viewBox="0 0 640 410" role="img" aria-labelledby="hysteresis-plot-title hysteresis-plot-description"><title id="hysteresis-plot-title">Temperature readings and fan state history</title><desc id="hysteresis-plot-description">Both fans are off at 27 degrees Celsius. Change the temperature to build a history.</desc><g id="hysteresis-axes"></g><g id="hysteresis-traces"></g></svg><figcaption><span>Blue line: measured temperature</span><span>Shaded band: keep previous state</span><span>Filled fan track: ON · empty: OFF</span></figcaption></figure>
+      <p class="demo-note" id="hysteresis-history-note">Reading 1. Switch counts are since the trace began.</p>
+    </div>
+  </div>
+  <p class="sensor-status" id="hysteresis-status" role="status">Below the OFF threshold: the hysteresis fan is OFF.</p>
+  <details class="demo-explanation"><summary>Why use two thresholds?</summary><p>A single threshold turns the fan ON at or above the chosen temperature and OFF below it. Small fluctuations near that threshold can repeatedly switch it. With hysteresis, the fan stays in its previous state until the other threshold is reached.</p><p>Try entering the band from below, then from above: the final temperature is the same, but the fan state differs. Set the band to zero to make both controllers behave alike.</p></details>
+  <p class="demo-note">This is a cooling-fan decision model, not a room-temperature simulation. You supply the readings; the fan does not change them. Changing either threshold setting or clearing the trace starts a new history, initially OFF inside the band. ON means “run the fan”; the required GPIO level depends on the relay module.</p>
+  <div class="demo-footer"><span><strong>Try:</strong> Load noisy readings with a 2°C band, then repeat with a zero-width band. Compare the switch counts.</span><button type="button" data-reset>Reset</button></div>
+  <noscript><p>Enable JavaScript to use the controls. With ON at 30°C and OFF at 28°C, a fan at 29°C retains its previous state.</p></noscript>
+</div>
+```

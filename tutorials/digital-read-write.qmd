@@ -134,6 +134,13 @@ $$
 b = \theta_1 - a i_1
 $$ {#eq-linear_intercept}
 
+```{=html}
+<link rel="stylesheet" href="../assets/teaching-demos.css">
+<link rel="stylesheet" href="../assets/sensor-control-demos.css">
+<script src="../assets/sensor-control-demos.js" defer></script>
+```
+
+{{< include ../_includes/calibration-demo.qmd >}}
 
 put the lines below in the code we ran before, they are not in the correct place, it is here just so you have an idea how to update the previous code.
 ```cpp
@@ -197,7 +204,6 @@ $$
 This rearrangement assumes $R_1 > 0$ and $0 < V_{out} < V_{in}$, with no load drawing current from the output.
 
 ```{=html}
-<link rel="stylesheet" href="../assets/teaching-demos.css">
 <link rel="stylesheet" href="../assets/circuit-demos.css">
 <script src="../assets/circuit-demos.js" defer></script>
 ```
