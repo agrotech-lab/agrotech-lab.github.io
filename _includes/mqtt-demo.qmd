@@ -1,0 +1,27 @@
+```{=html}
+<div class="teaching-demo" id="mqtt-explorer" data-demo="mqtt-topics" role="region" aria-labelledby="mqtt-title">
+  <div class="demo-heading"><div><p class="demo-eyebrow">Try it · Send a message</p><h3 id="mqtt-title" class="unnumbered">Which screens receive it?</h3></div><button type="button" data-fullscreen hidden>Enlarge demo</button></div>
+  <p>Choose a topic and a message, then press Send. Each screen listens to the topic written on its card.</p>
+  <div class="message-workbench">
+    <div class="mqtt-sender">
+      <form id="mqtt-form" novalidate>
+        <label for="mqtt-topic">Send to this topic</label><input id="mqtt-topic" type="text" maxlength="160" value="agriculture/field1/temperature" spellcheck="false" autocomplete="off" aria-describedby="mqtt-topic-error">
+        <p class="message-error" id="mqtt-topic-error" hidden></p>
+        <label for="mqtt-message">Message</label><input id="mqtt-message" type="text" maxlength="160" value="24.5" autocomplete="off">
+        <button type="submit" id="mqtt-send">Send message</button>
+      </form>
+      <div class="mqtt-broker"><strong>Sender → Broker → Screens</strong><p>The broker passes the message to screens listening to that topic.</p></div>
+      <p class="message-feedback" id="mqtt-status" role="status">Ready to send.</p>
+      <p class="demo-note"><code>+</code> stands for one part between slashes. <code>#</code> includes everything below that point, and goes at the end. Capital letters and spaces matter.</p>
+    </div>
+    <div class="mqtt-receivers">
+      <div class="mqtt-card" id="mqtt-card-1"><div class="mqtt-card-heading"><strong>Screen 1</strong><span id="mqtt-match-1">Will receive</span></div><label for="mqtt-filter-1">Listen to</label><input id="mqtt-filter-1" type="text" maxlength="160" value="agriculture/field1/temperature" spellcheck="false" autocomplete="off" aria-label="Screen 1 listens to" aria-describedby="mqtt-error-1"><p class="message-error" id="mqtt-error-1" hidden></p><div class="mqtt-receipt"><p class="mqtt-last">Last received: <strong id="mqtt-last-1">Nothing yet</strong></p><p class="demo-note" id="mqtt-count-1">0 messages received</p></div></div>
+      <div class="mqtt-card" id="mqtt-card-2"><div class="mqtt-card-heading"><strong>Screen 2</strong><span id="mqtt-match-2">Will receive</span></div><label for="mqtt-filter-2">Listen to</label><input id="mqtt-filter-2" type="text" maxlength="160" value="agriculture/+/temperature" spellcheck="false" autocomplete="off" aria-label="Screen 2 listens to" aria-describedby="mqtt-error-2"><p class="message-error" id="mqtt-error-2" hidden></p><div class="mqtt-receipt"><p class="mqtt-last">Last received: <strong id="mqtt-last-2">Nothing yet</strong></p><p class="demo-note" id="mqtt-count-2">0 messages received</p></div></div>
+      <div class="mqtt-card" id="mqtt-card-3"><div class="mqtt-card-heading"><strong>Screen 3</strong><span id="mqtt-match-3">Will receive</span></div><label for="mqtt-filter-3">Listen to</label><input id="mqtt-filter-3" type="text" maxlength="160" value="agriculture/#" spellcheck="false" autocomplete="off" aria-label="Screen 3 listens to" aria-describedby="mqtt-error-3"><p class="message-error" id="mqtt-error-3" hidden></p><div class="mqtt-receipt"><p class="mqtt-last">Last received: <strong id="mqtt-last-3">Nothing yet</strong></p><p class="demo-note" id="mqtt-count-3">0 messages received</p></div></div>
+    </div>
+  </div>
+  <p class="demo-note">This demo runs only on this page. It sends nothing to a real broker. Changing a screen’s topic clears its received messages.</p>
+  <div class="demo-footer"><span>Change a topic, then send again.</span><button type="button" data-reset>Reset</button></div>
+  <noscript><p>Enable JavaScript to send messages in this demo. A message on agriculture/field1/temperature matches all three example screens.</p></noscript>
+</div>
+```

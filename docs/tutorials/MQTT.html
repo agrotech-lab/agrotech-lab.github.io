@@ -567,6 +567,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+
 <!-- ---
 title: ""
 echo: false
@@ -587,7 +588,7 @@ section-divs: false
 <h2 data-number="21.2" class="anchored" data-anchor-id="fundamental-concepts"><span class="header-section-number">21.2</span> Fundamental Concepts</h2>
 <ol type="1">
 <li><p><strong>MQTT Broker:</strong><br>
-At the core of MQTT is the broker, which acts as a central hub for message exchange. The broker receives messages published by clients and distributes them to the interested subscribers. It is responsible for routing messages based on topics and maintaining the overall communication flow. <strong>For our calss today we will use the <a href="https://www.hivemq.com/public-mqtt-broker/">Hivemq free public broker</a></strong>.</p></li>
+At the core of MQTT is the broker, which acts as a central hub for message exchange. The broker receives messages published by clients and distributes them to the interested subscribers. It is responsible for routing messages based on topics and maintaining the overall communication flow. <strong>For our class today we will use the <a href="https://www.hivemq.com/public-mqtt-broker/">Hivemq free public broker</a></strong>.</p></li>
 <li><p><strong>MQTT Client:</strong><br>
 Clients are devices or applications that connect to the MQTT broker. They can be sensors, actuators, microcontrollers, or any device capable of sending or receiving messages. MQTT clients can function as both publishers and subscribers, allowing them to send data and receive updates from the broker. <strong>For our class we can utilize the <a href="https://www.hivemq.com/demos/websocket-client/">Hivemq online client</a> for testing</strong>.</p></li>
 <li><p><strong>Topic:</strong><br>
@@ -603,7 +604,7 @@ Subscribing allows clients to express their interest in receiving messages from 
 <p>Topics in MQTT are written as hierarchical strings, consisting of one or more levels separated by forward slashes (<code>/</code>). Each level within a topic provides a level of categorization and organization for the messages.</p>
 <p>For example, consider the topic structure in agriculture:</p>
 <ul>
-<li><p><code>agriculture/temperature</code>: This topic represents the temperature data in the agricultural context. It consists of a single level, <code>agriculture</code> followed by another level, <code>temperature</code>.</p></li>
+<li><p><code>agriculture/temperature</code>: This topic represents the temperature data in the agricultural context. It consists of two parts: <code>agriculture</code> and <code>temperature</code>.</p></li>
 <li><p><code>agriculture/field1/humidity</code>: This topic represents the humidity data in a specific field. It consists of three levels: <code>agriculture</code>, <code>field1</code>, and <code>humidity</code>.</p></li>
 <li><p><code>agriculture/+/soil moisture</code>: This topic uses a wildcard character, <code>+</code>, which can match exactly one topic level. Subscribing to this topic would allow receiving messages related to soil moisture from various areas within agriculture.</p></li>
 <li><p><code>agriculture/#</code>: This topic uses the wildcard character <code>#</code>, which can match multiple levels or no level at all. Subscribing to this topic would enable receiving messages from any sub-topic under <code>agriculture</code>.</p></li>
@@ -611,6 +612,34 @@ Subscribing allows clients to express their interest in receiving messages from 
 <p>The use of forward slashes and levels in topic design allows for a structured approach to organizing data in MQTT. It enables subscribers to select specific levels or use wildcard characters to filter and receive messages of interest.</p>
 <p>When publishing a message, the client specifies the topic to which the message belongs, ensuring that it is appropriately categorized and can be received by subscribers who are interested in that specific topic.</p>
 <p>Understanding how topics are written and structured is crucial for effective message routing and data organization within MQTT-based AgroTech applications.</p>
+<link rel="stylesheet" href="../assets/teaching-demos.css">
+<link rel="stylesheet" href="../assets/pulse-mqtt-demos.css">
+<script src="../assets/pulse-mqtt-demos.js" defer=""></script>
+<div class="teaching-demo" id="mqtt-explorer" data-demo="mqtt-topics" role="region" aria-labelledby="mqtt-title">
+  <div class="demo-heading"><div><p class="demo-eyebrow">Try it · Send a message</p><h3 id="mqtt-title" class="unnumbered anchored">Which screens receive it?</h3></div><button type="button" data-fullscreen="" hidden="">Enlarge demo</button></div>
+  <p>Choose a topic and a message, then press Send. Each screen listens to the topic written on its card.</p>
+  <div class="message-workbench">
+    <div class="mqtt-sender">
+      <form id="mqtt-form" novalidate="">
+        <label for="mqtt-topic">Send to this topic</label><input id="mqtt-topic" type="text" maxlength="160" value="agriculture/field1/temperature" spellcheck="false" autocomplete="off" aria-describedby="mqtt-topic-error">
+        <p class="message-error" id="mqtt-topic-error" hidden=""></p>
+        <label for="mqtt-message">Message</label><input id="mqtt-message" type="text" maxlength="160" value="24.5" autocomplete="off">
+        <button type="submit" id="mqtt-send">Send message</button>
+      </form>
+      <div class="mqtt-broker"><strong>Sender → Broker → Screens</strong><p>The broker passes the message to screens listening to that topic.</p></div>
+      <p class="message-feedback" id="mqtt-status" role="status">Ready to send.</p>
+      <p class="demo-note"><code>+</code> stands for one part between slashes. <code>#</code> includes everything below that point, and goes at the end. Capital letters and spaces matter.</p>
+    </div>
+    <div class="mqtt-receivers">
+      <div class="mqtt-card" id="mqtt-card-1"><div class="mqtt-card-heading"><strong>Screen 1</strong><span id="mqtt-match-1">Will receive</span></div><label for="mqtt-filter-1">Listen to</label><input id="mqtt-filter-1" type="text" maxlength="160" value="agriculture/field1/temperature" spellcheck="false" autocomplete="off" aria-label="Screen 1 listens to" aria-describedby="mqtt-error-1"><p class="message-error" id="mqtt-error-1" hidden=""></p><div class="mqtt-receipt"><p class="mqtt-last">Last received: <strong id="mqtt-last-1">Nothing yet</strong></p><p class="demo-note" id="mqtt-count-1">0 messages received</p></div></div>
+      <div class="mqtt-card" id="mqtt-card-2"><div class="mqtt-card-heading"><strong>Screen 2</strong><span id="mqtt-match-2">Will receive</span></div><label for="mqtt-filter-2">Listen to</label><input id="mqtt-filter-2" type="text" maxlength="160" value="agriculture/+/temperature" spellcheck="false" autocomplete="off" aria-label="Screen 2 listens to" aria-describedby="mqtt-error-2"><p class="message-error" id="mqtt-error-2" hidden=""></p><div class="mqtt-receipt"><p class="mqtt-last">Last received: <strong id="mqtt-last-2">Nothing yet</strong></p><p class="demo-note" id="mqtt-count-2">0 messages received</p></div></div>
+      <div class="mqtt-card" id="mqtt-card-3"><div class="mqtt-card-heading"><strong>Screen 3</strong><span id="mqtt-match-3">Will receive</span></div><label for="mqtt-filter-3">Listen to</label><input id="mqtt-filter-3" type="text" maxlength="160" value="agriculture/#" spellcheck="false" autocomplete="off" aria-label="Screen 3 listens to" aria-describedby="mqtt-error-3"><p class="message-error" id="mqtt-error-3" hidden=""></p><div class="mqtt-receipt"><p class="mqtt-last">Last received: <strong id="mqtt-last-3">Nothing yet</strong></p><p class="demo-note" id="mqtt-count-3">0 messages received</p></div></div>
+    </div>
+  </div>
+  <p class="demo-note">This demo runs only on this page. It sends nothing to a real broker. Changing a screen’s topic clears its received messages.</p>
+  <div class="demo-footer"><span>Change a topic, then send again.</span><button type="button" data-reset="">Reset</button></div>
+  <noscript><p>Enable JavaScript to send messages in this demo. A message on agriculture/field1/temperature matches all three example screens.</p></noscript>
+</div>
 </section>
 <section id="led-subscribe" class="level2" data-number="21.4">
 <h2 data-number="21.4" class="anchored" data-anchor-id="led-subscribe"><span class="header-section-number">21.4</span> LED subscribe</h2>
@@ -1185,7 +1214,7 @@ Subscribing allows clients to express their interest in receiving messages from 
 <span id="cb8-20"><a href="#cb8-20"></a>PubSubClient client<span class="op">(</span>espClient<span class="op">);</span></span>
 <span id="cb8-21"><a href="#cb8-21"></a></span>
 <span id="cb8-22"><a href="#cb8-22"></a><span class="co">// State variable to track touch pin state</span></span>
-<span id="cb8-23"><a href="#cb8-23"></a><span class="dt">bool</span> send_message <span class="op">=</span> false<span class="op">;</span></span>
+<span id="cb8-23"><a href="#cb8-23"></a><span class="dt">bool</span> send_message <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
 <span id="cb8-24"><a href="#cb8-24"></a></span>
 <span id="cb8-25"><a href="#cb8-25"></a><span class="dt">void</span> setup_wifi<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb8-26"><a href="#cb8-26"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Connecting to WiFi: "</span><span class="op">);</span></span>
@@ -1244,7 +1273,7 @@ Subscribing allows clients to express their interest in receiving messages from 
 <span id="cb8-79"><a href="#cb8-79"></a>    <span class="cf">if</span> <span class="op">(!</span>send_message<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb8-80"><a href="#cb8-80"></a>      client<span class="op">.</span>publish<span class="op">(</span>mqtt_topic<span class="op">,</span> <span class="st">"1"</span><span class="op">);</span></span>
 <span id="cb8-81"><a href="#cb8-81"></a>      Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Sent: 1"</span><span class="op">);</span></span>
-<span id="cb8-82"><a href="#cb8-82"></a>      send_message <span class="op">=</span> true<span class="op">;</span>  <span class="co">// Set flag to avoid sending multiple times while touching</span></span>
+<span id="cb8-82"><a href="#cb8-82"></a>      send_message <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>  <span class="co">// Set flag to avoid sending multiple times while touching</span></span>
 <span id="cb8-83"><a href="#cb8-83"></a>    <span class="op">}</span></span>
 <span id="cb8-84"><a href="#cb8-84"></a>  <span class="op">}</span> </span>
 <span id="cb8-85"><a href="#cb8-85"></a>  <span class="co">// Send "0" if the pin is not being touched</span></span>
@@ -1252,7 +1281,7 @@ Subscribing allows clients to express their interest in receiving messages from 
 <span id="cb8-87"><a href="#cb8-87"></a>    <span class="cf">if</span> <span class="op">(</span>send_message<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb8-88"><a href="#cb8-88"></a>      client<span class="op">.</span>publish<span class="op">(</span>mqtt_topic<span class="op">,</span> <span class="st">"0"</span><span class="op">);</span></span>
 <span id="cb8-89"><a href="#cb8-89"></a>      Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Sent: 0"</span><span class="op">);</span></span>
-<span id="cb8-90"><a href="#cb8-90"></a>      send_message <span class="op">=</span> false<span class="op">;</span>  <span class="co">// Reset the flag when pin is no longer touched</span></span>
+<span id="cb8-90"><a href="#cb8-90"></a>      send_message <span class="op">=</span> <span class="kw">false</span><span class="op">;</span>  <span class="co">// Reset the flag when pin is no longer touched</span></span>
 <span id="cb8-91"><a href="#cb8-91"></a>    <span class="op">}</span></span>
 <span id="cb8-92"><a href="#cb8-92"></a>  <span class="op">}</span></span>
 <span id="cb8-93"><a href="#cb8-93"></a></span>

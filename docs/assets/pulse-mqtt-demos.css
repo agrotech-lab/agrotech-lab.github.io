@@ -1,0 +1,54 @@
+.message-workbench { margin: 1rem 0; }
+.message-workbench > * { min-width: 0; }
+.message-results { margin-top: 1rem; }
+.pulse-control { margin: .8rem 0; }
+.pulse-control input[type=number] { width: 7rem; max-width: 100%; }
+.message-feedback { background: #eaf2f8; border-left: 4px solid #17649a; padding: .65rem .85rem; font-size: .9rem; }
+.message-results .demo-stats { margin: 0 0 .7rem; }
+.teaching-demo .message-plot text { font: 20px system-ui, sans-serif; fill: #415969; }
+.message-plot .pulse-number { fill: #934d08; font-size: 17px; }
+.pulse-dot { fill: #a9580a; stroke: white; stroke-width: 1; }
+.teaching-demo[data-demo=mqtt-topics] input[type=text] { width: 100%; min-width: 0; min-height: 2.75rem; border: 1px solid #95adbd; border-radius: 6px; background: white; color: #18374b; padding: .4rem .6rem; font: .9rem ui-monospace, monospace; }
+.mqtt-sender label { margin-top: .8rem; }
+.mqtt-sender button { margin-top: .8rem; }
+.teaching-demo button:disabled { opacity: .55; cursor: default; }
+.mqtt-broker { border: 1px solid #95adbd; padding: .8rem; margin: 1rem 0; border-radius: 8px; background: #fff; }
+.mqtt-broker p { font-size: .9rem; margin-bottom: 0; }
+.mqtt-receivers { display: grid; gap: .7rem; margin-top: 1rem; }
+.mqtt-card { padding: .75rem; border: 1px solid #bdcbd5; border-radius: 8px; background: #fff; min-width: 0; }
+.mqtt-card[data-match=yes] { border-left: 5px solid #18765b; }
+.mqtt-card-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .3rem .7rem; }
+.mqtt-card-heading span { font-size: .8rem; color: #526777; }
+.mqtt-card[data-match=yes] .mqtt-card-heading span { color: #076347; font-weight: 700; }
+.mqtt-card label { font-size: .8rem; margin: .4rem 0 .2rem; }
+.mqtt-card .mqtt-last { margin: .4rem 0 0; font-size: .9rem; overflow-wrap: anywhere; }
+.mqtt-card .demo-note { margin: .15rem 0 0; }
+.teaching-demo .message-error { color: #854007; font-size: .85rem; margin: .35rem 0; }
+.teaching-demo [aria-invalid=true] { outline: 2px solid #a9580a; }
+.teaching-demo[data-demo=pulse-count]:fullscreen, .teaching-demo[data-demo=mqtt-topics]:fullscreen { display: block; padding: 1.25rem 2rem; }
+@media (min-width: 900px) {
+  .teaching-demo:fullscreen .message-workbench { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 1.5rem; align-items: start; }
+  .teaching-demo:fullscreen .message-results, .teaching-demo:fullscreen .mqtt-receivers { margin-top: 0; }
+  .teaching-demo:fullscreen .pulse-control { margin: .35rem 0; }
+  .teaching-demo:fullscreen .pulse-control label { display: inline-block; max-width: calc(100% - 7.5rem); padding-top: .5rem; }
+  .teaching-demo:fullscreen .pulse-control input[type=number] { float: right; }
+  .teaching-demo:fullscreen .pulse-control input[type=range] { clear: both; min-height: 1.65rem; margin-top: 0; }
+  .teaching-demo:fullscreen .pulse-control:last-of-type { min-height: 2.75rem; }
+  .teaching-demo:fullscreen .message-plot svg { max-height: 300px; }
+  .teaching-demo:fullscreen .mqtt-card { padding: .5rem .7rem; }
+  .teaching-demo:fullscreen .mqtt-receivers { gap: .5rem; }
+  .teaching-demo:fullscreen .mqtt-card label { display: inline-block; width: 4.4rem; margin: .3rem 0; }
+  .teaching-demo[data-demo=mqtt-topics]:fullscreen .mqtt-card input { display: inline-block; width: calc(100% - 4.8rem); margin: .3rem 0; }
+  .teaching-demo:fullscreen .mqtt-receipt { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .2rem .7rem; }
+  .teaching-demo:fullscreen .mqtt-receipt p { margin: .1rem 0; }
+}
+@media (max-width: 520px) {
+  .teaching-demo[data-demo=pulse-count], .teaching-demo[data-demo=mqtt-topics] { padding: .8rem; }
+  .message-results .demo-stats { grid-template-columns: 1fr; }
+  .message-results .demo-stats > div { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+  .message-results .demo-stats dd { margin: 0; }
+  .teaching-demo .message-plot text { font-size: 24px; }
+  .teaching-demo .message-plot .pulse-number { font-size: 20px; }
+  .teaching-demo[data-demo=pulse-count] .demo-footer, .teaching-demo[data-demo=mqtt-topics] .demo-footer { flex-wrap: wrap; }
+}
+@media print { .pulse-inputs, .mqtt-sender form { display: none; } }

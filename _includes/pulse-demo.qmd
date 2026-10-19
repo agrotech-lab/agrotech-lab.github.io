@@ -1,0 +1,24 @@
+```{=html}
+<div class="teaching-demo" id="pulse-explorer" data-demo="pulse-count" role="region" aria-labelledby="pulse-title">
+  <div class="demo-heading"><div><p class="demo-eyebrow">Try it · Count the pulses</p><h3 id="pulse-title" class="unnumbered">How many pulses did we count?</h3></div><button type="button" data-fullscreen hidden>Enlarge demo</button></div>
+  <p>Change how fast the pulses arrive and how long you count. Each jump from LOW to HIGH adds one pulse.</p>
+  <div class="message-workbench">
+    <div class="pulse-inputs">
+      <div class="pulse-control"><label for="pulse-speed">Pulses each second</label><input id="pulse-speed-number" type="number" aria-label="Pulses each second" min="0" max="30" step="0.5" value="5"><input id="pulse-speed" type="range" min="0" max="30" step="0.5" value="5"></div>
+      <div class="pulse-control"><label for="pulse-time">Count for (seconds)</label><input id="pulse-time-number" type="number" aria-label="Count for, seconds" min="0.5" max="10" step="0.5" value="2"><input id="pulse-time" type="range" min="0.5" max="10" step="0.5" value="2"></div>
+      <div class="pulse-control"><label for="pulse-per-litre">Pulses per litre</label><input id="pulse-per-litre" type="number" min="1" max="10000" step="1" value="450"></div>
+      <p class="demo-note">The pulses-per-litre value is an example. Use the value measured for your flow sensor.</p>
+      <p class="message-feedback" id="pulse-step" role="status">One extra pulse changes the flow reading by 0.067 L/min.</p>
+    </div>
+    <div class="message-results">
+      <dl class="demo-stats"><div><dt>Pulses counted</dt><dd id="pulse-count">10</dd></div><div><dt>Measured pulses/s</dt><dd id="pulse-frequency">5.00</dd></div><div><dt>Flow (L/min)</dt><dd id="pulse-flow">0.667</dd></div></dl>
+      <figure class="demo-plot message-plot"><svg id="pulse-plot" viewBox="0 0 640 250" role="img" aria-labelledby="pulse-plot-title pulse-plot-description"><title id="pulse-plot-title">Pulses during the counting time</title><desc id="pulse-plot-description">Ten pulses counted in two seconds.</desc><g id="pulse-axes"></g><path id="pulse-wave" class="demo-signal" fill="none"></path><g id="pulse-markers"></g></svg><figcaption><span>Orange dots: counted pulses</span><span id="pulse-window">2.0 seconds</span></figcaption></figure>
+      <p class="demo-formula" id="pulse-calculation">10 pulses ÷ 2.0 s = 5.00 pulses/s</p>
+      <p class="demo-note" id="pulse-volume">10 pulses ÷ 450 pulses/L = 0.0222 L</p>
+    </div>
+  </div>
+  <p class="demo-note">This example uses evenly spaced pulses. The first pulse arrives after one full interval; a pulse exactly at the end is counted. Starting at a different point in a real signal can change the count by one.</p>
+  <div class="demo-footer"><span>Change the counting time and watch the result.</span><button type="button" data-reset>Reset</button></div>
+  <noscript><p>Enable JavaScript to use the controls. Ten pulses in two seconds give 5 pulses/s. At 450 pulses per litre, that is about 0.667 L/min.</p></noscript>
+</div>
+```

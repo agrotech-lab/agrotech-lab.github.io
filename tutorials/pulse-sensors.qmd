@@ -12,14 +12,22 @@ execute:
 
 ![](https://i.stack.imgur.com/rTpKu.png)
 
-## Pulse counter
+```{=html}
+<link rel="stylesheet" href="../assets/teaching-demos.css">
+<link rel="stylesheet" href="../assets/pulse-mqtt-demos.css">
+<script src="../assets/pulse-mqtt-demos.js" defer></script>
+```
+
+{{< include ../_includes/pulse-demo.qmd >}}
+
+### Pulse counter
 ```{python}
 #| echo: false
 #| output: asis
 code_source("pulse_counter.ino")
 ```
 
-## Calculate frequency from counts
+### Calculate frequency from counts
 ```{python}
 #| echo: false
 #| output: asis

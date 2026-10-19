@@ -184,17 +184,49 @@ existing relay discussion remains relevant. The original behavior reference
 was https://www.ti.com/lit/ds/symlink/tmp709.pdf, sections 7.3.1-2 and 8.2.3.
 This is an illustrative software controller, not an emulation of that device.
 
-Following batches, in suggested order
-------------------------------------
+Completed batch 6: pulse counting and MQTT topics
+------------------------------------------------
+[verified] Pulse counting — tutorials/pulse-sensors.qmd
+    Sliders for pulses per second and counting duration; editable pulses per
+    litre. Show whole pulse count, measured pulses/s, flow in L/min and the
+    effect of one extra pulse. Waveform marks each counted LOW-to-HIGH jump.
+    Evenly spaced pulses at t = n/f, n >= 1, counting 0 < t <= duration;
+    N = floor(f * duration), measured frequency = N / duration,
+    volume = N / pulses-per-litre, flow = volume * 60 / duration.
+    First rising edge is after one complete interval. No thermal or fluid
+    dynamics, sensor calibration or physical timing is implied. Defaults are
+    illustrative, and the explanation states that a different starting point
+    in a real signal can change the count by one. Controls update immediately.
+    Source headings now match the published subheading levels so navigation
+    and numbering remain consistent. Existing Arduino programs unchanged.
 
-[ ] Pulse counting — tutorials/pulse-sensors.qmd
-    Frequency, observation window, and pulses per litre; show counted pulses,
-    flow rate, and measurement granularity. Do not assume a universal sensor
-    calibration constant. Reuse waveform drawing where practical.
+[verified] MQTT topics — tutorials/MQTT.qmd
+    Local sender, broker explanation and three editable screens. Preview
+    matching subscriptions before Send; afterwards show who received the
+    message, latest text and counts. Other screens keep their previous text;
+    changing a screen's subscription clears its received messages. Reset all.
+    Exact matches, + for one level, # at the end for zero or more levels;
+    support empty levels, case/space sensitivity, and the special rule that
+    initial +/# does not match a leading $. Validate topic/filter syntax,
+    reject null/unpaired surrogates, limit topic fields to 160 UTF-16 units
+    for this demo. Render message contents as text, including empty payloads.
+    No broker connection, storage, delivery retries, retained messages,
+    sessions or packet transport. Not a complete MQTT implementation.
+    Corrected the existing "single level ... followed by another level"
+    sentence to say two parts, and fixed "calss" beside the broker link.
 
-[ ] MQTT topic sandbox — tutorials/MQTT.qmd
-    Local simulation of publishers, subscribers, topic filters and payloads.
-    Show which subscriptions match (+ and #), without a live public broker.
+Includes: _includes/pulse-demo.qmd, _includes/mqtt-demo.qmd
+Assets: assets/pulse-mqtt-demos.js and assets/pulse-mqtt-demos.css, plus the
+existing teaching-demos.css. Previous demos' assets stay unchanged.
+Reference checked 2026-10-19:
+https://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html
+Sections 4.7.1-4.7.3 for matching, empty levels and invalid topic characters.
+
+Next review
+-----------
+[ ] Review the current digital-sensors and cloud-connectivity lessons for
+    the next small classroom demonstrations. Keep action-based labels and
+    leave formal explanations to the instructor where possible.
 
 Deferred legacy material — outside the active teaching queue
 -----------------------------------------------------------
@@ -344,3 +376,20 @@ JavaScript exceptions; existing polyfill.io request failure unchanged.
 Original page shell, images and downloads preserved. Only the Challenges
 search record changed. Source assets match published copies; maintainer
 notes stay outside docs/ and the search index.
+
+Batch 6 verification on 2026-10-19: 91 browser checks passed in installed
+Chrome. Pulse checks cover whole/fractional counts, exact end-time inclusion,
+zero and maximum frequency, short windows, flow conversion, scaling of
+pulses/litre, one-pulse step size, invalid numeric input, reset and keyboard.
+MQTT checks cover 32 explicit match/non-match cases, +/# placement, parent
+matching, empty levels, case/space sensitivity, leading $, Unicode, invalid
+filters and topics, safe text rendering, empty messages, no recipients,
+independent screen histories, reset and Enter-to-send. No broker WebSocket
+is opened. Both demos have labelled controls, no-JavaScript explanations,
+and fit 390px/320px widths. Enlarged 1366x768 views show controls and results
+together; MQTT cards were compacted to keep all three screens visible.
+Screenshots inspected. No console errors or uncaught JavaScript exceptions.
+Firefox/Safari and a physical phone were not tested. Existing page shells,
+headings, code examples, images and downloadable files are preserved. No
+duplicate IDs or broken ARIA targets. Source/published assets match, only
+three search records changed, and maintainer notes stay out of docs/search.
