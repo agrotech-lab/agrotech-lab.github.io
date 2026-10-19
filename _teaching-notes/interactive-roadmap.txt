@@ -453,3 +453,38 @@ uncaught JavaScript exceptions. Firefox/Safari and a physical phone were not
 tested. Original shells, headings, images, code and downloads preserved. No
 duplicate IDs or broken ARIA targets. Only two search records changed;
 source/published assets match, and notes remain outside docs/ and search.
+
+Optional advanced tutorial added on 2026-10-19: VS Code + PlatformIO.
+User-requested workflow guide, linked in Start here as an unnumbered chapter
+and from the two existing Arduino setup pages. Existing chapter numbers and
+lesson bodies preserved; every book sidebar links to the new chapter.
+
+Covers FireBeetle 2 ESP32-E setup, Arduino IDE comparison, platformio.ini,
+build/upload/monitor, ports, folder structure, .ino to .cpp migration,
+project library dependencies, Git sharing, Codex and Claude Code extensions,
+small AI prompts, troubleshooting and the external debug-probe requirement.
+Official documentation checked, including today's PlatformIO Espressif32
+8.0.0 release (Arduino-ESP32 3.3.12). Older course examples may need API
+migration; guide explicitly explains the 2.x/3.x difference.
+
+Two unchanged official PlatformIO screenshots included with descriptive alt
+text, captions explaining their older interface/different board, source
+credits and a copy of the documentation's Apache 2.0 license. Downloadable
+starter ZIP exactly matches the source in _examples/firebeetle-platformio.
+No reports, credentials or build output included in that ZIP.
+
+Validation: isolated macOS compilation with PlatformIO Core 6.2.0 passed for
+both the downloadable blink starter and the function-declaration example
+with knolleary/PubSubClient@2.8. Build resolved Arduino-ESP32 3.3.12 as stated.
+No physical hardware upload, LED or serial-output verification performed;
+this limitation is recorded on the tutorial. Windows/Linux setup checked
+against official documentation but not executed on those operating systems.
+
+Chrome verified both images, TOC/sidebar, unique IDs, clipboard exactness,
+site search, no uncaught JavaScript exceptions and no document/main overflow
+at 390px and 320px. Desktop and mobile screenshots inspected. All tutorial
+local links, assets, anchors and download resolve. Unrelated lesson bodies
+and search records are unchanged. Existing shared site assets retained;
+page-specific CSS handles long commands and table cells. Maintainer notes
+remain absent from docs/ and search. No paid AI session or hardware action
+was needed for verification.

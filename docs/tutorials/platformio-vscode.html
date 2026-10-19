@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>agrotech lab - VS Code + PlatformIO</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../tutorials/breadboard.html" rel="next">
+<link href="../tutorials/install_firebeetle.html" rel="prev">
+<link href="..//archive/images/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-1.0.0-beta.2/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../custom.scss">
+<link rel="stylesheet" href="../assets/platformio-guide/guide.css">
+</head>
+
+<body class="nav-sidebar floating platformio-tutorial">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../arduino-intro-and-links.html"><strong>Start here</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/platformio-vscode.html">VS Code + PlatformIO</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../archive/images/site-logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">agrotech lab</a>
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://yairmau.com/" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
+    <a href="../sources.html" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-bookmark-fill"></i></a>
+    <a href="../things-to-remember.html" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-asterisk"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container">
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text"><strong>Start here</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a>
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../arduino-intro-and-links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Arduino intro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/arduino_IDE.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arduino IDE</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/install_firebeetle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Install FireBeetle (ESP32)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/platformio-vscode.html" class="sidebar-item-text sidebar-link active"><span class="menu-text">VS Code + PlatformIO</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text"><strong>Basics</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a>
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/breadboard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Breadboard</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/basic-electronics-concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic Electronics Concepts</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/firebeetle_documentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">FireBeetle 2 ESP32-E</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/libraries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Libraries</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text"><strong>Lectures</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a>
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/first-programs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">First programs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/electronics-class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Electronics Class</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/electronics-class-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Electronics Class 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Control</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/digital-read-write.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reading digital and analog</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/digital-sensors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Digital sensors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/cloud-connectivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Cloud connectivity</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text"><strong>Running simple programs</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a>
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/merging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Code Merging</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/RGB.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">RGB LED</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text"><strong>Electronics</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a>
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/relay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Switches, Relays, Transistors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/soldering-and-wires.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Soldering and Wires</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/electronics-class-old.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Electronics Class Old</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text"><strong>Sensors and comm</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a>
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/pulse-sensors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Pulse sensors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/MQTT.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">MQTT</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/deep_sleep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Deep Sleep</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/esp_now.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">ESP-NOW</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/OLED.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">OLED screen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/python-matlab-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Basic Data Analysis with Python and Matlab</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/web_server.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">ESP32 web servers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/API-thingspeak-python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">API to download Thingspeak data with Python</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text"><strong>Agro stuff</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a>
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/water-and-energy-balances.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Water and Energy Balances</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../tutorials/psychrometric-chart-and-evaporative-cooling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Psychrometric Chart and Evaporative Cooling</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text"><strong>Assignments</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a>
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../assignments/submission_info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Submission Guidelines</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../assignments/assignment1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Assignment 1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../assignments/assignment2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Assignment 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../assignments/assignment3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Assignment 3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../assignments/assignment4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Assignment 4</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
+ <span class="menu-text"><strong>Resources</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a>
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title"><iconify-icon inline="" icon="fluent:brain-circuit-20-regular"></iconify-icon> Resources</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
+ <span class="menu-text"><strong>Projects</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a>
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title"><iconify-icon inline="" icon="icons8:finish-flag"></iconify-icon> Past Final Projects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../projects/borrowing-equipment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Borrowing equipment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../projects/final-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../projects/examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Example projects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../projects/greenhouse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">The Smart Greenhouse</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../projects/MQTT_in_greenhouse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">MQTT in project greenhouse</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container">
+  <a href="../projects/mqtt_example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">MQTT example</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+
+  <ul class="collapse">
+  <li><a href="#what-changes" id="toc-what-changes" class="nav-link active" data-scroll-target="#what-changes">What changes from Arduino IDE?</a></li>
+  <li><a href="#install-tools" id="toc-install-tools" class="nav-link" data-scroll-target="#install-tools">1. Install the tools</a></li>
+  <li><a href="#create-project" id="toc-create-project" class="nav-link" data-scroll-target="#create-project">2. Create a FireBeetle project</a></li>
+  <li><a href="#project-settings" id="toc-project-settings" class="nav-link" data-scroll-target="#project-settings">3. Read the project settings</a></li>
+  <li><a href="#first-program" id="toc-first-program" class="nav-link" data-scroll-target="#first-program">4. Write and build your first program</a></li>
+  <li><a href="#upload-monitor" id="toc-upload-monitor" class="nav-link" data-scroll-target="#upload-monitor">5. Upload and read the messages</a></li>
+  <li><a href="#project-folders" id="toc-project-folders" class="nav-link" data-scroll-target="#project-folders">6. Know what belongs in each folder</a></li>
+  <li><a href="#move-a-sketch" id="toc-move-a-sketch" class="nav-link" data-scroll-target="#move-a-sketch">7. Bring an Arduino sketch and its libraries</a></li>
+  <li><a href="#ai-assistant" id="toc-ai-assistant" class="nav-link" data-scroll-target="#ai-assistant">8. Add Codex or Claude Code</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">When something does not work</a></li>
+  <li><a href="#next-project" id="toc-next-project" class="nav-link" data-scroll-target="#next-project">Try it on your next project</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../arduino-intro-and-links.html"><strong>Start here</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/platformio-vscode.html">VS Code + PlatformIO</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">VS Code + PlatformIO</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+
+
+
+  </div>
+
+
+
+</header>
+
+
+<p>An optional workflow for students who want to take their projects further. We will use the <strong>FireBeetle 2 ESP32-E</strong>, keep programming with Arduino functions, and put the code, board settings, libraries, and an optional AI assistant in one workspace.</p>
+<p>By the end, you will have a blinking LED, messages in the Serial Monitor, and a project you can share with a teammate. Start with steps 1–5; the later sections help you move an existing sketch and work on larger projects.</p>
+<p><strong>Checked: October 19, 2026.</strong> Menus may move as the extensions change. The links throughout this guide go to the official documentation.</p>
+<section id="what-changes" class="level2">
+<h2 class="anchored" data-anchor-id="what-changes">What changes from Arduino IDE?</h2>
+<p>You are changing the tools on your computer. The board still runs your program, and <code>setup()</code>, <code>loop()</code>, <code>digitalWrite()</code>, and the other Arduino functions still work when you select the <strong>Arduino framework</strong>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>In your usual Arduino workflow</th>
+<th>In this tutorial</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Open a sketch, usually an <code>.ino</code> file</td>
+<td>Open a whole project folder; edit <code>src/main.cpp</code></td>
+</tr>
+<tr class="even">
+<td>Select the board through a menu</td>
+<td>Save the board and framework in <code>platformio.ini</code></td>
+</tr>
+<tr class="odd">
+<td>Install libraries with Library Manager</td>
+<td>List project libraries under <code>lib_deps</code></td>
+</tr>
+<tr class="even">
+<td>Verify, Upload, Serial Monitor</td>
+<td>Build, Upload, Monitor</td>
+</tr>
+<tr class="odd">
+<td>Share a sketch and explain its settings</td>
+<td>Share code and configuration together</td>
+</tr>
+</tbody>
+</table>
+<p>Arduino IDE remains a convenient way to start. Modern Arduino IDE also has features such as code completion; the reason to try this workflow is the project organization, repeatable settings, and editor tools. See <a href="https://docs.arduino.cc/software/ide-v2/tutorials/getting-started-ide-v2/">Arduino’s IDE guide</a>.</p>
+<p>There are three pieces to understand:</p>
+<ul>
+<li><strong>VS Code</strong> is the editor: files, search, terminal, Git, and extensions.</li>
+<li><strong>PlatformIO</strong> manages the board tools, libraries, compilation, and upload.</li>
+<li><strong>Arduino</strong> is the framework used by our program. PlatformIO can use other frameworks, but we will stay with Arduino here.</li>
+</ul>
+<p>You do not need to install Arduino IDE first. PlatformIO downloads its own tools; changing a board package in Arduino IDE does not change this project’s PlatformIO package. <a href="https://docs.platformio.org/en/latest/frameworks/arduino.html">PlatformIO’s Arduino framework documentation</a> explains this setup.</p>
+</section>
+<section id="install-tools" class="level2">
+<h2 class="anchored" data-anchor-id="install-tools">1. Install the tools</h2>
+<p>Have the FireBeetle and a <strong>USB data cable</strong> ready. For this first setup, use VS Code on the computer connected to the board.</p>
+<ol type="1">
+<li>Install the desktop version of <a href="https://code.visualstudio.com/download">Visual Studio Code</a> for Windows, macOS, or Linux. This is a different application from Visual Studio.</li>
+<li>Open <strong>Extensions</strong>: <code>Ctrl+Shift+X</code> on Windows/Linux or <code>Cmd+Shift+X</code> on macOS.</li>
+<li>Search for <strong>PlatformIO IDE</strong>, published by <strong>PlatformIO</strong>, and install it. Its extension ID is <code>platformio.platformio-ide</code>.</li>
+<li>Let the initial setup finish, then reload VS Code if asked. Open <strong>PlatformIO Home</strong> using its home icon, or find <strong>PlatformIO: Home</strong> in the Command Palette (<code>Ctrl+Shift+P</code> / <code>Cmd+Shift+P</code>).</li>
+</ol>
+<p>The extension includes PlatformIO Core, so a separate <code>pip install platformio</code> is unnecessary. Linux may need <code>python3-venv</code>; follow the OS-specific requirements in the <a href="https://docs.platformio.org/en/latest/integration/ide/vscode.html#installation">official installation instructions</a>. Install <a href="https://git-scm.com/downloads">Git</a> when you want to clone or version your project.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/platformio-guide/welcome.png" class="img-fluid figure-img" alt="Official VS Code screenshot with an arrow pointing to the PlatformIO Home icon in the bottom status bar." width="665"></p>
+<figcaption>An older official PlatformIO screenshot points to the Home button. Its appearance may differ in your version.</figcaption>
+</figure>
+</div>
+</section>
+<section id="create-project" class="level2">
+<h2 class="anchored" data-anchor-id="create-project">2. Create a FireBeetle project</h2>
+<p>In <strong>PlatformIO Home → New Project</strong>, enter:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Choose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Name</td>
+<td><code>firebeetle-first-project</code></td>
+</tr>
+<tr class="even">
+<td>Board</td>
+<td><strong>DFRobot Firebeetle 2 ESP32-E</strong></td>
+</tr>
+<tr class="odd">
+<td>Framework</td>
+<td><strong>Arduino</strong></td>
+</tr>
+<tr class="even">
+<td>Location</td>
+<td>A local folder where you keep your projects</td>
+</tr>
+</tbody>
+</table>
+<p>Click <strong>Finish</strong> and allow the downloads to complete. In VS Code’s Explorer, you should now see <code>platformio.ini</code> and a <code>src</code> folder. If you reopen the project later, use <strong>File → Open Folder</strong> and select the folder containing <code>platformio.ini</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../assets/platformio-guide/new-project.png" class="img-fluid figure-img" alt="PlatformIO Project Wizard showing Board, Framework and Location fields, with a Finish button. The pictured board is Arduino Uno; this guide uses FireBeetle 2 ESP32-E." width="666"></p>
+<figcaption>The official Project Wizard screenshot shows the Board and Framework fields. For our course, replace the pictured Arduino Uno with DFRobot Firebeetle 2 ESP32-E.</figcaption>
+</figure>
+</div>
+<p>The board’s exact identifier is <code>dfrobot_firebeetle2_esp32e</code>. Check the <a href="https://docs.platformio.org/en/latest/boards/espressif32/dfrobot_firebeetle2_esp32e.html">official board page</a> if the names in the menu are confusing. Other FireBeetle models need their own board configuration.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Prefer to start from the finished files?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><a href="../assets/downloads/firebeetle-platformio-starter.zip">Download the starter project</a>. Extract it, open the extracted folder containing <code>platformio.ini</code> in VS Code, and continue with step 3. The ZIP contains the configuration and blink program shown below.</p>
+</div>
+</div>
+</section>
+<section id="project-settings" class="level2">
+<h2 class="anchored" data-anchor-id="project-settings">3. Read the project settings</h2>
+<p>Replace the contents of <strong><code>platformio.ini</code></strong> with:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource ini number-lines code-with-copy"><code class="sourceCode ini"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">[env:firebeetle]</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="dt">platform </span><span class="ot">=</span><span class="st"> platformio/espressif32@8.0.0</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="dt">board </span><span class="ot">=</span><span class="st"> dfrobot_firebeetle2_esp32e</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="dt">framework </span><span class="ot">=</span><span class="st"> arduino</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="dt">monitor_speed </span><span class="ot">=</span><span class="st"> </span><span class="dv">115200</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Save the file. PlatformIO may download packages or refresh its project information.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Line</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>[env:firebeetle]</code></td>
+<td>A named set of settings. We call this environment <code>firebeetle</code>.</td>
+</tr>
+<tr class="even">
+<td><code>platform</code></td>
+<td>The ESP32 support package and its tools. <code>@8.0.0</code> selects a specific release.</td>
+</tr>
+<tr class="odd">
+<td><code>board</code></td>
+<td>The actual board we are building for.</td>
+</tr>
+<tr class="even">
+<td><code>framework</code></td>
+<td>Use the Arduino programming framework.</td>
+</tr>
+<tr class="odd">
+<td><code>monitor_speed</code></td>
+<td>Open the serial connection at 115200 baud; the code must use the same rate.</td>
+</tr>
+</tbody>
+</table>
+<p>An <em>environment</em> here means a build configuration, not a Python virtual environment. Later, a project can have several environments for different boards or settings. For now, keep just this one. See the <a href="https://docs.platformio.org/en/latest/projectconf/index.html">configuration reference</a> and <a href="https://docs.platformio.org/en/latest/projectconf/sections/env/options/platform/platform.html">platform version option</a>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Platform version and Arduino version are different
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>PlatformIO’s <strong>Espressif32 8.0.0</strong> release uses <strong>Arduino-ESP32 3.3.12</strong>. The two numbers describe different packages. We pin the platform so a teammate can start with the same release. This is the version used for this guide, not a promise that it will always be the newest. <a href="https://github.com/platformio/platform-espressif32/releases/tag/v8.0.0">Release notes</a>.</p>
+<p>Some older course sketches use Arduino-ESP32 2.x functions. For example, 3.x replaced <code>ledcSetup()</code> and <code>ledcAttachPin()</code> with a different LEDC API. A compile error in an older PWM sketch may be a framework-version issue. Check <a href="https://docs.espressif.com/projects/arduino-esp32/en/latest/migration_guides/2.x_to_3.0.html">Espressif’s migration guide</a> before changing the code or package version.</p>
+</div>
+</div>
+</section>
+<section id="first-program" class="level2">
+<h2 class="anchored" data-anchor-id="first-program">4. Write and build your first program</h2>
+<p>Open <strong><code>src/main.cpp</code></strong> and replace its contents with:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="at">const</span> <span class="dt">unsigned</span> <span class="dt">long</span> BLINK_TIME_MS <span class="op">=</span> <span class="dv">500</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  pinMode<span class="op">(</span>LED_BUILTIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="op">}</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>  digitalWrite<span class="op">(</span>LED_BUILTIN<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"LED ON"</span><span class="op">);</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>  delay<span class="op">(</span>BLINK_TIME_MS<span class="op">);</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a></span>
+<span id="cb2-15"><a href="#cb2-15"></a>  digitalWrite<span class="op">(</span>LED_BUILTIN<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"LED OFF"</span><span class="op">);</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>  delay<span class="op">(</span>BLINK_TIME_MS<span class="op">);</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>#include &lt;Arduino.h&gt;</code> makes the Arduino functions available in this C++ file. <code>LED_BUILTIN</code> uses the board definition’s LED pin; for this FireBeetle variant it is GPIO 2. <a href="https://github.com/espressif/arduino-esp32/blob/3.3.12/variants/dfrobot_firebeetle2_esp32e/pins_arduino.h">Espressif’s board definition</a>.</p>
+<p>Save, then click the PlatformIO <strong>Build</strong> checkmark in the bottom toolbar. You can also open the PlatformIO icon on the left and choose <strong>Project Tasks → firebeetle → General → Build</strong>. Look for <strong>SUCCESS</strong> in the terminal output. The first build takes longer because tools and framework files may need to be downloaded.</p>
+<p><strong>Build only prepares the program on your computer.</strong> You can do this with the board unplugged. To run the program on the FireBeetle, upload it next.</p>
+</section>
+<section id="upload-monitor" class="level2">
+<h2 class="anchored" data-anchor-id="upload-monitor">5. Upload and read the messages</h2>
+<ol type="1">
+<li>Connect the FireBeetle with the USB data cable.</li>
+<li>Close any Arduino IDE Serial Monitor using that board.</li>
+<li>Select <strong>Upload</strong> in the same PlatformIO project tasks, or use the right-arrow icon in its toolbar. Wait for a successful upload.</li>
+<li>Select <strong>Monitor</strong>, or the plug-shaped serial-monitor icon. Confirm it opens at <strong>115200</strong>.</li>
+<li>You should see alternating messages, and the onboard LED should turn on and off every half second:</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>LED ON</span>
+<span id="cb3-2"><a href="#cb3-2"></a>LED OFF</span>
+<span id="cb3-3"><a href="#cb3-3"></a>LED ON</span>
+<span id="cb3-4"><a href="#cb3-4"></a>LED OFF</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Try changing <code>BLINK_TIME_MS</code> to <code>1000</code>, save, and upload again. The LED should now spend one second on and one second off. Editing or building alone does not update the program already on the board.</p>
+<section id="if-platformio-chooses-the-wrong-port" class="level3">
+<h3 class="anchored" data-anchor-id="if-platformio-chooses-the-wrong-port">If PlatformIO chooses the wrong port</h3>
+<p>Open the <strong>PlatformIO Core CLI</strong> terminal from PlatformIO’s <strong>Quick Access → Miscellaneous</strong> and run:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sh number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="ex">pio</span> device list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Compare the list with the board unplugged and plugged in. Windows ports look like <code>COM7</code>; macOS often uses <code>/dev/cu.usbserial-...</code>; Linux often uses <code>/dev/ttyUSB0</code>. Your actual port may differ.</p>
+<p>If necessary, add both lines below <strong>inside the existing <code>[env:firebeetle]</code> section</strong>, replacing <code>COM7</code> with your board’s port:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource ini number-lines code-with-copy"><code class="sourceCode ini"><span id="cb5-1"><a href="#cb5-1"></a><span class="dt">upload_port </span><span class="ot">=</span><span class="st"> COM7</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="dt">monitor_port </span><span class="ot">=</span><span class="st"> COM7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Leave these out when automatic detection works. A teammate’s port will probably differ from yours. See <a href="https://docs.platformio.org/en/latest/core/userguide/cmd_run.html">upload options</a> and the <a href="https://docs.platformio.org/en/latest/core/userguide/device/cmd_monitor.html">serial monitor reference</a>. In the terminal monitor, <code>Ctrl+C</code> exits and releases the port.</p>
+</section>
+<section id="the-same-workflow-from-a-terminal" class="level3">
+<h3 class="anchored" data-anchor-id="the-same-workflow-from-a-terminal">The same workflow from a terminal</h3>
+<p>In the <strong>PlatformIO Core CLI</strong> terminal, with the project folder as the current directory:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pio run -e firebeetle</code></td>
+<td>Build this environment</td>
+</tr>
+<tr class="even">
+<td><code>pio run -e firebeetle -t upload</code></td>
+<td>Build and upload</td>
+</tr>
+<tr class="odd">
+<td><code>pio device monitor -b 115200</code></td>
+<td>Read serial messages</td>
+</tr>
+<tr class="even">
+<td><code>pio run -e firebeetle -t clean</code></td>
+<td>Remove generated build files before rebuilding</td>
+</tr>
+</tbody>
+</table>
+<p>If a normal terminal says <code>pio</code> is not found, open PlatformIO’s own terminal. That message usually concerns the terminal’s command path, not your Arduino code. These commands also give an AI assistant a clear way to check a build.</p>
+</section>
+</section>
+<section id="project-folders" class="level2">
+<h2 class="anchored" data-anchor-id="project-folders">6. Know what belongs in each folder</h2>
+<p>This is a typical project after its first build. Some folders are created by the wizard or only appear when you need them; the starter ZIP deliberately contains just the essentials.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>firebeetle-first-project/</span>
+<span id="cb6-2"><a href="#cb6-2"></a>├── platformio.ini       Board, framework, versions, libraries</span>
+<span id="cb6-3"><a href="#cb6-3"></a>├── src/</span>
+<span id="cb6-4"><a href="#cb6-4"></a>│   └── main.cpp         Your program</span>
+<span id="cb6-5"><a href="#cb6-5"></a>├── include/             Your shared .h header files</span>
+<span id="cb6-6"><a href="#cb6-6"></a>├── lib/                 Libraries you write for this project</span>
+<span id="cb6-7"><a href="#cb6-7"></a>├── test/                Automated tests, when you add them</span>
+<span id="cb6-8"><a href="#cb6-8"></a>├── .pio/                Generated builds and downloaded libraries</span>
+<span id="cb6-9"><a href="#cb6-9"></a>├── .vscode/             Editor configuration</span>
+<span id="cb6-10"><a href="#cb6-10"></a>├── .gitignore           Files Git should leave out</span>
+<span id="cb6-11"><a href="#cb6-11"></a>└── README.txt           How to wire, build, and run the project</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Start by editing <code>src/main.cpp</code> and <code>platformio.ini</code>. As the code grows, move related functions into additional <code>.cpp</code> files under <code>src/</code> and put their declarations in <code>.h</code> files under <code>include/</code>.</p>
+<p>Treat <code>.pio/</code> as generated output. Do not edit libraries inside it: your changes can disappear when dependencies are reinstalled. Use <code>lib/</code> for your own project libraries and <code>lib_deps</code> for published dependencies. The <a href="https://docs.platformio.org/en/latest/projectconf/sections/platformio/options/directory/index.html">directory reference</a> describes these defaults.</p>
+<p>For GitHub, include your source, <code>platformio.ini</code>, <code>.gitignore</code>, and a short README with the wiring and instructions. Keep <code>.pio/</code> out. The starter also ignores <code>.vscode/</code>; you can later choose to share useful editor settings. If you add a local file such as <code>include/secrets.h</code> for Wi-Fi passwords or service keys, keep it out of Git and share a placeholder example instead.</p>
+</section>
+<section id="move-a-sketch" class="level2">
+<h2 class="anchored" data-anchor-id="move-a-sketch">7. Bring an Arduino sketch and its libraries</h2>
+<section id="move-the-code" class="level3">
+<h3 class="anchored" data-anchor-id="move-the-code">Move the code</h3>
+<p>Create the PlatformIO project first, then:</p>
+<ol type="1">
+<li>Copy the sketch into <code>src/main.cpp</code>.</li>
+<li>Add <code>#include &lt;Arduino.h&gt;</code> at the top.</li>
+<li>Keep one <code>setup()</code> and one <code>loop()</code> in the project.</li>
+<li>Declare your own functions before calling them, or place their full definitions above the call.</li>
+</ol>
+<p>Arduino’s <code>.ino</code> processing often adds declarations for you. A <code>.cpp</code> file expects you to provide them. For example:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="dt">void</span> printReading<span class="op">();</span>  <span class="co">// Declare it before setup() calls it.</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>  Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">115200</span><span class="op">);</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  printReading<span class="op">();</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="op">}</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="op">}</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="dt">void</span> printReading<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>  Serial<span class="op">.</span>println<span class="op">(</span><span class="st">"Ready to read a sensor"</span><span class="op">);</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When moving several Arduino tabs, check all function declarations and shared variables. Do not leave a second copy of the old program in <code>src/</code>: PlatformIO also compiles other source files there, which can cause duplicate <code>setup()</code> or <code>loop()</code> errors. See <a href="https://docs.platformio.org/en/latest/faq/ino-to-cpp.html">PlatformIO’s <code>.ino</code> to <code>.cpp</code> guide</a>.</p>
+</section>
+<section id="add-a-library-to-this-project" class="level3">
+<h3 class="anchored" data-anchor-id="add-a-library-to-this-project">Add a library to this project</h3>
+<p>For example, a later MQTT program might use PubSubClient. Open <strong>PlatformIO Home → Libraries</strong>, find <strong>PubSubClient</strong> by <strong>knolleary</strong>, and use its installation information. Add this to your existing environment in <code>platformio.ini</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource ini number-lines code-with-copy"><code class="sourceCode ini"><span id="cb8-1"><a href="#cb8-1"></a><span class="dt">lib_deps </span><span class="ot">=</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="dt">  knolleary/PubSubClient@2.8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then include it in the program that needs it:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1"></a><span class="pp">#include </span><span class="im">&lt;PubSubClient.h&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Save and build. PlatformIO installs the declared dependency for that project. Version <code>2.8</code> is an explicit example, not a claim that it is the latest release. Record the versions you test so teammates use the same ones. Libraries installed in Arduino IDE’s Library Manager are not automatically this project’s dependencies. <a href="https://docs.platformio.org/en/latest/projectconf/sections/env/options/library/lib_deps.html">Library dependency reference</a>.</p>
+<p>The blink starter needs no <code>lib_deps</code>. Common ESP32 Arduino components such as <code>WiFi.h</code> and <code>Wire.h</code> come with the framework; do not install an unrelated similarly named library to fix an include error.</p>
+</section>
+</section>
+<section id="ai-assistant" class="level2">
+<h2 class="anchored" data-anchor-id="ai-assistant">8. Add Codex or Claude Code</h2>
+<p>Once your first build and upload work, I recommend trying <strong>one</strong> AI coding extension. Keeping the assistant beside the project lets you ask about actual files, review changes, and use the build output in the same place. Both options below can help; choose the one you already have access to. AI access and usage limits depend on your account, and neither is required for PlatformIO.</p>
+<section id="option-a-codex-by-openai" class="level3">
+<h3 class="anchored" data-anchor-id="option-a-codex-by-openai">Option A: Codex by OpenAI</h3>
+<ol type="1">
+<li>In Extensions, find <strong>Codex</strong> published by <strong>OpenAI</strong> (<code>openai.chatgpt</code>), using the install link in the <a href="https://developers.openai.com/codex/ide/">official Codex IDE guide</a>.</li>
+<li>Open the Codex icon. If it is hidden, use the Command Palette and <strong>Codex: Open Codex Sidebar</strong>.</li>
+<li>Choose <strong>Sign in with ChatGPT</strong> and finish the browser sign-in. An API-key option also exists, with separate usage-based billing. See <a href="https://developers.openai.com/codex/auth/">OpenAI’s authentication guide</a>.</li>
+<li>Keep the FireBeetle project folder open. Open <code>platformio.ini</code> and <code>src/main.cpp</code>, then ask Codex to explain this project before requesting a change.</li>
+</ol>
+<p>Use the local project workflow while working with the USB board. Review the changed lines in the editor and build again after accepting an edit.</p>
+</section>
+<section id="option-b-claude-code-by-anthropic" class="level3">
+<h3 class="anchored" data-anchor-id="option-b-claude-code-by-anthropic">Option B: Claude Code by Anthropic</h3>
+<ol type="1">
+<li>Install <strong>Claude Code</strong> published by <strong>Anthropic</strong> (<code>anthropic.claude-code</code>) from Extensions.</li>
+<li>Open a source file, then click the Claude spark icon or find Claude Code in the Command Palette.</li>
+<li>Follow the sign-in prompt. The documented options include a paid Claude subscription or a Claude Console account; check your account’s access and billing.</li>
+<li>Reference <code>platformio.ini</code> and <code>src/main.cpp</code> with <code>@</code> in the conversation, and start with the same explanation request below.</li>
+</ol>
+<p>The extension includes the CLI it needs for its chat panel. A separate standalone CLI installation is only needed if you want to run the <code>claude</code> command in a terminal. Follow the <a href="https://code.claude.com/docs/en/vs-code">official VS Code instructions</a>; on Windows, also check the <a href="https://code.claude.com/docs/en/setup#set-up-on-windows">current Windows prerequisites</a>.</p>
+</section>
+<section id="a-useful-first-conversation" class="level3">
+<h3 class="anchored" data-anchor-id="a-useful-first-conversation">A useful first conversation</h3>
+<p>Copy this into either assistant:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a href="#cb10-1"></a>Read platformio.ini and src/main.cpp. Explain what runs on the computer</span>
+<span id="cb10-2"><a href="#cb10-2"></a>and what runs on the FireBeetle 2 ESP32-E. Explain each project setting</span>
+<span id="cb10-3"><a href="#cb10-3"></a>and what the LED program does. Do not change any files yet.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then try one small change:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href="#cb11-1"></a>Replace the delay-based blinking with millis() timing, keeping the same</span>
+<span id="cb11-2"><a href="#cb11-2"></a>LED pin and the same 500 ms on / 500 ms off behavior. Print a message only</span>
+<span id="cb11-3"><a href="#cb11-3"></a>when the LED changes. Keep the board, framework, and package versions.</span>
+<span id="cb11-4"><a href="#cb11-4"></a>Explain the change, then build with pio run -e firebeetle and report the</span>
+<span id="cb11-5"><a href="#cb11-5"></a>result. Do not upload; I will test it on the board.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If the assistant cannot find <code>pio</code>, run the build in the PlatformIO Core CLI yourself and give it the first meaningful error and surrounding lines. A build result is more useful than the final line saying “failed.”</p>
+<p>Review what changed, upload, and check the LED and messages. Compiling verifies that the code can be built; it does not verify your wiring or prove that a sensor reading is correct. Keep a working Git commit before a larger edit, and leave real passwords and API keys out of prompts and shared files.</p>
+<p>For a sensor project, include the exact sensor model, connected GPIO numbers, expected units, and actual error. For example: “My SHT31 uses SDA 21, SCL 22, address 0x44. Explain why this program gets no reading.” The assistant should work from your wiring, not invent it.</p>
+</section>
+</section>
+<section id="troubleshooting" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting">When something does not work</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>What you see</th>
+<th>What to check first</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>No PlatformIO tasks</td>
+<td>Open the folder containing <code>platformio.ini</code>; wait for extension setup. Check the extension is enabled.</td>
+</tr>
+<tr class="even">
+<td><code>Arduino.h</code> has a red underline</td>
+<td>Run Build. If it succeeds, try <strong>PlatformIO: Rebuild IntelliSense Index</strong> from the Command Palette. An editor underline and a compiler error are different things.</td>
+</tr>
+<tr class="odd">
+<td><code>...h: No such file or directory</code></td>
+<td>Check the header spelling and the dependency’s official installation instructions. Add the right library to this environment.</td>
+</tr>
+<tr class="even">
+<td><code>was not declared in this scope</code></td>
+<td>For your own function, check its declaration. For an ESP32 API, check the framework version.</td>
+</tr>
+<tr class="odd">
+<td><code>multiple definition of setup</code> or <code>loop</code></td>
+<td>Keep only one program entry point; move spare sketches out of <code>src/</code>.</td>
+</tr>
+<tr class="even">
+<td>No USB port appears</td>
+<td>Try a known data cable and another USB port. Check the board manufacturer’s USB driver instructions.</td>
+</tr>
+<tr class="odd">
+<td>Port busy / access denied</td>
+<td>Close other serial monitors. On Linux, check serial-device permissions.</td>
+</tr>
+<tr class="even">
+<td>Upload cannot connect</td>
+<td>Confirm the selected port and board, reconnect USB, and check the manufacturer’s upload troubleshooting.</td>
+</tr>
+<tr class="odd">
+<td>Unreadable serial text</td>
+<td>Match <code>Serial.begin(115200)</code> and <code>monitor_speed = 115200</code>.</td>
+</tr>
+<tr class="even">
+<td>Build succeeds, old behavior remains</td>
+<td>Save and Upload; Build alone leaves the old firmware running.</td>
+</tr>
+</tbody>
+</table>
+<p>Board-specific help: <a href="https://wiki.dfrobot.com/FireBeetle_Board_ESP32_E_SKU_DFR0654">DFRobot’s FireBeetle 2 ESP32-E wiki</a>. Linux permissions: <a href="https://docs.platformio.org/en/latest/core/installation/udev-rules.html">PlatformIO’s udev guide</a>.</p>
+<p><strong>What about breakpoints?</strong> USB upload and serial messages work with this setup. The FireBeetle 2 ESP32-E has no onboard debug probe, so stepping through firmware at breakpoints needs additional supported debug hardware and configuration. Start by printing values to the serial monitor. See the board’s <a href="https://docs.platformio.org/en/latest/boards/espressif32/dfrobot_firebeetle2_esp32e.html#debugging">debugging section</a>.</p>
+</section>
+<section id="next-project" class="level2">
+<h2 class="anchored" data-anchor-id="next-project">Try it on your next project</h2>
+<p>Move one familiar sketch into this structure. Get it building first, then upload and compare its behavior with the Arduino IDE version. Add one library or one feature at a time. Your README should let another student identify the board, connect the sensor, build the program, and understand the serial output.</p>
+<p>The two screenshots above are reproduced unchanged from the <a href="https://docs.platformio.org/en/latest/integration/ide/vscode.html">PlatformIO documentation</a>, under its <a href="../assets/platformio-guide/LICENSE.txt">Apache 2.0 license</a>. They illustrate the interface; their pictured boards and older styling are not the configuration used by this guide.</p>
+<p><em>Validation for this edition: the starter and the function-declaration example with PubSubClient 2.8 compiled successfully on macOS with PlatformIO Core 6.2.0 and the configuration above. USB upload, LED behavior, and serial output still need to be checked on your physical board.</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button,
+        { trigger: "manual",
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config);
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../tutorials/install_firebeetle.html" class="pagination-link" aria-label="Install FireBeetle (ESP32)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Install FireBeetle (ESP32)</span></span>
+      </a>
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../tutorials/breadboard.html" class="pagination-link" aria-label="Breadboard">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Breadboard</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -15,6 +15,7 @@ book:
       - arduino-intro-and-links.qmd
       - tutorials/arduino_IDE.qmd
       - tutorials/install_firebeetle.qmd
+      - tutorials/platformio-vscode.qmd
     - part: "**Basics**"
       chapters:
       - tutorials/breadboard.qmd

@@ -4,6 +4,11 @@ echo: false
 jupyter: python3
 ---
 
+::: {.callout-tip}
+## Optional: use VS Code
+For a project-based workflow with PlatformIO and an optional AI coding assistant, follow [VS Code + PlatformIO](platformio-vscode.qmd). It uses the same FireBeetle board and Arduino programming functions.
+:::
+
 ## How to connect the Firebeetle 2 MCU
 
 In our class we will be using the [FireBeetle 2 ESP32-E IoT Microcontroller](https://www.dfrobot.com/product-2195.html) as our main MCU. In this guid you will learn how to install needed software on your computer.  

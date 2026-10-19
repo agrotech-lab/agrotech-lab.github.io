@@ -1,0 +1,19 @@
+PlatformIO guide screenshots
+===========================
+
+Source: PlatformIO documentation, PlatformIO IDE for VSCode
+https://docs.platformio.org/en/latest/integration/ide/vscode.html
+
+welcome.png is an unchanged copy of:
+https://docs.platformio.org/en/latest/_images/platformio-ide-vscode-welcome.png
+
+new-project.png is an unchanged copy of:
+https://docs.platformio.org/en/latest/_images/platformio-ide-vscode-new-project.png
+
+Retrieved October 19, 2026. Screenshots show an older editor interface and
+example boards. The course tutorial captions explain these differences.
+
+PlatformIO documentation contributors.
+Documentation repository: https://github.com/platformio/platformio-docs
+License: Apache License 2.0; a copy is included in LICENSE.txt.
+Original license: https://github.com/platformio/platformio-docs/blob/develop/LICENSE

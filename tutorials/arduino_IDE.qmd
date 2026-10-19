@@ -4,6 +4,11 @@ echo: false
 jupyter: python3
 ---
 
+::: {.callout-tip}
+## Ready for a larger project?
+Try the optional [VS Code + PlatformIO tutorial](platformio-vscode.qmd): project folders, build and upload, libraries, and Codex or Claude Code inside the editor.
+:::
+
 ## What is Arduino IDE?
 
 Arduino IDE (Integrated Development Environment) is a software application that is used to write and upload code to MCU boards. Arduino IDE code is written in C or C++ programming language. It is a free and open-source platform that makes it easy for beginners to get started with Arduino programming.

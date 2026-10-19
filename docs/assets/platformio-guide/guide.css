@@ -1,0 +1,20 @@
+/* Keep long commands and the project tree inside the tutorial on small screens. */
+.platformio-tutorial main pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.platformio-tutorial main :not(pre) > code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.platformio-tutorial main table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.platformio-tutorial main th,
+.platformio-tutorial main td {
+  overflow-wrap: anywhere;
+}
