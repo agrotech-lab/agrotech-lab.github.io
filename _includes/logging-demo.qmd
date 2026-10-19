@@ -1,0 +1,22 @@
+```{=html}
+<div class="teaching-demo" id="logging-explorer" data-demo="logging-interval" role="region" aria-labelledby="logging-title">
+  <div class="demo-heading"><div><p class="demo-eyebrow">Try it · Save sensor readings</p><h3 id="logging-title" class="unnumbered">Did the graph catch the warm spell?</h3></div><button type="button" data-fullscreen hidden>Enlarge demo</button></div>
+  <p>This example shows five minutes of temperature. Choose how often to save a reading and when to start.</p>
+  <div class="sensor-logging-workbench">
+    <div class="logging-controls">
+      <div class="logging-control"><label for="logging-interval">Save every (seconds)</label><input id="logging-interval-number" type="number" aria-label="Save a reading every, seconds" min="1" max="60" step="1" value="30"><input id="logging-interval" type="range" min="1" max="60" step="1" value="30"></div>
+      <div class="logging-control"><label for="logging-start">First reading at (seconds)</label><input id="logging-start-number" type="number" aria-label="First reading at, seconds" min="0" max="29" step="1" value="0"><input id="logging-start" type="range" min="0" max="29" step="1" value="0"></div>
+      <p class="demo-note" id="logging-times">Readings at 0, 30, 60… seconds.</p>
+      <p class="sensor-message" id="logging-status" role="status">The saved readings catch the highest temperature.</p>
+    </div>
+    <div class="sensor-logging-results">
+      <dl class="demo-stats"><div><dt>Saved readings</dt><dd id="logging-count">11</dd></div><div><dt>Highest saved</dt><dd id="logging-highest">34.0°C</dd></div><div><dt>Example peak</dt><dd>34.0°C</dd></div></dl>
+      <figure class="demo-plot sensor-logging-plot"><svg id="logging-plot" viewBox="0 0 640 330" role="img" aria-labelledby="logging-plot-title logging-description"><title id="logging-plot-title">Example temperature compared with saved readings</title><desc id="logging-description">Eleven readings, saved every thirty seconds, capture the 34-degree peak.</desc><g id="logging-axes"></g><path id="logging-temperature" class="logging-temperature" fill="none"></path><path id="logging-saved-line" class="logging-saved-line" fill="none"></path><g id="logging-points"></g></svg><figcaption><span>Gray: example temperature</span><span>Blue dots: saved readings</span></figcaption></figure>
+      <p class="demo-note">The blue line joins saved readings. It does not show measurements made between them.</p>
+    </div>
+  </div>
+  <p class="demo-note">The example briefly warms from 24°C to 34°C and back. This demo saves readings locally on the page; nothing is uploaded. For real uploads, check your service’s <a href="https://www.mathworks.com/help/thingspeak/channel-control.html">update limits</a>.</p>
+  <div class="demo-footer"><span>Move the sliders and compare the saved dots with the temperature curve.</span><button type="button" data-reset>Reset</button></div>
+  <noscript><p>Enable JavaScript to use the controls. Starting at zero, saving every 30 seconds catches the peak at 150 seconds. Saving every 60 seconds misses the warm spell.</p></noscript>
+</div>
+```

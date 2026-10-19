@@ -14,6 +14,14 @@ execute:
 In [this tutorial](http://www.esp32learning.com/code/esp32-and-sht31-sensor-example.php) you can find a lot more information.
 
 
+```{=html}
+<link rel="stylesheet" href="../assets/teaching-demos.css">
+<link rel="stylesheet" href="../assets/sensor-logging-demos.css">
+<script src="../assets/sensor-logging-demos.js" defer></script>
+```
+
+{{< include ../_includes/i2c-demo.qmd >}}
+
 Code for reading the sensor:
 ```{python}
 #| echo: false

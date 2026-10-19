@@ -1,0 +1,27 @@
+```{=html}
+<div class="teaching-demo" id="i2c-explorer" data-demo="i2c-addresses" role="region" aria-labelledby="i2c-title">
+  <div class="demo-heading"><div><p class="demo-eyebrow">Try it · Sensors sharing two wires</p><h3 id="i2c-title" class="unnumbered">Which sensor answers?</h3></div><button type="button" data-fullscreen hidden>Enlarge demo</button></div>
+  <p>The sensors share SDA and SCL. Choose an address, then ask the sensor at that address to reply.</p>
+  <div class="sensor-logging-workbench">
+    <div class="i2c-controls">
+      <div class="i2c-devices">
+        <fieldset><legend>SHT31 A</legend><label class="sensor-check"><input id="i2c-connected-a" type="checkbox" checked> Connected</label><label for="i2c-address-a">Address</label><select id="i2c-address-a" aria-label="SHT31 A address"><option value="0x44">0x44</option><option value="0x45">0x45</option></select></fieldset>
+        <fieldset><legend>SHT31 B</legend><label class="sensor-check"><input id="i2c-connected-b" type="checkbox" checked> Connected</label><label for="i2c-address-b">Address</label><select id="i2c-address-b" aria-label="SHT31 B address"><option value="0x44">0x44</option><option value="0x45" selected>0x45</option></select></fieldset>
+        <fieldset><legend>VL53L0X</legend><label class="sensor-check"><input id="i2c-connected-distance" type="checkbox" checked> Connected</label><p class="demo-note">Address <strong>0x29</strong></p></fieldset>
+      </div>
+      <p class="sensor-message" id="i2c-warning" hidden></p>
+      <label for="i2c-target">Ask this address</label><select id="i2c-target"><option value="0x29">0x29</option><option value="0x44" selected>0x44</option><option value="0x45">0x45</option><option value="0x50">0x50</option></select>
+      <div class="demo-presets"><button type="button" id="i2c-ask">Ask sensor</button><button type="button" id="i2c-scan">Find addresses</button></div>
+      <p class="demo-note">SHT31 address choices represent the board’s hardware address settings. This page does not change real sensors.</p>
+    </div>
+    <div class="sensor-logging-results">
+      <figure class="demo-plot sensor-logging-plot"><svg id="i2c-diagram" viewBox="0 0 720 270" role="img" aria-labelledby="i2c-diagram-title i2c-description"><title id="i2c-diagram-title">Three sensors connected to the same two signal wires</title><desc id="i2c-description">SHT31 A at 0x44, SHT31 B at 0x45, and VL53L0X at 0x29.</desc><g id="i2c-wires"></g><g id="i2c-nodes"></g></svg><figcaption><span>Blue: SDA · Orange: SCL</span><span>Power connections are not shown</span></figcaption></figure>
+      <p class="sensor-message" id="i2c-status" role="status">Choose an address and press Ask sensor.</p>
+      <div class="i2c-scan-result"><strong>Addresses found</strong><p id="i2c-found" role="status">Not scanned yet.</p><p class="demo-note">A scan lists addresses. It cannot tell whether two sensors share one address.</p></div>
+    </div>
+  </div>
+  <p class="demo-note">Simplified diagram and example readings. Real wiring also needs power, ground and suitable pull-up resistors. Use each sensor’s library to request its measurements.</p>
+  <div class="demo-footer"><span>Change an address or disconnect a sensor, then ask again.</span><button type="button" data-reset>Reset</button></div>
+  <noscript><p>Enable JavaScript to use the controls. At 0x44, SHT31 A answers. Two connected sensors with the same address cannot be selected separately.</p></noscript>
+</div>
+```

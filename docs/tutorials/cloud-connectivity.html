@@ -560,6 +560,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+
 <!-- ---
 title: ""
 echo: false
@@ -588,6 +589,29 @@ section-divs: false
 <section id="uploading-data-to-thingspeak-with-esp32" class="level2" data-number="14.3">
 <h2 data-number="14.3" class="anchored" data-anchor-id="uploading-data-to-thingspeak-with-esp32"><span class="header-section-number">14.3</span> Uploading Data to ThingSpeak with ESP32</h2>
 <p>This code is an example of how to send data from an ESP32 microcontroller to the ThingSpeak platform using WiFi. The ESP32 reads sensor data (in this example, arbitrary values are set as fields) and sends them to the ThingSpeak server periodically. The code includes the necessary network credentials and ThingSpeak channel and API key information. The code is well-commented to explain what each part of the program does.</p>
+<link rel="stylesheet" href="../assets/teaching-demos.css">
+<link rel="stylesheet" href="../assets/sensor-logging-demos.css">
+<script src="../assets/sensor-logging-demos.js" defer=""></script>
+<div class="teaching-demo" id="logging-explorer" data-demo="logging-interval" role="region" aria-labelledby="logging-title">
+  <div class="demo-heading"><div><p class="demo-eyebrow">Try it · Save sensor readings</p><h3 id="logging-title" class="unnumbered anchored">Did the graph catch the warm spell?</h3></div><button type="button" data-fullscreen="" hidden="">Enlarge demo</button></div>
+  <p>This example shows five minutes of temperature. Choose how often to save a reading and when to start.</p>
+  <div class="sensor-logging-workbench">
+    <div class="logging-controls">
+      <div class="logging-control"><label for="logging-interval">Save every (seconds)</label><input id="logging-interval-number" type="number" aria-label="Save a reading every, seconds" min="1" max="60" step="1" value="30"><input id="logging-interval" type="range" min="1" max="60" step="1" value="30"></div>
+      <div class="logging-control"><label for="logging-start">First reading at (seconds)</label><input id="logging-start-number" type="number" aria-label="First reading at, seconds" min="0" max="29" step="1" value="0"><input id="logging-start" type="range" min="0" max="29" step="1" value="0"></div>
+      <p class="demo-note" id="logging-times">Readings at 0, 30, 60… seconds.</p>
+      <p class="sensor-message" id="logging-status" role="status">The saved readings catch the highest temperature.</p>
+    </div>
+    <div class="sensor-logging-results">
+      <dl class="demo-stats"><div><dt>Saved readings</dt><dd id="logging-count">11</dd></div><div><dt>Highest saved</dt><dd id="logging-highest">34.0°C</dd></div><div><dt>Example peak</dt><dd>34.0°C</dd></div></dl>
+      <figure class="demo-plot sensor-logging-plot figure"><svg id="logging-plot" viewbox="0 0 640 330" role="img" aria-labelledby="logging-plot-title logging-description"><title id="logging-plot-title">Example temperature compared with saved readings</title><desc id="logging-description">Eleven readings, saved every thirty seconds, capture the 34-degree peak.</desc><g id="logging-axes"></g><path id="logging-temperature" class="logging-temperature" fill="none"></path><path id="logging-saved-line" class="logging-saved-line" fill="none"></path><g id="logging-points"></g></svg><figcaption><span>Gray: example temperature</span><span>Blue dots: saved readings</span></figcaption></figure>
+      <p class="demo-note">The blue line joins saved readings. It does not show measurements made between them.</p>
+    </div>
+  </div>
+  <p class="demo-note">The example briefly warms from 24°C to 34°C and back. This demo saves readings locally on the page; nothing is uploaded. For real uploads, check your service’s <a href="https://www.mathworks.com/help/thingspeak/channel-control.html">update limits</a>.</p>
+  <div class="demo-footer"><span>Move the sliders and compare the saved dots with the temperature curve.</span><button type="button" data-reset="">Reset</button></div>
+  <noscript><p>Enable JavaScript to use the controls. Starting at zero, saving every 30 seconds catches the peak at 150 seconds. Saving every 60 seconds misses the warm spell.</p></noscript>
+</div>
 <button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#thingspeakino" aria-expanded="false" aria-controls="thingspeakino">
     <i class="bi bi-toggles"></i> Toggle code
     </button>
@@ -837,7 +861,7 @@ section-divs: false
 <span id="cb3-35"><a href="#cb3-35"></a>  <span class="op">}</span></span>
 <span id="cb3-36"><a href="#cb3-36"></a></span>
 <span id="cb3-37"><a href="#cb3-37"></a>  <span class="co">// connect to wifi</span></span>
-<span id="cb3-38"><a href="#cb3-38"></a>  WiFi<span class="op">.</span>disconnect<span class="op">(</span>true<span class="op">);</span></span>
+<span id="cb3-38"><a href="#cb3-38"></a>  WiFi<span class="op">.</span>disconnect<span class="op">(</span><span class="kw">true</span><span class="op">);</span></span>
 <span id="cb3-39"><a href="#cb3-39"></a>  delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span></span>
 <span id="cb3-40"><a href="#cb3-40"></a></span>
 <span id="cb3-41"><a href="#cb3-41"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"connecting to wifi: "</span><span class="op">);</span></span>

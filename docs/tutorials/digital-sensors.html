@@ -558,6 +558,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+
 <!-- ---
 title: ""
 echo: false
@@ -567,6 +568,34 @@ section-divs: false
 <section id="sht31-temperature-humidity-sensor-using-i2c-communication" class="level2" data-number="13.1">
 <h2 data-number="13.1" class="anchored" data-anchor-id="sht31-temperature-humidity-sensor-using-i2c-communication"><span class="header-section-number">13.1</span> SHT31 Temperature &amp; Humidity Sensor Using I2C communication</h2>
 <p>In <a href="http://www.esp32learning.com/code/esp32-and-sht31-sensor-example.php">this tutorial</a> you can find a lot more information.</p>
+<link rel="stylesheet" href="../assets/teaching-demos.css">
+<link rel="stylesheet" href="../assets/sensor-logging-demos.css">
+<script src="../assets/sensor-logging-demos.js" defer=""></script>
+<div class="teaching-demo" id="i2c-explorer" data-demo="i2c-addresses" role="region" aria-labelledby="i2c-title">
+  <div class="demo-heading"><div><p class="demo-eyebrow">Try it · Sensors sharing two wires</p><h3 id="i2c-title" class="unnumbered anchored">Which sensor answers?</h3></div><button type="button" data-fullscreen="" hidden="">Enlarge demo</button></div>
+  <p>The sensors share SDA and SCL. Choose an address, then ask the sensor at that address to reply.</p>
+  <div class="sensor-logging-workbench">
+    <div class="i2c-controls">
+      <div class="i2c-devices">
+        <fieldset><legend>SHT31 A</legend><label class="sensor-check"><input id="i2c-connected-a" type="checkbox" checked=""> Connected</label><label for="i2c-address-a">Address</label><select id="i2c-address-a" aria-label="SHT31 A address"><option value="0x44">0x44</option><option value="0x45">0x45</option></select></fieldset>
+        <fieldset><legend>SHT31 B</legend><label class="sensor-check"><input id="i2c-connected-b" type="checkbox" checked=""> Connected</label><label for="i2c-address-b">Address</label><select id="i2c-address-b" aria-label="SHT31 B address"><option value="0x44">0x44</option><option value="0x45" selected="">0x45</option></select></fieldset>
+        <fieldset><legend>VL53L0X</legend><label class="sensor-check"><input id="i2c-connected-distance" type="checkbox" checked=""> Connected</label><p class="demo-note">Address <strong>0x29</strong></p></fieldset>
+      </div>
+      <p class="sensor-message" id="i2c-warning" hidden=""></p>
+      <label for="i2c-target">Ask this address</label><select id="i2c-target"><option value="0x29">0x29</option><option value="0x44" selected="">0x44</option><option value="0x45">0x45</option><option value="0x50">0x50</option></select>
+      <div class="demo-presets"><button type="button" id="i2c-ask">Ask sensor</button><button type="button" id="i2c-scan">Find addresses</button></div>
+      <p class="demo-note">SHT31 address choices represent the board’s hardware address settings. This page does not change real sensors.</p>
+    </div>
+    <div class="sensor-logging-results">
+      <figure class="demo-plot sensor-logging-plot figure"><svg id="i2c-diagram" viewbox="0 0 720 270" role="img" aria-labelledby="i2c-diagram-title i2c-description"><title id="i2c-diagram-title">Three sensors connected to the same two signal wires</title><desc id="i2c-description">SHT31 A at 0x44, SHT31 B at 0x45, and VL53L0X at 0x29.</desc><g id="i2c-wires"></g><g id="i2c-nodes"></g></svg><figcaption><span>Blue: SDA · Orange: SCL</span><span>Power connections are not shown</span></figcaption></figure>
+      <p class="sensor-message" id="i2c-status" role="status">Choose an address and press Ask sensor.</p>
+      <div class="i2c-scan-result"><strong>Addresses found</strong><p id="i2c-found" role="status">Not scanned yet.</p><p class="demo-note">A scan lists addresses. It cannot tell whether two sensors share one address.</p></div>
+    </div>
+  </div>
+  <p class="demo-note">Simplified diagram and example readings. Real wiring also needs power, ground and suitable pull-up resistors. Use each sensor’s library to request its measurements.</p>
+  <div class="demo-footer"><span>Change an address or disconnect a sensor, then ask again.</span><button type="button" data-reset="">Reset</button></div>
+  <noscript><p>Enable JavaScript to use the controls. At 0x44, SHT31 A answers. Two connected sensors with the same address cannot be selected separately.</p></noscript>
+</div>
 <p>Code for reading the sensor:</p>
 <button class="btn btn-outline-dark  rounded" type="button" data-bs-toggle="collapse" data-bs-target="#sht31ino" aria-expanded="false" aria-controls="sht31ino">
     <i class="bi bi-toggles"></i> Toggle code
@@ -672,7 +701,7 @@ section-divs: false
 <span id="cb2-25"><a href="#cb2-25"></a>  VL53L0X_RangingMeasurementData_t measure<span class="op">;</span></span>
 <span id="cb2-26"><a href="#cb2-26"></a>    </span>
 <span id="cb2-27"><a href="#cb2-27"></a>  Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Reading a measurement... "</span><span class="op">);</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a>  lox<span class="op">.</span>rangingTest<span class="op">(&amp;</span>measure<span class="op">,</span> false<span class="op">);</span> <span class="co">// pass in 'true' to get debug data printout!</span></span>
+<span id="cb2-28"><a href="#cb2-28"></a>  lox<span class="op">.</span>rangingTest<span class="op">(&amp;</span>measure<span class="op">,</span> <span class="kw">false</span><span class="op">);</span> <span class="co">// pass in 'true' to get debug data printout!</span></span>
 <span id="cb2-29"><a href="#cb2-29"></a></span>
 <span id="cb2-30"><a href="#cb2-30"></a>  <span class="cf">if</span> <span class="op">(</span>measure<span class="op">.</span>RangeStatus <span class="op">!=</span> <span class="dv">4</span><span class="op">)</span> <span class="op">{</span>  <span class="co">// phase failures have incorrect data</span></span>
 <span id="cb2-31"><a href="#cb2-31"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">"Distance (mm): "</span><span class="op">);</span> Serial<span class="op">.</span>println<span class="op">(</span>measure<span class="op">.</span>RangeMilliMeter<span class="op">);</span></span>

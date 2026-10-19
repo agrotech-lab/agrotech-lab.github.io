@@ -222,11 +222,55 @@ Reference checked 2026-10-19:
 https://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html
 Sections 4.7.1-4.7.3 for matching, empty levels and invalid topic characters.
 
+Completed batch 7: shared sensor wires and saving readings
+------------------------------------------------
+[verified] I2C addresses — tutorials/digital-sensors.qmd
+    Two SHT31s and one VL53L0X share SDA/SCL. Choose the two SHT31 hardware
+    addresses (0x44/0x45), connect/disconnect sensors, ask one address or scan.
+    Unique reply gives a labelled example reading; no reply and duplicate
+    addresses have explicit text. The scan lists unique addresses and cannot
+    reveal multiple devices at one address. A duplicate elsewhere does not
+    prevent a request to a different, unique address. Configuration edits
+    clear prior replies/scans; changing only the target preserves the scan.
+    Diagram shows separate SDA/SCL lines, junction dots and non-junction
+    crossings. It omits power/ground/pull-up components, stated beside it.
+    This is an address-selection model, not electrical timing or packet
+    emulation. Sensor libraries are still needed to request measurements.
+    VL53L0X stays at the library default 0x29; real software address changes
+    and multiple VL53L0X startup are outside this demo. SHT31 selections
+    represent ADDR hardware settings, not arbitrary software configuration.
+
+[verified] Saving interval — tutorials/cloud-connectivity.qmd
+    Save every 1-60 seconds, first reading 0 to interval-1 seconds. A fixed
+    five-minute example has temperature 24 + 10*max(0,1-|t-150|/15), in °C.
+    Save exactly at start + n*interval, including 300s when it lands there.
+    Compare the continuous example curve with saved points and their joined
+    line. Counts and highest saved temperature update immediately. Changing
+    interval clamps start to a valid value; one-second interval fixes start
+    at zero. Show partial or complete missed warming in plain language.
+    The diagram's straight connecting lines are not additional measurements.
+    Values are illustrative; no network request, persistent storage or real
+    ThingSpeak upload is made. Link to official service update limits instead
+    of claiming all displayed intervals are allowed on every account.
+
+Includes: _includes/i2c-demo.qmd, _includes/logging-demo.qmd
+Assets: assets/sensor-logging-demos.js and assets/sensor-logging-demos.css,
+plus existing teaching-demos.css. Existing explanations and code preserved.
+References checked 2026-10-19:
+- https://admin.sensirion.com/media/documents/213E6A3B/63A5A569/Datasheet_SHT3x_DIS.pdf
+  Section 3.4 / Table 8: SHT31 addresses 0x44 and 0x45 from ADDR low/high.
+- https://raw.githubusercontent.com/adafruit/Adafruit_VL53L0X/master/src/Adafruit_VL53L0X.h
+  Default address 0x29 in the library used by this lesson.
+- https://www.nxp.com/docs/en/user-guide/UM10204.pdf
+  Shared SDA/SCL topology and address selection; pull-up requirements.
+- https://www.mathworks.com/help/thingspeak/channel-control.html
+  Upload rates depend on license; current docs specify 15s free / 1s paid.
+
 Next review
 -----------
-[ ] Review the current digital-sensors and cloud-connectivity lessons for
-    the next small classroom demonstrations. Keep action-based labels and
-    leave formal explanations to the instructor where possible.
+[ ] Review button handling (press vs hold, or rapid contact changes) and
+    ESP-NOW sender/receiver examples for the next classroom demonstrations.
+    Keep action-based labels and preserve real wiring/code exercises.
 
 Deferred legacy material — outside the active teaching queue
 -----------------------------------------------------------
@@ -393,3 +437,19 @@ Firefox/Safari and a physical phone were not tested. Existing page shells,
 headings, code examples, images and downloadable files are preserved. No
 duplicate IDs or broken ARIA targets. Source/published assets match, only
 three search records changed, and maintainer notes stay out of docs/search.
+
+Batch 7 verification on 2026-10-19: 57 browser checks passed in installed
+Chrome. I2C checks cover each unique address, no reply, duplicates, duplicate
+scan behavior, a unique device alongside duplicates, disconnection/reconnect,
+empty scans, swapped addresses, stale-result clearing and reset. Diagram
+labels fit their boxes and each connected device has two separate junctions.
+Logging checks cover exact counts/endpoints, caught/partly missed/fully missed
+warming, start offsets, dynamic bounds, 301-point one-second view, invalid
+numeric input, rounding and reset from extremes. Both support native keyboard
+controls and no-JavaScript explanations. 390px and 320px layouts have no
+overflow. Enlarged 1366x768 views keep controls, diagrams and Reset visible;
+projector labels enlarged. Screenshots inspected. No console errors or
+uncaught JavaScript exceptions. Firefox/Safari and a physical phone were not
+tested. Original shells, headings, images, code and downloads preserved. No
+duplicate IDs or broken ARIA targets. Only two search records changed;
+source/published assets match, and notes remain outside docs/ and search.

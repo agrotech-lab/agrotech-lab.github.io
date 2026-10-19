@@ -1,0 +1,65 @@
+.sensor-logging-workbench { margin: 1rem 0; }
+.sensor-logging-workbench > * { min-width: 0; }
+.sensor-logging-results { margin-top: 1rem; }
+.i2c-devices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin-bottom: 1rem; }
+.i2c-devices fieldset { min-width: 0; padding: .6rem; border: 1px solid #c8d8e2; border-radius: 8px; background: white; }
+.i2c-devices legend { float: none; width: auto; padding: 0 .2rem; margin: 0; font-size: .9rem; color: #17649a; font-weight: 700; }
+.i2c-devices label { margin-top: .5rem; font-size: .85rem; }
+.i2c-devices select { width: 100%; }
+.teaching-demo .sensor-check { display: flex; align-items: center; gap: .35rem; font-weight: 500; cursor: pointer; min-height: 2rem; }
+.sensor-check input { width: 1.1rem; height: 1.1rem; flex: 0 0 auto; accent-color: #17649a; }
+.sensor-message { border-left: 4px solid #17649a; background: #eaf2f8; padding: .65rem .85rem; font-size: .9rem; }
+.sensor-message[data-state=problem], #i2c-warning { border-color: #a9580a; background: #fff2df; }
+.sensor-message[data-state=success] { border-color: #18765b; background: #e4f3eb; }
+.i2c-scan-result { padding: .7rem .85rem; border: 1px solid #c8d8e2; border-radius: 8px; background: #fff; }
+.i2c-scan-result p { margin: .35rem 0; }
+#i2c-found { font-family: ui-monospace, monospace; }
+.teaching-demo .sensor-logging-plot { margin: .5rem 0; }
+.teaching-demo .sensor-logging-plot text { font: 20px system-ui, sans-serif; fill: #415969; }
+.i2c-node rect { fill: #fff; stroke: #95adbd; stroke-width: 2; }
+.i2c-node[data-state=selected] rect { fill: #e4f3eb; stroke: #18765b; stroke-width: 3; }
+.i2c-node[data-state=problem] rect { fill: #fff2df; stroke: #a9580a; stroke-width: 3; }
+.i2c-node[data-state=off] rect { fill: #eef1f3; stroke-dasharray: 5 4; }
+.sensor-logging-plot .i2c-label { font-size: 22px; font-weight: 700; }
+.sensor-logging-plot .i2c-small { font-size: 18px; }
+.logging-control { margin: .8rem 0; }
+.logging-control input[type=number] { width: 7rem; max-width: 100%; }
+.logging-controls input[aria-invalid=true] { outline: 2px solid #a9580a; }
+.logging-controls input:disabled { opacity: .6; }
+.sensor-logging-results .demo-stats { margin: 0 0 .7rem; }
+.logging-temperature { stroke: #8799a5; stroke-width: 5; stroke-dasharray: 7 4; }
+.logging-saved-line { stroke: #17649a; stroke-width: 2; }
+.logging-point { fill: #17649a; stroke: #fff; stroke-width: 1; }
+.teaching-demo[data-demo=i2c-addresses]:fullscreen, .teaching-demo[data-demo=logging-interval]:fullscreen { display: block; padding: 1.25rem 2rem; }
+@media (min-width: 900px) {
+  .teaching-demo:fullscreen .sensor-logging-workbench { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 1.5rem; align-items: start; }
+  .teaching-demo:fullscreen .sensor-logging-results { margin-top: 0; }
+  .teaching-demo:fullscreen .logging-control { margin: .35rem 0; }
+  .teaching-demo:fullscreen .logging-control label { display: inline-block; max-width: calc(100% - 7.5rem); padding-top: .5rem; }
+  .teaching-demo:fullscreen .logging-control input[type=number] { float: right; }
+  .teaching-demo:fullscreen .logging-control input[type=range] { clear: both; min-height: 1.65rem; margin-top: 0; }
+  .teaching-demo:fullscreen .sensor-logging-plot svg { max-height: 320px; }
+  .teaching-demo:fullscreen .sensor-logging-plot text { font-size: 22px; }
+  .teaching-demo:fullscreen #logging-plot { max-height: 300px; }
+  .teaching-demo:fullscreen .i2c-scan-result { padding: .4rem .85rem; }
+  #i2c-explorer:fullscreen, #logging-explorer:fullscreen { padding: 1rem 2rem; }
+  .teaching-demo:fullscreen .sensor-logging-workbench { margin: .5rem 0; }
+  #i2c-explorer:fullscreen h3, #logging-explorer:fullscreen h3 { margin-bottom: .35rem; }
+  #i2c-explorer:fullscreen > .demo-note, #logging-explorer:fullscreen > .demo-note { margin: .35rem 0; }
+  #i2c-explorer:fullscreen .demo-footer, #logging-explorer:fullscreen .demo-footer { padding-top: .4rem; }
+}
+@media (max-width: 520px) {
+  .teaching-demo[data-demo=i2c-addresses], .teaching-demo[data-demo=logging-interval] { padding: .8rem; }
+  .i2c-devices { grid-template-columns: 1fr; }
+  .i2c-devices fieldset { display: grid; grid-template-columns: 1fr 1fr; gap: .2rem .5rem; align-items: center; }
+  .i2c-devices label[for] { grid-column: 2; margin: 0; }
+  .i2c-devices select { grid-column: 2; }
+  .i2c-devices .sensor-check { grid-row: 1 / 3; margin: 0; }
+  .i2c-devices .demo-note { grid-row: 1 / 3; }
+  .sensor-logging-results .demo-stats { grid-template-columns: 1fr; }
+  .sensor-logging-results .demo-stats > div { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+  .sensor-logging-results .demo-stats dd { margin: 0; }
+  .teaching-demo .sensor-logging-plot text { font-size: 24px; }
+  .teaching-demo[data-demo=i2c-addresses] .demo-footer, .teaching-demo[data-demo=logging-interval] .demo-footer { flex-wrap: wrap; }
+}
+@media print { .i2c-controls, .logging-controls { display: none; } }

@@ -30,6 +30,14 @@ Make sure to keep your Write API Key private as it is used to allow your device 
 ## Uploading Data to ThingSpeak with ESP32
 This code is an example of how to send data from an ESP32 microcontroller to the ThingSpeak platform using WiFi. The ESP32 reads sensor data (in this example, arbitrary values are set as fields) and sends them to the ThingSpeak server periodically. The code includes the necessary network credentials and ThingSpeak channel and API key information. The code is well-commented to explain what each part of the program does.
 
+```{=html}
+<link rel="stylesheet" href="../assets/teaching-demos.css">
+<link rel="stylesheet" href="../assets/sensor-logging-demos.css">
+<script src="../assets/sensor-logging-demos.js" defer></script>
+```
+
+{{< include ../_includes/logging-demo.qmd >}}
+
 ```{python}
 #| echo: false
 #| output: asis
