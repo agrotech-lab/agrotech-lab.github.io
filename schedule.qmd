@@ -77,15 +77,6 @@ Markdown(tabulate(
 ))
 ```
 
-**University holidays and breaks**
-
-| Dates | University calendar | Effect on our Wednesday class |
-|---|---|---|
-| Tuesday, October 27, 2026 | Election Day — no classes or exams | Class takes place on Wednesday, October 28. |
-| December 6–12, 2026 (Sunday–Saturday) | Winter break, including Hanukkah — no classes or exams | **No class on Wednesday, December 9.** |
-| Friday, December 25, 2026 | Christmas holiday — no classes or exams | Wednesday classes on December 23 and 30 take place as usual. |
-
-
 <!-- <button class="btn btn-outline-dark btn-lg rounded" type="button" data-bs-toggle="collapse" data-bs-target="#schedule_table" aria-expanded="false" aria-controls="schedule_table">
     <i class="bi bi-calendar3"></i>&nbsp; 2023 Schedule
     </button>
