@@ -1,7 +1,6 @@
 ---
 title: "Water and Energy Balances"
 echo: false
-jupyter: python3
 ---
 
 ![](/archive/figures/greenhouse1.png)

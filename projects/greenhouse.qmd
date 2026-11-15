@@ -1,7 +1,6 @@
 ---
 title: "The Smart Greenhouse"
 echo: false
-jupyter: python3
 ---
 
 ![](/archive/figures/greenhouse/gh1.JPG)

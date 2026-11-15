@@ -1,7 +1,6 @@
 ---
 title: "FireBeetle 2 ESP32-E"
 echo: false
-jupyter: python3
 ---
 
 ## Board Overview

@@ -1,7 +1,6 @@
 ---
 title: "Install FireBeetle (ESP32)"
 echo: false
-jupyter: python3
 ---
 
 ::: {.callout-tip}

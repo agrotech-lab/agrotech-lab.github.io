@@ -1,7 +1,6 @@
 ---
 title: "Basic Electronics Concepts"
 echo: false
-jupyter: python3
 ---
 
 

@@ -1,7 +1,6 @@
 ---
 title: "Psychrometric Chart and Evaporative Cooling"
 echo: false
-jupyter: python3
 ---
 
 Here we will learn a bit about the psychrmetric chart - what it is how to read it and how to use it in python.

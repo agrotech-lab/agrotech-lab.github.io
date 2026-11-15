@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 80 1000 320" font-family="Helvetica, Arial, sans-serif">
+
+  <!-- ============ wires ============ -->
+  <g stroke="#222" stroke-width="3" fill="none">
+    <!-- pin to LED anode -->
+    <line x1="110" y1="150" x2="200" y2="150"/>
+    <!-- LED cathode to resistor -->
+    <line x1="280" y1="150" x2="400" y2="150"/>
+    <!-- resistor to GND -->
+    <line x1="480" y1="150" x2="700" y2="150"/>
+  </g>
+
+  <!-- current direction arrows on the wires -->
+  <g fill="#c0392b">
+    <polygon points="148,144 163,150 148,156"/>
+    <polygon points="333,144 348,150 333,156"/>
+    <polygon points="583,144 598,150 583,156"/>
+  </g>
+
+  <!-- ============ GPIO pin ============ -->
+  <circle cx="90" cy="150" r="20" fill="#fff" stroke="#222" stroke-width="3"/>
+  <text x="90" y="105" text-anchor="middle" font-size="18" font-weight="bold">GPIO pin</text>
+  <text x="90" y="125" text-anchor="middle" font-size="13" fill="#555">(set HIGH)</text>
+  <text x="90" y="195" text-anchor="middle" font-size="12" fill="#888" font-style="italic">any digital</text>
+  <text x="90" y="210" text-anchor="middle" font-size="12" fill="#888" font-style="italic">output pin</text>
+
+  <!-- ============ LED symbol ============ -->
+  <!-- triangle (anode side) + bar (cathode side), pointing right = direction current may flow -->
+  <g stroke="#222" stroke-width="3" fill="#fff">
+    <polygon points="200,128 200,172 255,150" fill="#f8e9c0"/>
+    <line x1="255" y1="128" x2="255" y2="172"/>
+  </g>
+  <!-- light emission arrows -->
+  <g stroke="#222" stroke-width="2">
+    <line x1="233" y1="116" x2="248" y2="96"/>
+    <polygon points="248,96 240,98 246,104" fill="#222"/>
+    <line x1="246" y1="126" x2="261" y2="106"/>
+    <polygon points="261,106 253,108 259,114" fill="#222"/>
+  </g>
+  <text x="227" y="205" text-anchor="middle" font-size="14" font-weight="bold">LED</text>
+
+  <!-- anode callout (left side) -->
+  <line x1="200" y1="172" x2="170" y2="225" stroke="#999" stroke-width="1.5"/>
+  <text x="168" y="240" text-anchor="end" font-size="12" fill="#555">+ long leg</text>
+  <text x="168" y="255" text-anchor="end" font-size="12" fill="#555">(anode)</text>
+
+  <!-- cathode callout (right side) -->
+  <line x1="255" y1="172" x2="290" y2="225" stroke="#999" stroke-width="1.5"/>
+  <text x="292" y="240" text-anchor="start" font-size="12" fill="#555">- short leg</text>
+  <text x="292" y="255" text-anchor="start" font-size="12" fill="#555">(cathode)</text>
+
+  <text x="227" y="300" text-anchor="middle" font-size="12" fill="#c0392b" font-style="italic">direction matters!</text>
+
+  <!-- ============ Resistor symbol ============ -->
+  <g stroke="#222" stroke-width="3" fill="none">
+    <polyline points="400,150 412,130 428,170 444,130 460,170 480,150"/>
+  </g>
+  <text x="440" y="105" text-anchor="middle" font-size="16" font-weight="bold">resistor</text>
+  <text x="440" y="125" text-anchor="middle" font-size="13" fill="#555">(330 &#8486;)</text>
+  <text x="440" y="205" text-anchor="middle" font-size="12" fill="#888" font-style="italic">position in the loop</text>
+  <text x="440" y="220" text-anchor="middle" font-size="12" fill="#888" font-style="italic">doesn't matter</text>
+
+  <!-- ============ GND symbol ============ -->
+  <line x1="700" y1="130" x2="700" y2="150" stroke="#222" stroke-width="3"/>
+  <g stroke="#222" stroke-width="3">
+    <line x1="680" y1="130" x2="720" y2="130"/>
+    <line x1="687" y1="140" x2="713" y2="140"/>
+    <line x1="694" y1="150" x2="706" y2="150"/>
+  </g>
+  <text x="700" y="105" text-anchor="middle" font-size="18" font-weight="bold">GND</text>
+  <text x="700" y="195" text-anchor="middle" font-size="12" fill="#888" font-style="italic">any ground pin</text>
+
+  <!-- ============ closed loop arrow ============ -->
+  <path d="M 700 170 C 700 345, 90 345, 90 180" stroke="#2e86de" stroke-width="2.5" fill="none" stroke-dasharray="6,5"/>
+  <polygon points="90,180 83,165 97,167" fill="#2e86de"/>
+  <text x="395" y="370" text-anchor="middle" font-size="15" fill="#2e86de" font-weight="bold">
+    this must be ONE closed loop
+  </text>
+  <text x="395" y="390" text-anchor="middle" font-size="13" fill="#2e86de">
+    (pin &#8594; LED &#8594; resistor &#8594; GND, no gaps, no shortcuts)
+  </text>
+
+</svg>

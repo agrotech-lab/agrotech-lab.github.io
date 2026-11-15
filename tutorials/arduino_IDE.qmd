@@ -1,7 +1,6 @@
 ---
 title: "Arduino IDE"
 echo: false
-jupyter: python3
 ---
 
 ::: {.callout-tip}

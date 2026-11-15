@@ -2,7 +2,6 @@
 title: "Libraries"
 subtitle: "Guide: Installing Libraries in the Arduino IDE"
 echo: false
-jupyter: python3
 ---
 
 Libraries are a crucial part of working with Arduino boards. They provide pre-written code that can be easily integrated into your own projects, saving time and effort. This guide will walk you through the two main ways of installing libraries in the Arduino IDE: using the Library Manager and manually installing a library downloaded from GitHub.

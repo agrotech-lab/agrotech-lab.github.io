@@ -5,7 +5,6 @@ author: agrotech"
 date: "2022-04-12"
 categories: [project]
 echo: false
-jupyter: python3
 # image: "image.jpg"
 # format:
 #   html:

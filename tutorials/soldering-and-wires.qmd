@@ -1,7 +1,6 @@
 ---
 title: "Soldering and Wires"
 echo: false
-jupyter: python3
 ---
 
 ![soldering](https://cdn-learn.adafruit.com/assets/assets/000/001/978/original/tools_Header_Joints.jpg?1396777967)

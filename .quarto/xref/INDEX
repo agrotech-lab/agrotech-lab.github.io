@@ -262,5 +262,8 @@
   },
   "projects/MQTT_in_greenhouse.qmd": {
     "MQTT_in_greenhouse.html": "fd411da3"
+  },
+  "tutorials/platformio-vscode.qmd": {
+    "platformio-vscode.html": "d8fab9c6"
   }
 }

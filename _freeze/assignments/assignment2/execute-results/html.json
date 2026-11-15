@@ -1,8 +1,8 @@
 {
-  "hash": "15ec522f2ba01523b0396ed93530e1d7",
+  "hash": "eca947256513a3cf7b97ad9848a19f00",
   "result": {
     "engine": "jupyter",
-    "markdown": "---\ntitle: Assignment 2\necho: false\nexecute:\n  freeze: auto\n---\n\nCreate a small project where you **control** an output device (such as LEDs, relays, etc.) based on changes in an input, like temperature or humidity readings.\n\n**Bonus:** Include LED brightness control using PWM.\n\nThis assignment is basically the [Challenges](/tutorials/control.html#challenges) section from the lecture on control.\n\nUpload the .ino file, ensuring you include a few lines of comments at the beginning of the code to explain what the project does.\n\n",
+    "markdown": "---\ntitle: \"Assignment 2\"\necho: false\njupyter: python3\nexecute:\n  freeze: auto  # re-render only when source changes\n---\n\n\n\n\n\n\n\nCreate a small project where you **control** an output device (such as LEDs, relays, etc.) based on changes in an input, like temperature or humidity readings.\n\n**Bonus:** Include LED brightness control using PWM.\n\nThis assignment is basically the [Challenges](/tutorials/control.html#challenges) section from the lecture on control.\n\nUpload the .ino file, ensuring you include a few lines of comments at the beginning of the code to explain what the project does.\n\n",
     "supporting": [
       "assignment2_files"
     ],

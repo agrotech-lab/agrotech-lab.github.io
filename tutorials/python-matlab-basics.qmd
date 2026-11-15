@@ -2,7 +2,6 @@
 title: "Basic Data Analysis with Python and Matlab"
 categories: [arduino]
 echo: false
-jupyter: python3
 ---
 
 Python and Matlab are very similar, but there are many syntax differences between them.

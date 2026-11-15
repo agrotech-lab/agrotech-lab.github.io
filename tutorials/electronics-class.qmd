@@ -22,14 +22,12 @@ By the end of this class you will:
 - **Goal**: Connect and control an LED using an ESP32 microcontroller.
 - **Diagram:** pin A4 --- long leg of LED --- short leg of LED --- resisistor (330 $\Omega$) --- GND
 
-<details>
-<summary>see diagram</summary>
-![](/archive/figures/diagrams/led-resistor-esp32_schem.png)
-</details>
+Before looking at the exact wiring below, make sure you understand *why* the circuit is built this way. The diagram below shows the circuit in the abstract: it works for any digital pin, any ground pin, and it says nothing about breadboard rows or which physical pin is which. Figure out the mapping yourself using the [FireBeetle pinout](firebeetle_documentation.qmd) before checking the wiring scheme.
+
 
 <details>
-<summary>see wiring scheme</summary>
-![](/archive/figures/diagrams/led-resistor-esp32_bb.png)
+<summary>see diagram</summary>
+![](/archive/figures/diagrams/led-resistor-esp32_schem.svg)
 </details>
 
 Use the following code to activate LED pin.

@@ -1,7 +1,6 @@
 ---
 title: "Assignment 3"
 echo: false
-jupyter: python3
 execute:
   freeze: auto  # re-render only when source changes
 ---

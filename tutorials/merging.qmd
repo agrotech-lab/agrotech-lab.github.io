@@ -1,7 +1,6 @@
 ---
 title: "Code Merging"
 echo: false
-jupyter: python3
 ---
 
 

@@ -1,7 +1,6 @@
 ---
 title: "Final Project"
 echo: false
-jupyter: python3
 ---
 
 In the last month of the semester you will pair up with another student to do your **Final Project**.

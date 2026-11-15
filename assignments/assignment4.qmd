@@ -1,7 +1,6 @@
 ---
 title: "Assignment 4"
 echo: false
-jupyter: python3
 execute:
   freeze: auto
 ---
