@@ -6,6 +6,7 @@ book:
   title: "agrotech lab"
   author: "Yair Mau & Erez Feuer"
   favicon: /archive/images/favicon.ico
+  google-analytics: "G-43N4LS3BPR"
   # repo-url: https://github.com/yairmau/time-series/
   chapters:
     - index.qmd
