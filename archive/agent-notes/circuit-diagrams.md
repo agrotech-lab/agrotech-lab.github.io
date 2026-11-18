@@ -95,6 +95,15 @@ them by trial and error again.
      exactly retraces a forward wire's coordinates, silently shorting two
      nodes together behind a component — that are easy to miss by eye.
 
+5. **`elm.Label().at(point).label(text, loc='right', ...)` centers the text
+   block on `point`, regardless of `loc`/`ofst`** — unlike a two-terminal
+   element's own `.label()`, a free-floating `Label` has no direction to
+   anchor `loc` against. If `point` sits on top of a wire, the text renders
+   centered on top of that wire no matter what `loc`/`ofst` you pass; small
+   `ofst` nudges are invisible next to the text's own width. To clear a
+   wire, move `point` itself well clear of it (e.g. `tap.x + 2.0`, found by
+   trial and error at actual render scale, not by guessing from `ofst`).
+
 ## Working pattern: a loop between two IC pins
 
 For "pin → component → component → pin" (e.g. GPIO → LED → resistor → GND),

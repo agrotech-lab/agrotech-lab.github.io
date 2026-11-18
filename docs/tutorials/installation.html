@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Arduino IDE – agrotech lab</title>
+<title>2&nbsp; Installation – agrotech lab</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,7 +30,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tutorials/install_firebeetle.html" rel="next">
+<link href="../tutorials/platformio-vscode.html" rel="next">
 <link href="../arduino-intro-and-links.html" rel="prev">
 <link href="..//archive/images/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -127,7 +93,7 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../arduino-intro-and-links.html"><strong>Start here</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/arduino_IDE.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arduino IDE</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../arduino-intro-and-links.html"><strong>Start here</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/installation.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -189,14 +155,8 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/arduino_IDE.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arduino IDE</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../tutorials/install_firebeetle.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Install FireBeetle (ESP32)</span></span></a>
+  <a href="../tutorials/installation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -219,25 +179,25 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/breadboard.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Breadboard</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Breadboard</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/basic-electronics-concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Basic Electronics Concepts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Basic Electronics Concepts</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/firebeetle_documentation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">FireBeetle 2 ESP32-E</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FireBeetle 2 ESP32-E</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/libraries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Libraries</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Libraries</span></span></a>
   </div>
 </li>
       </ul>
@@ -254,43 +214,43 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/first-programs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">First programs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">First programs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/electronics-class.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Electronics Class</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Electronics Class</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/electronics-class-2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Electronics Class 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Electronics Class 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/control.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Control</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Control</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/digital-read-write.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reading digital and analog</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Reading digital and analog</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/digital-sensors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Digital sensors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Digital sensors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/cloud-connectivity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Cloud connectivity</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Cloud connectivity</span></span></a>
   </div>
 </li>
       </ul>
@@ -307,13 +267,13 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/merging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Code Merging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Code Merging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/RGB.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">RGB LED</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">RGB LED</span></span></a>
   </div>
 </li>
       </ul>
@@ -330,19 +290,19 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/relay.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Switches, Relays, Transistors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Switches, Relays, Transistors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/soldering-and-wires.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Soldering and Wires</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Soldering and Wires</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/electronics-class-old.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Electronics Class Old</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Electronics Class Old</span></span></a>
   </div>
 </li>
       </ul>
@@ -359,49 +319,49 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/pulse-sensors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Pulse sensors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Pulse sensors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/MQTT.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">MQTT</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">MQTT</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/deep_sleep.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Deep Sleep</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Deep Sleep</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/esp_now.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">ESP-NOW</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">ESP-NOW</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/OLED.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">OLED screen</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">OLED screen</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/python-matlab-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Basic Data Analysis with Python and Matlab</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Basic Data Analysis with Python and Matlab</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/web_server.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">ESP32 web servers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">ESP32 web servers</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/API-thingspeak-python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">API to download Thingspeak data with Python</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">API to download Thingspeak data with Python</span></span></a>
   </div>
 </li>
       </ul>
@@ -418,13 +378,13 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/water-and-energy-balances.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Water and Energy Balances</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Water and Energy Balances</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../tutorials/psychrometric-chart-and-evaporative-cooling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Psychrometric Chart and Evaporative Cooling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Psychrometric Chart and Evaporative Cooling</span></span></a>
   </div>
 </li>
       </ul>
@@ -441,31 +401,31 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../assignments/submission_info.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Submission Guidelines</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Submission Guidelines</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../assignments/assignment1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Assignment 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Assignment 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../assignments/assignment2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Assignment 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Assignment 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../assignments/assignment3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Assignment 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Assignment 3</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../assignments/assignment4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Assignment 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Assignment 4</span></span></a>
   </div>
 </li>
       </ul>
@@ -482,7 +442,7 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title"> Resources</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title"> Resources</span></span></a>
   </div>
 </li>
       </ul>
@@ -499,43 +459,43 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title"> Past Final Projects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title"> Past Final Projects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects/borrowing-equipment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Borrowing equipment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Borrowing equipment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects/final-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects/examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Example projects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Example projects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects/greenhouse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">The Smart Greenhouse</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">The Smart Greenhouse</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects/MQTT_in_greenhouse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">MQTT in project greenhouse</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">MQTT in project greenhouse</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../projects/mqtt_example.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">MQTT example</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">MQTT example</span></span></a>
   </div>
 </li>
       </ul>
@@ -550,21 +510,13 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-arduino-ide" id="toc-what-is-arduino-ide" class="nav-link active" data-scroll-target="#what-is-arduino-ide"><span class="header-section-number">2.1</span> What is Arduino IDE?</a></li>
-  <li><a href="#how-to-install-arduino-ide" id="toc-how-to-install-arduino-ide" class="nav-link" data-scroll-target="#how-to-install-arduino-ide"><span class="header-section-number">2.2</span> How to Install Arduino IDE?</a></li>
-  <li><a href="#step-1-download" id="toc-step-1-download" class="nav-link" data-scroll-target="#step-1-download"><span class="header-section-number">2.3</span> Step 1: Download</a></li>
-  <li><a href="#step-2-install-arduino-ide" id="toc-step-2-install-arduino-ide" class="nav-link" data-scroll-target="#step-2-install-arduino-ide"><span class="header-section-number">2.4</span> Step 2: Install Arduino IDE</a></li>
-  <li><a href="#how-to-use-arduino-ide" id="toc-how-to-use-arduino-ide" class="nav-link" data-scroll-target="#how-to-use-arduino-ide"><span class="header-section-number">2.5</span> How to use Arduino IDE?</a>
+  <li><a href="#arduino-ide" id="toc-arduino-ide" class="nav-link active" data-scroll-target="#arduino-ide"><span class="header-section-number">2.1</span> Arduino IDE</a></li>
+  <li><a href="#install-the-firebeetle-2-esp32-board" id="toc-install-the-firebeetle-2-esp32-board" class="nav-link" data-scroll-target="#install-the-firebeetle-2-esp32-board"><span class="header-section-number">2.2</span> Install the FireBeetle 2 (ESP32) board</a>
   <ul class="collapse">
-  <li><a href="#the-arduino-ide" id="toc-the-arduino-ide" class="nav-link" data-scroll-target="#the-arduino-ide"><span class="header-section-number">2.5.1</span> The Arduino IDE</a></li>
-  <li><a href="#the-setup-and-loop-functions" id="toc-the-setup-and-loop-functions" class="nav-link" data-scroll-target="#the-setup-and-loop-functions"><span class="header-section-number">2.5.2</span> The Setup and Loop Functions</a></li>
-  <li><a href="#libraries" id="toc-libraries" class="nav-link" data-scroll-target="#libraries"><span class="header-section-number">2.5.3</span> Libraries</a></li>
-  <li><a href="#variables" id="toc-variables" class="nav-link" data-scroll-target="#variables"><span class="header-section-number">2.5.4</span> Variables</a></li>
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="header-section-number">2.5.5</span> Functions</a></li>
-  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together"><span class="header-section-number">2.5.6</span> Putting It All Together</a></li>
+  <li><a href="#add-url-to-arduino-ide" id="toc-add-url-to-arduino-ide" class="nav-link" data-scroll-target="#add-url-to-arduino-ide"><span class="header-section-number">2.2.1</span> Add URL to Arduino IDE</a></li>
+  <li><a href="#select-board-and-port" id="toc-select-board-and-port" class="nav-link" data-scroll-target="#select-board-and-port"><span class="header-section-number">2.2.2</span> Select board and port</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">2.6</span> Conclusion</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">2.7</span> Example</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">2.3</span> Troubleshooting</a></li>
   </ul>
 </nav>
     </div>
@@ -572,9 +524,9 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
 <main class="content" id="quarto-document-content">
 <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../arduino-intro-and-links.html"><strong>Start here</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/arduino_IDE.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arduino IDE</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../arduino-intro-and-links.html"><strong>Start here</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/installation.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installation</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Arduino IDE</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installation</span></h1>
 </div>
 
 
@@ -591,6 +543,49 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
 </header>
 
 
+<section id="arduino-ide" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="arduino-ide"><span class="header-section-number">2.1</span> Arduino IDE</h2>
+<p>Arduino IDE is the free application we’ll use to write code and upload it to the FireBeetle board. Go to the official <a href="https://www.arduino.cc/en/software">Arduino website</a>, download the installer for your operating system, and run it.</p>
+</section>
+<section id="install-the-firebeetle-2-esp32-board" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="install-the-firebeetle-2-esp32-board"><span class="header-section-number">2.2</span> Install the FireBeetle 2 (ESP32) board</h2>
+<p>We will be using the <a href="https://www.dfrobot.com/product-2195.html">FireBeetle 2 ESP32-E IoT Microcontroller</a> as our main MCU. Full documentation of this MCU can be found on the <a href="https://wiki.dfrobot.com/FireBeetle_Board_ESP32_E_SKU_DFR0654">product wiki</a> by DFRobot. For a quick pinout reference, take a look at <a href="../posts/tutorials/firebeetle_documentation.html">this page</a>.</p>
+<p>Follow these steps to add FireBeetle/ESP32 support to the Arduino IDE:</p>
+<ol type="1">
+<li>Add the board URL in the IDE preferences.</li>
+<li>Install the ESP32 board core via the Boards Manager.</li>
+<li>Select the board and serial port.</li>
+</ol>
+<section id="add-url-to-arduino-ide" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="add-url-to-arduino-ide"><span class="header-section-number">2.2.1</span> Add URL to Arduino IDE</h3>
+<p>In your Arduino IDE, go to <code>File &gt; Preferences</code></p>
+<p><img src="../archive/figures/arduino-ide-open-preferences.png" class="img-fluid"></p>
+<p>Enter the following into the “Additional Board Manager URLs” field:</p>
+<p><code>https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json</code></p>
+<p>Then, click the “OK” button:</p>
+<p><img src="../archive/figures/ESP32-URL-Arduino-IDE.png" class="img-fluid"></p>
+<p><strong>Note: if you already have a different URL, you can separate the URLs with a comma as follows:</strong></p>
+<p><code>http://download.dfrobot.top/FireBeetle/package_DFRobot_index.json, https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json</code></p>
+<p>Open the Boards Manager. Go to <code>Tools &gt; Board &gt; Boards Manager</code></p>
+<p><img src="../archive/figures/boardsManager.png" class="img-fluid"></p>
+<p>Search for ESP32 and press the install button for “ESP32 by Espressif Systems”.</p>
+<p><img src="../archive/figures/installing.png" class="img-fluid"></p>
+<p>That’s it. The installation can take a few minutes. Take a break.</p>
+<p><img src="../archive/figures/ESP32-Board-add-on-in-Arduino-IDE-installed.png" class="img-fluid"></p>
+</section>
+<section id="select-board-and-port" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="select-board-and-port"><span class="header-section-number">2.2.2</span> Select board and port</h3>
+<p>Once the board is installed, select it: Open <code>Tools-&gt;Board-&gt;ESP32 Arduino-&gt;FireBeetle 2 ESP32-E</code> <img src="../archive/figures/choose_board.png" class="img-fluid" alt="choose board"></p>
+<p>Then select the Port Open <code>Tools-&gt;Port-&gt;COMxx</code> (for windows the port wil be <code>COM</code> with some number, for Mac/linux it will be <code>/dev/cu.</code> and then something). How do you know what port to choose? Check the ports without the MCU pluged into the computer. Then plug the MCU and check the ports again. If you see a new port, thats the port of the MCU.</p>
+</section>
+</section>
+<section id="troubleshooting" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">2.3</span> Troubleshooting</h2>
+<p>Troubleshooting if there is no port for the MCU:</p>
+<ol type="1">
+<li>Missing driver. Could be you need to install a specific driver. <a href="https://dfimg.dfrobot.com/nobody/wiki/0e0d6b3864f7163833ec5d7ad4af7632.EXE">Windows driver</a> <a href="https://dfimg.dfrobot.com/nobody/wiki/c195a13df2a1989d5dc04e76e6bcb701.ZIP">MacOS driver</a></li>
+<li>Bad USB cable. Some cables are bad and some are only for charging and cannot sync data. Try using a different USB cable that worked for a freind.</li>
+</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -601,120 +596,9 @@ Ready for a larger project?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Try the optional <a href="../tutorials/platformio-vscode.html">VS Code + PlatformIO tutorial</a>: project folders, build and upload, libraries, and Codex or Claude Code inside the editor.</p>
+<p>Try the optional <a href="../tutorials/platformio-vscode.html">VS Code + PlatformIO tutorial</a>: project folders, build and upload, libraries, and Codex or Claude Code inside the editor. It uses the same FireBeetle board and Arduino programming functions.</p>
 </div>
 </div>
-<section id="what-is-arduino-ide" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="what-is-arduino-ide"><span class="header-section-number">2.1</span> What is Arduino IDE?</h2>
-<p>Arduino IDE (Integrated Development Environment) is a software application that is used to write and upload code to MCU boards. Arduino IDE code is written in C or C++ programming language. It is a free and open-source platform that makes it easy for beginners to get started with Arduino programming.</p>
-<p>Arduino IDE comes with a text editor, a code library, and a serial monitor that allows you to communicate with your Arduino board. It is available for Windows, Mac, and Linux operating systems.</p>
-</section>
-<section id="how-to-install-arduino-ide" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="how-to-install-arduino-ide"><span class="header-section-number">2.2</span> How to Install Arduino IDE?</h2>
-<p>Follow these simple steps to install Arduino IDE on your computer:</p>
-</section>
-<section id="step-1-download" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="step-1-download"><span class="header-section-number">2.3</span> Step 1: Download</h2>
-<p>Go to the official <a href="https://www.arduino.cc/en/software">Arduino website</a> and download the latest version of the <strong>Legacy IDE (1.8.X)</strong> for your operating system. <strong>Don’t download version 2.0.X</strong>, it will work for you but all the tutorials we will be following are in the previouse version (1.8.X).</p>
-</section>
-<section id="step-2-install-arduino-ide" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="step-2-install-arduino-ide"><span class="header-section-number">2.4</span> Step 2: Install Arduino IDE</h2>
-<p>Once the download is complete, run the installer and follow the on-screen instructions to install Arduino IDE on your computer.</p>
-<hr>
-<p>Congratulations, you have successfully installed Arduino IDE on your computer and you are ready to start programming your MCU! <img src="https://images.squarespace-cdn.com/content/v1/5f4fc1d00dea6b17b03f63ad/1613610070709-1IF1A6I1W246K9U3NB1P/Screen+Shot+2021-02-17+at+18.00.37.png" class="img-fluid" alt="Adruino IDE"></p>
-</section>
-<section id="how-to-use-arduino-ide" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="how-to-use-arduino-ide"><span class="header-section-number">2.5</span> How to use Arduino IDE?</h2>
-<p>In this guide, we will explain the basics of Arduino IDE code and how to write your own Arduino programs.</p>
-<section id="the-arduino-ide" class="level3" data-number="2.5.1">
-<h3 data-number="2.5.1" class="anchored" data-anchor-id="the-arduino-ide"><span class="header-section-number">2.5.1</span> The Arduino IDE</h3>
-<p>The Arduino Integrated Development Environment (IDE) is a software development platform for creating programs that run on Arduino boards. The IDE includes a code editor, a compiler, and a firmware uploader. You can use the IDE to write, edit, and upload your Arduino programs.</p>
-</section>
-<section id="the-setup-and-loop-functions" class="level3" data-number="2.5.2">
-<h3 data-number="2.5.2" class="anchored" data-anchor-id="the-setup-and-loop-functions"><span class="header-section-number">2.5.2</span> The Setup and Loop Functions</h3>
-<p>In the Arduino IDE, every program must have two functions: <code>setup()</code> and <code>loop()</code>. The <code>setup()</code> function is called only once when the program starts, and it is used to initialize the program and set up any necessary variables. The <code>loop()</code> function, on the other hand, is called repeatedly after the <code>setup()</code> function, and it is used to run the main program logic.</p>
-</section>
-<section id="libraries" class="level3" data-number="2.5.3">
-<h3 data-number="2.5.3" class="anchored" data-anchor-id="libraries"><span class="header-section-number">2.5.3</span> Libraries</h3>
-<p>Libraries are prewritten pieces of code that you can use in your Arduino programs. Libraries contain functions and variables that you can use to make your programming tasks easier. You can include libraries in your program by using the <code>#include</code> directive at the beginning of your program.</p>
-</section>
-<section id="variables" class="level3" data-number="2.5.4">
-<h3 data-number="2.5.4" class="anchored" data-anchor-id="variables"><span class="header-section-number">2.5.4</span> Variables</h3>
-<p>Variables are used to store values in your program. In Arduino programming, you need to declare your variables at the beginning of your program. To declare a variable, you need to specify its data type and name. For example, <code>int myVariable = 10;</code> declares an integer variable called <code>myVariable</code> and assigns it the value 10.</p>
-</section>
-<section id="functions" class="level3" data-number="2.5.5">
-<h3 data-number="2.5.5" class="anchored" data-anchor-id="functions"><span class="header-section-number">2.5.5</span> Functions</h3>
-<p>Functions are blocks of code that perform a specific task. In Arduino programming, functions can be used to simplify your program and make it easier to read and understand. To create a function, you need to specify its return type, name, and any arguments it requires. For example, <code>int my_function(int arg1, int arg2)</code> creates a function called <code>my_function</code> that takes two integer arguments and returns an integer value.</p>
-</section>
-<section id="putting-it-all-together" class="level3" data-number="2.5.6">
-<h3 data-number="2.5.6" class="anchored" data-anchor-id="putting-it-all-together"><span class="header-section-number">2.5.6</span> Putting It All Together</h3>
-<p>Now that you understand the basic elements of Arduino programming, you can start writing your own programs. To get started, you can follow these steps:</p>
-<ol type="1">
-<li>Open the Arduino IDE and create a new sketch.</li>
-<li>Write your program code in the <code>setup()</code> and <code>loop()</code> functions.</li>
-<li>Declare any variables and functions you need at the beginning of your program.</li>
-<li>Include any libraries you need by using the <code>#include</code> directive.</li>
-<li>Upload your program to your Arduino board by clicking the upload button in the IDE.</li>
-</ol>
-</section>
-</section>
-<section id="conclusion" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">2.6</span> Conclusion</h2>
-<p>Arduino IDE code is an essential part of Arduino programming. Understanding the basics of Arduino IDE code, including the <code>setup()</code> and <code>loop()</code> functions, libraries, variables, and functions, is essential for creating your own Arduino programs. With practice and patience, you can become proficient in Arduino programming and develop exciting projects using the Arduino platform.</p>
-</section>
-<section id="example" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="example"><span class="header-section-number">2.7</span> Example</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">// Include the necessary library for controlling the digital pin</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co">// Define the pin number for the LED</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="at">const</span> <span class="dt">int</span> LED_PIN <span class="op">=</span> <span class="dv">13</span><span class="op">;</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>  <span class="co">// Set the LED pin as an output</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>  pinMode<span class="op">(</span>LED_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="op">}</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a>  <span class="co">// Turn the LED on</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>  digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a></span>
-<span id="cb1-16"><a href="#cb1-16"></a>  <span class="co">// Wait for 1 second</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
-<span id="cb1-18"><a href="#cb1-18"></a></span>
-<span id="cb1-19"><a href="#cb1-19"></a>  <span class="co">// Turn the LED off</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a>  digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a></span>
-<span id="cb1-22"><a href="#cb1-22"></a>  <span class="co">// Wait for another second</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
-<span id="cb1-24"><a href="#cb1-24"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Let’s break down each part of the program:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1"></a><span class="pp">#include </span><span class="im">&lt;Arduino.h&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This line includes the Arduino library, which contains functions for controlling the digital pins on the Arduino board.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1"></a><span class="at">const</span> <span class="dt">int</span> LED_PIN <span class="op">=</span> <span class="dv">13</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This line defines a constant integer variable called <code>LED_PIN</code> and assigns it the value 13. This is the pin number that the LED is connected to.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="co">// Set the LED pin as an output</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>  pinMode<span class="op">(</span>LED_PIN<span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This is the <code>setup()</code> function, which is called once when the program starts. In this function, we set the LED pin as an output by calling <code>pinMode(LED_PIN, OUTPUT)</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span> <span class="op">...</span> <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This is the <code>loop()</code> function, which is called repeatedly after the <code>setup()</code> function. In this function, we turn the LED on by calling <code>digitalWrite(LED_PIN, HIGH)</code> and then wait for 1 second by calling <code>delay(1000)</code>. We then turn the LED off by calling <code>digitalWrite(LED_PIN, LOW)</code> and wait for another second.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1"></a>  <span class="co">// Turn the LED on</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>  digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="co">// Wait for 1 second</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a></span>
-<span id="cb6-7"><a href="#cb6-7"></a>  <span class="co">// Turn the LED off</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>  digitalWrite<span class="op">(</span>LED_PIN<span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a></span>
-<span id="cb6-10"><a href="#cb6-10"></a>  <span class="co">// Wait for another second</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a>  delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>These two lines turn the LED on and off by setting the voltage of the LED pin to <code>HIGH</code> and <code>LOW</code>, respectively.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1"></a>delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This line causes the program to pause for 1 second (1000 milliseconds) before continuing. The <code>delay()</code> function is used to control the timing of the program.</p>
-<p>Overall, this program is very simple, but it demonstrates the basic structure of an Arduino program. The <code>setup()</code> function is used to initialize the program, while the <code>loop()</code> function is used to perform the main program logic. The program uses the <code>digitalWrite()</code> function to turn the LED on and off, and the <code>delay()</code> function to control the timing of the program. By understanding these basic concepts, you can start to build more complex programs on the Arduino platform.</p>
 
 
 </section>
@@ -1144,8 +1028,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tutorials/install_firebeetle.html" class="pagination-link" aria-label="Install FireBeetle (ESP32)">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Install FireBeetle (ESP32)</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tutorials/platformio-vscode.html" class="pagination-link" aria-label="VS Code + PlatformIO">
+        <span class="nav-page-text">VS Code + PlatformIO</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

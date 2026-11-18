@@ -1,0 +1,53 @@
+% Standalone circuitikz version of esp32-multimeter_schem, applying the
+% lessons from ../potentiometer_multimeter_tikz/ and
+% ../led_resistor_esp32_tikz/ (see ../../circuit-diagrams-tikz.md).
+% Build with build.sh in this directory.
+%
+% Same hand-drawn ESP32 box as led_resistor_esp32.tex (gotcha #7: plain
+% shapes, not circuitikz IC/meter bipoles -- a voltmeter bipole here would
+% draw an unwanted needle same as the ohmmeter did). No wire color (the
+% schemdraw version tried colored wires and was asked to drop it in favor
+% of plain text labels naming the probe and port).
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage{circuitikz}
+\usepackage[scaled]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\definecolor{navy}{HTML}{2C3E50}
+
+% Gotcha #8: match any bipole body thickness to plain wires.
+\ctikzset{bipoles/thickness=1}
+
+\begin{document}
+\begin{circuitikz}[american, color=navy, thick, line width=1pt]
+    \large
+
+    % ESP32 box with two pins on the left side
+    \draw (0,0) rectangle (2.4,6);
+    \node at (1.2,3) {\shortstack{ESP32\\FireBeetle}};
+    \coordinate (A4PIN) at (0,5);
+    \coordinate (GNDPIN) at (0,1);
+    \draw (A4PIN) -- ++(-0.6,0) coordinate (A4TIP);
+    \draw (GNDPIN) -- ++(-0.6,0) coordinate (GNDTIP);
+    \node[right] at (0.1,5) {A4};
+    \node[right] at (0.1,1) {GND};
+
+    % multimeter, in series between the two pins -- same x for both arms
+    \coordinate (CHAINX) at ($(A4TIP)-(2,0)$);
+    \coordinate (TOP) at (CHAINX |- A4TIP);
+    \coordinate (BOT) at (CHAINX |- GNDTIP);
+
+    \node[draw, circle, minimum size=1.3cm, line width=1pt] (METER)
+        at ($(TOP)!0.5!(BOT)$) {$V$};
+
+    \draw (A4TIP) -- (TOP) node[circ]{} -- (METER.north);
+    \draw (GNDTIP) -- (BOT) node[circ]{} -- (METER.south);
+
+    % each arm labeled with its probe and the multimeter port it plugs
+    % into -- offset away from the arm itself (gotcha #12: anchors sit
+    % flush against the drawn geometry, not with any built-in clearance)
+    \node[above] at ($(A4TIP)!0.5!(TOP)+(0,0.15)$) {\shortstack{red probe\\V$\Omega$mA port}};
+    \node[below] at ($(GNDTIP)!0.5!(BOT)+(0,-0.15)$) {\shortstack{black probe\\COM port}};
+
+\end{circuitikz}
+\end{document}

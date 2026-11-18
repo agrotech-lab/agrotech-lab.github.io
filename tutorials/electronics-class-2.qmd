@@ -46,13 +46,22 @@ code_source("analog-read.ino")
 
 <details>
 <summary>see diagram</summary>
-![](/archive/figures/diagrams/potentiometer-esp32_bb.png)
+![](/archive/figures/diagrams/potentiometer-esp32-adc_schem.svg)
 </details>
 
+<!--
 <details>
 <summary>see wiring scheme</summary>
 ![](/archive/figures/diagrams/potentiometer-esp32_schem.png)
 </details>
+-->
+
+<!--
+<details>
+<summary>see wiring scheme</summary>
+![](/archive/figures/diagrams/potentiometer-esp32_bb.png)
+</details>
+-->
 
 Why is the maximum number 4095? What does this have to do with 12-bits?
 

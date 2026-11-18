@@ -11,54 +11,33 @@ execute:
 ![](https://mqtt.org/assets/downloads/mqtt-logo.png)
 
 ## Intro
-In today's session, we will be diving into the fascinating world of MQTT and its relevance in the field of agriculture. MQTT, which stands for Message Queuing Telemetry Transport, is a lightweight and efficient messaging protocol designed for constrained devices and low-bandwidth networks.
 
-In the realm of AgroTech, where the Internet of Things (IoT) plays a crucial role, MQTT offers a powerful solution for connecting sensors, actuators, and other devices in agricultural systems. It provides a reliable and scalable means of communication, enabling seamless data exchange between devices, networks, and applications.
-
-One of the primary advantages of MQTT is its lightweight nature, making it ideal for resource-constrained devices such as the ESP32 microcontroller. With its small code footprint and minimal network overhead, MQTT facilitates efficient data transmission even in remote or challenging agricultural environments.
-
-Through the use of MQTT, farmers and agriculturalists can gather real-time information about various aspects of their operations, including temperature, humidity, soil moisture, and crop health. This data can then be transmitted to centralized servers or cloud platforms, allowing for intelligent analysis, decision-making, and automation in the agricultural domain.
-
-Furthermore, MQTT follows a publish-subscribe messaging pattern, enabling a scalable and flexible communication model. Devices can publish data to specific topics, and other devices or applications can subscribe to these topics to receive relevant information. This decoupled architecture ensures that data is delivered only to those who need it, minimizing network congestion and optimizing system performance.
-
-In this AgroTech class, we will explore the implementation of MQTT on the ESP32 microcontroller, enabling you to build innovative and efficient solutions for the agricultural sector. So, let's dive in and discover how MQTT can revolutionize the way we approach farming, enhance productivity, and contribute to sustainable agriculture practices.
+MQTT (Message Queuing Telemetry Transport) is a lightweight publish/subscribe messaging protocol built for low-power devices like the ESP32. We'll use it to move sensor and control data between our boards and the cloud.
 
 ## Fundamental Concepts
 
-1. **MQTT Broker:**  
-At the core of MQTT is the broker, which acts as a central hub for message exchange. The broker receives messages published by clients and distributes them to the interested subscribers. It is responsible for routing messages based on topics and maintaining the overall communication flow.
-**For our class today we will use the [Hivemq free public broker](https://www.hivemq.com/public-mqtt-broker/)**.
+- **Broker:** central hub that routes messages between clients. For class, we use the [Hivemq free public broker](https://www.hivemq.com/public-mqtt-broker/).
+- **Client:** anything that connects to the broker — a sensor, an actuator, or a dashboard. A client can publish, subscribe, or both. For testing, use the [Hivemq online client](https://www.hivemq.com/demos/websocket-client/).
+- **Topic:** a hierarchical string label for a message (e.g. `agriculture/field1/soil_moisture`).
+- **Publish / Subscribe:** a client *publishes* a message to a topic; the broker forwards it to every client that *subscribed* to that topic. Publishers and subscribers never talk to each other directly.
 
-1. **MQTT Client:**  
-Clients are devices or applications that connect to the MQTT broker. They can be sensors, actuators, microcontrollers, or any device capable of sending or receiving messages. MQTT clients can function as both publishers and subscribers, allowing them to send data and receive updates from the broker. **For our class we can utilize the [Hivemq online client](https://www.hivemq.com/demos/websocket-client/) for testing**.
-
-1. **Topic:**  
-Topics are hierarchical strings that act as labels for messages. They serve as a way to categorize and organize information. When publishing a message, clients assign it to a specific topic. Subscribers can then choose to receive messages from specific topics of interest. For example, in agriculture, topics could represent sensor data such as "temperature," "humidity," or "soil moisture."
-
-1. **Publish:**  
-Publishing refers to the action of sending a message from an MQTT client to the broker. When a client publishes a message, it specifies the topic to which the message belongs. The broker then distributes the message to all the interested subscribers that have subscribed to that particular topic.
-
-1. **Subscribe:**  
-Subscribing allows clients to express their interest in receiving messages from specific topics. By subscribing to a topic, a client informs the broker that it wants to receive messages published to that topic. Subscriptions can be specific to a particular topic (e.g., `temperature`) or can use wildcard characters to subscribe to multiple topics (e.g., `agriculture/+/moisture` to subscribe to all moisture data in different areas of agriculture).
+![](/archive/figures/diagrams/mqtt-pubsub.svg)
 
 ## A bit more about topics
-Topics in MQTT are written as hierarchical strings, consisting of one or more levels separated by forward slashes (`/`). Each level within a topic provides a level of categorization and organization for the messages.
 
-For example, consider the topic structure in agriculture:
+Think of the broker as a bulletin board. A topic is just the path to a spot on that board — levels separated by `/`, from general to specific. A publisher pins a note at a precise spot (e.g. `agriculture/field2/soil_moisture/30cm`); a subscriber reads whichever spot, or group of spots, it cares about.
 
-* `agriculture/temperature`: This topic represents the temperature data in the agricultural context. It consists of two parts: `agriculture` and `temperature`.
+Here's that bulletin board for three fields, each tracking temperature, solar radiation, and soil moisture at two depths:
 
-* `agriculture/field1/humidity`: This topic represents the humidity data in a specific field. It consists of three levels: `agriculture`, `field1`, and `humidity`.
+![](/archive/figures/MQTT-bulletin-board.png)
 
-* `agriculture/+/soil moisture`: This topic uses a wildcard character, `+`, which can match exactly one topic level. Subscribing to this topic would allow receiving messages related to soil moisture from various areas within agriculture.
+A subscriber can read as narrow or as wide a slice of this board as it needs:
 
-* `agriculture/#`: This topic uses the wildcard character `#`, which can match multiple levels or no level at all. Subscribing to this topic would enable receiving messages from any sub-topic under `agriculture`.
-
-The use of forward slashes and levels in topic design allows for a structured approach to organizing data in MQTT. It enables subscribers to select specific levels or use wildcard characters to filter and receive messages of interest.
-
-When publishing a message, the client specifies the topic to which the message belongs, ensuring that it is appropriately categorized and can be received by subscribers who are interested in that specific topic.
-
-Understanding how topics are written and structured is crucial for effective message routing and data organization within MQTT-based AgroTech applications.
+* Just field 2's temperature: `agriculture/field2/temperature`
+* Soil moisture at 30 cm, in every field: `agriculture/+/soil_moisture/30cm` — the `+` wildcard matches exactly one level, here standing in for the field.
+* Everything measured in field 1: `agriculture/field1/#` — the `#` wildcard matches any number of remaining levels, so it catches both soil-moisture depths too.
+* Every soil-moisture reading, any field, any depth: `agriculture/+/soil_moisture/#`
+* The entire board: `agriculture/#`
 
 ```{=html}
 <link rel="stylesheet" href="../assets/teaching-demos.css">
@@ -68,7 +47,21 @@ Understanding how topics are written and structured is crucial for effective mes
 
 {{< include ../_includes/mqtt-demo.qmd >}}
 
+## Let's try it ourselves
+
+I'll suggest a few ideas, students will divide themselves in groups of 2, and they can choose what mini project to build:
+
+- Upon a button press (digital read), one student's ESP32 publishes via MQTT a command to "open" or "close"; the other ESP32 subscribes to that topic, and depending on what's written, opens or closes a relay that powers an LED.
+- One ESP32 measures temperature and humidity with an SHT31 and publishes the readings every 5 seconds; the other ESP32 subscribes and shows the measurements on an OLED screen.
+- One ESP32 reads a potentiometer and publishes a 0–255 brightness value; the other subscribes and uses it to dim the built-in RGB LED.
+- One ESP32 reads a light sensor (photoresistor) and publishes "day" or "night" whenever the light level crosses a threshold; the other subscribes and switches a relay — e.g. a grow light — accordingly.
+- One ESP32 counts pulses with the pulse sensor and publishes the running count every few seconds; the other subscribes and displays the total on an OLED screen.
+- One ESP32 reads a touch pin as a doorbell button and publishes a "ring" message; the other subscribes and flashes its RGB LED whenever a ring arrives.
+
 ## LED subscribe
+
+The ESP32 subscribes to a topic and turns an LED on pin A4 on or off based on the `1`/`0` it receives.
+
 ```{python}
 #| echo: false
 #| output: asis
@@ -76,6 +69,9 @@ code_source("MQTT_led_subscribe.ino")
 ```
 
 ## Publish text
+
+The ESP32 publishes a fixed text message to a topic every 5 seconds.
+
 ```{python}
 #| echo: false
 #| output: asis
@@ -83,6 +79,9 @@ code_source("agrotech_mqtt_publish_text.ino")
 ```
 
 ## Sensor subscribe
+
+The ESP32 subscribes to a topic and prints each incoming reading to the Serial monitor as a float.
+
 ```{python}
 #| echo: false
 #| output: asis
@@ -91,6 +90,8 @@ code_source("MQTT_sensor_subscribe.ino")
 
 
 ## Publish and subscribe
+
+The ESP32 publishes a random "temperature" reading and a text message once per second, while also subscribing to and printing any message sent back to it.
 
 ```{python}
 #| echo: false
@@ -101,6 +102,9 @@ code_source("MQTT_publish_and_subscribe.ino")
 ## MQTT + Python
 
 ## Subscribe
+
+A Python script subscribes to all sub-topics under `agrotech/mqtt_tutorial/` and prints every message it receives.
+
 ```{python}
 #| echo: false
 #| output: asis
@@ -108,6 +112,9 @@ code_source("MQTT_python_subscribe.py")
 ```
 
 ## Publish
+
+A Python script publishes a slowly drifting simulated temperature value once per second.
+
 ```{python}
 #| echo: false
 #| output: asis
@@ -115,6 +122,9 @@ code_source("MQTT_python_publish.py")
 ```
 
 ## Subscribe to CSV
+
+A Python script subscribes to all incoming sensor topics and saves every message, with a timestamp, to a CSV file.
+
 ```{python}
 #| echo: false
 #| output: asis
@@ -127,6 +137,8 @@ code_source("mqtt_to_csv.py")
 Use the code below to control the irrigation solenoid outside the greenhouse.
 
 Code usage: connect a jumper to A4. Whenever you touch the jumper, the solenoid will be open, otherwise it will be closed.
+
+The ESP32 publishes `1` or `0` to a topic based on whether pin A4 is touched, toggling the greenhouse's irrigation solenoid through Home Assistant.
 
 ```{python}
 #| echo: false

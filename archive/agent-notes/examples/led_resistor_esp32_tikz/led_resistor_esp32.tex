@@ -1,0 +1,56 @@
+% Standalone circuitikz version of led-resistor-esp32_schem, applying the
+% lessons from ../potentiometer_multimeter_tikz/ (see
+% ../../circuit-diagrams-tikz.md). Build with build.sh in this directory.
+%
+% The ESP32 is a plain hand-drawn box with two pin stubs (A4, GND), NOT a
+% circuitikz IC/multipole shape — full manual control over pin placement,
+% same approach as the hand-drawn meter circle in the potentiometer
+% diagram (gotcha #7 in circuit-diagrams-tikz.md).
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage{circuitikz}
+\usepackage[scaled]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\definecolor{navy}{HTML}{2C3E50}
+
+% Gotcha #8: match bipole body (LED triangle, resistor zigzag) line width
+% to plain wires, which default to thickness=2x the ambient line width.
+\ctikzset{bipoles/thickness=1}
+
+\begin{document}
+\begin{circuitikz}[american, color=navy, thick, line width=1pt]
+    \large
+
+    % ESP32 box with two pins on the left side
+    \draw (0,0) rectangle (2.4,6);
+    \node at (1.2,3) {\shortstack{ESP32\\FireBeetle}};
+    \coordinate (A4PIN) at (0,5);
+    \coordinate (GNDPIN) at (0,1);
+    \draw (A4PIN) -- ++(-0.6,0) coordinate (A4TIP);
+    \draw (GNDPIN) -- ++(-0.6,0) coordinate (GNDTIP);
+    \node[right] at (0.1,5) {A4};
+    \node[right] at (0.1,1) {GND};
+
+    % LED + resistor chain, to the left of the box, same x for both arms
+    \coordinate (CHAINX) at ($(A4TIP)-(2,0)$);
+    \coordinate (TOP) at (CHAINX |- A4TIP);
+    \coordinate (BOT) at (CHAINX |- GNDTIP);
+    \coordinate (MID) at ($(TOP)!0.5!(BOT)$);
+
+    \draw (A4TIP) -- (TOP);
+    \draw (GNDTIP) -- (BOT);
+    \draw (TOP) node[circ]{};
+    \draw (BOT) node[circ]{};
+
+    \draw (TOP) to[led, *-, fill=pink!25, name=LED1] (MID);
+    \draw (MID) to[R, -*, name=RES1] (BOT);
+
+    % LED1/RES1's ".west" anchor sits at the bipole's nominal bounding
+    % box, which is narrower than the diode triangle/zigzag actually
+    % drawn (they bulge past it) -- a plain [left] node flush against
+    % ".west" overlaps the symbol. Push the label out a bit further.
+    \node[left] at ($(LED1.west)+(-0.25,0)$) {\shortstack[r]{LED1\\red}};
+    \node[left] at ($(RES1.west)+(-0.25,0)$) {\shortstack[r]{R1\\330 $\Omega$}};
+
+\end{circuitikz}
+\end{document}

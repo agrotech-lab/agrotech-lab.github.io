@@ -265,5 +265,8 @@
   },
   "tutorials/platformio-vscode.qmd": {
     "platformio-vscode.html": "d8fab9c6"
+  },
+  "tutorials/installation.qmd": {
+    "installation.html": "8f3e3501"
   }
 }

@@ -49,9 +49,16 @@ To measure voltage with a multimeter, follow these steps:
 1. Observe the voltage reading displayed on the multimeter screen.
 
 <details>
+<summary>see diagram</summary>
+![](/archive/figures/diagrams/esp32-multimeter_schem.svg)
+</details>
+
+<!--
+<details>
 <summary>see wiring scheme</summary>
 ![](/archive/figures/diagrams/esp32-multimeter_bb.png)
 </details>
+-->
 
 ## Ohm’s Law
 
@@ -156,13 +163,15 @@ Use the [circuit explorer](#resistor-explorer) in **Resistor + LED** mode to com
 
 <details>
 <summary>see diagram</summary>
-![](/archive/figures/diagrams/led-resistor-powersupply_schem.png)
+![](/archive/figures/diagrams/led-resistor-powersupply_schem.svg)
 </details>
 
+<!--
 <details>
 <summary>see wiring scheme</summary>
 ![](/archive/figures/diagrams/led-resistor-powersupply_bb.png)
 </details>
+-->
 
 
 Source: [Sparkfun](https://learn.sparkfun.com/tutorials/light-emitting-diodes-leds/all)
@@ -186,13 +195,15 @@ Measure the resistance with the multimeter, while twisting the knob.
 
 <details>
 <summary>see diagram</summary>
-![](/archive/figures/diagrams/potentiometer-multimeter_schem.png)
+![](/archive/figures/diagrams/potentiometer-multimeter_schem.svg)
 </details>
 
+<!--
 <details>
 <summary>see wiring scheme</summary>
 ![](/archive/figures/diagrams/potentiometer-multimeter_bb.png)
 </details>
+-->
 
 Use a potentiometer to control the brightness of an LED or another output device. Add this potentiometer in series in the circuit you have just built, turn the knob and see what happens.
 

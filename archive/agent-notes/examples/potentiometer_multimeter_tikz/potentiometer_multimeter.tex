@@ -1,0 +1,64 @@
+% Standalone circuitikz version of potentiometer-multimeter_schem, for
+% comparison against the schemdraw (../potentiometer_multimeter_schem.py)
+% version. Build with build.sh in this directory.
+%
+% The meter is a plain hand-drawn circle+label, NOT circuitikz's built-in
+% `ohmmeter` bipole: that bipole always draws a diagonal needle/arrow
+% across the circle (baked into \drawmeteringcircle in the circuitikz
+% source — it's an analog-gauge symbol, not a plain "Ω" badge), which
+% doesn't match this site's other multimeter diagrams. A plain node gives
+% full control and avoids it entirely.
+%
+% Also avoids a picture-level `scale=` key: combining `scale=` with
+% circuitikz's bipoles here caused the fixed-size meter symbol and the
+% scaled coordinate grid to disagree about where the connecting wires
+% should land, producing visibly diagonal "funnel" wires into the meter
+% instead of clean right angles. Sizing is done directly in coordinates
+% and `\Large`/font choice instead.
+\documentclass[tikz,border=4pt]{standalone}
+\usepackage{circuitikz}
+\usepackage[scaled]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\definecolor{navy}{HTML}{2C3E50}
+
+% Match the zigzag's line width to plain wires: circuitikz draws bipole
+% bodies (resistor/potentiometer zigzags) at `bipoles/thickness` times the
+% ambient line width (default thickness=2, i.e. twice as thick as a plain
+% \draw at the same line width) — set it to 1 so the zigzag isn't
+% noticeably thicker than the wires connecting to it.
+\ctikzset{bipoles/thickness=1}
+
+\begin{document}
+\begin{circuitikz}[american, color=navy, thick, line width=1pt]
+    \large
+
+    % potentiometer: left leg A, right leg B, wiper tap
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (4,0);
+    \draw (A) to[potentiometer, name=POT] (B);
+
+    % meter sits directly above A and the wiper (same x's as the legs it
+    % connects to), so the connecting wires below are plain verticals
+    \coordinate (M1) at (0,2.8);
+    % (A -| B) = (B's x, A's y) -- the x and y each come from the
+    % *other* operand than you'd guess from reading left-to-right.
+    \coordinate (M2) at (M1 -| POT.wiper);
+    \node[draw, circle, minimum size=1.3cm, line width=1pt] (OHM) at ($(M1)!0.5!(M2)$) {$\Omega$};
+
+    \draw (A) -- (M1) -- (OHM.west);
+    \draw (POT.wiper) -- (M2) -- (OHM.east);
+
+    % junction dots (only where a real connection exists)
+    \draw (A) node[circ]{};
+    \draw (POT.wiper) node[circ]{};
+
+    % labels
+    \node[above] at (OHM.north) {\shortstack{Multimeter\\(resistance mode)}};
+    \node[below] at (POT.south) {\shortstack{potentiometer\\10 k$\Omega$}};
+    \node[below left] at (A) {leg 1};
+    \node[below right] at (B) {\shortstack[l]{leg 2\\(not connected)}};
+    \node[right] at ($(POT.wiper)+(0.15,0.25)$) {wiper (middle leg)};
+
+\end{circuitikz}
+\end{document}

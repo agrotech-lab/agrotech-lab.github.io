@@ -15,12 +15,13 @@ Instead of sending data over the serial monitor, the ESP32 will create its own W
 - **display information** (for example, temperature and humidity), and  
 - **receive input** (for example, a button click to turn an led on or off).
 
-We will focus on two examples:
+We will focus on three examples:
 
 1. A web server that shows temperature and humidity from the SHT31 sensor.
-1. A web server that controls the built-in led.  
+1. A web server that controls the built-in led.
+1. A web server that logs SHT31 readings in memory and lets you download them as a CSV file.
 
-Both examples work without any external Wi-Fi network. The ESP32 itself creates the Wi-Fi network.
+All examples work without any external Wi-Fi network. The ESP32 itself creates the Wi-Fi network.
 
 ## SHT31 on web server
 
@@ -30,6 +31,18 @@ Here is the code for reading temperature and humidity values from the SHT31 sens
 #| echo: false
 #| output: asis
 code_source("SHT31_server.ino")
+```
+
+## SHT31 data logger on web server
+
+This example reads temperature and humidity once a second and keeps every reading in the ESP32's own memory (an array, not a file). Open the web page to see the latest reading and how many samples have been stored so far, then click the download link to fetch everything collected as a `data.csv` file.
+
+The buffer has a fixed size (`maxSamples`, 3600 by default — one hour at one reading per second). Once it's full, logging stops until the board is reset.
+
+```{python}
+#| echo: false
+#| output: asis
+code_source("SHT31_logger_server.ino")
 ```
 
 ## Toggle LED on web server
