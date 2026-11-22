@@ -23,14 +23,16 @@ Use the following code.
 code_source("button-digitalread-flash.ino")
 ```
 
+<!--
 <details>
 <summary>see diagram</summary>
 ![](/archive/figures/diagrams/button-flashLED_bb.png)
 </details>
+-->
 
 <details>
-<summary>see wiring scheme</summary>
-![](/archive/figures/diagrams/button-flashLED_schem.png)
+<summary>see diagram</summary>
+![](/archive/figures/diagrams/button-digitalread-flash_schem.svg)
 </details>
 
 
@@ -99,13 +101,15 @@ Use the following code to activate LED pin with PWM, using the potentiometer as 
 code_source("potentiometer-PWM.ino")
 ```
 
+<!--
 <details>
 <summary>see diagram</summary>
 ![](/archive/figures/diagrams/potentiometer-PWM-LED-esp32_bb.png)
 </details>
+-->
 
 <details>
-<summary>see wiring scheme</summary>
-![](/archive/figures/diagrams/potentiometer-PWM-LED-esp32_schem.png)
+<summary>see diagram</summary>
+![](/archive/figures/diagrams/potentiometer-PWM-LED-esp32_schem.svg)
 </details>
 

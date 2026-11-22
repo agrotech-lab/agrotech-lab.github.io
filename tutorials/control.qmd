@@ -14,13 +14,15 @@ As we saw last time, we can use a potentiometer to control the brightness of an 
 
 <details>
 <summary>see diagram</summary>
-![](/archive/figures/diagrams/led-resistor-potentiometer-esp32_schem.png)
+![](/archive/figures/diagrams/led-resistor-potentiometer-esp32_schem.svg)
 </details>
 
+<!--
 <details>
 <summary>see wiring scheme</summary>
 ![](/archive/figures/diagrams/led-resistor-potentiometer-esp32_bb.png)
 </details>
+-->
 
 
 ## PWM with ESP32
@@ -103,13 +105,15 @@ code_source("digital-write.ino")
 
 <details>
 <summary>see diagram</summary>
-![](/archive/figures/diagrams/relay-led-esp32_schem.png)
+![](/archive/figures/diagrams/relay-led-esp32_schem.svg)
 </details>
 
+<!--
 <details>
 <summary>see wiring scheme</summary>
 ![](/archive/figures/diagrams/relay-led-esp32_bb.png)
 </details>
+-->
 
 ## SHT31 Sensor
 
