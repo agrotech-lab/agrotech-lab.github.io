@@ -1,0 +1,16 @@
+{
+  "project": "https://github.com/erezfeuer/sensor-workshop",
+  "revision": "48812bc438ae9318bf6a37772437f5fd22a0d3c2",
+  "variant": "0.7.1-personal-scd30-3",
+  "source_model": "enclosure/variants/bare-scd30/model.html",
+  "source_attribution": "hardware/reference/ATTRIBUTION.md",
+  "adaptations": [
+    "course links",
+    "projector blackout",
+    "fallback text"
+  ],
+  "images": [
+    "sensor-workshop-assembled.png",
+    "sensor-workshop-exploded.png"
+  ]
+}

@@ -560,6 +560,7 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
   <li><a href="#from-stl-to-a-print-in-bambu-studio" id="toc-from-stl-to-a-print-in-bambu-studio" class="nav-link" data-scroll-target="#from-stl-to-a-print-in-bambu-studio">From STL to a print in Bambu Studio</a></li>
   <li><a href="#what-to-change-when-a-print-is-disappointing" id="toc-what-to-change-when-a-print-is-disappointing" class="nav-link" data-scroll-target="#what-to-change-when-a-print-is-disappointing">What to change when a print is disappointing</a></li>
   <li><a href="#working-with-an-llm-on-a-model" id="toc-working-with-an-llm-on-a-model" class="nav-link" data-scroll-target="#working-with-an-llm-on-a-model">Working with an LLM on a model</a></li>
+  <li><a href="#sensor-workshop" id="toc-sensor-workshop" class="nav-link" data-scroll-target="#sensor-workshop">A real project: Sensor Workshop</a></li>
   </ul>
 </nav>
     </div>
@@ -983,9 +984,38 @@ Print a small fit test first
 </ul>
 <p>There are <strong>many ways to make the same part</strong>. A shape can be built up from solids, cut out of a larger block, or extruded from a flat outline. Ask for a couple of approaches and compare how easy they are to understand, adjust and print. If a design becomes difficult to work with, describe the problem and try a simpler approach.</p>
 <p>Preview and render the result in OpenSCAD, inspect it in the slicer, and check the dimensions against the real components. Start with a small fit test when the design depends on screw holes or tight clearances, then improve it from what you measure.</p>
-<p><em>The downloadable models were exported with OpenSCAD 2021.01. The stand and fit test are teaching prototypes; they have not yet been physically printed or fitted to the lab board.</em></p>
+<p><em>The lesson’s stand and fit-test downloads were exported with OpenSCAD 2021.01. They are teaching prototypes and have not yet been physically printed or fitted to the lab board.</em></p>
+</section>
+<section id="sensor-workshop" class="level2">
+<h2 class="anchored" data-anchor-id="sensor-workshop">A real project: Sensor Workshop</h2>
+<p>The same workflow can grow from a simple PCB stand into a complete instrument enclosure. <strong><a href="https://github.com/erezfeuer/sensor-workshop" target="_blank" rel="noopener noreferrer">Sensor Workshop</a></strong> is a project by Erez Feuer, with Yair Mau and Elad Levintal, for a battery-powered environmental monitor. Its enclosure fits an ESP32-S3 Feather with a screen, a CO₂/temperature/humidity sensor, a light sensor, a clock and a battery.</p>
+<p>This example shows <strong>Erez’s personal prototype with a bare SCD30 sensor</strong>, held by clips built into the carrier. It has <strong>three printed pieces</strong>: the outer shell, the sensor carrier underneath, and a removable frame for the Feather. Compare the model with the printed parts during the class demonstration.</p>
+<div class="printing-gallery sensor-project-gallery">
+  <figure class="figure">
+    <a href="../archive/3d-printing/sensor-workshop/model.html" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="../archive/figures/3d-printing/sensor-workshop-assembled.png" alt="Sensor Workshop personal prototype assembled: an enclosure with a screen opening, light-sensor opening and four feet." class="figure-img"></a>
+    <figcaption><strong>Assembled.</strong> The openings keep the screen, buttons and light sensor accessible.</figcaption>
+  </figure>
+  <figure class="figure">
+    <a href="../archive/3d-printing/sensor-workshop/model.html" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="../archive/figures/3d-printing/sensor-workshop-exploded.png" alt="Exploded view of the personal Sensor Workshop prototype, separating the shell, sensor carrier, Feather frame and electronics." class="figure-img"></a>
+    <figcaption><strong>Separated.</strong> See how the three printed pieces fit around the electronics.</figcaption>
+  </figure>
+</div>
+<p><a href="../archive/3d-printing/sensor-workshop/model.html" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Open the interactive Sensor Workshop model</a> · <a href="https://github.com/erezfeuer/sensor-workshop" target="_blank" rel="noopener noreferrer">Explore the project on GitHub</a></p>
+<p>The model opens in a new tab, ready to rotate. Use <strong>Fully explode</strong> to separate the parts, <strong>Look inside</strong> to hide the shell, and <strong>Remove / install Feather</strong> in the movement menu to see how the board slides out. The <strong>Black screen</strong> button also works here when switching back to the classroom board.</p>
+<section id="what-to-look-for-together" class="level3">
+<h3 class="anchored" data-anchor-id="what-to-look-for-together">What to look for together</h3>
+<ul>
+<li><strong>Assembly access:</strong> the Feather attaches to its frame outside the enclosure, then slides into place. Follow the path it needs through the opening.</li>
+<li><strong>Space around real parts:</strong> look beyond the PCB outline to the USB connector, screen, buttons, cables and screw heads.</li>
+<li><strong>Sensor placement:</strong> the light sensor looks up through the roof; the SCD30 sits below the carrier, with air access through the open underside.</li>
+<li><strong>Changes after a print:</strong> an earlier mounting post broke during screw removal. The revised frame adds support behind the mounting points while preserving the fitted board interface—an example of improving a design from a physical trial.</li>
+</ul>
+<p>To follow the design back to its files, open the <a href="https://github.com/erezfeuer/sensor-workshop/blob/main/enclosure/sensor-workshop.scad" target="_blank" rel="noopener noreferrer">main OpenSCAD source</a>, <a href="https://github.com/erezfeuer/sensor-workshop/blob/main/enclosure/parameters.scad" target="_blank" rel="noopener noreferrer">named dimensions</a>, and <a href="https://github.com/erezfeuer/sensor-workshop/blob/main/enclosure/variants/bare-scd30/carrier.scad" target="_blank" rel="noopener noreferrer">personal sensor-carrier source</a>. The <a href="https://github.com/erezfeuer/sensor-workshop/tree/main/prototype-stls/bare-scd30" target="_blank" rel="noopener noreferrer">personal prototype’s print folder</a> contains its three STL files; read the <a href="https://github.com/erezfeuer/sensor-workshop/blob/main/enclosure/variants/bare-scd30/README.md" target="_blank" rel="noopener noreferrer">assembly and printing notes</a> alongside them.</p>
+<p>The repository also has a <a href="https://github.com/erezfeuer/sensor-workshop/tree/main/production-stls" target="_blank" rel="noopener noreferrer">standard workshop version</a>, which uses an Adafruit SCD30 breakout and a different carrier. Choose the print set that matches the sensor you have.</p>
+<p><em>The classroom viewer is a v0.7.1 personal-prototype snapshot. Follow GitHub for later revisions and fit-test results; the revised parts still need a physical fit test. <a href="../archive/3d-printing/sensor-workshop/CREDITS.txt" target="_blank" rel="noopener noreferrer">Model sources and credits</a>.</em></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -104,3 +104,31 @@ The OpenSCAD toolbar close-up is SVG displaying the unchanged official PNG,
 with numbered boxes over its Preview, Render and STL-export buttons. This
 is an older interface, explicitly captioned as such; the menu paths/shortcuts
 are the stable directions. Local GUI screenshot automation was unavailable.
+
+## Sensor Workshop showcase
+
+The printing lesson ends with a real-project example from
+https://github.com/erezfeuer/sensor-workshop. It uses Erez's **personal bare-SCD30
+variant**, not the standard workshop carrier for the Adafruit breakout. The
+lesson explicitly distinguishes the two print sets and links to their sources.
+
+`archive/3d-printing/sensor-workshop/model.html` is a separate, self-contained
+viewer snapshot, loaded only when opened from the lesson. It preserves the
+source geometry and controls, adding course/project links, source credits,
+fallback directions and the course's blackout control. The embedded blackout
+CSS/JS keeps the downloaded viewer usable offline. PNGs are generated directly
+from its WebGL canvas, not copied from screenshots of a different variant.
+
+Refresh from a clean Sensor Workshop checkout with Python, Playwright and Chrome:
+
+```sh
+python archive/agent-notes/examples/import-sensor-workshop.py ../sensor-workshop
+```
+
+This reads the sibling repository; it does not modify or publish it. Confirm
+that the source commit is public, then review the imported version and update
+the snapshot wording in the lesson. `snapshot.json` records the source commit;
+`CREDITS.txt` preserves the upstream attribution and license notices. After
+importing, render the lesson and verify the separate viewer's rotation, parts,
+explosion, Feather removal, cutaway, blackout and mobile layout. Keep the
+prototype/physical-trial status accurate; rendered clearance is not a fit test.
