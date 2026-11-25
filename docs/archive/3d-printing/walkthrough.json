@@ -1,0 +1,199 @@
+[
+  {
+    "id": "step-1",
+    "title": "Start with a cube",
+    "description": "Make one solid: a cube, 20 mm on each side. The three numbers are X, Y and Z. Everything we add later will build on this starting point.",
+    "code": "// Units: mm. PCB stand worked example.\ncube([20, 20, 20]);\n",
+    "changedLines": [
+      1,
+      2
+    ],
+    "size": [
+      20,
+      20,
+      20
+    ],
+    "file": "walkthrough/01-cube.stl",
+    "scad": "walkthrough/01-cube.scad",
+    "image": "walkthrough/01-cube.png"
+  },
+  {
+    "id": "step-2",
+    "title": "Resize it into a flat base",
+    "description": "Change the three dimensions. cube() can make a rectangular block too. Our base is now 81.406 \u00d7 86.740 mm and only 3 mm thick: the PCB outline plus 4 mm on each edge.",
+    "code": "// Units: mm. PCB stand worked example.\ncube([81.406, 86.740, 3]);\n",
+    "changedLines": [
+      2
+    ],
+    "size": [
+      81.406,
+      86.74,
+      3
+    ],
+    "file": "walkthrough/02-resize.stl",
+    "scad": "walkthrough/02-resize.scad",
+    "image": "walkthrough/02-resize.png"
+  },
+  {
+    "id": "step-3",
+    "title": "Move the base around the board origin",
+    "description": "Add translate([-4, -4, 0]). The whole base moves 4 mm in negative X and Y; its size stays the same. The origin will be the bottom-left corner of our PCB. Compare the base with the red and green axes.",
+    "code": "// Units: mm. PCB stand worked example.\ntranslate([-4, -4, 0])\n  cube([81.406, 86.740, 3]);\n",
+    "changedLines": [
+      2
+    ],
+    "size": [
+      81.406,
+      86.74,
+      3
+    ],
+    "file": "walkthrough/03-move.stl",
+    "scad": "walkthrough/03-move.scad",
+    "image": "walkthrough/03-move.png"
+  },
+  {
+    "id": "step-4",
+    "title": "Subtract a block to open the middle",
+    "description": "Wrap the base in difference(), then add a second block as the cutter. The first shape stays; the second is removed. The cutter starts below the base and ends above it, so the window goes all the way through.",
+    "code": "// Units: mm. PCB stand worked example.\ndifference() {\n  translate([-4, -4, 0])\n    cube([81.406, 86.740, 3]);\n  translate([10, 12, -0.1])\n    cube([53.406, 54.740, 3.2]);\n}\n",
+    "changedLines": [
+      2,
+      5,
+      6,
+      7
+    ],
+    "size": [
+      81.406,
+      86.74,
+      3
+    ],
+    "file": "walkthrough/04-window.stl",
+    "scad": "walkthrough/04-window.scad",
+    "image": "walkthrough/04-window.png"
+  },
+  {
+    "id": "step-5",
+    "title": "Add the first mounting post",
+    "description": "Use union() to join a cylinder to the frame. translate() places it at the first PCB hole. Starting at Z=2.8 gives 0.2 mm of overlap with the 3 mm base; its top is at Z=9.",
+    "code": "// Units: mm. PCB stand worked example.\nunion() {\n  difference() {\n    translate([-4, -4, 0])\n      cube([81.406, 86.740, 3]);\n    translate([10, 12, -0.1])\n      cube([53.406, 54.740, 3.2]);\n  }\n  translate([4.318, 4.572, 2.8])\n    cylinder(h=6.2, d=6, $fn=64);\n}\n",
+    "changedLines": [
+      2,
+      9,
+      10,
+      11
+    ],
+    "size": [
+      81.406,
+      86.74,
+      9
+    ],
+    "file": "walkthrough/05-first-post.stl",
+    "scad": "walkthrough/05-first-post.scad",
+    "image": "walkthrough/05-first-post.png"
+  },
+  {
+    "id": "step-6",
+    "title": "Add a second post",
+    "description": "Keep the first post. Add another cylinder at X=4.318, Y=75.438. Only its Y position changes. These coordinates come from the real board, so we do not guess the distance from the corners.",
+    "code": "// Units: mm. PCB stand worked example.\nunion() {\n  difference() {\n    translate([-4, -4, 0])\n      cube([81.406, 86.740, 3]);\n    translate([10, 12, -0.1])\n      cube([53.406, 54.740, 3.2]);\n  }\n  translate([4.318, 4.572, 2.8])\n    cylinder(h=6.2, d=6, $fn=64);\n  translate([4.318, 75.438, 2.8])\n    cylinder(h=6.2, d=6, $fn=64);\n}\n",
+    "changedLines": [
+      11,
+      12
+    ],
+    "size": [
+      81.406,
+      86.74,
+      9
+    ],
+    "file": "walkthrough/06-second-post.stl",
+    "scad": "walkthrough/06-second-post.scad",
+    "image": "walkthrough/06-second-post.png"
+  },
+  {
+    "id": "step-7",
+    "title": "Add the two posts on the other side",
+    "description": "Add two more cylinders at X=69.596, using the same two Y coordinates. Now all four mounting positions have supports. The posts are still solid.",
+    "code": "// Units: mm. PCB stand worked example.\nunion() {\n  difference() {\n    translate([-4, -4, 0])\n      cube([81.406, 86.740, 3]);\n    translate([10, 12, -0.1])\n      cube([53.406, 54.740, 3.2]);\n  }\n  translate([4.318, 4.572, 2.8])\n    cylinder(h=6.2, d=6, $fn=64);\n  translate([4.318, 75.438, 2.8])\n    cylinder(h=6.2, d=6, $fn=64);\n  translate([69.596, 4.572, 2.8])\n    cylinder(h=6.2, d=6, $fn=64);\n  translate([69.596, 75.438, 2.8])\n    cylinder(h=6.2, d=6, $fn=64);\n}\n",
+    "changedLines": [
+      13,
+      14,
+      15,
+      16
+    ],
+    "size": [
+      81.406,
+      86.74,
+      9
+    ],
+    "file": "walkthrough/07-four-posts.stl",
+    "scad": "walkthrough/07-four-posts.scad",
+    "image": "walkthrough/07-four-posts.png"
+  },
+  {
+    "id": "step-8",
+    "title": "Cut a screw hole through the first post",
+    "description": "Put the whole frame-and-posts shape inside a new difference(). A 3.4 mm cylinder removes material through the first post AND the base, from Z=-0.1 to Z=9.1. Try Top view to see the hole.",
+    "code": "// Units: mm. PCB stand worked example.\ndifference() {\n  union() {\n    difference() {\n      translate([-4, -4, 0])\n        cube([81.406, 86.740, 3]);\n      translate([10, 12, -0.1])\n        cube([53.406, 54.740, 3.2]);\n    }\n    translate([4.318, 4.572, 2.8])\n      cylinder(h=6.2, d=6, $fn=64);\n    translate([4.318, 75.438, 2.8])\n      cylinder(h=6.2, d=6, $fn=64);\n    translate([69.596, 4.572, 2.8])\n      cylinder(h=6.2, d=6, $fn=64);\n    translate([69.596, 75.438, 2.8])\n      cylinder(h=6.2, d=6, $fn=64);\n  }\n  translate([4.318, 4.572, -0.1])\n    cylinder(h=9.2, d=3.4, $fn=64);\n}\n",
+    "changedLines": [
+      2,
+      19,
+      20,
+      21
+    ],
+    "size": [
+      81.406,
+      86.74,
+      9
+    ],
+    "file": "walkthrough/08-first-hole.stl",
+    "scad": "walkthrough/08-first-hole.scad",
+    "image": "walkthrough/08-first-hole.png"
+  },
+  {
+    "id": "step-9",
+    "title": "Cut the other three screw holes",
+    "description": "Keep the first cutter and add three more at the remaining mounting positions. The stand now has four through-holes. This is the finished shape; check the actual screw fit with the small test piece before printing it.",
+    "code": "// Units: mm. PCB stand worked example.\ndifference() {\n  union() {\n    difference() {\n      translate([-4, -4, 0])\n        cube([81.406, 86.740, 3]);\n      translate([10, 12, -0.1])\n        cube([53.406, 54.740, 3.2]);\n    }\n    translate([4.318, 4.572, 2.8])\n      cylinder(h=6.2, d=6, $fn=64);\n    translate([4.318, 75.438, 2.8])\n      cylinder(h=6.2, d=6, $fn=64);\n    translate([69.596, 4.572, 2.8])\n      cylinder(h=6.2, d=6, $fn=64);\n    translate([69.596, 75.438, 2.8])\n      cylinder(h=6.2, d=6, $fn=64);\n  }\n  translate([4.318, 4.572, -0.1])\n    cylinder(h=9.2, d=3.4, $fn=64);\n  translate([4.318, 75.438, -0.1])\n    cylinder(h=9.2, d=3.4, $fn=64);\n  translate([69.596, 4.572, -0.1])\n    cylinder(h=9.2, d=3.4, $fn=64);\n  translate([69.596, 75.438, -0.1])\n    cylinder(h=9.2, d=3.4, $fn=64);\n}\n",
+    "changedLines": [
+      21,
+      22,
+      23,
+      24,
+      25,
+      26
+    ],
+    "size": [
+      81.406,
+      86.74,
+      9
+    ],
+    "file": "walkthrough/09-four-holes.stl",
+    "scad": "walkthrough/09-four-holes.scad",
+    "image": "walkthrough/09-four-holes.png"
+  },
+  {
+    "id": "step-10",
+    "title": "Make the repeated code shorter",
+    "description": "The shape stays exactly the same. Store the four positions in holes, then use for (p = holes) to repeat the post and cutter. p[0] is X and p[1] is Y. Go Back to compare this with the four separate copies.",
+    "code": "// Units: mm. PCB stand worked example.\nholes = [[4.318, 4.572], [4.318, 75.438],\n         [69.596, 4.572], [69.596, 75.438]];\n$fn = 64;\n\ndifference() {\n  union() {\n    difference() {\n      translate([-4, -4, 0])\n        cube([81.406, 86.740, 3]);\n      translate([10, 12, -0.1])\n        cube([53.406, 54.740, 3.2]);\n    }\n    for (p = holes)\n      translate([p[0], p[1], 2.8])\n        cylinder(h=6.2, d=6);\n  }\n  for (p = holes)\n    translate([p[0], p[1], -0.1])\n      cylinder(h=9.2, d=3.4);\n}\n",
+    "changedLines": [
+      2,
+      3,
+      4,
+      14,
+      15,
+      16,
+      18,
+      19,
+      20
+    ],
+    "size": [
+      81.406,
+      86.74,
+      9
+    ],
+    "file": "walkthrough/10-loop.stl",
+    "scad": "walkthrough/10-loop.scad",
+    "image": "walkthrough/10-loop.png"
+  }
+]

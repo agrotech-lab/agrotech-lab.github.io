@@ -25,3 +25,23 @@
 /* This stylesheet is loaded only by the printing lesson. Allow long function names to wrap in narrow tables. */
 #quarto-document-content table{table-layout:fixed;width:100%;overflow-wrap:anywhere}
 #quarto-document-content table code{white-space:normal;overflow-wrap:anywhere}
+/* The worked example is the default; free exploration remains available. */
+.stl-explorer [data-mode][aria-pressed=true],.stl-explorer [data-next]{background:#175973;color:#fff;border-color:#175973}
+.stl-explorer button:disabled{opacity:.45;cursor:default}
+.stl-step-nav{padding:.5rem 0;border-bottom:1px solid #d4dfe6}
+.stl-step-nav [data-progress]{font-weight:700;min-width:6rem;text-align:center}
+.stl-step-nav [data-restart]{margin-left:auto}
+.stl-explorer .stl-status{font-size:1.12rem;margin:.7rem 0 .35rem}
+.stl-step-note{font-size:.95rem;line-height:1.45;margin:.4rem 0 .8rem;min-height:4.2em}
+.stl-code-key{font-size:.8rem;margin:0 0 .35rem}
+.stl-explorer mark{background:#ffe5a3;color:#182e3a;padding:0 .12em;border-radius:2px}
+.stl-code pre{line-height:1.5;tab-size:2}
+.stl-code pre mark{padding:0;box-shadow:2px 0 #ffe5a3,-2px 0 #ffe5a3}
+.stl-extra{font-size:.9rem;border-top:1px solid #d4dfe6;padding-top:.6rem;margin-top:.5rem}
+.stl-extra summary{cursor:pointer;color:#174c68}
+.stl-explorer:fullscreen .stl-stage{height:calc(100vh - 410px);min-height:200px}
+.stl-explorer:fullscreen .stl-code pre{max-height:calc(100vh - 410px);min-height:120px}
+.stl-explorer:fullscreen .stl-step-note{min-height:0}
+@media(max-width:700px){.stl-step-note{min-height:0}.stl-step-nav [data-restart]{margin-left:0}.stl-explorer:fullscreen .stl-stage{height:38vh}.stl-explorer:fullscreen .stl-code pre{max-height:220px}}
+.stl-explorer button[data-next]:hover:not(:disabled){background:#103f54;color:#fff}
+.stl-explorer button[data-next]:disabled{background:#e6edf1;color:#465966;border-color:#829eaf}

@@ -44,3 +44,26 @@ images. `_quarto.yml` explicitly copies the model/hardware/vendor resources.
 After editing, render with the site's Quarto version (1.6.41 at introduction)
 and verify the viewer's presets, local upload, mobile layout and downloads.
 Do not hand-edit docs/.
+
+## Cumulative worked example
+
+The viewer now defaults to a ten-step PCB stand build. `walkthrough.json`
+contains step order, complete code, rendered file paths and 1-based changed
+line numbers; the browser never executes OpenSCAD. Steps 1–9 build the part;
+step 10 refactors repeated posts/cutters into loops without changing geometry.
+Both final stages match the original pcb-stand dimensions and volume.
+
+Rebuild all ten stages, their fixed-camera PNGs, the manifest and both example
+ZIPs using `archive/agent-notes/examples/build-printing-walkthrough.py
+--openscad /path/to/OpenSCAD`. This script is the source of the staged code.
+Its rectangle/post/cutter dimensions must remain consistent with pcb-stand.scad
+and the board data. The original parameterized stand is kept as a separate
+advanced example. Do not silently round the measured hole positions.
+
+The browser preserves the camera across steps and uses one shared bounding
+box, so resizing and moving are visible. Start over resets the camera. The
+Other models mode retains the earlier gallery and private local STL upload.
+Without WebGL, the same Next/Back controls show the exported PNGs and code.
+Code highlighting compares with the preceding numbered step (ignoring changed
+indentation); all complete sources are available to download. Failed loads
+must not pair a new code listing with the previous model.

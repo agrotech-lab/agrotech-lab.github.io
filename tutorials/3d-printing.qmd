@@ -64,11 +64,23 @@ A shape statement ends in `;`. Braces `{ ... }` group shapes. A transformation g
 
 `$fn=64` asks for 64 segments around a circle. It makes round shapes look smoother; it does not change the printer's layer height. Start with moderate values so previews and STLs stay manageable. The [OpenSCAD cheat sheet](https://openscad.org/cheatsheet/) is a useful reference while reading code.
 
-## Explore the building blocks
+## Worked example: build the PCB stand {#worked-example}
 
-Choose an example and turn it around. Compare **the code** with **the result**. Use “Show triangles” to see what an STL actually stores.
+We will build **one part, one change at a time**. Start with a cube, resize and move it, cut out the middle, add mounting posts, and finally cut the screw holes. The finished shape is the stand for our class PCB.
+
+Press **Next** to make the next change, or **Back** to compare it with the previous step. The highlighted lines show what changed in the code. Each step is a complete OpenSCAD file that you can download and run. Try predicting the next shape before pressing the button.
+
+Use **Full screen** when projecting. The camera stays in the same place as you advance, so resizing or moving the part is easy to see. You can still rotate the model, use Top view, or reset the view.
 
 {{< include ../_includes/3d-printing-viewer.qmd >}}
+
+[Download all ten steps: OpenSCAD source + STLs](../archive/3d-printing/worked-example.zip)
+
+Steps 1–9 build the finished shape. Step 10 makes the same shape using a `for` loop to replace repeated code. The intermediate models are teaching stages; use the finished stand and the screw-fit test for printing. The [PCB measurements below](#a-useful-print-for-our-soldering-pcb) explain where the mounting positions come from.
+
+After the walkthrough, choose **Other models** to explore rotation, extrusion, the PCB assembly, or your own STL.
+
+### The operations we use
 
 | Operation | In plain language | What to notice |
 |---|---|---|

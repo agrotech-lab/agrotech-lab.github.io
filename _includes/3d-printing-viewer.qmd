@@ -1,21 +1,31 @@
 ```{=html}
 <section id="stl-explorer" class="stl-explorer" aria-labelledby="stl-heading">
-  <h3 id="stl-heading">Turn the model around</h3>
-  <div class="stl-tools">
-    <label for="stl-model">Example</label>
-    <select id="stl-model" data-model aria-label="Choose a 3D example"></select>
+  <h3 id="stl-heading">Build a PCB stand, one step at a time</h3>
+  <div class="stl-tools" data-navigation hidden>
+    <button type="button" data-mode="walkthrough" aria-pressed="true">Build the stand</button>
+    <button type="button" data-mode="explore" aria-pressed="false">Other models</button>
     <button type="button" data-fullscreen hidden>Full screen</button>
   </div>
-  <p class="stl-status" data-status role="status" aria-live="polite">Interactive view loading. The image and downloads also work without the viewer.</p>
+  <div class="stl-step-nav stl-tools" data-walkthrough hidden>
+    <button type="button" data-back disabled>← Back</button>
+    <span data-progress>Step 1 of 10</span>
+    <button type="button" data-next>Next →</button>
+    <button type="button" data-restart>Start over</button>
+  </div>
+  <div class="stl-tools" data-explore hidden>
+    <label for="stl-model">Example</label>
+    <select id="stl-model" data-model aria-label="Choose a 3D example"></select>
+  </div>
+  <h4 class="stl-status" data-status role="status" aria-live="polite">Step 1: Start with a cube</h4>
+  <p class="stl-step-note" data-note>Make one solid: a cube, 20 mm on each side. The three numbers are X, Y and Z. Everything we add later will build on this starting point.</p>
   <div class="stl-grid">
     <div>
       <div class="stl-stage">
-        <img data-fallback src="../archive/figures/3d-printing/difference.png" alt="OpenSCAD render of a rectangular block with a circular hole cut through it.">
+        <img data-fallback src="../archive/figures/3d-printing/walkthrough/01-cube.png" alt="Step 1: a 20 mm cube at the origin, before building the PCB stand.">
         <canvas tabindex="0" aria-label="3D model. Drag to rotate, scroll to zoom, or use the view buttons. Arrow keys rotate when this canvas is focused."></canvas>
       </div>
-      <p class="stl-size" data-size>30 × 20 × 6 mm (X × Y × Z)</p>
-      <p class="stl-help">Drag to rotate; scroll or pinch to zoom. Arrow keys rotate when the model has focus. Axes at the origin: X red, Y green, Z blue.</p>
-      <div class="stl-tools">
+      <p class="stl-size" data-size>20 × 20 × 20 mm (X × Y × Z)</p>
+      <div class="stl-tools" data-camera-tools>
         <button type="button" data-view="angled">Angled view</button>
         <button type="button" data-view="top">Top</button>
         <button type="button" data-view="side">Side</button>
@@ -25,35 +35,39 @@
       </div>
     </div>
     <div class="stl-code">
-      <pre aria-label="OpenSCAD source for the selected example"><code data-code>difference() {
-  cube([30, 20, 6]);
-  translate([15, 10, -1])
-    cylinder(h=8, d=8, $fn=64);
-}</code></pre>
-      <p data-note>The first shape stays; the cylinder cuts a hole through it. Change the code in OpenSCAD to make your own version.</p>
+      <p class="stl-code-key" data-code-key>Complete code · <mark>new or changed lines</mark></p>
+      <pre tabindex="0" aria-label="Complete OpenSCAD source. Highlighted lines are new or changed from the previous step."><code data-code>// Units: mm. PCB stand worked example.
+cube([20, 20, 20]);</code></pre>
       <div class="stl-tools">
-        <a class="stl-download" data-scad-link download href="../archive/3d-printing/difference.scad">Download .scad</a>
-        <a class="stl-download" data-stl-link download href="../archive/3d-printing/difference.stl">Download .stl</a>
+        <a class="stl-download" data-scad-link download href="../archive/3d-printing/walkthrough/01-cube.scad">Download this .scad</a>
+        <a class="stl-download" data-stl-link download href="../archive/3d-printing/walkthrough/01-cube.stl">Download this .stl</a>
       </div>
     </div>
   </div>
-  <div class="stl-tools">
-    <label for="stl-wire"><input id="stl-wire" type="checkbox" data-wire> Show triangles</label>
-    <label for="stl-height">Show height</label>
-    <input id="stl-height" type="range" min="0" max="100" step="1" value="100" data-height>
-    <output for="stl-height" data-height-value>100%</output>
-  </div>
-  <p class="stl-help">The height slider is a cutaway view. Inspect actual print layers and toolpaths in Bambu Studio. This viewer displays exported models; it does not run OpenSCAD code.</p>
-  <div class="stl-tools">
-    <label for="stl-upload">Open your own STL</label>
-    <input id="stl-upload" type="file" accept=".stl" data-upload>
-  </div>
-  <p class="stl-help">Files stay in your browser. Maximum 20 MB and 300,000 triangles. STL has no unit label; coordinates here are read as millimetres.</p>
-  <noscript><p>JavaScript is off. Use the rendered examples and downloadable files below, or open the STLs in Bambu Studio.</p></noscript>
+  <details class="stl-extra">
+    <summary>Viewer tools and help</summary>
+    <div class="stl-tools">
+      <label for="stl-wire"><input id="stl-wire" type="checkbox" data-wire> Show triangles</label>
+      <label for="stl-height">Show height</label>
+      <input id="stl-height" type="range" min="0" max="100" step="1" value="100" data-height>
+      <output for="stl-height" data-height-value>100%</output>
+    </div>
+    <p class="stl-help">Drag to rotate; scroll or pinch to zoom. Arrow keys rotate when the model has focus. Axes: X red, Y green, Z blue. The same camera position is kept between steps so changes in size and position stay visible.</p>
+    <p class="stl-help">The height slider is a cutaway view, not a slicer preview. Each step shows an exported model and its complete code. Edit the downloaded .scad in OpenSCAD to try your own changes.</p>
+    <div data-upload-tools hidden>
+      <div class="stl-tools">
+        <label for="stl-upload">Open your own STL</label>
+        <input id="stl-upload" type="file" accept=".stl" data-upload>
+      </div>
+      <p class="stl-help">Files stay in your browser. Maximum 20 MB and 300,000 triangles. STL has no unit label; coordinates here are read as millimetres.</p>
+    </div>
+  </details>
+  <p class="stl-help" data-render-help hidden>The rotating view is unavailable. Next and Back still show each step's rendered image and code.</p>
+  <noscript><p>JavaScript is off. <a href="../archive/3d-printing/worked-example.zip">Download the ten numbered steps</a> and open them in OpenSCAD to follow the worked example.</p></noscript>
 </section>
 <script type="module">
 import('../assets/3d-printing/viewer.js').catch(() => {
-  document.querySelector('#stl-explorer [data-status]').textContent = 'Interactive view unavailable. Use the rendered examples and downloads below.';
+  document.querySelector('#stl-explorer [data-status]').textContent = 'Interactive view unavailable. Download the numbered steps below to follow along in OpenSCAD.';
 });
 </script>
 ```
