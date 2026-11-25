@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -521,6 +555,13 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
   <ul class="collapse">
   <li><a href="#pcb-in-3d" id="toc-pcb-in-3d" class="nav-link" data-scroll-target="#pcb-in-3d"><span class="header-section-number">17.1.1</span> The board in 3D</a></li>
   </ul></li>
+  <li><a href="#nano-esp32" id="toc-nano-esp32" class="nav-link" data-scroll-target="#nano-esp32"><span class="header-section-number">17.2</span> Using an Arduino Nano ESP32</a>
+  <ul class="collapse">
+  <li><a href="#set-up-the-boards" id="toc-set-up-the-boards" class="nav-link" data-scroll-target="#set-up-the-boards"><span class="header-section-number">17.2.1</span> Set up the boards</a></li>
+  <li><a href="#find-the-right-pcb-contacts" id="toc-find-the-right-pcb-contacts" class="nav-link" data-scroll-target="#find-the-right-pcb-contacts"><span class="header-section-number">17.2.2</span> Find the right PCB contacts</a></li>
+  <li><a href="#use-the-nano-pin-names-in-your-code" id="toc-use-the-nano-pin-names-in-your-code" class="nav-link" data-scroll-target="#use-the-nano-pin-names-in-your-code"><span class="header-section-number">17.2.3</span> Use the Nano pin names in your code</a></li>
+  <li><a href="#check-the-connections" id="toc-check-the-connections" class="nav-link" data-scroll-target="#check-the-connections"><span class="header-section-number">17.2.4</span> Check the connections</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -576,7 +617,7 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
   <h3 id="pcb-assembly-title" class="anchored">Look around the assembled PCB</h3>
   <p class="pcb-caption" data-status="" role="status">Loading the assembly. The image and downloads also work without the rotating view.</p>
   <div class="pcb-stage">
-    <img src="../archive/figures/3d-printing/pcb-assembly.png" alt="Class PCB on the open blue stand, populated with the FireBeetle, OLED, SHT31 module, thermistor, photoresistor, pushbutton, resistors and LEDs.">
+    <img src="../archive/figures/3d-printing/pcb-assembly.png?v=populated-1" alt="Class PCB on the open blue stand, populated with the FireBeetle, OLED, SHT31 module, upright two-lead thermistor, photoresistor, pushbutton, resistors and LEDs.">
     <canvas tabindex="0" aria-label="PCB assembly. Drag or use arrow keys to rotate, and scroll to zoom."></canvas>
   </div>
   <div class="pcb-tools">
@@ -585,15 +626,157 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
     <button type="button" data-reset="">Reset view</button><button type="button" data-fullscreen="" hidden="">Full screen</button>
   </div>
   <div class="pcb-tools"><label><input type="checkbox" data-module="" checked=""> Show FireBeetle</label><label><input type="checkbox" data-stand="" checked=""> Show open stand</label></div>
-  <p class="pcb-caption">Look for the OLED screen, SHT31 module, black thermistor bead, round photoresistor and pushbutton. Hide the FireBeetle to see the board beneath it. The parts use the PCB's actual connection positions; component shapes, module sizes, installed heights and colours are illustrative. The OLED lettering is a display example. Use the real lab parts to check fit, pin order and resistor values.</p>
+  <p class="pcb-caption">Look for the OLED screen, SHT31 module, upright thermistor bead on two leads, round photoresistor and pushbutton. Hide the FireBeetle to see the board beneath it. The parts use the PCB's actual connection positions; component shapes, module sizes, installed heights and colours are illustrative. The OLED lettering is a display example. Use the real lab parts to check fit, pin order and resistor values.</p>
   <noscript><p>JavaScript is off. Use the assembly image above or download the model below.</p></noscript>
 </section>
 <script type="module">
-import('../assets/pcb-viewer/viewer.js').catch(()=>{
+import('../assets/pcb-viewer/viewer.js?v=populated-1').catch(()=>{
   document.querySelector('#pcb-assembly [data-status]').textContent='Rotating view unavailable. Use the assembly image and downloads below.';
 });
 </script>
-<p><a href="../archive/3d-printing/pcb-assembly.glb" target="_blank" rel="noopener noreferrer">Download the assembly model for viewing (.glb)</a> · <a href="../tutorials/3d-printing.html#worked-example" target="_blank" rel="noopener noreferrer">Build the open stand step by step</a></p>
+<p><a href="../archive/3d-printing/pcb-assembly.glb?v=populated-1" target="_blank" rel="noopener noreferrer">Download the assembly model for viewing (.glb)</a> · <a href="../tutorials/3d-printing.html#worked-example" target="_blank" rel="noopener noreferrer">Build the open stand step by step</a></p>
+</section>
+</section>
+<section id="nano-esp32" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="nano-esp32"><span class="header-section-number">17.2</span> Using an Arduino Nano ESP32</h2>
+<p>You can use the same class PCB with an <strong>Arduino Nano ESP32</strong>. Put the Nano on a breadboard beside the PCB and run ten jumper wires to the empty FireBeetle connections. The sensors, button and LEDs stay on the class PCB.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Use the Nano ESP32 and 3.3 V">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Use the Nano ESP32 and 3.3 V
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This wiring is for the <strong>Arduino Nano ESP32</strong>, not the classic 5 V Arduino Nano. Power the Nano through USB-C and connect its <strong>3V3</strong> output to the PCB’s <strong>3V3</strong> connection, with a shared <strong>GND</strong>. Keep VUSB/VBUS, VIN and 5 V away from the PCB’s 3V3 and signal connections. The Nano ESP32 uses 3.3 V signals; see the <a href="https://docs.arduino.cc/resources/datasheets/ABX00083-datasheet.pdf" target="_blank" rel="noopener noreferrer">Arduino power specifications</a>.</p>
+</div>
+</div>
+<section id="set-up-the-boards" class="level3" data-number="17.2.1">
+<h3 data-number="17.2.1" class="anchored" data-anchor-id="set-up-the-boards"><span class="header-section-number">17.2.1</span> Set up the boards</h3>
+<ol type="1">
+<li><strong>Unplug power and remove the FireBeetle.</strong> The Nano has a different pin layout: do not plug it into the FireBeetle sockets. Leave the FireBeetle disconnected throughout this setup.</li>
+<li><strong>Place the Nano across the breadboard’s centre gap</strong>, with its two rows of pins on opposite sides. Each Nano pin goes into a separate connected strip of five breadboard holes. Leave the USB connector accessible. If your Nano has no headers, solder male headers onto it first.</li>
+<li><strong>Choose the jumper ends that fit your PCB.</strong> For female sockets on the PCB, use male-to-male jumper wires. For male pins on the PCB, use male-to-female jumpers, with the female end on the PCB. The breadboard end is male in either case. Empty, unsoldered PCB holes need soldered headers before you can use push-in jumpers reliably.</li>
+<li><strong>Run each jumper from a free hole in the Nano pin’s connected strip to the PCB contact in the table.</strong> Keep the wires short enough to follow easily; red for 3V3 and black for GND help. The PCB already contains the sensor divider resistors and LED resistors, so you do not need to duplicate those circuits on the breadboard.</li>
+</ol>
+<p>If the breadboard connections are unfamiliar, try the <a href="../tutorials/breadboard.html" target="_blank" rel="noopener noreferrer">breadboard explorer</a> first.</p>
+</section>
+<section id="find-the-right-pcb-contacts" class="level3" data-number="17.2.2">
+<h3 data-number="17.2.2" class="anchored" data-anchor-id="find-the-right-pcb-contacts"><span class="header-section-number">17.2.2</span> Find the right PCB contacts</h3>
+<p>Look at the <strong>component side</strong>, with the plant logo and SHT31 at the top, and the OLED, button and LEDs at the bottom. The FireBeetle’s USB end would point left. The upper FireBeetle row has <strong>14 small contacts</strong>; the lower row has <strong>18</strong>. Count from the left separately in each row, skipping the larger mounting holes. These row positions are only a way to find the holes; they are not GPIO numbers.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../archive/figures/diagrams/nano-esp32-pcb-sockets.svg" class="img-fluid figure-img" alt="Component-side socket locator. Upper row: 14 contacts numbered left to right, with 2, 3, 4, 5, 7 and 8 selected. Lower row: 18 contacts, with 12, 13, 15 and 16 selected. The USB end is left, SHT31 above, OLED and button below."></p>
+<figcaption>The empty FireBeetle socket area, viewed from the component side. Use upper-row contacts 2, 3, 4, 5, 7 and 8, and lower-row contacts 12, 13, 15 and 16.</figcaption>
+</figure>
+</div>
+<p><a href="../archive/figures/diagrams/nano-esp32-pcb-sockets.svg" target="_blank" rel="noopener noreferrer">Open the socket diagram at full size</a>.</p>
+<p>Follow the <strong>labels printed on the Nano</strong>, using the <a href="https://docs.arduino.cc/resources/pinouts/ABX00083-full-pinout.pdf" target="_blank" rel="noopener noreferrer">official Nano ESP32 pinout</a> to locate them. The PCB destinations below were traced through our KiCad design.</p>
+<div class="table-responsive" role="region" aria-label="Nano ESP32 jumper wiring" tabindex="0">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Nano ESP32 pin</th>
+<th style="text-align: left;">PCB connection</th>
+<th style="text-align: left;">PCB socket position</th>
+<th style="text-align: left;">What it connects</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>3V3</strong></td>
+<td style="text-align: left;">3V3</td>
+<td style="text-align: left;">Upper row, <strong>2nd</strong> contact</td>
+<td style="text-align: left;">Power for the PCB</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>GND</strong></td>
+<td style="text-align: left;">GND</td>
+<td style="text-align: left;">Upper row, <strong>3rd</strong> contact</td>
+<td style="text-align: left;">Shared ground</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>A5 / SCL</strong></td>
+<td style="text-align: left;">SCL</td>
+<td style="text-align: left;">Upper row, <strong>4th</strong> contact</td>
+<td style="text-align: left;">Clock for OLED and SHT31</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>A4 / SDA</strong></td>
+<td style="text-align: left;">SDA</td>
+<td style="text-align: left;">Upper row, <strong>5th</strong> contact</td>
+<td style="text-align: left;">Data for OLED and SHT31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>A3</strong></td>
+<td style="text-align: left;">A3</td>
+<td style="text-align: left;">Upper row, <strong>7th</strong> contact</td>
+<td style="text-align: left;">Photoresistor (R2)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>A2</strong></td>
+<td style="text-align: left;">A2</td>
+<td style="text-align: left;">Upper row, <strong>8th</strong> contact</td>
+<td style="text-align: left;">Thermistor (TH1)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>D7</strong></td>
+<td style="text-align: left;">D7</td>
+<td style="text-align: left;">Lower row, <strong>12th</strong> contact</td>
+<td style="text-align: left;">Pushbutton (SW2)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>D6</strong></td>
+<td style="text-align: left;">D6</td>
+<td style="text-align: left;">Lower row, <strong>13th</strong> contact</td>
+<td style="text-align: left;">First LED (D1 on the PCB)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>D3</strong></td>
+<td style="text-align: left;">D3</td>
+<td style="text-align: left;">Lower row, <strong>15th</strong> contact</td>
+<td style="text-align: left;">Second LED (D2 on the PCB)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>D2</strong></td>
+<td style="text-align: left;">D2</td>
+<td style="text-align: left;">Lower row, <strong>16th</strong> contact</td>
+<td style="text-align: left;">Third LED (D3 on the PCB)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The OLED and SHT31 share the PCB’s I²C bus: <strong>one SDA wire and one SCL wire serve both modules</strong>. Leave all other FireBeetle contacts unconnected. Check the row positions and 3V3/GND connections before plugging the Nano’s USB cable in.</p>
+</section>
+<section id="use-the-nano-pin-names-in-your-code" class="level3" data-number="17.2.3">
+<h3 data-number="17.2.3" class="anchored" data-anchor-id="use-the-nano-pin-names-in-your-code"><span class="header-section-number">17.2.3</span> Use the Nano pin names in your code</h3>
+<p>In Arduino IDE, install <a href="https://docs.arduino.cc/tutorials/nano-esp32/getting-started-nano-esp32/" target="_blank" rel="noopener noreferrer"><strong>Arduino ESP32 Boards</strong> by Arduino</a> from Boards Manager, then select <strong>Arduino Nano ESP32</strong> as your board. In Arduino IDE, use <strong>Tools → Pin Numbering → By Arduino pin (default)</strong>. Write pin labels such as <code>D6</code>, <code>D7</code>, <code>A2</code> and <code>A3</code> in your sketch instead of copying bare ESP32 GPIO numbers from a FireBeetle example. The labels also work if the Nano’s pin-numbering setting changes; <a href="https://support.arduino.cc/hc/en-us/articles/10483225565980-Select-pin-numbering-for-Nano-ESP32-in-Arduino-IDE" target="_blank" rel="noopener noreferrer">Arduino explains the two numbering options here</a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1"></a><span class="at">const</span> <span class="dt">int</span> THERMISTOR_PIN <span class="op">=</span> A2<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="at">const</span> <span class="dt">int</span> LIGHT_PIN <span class="op">=</span> A3<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="at">const</span> <span class="dt">int</span> BUTTON_PIN <span class="op">=</span> D7<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="at">const</span> <span class="dt">int</span> LED_PINS<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span>D6<span class="op">,</span> D3<span class="op">,</span> D2<span class="op">};</span>  <span class="co">// PCB LEDs D1, D2, D3</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co">// Use these definitions in the complete check sketch linked below.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For I²C, include <code>&lt;Wire.h&gt;</code> and call <code>Wire.begin()</code> inside <code>setup()</code>. With the Nano ESP32 board selected, this uses <strong>SDA = A4</strong> and <strong>SCL = A5</strong>.</p>
+<p><strong>Adapt older examples to this wiring.</strong> On this PCB the thermistor is on <strong>A2</strong> and the photoresistor is on <strong>A3</strong>, even if a standalone lesson uses A4. Here A4 is already SDA. Replace explicit FireBeetle I²C GPIO choices with <code>Wire.begin()</code> when using this Nano setup. A PCB label like “D1” beside an LED is the component’s name; it does not mean Nano pin D1.</p>
+</section>
+<section id="check-the-connections" class="level3" data-number="17.2.4">
+<h3 data-number="17.2.4" class="anchored" data-anchor-id="check-the-connections"><span class="header-section-number">17.2.4</span> Check the connections</h3>
+<p><a href="../archive/code/nano_esp32_class_pcb.ino" target="_blank" rel="noopener noreferrer">Download the complete Nano ESP32 PCB check sketch</a>. Open it in Arduino IDE, select your Nano ESP32 and port, upload, then open <strong>Serial Monitor at 115200 baud</strong>. It uses only the built-in Arduino and Wire libraries.</p>
+<ul>
+<li><strong>Press and release the button:</strong> all three PCB LEDs should turn on while it is pressed and off when released. A pressed button reads <code>LOW</code> because it connects D7 to ground.</li>
+<li><strong>Cover and uncover the photoresistor:</strong> the <code>Light A3</code> reading should change. Gently warm the thermistor between your fingers and watch <code>Thermistor A2</code> change. These are raw 12-bit readings (0–4095), not lux or degrees; temperature conversion needs the actual thermistor and resistor values.</li>
+<li><strong>Watch the I²C scan every five seconds:</strong> with both modules installed and powered, expect two responding addresses. This check finds the OLED and SHT31 on the bus; it does not draw on the screen or read temperature yet. If none appear, check the shared power, ground, SDA and SCL wiring. If only one appears, check the other module’s solder joints and pin order.</li>
+</ul>
+<p>Once these checks work, use the <a href="../tutorials/OLED.html" target="_blank" rel="noopener noreferrer">OLED lesson</a> and <a href="../tutorials/digital-sensors.html" target="_blank" rel="noopener noreferrer">digital-sensor lesson</a>, keeping the Nano pin choices above.</p>
 
 
 </section>
