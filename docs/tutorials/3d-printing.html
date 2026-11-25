@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.41">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3D printing: from code to a real part – agrotech lab</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../tutorials/electronics-class-old.html" rel="next">
+<link href="../tutorials/soldering-and-wires.html" rel="prev">
+<link href="..//archive/images/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-02532eb62a13a6221e9e703c5457384e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-31a12ed94551076791a6a562d9cd741c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/iconify-1.0.0-beta.2/iconify-icon.min.js"></script>
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-43N4LS3BPR"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
+</script>
+
+
+<link rel="stylesheet" href="../custom.scss">
+<link rel="stylesheet" href="../assets/3d-printing/printing.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/relay.html"><strong>Electronics</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/3d-printing.html">3D printing: from code to a real part</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../archive/images/site-logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">agrotech lab</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://yairmau.com/" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-house-fill"></i></a>
+    <a href="../sources.html" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-bookmark-fill"></i></a>
+    <a href="../things-to-remember.html" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-asterisk"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Start here</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../arduino-intro-and-links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Arduino intro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/platformio-vscode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VS Code + PlatformIO</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Basics</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/breadboard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Breadboard</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/basic-electronics-concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Basic Electronics Concepts</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/firebeetle_documentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">FireBeetle 2 ESP32-E</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/libraries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Libraries</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Lectures</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/first-programs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">First programs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/electronics-class.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Electronics Class</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/electronics-class-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Electronics Class 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Control</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/digital-read-write.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Reading digital and analog</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/digital-sensors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Digital sensors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/cloud-connectivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Cloud connectivity</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Running simple programs</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/merging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Code Merging</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/RGB.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">RGB LED</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Electronics</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/relay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Switches, Relays, Transistors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/soldering-and-wires.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Soldering and Wires</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/3d-printing.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">3D printing: from code to a real part</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/electronics-class-old.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Electronics Class Old</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Sensors and comm</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/pulse-sensors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Pulse sensors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/MQTT.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">MQTT</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/deep_sleep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Deep Sleep</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/esp_now.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">ESP-NOW</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/OLED.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">OLED screen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/python-matlab-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Basic Data Analysis with Python and Matlab</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/web_server.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">ESP32 web servers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/API-thingspeak-python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">API to download Thingspeak data with Python</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Agro stuff</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/water-and-energy-balances.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Water and Energy Balances</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tutorials/psychrometric-chart-and-evaporative-cooling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Psychrometric Chart and Evaporative Cooling</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Assignments</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/submission_info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Submission Guidelines</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Assignment 1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Assignment 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Assignment 3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/assignment4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Assignment 4</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Resources</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title"> Resources</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>Projects</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title"> Past Final Projects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/borrowing-equipment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Borrowing equipment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/final-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/examples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Example projects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/greenhouse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">The Smart Greenhouse</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/MQTT_in_greenhouse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">MQTT in project greenhouse</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/mqtt_example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">MQTT example</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#our-lab-printer" id="toc-our-lab-printer" class="nav-link active" data-scroll-target="#our-lab-printer">Our lab printer</a></li>
+  <li><a href="#install-these-two-programs" id="toc-install-these-two-programs" class="nav-link" data-scroll-target="#install-these-two-programs">Install these two programs</a></li>
+  <li><a href="#the-files-along-the-way" id="toc-the-files-along-the-way" class="nav-link" data-scroll-target="#the-files-along-the-way">The files along the way</a></li>
+  <li><a href="#openscad-write-a-shape-then-look-at-it" id="toc-openscad-write-a-shape-then-look-at-it" class="nav-link" data-scroll-target="#openscad-write-a-shape-then-look-at-it">OpenSCAD: write a shape, then look at it</a></li>
+  <li><a href="#explore-the-building-blocks" id="toc-explore-the-building-blocks" class="nav-link" data-scroll-target="#explore-the-building-blocks">Explore the building blocks</a></li>
+  <li><a href="#a-useful-print-for-our-soldering-pcb" id="toc-a-useful-print-for-our-soldering-pcb" class="nav-link" data-scroll-target="#a-useful-print-for-our-soldering-pcb">A useful print for our soldering PCB</a></li>
+  <li><a href="#from-stl-to-a-print-in-bambu-studio" id="toc-from-stl-to-a-print-in-bambu-studio" class="nav-link" data-scroll-target="#from-stl-to-a-print-in-bambu-studio">From STL to a print in Bambu Studio</a></li>
+  <li><a href="#what-to-change-when-a-print-is-disappointing" id="toc-what-to-change-when-a-print-is-disappointing" class="nav-link" data-scroll-target="#what-to-change-when-a-print-is-disappointing">What to change when a print is disappointing</a></li>
+  <li><a href="#let-an-llm-write-the-codebut-give-it-dimensions" id="toc-let-an-llm-write-the-codebut-give-it-dimensions" class="nav-link" data-scroll-target="#let-an-llm-write-the-codebut-give-it-dimensions">Let an LLM write the code—but give it dimensions</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+<script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/relay.html"><strong>Electronics</strong></a></li><li class="breadcrumb-item"><a href="../tutorials/3d-printing.html">3D printing: from code to a real part</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">3D printing: from code to a real part</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Today we will make a small part in <strong>OpenSCAD</strong>, prepare it in <strong>Bambu Studio</strong>, and connect that workflow to the PCB we are soldering in class. You do not need to become a CAD expert. The aim is to understand what the shapes and dimensions mean, so you can inspect and improve a design—even when an LLM writes the code.</p>
+<section id="our-lab-printer" class="level2">
+<h2 class="anchored" data-anchor-id="our-lab-printer">Our lab printer</h2>
+<p>We use a <strong>Bambu Lab H2C with AMS</strong>. The printer melts a plastic filament and lays it down in thin paths, building the object one layer at a time. This process is often called FDM or FFF printing.</p>
+<p>The <strong>AMS (Automatic Material System)</strong> feeds and switches filament. The H2C’s <strong>Vortek system</strong> changes hotends automatically. These do different jobs: switching the spool is different from exchanging the heated nozzle assembly. We will start with <strong>one material and one colour</strong>, using the installed nozzle and the matching printer profile. This lesson uses the 3D-printing functions. <a href="https://blog.bambulab.com/bambu-lab-h2c-where-multi-material-vortek-system-meets-engineering-precision/">Bambu Lab’s H2C overview</a>.</p>
+</section>
+<section id="install-these-two-programs" class="level2">
+<h2 class="anchored" data-anchor-id="install-these-two-programs">Install these two programs</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Program</th>
+<th>What we use it for</th>
+<th>Download</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>OpenSCAD</strong></td>
+<td>Describe dimensions and shapes with code, then export a model.</td>
+<td><a href="https://openscad.org/downloads.html">Official OpenSCAD downloads</a></td>
+</tr>
+<tr class="even">
+<td><strong>Bambu Studio</strong></td>
+<td>Turn the model into layers and printer movements; preview the job and send it to the lab printer.</td>
+<td><a href="https://bambulab.com/en/download/studio">Official Bambu Studio download</a>, or <a href="https://github.com/bambulab/BambuStudio/releases">official releases</a></td>
+</tr>
+</tbody>
+</table>
+<p>Install the version for your operating system. OpenSCAD is free and available for Windows, macOS and Linux. In Bambu Studio’s setup, add the <strong>H2C</strong> profile and select the nozzle diameter actually fitted to the printer. If H2C is missing, update Bambu Studio from the official download. The instructor will show you how the lab connects to the printer; you can model and slice before connecting.</p>
+<p><strong>Bambu Studio</strong> is the desktop slicer. <strong>Bambu Handy</strong> is the phone app; install Studio for this exercise. See <a href="https://github.com/bambulab/BambuStudio">Bambu Studio’s official project</a> for supported platforms and features.</p>
+</section>
+<section id="the-files-along-the-way" class="level2">
+<h2 class="anchored" data-anchor-id="the-files-along-the-way">The files along the way</h2>
+<div class="printing-workflow" role="group" aria-label="Printing workflow">
+  <span><strong>Design</strong>OpenSCAD · .scad</span><span class="flow-arrow" aria-hidden="true">→</span>
+  <span><strong>Export shape</strong>Triangle mesh · .stl</span><span class="flow-arrow" aria-hidden="true">→</span>
+  <span><strong>Slice &amp; preview</strong>Bambu Studio · .3mf project</span><span class="flow-arrow" aria-hidden="true">→</span>
+  <span><strong>Print</strong>Printer-specific job</span>
+</div>
+<ul>
+<li><strong><code>.scad</code></strong> is the editable OpenSCAD source. Keep it: changing a number here is much easier than repairing a mesh later.</li>
+<li><strong><code>.stl</code></strong> describes the surface as triangles. It does not contain your parameters, filament choice, or printing settings, and does not specify units. In this lesson, one coordinate unit means <strong>one millimetre</strong>. Confirm the dimensions when importing it.</li>
+<li><strong><code>.3mf</code></strong> can store more than a shape. A saved Bambu Studio project keeps models and slicing settings together. OpenSCAD can also export geometry as 3MF, but that does not give it a Bambu printer profile.</li>
+<li>The <strong>sliced print job</strong> contains instructions for a particular machine and setup. An STL alone is not a ready-to-run print job. Re-slice a downloaded model using the lab’s actual printer, nozzle, plate and material settings.</li>
+</ul>
+</section>
+<section id="openscad-write-a-shape-then-look-at-it" class="level2">
+<h2 class="anchored" data-anchor-id="openscad-write-a-shape-then-look-at-it">OpenSCAD: write a shape, then look at it</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../archive/figures/3d-printing/openscad-interface.png" class="img-fluid figure-img" alt="Official OpenSCAD screenshot with a text editor on the left and a preview of a mechanical part on the right."></p>
+<figcaption>OpenSCAD’s official interface screenshot: code on the left, the model view on the right. This older screenshot shows the same basic workflow; your icons may look different.</figcaption>
+</figure>
+</div>
+<p>Screenshot source: <a href="https://openscad.org/">OpenSCAD’s website</a>. The model images further down were rendered from this lesson’s own files.</p>
+<ol type="1">
+<li>Open OpenSCAD and create a new file.</li>
+<li>Type <code>cube([30, 20, 6]);</code> and save it as <code>first-part.scad</code>.</li>
+<li>Use <strong>Design → Preview (F5)</strong> to see a 30 × 20 × 6 mm block. On a laptop, you may need <code>Fn</code> with the function key.</li>
+<li>Change <code>6</code> to <code>10</code> and preview again. You changed its height, not its width or depth.</li>
+<li>Drag in the view to turn the model around and scroll to zoom.</li>
+<li>When the design is ready, use <strong>Design → Render (F6)</strong>. Check the console for errors, then choose <strong>File → Export → Export as STL</strong>.</li>
+</ol>
+<p>Preview is for quick editing; Render calculates the final geometry for export. Save both the <code>.scad</code> and <code>.stl</code> files. <a href="https://files.openscad.org/documentation/manual/STL_Export.html">OpenSCAD’s export instructions</a>.</p>
+<section id="a-few-rules-that-make-the-code-readable" class="level3">
+<h3 class="anchored" data-anchor-id="a-few-rules-that-make-the-code-readable">A few rules that make the code readable</h3>
+<p><code>[X, Y, Z]</code> means sideways, front-to-back, and height. A default <code>cube([30,20,6])</code> starts at the origin <code>[0,0,0]</code>; <code>center=true</code> puts its centre at the origin instead. A cylinder points along Z unless you rotate it.</p>
+<p>A shape statement ends in <code>;</code>. Braces <code>{ ... }</code> group shapes. A transformation goes <strong>before</strong> the shape it changes, without a semicolon between them. <code>//</code> starts a comment. Dimensions and positions can be named variables, such as <code>wall = 2;</code>, instead of repeated numbers.</p>
+<p><code>$fn=64</code> asks for 64 segments around a circle. It makes round shapes look smoother; it does not change the printer’s layer height. Start with moderate values so previews and STLs stay manageable. The <a href="https://openscad.org/cheatsheet/">OpenSCAD cheat sheet</a> is a useful reference while reading code.</p>
+</section>
+</section>
+<section id="explore-the-building-blocks" class="level2">
+<h2 class="anchored" data-anchor-id="explore-the-building-blocks">Explore the building blocks</h2>
+<p>Choose an example and turn it around. Compare <strong>the code</strong> with <strong>the result</strong>. Use “Show triangles” to see what an STL actually stores.</p>
+<section id="stl-explorer" class="stl-explorer" aria-labelledby="stl-heading">
+  <h3 id="stl-heading" class="anchored">Turn the model around</h3>
+  <div class="stl-tools">
+    <label for="stl-model">Example</label>
+    <select id="stl-model" data-model="" aria-label="Choose a 3D example"></select>
+    <button type="button" data-fullscreen="" hidden="">Full screen</button>
+  </div>
+  <p class="stl-status" data-status="" role="status" aria-live="polite">Interactive view loading. The image and downloads also work without the viewer.</p>
+  <div class="stl-grid">
+    <div>
+      <div class="stl-stage">
+        <img data-fallback="" src="../archive/figures/3d-printing/difference.png" alt="OpenSCAD render of a rectangular block with a circular hole cut through it.">
+        <canvas tabindex="0" aria-label="3D model. Drag to rotate, scroll to zoom, or use the view buttons. Arrow keys rotate when this canvas is focused."></canvas>
+      </div>
+      <p class="stl-size" data-size="">30 × 20 × 6 mm (X × Y × Z)</p>
+      <p class="stl-help">Drag to rotate; scroll or pinch to zoom. Arrow keys rotate when the model has focus. Axes at the origin: X red, Y green, Z blue.</p>
+      <div class="stl-tools">
+        <button type="button" data-view="angled">Angled view</button>
+        <button type="button" data-view="top">Top</button>
+        <button type="button" data-view="side">Side</button>
+        <button type="button" data-zoom="0.8" aria-label="Zoom in">Zoom +</button>
+        <button type="button" data-zoom="1.25" aria-label="Zoom out">Zoom −</button>
+        <button type="button" data-reset="">Reset view</button>
+      </div>
+    </div>
+    <div class="stl-code">
+      <pre aria-label="OpenSCAD source for the selected example"><code data-code="">difference() {
+  cube([30, 20, 6]);
+  translate([15, 10, -1])
+    cylinder(h=8, d=8, $fn=64);
+}</code></pre>
+      <p data-note="">The first shape stays; the cylinder cuts a hole through it. Change the code in OpenSCAD to make your own version.</p>
+      <div class="stl-tools">
+        <a class="stl-download" data-scad-link="" download="" href="../archive/3d-printing/difference.scad">Download .scad</a>
+        <a class="stl-download" data-stl-link="" download="" href="../archive/3d-printing/difference.stl">Download .stl</a>
+      </div>
+    </div>
+  </div>
+  <div class="stl-tools">
+    <label for="stl-wire"><input id="stl-wire" type="checkbox" data-wire=""> Show triangles</label>
+    <label for="stl-height">Show height</label>
+    <input id="stl-height" type="range" min="0" max="100" step="1" value="100" data-height="">
+    <output for="stl-height" data-height-value="">100%</output>
+  </div>
+  <p class="stl-help">The height slider is a cutaway view. Inspect actual print layers and toolpaths in Bambu Studio. This viewer displays exported models; it does not run OpenSCAD code.</p>
+  <div class="stl-tools">
+    <label for="stl-upload">Open your own STL</label>
+    <input id="stl-upload" type="file" accept=".stl" data-upload="">
+  </div>
+  <p class="stl-help">Files stay in your browser. Maximum 20 MB and 300,000 triangles. STL has no unit label; coordinates here are read as millimetres.</p>
+  <noscript><p>JavaScript is off. Use the rendered examples and downloadable files below, or open the STLs in Bambu Studio.</p></noscript>
+</section>
+<script type="module">
+import('../assets/3d-printing/viewer.js').catch(() => {
+  document.querySelector('#stl-explorer [data-status]').textContent = 'Interactive view unavailable. Use the rendered examples and downloads below.';
+});
+</script>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operation</th>
+<th>In plain language</th>
+<th>What to notice</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>cube()</code>, <code>cylinder()</code>, <code>sphere()</code></td>
+<td>Make a basic solid.</td>
+<td>Dimensions, diameter versus radius, and where its origin sits.</td>
+</tr>
+<tr class="even">
+<td><code>translate([x,y,z])</code></td>
+<td>Move a shape.</td>
+<td>Its dimensions stay the same.</td>
+</tr>
+<tr class="odd">
+<td><code>rotate([x,y,z])</code></td>
+<td>Turn a shape by angles in degrees.</td>
+<td>Rotation happens around the origin. The order of moving and turning matters.</td>
+</tr>
+<tr class="even">
+<td><code>union()</code></td>
+<td>Join shapes.</td>
+<td>Give the parts a small overlap so they form one solid.</td>
+</tr>
+<tr class="odd">
+<td><code>difference()</code></td>
+<td>Remove shapes from the first one.</td>
+<td>The first child stays; all later children cut it.</td>
+</tr>
+<tr class="even">
+<td><code>intersection()</code></td>
+<td>Keep only the overlap.</td>
+<td>Everything outside the shared space disappears.</td>
+</tr>
+<tr class="odd">
+<td><code>linear_extrude(height=...)</code></td>
+<td>Give a flat 2D outline height.</td>
+<td>Use <code>square()</code> or <code>circle()</code> inside it, not a 3D <code>cube()</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>For transformations, read from the shape outward: in <code>translate(...) rotate(...) cube(...)</code>, make the cube, rotate it, then move it. See the official manual sections on <a href="https://files.openscad.org/documentation/manual/Transformations.html">transformations</a>, <a href="https://files.openscad.org/documentation/manual/CSG_Modelling.html">combining solids</a>, and <a href="https://files.openscad.org/documentation/manual/2D_to_3D_Extrusion.html">extrusion</a>.</p>
+<section id="a-hole-is-a-shape-that-you-subtract" class="level3">
+<h3 class="anchored" data-anchor-id="a-hole-is-a-shape-that-you-subtract">A hole is a shape that you subtract</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource scad number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>difference() {</span>
+<span id="cb1-2"><a href="#cb1-2"></a>  cube([30, 20, 6]);</span>
+<span id="cb1-3"><a href="#cb1-3"></a>  translate([15, 10, -1])</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    cylinder(h=8, d=8, $fn=64);</span>
+<span id="cb1-5"><a href="#cb1-5"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The block is 6 mm high. The cutting cylinder goes from Z = −1 to Z = 7, so it passes through both faces. A cutter that stops inside the block leaves a pocket; one outside the block does nothing. Try changing the hole diameter from <code>8</code> to <code>12</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../archive/figures/3d-printing/difference.png" class="img-fluid figure-img" alt="OpenSCAD render showing a cylindrical through-hole cut out of a rectangular block." width="520"></p>
+<figcaption>A block with a hole, rendered from the difference example.</figcaption>
+</figure>
+</div>
+<p><a href="../archive/3d-printing/difference.scad">Download this source</a> · <a href="../archive/3d-printing/difference.stl">Download this STL</a></p>
+</section>
+<section id="you-can-also-start-with-a-flat-outline" class="level3">
+<h3 class="anchored" data-anchor-id="you-can-also-start-with-a-flat-outline">You can also start with a flat outline</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource scad number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>linear_extrude(height=6)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>  difference() {</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    square([30, 20]);</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    translate([15, 10])</span>
+<span id="cb2-5"><a href="#cb2-5"></a>      circle(d=8, $fn=64);</span>
+<span id="cb2-6"><a href="#cb2-6"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This makes the same kind of part by cutting a circle from a 2D square first, then giving the result height. <code>rotate_extrude()</code> is another option for revolving a 2D profile around an axis, for example to make a round knob. Learn the simpler <code>linear_extrude()</code> workflow first.</p>
+<p><a href="../archive/3d-printing/extrude.scad">Download the extrusion example</a> · <a href="../archive/3d-printing/class-examples.zip">All examples, STLs and source files</a></p>
+</section>
+</section>
+<section id="a-useful-print-for-our-soldering-pcb" class="level2">
+<h2 class="anchored" data-anchor-id="a-useful-print-for-our-soldering-pcb">A useful print for our soldering PCB</h2>
+<p>We will solder the <a href="../tutorials/soldering-and-wires.html#class-pcb">class PCB</a>, then try a <strong>small open stand</strong>. Four raised posts support the board at its mounting holes, leaving room underneath for trimmed component leads. The centre is open so the underside remains accessible.</p>
+<p>These dimensions come from the supplied KiCad board, not an estimate from a photograph:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Dimension</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Board outline</td>
+<td><strong>73.406 × 78.740 mm</strong></td>
+</tr>
+<tr class="even">
+<td>Board thickness in the design</td>
+<td><strong>1.6 mm</strong></td>
+</tr>
+<tr class="odd">
+<td>Four mounting holes</td>
+<td><strong>3.2 mm diameter</strong>, for M3 hardware</td>
+</tr>
+<tr class="even">
+<td>Hole columns, measured from the left edge</td>
+<td>X = <strong>4.318</strong> and <strong>69.596 mm</strong></td>
+</tr>
+<tr class="odd">
+<td>Hole rows, measured from the bottom edge</td>
+<td>Y = <strong>4.572</strong> and <strong>75.438 mm</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The holes are <strong>not equally inset from all edges</strong>. Copying “four holes 4 mm from each corner” would give the wrong locations. In our model, the origin is the bottom-left board corner when viewed from the component side, with X right and Y up.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../archive/figures/3d-printing/pcb-stand.png" class="img-fluid figure-img" alt="OpenSCAD render of a rectangular open frame with four raised mounting posts and through-holes." width="620"></p>
+<figcaption>The printable open stand, with a raised post and screw hole at each mounting position.</figcaption>
+</figure>
+</div>
+<p><a href="#stl-explorer" data-open-model="assembly">View stand + PCB together</a> · <a href="../archive/3d-printing/pcb-stand.scad">Editable stand source</a> · <a href="../archive/3d-printing/pcb-stand.stl">Printable stand STL</a></p>
+<p>The stand has a <strong>3 mm base</strong>, <strong>6 mm posts above the base</strong>, and <strong>3.4 mm nominal screw holes</strong>. Its overall size is <strong>81.406 × 86.740 × 9 mm</strong>. These are design choices you can change in the <code>.scad</code> file. A <code>for</code> loop repeats the same post at each coordinate in the <code>holes</code> list.</p>
+<p>The green board in the viewer reproduces the outline, thickness and all <strong>72 drilled holes</strong>. It leaves out copper, components, connectors and solder joints. Use it to check the hole pattern; use the real populated PCB to check clearance and access. <a href="../archive/3d-printing/pcb-reference.stl">Board reference STL</a> · <a href="../archive/hardware/soldering-board-1/board-dimensions.json">Measured geometry data</a>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Print a small fit test first
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Print the <a href="../archive/3d-printing/screw-fit.stl">M3 screw-fit test</a>. Starting at its notched end, the holes are <strong>3.2, 3.4 and 3.6 mm</strong> in the design. Try your actual M3 screw in each one. Printed holes can come out smaller than drawn, so adjust <code>screw_d</code> in the stand after this test.</p>
+<p>Use suitable M3 hardware, preferably nylon around the PCB. Choose screw length after measuring the stand, board and fastening hardware together. Check that fasteners and posts clear the solder joints and traces. This is a prototype, not a physically tested fit.</p>
+</div>
+</div>
+<p><strong>Solder first, mount later.</strong> Use a heat-resistant soldering surface. Let the board cool, trim the leads and inspect the joints before fitting the stand. A PLA stand is not a soldering fixture.</p>
+<p>The editable KiCad project, schematic, original board image, custom libraries and manufacturing exports are now in the course repository. <a href="../archive/hardware/soldering-board-1/soldering-board-project.zip">Download the PCB project</a> · <a href="../archive/hardware/soldering-board-1/Schematic.pdf">Read the schematic</a>.</p>
+</section>
+<section id="from-stl-to-a-print-in-bambu-studio" class="level2">
+<h2 class="anchored" data-anchor-id="from-stl-to-a-print-in-bambu-studio">From STL to a print in Bambu Studio</h2>
+<ol type="1">
+<li><strong>Open Bambu Studio and select the printer.</strong> Use H2C and the actual installed nozzle diameter. Select the build plate and filament profile that match the lab setup. Begin with a single PLA colour if that is the material the instructor has loaded.</li>
+<li><strong>Import the STL</strong>, by dragging it onto the plate or using <strong>File → Import</strong>. Start with <code>screw-fit.stl</code>, then <code>pcb-stand.stl</code> after checking fit. Keep the PCB reference out of the print job.</li>
+<li><strong>Check the dimensions.</strong> The stand should be about 81.4 × 86.7 × 9 mm at 100% scale. If it is unexpectedly tiny or huge, resolve the units instead of guessing a scale factor. Scaling the whole stand also moves the mounting holes.</li>
+<li><strong>Choose the orientation.</strong> Put the stand’s broad, flat base on the bed, with the posts pointing up. This design is intended to print in that orientation without supports. Inspect the preview to confirm that every new region has something below it.</li>
+<li><strong>Start with a suitable preset.</strong> With a 0.4 mm nozzle and ordinary PLA, a 0.20 mm layer-height preset is a reasonable first trial. Use the printer/material preset for temperatures. For this stand, try three walls and roughly 15–20% infill, then inspect the result. These are starting points, not a saved lab profile.</li>
+<li><strong>Click Slice plate, then inspect Preview.</strong> Move the layer slider from bottom to top. Look for the open window, four posts, clear screw holes, unsupported starts, and unexpected gaps. Read the estimated time and material use. Confirm any support or prime-tower material before printing.</li>
+<li><strong>Save the project as <code>.3mf</code>.</strong> This keeps your setup for the next iteration. Check the physical plate is clear, confirm the material-to-AMS-slot mapping, and have the instructor check the first job before using <strong>Print plate</strong> or the lab’s offline transfer method.</li>
+<li><strong>Watch the first layer and let the part cool.</strong> Keep hands away from the hot nozzle, bed and moving mechanism. Remove the cooled part as demonstrated, try the screw-fit test, and measure before printing more copies.</li>
+</ol>
+<p>An AMS slot containing the right colour can still contain the wrong <strong>material</strong>. Match the material as well. More colours and hotend changes can add time and material use, even with automatic switching. Keep the first exercise simple. <a href="https://github.com/bambulab/BambuStudio">Bambu Studio documentation and project links</a>.</p>
+</section>
+<section id="what-to-change-when-a-print-is-disappointing" class="level2">
+<h2 class="anchored" data-anchor-id="what-to-change-when-a-print-is-disappointing">What to change when a print is disappointing</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>What you want to improve</th>
+<th>What to think about</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A smoother curved surface</td>
+<td>More curve segments in OpenSCAD, and possibly smaller layers in the slicer. They address different kinds of visible steps.</td>
+</tr>
+<tr class="even">
+<td>A stronger bracket</td>
+<td>Orientation and wall thickness matter. Layer-to-layer bonding can be the weak direction; more infill alone does not fix everything.</td>
+</tr>
+<tr class="odd">
+<td>A screw that will not fit</td>
+<td>Print a fit test and change that hole diameter in the source. Keep the mounting-hole positions fixed.</td>
+</tr>
+<tr class="even">
+<td>An overhang that sags</td>
+<td>Reorient the part, change the design, or add suitable supports. Supports take time and may leave marks when removed.</td>
+</tr>
+<tr class="odd">
+<td>A first layer that does not stick</td>
+<td>Check plate cleanliness, plate/material profile and the first layer with the instructor.</td>
+</tr>
+<tr class="even">
+<td>A part that fails near heat</td>
+<td>Check material suitability. PLA is convenient for first indoor prototypes but can soften near heat; a printed part’s temperature and load limits need checking.</td>
+</tr>
+</tbody>
+</table>
+<p>Keep ventilation running as directed in the lab. Ask before trying a new filament type, changing hotends, or altering printer maintenance settings.</p>
+</section>
+<section id="let-an-llm-write-the-codebut-give-it-dimensions" class="level2">
+<h2 class="anchored" data-anchor-id="let-an-llm-write-the-codebut-give-it-dimensions">Let an LLM write the code—but give it dimensions</h2>
+<p>An LLM is useful for turning a description into an OpenSCAD starting point. You should still be able to identify the solid that stays, the shapes that are removed, and the dimensions that control the fit.</p>
+<p>Try this prompt with the stand source open:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>Help me understand this OpenSCAD PCB stand before changing it.</span>
+<span id="cb3-2"><a href="#cb3-2"></a>Units are millimetres. The PCB is 73.406 × 78.740 × 1.6.</span>
+<span id="cb3-3"><a href="#cb3-3"></a>Hole centres, from the board's bottom-left corner, are:</span>
+<span id="cb3-4"><a href="#cb3-4"></a>[4.318,4.572], [4.318,75.438], [69.596,4.572], [69.596,75.438].</span>
+<span id="cb3-5"><a href="#cb3-5"></a>Explain the difference(), union(), translate() and for loop.</span>
+<span id="cb3-6"><a href="#cb3-6"></a>Change post_h from 6 to 8 mm. Keep those hole centres fixed.</span>
+<span id="cb3-7"><a href="#cb3-7"></a>Return one complete .scad file with comments and no external libraries.</span>
+<span id="cb3-8"><a href="#cb3-8"></a>State any assumptions. Explain how I can check the result in OpenSCAD.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Copy the result into OpenSCAD, preview, render, measure and inspect the STL in the slicer. Ask for <strong>one change at a time</strong>, such as taller posts or a wider frame. The model cannot determine connector clearance, screw fit or material strength from a confident explanation alone; show it the measurements and verify the real part.</p>
+<p>For a next exercise, try a sensor mounting bracket, a cable guide or a small enclosure. Start from the actual component dimensions, leave access for plugs and wires, and print one small test before committing to a long job.</p>
+<p><em>The downloadable models were exported with OpenSCAD 2021.01. The stand and fit test are teaching prototypes; they have not yet been physically printed or fitted to the lab board.</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../tutorials/soldering-and-wires.html" class="pagination-link" aria-label="Soldering and Wires">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Soldering and Wires</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../tutorials/electronics-class-old.html" class="pagination-link" aria-label="Electronics Class Old">
+        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Electronics Class Old</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

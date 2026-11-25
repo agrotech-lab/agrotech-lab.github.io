@@ -1,0 +1,27 @@
+.stl-explorer{border:1px solid #b9cbd6;border-radius:12px;padding:1rem;background:#f9fbfd;margin:1.4rem 0;color:#203543;scroll-margin-top:5rem}
+.stl-explorer *{box-sizing:border-box}
+.stl-explorer h3{margin:.1rem 0 .75rem;font-size:1.3rem}
+.stl-tools{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin:.6rem 0}
+.stl-tools label{margin:0;font-weight:600}.stl-tools select{max-width:100%;flex:1;min-width:12rem;padding:.4rem}
+.stl-explorer button,.stl-explorer .stl-download{border:1px solid #829eaf;border-radius:6px;padding:.35rem .65rem;background:#fff;color:#174c68;font:inherit;font-size:.9rem;text-decoration:none;cursor:pointer}
+.stl-explorer button:hover,.stl-explorer .stl-download:hover{background:#e5eff5}
+.stl-explorer :focus-visible{outline:3px solid #e19d21;outline-offset:2px}
+.stl-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:1rem}
+.stl-stage{height:360px;min-width:0;position:relative;border:1px solid #d4dfe6;border-radius:8px;overflow:hidden;background:#f4f7fa}
+.stl-stage canvas{width:100%;height:100%;display:none;touch-action:none}
+.stl-stage img{height:100%;width:100%;object-fit:contain;margin:0}
+.stl-explorer.is-ready .stl-stage canvas{display:block}.stl-explorer.is-ready .stl-stage img{display:none}
+.stl-code{min-width:0}.stl-code pre{max-height:360px;overflow:auto;font-size:.8rem;background:#152e40;color:#e8f3fb;padding:.8rem;border-radius:8px;white-space:pre-wrap;margin:0}
+.stl-code code{color:inherit;background:none;white-space:pre-wrap;overflow-wrap:anywhere}
+.stl-help,.stl-size{font-size:.85rem;margin:.5rem 0}.stl-size{font-weight:600}.stl-status{font-weight:600;margin:.55rem 0}
+.stl-explorer input[type=range]{flex:1;min-width:8rem;max-width:20rem}.stl-explorer input[type=file]{max-width:100%;font-size:.85rem}
+.stl-explorer [hidden]{display:none!important}
+.stl-explorer:fullscreen{background:#f9fbfd;padding:1.2rem;overflow:auto;width:100%;height:100%}.stl-explorer:fullscreen .stl-stage{height:calc(100vh - 520px);min-height:230px}.stl-explorer:fullscreen .stl-code pre{max-height:calc(100vh - 520px)}
+.printing-workflow{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;padding:1rem;border-left:4px solid #2389a1;background:#edf6f8;margin:1rem 0}.printing-workflow span{display:block}.printing-workflow strong{display:block}.printing-workflow .flow-arrow{font-size:1.5rem;color:#397485}
+.printing-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.printing-gallery img{width:100%}
+@media(max-width:700px){.stl-grid{grid-template-columns:1fr}.stl-stage{height:300px}.stl-code pre{max-height:220px}.stl-explorer{padding:.75rem}.printing-gallery{grid-template-columns:1fr}.stl-explorer:fullscreen .stl-stage{height:45vh}.stl-tools select{min-width:0;width:100%;flex-basis:100%}}
+@media(prefers-reduced-motion:reduce){.stl-explorer *{scroll-behavior:auto}}
+
+/* This stylesheet is loaded only by the printing lesson. Allow long function names to wrap in narrow tables. */
+#quarto-document-content table{table-layout:fixed;width:100%;overflow-wrap:anywhere}
+#quarto-document-content table code{white-space:normal;overflow-wrap:anywhere}

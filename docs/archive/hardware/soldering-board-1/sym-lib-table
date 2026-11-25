@@ -1,0 +1,3 @@
+(sym_lib_table
+ (lib (name "DFR0654")(type "KiCad")(uri "${KIPRJMOD}/symbols/DFR0654.kicad_sym")(options "")(descr "FireBeetle symbol"))
+)

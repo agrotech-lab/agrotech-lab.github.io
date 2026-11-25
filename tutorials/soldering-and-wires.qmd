@@ -11,3 +11,13 @@ There are amazing tutorials that allready exist. Even though we will learn many 
 * [Soldering - by Sparkfun](https://learn.sparkfun.com/tutorials/how-to-solder-through-hole-soldering/all)
 * [Soldering - by Adafruit](https://learn.adafruit.com/adafruit-guide-excellent-soldering) (note that this is a multi page guide)
 * [Working with wire - by Sparkfun](https://learn.sparkfun.com/tutorials/working-with-wire)
+
+## Our class PCB {#class-pcb}
+
+We will assemble the Agrotech Lab soldering board in class. Use the supplied parts kit and check component orientation with the instructor before soldering. Some labels in the design are generic (for example, `R` and `LED`); the manufacturing BOM does not specify all component values.
+
+![The class PCB layout, with the FireBeetle connections, sensor headers, LEDs and four mounting holes.](../archive/hardware/soldering-board-1/PCB.png){fig-alt="Agrotech Lab PCB layout showing the FireBeetle footprint, SHT31 and OLED headers, resistors, LEDs and mounting holes."}
+
+[Open the schematic PDF](../archive/hardware/soldering-board-1/Schematic.pdf) · [Download the editable KiCad project](../archive/hardware/soldering-board-1/soldering-board-project.zip)
+
+After soldering, let the board cool, inspect for bridges and trim the leads before mounting it. Our [3D-printing lesson](3d-printing.qmd) includes a rotating board reference and a printable stand based on these exact mounting holes. Solder on a heat-resistant work surface; fit the plastic stand afterwards.

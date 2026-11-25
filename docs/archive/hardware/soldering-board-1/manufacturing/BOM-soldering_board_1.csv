@@ -1,0 +1,16 @@
+Comment,Designator,Footprint,LCSC,Quantity
+SW_DIP_x01,SW2,agrotech_button,,1
+R,R7,R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,,1
+DFR0654,U1,MODULE_DFR0654,,1
+Thermistor,TH1,PinHeader_1x02_P2.54mm_Vertical,,1
+R,R6,R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,,1
+R,R5,R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,,1
+R,R4,R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,,1
+R,R3,R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,,1
+R_Photo,R2,PinHeader_1x02_P2.54mm_Vertical,,1
+R,R1,R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,,1
+SHT31,J2,PinHeader_1x04_P2.54mm_Vertical,,1
+OLED,J1,PinHeader_1x04_P2.54mm_Vertical,,1
+LED,D3,LED_D5.0mm,,1
+LED,D2,LED_D5.0mm,,1
+LED,D1,LED_D5.0mm,,1

@@ -1,6 +1,12 @@
 project:
   type: book
   output-dir: docs
+  resources:
+    - assets/3d-printing/**
+    - assets/vendor/three-r180/**
+    - archive/3d-printing/**
+    - archive/figures/3d-printing/**
+    - archive/hardware/soldering-board-1/**
 
 book:
   title: "agrotech lab"
@@ -41,6 +47,7 @@ book:
       chapters:
       - tutorials/relay.qmd
       - tutorials/soldering-and-wires.qmd
+      - tutorials/3d-printing.qmd
       - tutorials/electronics-class-old.qmd
     - part: "**Sensors and comm**"
       chapters:

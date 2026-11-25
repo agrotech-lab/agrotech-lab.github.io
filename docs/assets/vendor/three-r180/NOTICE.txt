@@ -1,0 +1,7 @@
+Three.js r180 (0.180.0), https://github.com/mrdoob/three.js/tree/r180
+License: MIT; see LICENSE.txt.
+three.module.js and three.core.js copied from build/ in the r180 release.
+OrbitControls.js copied from examples/jsm/controls/OrbitControls.js.
+STLLoader.js copied from examples/jsm/loaders/STLLoader.js.
+The two example modules have only their bare "three" import changed to the
+relative ./three.module.js path for a self-hosted, build-free viewer.

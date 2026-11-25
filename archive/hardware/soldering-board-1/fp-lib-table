@@ -1,0 +1,4 @@
+(fp_lib_table
+ (lib (name "DFR0654")(type "KiCad")(uri "${KIPRJMOD}/footprints/Agrotech.pretty")(options "")(descr "Local FireBeetle footprint"))
+ (lib (name "Agrotech")(type "KiCad")(uri "${KIPRJMOD}/footprints/Agrotech.pretty")(options "")(descr "Custom footprints recovered from PCB"))
+)

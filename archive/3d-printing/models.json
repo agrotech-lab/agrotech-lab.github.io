@@ -1,0 +1,102 @@
+[
+  {
+    "id": "block",
+    "title": "Start with a block",
+    "file": "block.stl",
+    "scad": "block.scad",
+    "image": "block.png",
+    "description": "cube() uses [X, Y, Z] dimensions. Here the block is 30 × 20 × 6 mm.",
+    "code": "cube([30, 20, 6]);\n"
+  },
+  {
+    "id": "translate",
+    "title": "Move a shape",
+    "file": "translate.stl",
+    "scad": "translate.scad",
+    "image": "translate.png",
+    "description": "translate() moves the block 10 mm in X and 6 mm in Y. Its size stays the same; compare its position with the origin axes.",
+    "code": "translate([10, 6, 0])\n  cube([30, 20, 6]);\n"
+  },
+  {
+    "id": "union",
+    "title": "Join two shapes",
+    "file": "union.stl",
+    "scad": "union.scad",
+    "image": "union.png",
+    "description": "union() joins the overlapping block and cylinder. The cylinder begins at Z=5, overlapping the 6 mm block by 1 mm.",
+    "code": "union() {\n  cube([30, 20, 6]);\n  translate([15, 10, 5])\n    cylinder(h=10, d=12, $fn=64);\n}\n"
+  },
+  {
+    "id": "difference",
+    "title": "Cut a hole",
+    "file": "difference.stl",
+    "scad": "difference.scad",
+    "image": "difference.png",
+    "description": "difference() keeps the first shape and removes the later ones. The cutting cylinder extends beyond both faces of the block.",
+    "code": "difference() {\n  cube([30, 20, 6]);\n  translate([15, 10, -1])\n    cylinder(h=8, d=8, $fn=64);\n}\n"
+  },
+  {
+    "id": "extrude",
+    "title": "Give a 2D shape height",
+    "file": "extrude.stl",
+    "scad": "extrude.scad",
+    "image": "extrude.png",
+    "description": "Make a flat square with a circular hole, then lift that 2D outline into a 6 mm thick part. Compare it with the previous model.",
+    "code": "linear_extrude(height=6)\n  difference() {\n    square([30, 20]);\n    translate([15, 10])\n      circle(d=8, $fn=64);\n  }\n"
+  },
+  {
+    "id": "rotate",
+    "title": "Turn a shape",
+    "file": "rotate.stl",
+    "scad": "rotate.scad",
+    "image": "rotate.png",
+    "description": "Read from the shape outward: create the block, rotate it 35° about Z at the origin, then move it. Changing that order changes the result.",
+    "code": "translate([15, 10, 0])\n  rotate([0, 0, 35])\n    cube([24, 8, 6]);\n"
+  },
+  {
+    "id": "intersection",
+    "title": "Keep only the overlap",
+    "file": "intersection.stl",
+    "scad": "intersection.scad",
+    "image": "intersection.png",
+    "description": "intersection() keeps the region shared by both shapes. This is different from joining them or subtracting one from the other.",
+    "code": "intersection() {\n  translate([0, 0, 10])\n    cube([16, 16, 16], center=true);\n  translate([0, 0, 10])\n    sphere(r=10, $fn=64);\n}\n"
+  },
+  {
+    "id": "stand",
+    "title": "Our PCB stand — print this",
+    "file": "pcb-stand.stl",
+    "scad": "pcb-stand.scad",
+    "image": "pcb-stand.png",
+    "description": "Prototype stand based on the actual board mounting holes. Print flat, check screw fit and solder-joint clearance before assembly.",
+    "code": "// Agrotech soldering-board stand. Units: mm. Prototype: verify on the actual PCB.\n// Origin: PCB bottom-left corner, X right, Y up.\nboard_w = 73.406;\nboard_d = 78.740;\nmargin = 4;\nbase_h = 3;\npost_h = 6;       // clearance above the base for trimmed solder joints\npost_d = 6;\nscrew_d = 3.4;    // printed clearance hole: test with your M3 hardware first\nholes = [[4.318,4.572], [4.318,75.438],\n         [69.596,4.572], [69.596,75.438]];\n$fn = 64;\n\ndifference() {\n  union() {\n    // Open frame keeps the underside accessible and saves material.\n    difference() {\n      translate([-margin,-margin,0])\n        cube([board_w+2*margin, board_d+2*margin, base_h]);\n      translate([10,12,-0.1])\n        cube([board_w-20, board_d-24, base_h+0.2]);\n    }\n    for (p = holes)\n      translate([p[0],p[1],base_h-0.2])\n        cylinder(h=post_h+0.2, d=post_d);\n  }\n  for (p = holes)\n    translate([p[0],p[1],-0.1])\n      cylinder(h=base_h+post_h+0.2, d=screw_d);\n}\n"
+  },
+  {
+    "id": "pcb",
+    "title": "Our PCB — reference only",
+    "file": "pcb-reference.stl",
+    "scad": "pcb-reference.scad",
+    "image": "pcb-reference.png",
+    "description": "Actual board outline, 1.6 mm thickness and all 72 drilled holes, reconstructed from KiCad. Components, copper and solder are not shown. This is a reference model, not a printable electronic PCB.",
+    "code": "// Mechanical reference from KiCad Edge.Cuts and all circular drill holes.\n// No components, solder joints or copper are represented. Do not print as a PCB.\n$fn=32;\ndifference() {\n cube([73.406, 78.74, 1.6]);\n translate([46.736, 62.738, -0.1]) cylinder(h=1.8, d=0.8);\n translate([46.736, 72.898, -0.1]) cylinder(h=1.8, d=0.8);\n translate([4.318, 75.438, -0.1]) cylinder(h=1.8, d=3.2);\n translate([66.548, 29.464, -0.1]) cylinder(h=1.8, d=0.8);\n translate([66.548, 19.304, -0.1]) cylinder(h=1.8, d=0.8);\n translate([69.596, 75.438, -0.1]) cylinder(h=1.8, d=3.2);\n translate([10.17, 26.924, -0.1]) cylinder(h=1.8, d=1.0);\n translate([12.71, 26.924, -0.1]) cylinder(h=1.8, d=1.0);\n translate([15.25, 26.924, -0.1]) cylinder(h=1.8, d=1.0);\n translate([17.79, 26.924, -0.1]) cylinder(h=1.8, d=1.0);\n translate([4.318, 4.572, -0.1]) cylinder(h=1.8, d=3.2);\n translate([53.086, 72.903, -0.1]) cylinder(h=1.8, d=1.0);\n translate([55.626, 72.903, -0.1]) cylinder(h=1.8, d=1.0);\n translate([65.024, 70.104, -0.1]) cylinder(h=1.8, d=1.0);\n translate([65.024, 72.644, -0.1]) cylinder(h=1.8, d=1.0);\n translate([49.022, 29.718, -0.1]) cylinder(h=1.8, d=0.8);\n translate([49.022, 19.558, -0.1]) cylinder(h=1.8, d=0.8);\n translate([66.04, 11.43, -0.1]) cylinder(h=1.8, d=0.9);\n translate([68.58, 11.43, -0.1]) cylinder(h=1.8, d=0.9);\n translate([31.252, 64.77, -0.1]) cylinder(h=1.8, d=1.0);\n translate([33.792, 64.77, -0.1]) cylinder(h=1.8, d=1.0);\n translate([36.332, 64.77, -0.1]) cylinder(h=1.8, d=1.0);\n translate([38.872, 64.77, -0.1]) cylinder(h=1.8, d=1.0);\n translate([10.462, 34.874, -0.1]) cylinder(h=1.8, d=2.0);\n translate([67.262, 34.874, -0.1]) cylinder(h=1.8, d=2.0);\n translate([10.462, 57.074, -0.1]) cylinder(h=1.8, d=2.0);\n translate([67.262, 57.074, -0.1]) cylinder(h=1.8, d=2.0);\n translate([20.182, 34.724, -0.1]) cylinder(h=1.8, d=1.2);\n translate([22.722, 34.724, -0.1]) cylinder(h=1.8, d=1.2);\n translate([25.262, 34.724, -0.1]) cylinder(h=1.8, d=1.2);\n translate([27.802, 34.724, -0.1]) cylinder(h=1.8, d=1.2);\n translate([30.342, 34.724, -0.1]) cylinder(h=1.8, d=1.2);\n translate([32.882, 34.724, -0.1]) cylinder(h=1.8, d=1.2);\n translate([35.422, 34.724, -0.1]) cylinder(h=1.8, d=1.2);\n translate([37.962, 34.724, -0.1]) cylinder(h=1.8, d=1.2);\n translate([40.502, 34.724, -0.1]) cylinder(h=1.8, d=1.2);\n translate([43.042, 34.724, -0.1]) cylinder(h=1.8, d=1.2);\n translate([45.582, 34.724, -0.1]) cylinder(h=1.8, d=1.2);\n translate([48.122, 34.724, -0.1]) cylinder(h=1.8, d=1.2);\n translate([50.662, 34.724, -0.1]) cylinder(h=1.8, d=1.2);\n translate([53.202, 34.724, -0.1]) cylinder(h=1.8, d=1.2);\n translate([55.742, 34.724, -0.1]) cylinder(h=1.8, d=1.2);\n translate([58.282, 34.724, -0.1]) cylinder(h=1.8, d=1.2);\n translate([60.822, 34.724, -0.1]) cylinder(h=1.8, d=1.2);\n translate([63.362, 34.724, -0.1]) cylinder(h=1.8, d=1.2);\n translate([63.362, 57.224, -0.1]) cylinder(h=1.8, d=1.2);\n translate([60.822, 57.224, -0.1]) cylinder(h=1.8, d=1.2);\n translate([58.282, 57.224, -0.1]) cylinder(h=1.8, d=1.2);\n translate([55.742, 57.224, -0.1]) cylinder(h=1.8, d=1.2);\n translate([53.202, 57.224, -0.1]) cylinder(h=1.8, d=1.2);\n translate([50.662, 57.224, -0.1]) cylinder(h=1.8, d=1.2);\n translate([48.122, 57.224, -0.1]) cylinder(h=1.8, d=1.2);\n translate([45.582, 57.224, -0.1]) cylinder(h=1.8, d=1.2);\n translate([43.042, 57.224, -0.1]) cylinder(h=1.8, d=1.2);\n translate([40.502, 57.224, -0.1]) cylinder(h=1.8, d=1.2);\n translate([37.962, 57.224, -0.1]) cylinder(h=1.8, d=1.2);\n translate([35.422, 57.224, -0.1]) cylinder(h=1.8, d=1.2);\n translate([32.882, 57.224, -0.1]) cylinder(h=1.8, d=1.2);\n translate([30.342, 57.224, -0.1]) cylinder(h=1.8, d=1.2);\n translate([40.64, 12.192, -0.1]) cylinder(h=1.8, d=1.0);\n translate([40.64, 7.112, -0.1]) cylinder(h=1.8, d=1.0);\n translate([54.61, 63.754, -0.1]) cylinder(h=1.8, d=0.8);\n translate([64.77, 63.754, -0.1]) cylinder(h=1.8, d=0.8);\n translate([56.388, 11.684, -0.1]) cylinder(h=1.8, d=0.9);\n translate([58.928, 11.684, -0.1]) cylinder(h=1.8, d=0.9);\n translate([57.15, 29.718, -0.1]) cylinder(h=1.8, d=0.8);\n translate([57.15, 19.558, -0.1]) cylinder(h=1.8, d=0.8);\n translate([69.596, 4.572, -0.1]) cylinder(h=1.8, d=3.2);\n translate([41.148, 29.464, -0.1]) cylinder(h=1.8, d=0.8);\n translate([41.148, 19.304, -0.1]) cylinder(h=1.8, d=0.8);\n translate([46.985, 11.684, -0.1]) cylinder(h=1.8, d=0.9);\n translate([49.525, 11.684, -0.1]) cylinder(h=1.8, d=0.9);\n}\n"
+  },
+  {
+    "id": "assembly",
+    "title": "Stand + PCB — check the fit",
+    "file": "pcb-stand.stl",
+    "scad": "pcb-stand.scad",
+    "image": "pcb-stand.png",
+    "description": "Blue: printable stand. Green: PCB reference, seated on the posts. The board is shown without components or solder. Check the real assembly before choosing screw length.",
+    "code": "// Agrotech soldering-board stand. Units: mm. Prototype: verify on the actual PCB.\n// Origin: PCB bottom-left corner, X right, Y up.\nboard_w = 73.406;\nboard_d = 78.740;\nmargin = 4;\nbase_h = 3;\npost_h = 6;       // clearance above the base for trimmed solder joints\npost_d = 6;\nscrew_d = 3.4;    // printed clearance hole: test with your M3 hardware first\nholes = [[4.318,4.572], [4.318,75.438],\n         [69.596,4.572], [69.596,75.438]];\n$fn = 64;\n\ndifference() {\n  union() {\n    // Open frame keeps the underside accessible and saves material.\n    difference() {\n      translate([-margin,-margin,0])\n        cube([board_w+2*margin, board_d+2*margin, base_h]);\n      translate([10,12,-0.1])\n        cube([board_w-20, board_d-24, base_h+0.2]);\n    }\n    for (p = holes)\n      translate([p[0],p[1],base_h-0.2])\n        cylinder(h=post_h+0.2, d=post_d);\n  }\n  for (p = holes)\n    translate([p[0],p[1],-0.1])\n      cylinder(h=base_h+post_h+0.2, d=screw_d);\n}\n",
+    "assembly": true
+  },
+  {
+    "id": "fit",
+    "title": "M3 screw-fit test — print first",
+    "file": "screw-fit.stl",
+    "scad": "screw-fit.scad",
+    "image": "screw-fit.png",
+    "description": "From the notched end: 3.2, 3.4, then 3.6 mm nominal holes. Try your M3 screw in the printed test piece before printing the stand.",
+    "code": "// Screw-fit test. From left to right: 3.2, 3.4, 3.6 mm nominal holes.\n// Printed holes may differ; choose the hole that fits your actual M3 hardware.\n$fn=64;\ndifference() {\n  cube([36,12,3]);\n  for (i=[0:2])\n    translate([6+12*i,6,-0.1])\n      cylinder(h=3.2,d=3.2+0.2*i);\n  // Corner notch identifies the 3.2 mm end, even after turning the part over.\n  translate([-1,-1,-0.1]) cube([4,4,3.2]);\n}\n"
+  }
+]

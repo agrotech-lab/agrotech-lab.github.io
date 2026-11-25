@@ -1,0 +1,16 @@
+Designator,Val,Package,Mid X,Mid Y,Rotation,Layer
+D1,LED,LED_D5.0mm,153.157,-122.428,0.0,top
+D2,LED,LED_D5.0mm,162.56,-122.428,0.0,top
+D3,LED,LED_D5.0mm,172.212,-122.682,0.0,top
+J1,OLED,PinHeader_1x04_P2.54mm_Vertical,118.882,-107.188,90.0,top
+J2,SHT31,PinHeader_1x04_P2.54mm_Vertical,139.964,-69.342,90.0,top
+R1,R,R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,153.924,-109.474,-90.0,top
+R2,R_Photo,PinHeader_1x02_P2.54mm_Vertical,159.258,-61.209,90.0,top
+R3,R,R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,162.052,-109.474,-90.0,top
+R4,R,R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,171.45,-109.728,-90.0,top
+R5,R,R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,164.592,-70.358,0.0,top
+R6,R,R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,151.638,-66.294,90.0,top
+R7,R,R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,146.05,-109.728,-90.0,top
+SW2,SW_DIP_x01,agrotech_button,145.542,-124.46,-90.0,top
+TH1,Thermistor,PinHeader_1x02_P2.54mm_Vertical,169.926,-62.738,180.0,top
+U1,DFR0654,MODULE_DFR0654,143.764,-88.138,90.0,top

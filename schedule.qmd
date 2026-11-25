@@ -45,7 +45,7 @@ table = [
    "digital signals, sensors and data logging"
   ],
   ["`2026-11-25`",
-   'control, feedback'
+   '[3D printing: OpenSCAD and Bambu Studio](tutorials/3d-printing.qmd). [Soldering the class PCB](tutorials/soldering-and-wires.qmd#class-pcb).'
   ],
   ["`2026-12-02`",
    "MQTT, power management, guest speakers"

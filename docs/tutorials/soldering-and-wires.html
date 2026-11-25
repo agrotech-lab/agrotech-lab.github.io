@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tutorials/electronics-class-old.html" rel="next">
+<link href="../tutorials/3d-printing.html" rel="next">
 <link href="../tutorials/relay.html" rel="prev">
 <link href="..//archive/images/favicon.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -301,6 +301,12 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../tutorials/3d-printing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3D printing: from code to a real part</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../tutorials/electronics-class-old.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Electronics Class Old</span></span></a>
   </div>
@@ -505,8 +511,14 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#class-pcb" id="toc-class-pcb" class="nav-link active" data-scroll-target="#class-pcb"><span class="header-section-number">17.1</span> Our class PCB</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -543,8 +555,20 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
 <li><a href="https://learn.adafruit.com/adafruit-guide-excellent-soldering">Soldering - by Adafruit</a> (note that this is a multi page guide)</li>
 <li><a href="https://learn.sparkfun.com/tutorials/working-with-wire">Working with wire - by Sparkfun</a></li>
 </ul>
+<section id="class-pcb" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="class-pcb"><span class="header-section-number">17.1</span> Our class PCB</h2>
+<p>We will assemble the Agrotech Lab soldering board in class. Use the supplied parts kit and check component orientation with the instructor before soldering. Some labels in the design are generic (for example, <code>R</code> and <code>LED</code>); the manufacturing BOM does not specify all component values.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../archive/hardware/soldering-board-1/PCB.png" class="img-fluid figure-img" alt="Agrotech Lab PCB layout showing the FireBeetle footprint, SHT31 and OLED headers, resistors, LEDs and mounting holes."></p>
+<figcaption>The class PCB layout, with the FireBeetle connections, sensor headers, LEDs and four mounting holes.</figcaption>
+</figure>
+</div>
+<p><a href="../archive/hardware/soldering-board-1/Schematic.pdf">Open the schematic PDF</a> · <a href="../archive/hardware/soldering-board-1/soldering-board-project.zip">Download the editable KiCad project</a></p>
+<p>After soldering, let the board cool, inspect for bridges and trim the leads before mounting it. Our <a href="../tutorials/3d-printing.html">3D-printing lesson</a> includes a rotating board reference and a printable stand based on these exact mounting holes. Solder on a heat-resistant work surface; fit the plastic stand afterwards.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -971,8 +995,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tutorials/electronics-class-old.html" class="pagination-link" aria-label="Electronics Class Old">
-        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Electronics Class Old</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tutorials/3d-printing.html" class="pagination-link" aria-label="3D printing: from code to a real part">
+        <span class="nav-page-text">3D printing: from code to a real part</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
