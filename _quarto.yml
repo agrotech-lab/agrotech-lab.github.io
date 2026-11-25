@@ -4,6 +4,7 @@ project:
   resources:
     - assets/3d-printing/**
     - assets/vendor/three-r180/**
+    - assets/projector-mode.*
     - archive/3d-printing/**
     - archive/figures/3d-printing/**
     - archive/hardware/soldering-board-1/**
@@ -99,6 +100,7 @@ book:
 format:
   html:
     include-before-body: _custom_header.html
+    include-after-body: _includes/projector-mode.html
     theme:
       - lumen #simplex #spacelab # litera #flatly
       - custom.scss

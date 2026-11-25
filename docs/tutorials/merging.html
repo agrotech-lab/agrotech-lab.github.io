@@ -647,6 +647,20 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
 </section>
 
 </main> <!-- /main -->
+<link rel="stylesheet" href="../assets/projector-mode.css">
+<button type="button" id="projector-blackout-toggle" hidden="" aria-haspopup="dialog" aria-controls="projector-blackout" aria-keyshortcuts="Alt+Shift+B" title="Black screen (Alt+Shift+B). Click, tap or press Escape to return.">
+  <svg aria-hidden="true" width="18" height="16" viewbox="0 0 18 16" fill="none">
+    <rect x="1" y="1" width="16" height="10" rx="1" stroke="currentColor" stroke-width="1.5"></rect>
+    <path d="M9 11v4M5 15h8" stroke="currentColor" stroke-width="1.5"></path>
+  </svg>
+  Black screen
+</button>
+<dialog id="projector-blackout" aria-label="Black screen. Click, tap or press Escape to return to the lesson.">
+  <button type="button" id="projector-blackout-return" aria-label="Return to the lesson">
+    <span id="projector-blackout-hint" aria-hidden="true">Click, tap or press Esc to return</span>
+  </button>
+</dialog>
+<script src="../assets/projector-mode.js" defer=""></script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
