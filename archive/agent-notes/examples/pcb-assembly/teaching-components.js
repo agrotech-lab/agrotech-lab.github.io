@@ -77,7 +77,8 @@ function sht31(scene,{pads}) {
   const g=part(scene,'SHT31','J2',pads),[cx,headerY]=mean(pads);
   const cy=headerY+5,z=4.8,w=13,h=14;
   const holes=[...pads.map(p=>[...p.xy,.55]),[cx-4.5,cy+4.8,1.1],[cx+4.5,cy+4.8,1.1]];
-  board(g,w,h,[cx,cy],z,holes,0x235c96);pins(g,pads,z+1.4);
+  // The class uses the purple SHT31 breakout board.
+  board(g,w,h,[cx,cy],z,holes,0x743f9e);pins(g,pads,z+1.4);
   for(const p of pads)ring(g,...p.xy,z+1.02);
   for(const [x,y] of holes.slice(-2))ring(g,x,y,z+1.02,1.5,1.1);
   // Sensirion specifies the SHT31-DIS-B package as 2.5 x 2.5 x 0.9 mm.

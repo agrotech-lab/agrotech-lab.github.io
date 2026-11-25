@@ -18,7 +18,7 @@ async function start(){
   scene.add(new THREE.HemisphereLight(0xffffff,0x82929d,2.2));
   for(const [position,intensity] of [[[20,-50,120],2.5],[[-40,100,60],1.2]]){const l=new THREE.DirectionalLight(0xffffff,intensity);l.position.fromArray(position);scene.add(l);}
   const base=new URL('../../archive/3d-printing/',import.meta.url);
-  const [gltf,geometry]=await Promise.all([new GLTFLoader().loadAsync(new URL('pcb-assembly.glb?v=populated-1',base).href),new STLLoader().loadAsync(new URL('pcb-stand.stl',base).href)]);
+  const [gltf,geometry]=await Promise.all([new GLTFLoader().loadAsync(new URL('pcb-assembly.glb?v=sht31-purple-1',base).href),new STLLoader().loadAsync(new URL('pcb-stand.stl',base).href)]);
   const assembly=gltf.scene;assembly.scale.setScalar(1000);assembly.position.z=9.8;scene.add(assembly);
   const stand=new THREE.Mesh(geometry,new THREE.MeshStandardMaterial({color:0x2482ad,roughness:.75}));scene.add(stand);
   const module=assembly.getObjectByName('FireBeetle');

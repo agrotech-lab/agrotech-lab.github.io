@@ -28,6 +28,7 @@ The screen says AGROTECH / OLED as an illustrative display, not live readings.
 The SHT31 uses a representative 13 x 14 mm four-pin breakout with a 2.5 x 2.5
 x 0.9 mm sensor package, per Sensirion's specification:
 https://sensirion.com/products/catalog/SHT31-DIS-B
+The purple PCB colour matches the instructor's description of the lab module.
 The actual breakout board model has not been identified.
 
 The black epoxy thermistor bead and light-facing photoresistor disc follow

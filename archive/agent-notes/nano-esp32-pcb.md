@@ -50,7 +50,7 @@ The guide and sketch have not been tested on a physical assembled lab board.
 Confirm actual kit values, module pin order, header orientation and soldering
 before a lab test. The viewer's component bodies are illustrative, not fit data.
 
-The viewer import, GLB URL and image/download URLs carry `v=populated-1` to
+The viewer import, GLB URL and image/download URLs carry `v=sht31-purple-1` to
 refresh older cached placeholder models. Bump these together when changing
 the assembly assets. Preserve the near/far camera planes (5/1000) to avoid
 copper and solder-mask depth artifacts.

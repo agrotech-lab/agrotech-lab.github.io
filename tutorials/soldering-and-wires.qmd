@@ -29,7 +29,7 @@ After soldering, let the board cool, inspect for bridges and trim the leads befo
 
 {{< include ../_includes/pcb-assembly.qmd >}}
 
-[Download the assembly model for viewing (.glb)](../archive/3d-printing/pcb-assembly.glb?v=populated-1) · [Build the open stand step by step](3d-printing.qmd#worked-example)
+[Download the assembly model for viewing (.glb)](../archive/3d-printing/pcb-assembly.glb?v=sht31-purple-1) · [Build the open stand step by step](3d-printing.qmd#worked-example)
 
 ## Using an Arduino Nano ESP32 {#nano-esp32}
 
