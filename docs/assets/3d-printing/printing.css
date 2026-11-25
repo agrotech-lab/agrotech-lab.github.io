@@ -11,7 +11,7 @@
 .stl-stage canvas{width:100%;height:100%;display:none;touch-action:none}
 .stl-stage img{height:100%;width:100%;object-fit:contain;margin:0}
 .stl-explorer.is-ready .stl-stage canvas{display:block}.stl-explorer.is-ready .stl-stage img{display:none}
-.stl-code{min-width:0}.stl-code pre{max-height:360px;overflow:auto;font-size:.8rem;background:#152e40;color:#e8f3fb;padding:.8rem;border-radius:8px;white-space:pre-wrap;margin:0}
+.stl-code{min-width:0}.stl-code pre{max-height:360px;overflow:auto;font-size:.85rem;background:#f7f9f8;color:#303b3f;border:1px solid #d8e1df;padding:.9rem;border-radius:8px;white-space:pre-wrap;margin:0}
 .stl-code code{color:inherit;background:none;white-space:pre-wrap;overflow-wrap:anywhere}
 .stl-help,.stl-size{font-size:.85rem;margin:.5rem 0}.stl-size{font-weight:600}.stl-status{font-weight:600;margin:.55rem 0}
 .stl-explorer input[type=range]{flex:1;min-width:8rem;max-width:20rem}.stl-explorer input[type=file]{max-width:100%;font-size:.85rem}
@@ -34,9 +34,14 @@
 .stl-explorer .stl-status{font-size:1.12rem;margin:.7rem 0 .35rem}
 .stl-step-note{font-size:.95rem;line-height:1.45;margin:.4rem 0 .8rem;min-height:4.2em}
 .stl-code-key{font-size:.8rem;margin:0 0 .35rem}
-.stl-explorer mark{background:#ffe5a3;color:#182e3a;padding:0 .12em;border-radius:2px}
-.stl-code pre{line-height:1.5;tab-size:2}
-.stl-code pre mark{padding:0;box-shadow:2px 0 #ffe5a3,-2px 0 #ffe5a3}
+/* Muted colours inspired by OpenSCAD's light editor, without line highlights. */
+.stl-code pre{line-height:1.65;tab-size:2}
+.stl-code [data-line]{color:inherit}
+.stl-code .scad-function{color:#386a49}
+.stl-code .scad-keyword{color:#365d8d}
+.stl-code .scad-number{color:#a04d45}
+.stl-code .scad-string{color:#85536f}
+.stl-code .scad-comment{color:#5f7478}
 .stl-extra{font-size:.9rem;border-top:1px solid #d4dfe6;padding-top:.6rem;margin-top:.5rem}
 .stl-extra summary{cursor:pointer;color:#174c68}
 .stl-explorer:fullscreen .stl-stage{height:calc(100vh - 410px);min-height:200px}

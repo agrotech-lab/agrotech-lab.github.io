@@ -1,6 +1,7 @@
 import * as THREE from '../vendor/three-r180/three.module.js';
 import {OrbitControls} from '../vendor/three-r180/OrbitControls.js';
 import {STLLoader} from '../vendor/three-r180/STLLoader.js';
+import {renderOpenSCAD} from './openscad-code.js';
 
 const root = document.getElementById('stl-explorer');
 if (root) start().catch(error => {
@@ -93,21 +94,14 @@ async function start() {
     root.dataset.viewerMode=mode;
   }
   function showCode(item){
-    const code=q('[data-code]'), changed=new Set(item.changedLines || []);
-    code.replaceChildren();
-    item.code.replace(/\n$/, '').split('\n').forEach((line,i)=>{
-      if(changed.has(i+1)){
-        const mark=document.createElement('mark');mark.textContent=line;code.append(mark);
-      }else code.append(document.createTextNode(line));
-      code.append(document.createTextNode('\n'));
-    });
-    q('[data-code-key]').textContent=isStep(item)?'Complete code · highlighted lines are new or changed':'Complete OpenSCAD code';
+    const code=q('[data-code]'), lines=renderOpenSCAD(code,item.code);
+    q('[data-code-key]').textContent='Complete OpenSCAD code';
     const pre=code.parentElement;pre.scrollTop=0;
     // Keep the actual new operation in view when the complete file grows.
     requestAnimationFrame(()=>{
       if(active!==item)return;
-      const marks=[...code.querySelectorAll('mark')].filter(m=>!['{','}'].includes(m.textContent.trim()));
-      const last=marks.at(-1);
+      const changed=(item.changedLines || []).map(n=>lines[n-1]).filter(line=>line && !['{','}'].includes(line.textContent.trim()));
+      const last=changed.at(-1);
       if(last && last.getBoundingClientRect().bottom>pre.getBoundingClientRect().bottom)
         pre.scrollTop=last.getBoundingClientRect().bottom-pre.getBoundingClientRect().bottom+24;
     });
