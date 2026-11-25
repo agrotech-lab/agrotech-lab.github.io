@@ -71,6 +71,11 @@ to scroll the new operation into view. The display-only openscad-code.js lexer
 preserves the exact source as text nodes; all complete sources are downloadable.
 Failed loads must not pair a new code listing with the previous model.
 
+X/Y/Z letters in the model window are HTML labels projected from the positive
+world-axis endpoints on each render. Keep them anchored to the origin axes,
+upright and fixed in pixel size when rotating/zooming. The guides render above
+the part so they are not hidden inside it; labels stay off in image fallback.
+
 ## Reinforced posts and assembly viewer
 
 The stand and all worked-example stages now use tapered posts: d1=12 mm at

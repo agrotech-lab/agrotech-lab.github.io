@@ -45,13 +45,31 @@ async function start() {
   const light = new THREE.DirectionalLight(0xffffff,2.8);light.position.set(50,-60,100);scene.add(light);
   const fill = new THREE.DirectionalLight(0xffffff,1.2);fill.position.set(-60,70,40);scene.add(fill);
   const grid = new THREE.GridHelper(160,32,0x8094a8,0xd3dde7);grid.rotation.x=Math.PI/2;grid.position.z=-.12;scene.add(grid);
-  const axes = new THREE.AxesHelper(16);axes.position.z=.05;scene.add(axes);
+  const axes = new THREE.AxesHelper(28);
+  axes.setColors(0xb23832,0x277443,0x285ea7);
+  // Coordinate guides stay readable even when the part covers the origin.
+  axes.material.depthTest=false;axes.material.depthWrite=false;axes.renderOrder=1;scene.add(axes);
+  const axisLabels=[['X',32,0,0],['Y',0,32,0],['Z',0,0,32]].map(([name,x,y,z])=>({
+    element:q(`[data-axis="${name}"]`),position:new THREE.Vector3(x,y,z)
+  }));
+  const projectedAxis=new THREE.Vector3();
   const group = new THREE.Group();scene.add(group);
   const plane = new THREE.Plane(new THREE.Vector3(0,0,-1),10000);
   const loader = new STLLoader();
   let bounds = new THREE.Box3(), center = new THREE.Vector3(), radius=30, generation=0, active=null;
   for (const e of gallery) {const o=document.createElement('option');o.value=e.id;o.textContent=e.title;select.append(o);}
-  function render(){renderer?.render(scene,camera);}
+  function render(){
+    if(!renderer)return;
+    renderer.render(scene,camera);
+    // Project the axis endpoints into the canvas; HTML letters stay upright
+    // and the same readable size as the camera rotates, zooms or resizes.
+    for(const {element,position} of axisLabels){
+      projectedAxis.copy(position).multiplyScalar(axes.scale.x).project(camera);
+      element.hidden=Math.abs(projectedAxis.x)>1 || Math.abs(projectedAxis.y)>1 || Math.abs(projectedAxis.z)>1;
+      element.style.left=`${(projectedAxis.x+1)*50}%`;
+      element.style.top=`${(1-projectedAxis.y)*50}%`;
+    }
+  }
   function resize(){const r=canvas.parentElement.getBoundingClientRect();if(r.width<=0)return;const h=Math.max(240,canvas.parentElement.clientHeight);renderer?.setSize(r.width,h,false);camera.aspect=r.width/h;camera.updateProjectionMatrix();render();}
   new ResizeObserver(resize).observe(canvas.parentElement);
   function dispose(){while(group.children.length){const m=group.children[0];group.remove(m);m.geometry.dispose();m.material.dispose();}}
@@ -115,6 +133,8 @@ async function start() {
       fit=new THREE.Box3(new THREE.Vector3(-4,-4,0),new THREE.Vector3(81.406,86.740,20));
     }else if(active && ['block','translate','rotate'].includes(active.id))fit.expandByPoint(new THREE.Vector3(0,0,0));
     fit.getCenter(center);radius=Math.max(fit.getSize(new THREE.Vector3()).length()/2,1);
+    // Shorten the guides for small gallery models so their letters fit too.
+    axes.scale.setScalar(Math.min(1,radius*.45/28));
     q('[data-size]').textContent=[size.x,size.y,size.z].map(x=>x.toFixed(2)).join(' × ')+' mm (X × Y × Z)';
     q('[data-height]').value=100;q('[data-wire]').checked=false;clipping();
     root.classList.toggle('is-ready',Boolean(renderer));root.dataset.ready='true';root.setAttribute('aria-busy','false');
