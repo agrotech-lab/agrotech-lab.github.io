@@ -5,12 +5,16 @@ ROOT=Path(__file__).resolve().parents[4]
 b=pcbnew.LoadBoard(str(ROOT/'archive/hardware/soldering-board-1/soldering_board_1.kicad_pcb'))
 folder=args.out/'component-models';folder.mkdir(exist_ok=True)
 lib=Path('/Applications/KiCad/KiCad.app/Contents/SharedSupport/3dmodels');entries=[]
+placements={}
 for f in b.GetFootprints():
  models=list(f.Models());pos=f.GetPosition()
+ if f.GetReference() in ['J1','J2','R2','TH1','SW2']:
+  placements[f.GetReference()]={'value':f.GetValue(),'pads':[{'number':p.GetNumber(),'xy':[round(pcbnew.ToMM(p.GetPosition().x)-104.902,6),round(134.112-pcbnew.ToMM(p.GetPosition().y),6)],'net':p.GetNetname()} for p in sorted(f.Pads(),key=lambda p:p.GetNumber())]}
  for m in models:
   rel=m.m_Filename.split('}/')[1];src=lib/rel;dst=folder/src.name;shutil.copy2(src,dst)
   entries.append({'ref':f.GetReference(),'value':f.GetValue(),'file':'component-models/'+src.name,'position':[pcbnew.ToMM(pos.x)-104.902,134.112-pcbnew.ToMM(pos.y),0.8],'angle':f.GetOrientationDegrees()})
 (args.out/'components.json').write_text(json.dumps(entries))
+(args.out/'component-placements.json').write_text(json.dumps(placements,indent=2))
 print('Placed models:',len(entries))
 
 for n in [14,18]:

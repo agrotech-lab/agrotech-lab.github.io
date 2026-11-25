@@ -1,7 +1,7 @@
 openscad-interface.png: unchanged official OpenSCAD screenshot downloaded
 2026-11-25 from https://openscad.org/assets/img/screenshot.png .
 It shows an older interface; the lesson caption identifies this.
-All other PNGs rendered from the course's own .scad files with OpenSCAD
+The OpenSCAD example PNGs were rendered from the course's own .scad files with OpenSCAD
 2021.01. Geometry source files: archive/3d-printing/.
 
 The lesson also shows a cropped toolbar view of openscad-interface.png using

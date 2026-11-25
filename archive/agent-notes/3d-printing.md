@@ -90,7 +90,9 @@ The soldering page uses a separate viewer, assets/pcb-viewer/, and
 archive/3d-printing/pcb-assembly.glb. Its origin is the same XY board origin;
 KiCad VRML uses the board midplane as Z=0, so the browser lifts the GLB by
 9.8 mm to seat the 1.6 mm board on the 9 mm stand. Header and module height
-are illustrative; the model omits the switch body and external modules.
+are illustrative. The assembly includes OLED/SHT31 modules, a bead thermistor,
+disc photoresistor and pushbutton, replacing the placeholder header geometry.
+Their leads match the KiCad pad centres; package bodies are representative.
 See PCB-ASSEMBLY-CREDITS.txt for model sources, axis transform and limitations.
 
 Only these two pages opt into _filters/new-tab-links.lua. Resource links open

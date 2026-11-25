@@ -6,7 +6,7 @@ The STEP X,Y,Z axes map to assembled Y,Z,X; the footprint location is
 [38.862,45.974] mm relative to the PCB's bottom-left corner. Hole and pin
 patterns match the footprint after that transform. Colors are illustrative.
 
-Resistors, LEDs and pin headers: KiCad 7 standard 3D models placed using the
+Resistors, LEDs and FireBeetle sockets: KiCad 7 standard 3D models placed using the
 PCB footprint coordinates and rotations. U1 uses illustrative 1x18 and 1x14
 vertical socket models; the module rests on their tops, 7.00024 mm above the
 base PCB top. This fitted height must be checked against the lab hardware.
@@ -14,12 +14,32 @@ base PCB top. This fitted height must be checked against the lab hardware.
 Library geometry: KiCad community, CC-BY-SA 4.0 with the electronic-design
 exception described at https://www.kicad.org/libraries/license/ .
 Model families: Resistor_THT/R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal;
-LED_THT/LED_D5.0mm; Connector_PinHeader_2.54mm/PinHeader_1x02 and 1x04;
+LED_THT/LED_D5.0mm;
 Connector_PinSocket_2.54mm/PinSocket_1x14 and 1x18, all vertical 2.54 mm pitch.
 
-The custom SW2 switch has no 3D model: its pads are visible, but its body is
-not represented. OLED/SHT31 are shown as their board headers, not attached
-sensor/display modules. Wires, fasteners and solder joints are omitted.
+OLED (J1), SHT31 (J2), thermistor (TH1), photoresistor (R2) and pushbutton (SW2):
+original teaching geometry built by teaching-components.js. Their lead/pin
+centres and net names come directly from the KiCad footprints, replacing the
+placeholder header models. The source KiCad PCB and its footprints are unchanged.
+
+The four-pin OLED follows the appearance of the lesson's archive/figures/OLED.png;
+its 35.5 x 33 mm PCB is representative, not a measurement of the lab module.
+The screen says AGROTECH / OLED as an illustrative display, not live readings.
+The SHT31 uses a representative 13 x 14 mm four-pin breakout with a 2.5 x 2.5
+x 0.9 mm sensor package, per Sensirion's specification:
+https://sensirion.com/products/catalog/SHT31-DIS-B
+The actual breakout board model has not been identified.
+
+The black epoxy thermistor bead and light-facing photoresistor disc follow
+archive/figures/thermistor.jpg and photoresistor.jpg. The thermistor type is
+also illustrated in the course's thermistor-datasheet-NTCM-10K-B4150.pdf.
+Bead/disc dimensions and formed lead heights are illustrative. The pushbutton
+is a representative two-lead tactile body, located on SW2's two holes 5.08 mm
+apart; this supersedes the generic switch symbol for the visualization only.
+
+Module sizes, package shapes, colors, pin lengths and installed heights are
+illustrative. Use the actual lab parts to check fit and connector pin order.
+Wires, fasteners and solder joints are omitted.
 The assembled GLB is a teaching illustration, not a complete clearance check
 or an object to print. Use the real board and parts to verify fit and values.
 

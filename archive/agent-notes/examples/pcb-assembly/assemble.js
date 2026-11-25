@@ -1,6 +1,7 @@
 import * as THREE from './three.module.js';
 import {VRMLLoader} from './VRMLLoader.js';
 import {GLTFExporter} from './GLTFExporter.js';
+import {addTeachingComponents} from './teaching-components.js';
 const loader=new VRMLLoader();
 async function load(file){return loader.parse(await (await fetch(file)).text(),'./');}
 window.build=async()=>{
@@ -14,7 +15,11 @@ window.build=async()=>{
   const g=cache.get(e.file).clone();g.name=e.ref;g.scale.setScalar(2.54);g.rotation.z=e.angle*Math.PI/180;g.position.fromArray(e.position);parent.add(g);return g;
  }
  const entries=await (await fetch('components.json')).json();
- for(const e of entries)await component(e,components);
+ // These footprints are connection placeholders; their actual teaching parts
+ // are built below, including matching pins rather than loose header blocks.
+ for(const e of entries)if(!['J1','J2','R2','TH1'].includes(e.ref))await component(e,components);
+ const placements=await (await fetch('component-placements.json')).json();
+ addTeachingComponents(scene,placements);
  const headers=new THREE.Group();headers.name='U1-headers';scene.add(headers);
  await component({ref:'U1-row-18',file:'component-models/PinSocket_1x18_P2.54mm_Vertical.wrl',angle:90,position:[20.182,34.724,.8]},headers);
  await component({ref:'U1-row-14',file:'component-models/PinSocket_1x14_P2.54mm_Vertical.wrl',angle:-90,position:[63.362,57.224,.8]},headers);
@@ -30,7 +35,7 @@ window.build=async()=>{
  }
  // Convert library Phong appearances to glTF's standard materials. Values
  // and colors illustrate the layout, not the instructor's component kit.
- scene.traverse(o=>{if(o.isMesh){const m=o.material;if(!m.isMeshStandardMaterial)o.material=new THREE.MeshStandardMaterial({color:m.color,roughness:.65,metalness:.15,transparent:m.transparent,opacity:m.opacity,side:THREE.DoubleSide});}});
+ scene.traverse(o=>{if(o.isMesh){const m=o.material;if(!m.isMeshStandardMaterial && !m.isMeshBasicMaterial)o.material=new THREE.MeshStandardMaterial({color:m.color,roughness:.65,metalness:.15,transparent:m.transparent,opacity:m.opacity,side:THREE.DoubleSide});}});
  scene.updateMatrixWorld(true);
  const ab=new THREE.Box3().setFromObject(scene);console.log('ASSEMBLY BOUNDS',ab.min.toArray(),ab.max.toArray());
  // glTF uses metres; all CAD calculations above are in millimetres.
