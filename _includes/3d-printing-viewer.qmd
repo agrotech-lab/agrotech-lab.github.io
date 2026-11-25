@@ -39,8 +39,8 @@
       <pre tabindex="0" aria-label="Complete OpenSCAD source. Highlighted lines are new or changed from the previous step."><code data-code>// Units: mm. PCB stand worked example.
 cube([20, 20, 20]);</code></pre>
       <div class="stl-tools">
-        <a class="stl-download" data-scad-link download href="../archive/3d-printing/walkthrough/01-cube.scad">Download this .scad</a>
-        <a class="stl-download" data-stl-link download href="../archive/3d-printing/walkthrough/01-cube.stl">Download this .stl</a>
+        <a class="stl-download" data-scad-link download target="_blank" rel="noopener noreferrer" href="../archive/3d-printing/walkthrough/01-cube.scad">Download this .scad</a>
+        <a class="stl-download" data-stl-link download target="_blank" rel="noopener noreferrer" href="../archive/3d-printing/walkthrough/01-cube.stl">Download this .stl</a>
       </div>
     </div>
   </div>
@@ -63,7 +63,7 @@ cube([20, 20, 20]);</code></pre>
     </div>
   </details>
   <p class="stl-help" data-render-help hidden>The rotating view is unavailable. Next and Back still show each step's rendered image and code.</p>
-  <noscript><p>JavaScript is off. <a href="../archive/3d-printing/worked-example.zip">Download the ten numbered steps</a> and open them in OpenSCAD to follow the worked example.</p></noscript>
+  <noscript><p>JavaScript is off. <a target="_blank" rel="noopener noreferrer" href="../archive/3d-printing/worked-example.zip">Download the ten numbered steps</a> and open them in OpenSCAD to follow the worked example.</p></noscript>
 </section>
 <script type="module">
 import('../assets/3d-printing/viewer.js').catch(() => {

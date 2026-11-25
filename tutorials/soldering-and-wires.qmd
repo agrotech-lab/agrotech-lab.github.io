@@ -1,6 +1,9 @@
 ---
 title: "Soldering and Wires"
 echo: false
+css: ../assets/pcb-viewer/viewer.css
+filters:
+  - ../_filters/new-tab-links.lua
 ---
 
 ![soldering](https://cdn-learn.adafruit.com/assets/assets/000/001/978/original/tools_Header_Joints.jpg?1396777967)
@@ -21,3 +24,9 @@ We will assemble the Agrotech Lab soldering board in class. Use the supplied par
 [Open the schematic PDF](../archive/hardware/soldering-board-1/Schematic.pdf) · [Download the editable KiCad project](../archive/hardware/soldering-board-1/soldering-board-project.zip)
 
 After soldering, let the board cool, inspect for bridges and trim the leads before mounting it. Our [3D-printing lesson](3d-printing.qmd) includes a rotating board reference and a printable stand based on these exact mounting holes. Solder on a heat-resistant work surface; fit the plastic stand afterwards.
+
+### The board in 3D {#pcb-in-3d}
+
+{{< include ../_includes/pcb-assembly.qmd >}}
+
+[Download the assembly model for viewing (.glb)](../archive/3d-printing/pcb-assembly.glb) · [Build the open stand step by step](3d-printing.qmd#worked-example)

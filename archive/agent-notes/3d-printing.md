@@ -67,3 +67,27 @@ Without WebGL, the same Next/Back controls show the exported PNGs and code.
 Code highlighting compares with the preceding numbered step (ignoring changed
 indentation); all complete sources are available to download. Failed loads
 must not pair a new code listing with the previous model.
+
+## Reinforced posts and assembly viewer
+
+The stand and all worked-example stages now use tapered posts: d1=12 mm at
+the foot, d2=8 mm at the top, with the same 3.4 mm clearance hole and 9 mm
+total height. Top radial wall thickness is 2.3 mm. Keep pcb-stand.scad and the
+walkthrough builder synchronized; rebuild both ZIPs after any change.
+
+The soldering page uses a separate viewer, assets/pcb-viewer/, and
+archive/3d-printing/pcb-assembly.glb. Its origin is the same XY board origin;
+KiCad VRML uses the board midplane as Z=0, so the browser lifts the GLB by
+9.8 mm to seat the 1.6 mm board on the 9 mm stand. Header and module height
+are illustrative; the model omits the switch body and external modules.
+See PCB-ASSEMBLY-CREDITS.txt for model sources, axis transform and limitations.
+
+Only these two pages opt into _filters/new-tab-links.lua. Resource links open
+in a new tab, including code and PDF links; local fragment jumps and viewer
+controls stay on the current page. Raw HTML download links need their own
+target and rel attributes, since Pandoc's Link filter does not see them.
+
+The OpenSCAD toolbar close-up is SVG displaying the unchanged official PNG,
+with numbered boxes over its Preview, Render and STL-export buttons. This
+is an older interface, explicitly captioned as such; the menu paths/shortcuts
+are the stable directions. Local GUI screenshot automation was unavailable.

@@ -2,6 +2,8 @@
 number-sections: false
 toc-depth: 2
 css: ../assets/3d-printing/printing.css
+filters:
+  - ../_filters/new-tab-links.lua
 ---
 
 # 3D printing: from code to a real part {.unnumbered}
@@ -46,6 +48,35 @@ Install the version for your operating system. OpenSCAD is free and available fo
 ![OpenSCAD's official interface screenshot: code on the left, the model view on the right. This older screenshot shows the same basic workflow; your icons may look different.](../archive/figures/3d-printing/openscad-interface.png){fig-alt="Official OpenSCAD screenshot with a text editor on the left and a preview of a mechanical part on the right."}
 
 Screenshot source: [OpenSCAD's website](https://openscad.org/). The model images further down were rendered from this lesson's own files.
+
+### Find Preview, Render and Export
+
+This close-up uses the toolbar from the same screenshot. The numbered boxes identify the three buttons you need; your version may arrange them differently.
+
+```{=html}
+<figure class="openscad-toolbar-guide">
+  <svg viewBox="280 20 135 80" role="img" aria-labelledby="openscad-toolbar-title">
+    <title id="openscad-toolbar-title">OpenSCAD toolbar close-up: 1 is Preview, 2 is Render, 3 is Export as STL.</title>
+    <image href="../archive/figures/3d-printing/openscad-interface.png" x="0" y="0" width="1000" height="495"/>
+    <g fill="none" stroke="#bd6500" stroke-width="1.3">
+      <rect x="295" y="56" width="28" height="34" rx="2"/>
+      <rect x="329" y="56" width="28" height="34" rx="2"/>
+      <rect x="370" y="56" width="28" height="34" rx="2"/>
+    </g>
+    <g fill="#175973"><circle cx="309" cy="39" r="10"/><circle cx="343" cy="39" r="10"/><circle cx="384" cy="39" r="10"/></g>
+    <g fill="white" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle"><text x="309" y="43">1</text><text x="343" y="43">2</text><text x="384" y="43">3</text></g>
+  </svg>
+  <figcaption>Toolbar close-up from the older official screenshot. The menu commands below are the reliable way to find these actions.</figcaption>
+</figure>
+```
+
+1. **Preview — F5:** the quick view while editing. Menu: **Design → Preview**.
+2. **Render — F6:** calculate the final shape. Wait for it to finish and check the console for errors. Menu: **Design → Render**.
+3. **Export as STL:** save the rendered model for the slicer. Menu: **File → Export → Export as STL**.
+
+On a laptop, the function keys may need `Fn`. See the [OpenSCAD shortcut reference](https://github.com/openscad/openscad/wiki/Keyboard-Shortcuts).
+
+### Try the workflow
 
 1. Open OpenSCAD and create a new file.
 2. Type `cube([30, 20, 6]);` and save it as `first-part.scad`.
@@ -145,15 +176,15 @@ The holes are **not equally inset from all edges**. Copying “four holes 4 mm f
 
 [View stand + PCB together](#stl-explorer){data-open-model="assembly"} · [Editable stand source](../archive/3d-printing/pcb-stand.scad) · [Printable stand STL](../archive/3d-printing/pcb-stand.stl)
 
-The stand has a **3 mm base**, **6 mm posts above the base**, and **3.4 mm nominal screw holes**. Its overall size is **81.406 × 86.740 × 9 mm**. These are design choices you can change in the `.scad` file. A `for` loop repeats the same post at each coordinate in the `holes` list.
+The stand has a **3 mm base**, **6 mm posts above the base**, and **3.4 mm nominal screw holes**. Each post widens from an **8 mm top** to a **12 mm foot**, spreading the load into the frame. This leaves **2.3 mm of plastic around the hole at the top**, compared with 1.3 mm in the earlier version. Its overall size is **81.406 × 86.740 × 9 mm**. These are design choices you can change in the `.scad` file. A `for` loop repeats the same post at each coordinate in the `holes` list.
 
-The green board in the viewer reproduces the outline, thickness and all **72 drilled holes**. It leaves out copper, components, connectors and solder joints. Use it to check the hole pattern; use the real populated PCB to check clearance and access. [Board reference STL](../archive/3d-printing/pcb-reference.stl) · [Measured geometry data](../archive/hardware/soldering-board-1/board-dimensions.json).
+The green board in the viewer reproduces the outline, thickness and all **72 drilled holes**. It leaves out copper, components, connectors and solder joints. Use it to check the hole pattern; use the real populated PCB to check clearance and access. [See the assembled PCB in 3D](soldering-and-wires.qmd#pcb-in-3d) · [Board reference STL](../archive/3d-printing/pcb-reference.stl) · [Measured geometry data](../archive/hardware/soldering-board-1/board-dimensions.json).
 
 ::: {.callout-tip}
 ## Print a small fit test first
 Print the [M3 screw-fit test](../archive/3d-printing/screw-fit.stl). Starting at its notched end, the holes are **3.2, 3.4 and 3.6 mm** in the design. Try your actual M3 screw in each one. Printed holes can come out smaller than drawn, so adjust `screw_d` in the stand after this test.
 
-Use suitable M3 hardware, preferably nylon around the PCB. Choose screw length after measuring the stand, board and fastening hardware together. Check that fasteners and posts clear the solder joints and traces. This is a prototype, not a physically tested fit.
+Use suitable M3 through-bolts and nuts, preferably nylon around the PCB. These are clearance holes, not printed screw threads; tighten gently rather than driving a screw into the plastic. Choose screw length after measuring the stand, board and fastening hardware together. Check that fasteners and posts clear the solder joints and traces. This is a prototype, not a physically tested fit.
 :::
 
 **Solder first, mount later.** Use a heat-resistant soldering surface. Let the board cool, trim the leads and inspect the joints before fitting the stand. A PLA stand is not a soldering fixture.
@@ -186,25 +217,18 @@ An AMS slot containing the right colour can still contain the wrong **material**
 
 Keep ventilation running as directed in the lab. Ask before trying a new filament type, changing hotends, or altering printer maintenance settings.
 
-## Let an LLM write the code—but give it dimensions
+## Working with an LLM on a model
 
-An LLM is useful for turning a description into an OpenSCAD starting point. You should still be able to identify the solid that stays, the shapes that are removed, and the dimensions that control the fit.
+Give the LLM as many **measured dimensions** as you can. Explain what the part must do and what it must fit around. A sketch or photo helps with the overall idea, but include measurements rather than asking it to guess the scale.
 
-Try this prompt with the stand source open:
+- **Use clear units and a reference point.** Give width, depth, height, hole diameters and hole positions, all measured from the same origin.
+- **Describe the real assembly.** Include screw heads, nuts, connectors, the switch, cables, solder joints and the space needed to reach them. Say which surfaces may touch and which need clearance.
+- **State what must stay fixed.** For example, keep the PCB mounting-hole positions unchanged, keep the top open, and leave enough material around the screws.
+- **Explain how you will print it.** Give the material and nozzle size you plan to use. Ask for a sensible orientation, enough wall thickness, and a design that is easy to print and assemble.
+- **Ask for readable, editable code.** Use named dimensions, simple shapes and comments. Have it state its assumptions, then change one thing at a time.
 
-```text
-Help me understand this OpenSCAD PCB stand before changing it.
-Units are millimetres. The PCB is 73.406 × 78.740 × 1.6.
-Hole centres, from the board's bottom-left corner, are:
-[4.318,4.572], [4.318,75.438], [69.596,4.572], [69.596,75.438].
-Explain the difference(), union(), translate() and for loop.
-Change post_h from 6 to 8 mm. Keep those hole centres fixed.
-Return one complete .scad file with comments and no external libraries.
-State any assumptions. Explain how I can check the result in OpenSCAD.
-```
+There are **many ways to make the same part**. A shape can be built up from solids, cut out of a larger block, or extruded from a flat outline. Ask for a couple of approaches and compare how easy they are to understand, adjust and print. If a design becomes difficult to work with, describe the problem and try a simpler approach.
 
-Copy the result into OpenSCAD, preview, render, measure and inspect the STL in the slicer. Ask for **one change at a time**, such as taller posts or a wider frame. The model cannot determine connector clearance, screw fit or material strength from a confident explanation alone; show it the measurements and verify the real part.
-
-For a next exercise, try a sensor mounting bracket, a cable guide or a small enclosure. Start from the actual component dimensions, leave access for plugs and wires, and print one small test before committing to a long job.
+Preview and render the result in OpenSCAD, inspect it in the slicer, and check the dimensions against the real components. Start with a small fit test when the design depends on screw holes or tight clearances, then improve it from what you measure.
 
 *The downloadable models were exported with OpenSCAD 2021.01. The stand and fit test are teaching prototypes; they have not yet been physically printed or fitted to the lab board.*

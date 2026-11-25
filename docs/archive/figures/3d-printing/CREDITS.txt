@@ -3,3 +3,10 @@ openscad-interface.png: unchanged official OpenSCAD screenshot downloaded
 It shows an older interface; the lesson caption identifies this.
 All other PNGs rendered from the course's own .scad files with OpenSCAD
 2021.01. Geometry source files: archive/3d-printing/.
+
+The lesson also shows a cropped toolbar view of openscad-interface.png using
+SVG, with numbered annotations added in the page. Preview/Render shortcuts
+checked against OpenSCAD 2021.01 MainWindow.ui and the official manual.
+
+pcb-assembly.png: rendered from the course PCB assembly GLB using the
+self-hosted Three.js viewer. See archive/3d-printing/PCB-ASSEMBLY-CREDITS.txt.

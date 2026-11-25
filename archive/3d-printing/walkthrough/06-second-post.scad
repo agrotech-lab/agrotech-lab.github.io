@@ -7,7 +7,7 @@ union() {
       cube([53.406, 54.740, 3.2]);
   }
   translate([4.318, 4.572, 2.8])
-    cylinder(h=6.2, d=6, $fn=64);
+    cylinder(h=6.2, d1=12, d2=8, $fn=64);
   translate([4.318, 75.438, 2.8])
-    cylinder(h=6.2, d=6, $fn=64);
+    cylinder(h=6.2, d1=12, d2=8, $fn=64);
 }

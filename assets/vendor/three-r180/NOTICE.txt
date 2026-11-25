@@ -5,3 +5,6 @@ OrbitControls.js copied from examples/jsm/controls/OrbitControls.js.
 STLLoader.js copied from examples/jsm/loaders/STLLoader.js.
 The two example modules have only their bare "three" import changed to the
 relative ./three.module.js path for a self-hosted, build-free viewer.
+
+GLTFLoader.js and BufferGeometryUtils.js copied from examples/jsm/loaders/
+and examples/jsm/utils/ in r180. Import paths adjusted to adjacent local files.

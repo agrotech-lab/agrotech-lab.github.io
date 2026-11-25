@@ -45,3 +45,7 @@
 @media(max-width:700px){.stl-step-note{min-height:0}.stl-step-nav [data-restart]{margin-left:0}.stl-explorer:fullscreen .stl-stage{height:38vh}.stl-explorer:fullscreen .stl-code pre{max-height:220px}}
 .stl-explorer button[data-next]:hover:not(:disabled){background:#103f54;color:#fff}
 .stl-explorer button[data-next]:disabled{background:#e6edf1;color:#465966;border-color:#829eaf}
+
+.openscad-toolbar-guide{max-width:430px;margin:1rem auto}
+.openscad-toolbar-guide svg{display:block;width:100%;height:auto}
+.openscad-toolbar-guide figcaption{font-size:.85rem;color:#526471;margin-top:.5rem}

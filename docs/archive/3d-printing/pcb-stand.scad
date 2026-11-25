@@ -5,7 +5,8 @@ board_d = 78.740;
 margin = 4;
 base_h = 3;
 post_h = 6;       // clearance above the base for trimmed solder joints
-post_d = 6;
+post_d = 8;       // wider top: 2.3 mm of plastic around a 3.4 mm hole
+post_base_d = 12; // broad foot spreads the load into the frame
 screw_d = 3.4;    // printed clearance hole: test with your M3 hardware first
 holes = [[4.318,4.572], [4.318,75.438],
          [69.596,4.572], [69.596,75.438]];
@@ -22,7 +23,7 @@ difference() {
     }
     for (p = holes)
       translate([p[0],p[1],base_h-0.2])
-        cylinder(h=post_h+0.2, d=post_d);
+        cylinder(h=post_h+0.2, d1=post_base_d, d2=post_d);
   }
   for (p = holes)
     translate([p[0],p[1],-0.1])

@@ -559,7 +559,7 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
   <li><a href="#a-useful-print-for-our-soldering-pcb" id="toc-a-useful-print-for-our-soldering-pcb" class="nav-link" data-scroll-target="#a-useful-print-for-our-soldering-pcb">A useful print for our soldering PCB</a></li>
   <li><a href="#from-stl-to-a-print-in-bambu-studio" id="toc-from-stl-to-a-print-in-bambu-studio" class="nav-link" data-scroll-target="#from-stl-to-a-print-in-bambu-studio">From STL to a print in Bambu Studio</a></li>
   <li><a href="#what-to-change-when-a-print-is-disappointing" id="toc-what-to-change-when-a-print-is-disappointing" class="nav-link" data-scroll-target="#what-to-change-when-a-print-is-disappointing">What to change when a print is disappointing</a></li>
-  <li><a href="#let-an-llm-write-the-codebut-give-it-dimensions" id="toc-let-an-llm-write-the-codebut-give-it-dimensions" class="nav-link" data-scroll-target="#let-an-llm-write-the-codebut-give-it-dimensions">Let an LLM write the code—but give it dimensions</a></li>
+  <li><a href="#working-with-an-llm-on-a-model" id="toc-working-with-an-llm-on-a-model" class="nav-link" data-scroll-target="#working-with-an-llm-on-a-model">Working with an LLM on a model</a></li>
   </ul>
 </nav>
     </div>
@@ -590,7 +590,7 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
 <section id="our-lab-printer" class="level2">
 <h2 class="anchored" data-anchor-id="our-lab-printer">Our lab printer</h2>
 <p>We use a <strong>Bambu Lab H2C with AMS</strong>. The printer melts a plastic filament and lays it down in thin paths, building the object one layer at a time. This process is often called FDM or FFF printing.</p>
-<p>The <strong>AMS (Automatic Material System)</strong> feeds and switches filament. The H2C’s <strong>Vortek system</strong> changes hotends automatically. These do different jobs: switching the spool is different from exchanging the heated nozzle assembly. We will start with <strong>one material and one colour</strong>, using the installed nozzle and the matching printer profile. This lesson uses the 3D-printing functions. <a href="https://blog.bambulab.com/bambu-lab-h2c-where-multi-material-vortek-system-meets-engineering-precision/">Bambu Lab’s H2C overview</a>.</p>
+<p>The <strong>AMS (Automatic Material System)</strong> feeds and switches filament. The H2C’s <strong>Vortek system</strong> changes hotends automatically. These do different jobs: switching the spool is different from exchanging the heated nozzle assembly. We will start with <strong>one material and one colour</strong>, using the installed nozzle and the matching printer profile. This lesson uses the 3D-printing functions. <a href="https://blog.bambulab.com/bambu-lab-h2c-where-multi-material-vortek-system-meets-engineering-precision/" target="_blank" rel="noopener noreferrer">Bambu Lab’s H2C overview</a>.</p>
 </section>
 <section id="install-these-two-programs" class="level2">
 <h2 class="anchored" data-anchor-id="install-these-two-programs">Install these two programs</h2>
@@ -606,17 +606,17 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
 <tr class="odd">
 <td><strong>OpenSCAD</strong></td>
 <td>Describe dimensions and shapes with code, then export a model.</td>
-<td><a href="https://openscad.org/downloads.html">Official OpenSCAD downloads</a></td>
+<td><a href="https://openscad.org/downloads.html" target="_blank" rel="noopener noreferrer">Official OpenSCAD downloads</a></td>
 </tr>
 <tr class="even">
 <td><strong>Bambu Studio</strong></td>
 <td>Turn the model into layers and printer movements; preview the job and send it to the lab printer.</td>
-<td><a href="https://bambulab.com/en/download/studio">Official Bambu Studio download</a>, or <a href="https://github.com/bambulab/BambuStudio/releases">official releases</a></td>
+<td><a href="https://bambulab.com/en/download/studio" target="_blank" rel="noopener noreferrer">Official Bambu Studio download</a>, or <a href="https://github.com/bambulab/BambuStudio/releases" target="_blank" rel="noopener noreferrer">official releases</a></td>
 </tr>
 </tbody>
 </table>
 <p>Install the version for your operating system. OpenSCAD is free and available for Windows, macOS and Linux. In Bambu Studio’s setup, add the <strong>H2C</strong> profile and select the nozzle diameter actually fitted to the printer. If H2C is missing, update Bambu Studio from the official download. The instructor will show you how the lab connects to the printer; you can model and slice before connecting.</p>
-<p><strong>Bambu Studio</strong> is the desktop slicer. <strong>Bambu Handy</strong> is the phone app; install Studio for this exercise. See <a href="https://github.com/bambulab/BambuStudio">Bambu Studio’s official project</a> for supported platforms and features.</p>
+<p><strong>Bambu Studio</strong> is the desktop slicer. <strong>Bambu Handy</strong> is the phone app; install Studio for this exercise. See <a href="https://github.com/bambulab/BambuStudio" target="_blank" rel="noopener noreferrer">Bambu Studio’s official project</a> for supported platforms and features.</p>
 </section>
 <section id="the-files-along-the-way" class="level2">
 <h2 class="anchored" data-anchor-id="the-files-along-the-way">The files along the way</h2>
@@ -641,7 +641,33 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
 <figcaption>OpenSCAD’s official interface screenshot: code on the left, the model view on the right. This older screenshot shows the same basic workflow; your icons may look different.</figcaption>
 </figure>
 </div>
-<p>Screenshot source: <a href="https://openscad.org/">OpenSCAD’s website</a>. The model images further down were rendered from this lesson’s own files.</p>
+<p>Screenshot source: <a href="https://openscad.org/" target="_blank" rel="noopener noreferrer">OpenSCAD’s website</a>. The model images further down were rendered from this lesson’s own files.</p>
+<section id="find-preview-render-and-export" class="level3">
+<h3 class="anchored" data-anchor-id="find-preview-render-and-export">Find Preview, Render and Export</h3>
+<p>This close-up uses the toolbar from the same screenshot. The numbered boxes identify the three buttons you need; your version may arrange them differently.</p>
+<figure class="openscad-toolbar-guide figure">
+  <svg viewbox="280 20 135 80" role="img" aria-labelledby="openscad-toolbar-title">
+    <title id="openscad-toolbar-title">OpenSCAD toolbar close-up: 1 is Preview, 2 is Render, 3 is Export as STL.</title>
+    <image href="../archive/figures/3d-printing/openscad-interface.png" x="0" y="0" width="1000" height="495"></image>
+    <g fill="none" stroke="#bd6500" stroke-width="1.3">
+      <rect x="295" y="56" width="28" height="34" rx="2"></rect>
+      <rect x="329" y="56" width="28" height="34" rx="2"></rect>
+      <rect x="370" y="56" width="28" height="34" rx="2"></rect>
+    </g>
+    <g fill="#175973"><circle cx="309" cy="39" r="10"></circle><circle cx="343" cy="39" r="10"></circle><circle cx="384" cy="39" r="10"></circle></g>
+    <g fill="white" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle"><text x="309" y="43">1</text><text x="343" y="43">2</text><text x="384" y="43">3</text></g>
+  </svg>
+  <figcaption>Toolbar close-up from the older official screenshot. The menu commands below are the reliable way to find these actions.</figcaption>
+</figure>
+<ol type="1">
+<li><strong>Preview — F5:</strong> the quick view while editing. Menu: <strong>Design → Preview</strong>.</li>
+<li><strong>Render — F6:</strong> calculate the final shape. Wait for it to finish and check the console for errors. Menu: <strong>Design → Render</strong>.</li>
+<li><strong>Export as STL:</strong> save the rendered model for the slicer. Menu: <strong>File → Export → Export as STL</strong>.</li>
+</ol>
+<p>On a laptop, the function keys may need <code>Fn</code>. See the <a href="https://github.com/openscad/openscad/wiki/Keyboard-Shortcuts" target="_blank" rel="noopener noreferrer">OpenSCAD shortcut reference</a>.</p>
+</section>
+<section id="try-the-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="try-the-workflow">Try the workflow</h3>
 <ol type="1">
 <li>Open OpenSCAD and create a new file.</li>
 <li>Type <code>cube([30, 20, 6]);</code> and save it as <code>first-part.scad</code>.</li>
@@ -650,12 +676,13 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
 <li>Drag in the view to turn the model around and scroll to zoom.</li>
 <li>When the design is ready, use <strong>Design → Render (F6)</strong>. Check the console for errors, then choose <strong>File → Export → Export as STL</strong>.</li>
 </ol>
-<p>Preview is for quick editing; Render calculates the final geometry for export. Save both the <code>.scad</code> and <code>.stl</code> files. <a href="https://files.openscad.org/documentation/manual/STL_Export.html">OpenSCAD’s export instructions</a>.</p>
+<p>Preview is for quick editing; Render calculates the final geometry for export. Save both the <code>.scad</code> and <code>.stl</code> files. <a href="https://files.openscad.org/documentation/manual/STL_Export.html" target="_blank" rel="noopener noreferrer">OpenSCAD’s export instructions</a>.</p>
+</section>
 <section id="a-few-rules-that-make-the-code-readable" class="level3">
 <h3 class="anchored" data-anchor-id="a-few-rules-that-make-the-code-readable">A few rules that make the code readable</h3>
 <p><code>[X, Y, Z]</code> means sideways, front-to-back, and height. A default <code>cube([30,20,6])</code> starts at the origin <code>[0,0,0]</code>; <code>center=true</code> puts its centre at the origin instead. A cylinder points along Z unless you rotate it.</p>
 <p>A shape statement ends in <code>;</code>. Braces <code>{ ... }</code> group shapes. A transformation goes <strong>before</strong> the shape it changes, without a semicolon between them. <code>//</code> starts a comment. Dimensions and positions can be named variables, such as <code>wall = 2;</code>, instead of repeated numbers.</p>
-<p><code>$fn=64</code> asks for 64 segments around a circle. It makes round shapes look smoother; it does not change the printer’s layer height. Start with moderate values so previews and STLs stay manageable. The <a href="https://openscad.org/cheatsheet/">OpenSCAD cheat sheet</a> is a useful reference while reading code.</p>
+<p><code>$fn=64</code> asks for 64 segments around a circle. It makes round shapes look smoother; it does not change the printer’s layer height. Start with moderate values so previews and STLs stay manageable. The <a href="https://openscad.org/cheatsheet/" target="_blank" rel="noopener noreferrer">OpenSCAD cheat sheet</a> is a useful reference while reading code.</p>
 </section>
 </section>
 <section id="worked-example" class="level2">
@@ -703,8 +730,8 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
       <pre tabindex="0" aria-label="Complete OpenSCAD source. Highlighted lines are new or changed from the previous step."><code data-code="">// Units: mm. PCB stand worked example.
 cube([20, 20, 20]);</code></pre>
       <div class="stl-tools">
-        <a class="stl-download" data-scad-link="" download="" href="../archive/3d-printing/walkthrough/01-cube.scad">Download this .scad</a>
-        <a class="stl-download" data-stl-link="" download="" href="../archive/3d-printing/walkthrough/01-cube.stl">Download this .stl</a>
+        <a class="stl-download" data-scad-link="" download="" target="_blank" rel="noopener noreferrer" href="../archive/3d-printing/walkthrough/01-cube.scad">Download this .scad</a>
+        <a class="stl-download" data-stl-link="" download="" target="_blank" rel="noopener noreferrer" href="../archive/3d-printing/walkthrough/01-cube.stl">Download this .stl</a>
       </div>
     </div>
   </div>
@@ -727,14 +754,14 @@ cube([20, 20, 20]);</code></pre>
     </div>
   </details>
   <p class="stl-help" data-render-help="" hidden="">The rotating view is unavailable. Next and Back still show each step's rendered image and code.</p>
-  <noscript><p>JavaScript is off. <a href="../archive/3d-printing/worked-example.zip">Download the ten numbered steps</a> and open them in OpenSCAD to follow the worked example.</p></noscript>
+  <noscript><p>JavaScript is off. <a target="_blank" rel="noopener noreferrer" href="../archive/3d-printing/worked-example.zip">Download the ten numbered steps</a> and open them in OpenSCAD to follow the worked example.</p></noscript>
 </section>
 <script type="module">
 import('../assets/3d-printing/viewer.js').catch(() => {
   document.querySelector('#stl-explorer [data-status]').textContent = 'Interactive view unavailable. Download the numbered steps below to follow along in OpenSCAD.';
 });
 </script>
-<p><a href="../archive/3d-printing/worked-example.zip">Download all ten steps: OpenSCAD source + STLs</a></p>
+<p><a href="../archive/3d-printing/worked-example.zip" target="_blank" rel="noopener noreferrer">Download all ten steps: OpenSCAD source + STLs</a></p>
 <p>Steps 1–9 build the finished shape. Step 10 makes the same shape using a <code>for</code> loop to replace repeated code. The intermediate models are teaching stages; use the finished stand and the screw-fit test for printing. The <a href="#a-useful-print-for-our-soldering-pcb">PCB measurements below</a> explain where the mounting positions come from.</p>
 <p>After the walkthrough, choose <strong>Other models</strong> to explore rotation, extrusion, the PCB assembly, or your own STL.</p>
 <section id="the-operations-we-use" class="level3">
@@ -790,7 +817,7 @@ import('../assets/3d-printing/viewer.js').catch(() => {
 </tr>
 </tbody>
 </table>
-<p>For transformations, read from the shape outward: in <code>translate(...) rotate(...) cube(...)</code>, make the cube, rotate it, then move it. See the official manual sections on <a href="https://files.openscad.org/documentation/manual/Transformations.html">transformations</a>, <a href="https://files.openscad.org/documentation/manual/CSG_Modelling.html">combining solids</a>, and <a href="https://files.openscad.org/documentation/manual/2D_to_3D_Extrusion.html">extrusion</a>.</p>
+<p>For transformations, read from the shape outward: in <code>translate(...) rotate(...) cube(...)</code>, make the cube, rotate it, then move it. See the official manual sections on <a href="https://files.openscad.org/documentation/manual/Transformations.html" target="_blank" rel="noopener noreferrer">transformations</a>, <a href="https://files.openscad.org/documentation/manual/CSG_Modelling.html" target="_blank" rel="noopener noreferrer">combining solids</a>, and <a href="https://files.openscad.org/documentation/manual/2D_to_3D_Extrusion.html" target="_blank" rel="noopener noreferrer">extrusion</a>.</p>
 </section>
 <section id="a-hole-is-a-shape-that-you-subtract" class="level3">
 <h3 class="anchored" data-anchor-id="a-hole-is-a-shape-that-you-subtract">A hole is a shape that you subtract</h3>
@@ -806,7 +833,7 @@ import('../assets/3d-printing/viewer.js').catch(() => {
 <figcaption>A block with a hole, rendered from the difference example.</figcaption>
 </figure>
 </div>
-<p><a href="../archive/3d-printing/difference.scad">Download this source</a> · <a href="../archive/3d-printing/difference.stl">Download this STL</a></p>
+<p><a href="../archive/3d-printing/difference.scad" target="_blank" rel="noopener noreferrer">Download this source</a> · <a href="../archive/3d-printing/difference.stl" target="_blank" rel="noopener noreferrer">Download this STL</a></p>
 </section>
 <section id="you-can-also-start-with-a-flat-outline" class="level3">
 <h3 class="anchored" data-anchor-id="you-can-also-start-with-a-flat-outline">You can also start with a flat outline</h3>
@@ -817,12 +844,12 @@ import('../assets/3d-printing/viewer.js').catch(() => {
 <span id="cb2-5"><a href="#cb2-5"></a>      circle(d=8, $fn=64);</span>
 <span id="cb2-6"><a href="#cb2-6"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This makes the same kind of part by cutting a circle from a 2D square first, then giving the result height. <code>rotate_extrude()</code> is another option for revolving a 2D profile around an axis, for example to make a round knob. Learn the simpler <code>linear_extrude()</code> workflow first.</p>
-<p><a href="../archive/3d-printing/extrude.scad">Download the extrusion example</a> · <a href="../archive/3d-printing/class-examples.zip">All examples, STLs and source files</a></p>
+<p><a href="../archive/3d-printing/extrude.scad" target="_blank" rel="noopener noreferrer">Download the extrusion example</a> · <a href="../archive/3d-printing/class-examples.zip" target="_blank" rel="noopener noreferrer">All examples, STLs and source files</a></p>
 </section>
 </section>
 <section id="a-useful-print-for-our-soldering-pcb" class="level2">
 <h2 class="anchored" data-anchor-id="a-useful-print-for-our-soldering-pcb">A useful print for our soldering PCB</h2>
-<p>We will solder the <a href="../tutorials/soldering-and-wires.html#class-pcb">class PCB</a>, then try a <strong>small open stand</strong>. Four raised posts support the board at its mounting holes, leaving room underneath for trimmed component leads. The centre is open so the underside remains accessible.</p>
+<p>We will solder the <a href="../tutorials/soldering-and-wires.html#class-pcb" target="_blank" rel="noopener noreferrer">class PCB</a>, then try a <strong>small open stand</strong>. Four raised posts support the board at its mounting holes, leaving room underneath for trimmed component leads. The centre is open so the underside remains accessible.</p>
 <p>These dimensions come from the supplied KiCad board, not an estimate from a photograph:</p>
 <table class="caption-top table">
 <colgroup>
@@ -865,9 +892,9 @@ import('../assets/3d-printing/viewer.js').catch(() => {
 <figcaption>The printable open stand, with a raised post and screw hole at each mounting position.</figcaption>
 </figure>
 </div>
-<p><a href="#stl-explorer" data-open-model="assembly">View stand + PCB together</a> · <a href="../archive/3d-printing/pcb-stand.scad">Editable stand source</a> · <a href="../archive/3d-printing/pcb-stand.stl">Printable stand STL</a></p>
-<p>The stand has a <strong>3 mm base</strong>, <strong>6 mm posts above the base</strong>, and <strong>3.4 mm nominal screw holes</strong>. Its overall size is <strong>81.406 × 86.740 × 9 mm</strong>. These are design choices you can change in the <code>.scad</code> file. A <code>for</code> loop repeats the same post at each coordinate in the <code>holes</code> list.</p>
-<p>The green board in the viewer reproduces the outline, thickness and all <strong>72 drilled holes</strong>. It leaves out copper, components, connectors and solder joints. Use it to check the hole pattern; use the real populated PCB to check clearance and access. <a href="../archive/3d-printing/pcb-reference.stl">Board reference STL</a> · <a href="../archive/hardware/soldering-board-1/board-dimensions.json">Measured geometry data</a>.</p>
+<p><a href="#stl-explorer" data-open-model="assembly">View stand + PCB together</a> · <a href="../archive/3d-printing/pcb-stand.scad" target="_blank" rel="noopener noreferrer">Editable stand source</a> · <a href="../archive/3d-printing/pcb-stand.stl" target="_blank" rel="noopener noreferrer">Printable stand STL</a></p>
+<p>The stand has a <strong>3 mm base</strong>, <strong>6 mm posts above the base</strong>, and <strong>3.4 mm nominal screw holes</strong>. Each post widens from an <strong>8 mm top</strong> to a <strong>12 mm foot</strong>, spreading the load into the frame. This leaves <strong>2.3 mm of plastic around the hole at the top</strong>, compared with 1.3 mm in the earlier version. Its overall size is <strong>81.406 × 86.740 × 9 mm</strong>. These are design choices you can change in the <code>.scad</code> file. A <code>for</code> loop repeats the same post at each coordinate in the <code>holes</code> list.</p>
+<p>The green board in the viewer reproduces the outline, thickness and all <strong>72 drilled holes</strong>. It leaves out copper, components, connectors and solder joints. Use it to check the hole pattern; use the real populated PCB to check clearance and access. <a href="../tutorials/soldering-and-wires.html#pcb-in-3d" target="_blank" rel="noopener noreferrer">See the assembled PCB in 3D</a> · <a href="../archive/3d-printing/pcb-reference.stl" target="_blank" rel="noopener noreferrer">Board reference STL</a> · <a href="../archive/hardware/soldering-board-1/board-dimensions.json" target="_blank" rel="noopener noreferrer">Measured geometry data</a>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -878,12 +905,12 @@ Print a small fit test first
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Print the <a href="../archive/3d-printing/screw-fit.stl">M3 screw-fit test</a>. Starting at its notched end, the holes are <strong>3.2, 3.4 and 3.6 mm</strong> in the design. Try your actual M3 screw in each one. Printed holes can come out smaller than drawn, so adjust <code>screw_d</code> in the stand after this test.</p>
-<p>Use suitable M3 hardware, preferably nylon around the PCB. Choose screw length after measuring the stand, board and fastening hardware together. Check that fasteners and posts clear the solder joints and traces. This is a prototype, not a physically tested fit.</p>
+<p>Print the <a href="../archive/3d-printing/screw-fit.stl" target="_blank" rel="noopener noreferrer">M3 screw-fit test</a>. Starting at its notched end, the holes are <strong>3.2, 3.4 and 3.6 mm</strong> in the design. Try your actual M3 screw in each one. Printed holes can come out smaller than drawn, so adjust <code>screw_d</code> in the stand after this test.</p>
+<p>Use suitable M3 through-bolts and nuts, preferably nylon around the PCB. These are clearance holes, not printed screw threads; tighten gently rather than driving a screw into the plastic. Choose screw length after measuring the stand, board and fastening hardware together. Check that fasteners and posts clear the solder joints and traces. This is a prototype, not a physically tested fit.</p>
 </div>
 </div>
 <p><strong>Solder first, mount later.</strong> Use a heat-resistant soldering surface. Let the board cool, trim the leads and inspect the joints before fitting the stand. A PLA stand is not a soldering fixture.</p>
-<p>The editable KiCad project, schematic, original board image, custom libraries and manufacturing exports are now in the course repository. <a href="../archive/hardware/soldering-board-1/soldering-board-project.zip">Download the PCB project</a> · <a href="../archive/hardware/soldering-board-1/Schematic.pdf">Read the schematic</a>.</p>
+<p>The editable KiCad project, schematic, original board image, custom libraries and manufacturing exports are now in the course repository. <a href="../archive/hardware/soldering-board-1/soldering-board-project.zip" target="_blank" rel="noopener noreferrer">Download the PCB project</a> · <a href="../archive/hardware/soldering-board-1/Schematic.pdf" target="_blank" rel="noopener noreferrer">Read the schematic</a>.</p>
 </section>
 <section id="from-stl-to-a-print-in-bambu-studio" class="level2">
 <h2 class="anchored" data-anchor-id="from-stl-to-a-print-in-bambu-studio">From STL to a print in Bambu Studio</h2>
@@ -897,7 +924,7 @@ Print a small fit test first
 <li><strong>Save the project as <code>.3mf</code>.</strong> This keeps your setup for the next iteration. Check the physical plate is clear, confirm the material-to-AMS-slot mapping, and have the instructor check the first job before using <strong>Print plate</strong> or the lab’s offline transfer method.</li>
 <li><strong>Watch the first layer and let the part cool.</strong> Keep hands away from the hot nozzle, bed and moving mechanism. Remove the cooled part as demonstrated, try the screw-fit test, and measure before printing more copies.</li>
 </ol>
-<p>An AMS slot containing the right colour can still contain the wrong <strong>material</strong>. Match the material as well. More colours and hotend changes can add time and material use, even with automatic switching. Keep the first exercise simple. <a href="https://github.com/bambulab/BambuStudio">Bambu Studio documentation and project links</a>.</p>
+<p>An AMS slot containing the right colour can still contain the wrong <strong>material</strong>. Match the material as well. More colours and hotend changes can add time and material use, even with automatic switching. Keep the first exercise simple. <a href="https://github.com/bambulab/BambuStudio" target="_blank" rel="noopener noreferrer">Bambu Studio documentation and project links</a>.</p>
 </section>
 <section id="what-to-change-when-a-print-is-disappointing" class="level2">
 <h2 class="anchored" data-anchor-id="what-to-change-when-a-print-is-disappointing">What to change when a print is disappointing</h2>
@@ -941,20 +968,18 @@ Print a small fit test first
 </table>
 <p>Keep ventilation running as directed in the lab. Ask before trying a new filament type, changing hotends, or altering printer maintenance settings.</p>
 </section>
-<section id="let-an-llm-write-the-codebut-give-it-dimensions" class="level2">
-<h2 class="anchored" data-anchor-id="let-an-llm-write-the-codebut-give-it-dimensions">Let an LLM write the code—but give it dimensions</h2>
-<p>An LLM is useful for turning a description into an OpenSCAD starting point. You should still be able to identify the solid that stays, the shapes that are removed, and the dimensions that control the fit.</p>
-<p>Try this prompt with the stand source open:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>Help me understand this OpenSCAD PCB stand before changing it.</span>
-<span id="cb3-2"><a href="#cb3-2"></a>Units are millimetres. The PCB is 73.406 × 78.740 × 1.6.</span>
-<span id="cb3-3"><a href="#cb3-3"></a>Hole centres, from the board's bottom-left corner, are:</span>
-<span id="cb3-4"><a href="#cb3-4"></a>[4.318,4.572], [4.318,75.438], [69.596,4.572], [69.596,75.438].</span>
-<span id="cb3-5"><a href="#cb3-5"></a>Explain the difference(), union(), translate() and for loop.</span>
-<span id="cb3-6"><a href="#cb3-6"></a>Change post_h from 6 to 8 mm. Keep those hole centres fixed.</span>
-<span id="cb3-7"><a href="#cb3-7"></a>Return one complete .scad file with comments and no external libraries.</span>
-<span id="cb3-8"><a href="#cb3-8"></a>State any assumptions. Explain how I can check the result in OpenSCAD.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Copy the result into OpenSCAD, preview, render, measure and inspect the STL in the slicer. Ask for <strong>one change at a time</strong>, such as taller posts or a wider frame. The model cannot determine connector clearance, screw fit or material strength from a confident explanation alone; show it the measurements and verify the real part.</p>
-<p>For a next exercise, try a sensor mounting bracket, a cable guide or a small enclosure. Start from the actual component dimensions, leave access for plugs and wires, and print one small test before committing to a long job.</p>
+<section id="working-with-an-llm-on-a-model" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-an-llm-on-a-model">Working with an LLM on a model</h2>
+<p>Give the LLM as many <strong>measured dimensions</strong> as you can. Explain what the part must do and what it must fit around. A sketch or photo helps with the overall idea, but include measurements rather than asking it to guess the scale.</p>
+<ul>
+<li><strong>Use clear units and a reference point.</strong> Give width, depth, height, hole diameters and hole positions, all measured from the same origin.</li>
+<li><strong>Describe the real assembly.</strong> Include screw heads, nuts, connectors, the switch, cables, solder joints and the space needed to reach them. Say which surfaces may touch and which need clearance.</li>
+<li><strong>State what must stay fixed.</strong> For example, keep the PCB mounting-hole positions unchanged, keep the top open, and leave enough material around the screws.</li>
+<li><strong>Explain how you will print it.</strong> Give the material and nozzle size you plan to use. Ask for a sensible orientation, enough wall thickness, and a design that is easy to print and assemble.</li>
+<li><strong>Ask for readable, editable code.</strong> Use named dimensions, simple shapes and comments. Have it state its assumptions, then change one thing at a time.</li>
+</ul>
+<p>There are <strong>many ways to make the same part</strong>. A shape can be built up from solids, cut out of a larger block, or extruded from a flat outline. Ask for a couple of approaches and compare how easy they are to understand, adjust and print. If a design becomes difficult to work with, describe the problem and try a simpler approach.</p>
+<p>Preview and render the result in OpenSCAD, inspect it in the slicer, and check the dimensions against the real components. Start with a small fit test when the design depends on screw holes or tight clearances, then improve it from what you measure.</p>
 <p><em>The downloadable models were exported with OpenSCAD 2021.01. The stand and fit test are teaching prototypes; they have not yet been physically printed or fitted to the lab board.</em></p>
 
 

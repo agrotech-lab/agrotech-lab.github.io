@@ -3,6 +3,7 @@ project:
   output-dir: docs
   resources:
     - assets/3d-printing/**
+    - assets/pcb-viewer/**
     - assets/vendor/three-r180/**
     - assets/projector-mode.*
     - archive/3d-printing/**

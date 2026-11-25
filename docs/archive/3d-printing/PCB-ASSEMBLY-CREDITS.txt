@@ -1,0 +1,27 @@
+Class PCB assembly visualization, 2026-11-25.
+
+Board geometry, copper and silkscreen: the instructor's KiCad project.
+FireBeetle geometry: the supplied DFR0654.step, tessellated with FreeCAD 1.0.
+The STEP X,Y,Z axes map to assembled Y,Z,X; the footprint location is
+[38.862,45.974] mm relative to the PCB's bottom-left corner. Hole and pin
+patterns match the footprint after that transform. Colors are illustrative.
+
+Resistors, LEDs and pin headers: KiCad 7 standard 3D models placed using the
+PCB footprint coordinates and rotations. U1 uses illustrative 1x18 and 1x14
+vertical socket models; the module rests on their tops, 7.00024 mm above the
+base PCB top. This fitted height must be checked against the lab hardware.
+
+Library geometry: KiCad community, CC-BY-SA 4.0 with the electronic-design
+exception described at https://www.kicad.org/libraries/license/ .
+Model families: Resistor_THT/R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal;
+LED_THT/LED_D5.0mm; Connector_PinHeader_2.54mm/PinHeader_1x02 and 1x04;
+Connector_PinSocket_2.54mm/PinSocket_1x14 and 1x18, all vertical 2.54 mm pitch.
+
+The custom SW2 switch has no 3D model: its pads are visible, but its body is
+not represented. OLED/SHT31 are shown as their board headers, not attached
+sensor/display modules. Wires, fasteners and solder joints are omitted.
+The assembled GLB is a teaching illustration, not a complete clearance check
+or an object to print. Use the real board and parts to verify fit and values.
+
+GLB dimensions are in metres, per glTF convention. The course viewer converts
+them back to millimetres to align the separately loaded OpenSCAD stand.

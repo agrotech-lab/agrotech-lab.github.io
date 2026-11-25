@@ -13,7 +13,7 @@ difference() {
     }
     for (p = holes)
       translate([p[0], p[1], 2.8])
-        cylinder(h=6.2, d=6);
+        cylinder(h=6.2, d1=12, d2=8);
   }
   for (p = holes)
     translate([p[0], p[1], -0.1])

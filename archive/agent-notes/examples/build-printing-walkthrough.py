@@ -28,20 +28,20 @@ def main():
     moved = 'translate([-4, -4, 0])\n  ' + base
     frame = block('difference()', [moved, 'translate([10, 12, -0.1])\n  cube([53.406, 54.740, 3.2]);'])
     holes = [(4.318, 4.572), (4.318, 75.438), (69.596, 4.572), (69.596, 75.438)]
-    posts = [f'translate([{x}, {y}, 2.8])\n  cylinder(h=6.2, d=6, $fn=64);' for x, y in holes]
+    posts = [f'translate([{x}, {y}, 2.8])\n  cylinder(h=6.2, d1=12, d2=8, $fn=64);' for x, y in holes]
     cuts = [f'translate([{x}, {y}, -0.1])\n  cylinder(h=9.2, d=3.4, $fn=64);' for x, y in holes]
     raised = block('union()', [frame, *posts])
     loop = '''holes = [[4.318, 4.572], [4.318, 75.438],
          [69.596, 4.572], [69.596, 75.438]];
 $fn = 64;
 
-''' + block('difference()', [block('union()', [frame, 'for (p = holes)\n  translate([p[0], p[1], 2.8])\n    cylinder(h=6.2, d=6);']), 'for (p = holes)\n  translate([p[0], p[1], -0.1])\n    cylinder(h=9.2, d=3.4);'])
+''' + block('difference()', [block('union()', [frame, 'for (p = holes)\n  translate([p[0], p[1], 2.8])\n    cylinder(h=6.2, d1=12, d2=8);']), 'for (p = holes)\n  translate([p[0], p[1], -0.1])\n    cylinder(h=9.2, d=3.4);'])
     stages = [
         ('cube', 'Start with a cube', 'Make one solid: a cube, 20 mm on each side. The three numbers are X, Y and Z. Everything we add later will build on this starting point.', small, [20, 20, 20]),
         ('resize', 'Resize it into a flat base', 'Change the three dimensions. cube() can make a rectangular block too. Our base is now 81.406 × 86.740 mm and only 3 mm thick: the PCB outline plus 4 mm on each edge.', base, [81.406, 86.740, 3]),
         ('move', 'Move the base around the board origin', 'Add translate([-4, -4, 0]). The whole base moves 4 mm in negative X and Y; its size stays the same. The origin will be the bottom-left corner of our PCB. Compare the base with the red and green axes.', moved, [81.406, 86.740, 3]),
         ('window', 'Subtract a block to open the middle', 'Wrap the base in difference(), then add a second block as the cutter. The first shape stays; the second is removed. The cutter starts below the base and ends above it, so the window goes all the way through.', frame, [81.406, 86.740, 3]),
-        ('first-post', 'Add the first mounting post', 'Use union() to join a cylinder to the frame. translate() places it at the first PCB hole. Starting at Z=2.8 gives 0.2 mm of overlap with the 3 mm base; its top is at Z=9.', block('union()', [frame, posts[0]]), [81.406, 86.740, 9]),
+        ('first-post', 'Add the first mounting post', 'Use union() to join a cylinder to the frame. translate() places it at the first PCB hole. The post tapers from a wide 12 mm foot to an 8 mm top. d1 sets the bottom diameter; d2 sets the top. Starting at Z=2.8 overlaps the 3 mm base by 0.2 mm; the top is at Z=9.', block('union()', [frame, posts[0]]), [81.406, 86.740, 9]),
         ('second-post', 'Add a second post', 'Keep the first post. Add another cylinder at X=4.318, Y=75.438. Only its Y position changes. These coordinates come from the real board, so we do not guess the distance from the corners.', block('union()', [frame, *posts[:2]]), [81.406, 86.740, 9]),
         ('four-posts', 'Add the two posts on the other side', 'Add two more cylinders at X=69.596, using the same two Y coordinates. Now all four mounting positions have supports. The posts are still solid.', raised, [81.406, 86.740, 9]),
         ('first-hole', 'Cut a screw hole through the first post', 'Put the whole frame-and-posts shape inside a new difference(). A 3.4 mm cylinder removes material through the first post AND the base, from Z=-0.1 to Z=9.1. Try Top view to see the hole.', block('difference()', [raised, cuts[0]]), [81.406, 86.740, 9]),
