@@ -13,6 +13,12 @@ Print screw-fit first; the 3.2, 3.4, 3.6 mm holes run from the notched end.
 Neither stand nor coupon has been physically printed or fit-tested.
 Verify dimensions, hardware clearance and slicing before printing.
 
+support-bracket.stl is a 36 x 14 x 28 mm bracket with a long overhang.
+support-bracket-turned.stl is the same part turned over, with its broad face
+on the bed. Compare both in Bambu Studio; the STL files contain no supports.
+Generate them in the slicer. In support-bracket.scad, flat_face_down selects
+the orientation. These are slicing examples, not tested functional brackets.
+
 pcb-reference is a bare-board mechanical reference (outline and drill holes
 only). It is not an electronic PCB replacement and is not part of the print
 job. It omits components, copper, connectors and solder joints.

@@ -1,0 +1,23 @@
+{
+  "page": "https://wiki.bambulab.com/en/software/bambu-studio/support",
+  "credit": "Bambu Lab",
+  "retrieved": "2026-11-25",
+  "changes": "None. Images reproduced unchanged for the support-setting examples.",
+  "images": [
+    {
+      "file": "bambu-normal-vs-tree.png",
+      "url": "https://wiki.bambulab.com/software/bambu-studio/support/l_shape_supports_compare.png",
+      "sha256": "6c89fed43e8d8ae3ebecfb29719712b5ad0a8e0f54154668d4c0eed1d903f90e"
+    },
+    {
+      "file": "bambu-tree-example.png",
+      "url": "https://wiki.bambulab.com/software/bambu-studio/support/image12.png",
+      "sha256": "bbe3126918a33e22324776422962fb9c046941d07fddacc1e0366667584e8502"
+    },
+    {
+      "file": "bambu-support-settings.png",
+      "url": "https://wiki.bambulab.com/software/bambu-studio/support/image11.png",
+      "sha256": "4f0c2f8ae9eb8010e2ad93b47cf9cba397672cb5bcf661ffe54351c646c889c4"
+    }
+  ]
+}

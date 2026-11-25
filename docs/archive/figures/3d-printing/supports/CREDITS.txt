@@ -1,0 +1,7 @@
+Bambu Studio support examples
+
+Images copyright Bambu Lab, from https://wiki.bambulab.com/en/software/bambu-studio/support
+Retrieved 2026-11-25; reproduced unchanged. Original asset URLs and checksums are in SOURCES.json.
+These are Bambu Lab examples, not screenshots of the lab printer or its presets. The image captions in the lesson identify the source and the pictured support types.
+
+The interactive bracket diagram and downloadable support-bracket.scad / STLs are original course examples, separate from the Bambu Lab images.

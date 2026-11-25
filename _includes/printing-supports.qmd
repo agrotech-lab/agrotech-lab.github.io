@@ -1,0 +1,48 @@
+```{=html}
+<section class="supports-demo" id="support-explorer" aria-labelledby="support-demo-title">
+  <div class="support-heading">
+    <h3 id="support-demo-title">Same part, three choices</h3>
+    <button type="button" data-support-fullscreen hidden>Full screen</button>
+  </div>
+  <div class="support-controls" data-support-controls hidden role="group" aria-label="Compare supports and print orientation">
+    <button type="button" data-support-mode="none" aria-pressed="true">1. No supports</button>
+    <button type="button" data-support-mode="supported" aria-pressed="false">2. Add supports</button>
+    <button type="button" data-support-mode="turned" aria-pressed="false">3. Turn it over</button>
+  </div>
+  <p class="support-status" data-support-status role="status">The long ledge has empty space below it. It can sag or fail when the printer reaches that height.</p>
+  <svg class="support-drawing" viewBox="0 0 720 430" role="img" aria-labelledby="support-svg-title support-svg-desc">
+    <title id="support-svg-title">Side view of a bracket on the build plate</title>
+    <desc id="support-svg-desc">An upright wall carries a long horizontal ledge. The ledge extends over empty space. Switch to added supports or turn the bracket over to compare.</desc>
+    <defs>
+      <clipPath id="support-build-clip"><rect data-build-clip x="0" y="80" width="720" height="280"/></clipPath>
+      <pattern id="support-part-layers" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 0 H10" fill="none" stroke="#ffffff" stroke-opacity=".3" stroke-width="1.5"/></pattern>
+      <pattern id="support-scaffold-lines" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M4 0 V20 M16 0 V20 M0 10 H20" fill="none" stroke="#94641f" stroke-width="1.6"/></pattern>
+    </defs>
+    <text x="360" y="38" text-anchor="middle" class="support-svg-heading" data-support-view-label>Upright: a long overhang</text>
+    <path data-part-outline d="M150 360 V80 H510 V120 H190 V360 Z" fill="#edf3f6" stroke="#a1b4c0" stroke-dasharray="6 5" stroke-width="2"/>
+    <g clip-path="url(#support-build-clip)">
+      <g data-scaffold hidden>
+        <rect x="193" y="123" width="317" height="237" fill="#f1d394" stroke="#94641f" stroke-width="2"/>
+        <rect x="193" y="123" width="317" height="237" fill="url(#support-scaffold-lines)"/>
+      </g>
+      <path data-part-fill d="M150 360 V80 H510 V120 H190 V360 Z" fill="#26769b" stroke="#17516c" stroke-width="2"/>
+      <path data-part-layer-lines d="M150 360 V80 H510 V120 H190 V360 Z" fill="url(#support-part-layers)"/>
+    </g>
+    <path data-overhang-marker d="M194 126 H510" fill="none" stroke="#ac5040" stroke-width="4" stroke-dasharray="7 4"/>
+    <line data-build-line x1="90" x2="620" y1="80" y2="80" stroke="#6f8490" stroke-dasharray="4 6" stroke-width="1.5" hidden/>
+    <text data-build-label x="640" y="74" text-anchor="end" class="support-svg-small" hidden>28 mm</text>
+    <rect x="80" y="362" width="560" height="15" rx="4" fill="#667c87"/>
+    <text x="360" y="407" text-anchor="middle" class="support-svg-small">Build plate · side view</text>
+  </svg>
+  <div class="support-legend"><span><i class="support-part-key" aria-hidden="true"></i>Part: keep</span><span><i class="support-scaffold-key" aria-hidden="true"></i>Support: remove</span></div>
+  <div class="support-height" data-support-controls hidden>
+    <label for="support-build-height">Show the build up to</label>
+    <input id="support-build-height" type="range" min="0" max="28" step="1" value="28">
+    <output for="support-build-height" data-build-output>28 mm</output>
+    <button type="button" data-support-reset>Reset</button>
+  </div>
+  <p class="support-help">Slide from the bottom upward to see where each new layer needs something beneath it. The outline shows the complete part. This is a simplified illustration: layer spacing and the support gap are exaggerated, and it does not predict the appearance of a failed print. Both colours can be printed with the same filament.</p>
+  <noscript><p>The diagram shows the unsupported orientation. Enable JavaScript to compare the three choices, or download the bracket below and explore it in Bambu Studio.</p></noscript>
+</section>
+<script src="../assets/3d-printing/support-demo.js" defer></script>
+```

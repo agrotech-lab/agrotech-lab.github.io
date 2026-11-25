@@ -132,3 +132,37 @@ the snapshot wording in the lesson. `snapshot.json` records the source commit;
 importing, render the lesson and verify the separate viewer's rotation, parts,
 explosion, Feather removal, cutaway, blackout and mobile layout. Keep the
 prototype/physical-trial status accurate; rendered clearance is not a fit test.
+
+## PLA/PETG and supports
+
+The material comparison stays deliberately short: PLA is an easy, stiff first
+material; PETG is generally tougher, less stiff and more heat-resistant. Do not
+turn this into a universal strength ranking or prescribe temperatures without
+knowing the actual grade, spool and plate. Official filament guidance is linked.
+
+`_includes/printing-supports.qmd` and `assets/3d-printing/support-demo.js` provide
+a dependency-free SVG side view: no supports, removable supports, and the same
+part turned over. The height slider clips the illustration from the plate up;
+it does not simulate failed extrusion or calculate toolpaths. The drawing uses
+10 SVG units/mm, with the plate at Y=360, the part at X=150, and a 28 mm height.
+The upright ledge starts at Z=24 mm. Blue is the part; amber is temporary support,
+not a second filament requirement. Keep these dimensions and the turned-over
+4 mm base consistent with `support-bracket.scad`. Fullscreen works with blackout.
+
+Export the two STLs using OpenSCAD (binary STL):
+
+```sh
+OpenSCAD --hardwarnings --export-format binstl -o archive/3d-printing/support-bracket.stl archive/3d-printing/support-bracket.scad
+OpenSCAD --hardwarnings --export-format binstl -D 'flat_face_down=true' -o archive/3d-printing/support-bracket-turned.stl archive/3d-printing/support-bracket.scad
+```
+
+Both should be one watertight solid, 36 x 14 x 28 mm, volume 3360 mm³.
+The STLs contain no supports; students generate them in their own slicer.
+Include these files and the updated README when refreshing class-examples.zip.
+
+The three Bambu Wiki images in `archive/figures/3d-printing/supports/` are copied
+unchanged, with attribution, original URLs and hashes. The flat-overhang image
+compares normal (left) and tree (right); the balloon-dog example uses Tree Slim.
+The settings screenshot has an example X1C profile, not the lab H2C. Keep the
+caption directing students to the lab's actual printer and filament profiles.
+Do not label simplified SVG support shapes as Bambu Studio slicing output.

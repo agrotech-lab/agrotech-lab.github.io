@@ -16,6 +16,15 @@ We use a **Bambu Lab H2C with AMS**. The printer melts a plastic filament and la
 
 The **AMS (Automatic Material System)** feeds and switches filament. The H2C's **Vortek system** changes hotends automatically. These do different jobs: switching the spool is different from exchanging the heated nozzle assembly. We will start with **one material and one colour**, using the installed nozzle and the matching printer profile. This lesson uses the 3D-printing functions. [Bambu Lab's H2C overview](https://blog.bambulab.com/bambu-lab-h2c-where-multi-material-vortek-system-meets-engineering-precision/).
 
+## The two materials in our lab: PLA and PETG {#pla-and-petg}
+
+| Material | Why choose it? | Keep in mind |
+|---|---|---|
+| **PLA** | Easy first prints, crisp detail and a stiff part. Good for learning, models and quick prototypes. | More brittle and less heat-resistant than PETG. A part that looks strong can still snap or soften in heat. |
+| **PETG** | Tougher, a little more flexible and more heat-resistant. Useful for functional parts and clips. | Needs care with drying and the correct print profile; wet filament can produce strings and a rough finish. |
+
+Start with **PLA** for our first examples. Choose **PETG** when the part's job calls for its properties. Select the profile for the actual spool—PETG, PETG HF and other blends can need different settings. Material choice, print orientation and the design all affect the result. [Bambu Lab's filament comparison](https://bambulab.com/en/filament-guide).
+
 ## Install these two programs
 
 | Program | What we use it for | Download |
@@ -203,6 +212,60 @@ The editable KiCad project, schematic, original board image, custom libraries an
 8. **Watch the first layer and let the part cool.** Keep hands away from the hot nozzle, bed and moving mechanism. Remove the cooled part as demonstrated, try the screw-fit test, and measure before printing more copies.
 
 An AMS slot containing the right colour can still contain the wrong **material**. Match the material as well. More colours and hotend changes can add time and material use, even with automatic switching. Keep the first exercise simple. [Bambu Studio documentation and project links](https://github.com/bambulab/BambuStudio).
+
+## Supports: what holds up the next layer? {#supports}
+
+The printer builds from the bottom upward. A long ledge can extend over empty space: this is an **overhang**. **Supports** are temporary printed structures underneath it. They help during printing, then you remove them. They add time and plastic, and can leave marks on the surface they touch.
+
+### Compare the same bracket
+
+Start with **No supports**, then choose **Add supports**. Finally, **Turn it over**: the broad face is now on the plate. The shape is unchanged, but the difficult overhang has gone. Drag the height slider upward and pause just before the ledge starts at **24 mm**.
+
+{{< include ../_includes/printing-supports.qmd >}}
+
+[Download the upright bracket STL](../archive/3d-printing/support-bracket.stl) · [Download the turned-over STL](../archive/3d-printing/support-bracket-turned.stl) · [OpenSCAD source](../archive/3d-printing/support-bracket.scad)
+
+These are two orientations of the same **36 × 14 × 28 mm** part. The files contain only the part; **Bambu Studio generates the supports**. Our PCB stand is another useful comparison: with its base down and posts up, it is designed to print without supports.
+
+Small, gradual overhangs and short **bridges** attached at both ends may print without supports. The result depends on the shape, filament and settings, so inspect the sliced layers. There is no single angle or bridge length that works for every print.
+
+### Normal supports and tree supports
+
+**Normal supports** form fairly direct structures beneath an overhang. They are a useful starting point for a broad, flat underside. **Tree supports** branch toward the areas that need support; they can be useful around curved shapes. Neither is always better: compare the sliced result and whether you can reach and remove the supports.
+
+```{=html}
+<figure class="support-wiki-example">
+  <a href="../archive/figures/3d-printing/supports/bambu-normal-vs-tree.png" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="../archive/figures/3d-printing/supports/bambu-normal-vs-tree.png" alt="Bambu Studio layer-preview comparison of an L-shaped part: normal supports on the left and branching tree supports on the right, both shown in green."></a>
+  <figcaption><strong>Normal on the left; tree on the right.</strong> Bambu Lab's example shows two ways of supporting the same flat overhang. Green identifies support paths in this preview; it does not mean that a second filament colour is required.</figcaption>
+</figure>
+<details class="support-wiki-example">
+  <summary>Another example: tree supports under a curved model</summary>
+  <figure>
+    <a href="../archive/figures/3d-printing/supports/bambu-tree-example.png" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="../archive/figures/3d-printing/supports/bambu-tree-example.png" alt="Bambu Studio preview of an orange balloon-dog model with green tree supports branching up beneath its chin and body."></a>
+    <figcaption>Branches reach the underside of the chin and body. This Bambu Lab screenshot uses <strong>Tree Slim</strong>; other tree styles produce different shapes.</figcaption>
+  </figure>
+</details>
+```
+
+Images: [Bambu Lab Wiki — supports](https://wiki.bambulab.com/en/software/bambu-studio/support), reproduced unchanged. Click an image to open it at full size. The wiki screenshots use example printer profiles; use **our lab printer and actual filament** for your own slicing.
+
+### Try it in Bambu Studio
+
+```{=html}
+<figure class="support-wiki-settings">
+  <a href="../archive/figures/3d-printing/supports/bambu-support-settings.png" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="../archive/figures/3d-printing/supports/bambu-support-settings.png" alt="Bambu Studio Support settings, with Enable support checked and Type set to tree(auto)."></a>
+  <figcaption>Find the <strong>Support</strong> tab and <strong>Enable support</strong>. The Type chooses normal or tree; Style adjusts that type. Screenshot: Bambu Lab Wiki.</figcaption>
+</figure>
+```
+
+1. Import the **upright bracket**, keeping its narrow end on the plate. With supports off, slice it and find the first layer of the ledge in **Preview**.
+2. Under **Process → Support**, turn on **Enable support** and choose **normal(auto)**. Slice again. In Preview, choose **Line Type** colouring, find **Support** in the legend, and move the vertical layer slider from the plate up to the ledge.
+3. Try **tree(auto)** and slice again. Compare support contact, access for removal, estimated time and material. Use the profile defaults for the first comparison.
+4. Import the **turned-over bracket** instead. Switch supports off and slice again. Its broad face starts on the plate, so this simple shape no longer needs the extra structure. In your own models, use **Rotate** or **Lay on face** to explore orientation before adding supports.
+
+For this exercise, the part and supports can use **the same PLA spool**. A second material and the AMS are not required. The slicer leaves separation between same-material support and the part so they can come apart; do not set that gap to zero just to make the preview look solid. [Bambu Lab's support settings guide](https://wiki.bambulab.com/en/software/bambu-studio/support).
+
+**Supports, infill and a brim do different jobs:** supports are removed after printing, infill stays inside the part, and a brim helps the first layer stick to the plate. After a supported print has cooled, remove the supports gently and check the surface underneath.
 
 ## What to change when a print is disappointing
 

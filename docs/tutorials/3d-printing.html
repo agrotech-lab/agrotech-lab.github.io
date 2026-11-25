@@ -552,12 +552,14 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
    
   <ul class="collapse">
   <li><a href="#our-lab-printer" id="toc-our-lab-printer" class="nav-link active" data-scroll-target="#our-lab-printer">Our lab printer</a></li>
+  <li><a href="#pla-and-petg" id="toc-pla-and-petg" class="nav-link" data-scroll-target="#pla-and-petg">The two materials in our lab: PLA and PETG</a></li>
   <li><a href="#install-these-two-programs" id="toc-install-these-two-programs" class="nav-link" data-scroll-target="#install-these-two-programs">Install these two programs</a></li>
   <li><a href="#the-files-along-the-way" id="toc-the-files-along-the-way" class="nav-link" data-scroll-target="#the-files-along-the-way">The files along the way</a></li>
   <li><a href="#openscad-write-a-shape-then-look-at-it" id="toc-openscad-write-a-shape-then-look-at-it" class="nav-link" data-scroll-target="#openscad-write-a-shape-then-look-at-it">OpenSCAD: write a shape, then look at it</a></li>
   <li><a href="#worked-example" id="toc-worked-example" class="nav-link" data-scroll-target="#worked-example">Worked example: build the PCB stand</a></li>
   <li><a href="#a-useful-print-for-our-soldering-pcb" id="toc-a-useful-print-for-our-soldering-pcb" class="nav-link" data-scroll-target="#a-useful-print-for-our-soldering-pcb">A useful print for our soldering PCB</a></li>
   <li><a href="#from-stl-to-a-print-in-bambu-studio" id="toc-from-stl-to-a-print-in-bambu-studio" class="nav-link" data-scroll-target="#from-stl-to-a-print-in-bambu-studio">From STL to a print in Bambu Studio</a></li>
+  <li><a href="#supports" id="toc-supports" class="nav-link" data-scroll-target="#supports">Supports: what holds up the next layer?</a></li>
   <li><a href="#what-to-change-when-a-print-is-disappointing" id="toc-what-to-change-when-a-print-is-disappointing" class="nav-link" data-scroll-target="#what-to-change-when-a-print-is-disappointing">What to change when a print is disappointing</a></li>
   <li><a href="#working-with-an-llm-on-a-model" id="toc-working-with-an-llm-on-a-model" class="nav-link" data-scroll-target="#working-with-an-llm-on-a-model">Working with an LLM on a model</a></li>
   <li><a href="#sensor-workshop" id="toc-sensor-workshop" class="nav-link" data-scroll-target="#sensor-workshop">A real project: Sensor Workshop</a></li>
@@ -592,6 +594,36 @@ gtag('config', 'G-43N4LS3BPR', { 'anonymize_ip': true});
 <h2 class="anchored" data-anchor-id="our-lab-printer">Our lab printer</h2>
 <p>We use a <strong>Bambu Lab H2C with AMS</strong>. The printer melts a plastic filament and lays it down in thin paths, building the object one layer at a time. This process is often called FDM or FFF printing.</p>
 <p>The <strong>AMS (Automatic Material System)</strong> feeds and switches filament. The H2C’s <strong>Vortek system</strong> changes hotends automatically. These do different jobs: switching the spool is different from exchanging the heated nozzle assembly. We will start with <strong>one material and one colour</strong>, using the installed nozzle and the matching printer profile. This lesson uses the 3D-printing functions. <a href="https://blog.bambulab.com/bambu-lab-h2c-where-multi-material-vortek-system-meets-engineering-precision/" target="_blank" rel="noopener noreferrer">Bambu Lab’s H2C overview</a>.</p>
+</section>
+<section id="pla-and-petg" class="level2">
+<h2 class="anchored" data-anchor-id="pla-and-petg">The two materials in our lab: PLA and PETG</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Material</th>
+<th>Why choose it?</th>
+<th>Keep in mind</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>PLA</strong></td>
+<td>Easy first prints, crisp detail and a stiff part. Good for learning, models and quick prototypes.</td>
+<td>More brittle and less heat-resistant than PETG. A part that looks strong can still snap or soften in heat.</td>
+</tr>
+<tr class="even">
+<td><strong>PETG</strong></td>
+<td>Tougher, a little more flexible and more heat-resistant. Useful for functional parts and clips.</td>
+<td>Needs care with drying and the correct print profile; wet filament can produce strings and a rough finish.</td>
+</tr>
+</tbody>
+</table>
+<p>Start with <strong>PLA</strong> for our first examples. Choose <strong>PETG</strong> when the part’s job calls for its properties. Select the profile for the actual spool—PETG, PETG HF and other blends can need different settings. Material choice, print orientation and the design all affect the result. <a href="https://bambulab.com/en/filament-guide" target="_blank" rel="noopener noreferrer">Bambu Lab’s filament comparison</a>.</p>
 </section>
 <section id="install-these-two-programs" class="level2">
 <h2 class="anchored" data-anchor-id="install-these-two-programs">Install these two programs</h2>
@@ -929,6 +961,94 @@ Print a small fit test first
 <li><strong>Watch the first layer and let the part cool.</strong> Keep hands away from the hot nozzle, bed and moving mechanism. Remove the cooled part as demonstrated, try the screw-fit test, and measure before printing more copies.</li>
 </ol>
 <p>An AMS slot containing the right colour can still contain the wrong <strong>material</strong>. Match the material as well. More colours and hotend changes can add time and material use, even with automatic switching. Keep the first exercise simple. <a href="https://github.com/bambulab/BambuStudio" target="_blank" rel="noopener noreferrer">Bambu Studio documentation and project links</a>.</p>
+</section>
+<section id="supports" class="level2">
+<h2 class="anchored" data-anchor-id="supports">Supports: what holds up the next layer?</h2>
+<p>The printer builds from the bottom upward. A long ledge can extend over empty space: this is an <strong>overhang</strong>. <strong>Supports</strong> are temporary printed structures underneath it. They help during printing, then you remove them. They add time and plastic, and can leave marks on the surface they touch.</p>
+<section id="compare-the-same-bracket" class="level3">
+<h3 class="anchored" data-anchor-id="compare-the-same-bracket">Compare the same bracket</h3>
+<p>Start with <strong>No supports</strong>, then choose <strong>Add supports</strong>. Finally, <strong>Turn it over</strong>: the broad face is now on the plate. The shape is unchanged, but the difficult overhang has gone. Drag the height slider upward and pause just before the ledge starts at <strong>24 mm</strong>.</p>
+<section class="supports-demo" id="support-explorer" aria-labelledby="support-demo-title">
+  <div class="support-heading">
+    <h3 id="support-demo-title" class="anchored">Same part, three choices</h3>
+    <button type="button" data-support-fullscreen="" hidden="">Full screen</button>
+  </div>
+  <div class="support-controls" data-support-controls="" hidden="" role="group" aria-label="Compare supports and print orientation">
+    <button type="button" data-support-mode="none" aria-pressed="true">1. No supports</button>
+    <button type="button" data-support-mode="supported" aria-pressed="false">2. Add supports</button>
+    <button type="button" data-support-mode="turned" aria-pressed="false">3. Turn it over</button>
+  </div>
+  <p class="support-status" data-support-status="" role="status">The long ledge has empty space below it. It can sag or fail when the printer reaches that height.</p>
+  <svg class="support-drawing" viewbox="0 0 720 430" role="img" aria-labelledby="support-svg-title support-svg-desc">
+    <title id="support-svg-title">Side view of a bracket on the build plate</title>
+    <desc id="support-svg-desc">An upright wall carries a long horizontal ledge. The ledge extends over empty space. Switch to added supports or turn the bracket over to compare.</desc>
+    <defs>
+      <clippath id="support-build-clip"><rect data-build-clip="" x="0" y="80" width="720" height="280"></rect></clippath>
+      <pattern id="support-part-layers" width="10" height="10" patternunits="userSpaceOnUse"><path d="M0 0 H10" fill="none" stroke="#ffffff" stroke-opacity=".3" stroke-width="1.5"></path></pattern>
+      <pattern id="support-scaffold-lines" width="20" height="20" patternunits="userSpaceOnUse"><path d="M4 0 V20 M16 0 V20 M0 10 H20" fill="none" stroke="#94641f" stroke-width="1.6"></path></pattern>
+    </defs>
+    <text x="360" y="38" text-anchor="middle" class="support-svg-heading" data-support-view-label="">Upright: a long overhang</text>
+    <path data-part-outline="" d="M150 360 V80 H510 V120 H190 V360 Z" fill="#edf3f6" stroke="#a1b4c0" stroke-dasharray="6 5" stroke-width="2"></path>
+    <g clip-path="url(#support-build-clip)">
+      <g data-scaffold="" hidden="">
+        <rect x="193" y="123" width="317" height="237" fill="#f1d394" stroke="#94641f" stroke-width="2"></rect>
+        <rect x="193" y="123" width="317" height="237" fill="url(#support-scaffold-lines)"></rect>
+      </g>
+      <path data-part-fill="" d="M150 360 V80 H510 V120 H190 V360 Z" fill="#26769b" stroke="#17516c" stroke-width="2"></path>
+      <path data-part-layer-lines="" d="M150 360 V80 H510 V120 H190 V360 Z" fill="url(#support-part-layers)"></path>
+    </g>
+    <path data-overhang-marker="" d="M194 126 H510" fill="none" stroke="#ac5040" stroke-width="4" stroke-dasharray="7 4"></path>
+    <line data-build-line="" x1="90" x2="620" y1="80" y2="80" stroke="#6f8490" stroke-dasharray="4 6" stroke-width="1.5" hidden=""></line>
+    <text data-build-label="" x="640" y="74" text-anchor="end" class="support-svg-small" hidden="">28 mm</text>
+    <rect x="80" y="362" width="560" height="15" rx="4" fill="#667c87"></rect>
+    <text x="360" y="407" text-anchor="middle" class="support-svg-small">Build plate · side view</text>
+  </svg>
+  <div class="support-legend"><span><i class="support-part-key" aria-hidden="true"></i>Part: keep</span><span><i class="support-scaffold-key" aria-hidden="true"></i>Support: remove</span></div>
+  <div class="support-height" data-support-controls="" hidden="">
+    <label for="support-build-height">Show the build up to</label>
+    <input id="support-build-height" type="range" min="0" max="28" step="1" value="28">
+    <output for="support-build-height" data-build-output="">28 mm</output>
+    <button type="button" data-support-reset="">Reset</button>
+  </div>
+  <p class="support-help">Slide from the bottom upward to see where each new layer needs something beneath it. The outline shows the complete part. This is a simplified illustration: layer spacing and the support gap are exaggerated, and it does not predict the appearance of a failed print. Both colours can be printed with the same filament.</p>
+  <noscript><p>The diagram shows the unsupported orientation. Enable JavaScript to compare the three choices, or download the bracket below and explore it in Bambu Studio.</p></noscript>
+</section>
+<script src="../assets/3d-printing/support-demo.js" defer=""></script>
+<p><a href="../archive/3d-printing/support-bracket.stl" target="_blank" rel="noopener noreferrer">Download the upright bracket STL</a> · <a href="../archive/3d-printing/support-bracket-turned.stl" target="_blank" rel="noopener noreferrer">Download the turned-over STL</a> · <a href="../archive/3d-printing/support-bracket.scad" target="_blank" rel="noopener noreferrer">OpenSCAD source</a></p>
+<p>These are two orientations of the same <strong>36 × 14 × 28 mm</strong> part. The files contain only the part; <strong>Bambu Studio generates the supports</strong>. Our PCB stand is another useful comparison: with its base down and posts up, it is designed to print without supports.</p>
+<p>Small, gradual overhangs and short <strong>bridges</strong> attached at both ends may print without supports. The result depends on the shape, filament and settings, so inspect the sliced layers. There is no single angle or bridge length that works for every print.</p>
+</section>
+<section id="normal-supports-and-tree-supports" class="level3">
+<h3 class="anchored" data-anchor-id="normal-supports-and-tree-supports">Normal supports and tree supports</h3>
+<p><strong>Normal supports</strong> form fairly direct structures beneath an overhang. They are a useful starting point for a broad, flat underside. <strong>Tree supports</strong> branch toward the areas that need support; they can be useful around curved shapes. Neither is always better: compare the sliced result and whether you can reach and remove the supports.</p>
+<figure class="support-wiki-example figure">
+  <a href="../archive/figures/3d-printing/supports/bambu-normal-vs-tree.png" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="../archive/figures/3d-printing/supports/bambu-normal-vs-tree.png" alt="Bambu Studio layer-preview comparison of an L-shaped part: normal supports on the left and branching tree supports on the right, both shown in green." class="figure-img"></a>
+  <figcaption><strong>Normal on the left; tree on the right.</strong> Bambu Lab's example shows two ways of supporting the same flat overhang. Green identifies support paths in this preview; it does not mean that a second filament colour is required.</figcaption>
+</figure>
+<details class="support-wiki-example">
+  <summary>Another example: tree supports under a curved model</summary>
+  <figure class="figure">
+    <a href="../archive/figures/3d-printing/supports/bambu-tree-example.png" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="../archive/figures/3d-printing/supports/bambu-tree-example.png" alt="Bambu Studio preview of an orange balloon-dog model with green tree supports branching up beneath its chin and body." class="figure-img"></a>
+    <figcaption>Branches reach the underside of the chin and body. This Bambu Lab screenshot uses <strong>Tree Slim</strong>; other tree styles produce different shapes.</figcaption>
+  </figure>
+</details>
+<p>Images: <a href="https://wiki.bambulab.com/en/software/bambu-studio/support" target="_blank" rel="noopener noreferrer">Bambu Lab Wiki — supports</a>, reproduced unchanged. Click an image to open it at full size. The wiki screenshots use example printer profiles; use <strong>our lab printer and actual filament</strong> for your own slicing.</p>
+</section>
+<section id="try-it-in-bambu-studio" class="level3">
+<h3 class="anchored" data-anchor-id="try-it-in-bambu-studio">Try it in Bambu Studio</h3>
+<figure class="support-wiki-settings figure">
+  <a href="../archive/figures/3d-printing/supports/bambu-support-settings.png" target="_blank" rel="noopener noreferrer"><img loading="lazy" src="../archive/figures/3d-printing/supports/bambu-support-settings.png" alt="Bambu Studio Support settings, with Enable support checked and Type set to tree(auto)." class="figure-img"></a>
+  <figcaption>Find the <strong>Support</strong> tab and <strong>Enable support</strong>. The Type chooses normal or tree; Style adjusts that type. Screenshot: Bambu Lab Wiki.</figcaption>
+</figure>
+<ol type="1">
+<li>Import the <strong>upright bracket</strong>, keeping its narrow end on the plate. With supports off, slice it and find the first layer of the ledge in <strong>Preview</strong>.</li>
+<li>Under <strong>Process → Support</strong>, turn on <strong>Enable support</strong> and choose <strong>normal(auto)</strong>. Slice again. In Preview, choose <strong>Line Type</strong> colouring, find <strong>Support</strong> in the legend, and move the vertical layer slider from the plate up to the ledge.</li>
+<li>Try <strong>tree(auto)</strong> and slice again. Compare support contact, access for removal, estimated time and material. Use the profile defaults for the first comparison.</li>
+<li>Import the <strong>turned-over bracket</strong> instead. Switch supports off and slice again. Its broad face starts on the plate, so this simple shape no longer needs the extra structure. In your own models, use <strong>Rotate</strong> or <strong>Lay on face</strong> to explore orientation before adding supports.</li>
+</ol>
+<p>For this exercise, the part and supports can use <strong>the same PLA spool</strong>. A second material and the AMS are not required. The slicer leaves separation between same-material support and the part so they can come apart; do not set that gap to zero just to make the preview look solid. <a href="https://wiki.bambulab.com/en/software/bambu-studio/support" target="_blank" rel="noopener noreferrer">Bambu Lab’s support settings guide</a>.</p>
+<p><strong>Supports, infill and a brim do different jobs:</strong> supports are removed after printing, infill stays inside the part, and a brim helps the first layer stick to the plate. After a supported print has cooled, remove the supports gently and check the surface underneath.</p>
+</section>
 </section>
 <section id="what-to-change-when-a-print-is-disappointing" class="level2">
 <h2 class="anchored" data-anchor-id="what-to-change-when-a-print-is-disappointing">What to change when a print is disappointing</h2>
