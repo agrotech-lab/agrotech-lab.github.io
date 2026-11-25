@@ -38,8 +38,8 @@
       </div>
     </div>
     <div class="stl-code">
-      <p class="stl-code-key" data-code-key>Complete OpenSCAD code</p>
-      <pre tabindex="0" aria-label="Complete OpenSCAD source"><code data-code>// Units: mm. PCB stand worked example.
+      <p class="stl-code-key"><span data-code-key>Complete OpenSCAD code</span> <span class="stl-change-key" data-change-key hidden>New or changed</span></p>
+      <pre tabindex="0" aria-label="Complete OpenSCAD source. Soft shading and a margin marker indicate new or changed lines."><code data-code>// Units: mm. PCB stand worked example.
 cube([20, 20, 20]);</code></pre>
       <div class="stl-tools">
         <a class="stl-download" data-scad-link download target="_blank" rel="noopener noreferrer" href="../archive/3d-printing/walkthrough/01-cube.scad">Download this .scad</a>

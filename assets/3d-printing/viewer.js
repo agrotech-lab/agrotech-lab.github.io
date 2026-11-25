@@ -113,7 +113,11 @@ async function start() {
   }
   function showCode(item){
     const code=q('[data-code]'), lines=renderOpenSCAD(code,item.code);
+    code.classList.add('scad-source');
+    const changedLines=new Set(item.changedLines || []);
+    lines.forEach((line,index)=>line.classList.toggle('scad-changed',changedLines.has(index+1)));
     q('[data-code-key]').textContent='Complete OpenSCAD code';
+    q('[data-change-key]').hidden=!isStep(item) || changedLines.size===0;
     const pre=code.parentElement;pre.scrollTop=0;
     // Keep the actual new operation in view when the complete file grows.
     requestAnimationFrame(()=>{
@@ -182,6 +186,8 @@ async function start() {
       if(token!==generation){g.dispose();return;}
       dispose();active=null;select.value='';add(g,0x2482ad);g=null;root.dataset.activeModel='upload';
       q('[data-code-key]').textContent='Your STL preview';
+      q('[data-change-key]').hidden=true;
+      q('[data-code]').classList.remove('scad-source');
       q('[data-code]').textContent='An STL stores triangles, not the original OpenSCAD code. Open the matching .scad file to edit the design.';
       q('[data-note]').textContent='Your file stays in this browser. STL does not store units; this viewer reads coordinates as millimetres. Check size and printability in your slicer.';
       q('[data-stl-link]').hidden=true;q('[data-scad-link]').hidden=true;

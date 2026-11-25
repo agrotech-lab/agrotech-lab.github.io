@@ -99,7 +99,7 @@ A shape statement ends in `;`. Braces `{ ... }` group shapes. A transformation g
 
 We will build **one part, one change at a time**. Start with a cube, resize and move it, cut out the middle, add mounting posts, and finally cut the screw holes. The finished shape is the stand for our class PCB.
 
-Press **Next** to make the next change, or **Back** to compare it with the previous step. The code uses OpenSCAD-style syntax colours. Each step is a complete OpenSCAD file that you can download and run. Try predicting the next shape before pressing the button.
+Press **Next** to make the next change, or **Back** to compare it with the previous step. The code uses OpenSCAD-style syntax colours; soft shading and a margin marker show which lines are new or changed. Each step is a complete OpenSCAD file that you can download and run. Try predicting the next shape before pressing the button.
 
 Use **Full screen** when projecting. The camera stays in the same place as you advance, so resizing or moving the part is easy to see. You can still rotate the model, use Top view, or reset the view.
 

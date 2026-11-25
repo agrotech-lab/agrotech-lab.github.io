@@ -65,9 +65,12 @@ box, so resizing and moving are visible. Start over resets the camera. The
 Other models mode retains the earlier gallery and private local STL upload.
 Without WebGL, the same Next/Back controls show the exported PNGs and code.
 The code pane uses muted syntax colours on a light background, inspired by
-OpenSCAD's light editor theme. Do not restore changed-line background highlights:
-the instructor found them uncomfortable. Changed-line metadata is used only
-to scroll the new operation into view. The display-only openscad-code.js lexer
+OpenSCAD's light editor theme. The instructor requested restoring change cues
+while retaining the syntax colours: use a very pale sage tint and a thin gutter
+marker, never the old saturated yellow treatment. Changed-line metadata also
+scrolls the new operation into view. Keep the small legend visible only for
+worked-example steps; gallery models and uploads have no change markers.
+The display-only openscad-code.js lexer
 preserves the exact source as text nodes; all complete sources are downloadable.
 Failed loads must not pair a new code listing with the previous model.
 

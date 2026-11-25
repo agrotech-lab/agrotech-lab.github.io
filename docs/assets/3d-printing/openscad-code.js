@@ -14,7 +14,7 @@ export function renderOpenSCAD(element, source) {
   }
   function append(text, type) {
     text.split('\n').forEach((part, index) => {
-      if (index) { fragment.append(document.createTextNode('\n')); nextLine(); }
+      if (index) { line.append(document.createTextNode('\n')); nextLine(); }
       if (!part) return;
       if (type) {
         const span = document.createElement('span');
